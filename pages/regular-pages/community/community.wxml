@@ -1,0 +1,119 @@
+<view class="community-container">
+  <view class="community-section">
+    <view class="community-section-title">
+      <text>用户必读</text>
+    </view>
+    <view class="community-block border-right">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>帮助教程</text></view>
+        <view class="community-block-small"><text class="">4 小时前</text></view>
+      </view>
+    </view>
+
+    <view class="community-block">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>帮助教程</text></view>
+        <view class="community-block-small"><text class="">4 小时前</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="community-section">
+    <view class="community-section-title">
+      <text>客服咨询</text>
+    </view>
+    <view class="community-block border-right">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title">
+          <text>有问有答</text>
+          <text class="community-count">(5)</text>
+        </view>
+        <view class="community-block-small"><text class="">2 小时前</text></view>
+      </view>
+    </view>
+
+    <view class="community-block">
+      <view class="community-icon">&nbsp;</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>&nbsp;</text></view>
+        <view class="community-block-small"><text class="">&nbsp;</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="community-section">
+    <view class="community-section-title">
+      <text>官方专区</text>
+    </view>
+    <view class="community-block border-right">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>官方公告</text></view>
+        <view class="community-block-small"><text class="">6 天前</text></view>
+      </view>
+    </view>
+
+    <view class="community-block border-bottom">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>产品动态</text></view>
+        <view class="community-block-small"><text class="">1 天前</text></view>
+      </view>
+    </view>
+    <view class="community-block border-bottom border-right">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>市场动态</text></view>
+        <view class="community-block-small"><text class="">28 天前</text></view>
+      </view>
+    </view>
+
+    <view class="community-block">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>微站专区</text></view>
+        <view class="community-block-small"><text class="">1 天前</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="community-section">
+    <view class="community-section-title">
+      <text>用户交流</text>
+    </view>
+    <view class="community-block border-bottom border-right">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>运营交流</text></view>
+        <view class="community-block-small"><text class="">2 天前</text></view>
+      </view>
+    </view>
+
+    <view class="community-block border-bottom">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>聊天灌水</text></view>
+        <view class="community-block-small"><text class="">2 天前</text></view>
+      </view>
+    </view>
+
+    <view class="community-block border-right">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>站长访谈</text></view>
+        <view class="community-block-small"><text class="">7 天前</text></view>
+      </view>
+    </view>
+
+    <view class="community-block">
+      <view class="community-icon">icon</view>
+      <view class="community-content">
+        <view class="community-block-title"><text>&nbsp;</text></view>
+        <view class="community-block-small"><text class="">&nbsp;</text></view>
+      </view>
+    </view>
+  </view>
+</view>
