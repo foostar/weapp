@@ -1,0 +1,4 @@
+<view class="container">
+  <view class="tab-view"></view>
+  <include src="../../includes/tabs.wxml"/>
+</view>

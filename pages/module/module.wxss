@@ -1,0 +1,113 @@
+.module-container {
+  width: 100%;
+  height: 100%;
+}
+.view {
+  width: 100%;
+  height: 100%;
+}
+.tab-bar {
+  height: 88rpx;
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  overflow: hidden;
+  bottom: 0;
+  position: fixed;
+  border-top: 1rpx solid #CCC;
+}
+.tab-item {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+.tab-item-image {
+  width: 88rpx;
+  height: 88rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -44rpx;
+}
+.tab-itme-name {
+  width: 100%;
+  height: 20rpx;
+  line-height: 20rpx;
+  position: absolute;
+  bottom: 2rpx;
+  text-align: center;
+  font-size: 7rpx;
+}
+
+
+.layout-slider {
+  width: 100%;
+  height: 380rpx;
+}
+.layout-slider image {
+  width: 100%;
+  height: 100%;
+}
+
+.layout-four-col {
+  width: 100%;
+  height: 160rpx;
+  flex-direction: row;
+  display: flex;
+}
+
+.layout-four-col-item {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.layout-four-col-item image {
+  width: 100%;
+  height: 90rpx;
+  margin: 15rpx 0;
+}
+.layout-four-col-item text {
+  height: 40rpx;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 12rpx;
+}
+
+.tab-nav-bar {
+  width: 100%;
+  height: 60rpx;
+  flex-direction: row;
+  display: flex;
+  border-bottom: 1rpx solid #E0E0E0;
+}
+.tab-nav-bar-item {
+  flex: 1;
+  display: flex;
+}
+.tab-nav-bar-item text {
+  line-height: 60rpx;
+  font-size: 28rpx;
+  width: 100%;
+  text-align: center;
+}
+
+
+/* ========== cell-tieba ========== */
+.cell-tieba {
+  width: 100%;
+}
+.cell-tieba-header {
+  height: 80rpx;
+  padding: 20rpx;
+}
+.cell-tieba-header-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 6rpx;
+}
+.cell-tieba-header-username {
+  
+}
