@@ -15,6 +15,7 @@
   bottom: 0;
   position: fixed;
   border-top: 1rpx solid #CCC;
+  background-color: #fff;
 }
 .tab-item {
   flex: 1;

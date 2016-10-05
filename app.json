@@ -1,5 +1,6 @@
 {
   "pages":[
+    "pages/regular-pages/my/my",
     "pages/loading/loading",
     "pages/index/index",
     "pages/logs/logs",
