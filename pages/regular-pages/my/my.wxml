@@ -1,7 +1,11 @@
 <view class="my-header">
-    <block wx:if="{{isLogin}}">
+    <view wx:if="{{!isLogin}}">
+        <image src="{{}}"></image>
+        <text>请点击登录／注册</text>
+    </view>
+    <view wx:if="{{isLogin}}">
         <image src="{{}}"></image>
         <text>登录／注册</text>
-    </block>
+    </view>
     
 </view>
