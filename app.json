@@ -2,8 +2,7 @@
   "pages":[
     "pages/loading/loading",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/module/module"
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
