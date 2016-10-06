@@ -1,0 +1,63 @@
+<!-- todo  -->
+<!-- 
+  /**
+   * arguments: [
+   *   currentIndex: 当前下标。 例如 0、'1', 
+   *   tabs: 数组 存放显示的内容。 例如 ['全部', '最新'], 
+   *   color: 主题颜色，默认黑色。 例如 '#f60'
+   * ]
+   * Event: 
+   *   changeTabs: 监听点击标题栏事件，用于切换 建议使用方式为
+   ************************
+   *   changeTabs: function (e) {
+   *        // 切换选项卡
+   *        this.setData({
+   *          currentIndex: e.currentTarget.dataset.index
+   *        })
+   *      }
+   ************************
+   * 
+   */
+-->
+<template name="buttons-tab">
+  <view class="buttons-tab">
+    <block wx:for="{{ tabs }}">
+      <view bindtap="changeTabs" style="color: {{ index == currentIndex ? (color || '#000') : '#999' }}" class="tab-link {{ index == currentIndex ? 'tab-link-active' : '' }}" data-index="{{ index }}">{{ item }}</view>
+    </block>
+  </view>
+</template>
+
+
+<viwe class="tpcinfo-main">
+  <!-- card -->
+  <view class="tpcinfo-header" style="background-image: url({{ tpcinfo.ti_cover }})">
+    <view class="tpcinfo-header-cover">
+      <view class="tpcinfo-header-title">和老赵一起的日子</view>
+      <view class="tpcinfo-header-content">你们有什么想和老赵聊聊的吗</view>
+    </view>
+  </view>
+  <!-- topuser -->
+  <view class="tpcinfo-users">
+    <view class="tpcinfo-users-list">
+      <view class="tpcinfo-users-item" style="background-image: url({{ tpcinfo.icon }})">
+        <view class="tpcinfo-users-author">发起人</view>
+      </view>
+      <block wx:for="{{ topUser }}">
+        <view class="tpcinfo-users-item" style="background-image: url({{ item.avatar }})"></view>
+      </block>
+    </view>
+    <view class="tpcinfo-users-count" style="color: {{ color }}">12人</view>
+  </view>
+  <!-- list -->
+  <view class="tpcinfo-list-panel">
+    <template is="buttons-tab" data="{{ currentIndex, tabs, color }}"/>
+    <view class="tabs-list">
+      <view class="tpcinfo-list" wx:if="{{ currentIndex == 0 }}">
+        <block wx:for="{{ newList }}"></block>
+      </view>
+      <view class="tpcinfo-list" wx:if="{{ currentIndex == 1 }}">
+        <block wx:for="{{ hotList }}"></block>
+      </view>
+    </view>
+  </view>
+</viwe>

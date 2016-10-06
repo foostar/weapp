@@ -4,13 +4,14 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/regular-pages/my/my",
-    "pages/regular-pages/talk/talk",
+    "pages/regular-pages/topic-list/topic-list",
+    "pages/regular-pages/topic/topic",
     "pages/module/module"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "加载中...",
     "navigationBarTextStyle":"black",
     "backgroundColor":"#3f3f3f"
   }

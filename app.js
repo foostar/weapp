@@ -102,7 +102,6 @@ App({
     return getResources(module).then(() => resources)
   },
   to(module, isReplace) {
-    console.log(module)
     let to = wx.navigateTo
     if (isReplace) {
       to = wx.redirectTo
@@ -112,7 +111,6 @@ App({
     }
     this.globalData.moduleId = module.id
     if (module.type === 'full') {
-      console.log(123)
       if (module.componentList[0].type === 'discover') {
         return to({
           url: '/pages/regular-pages/my/my'
@@ -124,7 +122,7 @@ App({
       // 话题列表
       if (module.componentList[0].type === 'talk') {
         return to({
-          url: '/pages/regular-pages/talk/talk'
+          url: '/pages/regular-pages/topic-list/topic-list'
         })
       }
     }
