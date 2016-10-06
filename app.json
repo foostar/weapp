@@ -4,6 +4,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/regular-pages/my/my",
+    "pages/regular-pages/talk/talk",
     "pages/module/module"
   ],
   "window":{

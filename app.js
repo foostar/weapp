@@ -102,6 +102,7 @@ App({
     return getResources(module).then(() => resources)
   },
   to(module, isReplace) {
+    console.log(module)
     let to = wx.navigateTo
     if (isReplace) {
       to = wx.redirectTo
@@ -115,6 +116,15 @@ App({
       if (module.componentList[0].type === 'discover') {
         return to({
           url: '/pages/regular-pages/my/my'
+        })
+      }
+    }
+    // todo 后期合并
+    if (module.type === 'subnav') {
+      // 话题列表
+      if (module.componentList[0].type === 'talk') {
+        return to({
+          url: '/pages/regular-pages/talk/talk'
         })
       }
     }
