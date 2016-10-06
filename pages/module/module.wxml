@@ -80,3 +80,11 @@
   </scroll-view>
   <template is="tab-bar" data="{{tabs}}" />
 </view>
+
+<!-- 消息提示 -->
+<template name="message-prompts">
+    <view class="message-prompts" wx:if="{{isShow}}">
+        <text>{{errMessage}}</text>
+    </view>
+</template>
+

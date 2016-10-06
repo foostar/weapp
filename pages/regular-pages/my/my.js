@@ -33,5 +33,12 @@ Page({
     // 改变全局的moduleId
     changeModuleId(e) {
         app.to(e.currentTarget.dataset.moduleId, true)
+    },
+    toLogin(){
+        if (!this.data.isLogin){
+            wx.navigateTo({
+                url:'/pages/regular-pages/login/login'
+            })
+        }
     }
 })

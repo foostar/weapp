@@ -1,7 +1,7 @@
 <import src="/pages/module/module.wxml"/> 
 
 <view class="personal-user-card">
-    <view class="personal-user-info" wx:if="{{!isLogin}}">
+    <view class="personal-user-info" wx:if="{{!isLogin}}" bindtap="toLogin">
         <image class="user-avator"  style="width: 88rpx; height: 88rpx;"></image>
         <text>请点击登录/注册</text>
         <image class="icon-arrow"></image>

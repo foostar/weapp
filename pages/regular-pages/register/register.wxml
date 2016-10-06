@@ -1,0 +1,3 @@
+<view class="thema-register-header" style="background:{{appColor}}">
+    <image src="{{appIcon}}" class="app-icon"></image>
+</view>

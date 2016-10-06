@@ -7,3 +7,21 @@
   justify-content: space-between;
   box-sizing: border-box;
 }
+
+/* 消息提示样式*/
+
+.message-prompts {
+    background-color: rgba(0,0,0,.4);
+    color: #fff;
+    position:fixed;
+    bottom: 300rpx;
+    text-align: center;
+    padding: 20rpx;
+    display: block;
+    margin:auto;
+    border-radius: 40rpx;
+    font-size: 32rpx;
+    right: 0;
+    left: 0;
+    max-width: 500rpx;
+}

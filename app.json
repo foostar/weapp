@@ -4,7 +4,10 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/regular-pages/my/my",
+    "pages/regular-pages/login/login",
+    "pages/regular-pages/register/register",
     "pages/module/module"
+
   ],
   "window":{
     "backgroundTextStyle":"light",
