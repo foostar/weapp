@@ -116,7 +116,6 @@ App({
     if (typeof module !== 'object') {
       return this.to(this.getModule(module), isReplace)
     }
-    console.log('====>', module)
     this.globalData.moduleId = module.id
     if (module.type === 'full') {
       if (module.componentList[0].type === 'discover') {
@@ -125,9 +124,15 @@ App({
         })
       }
     }
-
-
-
+    // todo 后期合并 yuchunyu
+    if (module.type === 'subnav') {
+      // 话题列表
+      if (module.componentList[0].type === 'talk') {
+        return to({
+          url: '/pages/regular-pages/topic-list/topic-list'
+        })
+      }
+    }
     to({
       url: '/pages/index/index'
     })
