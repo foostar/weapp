@@ -56,6 +56,18 @@
 </template>
 
 <!-- cell-tieba -->
+<!-- 
+/**
+ * userAvatar
+ * user_nick_name
+ * last_reply_date
+ * title
+ * subject
+ * imageList
+ * hits
+ * replies
+ */
+-->
 <template name="tieba">
   <view class="cell-tieba">
     <view class="cell-tieba-header">

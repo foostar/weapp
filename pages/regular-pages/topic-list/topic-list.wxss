@@ -1,0 +1,114 @@
+/*
+    引入 tabs 的css样式  
+*/
+@import "/pages/module/module.wxss";
+
+.topic-main {
+  background: #efeff4;
+  padding-top: 16rpx;
+  min-height: 100%;
+}
+.topic-list-simple-box {
+  margin-bottom: 16rpx;
+}
+.topic-list-item {
+  background-color: #fff;
+  padding: 20rpx;
+  position: relative;
+}
+.topic-list-item:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+  height: 1px;
+  -webkit-transform: scaleY(.5);
+  transform: scaleY(.5);
+  overflow: hidden;
+  z-index: 1;
+}
+.topic-title {
+  margin-left: 20rpx;
+  padding-left: 20rpx;
+  border-style: solid;
+  border-width: 0;
+  border-left-width: 10rpx;
+  border-left-color: currentColor;
+  line-height: 42rpx;
+  height: 42rpx;
+  font-size: 28rpx;
+}
+.topic-list-item-icon {
+  vertical-align: middle;
+  display: inline-block;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 6rpx;
+  margin-right: 20rpx;
+  background-size: 100%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-color: currentColor;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QzZGQUQ1MUNGRDhBMTFFNTgzMjRERDFBMDg1MENENEEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzZGQUQ1MURGRDhBMTFFNTgzMjRERDFBMDg1MENENEEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MjI0MENBQkZEODMxMUU1ODMyNEREMUEwODUwQ0Q0QSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MjI0MENBQ0ZEODMxMUU1ODMyNEREMUEwODUwQ0Q0QSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph0CP9EAAALhSURBVHja7Js7aBRRFIbvqARf+AA3CaKgoBEFd0UEFREU0TKNYimCoGKIBOwiCIqNXcRGCCmENEGDYKOgYGEjghgRVixEjQGjolXwleD4H+YIy7rLzMT7OLM5P3xk2cydvftxZubeO7NRHMdG0zzzVIEKUkEqSAWpIBWkglSQRgWpIBWkglSQClJBvrIY9IEqmAb3wFrfnYgELpgtBz0sp1T3v8dg91wVVGIpPSypWdaBd746tcDBPveBM2AReA8m+O84vyZ+1my/BpwDJ/mwSsv2IgsiOQ/A/JTtJlnUF7AftOX4jAq4XVRBvRnkUDqZ2aRc5KvYCg993lZkQRMe+kwn6WVFFeTj5BnxeaiQgsY99buiFdSignxV0IGUweScF7Qe3M04sBQl6Dv45EkSzcnu5BxkipjNe5sG8KF2M+PgVIygSc+T3G5ww9F3sT6bXwXegiUBVgOu8yQ5llxBZwPJoZwGVyRX0FK+iq00YUPLJoMSK+iUADmU8xIriC61b8BqAYI+g3ZpFXRMiBzKVWkVRJJfgQ2BxUyBC2DA5pXMxorikcByZsAQuAg+2N65DUG9AeXQvTJa8K+6+gAbh9g3k9zB8JlnoJ8FiZ+svvQohg6hE2CHDzm2KmgrGAUbHfeVbhF1ga8+S9XGOegF2AS2mOSWTIUpW770X/Ytx8VktdHktczyqNL2gs2z2M9r3sevVhNUn4VghJco8uSoSdZ9avOIj4BuHj2LPUnnyQ9wGAznaENPdNxq8D6tGuwC982/T4HYC1VQAKhyr8XZsqfJPjpBlbcZAyUXfQ0l6C+XUuSMprTvcC0ptCCiD/xuIGcadGVo71SSBEHEcTBTJ2ggR3tnkqQIIg6Bp2AKDIK2nO2dSIpa7Ee9HeAhj7Weg4P/OwSIWvBXz7WSnoCdRRoH+chHkzzWN2aSx4eNVpDw5Q4VpII0KkgFqSAVpIJUkApSQRoVpIJUkAoSlD8CDAAIj+SE8SP3VQAAAABJRU5ErkJggg==)
+}
+.topic-list-item-text {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 72rpx;
+  color: #9e9e9e;
+  font-size: 28rpx;
+}
+.topic-list-item-image {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 10rpx;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  margin-right: 20rpx;
+  vertical-align: middle;
+}
+.topic-list-item-info {
+  display: inline-block;
+  margin-right: 120rpx;
+  padding-left: 120rpx;
+  vertical-align: middle;
+}
+.topic-list-item-info-username {
+  word-wrap: break-word;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  color: #4d4d4d;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.topic-list-item-info-bar {
+  line-height: 38rpx;
+  word-wrap: break-word;
+  font-size: 24rpx;
+  color: #4e4e4e;
+}
+.topic-list-item-caretpc-btn {
+  position: absolute;
+  display: block;
+  top: 41rpx;
+  right: 20rpx;
+  border-radius: 8rpx;
+  width: 96rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background-color: currentColor;
+  height: 54rpx;
+  text-align: center;
+  line-height: 54rpx;
+}
+.text-white {
+  color: #fff;
+}
+

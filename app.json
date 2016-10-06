@@ -6,14 +6,15 @@
     "pages/regular-pages/my/my",
     "pages/regular-pages/forum/forum",
     "pages/regular-pages/community/community",
+    "pages/regular-pages/topic-list/topic-list",
+    "pages/regular-pages/topic/topic",
     "pages/regular-pages/login/login",
     "pages/regular-pages/register/register"
-
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "加载中...",
     "navigationBarTextStyle":"black",
     "backgroundColor":"#3f3f3f"
   }

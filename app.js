@@ -131,6 +131,16 @@ App({
             }
         }
 
+        // todo 后期合并 yuchunyu
+        if (module.type === 'subnav') {
+            // 话题列表
+            if (module.componentList[0].type === 'talk') {
+                return to({
+                    url: '/pages/regular-pages/topic-list/topic-list'
+                })
+            }
+        }
+
         to({
             url: '/pages/index/index'
         })
