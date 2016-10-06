@@ -1,0 +1,3 @@
+<template name="go-to-top">
+    <view class="go-to-top" bindtap="goToTop" hidden="{{goToTopHidden}}"></view>
+</template>

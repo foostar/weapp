@@ -6,7 +6,7 @@ Page({
     app.ready().then(() => {
       setTimeout(() => {
         wx.redirectTo({
-          url: '../module/module'
+          url: '../index/index'
         })
       }, 1000)
     })

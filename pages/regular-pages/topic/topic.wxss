@@ -1,3 +1,8 @@
+/*
+    引入 tabs 的css样式  
+*/
+@import "/components/buttons-tab/buttons-tab.wxss";
+
 page {
   background: #efeff4;
 }
@@ -74,56 +79,3 @@ page {
   line-height: 72rpx;
   font-size: 24rpx;
 }
-
-
-.buttons-tab {
-  background: #fff;
-  position: relative;
-  -ms-flex-item-align: center;
-  -webkit-align-self: center;
-  align-self: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-lines: single;
-  -moz-box-lines: single;
-  -webkit-flex-wrap: nowrap;
-  -ms-flex-wrap: none;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-}
-.buttons-tab:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #ccc;
-  height: 1px;
-  -webkit-transform: scaleY(.5);
-  transform: scaleY(.5);
-  overflow: hidden;
-  z-index: 1;
-}
-.tab-link {
-  color: #999;
-  width: 100%;
-  height: 80rpx;
-  line-height: 80rpx;
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  border: 0;
-  border-bottom: 4rpx solid transparent;
-  border-radius: 0;
-  font-size: 28rpx;
-  text-align: center;
-  display: block;
-  padding: 0 .5rem;
-}
-.tab-link-active {
-  border-color: currentColor;
-  z-index: 9;
-}
-
-

@@ -1,4 +1,5 @@
 var mobcent = require('./lib/mobcent.js')
+var util = require('./utils/util.js')
 
 App({
   onLaunch: function () {
@@ -12,7 +13,7 @@ App({
         return { json: response.data, response }
       },
       fetch: (url, data) => {
-        console.log(url, data)
+        // console.log(url, data)
         return new Promise((resolve, reject) => {
           wx.request({
             url: url,
@@ -37,7 +38,7 @@ App({
           modules[x.id] = x
         })
         this.globalData.moduleId = tabs[0].moduleId
-        console.log(this.globalData)
+        // console.log(this.globalData)
         return this.globalData
       })
     this.ready = () => promise
@@ -71,6 +72,12 @@ App({
             return api.forum(module.extParams.forumId, {
               sortby: module.extParams.orderby || 'all'
             }).then(data => {
+              data.list = data.list.map(v => {
+                v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
+                v.last_reply_date = util.formatTime(v.last_reply_date)
+                v.subject = util.formateText(v.subject)
+                return v
+              })
               resources[module.id] = data
             })
           } else if (module.type === 'talk') {
