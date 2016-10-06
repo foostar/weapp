@@ -36,6 +36,18 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+function formateText(str = '', length = 40) {
+    length = parseInt(length, 10)
+    if (str.length > length) {
+        str = str.substr(0, length)
+        if (length !== 0) {
+            str += '...'
+        }
+    }
+    return str
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime,
+  formateText
 }

@@ -1,4 +1,4 @@
-@import "/pages/module/module.wxss";
+@import "/pages/index/index.wxss";
 
 page {
     background-color: #efefef;

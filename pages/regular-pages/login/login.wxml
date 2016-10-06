@@ -1,0 +1,19 @@
+<import src="/components/common/common.wxml"/>
+
+<view class="from-view login-icon">
+    <image src="{{appIcon}}" class="app-icon"></image>
+</view>
+
+<form bindsubmit="login">
+    <view class="form-box icon-username">
+        <input class="input" name="username" placeholder="请输入用户名/手机号" type="text "></input>
+    </view>
+    <view class="form-box icon-password">
+        <input class="input" name="password" placeholder="请输入密码" password="true"></input>
+    </view>
+    <navigator url="/pages/regular-pages/register/register" class="register-text"><text style="color:{{appColor}}" >注册</text></navigator>
+    <button class="login-btn" style="background-color: {{appColor}}" formType="submit">登录</button>
+</form>
+
+<template is="message-prompts" data="{{errMessage, isShow}}"></template>
+

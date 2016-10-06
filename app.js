@@ -1,4 +1,5 @@
 var mobcent = require('./lib/mobcent.js')
+var util = require('./utils/util.js')
 
 App({
     onLaunch: function() {
@@ -6,15 +7,14 @@ App({
         var logs = wx.getStorageSync('logs') || []
         logs.unshift(Date.now())
         wx.setStorageSync('logs', logs)
-        let queue = []
-        let requestNum = 0
         const api = this.api = new mobcent.API('http://bbs.xiaoyun.com', {
             parse: response => {
                 response.ok = true
                 return { json: response.data, response }
             },
             fetch: (url, data) => {
-                const request = () => new Promise((resolve, reject) => {
+                // console.log(url, data)
+                return new Promise((resolve, reject) => {
                     wx.request({
                         url: url,
                         data: data.body,
@@ -24,42 +24,22 @@ App({
                         error: reject
                     })
                 })
-                if (++requestNum >= 5) {
-                    return new Promise((resolve, reject) => {
-                        queue.push({
-                            request,
-                            resolve,
-                            reject
-                        })
-                    })
-                } else {
-                    const promise = request()
-                    promise.then((data) => {
-                        requestNum--
-                        if (queue.length) {
-                            const d = queue.shift()
-                            d.request().then(d.resolve, d.reject)
-                        }
-                    })
-                    return promise
-                }
             }
         })
         const promise = Promise.all([
-                api.app(),
-                api.ui()
-            ])
-            .then(([appResult, uiResult]) => {
-                const info = this.globalData.info = appResult.body.data
-                const modules = this.globalData.modules = {}
-                const tabs = this.globalData.tabs = uiResult.body.navigation.navItemList
-                uiResult.body.moduleList.forEach(x => {
-                    modules[x.id] = x
-                })
-                this.globalData.moduleId = tabs[0].moduleId
-                console.log(this.globalData)
-                return this.globalData
+            api.app(),
+            api.ui()
+        ]).then(([appResult, uiResult]) => {
+            const info = this.globalData.info = appResult.body.data
+            const modules = this.globalData.modules = {}
+            const tabs = this.globalData.tabs = uiResult.body.navigation.navItemList
+            uiResult.body.moduleList.forEach(x => {
+                modules[x.id] = x
             })
+            this.globalData.moduleId = tabs[0].moduleId
+                // console.log(this.globalData)
+            return this.globalData
+        })
         this.ready = () => promise
     },
     getModule(id) {
@@ -91,6 +71,12 @@ App({
                         return api.forum(module.extParams.forumId, {
                             sortby: module.extParams.orderby || 'all'
                         }).then(data => {
+                            data.list = data.list.map(v => {
+                                v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
+                                v.last_reply_date = util.formatTime(v.last_reply_date)
+                                v.subject = util.formateText(v.subject)
+                                return v
+                            })
                             resources[module.id] = data
                         })
                     } else if (module.type === 'talk') {
@@ -146,7 +132,7 @@ App({
         }
 
         to({
-            url: '/pages/module/module'
+            url: '/pages/index/index'
         })
     },
     getUserInfo: function(cb) {

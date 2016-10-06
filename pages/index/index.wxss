@@ -1,6 +1,34 @@
-.tab-view {
-  position: fixed;
+@import "../../components/layout/layout.wxss";
+@import "../../components/tab-bar/tab-bar.wxss";
+@import "../../components/go-to-top/go-to-top.wxss";
+
+.module-container {
   width: 100%;
+  height: 100%;
+  background: #eee;
+}
+.view {
+  width: 100%;
+  position: absolute;
   top: 0;
-  bottom: 88rpx;
+  bottom: 90rpx;
+}
+
+.load-more {
+    background-color: #fff;
+    width: 100%;
+    padding: 40rpx 0;
+}
+
+.load-more text {
+    display: block;
+    color: #888;
+    font-size: 28rpx;
+    width: 510rpx;
+    height: 72rpx;
+    margin: 0 auto;
+    line-height: 72rpx;
+    text-align: center;
+    background-color: #ddd;
+    border-radius: 6rpx;
 }

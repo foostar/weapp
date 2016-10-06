@@ -1,18 +1,20 @@
 {
-    "pages": [
-        "pages/regular-pages/community/community",
-        "pages/regular-pages/forum/forum",
-        "pages/regular-pages/my/my",
-        "pages/loading/loading",
-        "pages/index/index",
-        "pages/logs/logs",
-        "pages/module/module"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "WeChat",
-        "navigationBarTextStyle": "black",
-        "backgroundColor": "#3f3f3f"
-    }
+  "pages":[
+    "pages/loading/loading",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/regular-pages/my/my",
+    "pages/regular-pages/forum/forum",
+    "pages/regular-pages/community/community",
+    "pages/regular-pages/login/login",
+    "pages/regular-pages/register/register"
+
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black",
+    "backgroundColor":"#3f3f3f"
+  }
 }

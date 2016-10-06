@@ -1,0 +1,10 @@
+<template name="tab-bar">
+  <view class="tab-bar">
+    <view class="tab-item" wx:for="{{tabs}}">
+      <view bindtap="changeModuleId" data-module-id="{{item.moduleId}}">
+        <image class="tab-item-image" mode="aspectFit" src="{{'http://bbs.xiaoyun.com/mobcent/app/web/webapp/images/app/' + item.icon + '_n.png'}}" />
+        <text class="tab-itme-name">{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+</template>
