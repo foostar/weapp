@@ -1,11 +1,31 @@
-<view class="my-header">
-    <view wx:if="{{!isLogin}}">
-        <image src="{{}}"></image>
-        <text>请点击登录／注册</text>
+<import src="/pages/module/module.wxml"/> 
+
+<view class="personal-user-card">
+
+    <view class="personal-user-info" wx:if="{{!isLogin}}">
+        <image class="user-avator"  style="width: 88rpx; height: 88rpx;"></image>
+        <text>请点击登录/注册</text>
+        <image class="icon-arrow"></image>
     </view>
-    <view wx:if="{{isLogin}}">
-        <image src="{{}}"></image>
+
+    <view class="personal-user-info" wx:if="{{isLogin}}">
+        <image src="" style="width: 88rpx; height: 88rpx;"></image>
         <text>登录／注册</text>
     </view>
-    
+
+    <view class="personal-quick-btns">
+        <view class="personal-quick-btn">我的收藏</view>
+        <view class="personal-quick-btn">我的好友</view>
+        <view class="personal-quick-btn">我的发表</view>
+    </view>
+
+
+    <view class="personal-manage-card">
+        <view class="personal-manage-items">
+            
+        </view>
+    </view>
 </view>
+
+
+<template is="tab-bar" data="{{tabs}}" />
