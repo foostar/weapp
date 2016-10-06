@@ -124,7 +124,7 @@ App({
         })
       }
     }
-    // todo 后期合并
+    // todo 后期合并 yuchunyu
     if (module.type === 'subnav') {
       // 话题列表
       if (module.componentList[0].type === 'talk') {
@@ -134,7 +134,7 @@ App({
       }
     }
     to({
-      url: '/pages/module/module'
+      url: '/pages/index/index'
     })
   },
   getUserInfo:function(cb){

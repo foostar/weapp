@@ -6,7 +6,7 @@
   <view class="tpcinfo-header" style="background-image: url({{ tpcinfo.ti_cover }})">
     <view class="tpcinfo-header-cover">
       <view class="tpcinfo-header-title">{{ tpcinfo.ti_title }}</view>
-      <view class="tpcinfo-header-content">1212</view>
+      <view class="tpcinfo-header-content">{{ tpcinfo.ti_content }}</view>
     </view>
   </view>
   <!-- topuser -->
@@ -27,11 +27,13 @@
     <view class="tabs-list">
       <view class="tpcinfo-list" wx:if="{{ currentIndex == 0 }}">
         <block wx:for="{{ newList }}">
-          
+          <template is="tieba" data="{{userAvatar: item.userAvatar, user_nick_name: item.user_nick_name, last_reply_date: item.last_reply_date, title: item.title, subject: item.subject, imageList: item.imageList, hits: item.hits, replies: item.replies }}"></template>
         </block>
       </view>
       <view class="tpcinfo-list" wx:if="{{ currentIndex == 1 }}">
-        <block wx:for="{{ hotList }}"></block>
+        <block wx:for="{{ hotList }}">
+          <template is="tieba" data="{{userAvatar: item.userAvatar, user_nick_name: item.user_nick_name, last_reply_date: item.last_reply_date, title: item.title, subject: item.subject, imageList: item.imageList, hits: item.hits, replies: item.replies }}"></template>
+        </block>
       </view>
     </view>
   </view>

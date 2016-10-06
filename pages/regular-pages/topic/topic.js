@@ -1,4 +1,5 @@
-var app = getApp()
+var app = getApp(),
+  util = require('../../../utils/util.js')
 
 Page({
   data: {
@@ -33,7 +34,20 @@ Page({
         app.api.topicdtl({ 'ti_id': ti_id, 'orderby': 'HOT' })
       ])
       .then(([ resultByNew, resultByHot ]) => {
-        console.log(resultByNew)
+        resultByNew.list = resultByNew.list.map(v => {
+          v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
+          v.last_reply_date = util.formatTime(v.last_reply_date)
+          v.subject = util.formateText(v.subject)
+          v.title = util.formateText(v.title)
+          return v
+        })
+        resultByHot.list = resultByHot.list.map(v => {
+          v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
+          v.last_reply_date = util.formatTime(v.last_reply_date)
+          v.subject = util.formateText(v.subject)
+          v.title = util.formateText(v.title)
+          return v
+        })
         this.setData({
           tpcinfo: resultByNew.tpcinfo,
           topUser: resultByNew.topUser,
