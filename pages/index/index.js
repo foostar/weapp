@@ -48,8 +48,9 @@ Page({
     })
   },
   goToTop() {
+    console.log('触发 scrolltoupper 事件')
     this.setData({
-      // scrollTop: 0
+      // scrollTop:  0
       toView: 'top'
     })
   },
@@ -58,5 +59,9 @@ Page({
     this.setData({
       goToTopHidden: false
     })
+  },
+  // 改变全局的moduleId
+  changeModuleId(e) {
+    app.to(e.currentTarget.dataset.moduleId, true)
   }
 })

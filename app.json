@@ -2,12 +2,17 @@
   "pages":[
     "pages/loading/loading",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/regular-pages/my/my",
+    "pages/regular-pages/login/login",
+    "pages/regular-pages/register/register"
+
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"black",
+    "backgroundColor":"#3f3f3f"
   }
 }
