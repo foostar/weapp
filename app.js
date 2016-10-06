@@ -6,14 +6,15 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    let queue = []
+    let requestNum = 0
     const api = this.api = new mobcent.API('http://bbs.xiaoyun.com', {
       parse: response => {
         response.ok = true
         return { json: response.data, response }
       },
       fetch: (url, data) => {
-        console.log(url, data)
-        return new Promise((resolve, reject) => {
+        const request = () => new Promise((resolve, reject) => {
           wx.request({
             url: url,
             data: data.body,
@@ -23,6 +24,25 @@ App({
             error: reject
           })
         })
+        if(++requestNum >= 5) {
+          return new Promise((resolve, reject) => {
+            queue.push({
+              request,
+              resolve,
+              reject
+            })
+          })
+        } else {
+          const promise = request()
+          promise.then((data) => {
+            requestNum--
+            if (queue.length) {
+              const d = queue.shift()
+              d.request().then(d.resolve, d.reject)
+            }
+          })
+          return promise
+        }
       }
     })
     const promise = Promise.all([
