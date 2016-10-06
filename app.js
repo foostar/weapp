@@ -109,15 +109,18 @@ App({
     if (typeof module !== 'object') {
       return this.to(this.getModule(module), isReplace)
     }
+    console.log('====>', module)
     this.globalData.moduleId = module.id
     if (module.type === 'full') {
-      console.log(123)
       if (module.componentList[0].type === 'discover') {
         return to({
           url: '/pages/regular-pages/my/my'
         })
       }
     }
+
+    
+
     to({
       url: '/pages/module/module'
     })
