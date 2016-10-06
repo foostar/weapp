@@ -1,8 +1,10 @@
+var app = getApp()
+
 Page({
     data:{
-        isLogin: true,
+        isLogin: false,
     },
     onLoad(){
-
+        console.log(app)
     }
 })
