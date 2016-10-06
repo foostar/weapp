@@ -1,4 +1,4 @@
-<import src="/pages/module/module.wxml"/> 
+<import src="/pages/module/module.wxml"/>
 
 <view class="personal-user-card">
 
