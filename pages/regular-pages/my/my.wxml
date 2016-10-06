@@ -1,7 +1,6 @@
 <import src="/pages/module/module.wxml"/> 
 
 <view class="personal-user-card">
-
     <view class="personal-user-info" wx:if="{{!isLogin}}">
         <image class="user-avator"  style="width: 88rpx; height: 88rpx;"></image>
         <text>请点击登录/注册</text>
@@ -18,14 +17,51 @@
         <view class="personal-quick-btn">我的好友</view>
         <view class="personal-quick-btn">我的发表</view>
     </view>
+</view>
 
-
-    <view class="personal-manage-card">
-        <view class="personal-manage-items">
-            
+<view class="personal-manage-card">
+    <view class="personal-manage-items">
+        <view class="personal-manage-item" wx:if="{{!isWallet}}">
+            <image class="icon icon-info"></image>
+            <text class="personal-manage-item-title">我的收藏</text>
+            <image class="icon-arrow"></image>
+        </view>
+        <view class="personal-manage-item" wx:if="{{false}}">
+            <image class="icon icon-info"></image>
+            <text class="personal-manage-item-title">我的草稿</text>
+            <image class="icon-arrow"></image>
+        </view>
+        <view class="personal-manage-item" wx:if="{{setting.plugin.isMobileRegisterValidation && setting.plugin.changeMobile}}">
+            <image class="icon icon-info"></image>
+            <text class="personal-manage-item-title">我的手机</text>
+            <image class="icon-arrow"></image>
+        </view>
+        <view class="personal-manage-item">
+            <image class="icon icon-info"></image>
+            <text class="personal-manage-item-title">我的消息</text>
+            <image class="icon-arrow"></image>
+        </view>
+        <view class="personal-manage-item" wx:if="{{setting.user.verify}}">
+            <image class="icon icon-info"></image>
+            <text class="personal-manage-item-title">用户认证</text>
+            <image class="icon-arrow"></image>
         </view>
     </view>
 </view>
 
+<view class="personal-manage-card">
+    <view class="personal-manage-items">
+        <view class="personal-manage-item">
+            <image class="icon icon-account-manager"></image>
+            <text class="personal-manage-item-title">帐号管理</text>
+            <image class="icon-arrow"></image>
+        </view>
+        <view class="personal-manage-item">
+            <image class="icon icon-user-manager"></image>
+            <text class="personal-manage-item-title">个人管理</text>
+            <image class="icon-arrow"></image>
+        </view>
+    </view>
+</view>
 
 <template is="tab-bar" data="{{tabs}}" />

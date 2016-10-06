@@ -2,6 +2,7 @@ var app = getApp()
 
 Page({
     data:{
+        isWallet: true,
         isLogin: false,
         tabs:[],
         userInfo:{},
@@ -28,6 +29,7 @@ Page({
             })
         })
     },
+
     // 改变全局的moduleId
     changeModuleId(e) {
         app.to(e.currentTarget.dataset.moduleId, true)
