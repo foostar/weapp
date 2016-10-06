@@ -4,6 +4,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/regular-pages/my/my",
+    "pages/regular-pages/forum/forum",
+    "pages/regular-pages/community/community",
     "pages/regular-pages/topic-list/topic-list",
     "pages/regular-pages/topic/topic",
     "pages/regular-pages/login/login",

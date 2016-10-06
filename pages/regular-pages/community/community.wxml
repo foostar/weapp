@@ -1,0 +1,21 @@
+<view wx:for="{{list}}" class="community-section">
+    <view class="community-section-title">
+        <text>{{item.board_category_name}}</text>
+    </view>
+    <view class="community-block-warp">
+        <view wx:for="{{item.board_list}}" bindtap="navigator" data-url="{{item.url}}" class="community-block {{index % 2  ? '' : 'border-right'}}">
+            <image class="community-icon" src="{{item.board_img}}" />
+            <view class="community-content">
+                <view class="community-block-title">
+                    <text wx:if="{{item.td_posts_num != 0}}" class="community-count">({{item.td_posts_num}})</text>
+                    <text>{{item.board_name}}</text>
+                </view>
+                <view class="community-block-small"><text class="">{{item.last_posts_date}}</text></view>
+            </view>
+        </view>
+        <view wx:if="{{item.board_list.length % 2}}" class="community-block" />
+    </view>
+</view>
+
+<import src="/pages/module/module.wxml"/> 
+<template is="tab-bar" data="{{tabs}}" />
