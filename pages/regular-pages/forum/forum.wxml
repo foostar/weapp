@@ -1,3 +1,4 @@
+<scroll-view class="forum-container" scroll-y="{{true}}">
     <view class="forum-header-section">
         <image class="forum-type-icon" src="{{forumInfo.icon}}" />
         <view class="forum-header-content">
@@ -28,7 +29,7 @@
             <view class="forum-tabs-indicator" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
         </view>
         <view class="forum-list">
-            <view wx:for="{{currentList}}" class="forum-list-item">
+            <view wx:for="{{currentList.list}}" class="forum-list-item">
                 <view class="forum-item-header">
                     <image class="forum-item-avatar" src="{{item.userAvatar}}" />
                     <view class="forum-item-header-right">
@@ -53,3 +54,4 @@
             </view>
         </view>
     </view>
+</scroll-view>

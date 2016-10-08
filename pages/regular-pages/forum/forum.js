@@ -23,7 +23,11 @@ Page({
             nextPage: 1,
             hasNext: true
         },
-        currentList: []
+        currentList: {
+            list: [],
+            nextPage: 1,
+            hasNext: true
+        }
     },
     onLoad(data) {
         if (app.globalData.userInfo) { // 判断用户是否登录
@@ -35,13 +39,13 @@ Page({
         const { title, boardId } = data // 存导航栏标题, onReady 再设置
         this.setData({ title })
 
-        const getList = (sortby = 'all') => app.api.forum(boardId,{ sortby: 'all' }).then(res => {
+        const getList = (sortby = 'all') => app.api.forum(boardId, { sortby }).then(res => {
             const {
                 list,
                 page,
                 forumInfo,
                 topTopicList,
-                has_next: hasNext,
+                has_next,
                 total_num: totalNum
             } = res
 
@@ -51,13 +55,17 @@ Page({
                 [`${sortby}List`]: {
                     list: _list,
                     nextPage: page + 1,
-                    hasNext
+                    hasNext: !!has_next
                 }
             })
 
             if (sortby === 'all') {
                 this.setData({
-                    currentList: _list,
+                    currentList: {
+                        list: _list,
+                        nextPage: page + 1,
+                        hasNext: !!has_next
+                    },
                     forumInfo,
                     topTopicList,
                     totalNum
@@ -74,12 +82,13 @@ Page({
         wx.setNavigationBarTitle({ title }) // 设置导航栏标题
     },
     changeTabs(e) {
-        const { index: tabsIndex } = e.currentTarget.dataset
-        const currentList = tabsIndex == 0
-            ? this.data.allList.list
-            : tabsIndex == 1
-                ? this.data.newList.list
-                : this.data.marrowList.list
+        const { index } = e.currentTarget.dataset
+        const tabsIndex = Number(index)
+        const currentList = tabsIndex === 0
+            ? this.data.allList
+            : tabsIndex === 1
+                ? this.data.newList
+                : this.data.marrowList
 
         console.log(currentList)
         console.log(this.data)
