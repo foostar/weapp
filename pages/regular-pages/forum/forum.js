@@ -62,11 +62,8 @@ Page({
 
         app.api.forum(boardId, { sortby, page: nextPage }).then(res => {
             const {
-                list,
-                page,
-                forumInfo,
-                topTopicList,
-                has_next,
+                list, page, forumInfo,
+                topTopicList, has_next,
                 total_num: totalNum
             } = res
 
@@ -137,7 +134,7 @@ function formateList(list) {
         if (item.imageList.length > 3) {
             item.imageList.length = 3
         }
-        item.last_reply_date = formatTime(item.last_reply_date)
+        item.lastReplyDate = formatTime(item.last_reply_date)
     })
     return list
 }

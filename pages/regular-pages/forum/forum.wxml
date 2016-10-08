@@ -36,7 +36,7 @@
                     <image class="forum-item-avatar" src="{{item.userAvatar}}" />
                     <view class="forum-item-header-right">
                         <view class="forum-item-name">{{item.user_nick_name}}</view>
-                        <view class="forum-item-time">{{item.last_reply_date}}</view>
+                        <view class="forum-item-time">{{item.lastReplyDate}}</view>
                     </view>
                 </view>
                 <view class="forum-item-content">
