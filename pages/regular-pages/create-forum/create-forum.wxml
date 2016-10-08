@@ -1,0 +1,14 @@
+<view class="publish-select-warp">
+    <text class="publish-select-label">发送到</text>
+    <picker class="publish-select" bindchange="selectChange" value="{{selectIndex}}" range="{{selectArray}}">
+        <view class="picker">{{selectArray[selectIndex]}}</view>
+    </picker>
+</view>
+
+<view class="publish-content">
+    <input class="publish-title" type="text" placeholder="标题" />
+    <input class="publish-text-input" type="text" placeholder="说点什么吧..."/>
+    <view class="image-upload-btn" bindtap="chooseImg" />
+</view>
+
+<button class="publish-submit-btn">发　　布</button>
