@@ -16,7 +16,7 @@ App({
                 // console.log(url, data)
                 return new Promise((resolve, reject) => {
                     wx.request({
-                        url: url,
+                        url: `http://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`,
                         data: data.body,
                         header: data.headers,
                         method: data.method,
