@@ -31,6 +31,7 @@ App({
                 })
             }
         })
+        api.forumKey = 'jVXS7QIncwlSJ86Py1'
         const promise = Promise.all([
             api.app(),
             api.ui()
