@@ -1,3 +1,39 @@
+<import src="/components/common/common.wxml"/>
+<!-- 注册头部 -->
 <view class="thema-register-header" style="background:{{appColor}}">
-    <image src="{{appIcon}}" class="app-icon"></image>
+    <view style="padding-top: 130rpx;">
+        <image src="{{appIcon}}" class="app-icon"></image>
+    </view>
 </view>
+
+<!-- 注册手机验证表单 -->
+<form bindsubmit="checkMobileCode" wx:if="{{ isMobileRegisterValidation == 1 && !isVerify }}">
+    <view class="mobile-box">
+        <view class="form-box-mobile icon-phone" style="flex:2;">
+            <input class="input" name="mobile" placeholder="请输入手机号" type="text" bindinput="setMobile"></input>
+        </view>
+        <view class="mobile-btn" style="color: {{appColor}}; border: 1rpx solid {{appColor}}; background-color: {{isFetch ? '#fff': '#ccc'}};" bindtap="getCode">{{verifyBtn}}</view>
+    </view>
+    <view class="form-box icon-verify">
+        <input class="input" name="verify" placeholder="请输入验证码" type="number"></input>
+    </view>
+    <button class="login-btn" style="background-color: {{appColor}}" formType="submit">验证</button>
+</form>
+
+<!-- 注册用户表单 -->
+<form bindsubmit="signup" wx:if="{{ isVerify }}">
+    <view class="form-box icon-username">
+        <input class="input" name="username" placeholder="请输入用户名（不要使用手机号）" type="text"></input>
+    </view>
+    <view class="form-box icon-email">
+        <input class="input" name="email" placeholder="请输入你的邮箱" type="text"></input>
+    </view>
+    <view class="form-box icon-password">
+        <input class="input" name="password" placeholder="请输入密码" password="ture"></input>
+    </view>
+    <button class="login-btn" style="background-color: {{appColor}}" formType="submit">注册</button>
+</form>
+
+
+<!-- 消息提示 -->
+<template is="message-prompts" data="{{errMessage, isShow}}"></template>

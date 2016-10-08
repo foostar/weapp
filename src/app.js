@@ -17,6 +17,7 @@ App({
                 // console.log(url, data)
                 return new Promise((resolve, reject) => {
                     wx.request({
+                        // url: url,
                         url: `http://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`,
                         data: data.body,
                         header: data.headers,
@@ -27,6 +28,7 @@ App({
                 })
             }
         })
+        api.forumKey = 'jVXS7QIncwlSJ86Py1'
         const promise = Promise.all([
             api.app(),
             api.ui()

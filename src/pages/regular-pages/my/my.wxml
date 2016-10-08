@@ -2,14 +2,15 @@
 
 <view class="personal-user-card">
     <view class="personal-user-info" wx:if="{{!isLogin}}" bindtap="toLogin">
-        <image class="user-avator"  style="width: 88rpx; height: 88rpx;"></image>
+        <view class="user-avator user-unLogin"></view>
         <text>请点击登录/注册</text>
         <image class="icon-arrow"></image>
     </view>
 
     <view class="personal-user-info" wx:if="{{isLogin}}">
-        <image src="" style="width: 88rpx; height: 88rpx;"></image>
-        <text>登录／注册</text>
+        <view class="user-avator user-login" style="background-image:{{userInfo.avatar}};"></view>
+        <text>{{userInfo}}</text>
+        <image class="icon-arrow"></image>
     </view>
 
     <view class="personal-quick-btns">
@@ -32,7 +33,7 @@
             <image class="icon-arrow"></image>
         </view>
         <view class="personal-manage-item" wx:if="{{setting.plugin.isMobileRegisterValidation && setting.plugin.changeMobile}}">
-            <image class="icon icon-info"></image>
+            <image class="icon icon-my-phone"></image>
             <text class="personal-manage-item-title">我的手机</text>
             <image class="icon-arrow"></image>
         </view>
@@ -42,7 +43,7 @@
             <image class="icon-arrow"></image>
         </view>
         <view class="personal-manage-item" wx:if="{{setting.user.verify}}">
-            <image class="icon icon-info"></image>
+            <image class="icon icon-verify"></image>
             <text class="personal-manage-item-title">用户认证</text>
             <image class="icon-arrow"></image>
         </view>
