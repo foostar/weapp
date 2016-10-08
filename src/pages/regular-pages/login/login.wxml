@@ -1,9 +1,11 @@
 <import src="/components/common/common.wxml"/>
 
+<!-- 登录头部 -->
 <view class="from-view login-icon">
     <image src="{{appIcon}}" class="app-icon"></image>
 </view>
 
+<!-- 登录form表单 -->
 <form bindsubmit="login">
     <view class="form-box icon-username">
         <input class="input" name="username" placeholder="请输入用户名/手机号" type="text "></input>
@@ -15,5 +17,6 @@
     <button class="login-btn" style="background-color: {{appColor}}" formType="submit">登录</button>
 </form>
 
+<!-- 消息提示 -->
 <template is="message-prompts" data="{{errMessage, isShow}}"></template>
 

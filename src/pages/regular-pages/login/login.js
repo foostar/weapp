@@ -15,6 +15,11 @@ Page({
         })
     },
     onReady(){
+        if (app.globalData.userInfo) {
+           wx.redirectTo({
+                url:'/pages/regular-pages/my/my'    
+            }) 
+        }
         wx.setNavigationBarTitle({
           title: '登录'
         })
@@ -24,6 +29,11 @@ Page({
         app.api.signin(username, password)
         .then(res => {
             console.log(res)
+            app.globalData.userInfo = res
+            app.api.token = res.token
+            app.api.secret = res.secret
+            app.event.trigger('login', res)
+            wx.navigateBack()
         })
         .catch((err) => {
             console.log(err)
@@ -42,6 +52,4 @@ Page({
             errMessage:''
         })
     }
-
-
 })

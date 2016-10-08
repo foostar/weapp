@@ -28,6 +28,12 @@ Page({
                 setting: res.body
             })
         })
+        app.event.on('login', userInfo => {
+            this.setData({
+                isLogin: true,
+                userInfo: userInfo
+            })
+        })
     },
 
     // 改变全局的moduleId

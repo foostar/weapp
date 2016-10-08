@@ -1,14 +1,15 @@
-var mobcent = require('./lib/mobcent.js')
-var util = require('./utils/util.js')
+const mobcent = require('./lib/mobcent.js')
+const util = require('./utils/util.js')
+const Events = require('./lib/Events.js')
 
 App({
-    onLaunch: function() {
-        //调用API从本地缓存中获取数据
-        var logs = wx.getStorageSync('logs') || []
-        logs.unshift(Date.now())
-        wx.setStorageSync('logs', logs)
+    onLaunch() {
+        // 添加监听事件
+        const event = this.event = new Events()
+        event.trigger('launch')
+
         const api = this.api = new mobcent.API('http://bbs.xiaoyun.com', {
-            parse: response => {
+            parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
             },
@@ -16,7 +17,8 @@ App({
                 // console.log(url, data)
                 return new Promise((resolve, reject) => {
                     wx.request({
-                        url: url,
+                        // url: url,
+                        url: `http://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`,
                         data: data.body,
                         header: data.headers,
                         method: data.method,
@@ -26,14 +28,15 @@ App({
                 })
             }
         })
+        api.forumKey = 'jVXS7QIncwlSJ86Py1'
         const promise = Promise.all([
             api.app(),
             api.ui()
-        ]).then(([appResult, uiResult]) => {
-            const info = this.globalData.info = appResult.body.data
+        ]).then(([ appResult, uiResult ]) => {
+            this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
             const tabs = this.globalData.tabs = uiResult.body.navigation.navItemList
-            uiResult.body.moduleList.forEach(x => {
+            uiResult.body.moduleList.forEach((x) => {
                 modules[x.id] = x
             })
             this.globalData.moduleId = tabs[0].moduleId
@@ -48,9 +51,9 @@ App({
         }
         return this.globalData.modules[id]
     },
-    getResources(module) {
-        if (typeof module !== 'object') {
-            return this.getResources(this.getModule(module))
+    getResources(m) {
+        if (typeof m !== 'object') {
+            return this.getResources(this.getModule(m))
         }
         const api = this.api
         const resources = {}
@@ -61,7 +64,7 @@ App({
                         return Promise.all(module.map(x => getResources(x)))
                     }
                     if (module.type === 'newslist') {
-                        return api.news(module.extParams.newsModuleId).then(data => {
+                        return api.news(module.extParams.newsModuleId).then((data) => {
                             resources[module.id] = data
                         })
                     } else if (module.type === 'forumlist') {
@@ -70,8 +73,8 @@ App({
                     } else if (module.type === 'topiclistSimple') {
                         return api.forum(module.extParams.forumId, {
                             sortby: module.extParams.orderby || 'all'
-                        }).then(data => {
-                            data.list = data.list.map(v => {
+                        }).then((data) => {
+                            data.list = data.list.map((v) => {
                                 v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
                                 v.last_reply_date = util.formatTime(v.last_reply_date)
                                 v.subject = util.formateText(v.subject)
@@ -105,7 +108,7 @@ App({
                     }
                 })
         }
-        return getResources(module).then(() => resources)
+        return getResources(m).then(() => resources)
     },
     to(module, isReplace) {
         let to = wx.navigateTo
@@ -145,18 +148,18 @@ App({
             url: '/pages/index/index'
         })
     },
-    getUserInfo: function(cb) {
-        var that = this
+    getUserInfo(cb) {
+        const that = this
         if (this.globalData.userInfo) {
-            typeof cb == "function" && cb(this.globalData.userInfo)
+            typeof cb === 'function' && cb(this.globalData.userInfo)
         } else {
-            //调用登录接口
+            // 调用登录接口
             wx.login({
-                success: function() {
+                success() {
                     wx.getUserInfo({
-                        success: function(res) {
+                        success(res) {
                             that.globalData.userInfo = res.userInfo
-                            typeof cb == "function" && cb(that.globalData.userInfo)
+                            typeof cb === 'function' && cb(that.globalData.userInfo)
                         }
                     })
                 }
