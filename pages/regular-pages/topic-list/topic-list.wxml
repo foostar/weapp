@@ -1,57 +1,57 @@
 <import src="/pages/module/module.wxml"/> 
 <!-- 话题列表主面板 -->
 <view class="topic-main">
-  <!-- 已关注话题卡片 -->
-  <view class="topic-list-simple-box">
-    <view class="topic-list-item">
-      <view class="topic-title" style="color: {{ color }}">已关注</view>
-    </view>
-    <view class="topic-list-item" wx:if="{{ !isLogin }}">
-      <view class="topic-list-item-icon" style="color: {{ color }}"></view>
-      <view class="topic-list-item-text">请先点击此处登录</view>
-    </view>
-    <block wx:for="{{ mytopic.list }}">
-      <view class="topic-list-item" wx:if="{{ isLogin }}">
-        <navigator url="/pages/regular-pages/topic/topic?id={{ item.ti_id }}" hover-class="none">
-          <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
-          <view class="topic-list-item-info">
-            <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
-            <view class="topic-list-item-info-bar">
-              <text>{{ item.ti_topiccount }}人参加 </text>
-              <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
+    <!-- 已关注话题卡片 -->
+    <view class="topic-list-simple-box">
+        <view class="topic-list-item">
+            <view class="topic-title" style="color: {{ color }}">已关注</view>
+        </view>
+        <view class="topic-list-item" wx:if="{{ !isLogin }}" bindtap="toLogin">
+            <view class="topic-list-item-icon" style="color: {{ color }}"></view>
+            <view class="topic-list-item-text">请先点击此处登录</view>
+        </view>
+        <block wx:for="{{ mytopic.list }}">
+            <view class="topic-list-item" wx:if="{{ isLogin }}">
+                <navigator url="/pages/regular-pages/topic/topic?id={{ item.ti_id }}" hover-class="none">
+                    <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
+                    <view class="topic-list-item-info">
+                        <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
+                        <view class="topic-list-item-info-bar">
+                            <text>{{ item.ti_topiccount }}人参加 </text>
+                            <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
+                        </view>
+                    </view>
+                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}">
+                        <text class="text-white">关注</text>
+                    </view>
+                </navigator>
             </view>
-          </view>
-          <view class="topic-list-item-caretpc-btn" style="color: {{ color }}">
-            <text class="text-white">关注</text>
-          </view>
-        </navigator>
-      </view>
-    </block>
+        </block>
 
-  </view>
-  <!-- 推荐话题卡片 -->
-  <view class="topic-list-simple-box">
-    <view class="topic-list-item">
-      <view class="topic-title" style="color: {{ color }}">推荐</view>
     </view>
-    <block wx:for="{{ topic.list }}">
-      <view class="topic-list-item">
-        <navigator url="/pages/regular-pages/topic/topic?id={{ item.ti_id }}" hover-class="none">
-          <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
-          <view class="topic-list-item-info">
-            <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
-            <view class="topic-list-item-info-bar">
-              <text>{{ item.ti_topiccount }}人参加 </text>
-              <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
+    <!-- 推荐话题卡片 -->
+    <view class="topic-list-simple-box">
+        <view class="topic-list-item">
+            <view class="topic-title" style="color: {{ color }}">推荐</view>
+        </view>
+        <block wx:for="{{ topic.list }}">
+            <view class="topic-list-item">
+                <navigator url="/pages/regular-pages/topic/topic?id={{ item.ti_id }}" hover-class="none">
+                    <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
+                    <view class="topic-list-item-info">
+                        <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
+                        <view class="topic-list-item-info-bar">
+                            <text>{{ item.ti_topiccount }}人参加 </text>
+                            <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
+                        </view>
+                    </view>
+                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}">
+                        <text class="text-white">关注</text>
+                    </view>
+                </navigator>
             </view>
-          </view>
-          <view class="topic-list-item-caretpc-btn" style="color: {{ color }}">
-            <text class="text-white">关注</text>
-          </view>
-        </navigator>
-      </view>
-    </block>
-  </view>
+        </block>
+    </view>
 </view>
 
 <template is="tab-bar" data="{{tabs}}" />
