@@ -93,9 +93,24 @@ Page({
             errMessage:''
         })
     },
-    // 
-    checkMobileCode(){
-
+    // 检测手机和验证码
+    checkMobileCode(e){
+        const {mobile, verify} = e.detail.value
+        console.log(mobile, verify)
+        app.api.checkMobileCode(mobile, verify)
+            .then(res => {
+                console.log('检测手机和验证码', res)
+                
+            })
+            .catch(err => {
+                if(parseInt(err.status) / 100 == 4) {
+                    this.setData({
+                        isShow: true,
+                        errMessage: err.message
+                    })
+                    setTimeout(this.closeMessagePrompt, 1500)
+                }
+            })
     },
     // 设置按钮的内容 （倒计时）
     changeMobileBtn(){
@@ -115,6 +130,21 @@ Page({
                 })
             }
         }, 1000)
+    },
+    signup(e){
+        const {username, password, email} = e.detail.value
+        console.log(username, password, email)
+        app.api.signup(username, password, email)
+            .then(res => console.log(res))
+            .catch(err => {
+                if(parseInt(err.status) / 100 == 4) {
+                    this.setData({
+                        isShow: true,
+                        errMessage: err.message
+                    })
+                    setTimeout(this.closeMessagePrompt, 1500)
+                }
+            })
     }
 
 })
