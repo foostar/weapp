@@ -123,6 +123,9 @@ Page({
         } else {
             this.setData({ fixedTabsTitle: false })
         }
+    },
+    handleEditClick() {
+        console.warn('TODO')
     }
 })
 

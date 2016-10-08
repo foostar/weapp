@@ -60,4 +60,6 @@
             </view>
         </view>
     </view>
+
+    <view class="forum-edit-btn" bindTap="handleEditClick"/>
 </scroll-view>
