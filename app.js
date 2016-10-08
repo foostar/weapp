@@ -1,8 +1,13 @@
 var mobcent = require('./lib/mobcent.js')
 var util = require('./utils/util.js')
+var Events = require('./lib/Events.js')
 
 App({
     onLaunch: function() {
+        // 添加监听事件
+        const event = this.event = new Events()
+        event.trigger('launch')
+
         //调用API从本地缓存中获取数据
         var logs = wx.getStorageSync('logs') || []
         logs.unshift(Date.now())
