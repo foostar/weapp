@@ -8,50 +8,83 @@ Page({
         title: {},
         tabsIndex: 0,
         forumInfo: {},
-        allList: [],
-        newList: [],
-        marrowList: []
+        allList: {
+            list: [],
+            nextPage: 1,
+            hasNext: true
+        },
+        newList: {
+            list: [],
+            nextPage: 1,
+            hasNext: true
+        },
+        marrowList: {
+            list: [],
+            nextPage: 1,
+            hasNext: true
+        },
+        currentList: []
     },
     onLoad(data) {
-        // 判断用户是否登录
-        if (app.globalData.userInfo) {
+        if (app.globalData.userInfo) { // 判断用户是否登录
             this.setData({
                 isLogin: true,
                 userInfo: app.globalData.userInfo
             })
         }
-        const { title, boardId } = data
+        const { title, boardId } = data // 存导航栏标题, onReady 再设置
         this.setData({ title })
 
-        app.api.forum(boardId, { sortby: 'all' }).then(res => {
-            const { list: allList, forumInfo, total_num, topTopicList } = res
-            this.setData({
-                allList: formateList(allList),
+        const getList = (sortby = 'all') => app.api.forum(boardId,{ sortby: 'all' }).then(res => {
+            const {
+                list,
+                page,
                 forumInfo,
                 topTopicList,
-                totalNum: total_num
+                has_next: hasNext,
+                total_num: totalNum
+            } = res
+
+            const _list = formateList(list)
+
+            this.setData({
+                [`${sortby}List`]: {
+                    list: _list,
+                    nextPage: page + 1,
+                    hasNext
+                }
             })
+
+            if (sortby === 'all') {
+                this.setData({
+                    currentList: _list,
+                    forumInfo,
+                    topTopicList,
+                    totalNum
+                })
+            }
         })
-        app.api.forum(boardId, { sortby: 'new' }).then(res => {
-            const { list: newList } = res
-            this.setData({ newList: formateList(newList) })
-        })
-        app.api.forum(boardId, { sortby: 'marrow' }).then(res => {
-            const { list: marrowList } = res
-            this.setData({ marrowList: formateList(marrowList) })
-        })
+
+        getList('all')
+        getList('new')
+        getList('marrow')
     },
     onReady() {
         const { title } = this.data
-        wx.setNavigationBarTitle({ title })
+        wx.setNavigationBarTitle({ title }) // 设置导航栏标题
     },
     changeTabs(e) {
         const { index: tabsIndex } = e.currentTarget.dataset
-        this.setData({ tabsIndex })
-    },
-    swiperChange(e) {
-        const { current: tabsIndex } = e.detail
-        this.setData({ tabsIndex })
+        const currentList = tabsIndex == 0
+            ? this.data.allList.list
+            : tabsIndex == 1
+                ? this.data.newList.list
+                : this.data.marrowList.list
+
+        console.log(currentList)
+        console.log(this.data)
+
+        this.setData({ tabsIndex, currentList })
     }
 })
 

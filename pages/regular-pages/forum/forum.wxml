@@ -1,4 +1,3 @@
-<view class="forum-container">
     <view class="forum-header-section">
         <image class="forum-type-icon" src="{{forumInfo.icon}}" />
         <view class="forum-header-content">
@@ -28,91 +27,29 @@
             <text bindtap="changeTabs" data-index="{{2}}" class="forum-tabs-title">精华</text>
             <view class="forum-tabs-indicator" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
         </view>
-
-        <swiper class="forum-tabs-content-warp" bindchange="swiperChange" current="{{tabsIndex}}">
-            <swiper-item class="forum-list">
-                <scroll-view scroll-y="true" class="forum-list-scroll-warp">
-                    <view wx:for="{{allList}}" class="forum-list-item">
-                        <view class="forum-item-header">
-                            <image class="forum-item-avatar" src="{{item.userAvatar}}" />
-                            <view class="forum-item-header-right">
-                                <view class="forum-item-name">{{item.user_nick_name}}</view>
-                                <view class="forum-item-time">{{item.last_reply_date}}</view>
-                            </view>
-                        </view>
-                        <view class="forum-item-content">
-                            <view class="forum-item-content-title">{{item.title}}</view>
-                            <view class="forum-item-content-summary">{{item.subject}}</view>
-                        </view>
-
-                        <view wx:if="{{item.imageList.length}}" class="forum-item-images-warp">
-                            <image wx:for="{{item.imageList}}" mode="aspectFill" class="forum-item-image" src="{{item}}" />
-                        </view>
-                        <view class="forum-item-addons">
-                            <view class="forum-item-addons-views" />
-                            <text class="forum-item-addons-num" style="margin-right: 30rpx">{{item.hits}}</text>
-                            <view class="forum-item-addons-comments" />
-                            <text class="forum-item-addons-num">{{item.replies}}</text>
-                        </view>
+        <view class="forum-list">
+            <view wx:for="{{currentList}}" class="forum-list-item">
+                <view class="forum-item-header">
+                    <image class="forum-item-avatar" src="{{item.userAvatar}}" />
+                    <view class="forum-item-header-right">
+                        <view class="forum-item-name">{{item.user_nick_name}}</view>
+                        <view class="forum-item-time">{{item.last_reply_date}}</view>
                     </view>
-                </scroll-view>
-            </swiper-item>
+                </view>
+                <view class="forum-item-content">
+                    <view class="forum-item-content-title">{{item.title}}</view>
+                    <view class="forum-item-content-summary">{{item.subject}}</view>
+                </view>
 
-            <swiper-item class="forum-list">
-                <scroll-view scroll-y="true" class="forum-list-scroll-warp">
-                    <view wx:for="{{newList}}" class="forum-list-item">
-                        <view class="forum-item-header">
-                            <image class="forum-item-avatar" src="{{item.userAvatar}}" />
-                            <view class="forum-item-header-right">
-                                <view class="forum-item-name">{{item.user_nick_name}}</view>
-                                <view class="forum-item-time">{{item.last_reply_date}}</view>
-                            </view>
-                        </view>
-                        <view class="forum-item-content">
-                            <view class="forum-item-content-title">{{item.title}}</view>
-                            <view class="forum-item-content-summary">{{item.subject}}</view>
-                        </view>
-
-                        <view wx:if="{{item.imageList.length}}" class="forum-item-images-warp">
-                            <image wx:for="{{item.imageList}}" mode="aspectFill" class="forum-item-image" src="{{item}}" />
-                        </view>
-                        <view class="forum-item-addons">
-                            <view class="forum-item-addons-views" />
-                            <text class="forum-item-addons-num" style="margin-right: 30rpx">{{item.hits}}</text>
-                            <view class="forum-item-addons-comments" />
-                            <text class="forum-item-addons-num">{{item.replies}}</text>
-                        </view>
-                    </view>
-                </scroll-view>
-            </swiper-item>
-
-            <swiper-item class="forum-list">
-                <scroll-view scroll-y="true" class="forum-list-scroll-warp">
-                    <view wx:for="{{marrowList}}" class="forum-list-item">
-                        <view class="forum-item-header">
-                            <image class="forum-item-avatar" src="{{item.userAvatar}}" />
-                            <view class="forum-item-header-right">
-                                <view class="forum-item-name">{{item.user_nick_name}}</view>
-                                <view class="forum-item-time">{{item.last_reply_date}}</view>
-                            </view>
-                        </view>
-                        <view class="forum-item-content">
-                            <view class="forum-item-content-title">{{item.title}}</view>
-                            <view class="forum-item-content-summary">{{item.subject}}</view>
-                        </view>
-
-                        <view wx:if="{{item.imageList.length}}" class="forum-item-images-warp">
-                            <image wx:for="{{item.imageList}}" mode="aspectFill" class="forum-item-image" src="{{item}}" />
-                        </view>
-                        <view class="forum-item-addons">
-                            <view class="forum-item-addons-views" />
-                            <text class="forum-item-addons-num" style="margin-right: 30rpx">{{item.hits}}</text>
-                            <view class="forum-item-addons-comments" />
-                            <text class="forum-item-addons-num">{{item.replies}}</text>
-                        </view>
-                    </view>
-                </scroll-view>
-            </swiper-item>
-        </swiper>
+                <view wx:if="{{item.imageList.length}}" class="forum-item-images-warp">
+                    <image wx:for="{{item.imageList}}" mode="aspectFill" class="forum-item-image" src="{{item}}" />
+                </view>
+                <view class="forum-item-addons">
+                    <view class="forum-item-addons-views" />
+                    <text class="forum-item-addons-num" style="margin-right: 30rpx">{{item.hits}}</text>
+                    <view class="forum-item-addons-comments" />
+                    <text class="forum-item-addons-num">{{item.replies}}</text>
+                </view>
+            </view>
+        </view>
     </view>
-</view>
