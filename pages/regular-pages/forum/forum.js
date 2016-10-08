@@ -9,6 +9,7 @@ Page({
         title: {},
         tabsIndex: 0,
         forumInfo: {},
+        fixedTabsTitle: false,
         allList: {
             list: [],
             nextPage: 1,
@@ -79,9 +80,8 @@ Page({
                 }
             })
 
-
             if (init && sortby === 'all') {
-                this.setData({
+                return this.setData({
                     currentList: {
                         list: this.data.currentList.list.concat(_list),
                         nextPage: page + 1,
@@ -91,18 +91,17 @@ Page({
                     topTopicList,
                     totalNum
                 })
-            } else {
-                this.setData({
-                    currentList: {
-                        list: this.data.currentList.list.concat(_list),
-                        nextPage: page + 1,
-                        hasNext: !!has_next
-                    }
-                })
             }
+            this.setData({
+                currentList: {
+                    list: this.data.currentList.list.concat(_list),
+                    nextPage: page + 1,
+                    hasNext: !!has_next
+                }
+            })
         })
     },
-    changeTabs(e) {
+    changeTabs(e) { // 切换 tabs
         const { index } = e.currentTarget.dataset
         const tabsIndex = Number(index)
         const currentList = tabsIndex === 0
@@ -113,13 +112,20 @@ Page({
 
         this.setData({ tabsIndex, currentList })
     },
-    scrollToBottom(e) {
+    scrollToBottom(e) { // 滑倒底部加载更多
         const {tabsIndex} = this.data
         tabsIndex === 0
             ? this.getList('all')
             : tabsIndex === 1
                 ? this.getList('new')
                 : this.getList('marrow')
+    },
+    handleScroll(e) { // 处理 tabs title
+        if(e.detail.scrollTop > 230) {
+            this.setData({ fixedTabsTitle: true })
+        } else {
+            this.setData({ fixedTabsTitle: false })
+        }
     }
 })
 

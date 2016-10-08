@@ -1,4 +1,4 @@
-<scroll-view class="forum-container" scroll-y="{{true}}" bindscrolltolower="scrollToBottom">
+<scroll-view class="forum-container" scroll-y="{{true}}" bindscrolltolower="scrollToBottom" bindscroll="handleScroll">
     <view class="forum-header-section">
         <image class="forum-type-icon" src="{{forumInfo.icon}}" />
         <view class="forum-header-content">
@@ -22,11 +22,13 @@
     </view>
 
     <view class="forum-tabs">
-        <view class="forum-tabs-title-warp">
-            <text bindtap="changeTabs" data-index="{{0}}" class="forum-tabs-title">全部</text>
-            <text bindtap="changeTabs" data-index="{{1}}" class="forum-tabs-title">最新</text>
-            <text bindtap="changeTabs" data-index="{{2}}" class="forum-tabs-title">精华</text>
-            <view class="forum-tabs-indicator" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
+        <view class="forum-tabs-title-warp-placeholder">
+            <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
+                <text bindtap="changeTabs" data-index="{{0}}" class="forum-tabs-title">全部</text>
+                <text bindtap="changeTabs" data-index="{{1}}" class="forum-tabs-title">最新</text>
+                <text bindtap="changeTabs" data-index="{{2}}" class="forum-tabs-title">精华</text>
+                <view class="forum-tabs-indicator" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
+            </view>
         </view>
         <view class="forum-list">
             <view wx:for="{{currentList.list}}" class="forum-list-item">
