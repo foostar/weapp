@@ -23,7 +23,13 @@ Page({
         const {username, password} = e.detail.value
         app.api.signin(username, password)
         .then(res => {
-            console.log(res)
+            app.globalData.userInfo = res
+            wx.redirectTo({
+                url:'/pages/regular-pages/my/my',
+                complete: function(eee){
+                    console.log(eee)
+                }     
+            })
         })
         .catch((err) => {
             console.log(err)
