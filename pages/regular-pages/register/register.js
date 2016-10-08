@@ -25,6 +25,11 @@ Page({
         })
     },
     onReady() {
+        if (app.globalData.userInfo) {
+           wx.redirectTo({
+                url:'/pages/regular-pages/my/my'    
+            }) 
+        }
         if (this.data.isMobileRegisterValidation == 1) {
             wx.setNavigationBarTitle({
                 title: '手机号注册'
