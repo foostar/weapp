@@ -1,5 +1,5 @@
 var app = getApp()
-var {formatTime} = require('../../../utils/util.js')
+var { formatTime } = require('../../../utils/util.js')
 
 Page({
     data: {
@@ -8,7 +8,7 @@ Page({
         title: {},
         tabsIndex: 0,
         forumInfo: {},
-        allList:[],
+        allList: [],
         newList: [],
         marrowList: []
     },
@@ -48,11 +48,15 @@ Page({
     changeTabs(e) {
         const { index: tabsIndex } = e.currentTarget.dataset
         this.setData({ tabsIndex })
+    },
+    swiperChange(e) {
+        const { current: tabsIndex } = e.detail
+        this.setData({ tabsIndex })
     }
 })
 
 
-function formateList (list) {
+function formateList(list) {
     list.forEach(item => {
         item.imageList = item.imageList.map(src =>
             src.replace('xgsize_', 'mobcentSmallPreview_')
