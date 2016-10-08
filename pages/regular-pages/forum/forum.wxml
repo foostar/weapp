@@ -1,4 +1,4 @@
-<scroll-view class="forum-container" scroll-y="{{true}}">
+<scroll-view class="forum-container" scroll-y="{{true}}" bindscrolltolower="scrollToBottom">
     <view class="forum-header-section">
         <image class="forum-type-icon" src="{{forumInfo.icon}}" />
         <view class="forum-header-content">
@@ -51,6 +51,10 @@
                     <view class="forum-item-addons-comments" />
                     <text class="forum-item-addons-num">{{item.replies}}</text>
                 </view>
+            </view>
+
+            <view class="forum-load-more">
+                <text>{{currentList.hasNext ? '加载中...' : '没有更多了'}}</text>
             </view>
         </view>
     </view>

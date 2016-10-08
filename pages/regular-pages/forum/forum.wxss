@@ -196,11 +196,21 @@ page {
 .forum-item-images-warp {
     display: flex;
     margin-bottom: 30rpx;
-    /*justify-content: space-between;*/
 }
 .forum-item-image {
     width: 220rpx;
     height: 220rpx;
     margin-right: 16rpx;
     overflow: hidden;
+}
+.forum-no-more,
+.forum-load-more {
+    font-size: 24rpx;
+    line-height: 60rpx;
+    border-radius: 6rpx;
+    color: #888;
+    margin: 30rpx auto;
+    width: 60%;
+    text-align: center;
+    border: none;
 }

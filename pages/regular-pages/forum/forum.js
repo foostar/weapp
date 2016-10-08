@@ -3,6 +3,7 @@ var { formatTime } = require('../../../utils/util.js')
 
 Page({
     data: {
+        boardId: null,
         isLogin: false,
         userInfo: {},
         title: {},
@@ -37,9 +38,28 @@ Page({
             })
         }
         const { title, boardId } = data // 存导航栏标题, onReady 再设置
-        this.setData({ title })
+        this.setData({ title, boardId })
 
-        const getList = (sortby = 'all') => app.api.forum(boardId, { sortby }).then(res => {
+        this.getList('all', true)
+        this.getList('new', true)
+        this.getList('marrow', true)
+    },
+    onReady() {
+        const { title } = this.data
+        wx.setNavigationBarTitle({ title }) // 设置导航栏标题
+    },
+    getList(sortby, init = false) {
+        if (!sortby) return console.info('需要 sortby 参数')
+
+        const {boardId} = this.data
+
+        const {hasNext, nextPage} = this.data[`${sortby}List`]
+
+        if (!hasNext) {
+            return console.info(`${sortby} 分类下已经没有更多内容了.`)
+        }
+
+        app.api.forum(boardId, { sortby, page: nextPage }).then(res => {
             const {
                 list,
                 page,
@@ -53,16 +73,17 @@ Page({
 
             this.setData({
                 [`${sortby}List`]: {
-                    list: _list,
+                    list: this.data[`${sortby}List`].list.concat(_list),
                     nextPage: page + 1,
                     hasNext: !!has_next
                 }
             })
 
-            if (sortby === 'all') {
+
+            if (init && sortby === 'all') {
                 this.setData({
                     currentList: {
-                        list: _list,
+                        list: this.data.currentList.list.concat(_list),
                         nextPage: page + 1,
                         hasNext: !!has_next
                     },
@@ -70,16 +91,16 @@ Page({
                     topTopicList,
                     totalNum
                 })
+            } else {
+                this.setData({
+                    currentList: {
+                        list: this.data.currentList.list.concat(_list),
+                        nextPage: page + 1,
+                        hasNext: !!has_next
+                    }
+                })
             }
         })
-
-        getList('all')
-        getList('new')
-        getList('marrow')
-    },
-    onReady() {
-        const { title } = this.data
-        wx.setNavigationBarTitle({ title }) // 设置导航栏标题
     },
     changeTabs(e) {
         const { index } = e.currentTarget.dataset
@@ -90,13 +111,17 @@ Page({
                 ? this.data.newList
                 : this.data.marrowList
 
-        console.log(currentList)
-        console.log(this.data)
-
         this.setData({ tabsIndex, currentList })
+    },
+    scrollToBottom(e) {
+        const {tabsIndex} = this.data
+        tabsIndex === 0
+            ? this.getList('all')
+            : tabsIndex === 1
+                ? this.getList('new')
+                : this.getList('marrow')
     }
 })
-
 
 function formateList(list) {
     list.forEach(item => {
