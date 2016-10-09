@@ -33,7 +33,12 @@ Page({
             app.api.token = res.token
             app.api.secret = res.secret
             app.event.trigger('login', res)
-            wx.navigateBack()
+            try {
+                wx.setStorageSync('userInfo', res)
+                wx.navigateBack()
+            } catch (err) { 
+                console.log(err)
+            }
         })
         .catch((err) => {
             console.log(err)

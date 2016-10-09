@@ -53,7 +53,6 @@ Page({
             app.api.getCode(this.data.mobile)
                 .then(res => console.log(res))
                 .catch(err => {
-                    console.log(err)
                     if(parseInt(err.status) / 100 == 4) {
                         this.setData({
                             isShow: true,
@@ -74,14 +73,14 @@ Page({
     },
     // 获取页面输入手机号
     setMobile : function(e){
-        console.log('获取页面输入手机号')
+        // console.log('获取页面输入手机号')
         this.setData({
             mobile: e.detail.value? e.detail.value: ''
         })
     },
     // 获取页面输入的验证码
     setCode(e){
-        console.log('获取页面输入的验证码')
+        // console.log('获取页面输入的验证码')
         this.setData({
             code: e.detail.value? e.detail.value: ''
         })
@@ -96,11 +95,9 @@ Page({
     // 检测手机和验证码
     checkMobileCode(e){
         const {mobile, verify} = e.detail.value
-        console.log(mobile, verify)
         app.api.checkMobileCode(mobile, verify)
             .then(res => {
                 console.log('检测手机和验证码', res)
-                
             })
             .catch(err => {
                 if(parseInt(err.status) / 100 == 4) {
@@ -133,7 +130,6 @@ Page({
     },
     signup(e){
         const {username, password, email} = e.detail.value
-        console.log(username, password, email)
         app.api.signup(username, password, email)
             .then(res => console.log(res))
             .catch(err => {
