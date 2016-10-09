@@ -1,10 +1,12 @@
 var app = getApp()
+var { dateFormat } = require('../../../utils/util.js')
 
 Page({
     data: {
         userId:'',
         list:'',
-        title:''
+        title:'',
+        apiType:''
     },
     onLoad(e){
         const { type } = e
@@ -31,19 +33,23 @@ Page({
 
         this.setData({
             userId,
-            title
+            title,
+            apiType
         })
 
         app.api.getTopicList(userId, apiType)
             .then(res => {
+                if(apiType == 'favorite' || apiType == 'topic' ) {
+                    res.list.map((item, index) => {
+                        res.list[index].last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd' , false)
+                    })
+                }
                 console.log(res)
                 this.setData({
                     list: res.list
                 })
             })
             .catch(err => console.log(err))
-        
-
        
     },
     onReady(){
