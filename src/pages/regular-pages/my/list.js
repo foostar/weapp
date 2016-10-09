@@ -8,9 +8,10 @@ Page({
     },
     onLoad(e){
         const { type } = e
+        const { userInfo } = app.globalData
         let apiType = ''
         let title = ''
-        const userId = app.globalData.userInfo.uid
+        const userId = userInfo.uid
         switch(type) {
             case 'myCollection': 
                 apiType = 'favorite'
@@ -41,6 +42,9 @@ Page({
                 })
             })
             .catch(err => console.log(err))
+        
+
+       
     },
     onReady(){
         wx.setNavigationBarTitle({
