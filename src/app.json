@@ -11,7 +11,7 @@
     "pages/regular-pages/login/login",
     "pages/regular-pages/register/register",
     "pages/regular-pages/setting/setting",
-    "pages/regular-pages/my/list"
+    "pages/regular-pages/my/topics"
   ],
   "window":{
     "backgroundTextStyle":"light",

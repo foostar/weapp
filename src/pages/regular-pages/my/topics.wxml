@@ -1,0 +1,9 @@
+<view wx:if="{{apiType != 'friend'}}">
+    <block wx:for="{{list}}">
+        <view class="topics-item-box">
+            <view class="topics-item-title">{{item.title}}</view>
+            <view class="topics-item-date">{{item.last_reply_date}}</view>
+            <view></view>
+        </view>
+    </block>
+</view>

@@ -84,7 +84,7 @@ Page({
         console.log(e)
         if(this.data.isLogin) {
             wx.navigateTo({
-                url:'/pages/regular-pages/my/list?type='+typePage
+                url:'/pages/regular-pages/my/topics?type='+typePage
             })
         } else {
             wx.navigateTo({
