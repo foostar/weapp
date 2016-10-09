@@ -32,12 +32,6 @@ Page({
         }
     },
     onLoad(data) {
-        if (app.globalData.userInfo) { // 判断用户是否登录
-            this.setData({
-                isLogin: true,
-                userInfo: app.globalData.userInfo
-            })
-        }
         const { title, boardId } = data // 存导航栏标题, onReady 再设置
         this.setData({ title, boardId })
 
