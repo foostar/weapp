@@ -42,6 +42,13 @@ Page({
                 userInfo: app.globalData.userInfo
             })
         }
+        // 监听用户是否登录
+        app.event.on('login', userInfo => {
+            this.setData({
+                isLogin: true,
+                userInfo: userInfo
+            })
+        })
         // 获取数据
         this.featchData()
     },
@@ -58,5 +65,10 @@ Page({
                 url:'/pages/regular-pages/login/login'
             })
         }
+    },
+    toFollow: function () {
+        console.log('toFollow')
+        // app.api.caretpcByTopic
+
     }
 })

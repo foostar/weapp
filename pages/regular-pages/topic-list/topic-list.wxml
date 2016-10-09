@@ -10,9 +10,13 @@
             <view class="topic-list-item-icon" style="color: {{ color }}"></view>
             <view class="topic-list-item-text">请先点击此处登录</view>
         </view>
+        <view class="topic-list-item" wx:if="{{ isLogin && mytopic.list.length === 0 }}">
+            <view class="topic-list-item-icon" style="color: {{ color }}"></view>
+            <view class="topic-list-item-text">您尚未关注任何话题</view>
+        </view>
         <block wx:for="{{ mytopic.list }}">
-            <view class="topic-list-item" wx:if="{{ isLogin }}">
-                <navigator url="/pages/regular-pages/topic/topic?id={{ item.ti_id }}" hover-class="none">
+            <navigator url="/pages/regular-pages/topic/topic?id={{ item.ti_id }}" hover-class="none">
+                <view class="topic-list-item" wx:if="{{ isLogin }}">
                     <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
                     <view class="topic-list-item-info">
                         <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
@@ -21,11 +25,11 @@
                             <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
                         </view>
                     </view>
-                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}">
+                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
                         <text class="text-white">关注</text>
                     </view>
-                </navigator>
-            </view>
+                </view>
+            </navigator>
         </block>
 
     </view>
@@ -45,7 +49,7 @@
                             <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
                         </view>
                     </view>
-                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}">
+                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
                         <text class="text-white">关注</text>
                     </view>
                 </navigator>
