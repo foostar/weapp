@@ -20,21 +20,21 @@
     </view>
 
     <view class="personal-quick-btns">
-        <view class="personal-quick-btn">我的收藏</view>
+        <view class="personal-quick-btn" bindtap='toNavigationPage' data-page="myCollection">我的收藏</view>
         <view class="personal-quick-btn-after">
             <text class="after-box"></text>
         </view>
-        <view class="personal-quick-btn">我的好友</view>
+        <view class="personal-quick-btn" bindtap="toNavigationPage" data-page="myFriend">我的好友</view>
         <view class="personal-quick-btn-after">
             <text class="after-box"></text>
         </view>
-        <view class="personal-quick-btn">我的发表</view>
+        <view class="personal-quick-btn" bindtap="toNavigationPage" data-page="myTopic">我的发表</view>
     </view>
 </view>
 
 <view class="personal-manage-card">
     <view class="personal-manage-items">
-        <view class="personal-manage-item" wx:if="{{!isWallet}}">
+        <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='toNavigationPage' data-page="myCollection">
             <image class="icon icon-info"></image>
             <text class="personal-manage-item-title">我的收藏</text>
             <image class="icon-arrow"></image>

@@ -7,3 +7,9 @@
     position: relative;
     border-bottom: 1rpx solid #ccc;
 }
+.switch-style {
+    position: absolute;
+    right: 10rpx;
+    top:18rpx;
+    transform:scale(0.7);
+}

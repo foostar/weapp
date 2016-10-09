@@ -36,9 +36,9 @@ Page({
     },
     onReady(){
         wx.setNavigationBarTitle({
-            
+            title: '我的'
         })
-    }
+    },
     // 跳转到设置页
     toSetting(){
         wx.navigateTo({
@@ -76,7 +76,13 @@ Page({
             modalHidden: !this.data.modalHidden
         })
         app.globalData.userInfo = null
+    },
+    // 跳转网页
+    toNavigationPage(e) {
+        var typePage = e.target.dataset.page
+        console.log(e)
+        wx.navigateTo({
+            url:'/pages/regular-pages/my/list?type='+typePage
+        })
     }
-
-
 })

@@ -50,6 +50,8 @@ App({
         // })
         var userInfo = wx.getStorageSync('userInfo')
         this.globalData.userInfo = userInfo
+        api.token = userInfo.token
+        api.secret = userInfo.secret
     },
     getModule(id) {
         if (id === undefined || id === null) {
