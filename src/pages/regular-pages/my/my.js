@@ -6,10 +6,10 @@ Page({
         isLogin: false,
         tabs:[],
         userInfo:{},
-        setting:{}
+        setting:{},
+        modalHidden: true
     },
     onLoad(){
-        console.log(app)
         // 判断用户是否登录
         if (app.globalData.userInfo) {
             this.setData({
@@ -23,7 +23,6 @@ Page({
         })
         // 获取用户的主配置信息
         app.api.getSetting().then(res => {
-            console.log(res)
             this.setData({
                 setting: res.body
             })
@@ -35,7 +34,17 @@ Page({
             })
         })
     },
-
+    onReady(){
+        wx.setNavigationBarTitle({
+            title: '我的'
+        })
+    },
+    // 跳转到设置页
+    toSetting(){
+        wx.navigateTo({
+            url:'/pages/regular-pages/setting/setting'
+        })
+    },
     // 改变全局的moduleId
     changeModuleId(e) {
         app.to(e.currentTarget.dataset.moduleId, true)
@@ -46,5 +55,34 @@ Page({
                 url:'/pages/regular-pages/login/login'
             })
         }
+    },
+    // 改变题提示状态
+    bindChange() {
+        if (this.data.isLogin){
+            this.setData({
+                modalHidden: !this.data.modalHidden
+            })
+        } else {
+            wx.navigateTo({
+                url:'/pages/regular-pages/login/login'
+            })
+        } 
+    },
+    // 用户登出
+    logout(){
+        this.setData({
+            isLogin: false,
+            userInfo: null,
+            modalHidden: !this.data.modalHidden
+        })
+        app.globalData.userInfo = null
+    },
+    // 跳转网页
+    toNavigationPage(e) {
+        var typePage = e.target.dataset.page
+        console.log(e)
+        wx.navigateTo({
+            url:'/pages/regular-pages/my/list?type='+typePage
+        })
     }
 })

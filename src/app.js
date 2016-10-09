@@ -44,6 +44,14 @@ App({
             return this.globalData
         })
         this.ready = () => promise
+        // 微信登录
+        // this.getUserInfo((res) => {
+        //     console.log(res)
+        // })
+        var userInfo = wx.getStorageSync('userInfo')
+        this.globalData.userInfo = userInfo
+        api.token = userInfo.token
+        api.secret = userInfo.secret
     },
     getModule(id) {
         if (id === undefined || id === null) {
@@ -118,7 +126,6 @@ App({
         if (typeof module !== 'object') {
             return this.to(this.getModule(module), isReplace)
         }
-        console.log('====>', module)
         this.globalData.moduleId = module.id
         if (module.type === 'full') {
             if (module.componentList[0].type === 'discover') {
