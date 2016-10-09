@@ -1,3 +1,4 @@
+<!-- 引入模版 -->
 <import src="/components/tab-bar/tab-bar.wxml"/>
 
 <view class="personal-user-card">
@@ -8,21 +9,32 @@
     </view>
 
     <view class="personal-user-info" wx:if="{{isLogin}}">
-        <view class="user-avator user-login" style="background-image:{{userInfo.avatar}};"></view>
-        <text>{{userInfo}}</text>
+        <view class="user-login" style="background-image:url({{userInfo.avatar}});"></view>
+        <view class="personal-user-info-name">{{userInfo.userName}}</view>
+        <view class="personal-user-info-desc">
+            <text style="margin-right: 10rpx;" wx:if="{{userInfo.creditShowList[0]}}">{{userInfo.creditShowList[0].title +':'+ userInfo.creditShowList[0].data   }}</text>
+            <text wx:if="{{userInfo.creditShowList[1]}}">{{userInfo.creditShowList[1].title +':'+ userInfo.creditShowList[1].data}}</text>
+        </view>
+        <view class="personal-user-info-level">{{userInfo.userTitle}}</view>
         <image class="icon-arrow"></image>
     </view>
 
     <view class="personal-quick-btns">
-        <view class="personal-quick-btn">我的收藏</view>
-        <view class="personal-quick-btn">我的好友</view>
-        <view class="personal-quick-btn">我的发表</view>
+        <view class="personal-quick-btn" bindtap='toNavigationPage' data-page="myCollection">我的收藏</view>
+        <view class="personal-quick-btn-after">
+            <text class="after-box"></text>
+        </view>
+        <view class="personal-quick-btn" bindtap="toNavigationPage" data-page="myFriend">我的好友</view>
+        <view class="personal-quick-btn-after">
+            <text class="after-box"></text>
+        </view>
+        <view class="personal-quick-btn" bindtap="toNavigationPage" data-page="myTopic">我的发表</view>
     </view>
 </view>
 
 <view class="personal-manage-card">
     <view class="personal-manage-items">
-        <view class="personal-manage-item" wx:if="{{!isWallet}}">
+        <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='toNavigationPage' data-page="myCollection">
             <image class="icon icon-info"></image>
             <text class="personal-manage-item-title">我的收藏</text>
             <image class="icon-arrow"></image>
@@ -52,12 +64,12 @@
 
 <view class="personal-manage-card">
     <view class="personal-manage-items">
-        <view class="personal-manage-item">
+        <view class="personal-manage-item" bindtap="bindChange">
             <image class="icon icon-account-manager"></image>
             <text class="personal-manage-item-title">帐号管理</text>
             <image class="icon-arrow"></image>
         </view>
-        <view class="personal-manage-item">
+        <view class="personal-manage-item" bindtap="toSetting">
             <image class="icon icon-user-manager"></image>
             <text class="personal-manage-item-title">个人管理</text>
             <image class="icon-arrow"></image>
@@ -65,4 +77,6 @@
     </view>
 </view>
 
+<modal title="账户管理" hidden="{{modalHidden}}" bindconfirm="logout" bindcancel="bindChange"></modal>
+<!-- 底部导航条 -->
 <template is="tab-bar" data="{{tabs}}" />

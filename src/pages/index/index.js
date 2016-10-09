@@ -12,11 +12,9 @@ Page({
     goToTopHidden: true
   },
   onLoad() {
-    console.log(app.globalData.info)
+    console.log('取出缓存里的数据', app)
     const module = app.getModule()
-    console.log('--->', module)
     app.getResources(module).then(resources => {
-      // console.log('resources --> ', resources)
       this.setData({
         resources
       })
@@ -27,18 +25,14 @@ Page({
     })
   },
   onReady() {
-    // console.log('===>', app.globalData.modules)
     const module = app.getModule()
     wx.setNavigationBarTitle({
       title: module.title
     })
   },
   switchTab(e) {
-    console.log('e --> ', e)
     const { index, moduleId } = e.currentTarget.dataset
-    // const module = app.getModule(moduleId)
     app.getResources(moduleId).then(resources => {
-      console.log('resources --> ', resources)
       this.setData({
         resources
       })
