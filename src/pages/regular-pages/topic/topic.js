@@ -74,6 +74,11 @@ Page({
         this.setData({
             currentIndex: e.currentTarget.dataset.index
         })
+    },
+    toUserHome: function (e) {
+        wx.navigateTo({
+            url: '/pages/regular-pages/user-home/user-home?uid=' + e.currentTarget.dataset.uid
+        })
     }
 })
 

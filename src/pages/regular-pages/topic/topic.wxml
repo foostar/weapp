@@ -12,11 +12,11 @@
     <!-- topuser -->
     <view class="tpcinfo-users">
         <view class="tpcinfo-users-list">
-            <view class="tpcinfo-users-item" style="background-image: url({{ tpcinfo.icon }})">
+            <view class="tpcinfo-users-item" style="background-image: url({{ tpcinfo.icon }})"  bindtap="toUserHome" data-uid="{{ tpcinfo.ti_authorid }}">
                 <view class="tpcinfo-users-author">发起人</view>
             </view>
             <block wx:for="{{ topUser }}">
-                <view class="tpcinfo-users-item" style="background-image: url({{ item.avatar }})"></view>
+                <view class="tpcinfo-users-item" style="background-image: url({{ item.avatar }})" bindtap="toUserHome" data-uid="{{ item.uid }}"></view>
             </block>
         </view>
         <view class="tpcinfo-users-count" style="color: {{ color }}">{{ partinNum }}人</view>
