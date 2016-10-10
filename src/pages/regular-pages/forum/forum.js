@@ -1,5 +1,19 @@
-var app = getApp()
-var { formatTime } = require('../../../utils/util.js')
+/* eslint no-console: 0, no-underscore-dangle: 0, camelcase: 0, no-nested-ternary: 0 */
+const app = getApp()
+const { formatTime } = require('../../../utils/util.js')
+
+function formateList(list) {
+    list.forEach((item) => {
+        item.imageList = item.imageList.map(src =>
+            src.replace('xgsize_', 'mobcentSmallPreview_')
+        )
+        if (item.imageList.length > 3) {
+            item.imageList.length = 3
+        }
+        item.lastReplyDate = formatTime(item.last_reply_date)
+    })
+    return list
+}
 
 Page({
     data: {
@@ -46,15 +60,15 @@ Page({
     getList(sortby, init = false) {
         if (!sortby) return console.info('需要 sortby 参数')
 
-        const {boardId} = this.data
+        const { boardId } = this.data
 
-        const {hasNext, nextPage} = this.data[`${sortby}List`]
+        const { hasNext, nextPage } = this.data[`${sortby}List`]
 
         if (!hasNext) {
             return console.info(`${sortby} 分类下已经没有更多内容了.`)
         }
 
-        app.api.forum(boardId, { sortby, page: nextPage }).then(res => {
+        app.api.forum(boardId, { sortby, page: nextPage }).then((res) => {
             const {
                 list, page, forumInfo,
                 topTopicList, has_next,
@@ -103,8 +117,8 @@ Page({
 
         this.setData({ tabsIndex, currentList })
     },
-    scrollToBottom(e) { // 滑倒底部加载更多
-        const {tabsIndex} = this.data
+    scrollToBottom() { // 滑倒底部加载更多
+        const { tabsIndex } = this.data
         tabsIndex === 0
             ? this.getList('all')
             : tabsIndex === 1
@@ -112,26 +126,21 @@ Page({
                 : this.getList('marrow')
     },
     handleScroll(e) { // 处理 tabs title
-        if(e.detail.scrollTop > 230) {
+        if (e.detail.scrollTop > 230) {
             this.setData({ fixedTabsTitle: true })
         } else {
             this.setData({ fixedTabsTitle: false })
         }
     },
     handleEditClick() {
-        console.warn('TODO')
+        if (app.globalData.userInfo) { // 判断用户是否登录
+            return wx.navigateTo({
+                url: '/pages/regular-pages/create-forum/create-forum'
+            })
+        }
+
+        wx.navigateTo({
+            url: '/pages/regular-pages/login/login'
+        })
     }
 })
-
-function formateList(list) {
-    list.forEach(item => {
-        item.imageList = item.imageList.map(src =>
-            src.replace('xgsize_', 'mobcentSmallPreview_')
-        )
-        if (item.imageList.length > 3) {
-            item.imageList.length = 3
-        }
-        item.lastReplyDate = formatTime(item.last_reply_date)
-    })
-    return list
-}

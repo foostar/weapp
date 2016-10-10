@@ -1,6 +1,8 @@
 const app = getApp()
 Page({
     data: {
+        isLogin: false,
+        userInfo: {},
         tempFilePaths: '',
         selectList: [],
         selectIndex: 0,
@@ -15,29 +17,25 @@ Page({
                 userInfo: app.globalData.userInfo
             })
         } else {
-            // wx.redirectTo({
-            //     url: '/pages/regular-pages/login/login'
-            // })
+            console.info('no auth')
         }
 
-        app.api.forumList().then(res => {
+        app.api.forumList().then((res) => {
             const { list } = res
             const selectType = list[0].board_list[0].board_id
 
             const selectNameArray = [] // [...Array(10).keys()]
             const selectValueArray = []
 
-            list.forEach(categoryList => categoryList.board_list.forEach(board => {
+            list.forEach(categoryList => categoryList.board_list.forEach((board) => {
                 selectNameArray.push(`${categoryList.board_category_name}/${board.board_name}`)
                 selectValueArray.push(board.board_id)
             }))
             this.setData({ selectNameArray, selectValueArray, selectType })
-
-            {
-                const { selectNameArray, selectValueArray, selectType } = this.data
-                console.log({ selectNameArray, selectValueArray, selectType })
-            }
-
+            // {
+            //     const { selectNameArray, selectValueArray, selectType } = this.data
+            //     console.log({ selectNameArray, selectValueArray, selectType })
+            // }
         })
     },
     selectChange(e) {
@@ -81,7 +79,7 @@ Page({
     },
     submit() {
         const { title, content, selectType: fid } = this.data
-        app.api.createTopic({ title, content, fid }).then(res => {
+        app.api.createTopic({ title, content, fid }).then((res) => {
             console.log(res)
         })
     }
