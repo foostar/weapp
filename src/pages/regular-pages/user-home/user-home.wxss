@@ -37,7 +37,7 @@ page {
     width: 100%;
 }
 .user-icon-box {
-    padding-top: 110rpx;
+    padding-top: 90rpx;
     padding-bottom: 20rpx;
 }
 .user-icon {
@@ -62,7 +62,7 @@ page {
 .user-bar {
     font-size: 26rpx;
     line-height: 30rpx;
-    padding-bottom: 20rpx;
+    padding-bottom: 28rpx;
 }
 .user-bar-item {
     display: inline-block;
@@ -81,8 +81,66 @@ page {
     overflow: hidden;
     vertical-align: middle;
 }
-
-
 .user-desc {
     font-size: 24rpx;
+}
+
+.user-publish-item {
+    margin-bottom: 14rpx;
+    background-color: #FFFFFF;
+    padding: 20rpx;
+    font-size: 28rpx;
+}
+.user-publish-info {
+    position: relative;
+    padding-bottom: 20rpx;
+}
+.user-publish-info-title {
+    display: inline-block;
+}
+.user-publish-info-name {
+    color: #000000;
+    font-size: 36rpx;
+    margin-bottom: 20rpx;
+    margin-top: 10rpx;
+}
+.user-publish-info-date {
+    color: #D5D5D5;
+    font-size: 24rpx;
+}
+.user-publish-info-icon {
+    display: inline-block;
+    overflow: hidden;
+    width: 96rpx;
+    height: 96rpx;
+    vertical-align: top;
+    margin-right: 20rpx;
+    border-radius: 10rpx;
+}
+.user-publish-info-from {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 24rpx;
+    color: #D5D5D5;
+}
+.user-publish-topic-title {
+    font-size: 32rpx;
+    color: #000;
+    padding-bottom: 20rpx;
+}
+.user-publish-topic-desc {
+    padding-bottom: 20rpx;
+    color: #999;
+}
+.user-publish-bar {
+    padding-top: 20rpx;
+    text-align: right;
+    color: #BEBEBE;
+}
+.user-publish-topic-image {
+    width: 200rpx;
+    height: 160rpx;
+    background-size: cover;
+    background-position: 50%;
 }

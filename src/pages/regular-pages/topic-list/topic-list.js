@@ -48,6 +48,7 @@ Page({
                 isLogin: true,
                 userInfo: userInfo
             })
+            this.featchData()
         })
         // 获取数据
         this.featchData()

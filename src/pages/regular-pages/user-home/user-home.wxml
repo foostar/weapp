@@ -1,27 +1,58 @@
 <import src="/components/buttons-tab/buttons-tab.wxml"/>
 
+<template name="user-publish-item">
+    <block wx:for="{{ list }}">
+        <view class="user-publish-item">
+            <view class="user-publish-info">
+                <image src="{{ item.userAvatar }}" class="user-publish-info-icon" />
+                <view class="user-publish-info-title">
+                    <view class="user-publish-info-name">{{ item.user_nick_name }}</view>
+                    <view class="user-publish-info-date">{{ item.last_reply_date }}</view>
+                </view>
+                <view class="user-publish-info-from">来自 {{ item.board_name }}</view>
+            </view>
+            <view class="user-publish-topic">
+                <view class="user-publish-topic-title">{{ item.title }}</view>
+                <view class="user-publish-topic-desc">{{ item.subject }}</view>
+                <view style="background-image: url({{ item.pic_path }})" class="user-publish-topic-image" ></view>
+            </view>
+            <view class="user-publish-bar">
+                <text class="user-publish-bar-eye">{{ item.hits }}</text>
+                <text class="user-publish-bar-message">{{ item.replies }}</text>
+            </view>
+        </view>
+    </block>
+</template>
+
 <view class="user-home-main">
     <!-- userInfo -->
     <view class="user-info">
-        <view class="user-bg blur" style="background-image: url(http://cdn-wz.xiaoyun.com/m/f/http%253A%252F%252Fbbs.icnkr.com%252Fuc_server%252Favatar.php%253Fuid%253D1835784%2526size%253Dmiddle)"></view>
+        <view class="user-bg blur" style="background-image: url({{ info.icon }})"></view>
         <view class="user-bg-cover">
             <view class="user-icon-box">
-                <image class="user-icon" src="http://cdn-wz.xiaoyun.com/m/f/http%253A%252F%252Fbbs.icnkr.com%252Fuc_server%252Favatar.php%253Fuid%253D1835784%2526size%253Dmiddle" />
+                <image class="user-icon" src="{{ info.icon }}" />
             </view>
-            <view class="user-name">哈哈</view>
-            <view class="user-tag">实习会员</view>
+            <view class="user-name">{{ info.name }}</view>
+            <view class="user-tag">{{ info.userTitle }}</view>
             <view class="user-bar">
-                <view class="user-bar-item">参与 57</view>
+                <view class="user-bar-item">参与: {{ info.reply_posts_num || 0 }}</view>
                 <view class="user-bar-stall"></view>
-                <view class="user-bar-item">关注 3</view>
+                <view class="user-bar-item">关注: {{ info.friend_num || 0 }}</view>
                 <view class="user-bar-stall"></view>
-                <view class="user-bar-item">粉丝 1</view>
+                <view class="user-bar-item">粉丝: {{ info.follow_num || 0 }}</view>
             </view>
-            <view class="user-desc">还没有个人签名哟</view>
+            <view class="user-desc">{{ info.sign || '还没有个人签名哟' }}</view>
         </view>
     </view>
     <!-- userTopicList -->
     <view>
         <template is="buttons-tab" data="{{ currentIndex, tabs, color }}"/>
+        <view class="topic-list" wx:if="{{ currentIndex == 0 }}">
+            <template is="user-publish-item" data="{{ list: topics.list }}"></template>
+        </view>
+        <view class="info-list" wx:if="{{ currentIndex == 1 }}">
+            
+        </view>
     </view>
 </view>
+
