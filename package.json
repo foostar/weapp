@@ -1,7 +1,7 @@
 {
-  "name": "weizhan",
+  "name": "weapp",
   "version": "1.0.0",
-  "description": "#### 基本的事件添加 ```     app.event.trigger('login', userinfo) //登录后触发事件 ```",
+  "description": "weapp",
   "main": ".eslintrc.js",
   "dependencies": {},
   "devDependencies": {

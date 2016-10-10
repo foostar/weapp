@@ -1,5 +1,5 @@
-var app = getApp()
-var {formatTime} = require('../../../utils/util.js')
+const app = getApp()
+const { formatTime } = require('../../../utils/util.js')
 
 Page({
     data: {
@@ -9,23 +9,20 @@ Page({
         list: []
     },
     onLoad() {
-        // 判断用户是否登录
-        if (app.globalData.userInfo) {
+        if (app.globalData.userInfo) { // 判断用户是否登录
             this.setData({
                 isLogin: true,
                 userInfo: app.globalData.userInfo
             })
         }
-        // 设置tabs
-        this.setData({
+        this.setData({ // 设置tabs
             tabs: app.globalData.tabs
         })
 
-        // 获取用户的主配置信息
-        app.api.forumList().then(res => {
+        app.api.forumList().then((res) => { // 获取用户的主配置信息
             const { list } = res
-            list.forEach(boardCategory => {
-                boardCategory.board_list.forEach(board => {
+            list.forEach((boardCategory) => {
+                boardCategory.board_list.forEach((board) => {
                     board.url = `/pages/regular-pages/forum/forum?boardId=${board.board_id}&title=${board.board_name}`
                     board.last_posts_date = formatTime(board.last_posts_date)
                 })
@@ -33,8 +30,7 @@ Page({
             this.setData({ list })
         })
     },
-    // 改变全局的moduleId
-    changeModuleId(e) {
+    changeModuleId(e) { // 改变全局的moduleId
         app.to(e.currentTarget.dataset.moduleId, true)
     },
     navigator(e) {

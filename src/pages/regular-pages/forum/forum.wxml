@@ -1,58 +1,65 @@
-<view class="forum-header-section">
-    <image class="forum-type-icon" src="{{forumInfo.icon}}" />
-    <view class="forum-header-content">
-        <button class="forum-follow-btn">关注</button>
-        <text class="forum-header-title">{{title}}</text>
-        <view class="forum-header-stat">
-            <text style="margin-right: 30rpx">主题: {{forumInfo.posts_total_num}}</text>
-            <text>今日: {{forumInfo.td_posts_num}}</text>
+<scroll-view class="forum-container" scroll-y="{{true}}" bindscrolltolower="scrollToBottom" bindscroll="handleScroll">
+    <view class="forum-header-section">
+        <image class="forum-type-icon" src="{{forumInfo.icon}}" />
+        <view class="forum-header-content">
+            <button class="forum-follow-btn">关注</button>
+            <text class="forum-header-title">{{title}}</text>
+            <view class="forum-header-stat">
+                <text style="margin-right: 30rpx">主题: {{forumInfo.posts_total_num}}</text>
+                <text>今日: {{forumInfo.td_posts_num}}</text>
+            </view>
+            <view class="forum-header-description">
+                <text>介绍: {{forumInfo.description}}</text>
+            </view>
         </view>
-        <view class="forum-header-description">
-            <text>介绍: {{forumInfo.description}}</text>
+    </view>
+
+    <view class="forum-top-section">
+        <view wx:for="{{topTopicList}}" class="forum-top-item">
+            <view class="forum-top-tag-warp"><text class="forum-top-tag">置顶</text></view>
+            <view class="forum-top-text-wrap"><text>{{item.title}}</text></view>
         </view>
     </view>
-</view>
 
-<view class="forum-top-section">
-    <view wx:for="{{topTopicList}}" class="forum-top-item">
-        <view class="forum-top-tag-warp"><text class="forum-top-tag">置顶</text></view>
-        <view class="forum-top-text-wrap"><text>{{item.title}}</text></view>
-    </view>
-</view>
+    <view class="forum-tabs">
+        <view class="forum-tabs-title-warp-placeholder">
+            <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
+                <text bindtap="changeTabs" data-index="{{0}}" class="forum-tabs-title">全部</text>
+                <text bindtap="changeTabs" data-index="{{1}}" class="forum-tabs-title">最新</text>
+                <text bindtap="changeTabs" data-index="{{2}}" class="forum-tabs-title">精华</text>
+                <view class="forum-tabs-indicator" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
+            </view>
+        </view>
+        <view class="forum-list">
+            <view wx:for="{{currentList.list}}" class="forum-list-item">
+                <view class="forum-item-header">
+                    <image class="forum-item-avatar" src="{{item.userAvatar}}" />
+                    <view class="forum-item-header-right">
+                        <view class="forum-item-name">{{item.user_nick_name}}</view>
+                        <view class="forum-item-time">{{item.lastReplyDate}}</view>
+                    </view>
+                </view>
+                <view class="forum-item-content">
+                    <view class="forum-item-content-title">{{item.title}}</view>
+                    <view class="forum-item-content-summary">{{item.subject}}</view>
+                </view>
 
-<view class="forum-tabs">
-    <view class="forum-tabs-title-warp">
-        <text bindtap="changeTabs" data-index="{{0}}" class="forum-tabs-title">全部</text>
-        <text bindtap="changeTabs" data-index="{{1}}" class="forum-tabs-title">最新</text>
-        <text bindtap="changeTabs" data-index="{{2}}" class="forum-tabs-title">精华</text>
-        <view class="forum-tabs-indicator" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
-    </view>
-
-    <view class="forum-list">
-        <view wx:for="{{allList}}" class="forum-list-item">
-            <view class="forum-item-header">
-                <image class="forum-item-avatar" src="{{item.userAvatar}}" />
-                <view class="forum-item-header-right">
-                    <view class="forum-item-name">{{item.user_nick_name}}</view>
-                    <view class="forum-item-time">{{item.last_reply_date}}</view>
+                <view wx:if="{{item.imageList.length}}" class="forum-item-images-warp">
+                    <image wx:for="{{item.imageList}}" mode="aspectFill" class="forum-item-image" src="{{item}}" />
+                </view>
+                <view class="forum-item-addons">
+                    <view class="forum-item-addons-views" />
+                    <text class="forum-item-addons-num" style="margin-right: 30rpx">{{item.hits}}</text>
+                    <view class="forum-item-addons-comments" />
+                    <text class="forum-item-addons-num">{{item.replies}}</text>
                 </view>
             </view>
-            <view class="forum-item-content">
-                <view class="forum-item-content-title">{{item.title}}</view>
-                <view class="forum-item-content-summary">{{item.subject}}</view>
-            </view>
 
-            <view class="forum-item-images-warp">
-                <image wx:for="{{item.imageList}}" mode="aspectFill" class="forum-item-image" src="{{item}}" />
+            <view class="forum-load-more">
+                <text>{{currentList.hasNext ? '加载中...' : '没有更多了'}}</text>
             </view>
-
-            <view class="forum-item-addons">
-                <view class="forum-item-addons-views" />
-                <text class="forum-item-addons-num" style="margin-right: 30rpx">{{item.hits}}</text>
-                <view class="forum-item-addons-comments" />
-                <text class="forum-item-addons-num">{{item.replies}}</text>
-            </view>
-
         </view>
     </view>
-</view>
+
+    <view class="forum-edit-btn" bindtap="handleEditClick"/>
+</scroll-view>
