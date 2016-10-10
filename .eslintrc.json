@@ -16,7 +16,8 @@
   "globals": {
     "App": true,
     "Page": true,
-    "wx": true
+    "wx": true,
+    "getApp": true
   },
   "rules": {
     "comma-dangle": 0,

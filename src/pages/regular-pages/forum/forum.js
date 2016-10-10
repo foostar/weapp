@@ -1,66 +1,146 @@
-var app = getApp()
-var {formatTime} = require('../../../utils/util.js')
+/* eslint no-console: 0, no-underscore-dangle: 0, camelcase: 0, no-nested-ternary: 0 */
+const app = getApp()
+const { formatTime } = require('../../../utils/util.js')
 
-Page({
-    data: {
-        isLogin: false,
-        userInfo: {},
-        title: {},
-        tabsIndex: 0,
-        forumInfo: {},
-        allList:[],
-        newList: [],
-        marrowList: []
-    },
-    onLoad(data) {
-        // 判断用户是否登录
-        if (app.globalData.userInfo) {
-            this.setData({
-                isLogin: true,
-                userInfo: app.globalData.userInfo
-            })
-        }
-        const { title, boardId } = data
-        this.setData({ title })
-
-        app.api.forum(boardId, { sortby: 'all' }).then(res => {
-            const { list: allList, forumInfo, total_num, topTopicList } = res
-            this.setData({
-                allList: formateList(allList),
-                forumInfo,
-                topTopicList,
-                totalNum: total_num
-            })
-        })
-        app.api.forum(boardId, { sortby: 'new' }).then(res => {
-            const { list: newList } = res
-            this.setData({ newList: formateList(newList) })
-        })
-        app.api.forum(boardId, { sortby: 'marrow' }).then(res => {
-            const { list: marrowList } = res
-            this.setData({ marrowList: formateList(marrowList) })
-        })
-    },
-    onReady() {
-        const { title } = this.data
-        wx.setNavigationBarTitle({ title })
-    },
-    changeTabs(e) {
-        const { index: tabsIndex } = e.currentTarget.dataset
-        this.setData({ tabsIndex })
-    }
-})
-
-
-function formateList (list) {
-    list.forEach(item => {
+function formateList(list) {
+    list.forEach((item) => {
         item.imageList = item.imageList.map(src =>
             src.replace('xgsize_', 'mobcentSmallPreview_')
         )
         if (item.imageList.length > 3) {
             item.imageList.length = 3
         }
-        item.last_reply_date = formatTime(item.last_reply_date)
+        item.lastReplyDate = formatTime(item.last_reply_date)
     })
     return list
 }
+
+Page({
+    data: {
+        boardId: null,
+        isLogin: false,
+        userInfo: {},
+        title: {},
+        tabsIndex: 0,
+        forumInfo: {},
+        fixedTabsTitle: false,
+        allList: {
+            list: [],
+            nextPage: 1,
+            hasNext: true
+        },
+        newList: {
+            list: [],
+            nextPage: 1,
+            hasNext: true
+        },
+        marrowList: {
+            list: [],
+            nextPage: 1,
+            hasNext: true
+        },
+        currentList: {
+            list: [],
+            nextPage: 1,
+            hasNext: true
+        }
+    },
+    onLoad(data) {
+        const { title, boardId } = data // 存导航栏标题, onReady 再设置
+        this.setData({ title, boardId })
+
+        this.getList('all', true)
+        this.getList('new', true)
+        this.getList('marrow', true)
+    },
+    onReady() {
+        const { title } = this.data
+        wx.setNavigationBarTitle({ title }) // 设置导航栏标题
+    },
+    getList(sortby, init = false) {
+        if (!sortby) return console.info('需要 sortby 参数')
+
+        const { boardId } = this.data
+
+        const { hasNext, nextPage } = this.data[`${sortby}List`]
+
+        if (!hasNext) {
+            return console.info(`${sortby} 分类下已经没有更多内容了.`)
+        }
+
+        app.api.forum(boardId, { sortby, page: nextPage }).then((res) => {
+            const {
+                list, page, forumInfo,
+                topTopicList, has_next,
+                total_num: totalNum
+            } = res
+
+            const _list = formateList(list)
+
+            this.setData({
+                [`${sortby}List`]: {
+                    list: this.data[`${sortby}List`].list.concat(_list),
+                    nextPage: page + 1,
+                    hasNext: !!has_next
+                }
+            })
+
+            if (init && sortby === 'all') {
+                return this.setData({
+                    currentList: {
+                        list: this.data.currentList.list.concat(_list),
+                        nextPage: page + 1,
+                        hasNext: !!has_next
+                    },
+                    forumInfo,
+                    topTopicList,
+                    totalNum
+                })
+            }
+            this.setData({
+                currentList: {
+                    list: this.data.currentList.list.concat(_list),
+                    nextPage: page + 1,
+                    hasNext: !!has_next
+                }
+            })
+        })
+    },
+    changeTabs(e) { // 切换 tabs
+        const { index } = e.currentTarget.dataset
+        const tabsIndex = Number(index)
+        const currentList = tabsIndex === 0
+            ? this.data.allList
+            : tabsIndex === 1
+                ? this.data.newList
+                : this.data.marrowList
+
+        this.setData({ tabsIndex, currentList })
+    },
+    scrollToBottom() { // 滑倒底部加载更多
+        const { tabsIndex } = this.data
+        tabsIndex === 0
+            ? this.getList('all')
+            : tabsIndex === 1
+                ? this.getList('new')
+                : this.getList('marrow')
+    },
+    handleScroll(e) { // 处理 tabs title
+        if (e.detail.scrollTop > 230) {
+            this.setData({ fixedTabsTitle: true })
+        } else {
+            this.setData({ fixedTabsTitle: false })
+        }
+    },
+    handleEditClick() {
+        if (app.globalData.userInfo) { // 判断用户是否登录
+            return wx.navigateTo({
+                url: '/pages/regular-pages/create-forum/create-forum'
+            })
+        }
+
+        wx.navigateTo({
+            url: '/pages/regular-pages/login/login'
+        })
+    }
+})
