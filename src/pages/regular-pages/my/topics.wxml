@@ -1,9 +1,35 @@
+<!-- 帖子列表 -->
 <view wx:if="{{apiType != 'friend'}}">
     <block wx:for="{{list}}">
-        <view class="topics-item-box">
-            <view class="topics-item-title">{{item.title}}</view>
-            <view class="topics-item-date">{{item.last_reply_date}}</view>
-            <view></view>
+        <view class="topics-item-box" >
+            <view class="topics-item-context" style="{{ item.pic_path == '' ? 'width: 100%;' : 'width:auto;'}}">
+                <view class="topics-item-title"><text wx:if="{{item.top == 1}}">🆙</text><text wx:if="{{item.hot == 1}}">［热］</text>{{item.title}}</view>
+                <view class="topics-item-info">
+                    <view class="topics-item-date" style="text-align: left;">{{item.last_reply_date}}</view>
+                    <view class="topics-item-date" style="text-align: center;">{{item.user_nick_name}}</view>
+                    <view class="topics-item-date" style="text-align: right;">{{item.hits+'阅读'}}</view>
+                </view>
+            </view>
+            <image class="topics-item-pic" wx:if="{{item.pic_path != ''}}" src="{{item.pic_path}}"  mode="scaleToFill"></image>
+        </view>
+    </block>
+</view>
+
+<!-- 好友列表 -->
+<view wx:if="{{apiType == 'friend'}}">
+    <block wx:for="{{list}}">
+        <view class="user-list-item">
+            <view class="user-item-data">
+                <view class="user-item-image" style="background-image:url({{item.icon}})"></view>
+                <view class="user-item-data-info">
+                    <text class="user-item-data-info-name">{{item.name}}</text>
+                    <text class="user-item-data-info-dateline">{{item.lastLogin}}</text>
+                </view>
+                <view class="user-item-data-badge">
+                    {{item.userTitle}}
+                </view>
+                <view class="user-item-data-desc">{{item.signature ? item.signature : '这个人很懒，不用理他~'}}</view>
+            </view>
         </view>
     </block>
 </view>
