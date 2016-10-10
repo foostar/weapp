@@ -28,6 +28,7 @@ Page({
                 apiType = 'topic'
                 title = '我的发表'
                 break;
+            case 'myInfo'
             default: 
                 apiType = 'favorite'
         }
