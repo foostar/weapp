@@ -44,11 +44,11 @@
             <view class="user-name">{{ info.name }}</view>
             <view class="user-tag">{{ info.userTitle }}</view>
             <view class="user-bar">
-                <view class="user-bar-item">参与: {{ info.reply_posts_num || 0 }}</view>
+                <view class="user-bar-item" bindtap="toNavigationPage" data-page="myReply">参与: {{ info.reply_posts_num || 0 }}</view>
                 <view class="user-bar-stall"></view>
-                <view class="user-bar-item">关注: {{ info.friend_num || 0 }}</view>
+                <view class="user-bar-item" bindtap="toNavigationPage" data-page="myFollow">关注: {{ info.friend_num || 0 }}</view>
                 <view class="user-bar-stall"></view>
-                <view class="user-bar-item">粉丝: {{ info.follow_num || 0 }}</view>
+                <view class="user-bar-item" bindtap="toNavigationPage" data-page="myFollowed">粉丝: {{ info.follow_num || 0 }}</view>
             </view>
             <view class="user-desc">{{ info.sign || '还没有个人签名哟' }}</view>
         </view>

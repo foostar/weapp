@@ -21,7 +21,6 @@ Page({
         Promise
             .all(querys)
             .then(result => {
-                console.log(result)
                 this.setData({
                     topic: result[0],
                     mytopic: (result.length > 1 ? result[1] : {})
@@ -29,7 +28,6 @@ Page({
             })
     },
     onLoad: function () {
-        console.log(app.globalData)
         // 设置tabs 和 color
         this.setData({
             tabs: app.globalData.tabs,

@@ -6,15 +6,17 @@ Page({
         userId:'',
         list:'',
         title:'',
-        apiType:''
+        apiType:'',
+        isUserList: false
     },
     onLoad(e){
-        const { type } = e
+        const { type, uid } = e
         const { userInfo } = app.globalData
         let apiType = ''
         let title = ''
         let promise  = {}
         const userId = userInfo.uid
+        const isMy =  (!uid || uid == userId)
         switch(type) {
             case 'myCollection': 
                 apiType = 'favorite'
@@ -32,39 +34,51 @@ Page({
                 apiType = 'myInfo'
                 title = '我的消息'
                 break;
+            case 'myReply':
+                apiType = 'reply'
+                title = isMy ? '我的参与' : 'Ta的参与'
+                break;
+            case 'myFollow':
+                apiType = 'follow'
+                title = isMy ? '我的关注' : 'Ta的关注'
+                break;
+            case 'myFollowed':
+                apiType = 'followed'
+                title = isMy ? '我的粉丝' : 'Ta的粉丝'
+                break;
             default: 
                 apiType = 'favorite'
         }
-
-        this.setData({
-            userId,
+        let obj = {
+            userId: isMy ? userId : uid,
             title,
             apiType
-        })
-        if(apiType == 'friend') {
+        }
+        if(apiType == 'friend' || apiType == 'follow' || apiType == 'followed') {
+            obj.isUserList = true // 是否是用户列表
             // 好友列表
-            promise = app.api.getUserList(userId, apiType)
+            promise = app.api.getUserList(obj.userId, apiType)
         } else {
+            obj.isUserList = false // 是否是用户列表
             // 收藏帖子列表
-            promise = app.api.getTopicList(userId, apiType)   
+            promise = app.api.getTopicList(obj.userId, apiType)   
         }
 
         promise.then(res => {
-            if(apiType == 'favorite' || apiType == 'topic' ) {
+            if(apiType == 'favorite' || apiType == 'topic' || apiType == 'reply') {
                 res.list.map((item, index) => {
                     res.list[index].last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd' , false)
                     res.list[index].pic_path = item.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
                 })
             }
-            if(apiType == 'friend') {
+            if(apiType == 'friend' || apiType == 'follow' || apiType == 'followed') {
                 res.list.map((item, index) => {
                     res.list[index].lastLogin = formatTime(item.lastLogin)
                 })
             }
             console.log(res)
-            this.setData({
-                list: res.list
-            })
+            obj.list = res.list
+            this.setData(obj)
         })
         .catch(err => console.log(err))
     },

@@ -1,5 +1,5 @@
 <!-- 帖子列表 -->
-<view wx:if="{{apiType != 'friend'}}">
+<view wx:if="{{ !isUserList }}">
     <block wx:for="{{list}}">
         <view class="topics-item-box" >
             <view class="topics-item-context" style="{{ item.pic_path == '' ? 'width: 100%;' : 'width:auto;'}}">
@@ -16,7 +16,7 @@
 </view>
 
 <!-- 好友列表 -->
-<view wx:if="{{apiType == 'friend'}}">
+<view wx:if="{{ isUserList }}">
     <block wx:for="{{list}}">
         <view class="user-list-item">
             <view class="user-item-data">

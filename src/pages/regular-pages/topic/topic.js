@@ -18,7 +18,6 @@ Page({
         tabs: ['最新', '最热']
     },
     onLoad: function (data) {
-        console.log(app)
         this.setData({
             id: data.id,
             color: app.globalData.info.appColor
@@ -62,7 +61,6 @@ Page({
             })
     },
     onReady: function () {
-        console.log(this.data)
         var title = this.data.tpcinfo.ti_title
         // 修改导航条
         wx.setNavigationBarTitle({

@@ -3,6 +3,7 @@ var app = getApp(),
 
 Page({
     data: {
+        isLogin: false,
         uid: '',
         color: '#000',
         currentIndex: 0,
@@ -24,14 +25,23 @@ Page({
         })
     },
     onLoad: function (data) {
-        console.log(data)
-        console.log(app.globalData.userInfo)
-        this.setData({
-            uid: data.uid,
-            color: app.globalData.info.appColor
-        })
+        var obj = {}
+
+        // 判断用户是否登录
+        if (app.globalData.userInfo) {
+            obj.isLogin = true
+        }
+        obj.uid = data.uid
+        obj.color = app.globalData.info.appColor
+
+        this.setData(obj)
         this.fetchData()
-        console.log(this.data.info)
+
+        app.event.on('login', userInfo => {
+            this.setData({
+                isLogin: true
+            })
+        })
     },
     fetchData: function () {
         var uid = this.data.uid
@@ -41,7 +51,6 @@ Page({
                 app.api.getTopicList(uid, 'topic')
             ])
             .then(([info, topics]) => {
-                console.log(info, topics)
                 topics.list = topics.list.map(v => {
                     v.pic_path = v.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
                     v.last_reply_date = util.formatTime(v.last_reply_date)
@@ -56,5 +65,19 @@ Page({
                     isLoading: false
                 })
             })
-    }
+    },
+    // 跳转网页
+    toNavigationPage: function (e) {
+        var typePage = e.target.dataset.page
+        var uid = this.data.uid
+        if (this.data.isLogin) {
+            wx.navigateTo({
+                url: '/pages/regular-pages/my/topics?type=' + typePage + '&uid=' + uid
+            })
+        } else {
+            wx.navigateTo({
+                url: '/pages/regular-pages/login/login'
+            })
+        } 
+    },
 })
