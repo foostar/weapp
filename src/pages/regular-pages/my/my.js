@@ -76,13 +76,20 @@ Page({
             modalHidden: !this.data.modalHidden
         })
         app.globalData.userInfo = null
+        wx.setStorageSync('userInfo', null)
     },
     // 跳转网页
     toNavigationPage(e) {
         var typePage = e.target.dataset.page
         console.log(e)
-        wx.navigateTo({
-            url:'/pages/regular-pages/my/list?type='+typePage
-        })
+        if(this.data.isLogin) {
+            wx.navigateTo({
+                url:'/pages/regular-pages/my/topics?type='+typePage
+            })
+        } else {
+            wx.navigateTo({
+                url:'/pages/regular-pages/login/login'
+            })
+        } 
     }
 })

@@ -12,7 +12,7 @@
     "pages/regular-pages/register/register",
     "pages/regular-pages/user-home/user-home",
     "pages/regular-pages/setting/setting",
-    "pages/regular-pages/my/list"
+    "pages/regular-pages/my/topics"
   ],
   "window":{
     "backgroundTextStyle":"light",
