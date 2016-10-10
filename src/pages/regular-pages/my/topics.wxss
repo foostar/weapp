@@ -1,0 +1,27 @@
+.topics-item-box {
+    margin: 0 10px;
+    padding-bottom: 8px;
+    position: relative;
+    background-color: #fff;
+    padding: 8px 0 0;
+    display: block;
+    color: #a6a6a6;
+    border-bottom: 1rpx solid #ccc;
+}
+.topics-item-title {
+    min-height: 22px;
+    font-size: 15px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.topics-item-date {
+    font-size: 13px;
+}
+
+.topics-item-subject {
+    font-size: 13px;
+    overflow: hidden;
+    line-clamp:3;
+    white-space: nowrap
+}
