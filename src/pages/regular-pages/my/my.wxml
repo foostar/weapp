@@ -8,7 +8,7 @@
         <image class="icon-arrow"></image>
     </view>
 
-    <view class="personal-user-info" wx:if="{{isLogin}}">
+    <view class="personal-user-info" wx:if="{{isLogin}}" bindtap="toUserHome" data-uid="{{ userInfo.uid }}">
         <view class="user-login" style="background-image:url({{userInfo.avatar}});"></view>
         <view class="personal-user-info-name">{{userInfo.userName}}</view>
         <view class="personal-user-info-desc">

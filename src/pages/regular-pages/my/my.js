@@ -91,5 +91,11 @@ Page({
                 url:'/pages/regular-pages/login/login'
             })
         } 
+    },
+    // 跳到用户主页
+    toUserHome(e) {
+        wx.navigateTo({
+            url: '/pages/regular-pages/user-home/user-home?uid=' + e.currentTarget.dataset.uid
+        })
     }
 })
