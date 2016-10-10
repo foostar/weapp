@@ -14,15 +14,24 @@
             <view class="user-publish-topic">
                 <view class="user-publish-topic-title">{{ item.title }}</view>
                 <view class="user-publish-topic-desc">{{ item.subject }}</view>
-                <view style="background-image: url({{ item.pic_path }})" class="user-publish-topic-image" ></view>
+                <view wx:if="{{ !!item.pic_path }}" style="background-image: url({{ item.pic_path }})" class="user-publish-topic-image" ></view>
             </view>
             <view class="user-publish-bar">
-                <text class="user-publish-bar-eye">{{ item.hits }}</text>
-                <text class="user-publish-bar-message">{{ item.replies }}</text>
+                <text class="icon-eye user-publish-bar-icon"></text>
+                <text class="user-publish-bar-text">{{ item.hits }}</text>
+                <text class="icon-message user-publish-bar-icon"></text>
+                <text class="user-publish-bar-text">{{ item.replies }}</text>
             </view>
         </view>
     </block>
 </template>
+<template name="user-info-item">
+    <view class="user-info-item">
+        <view class="user-info-title">{{ title }}</view>
+        <view class="user-info-data">{{ data }}</view>
+    </view>
+</template>
+
 
 <view class="user-home-main">
     <!-- userInfo -->
@@ -51,8 +60,21 @@
             <template is="user-publish-item" data="{{ list: topics.list }}"></template>
         </view>
         <view class="info-list" wx:if="{{ currentIndex == 1 }}">
-            
+            <view class="user-info-list">
+                <block wx:for="{{ info.body.profileList }}">
+                    <template is="user-info-item" data="{{ title:item.title, data:item.data }}"></template>
+                </block>
+            </view>
+            <view class="user-info-list">
+                <block wx:for="{{ info.body.creditList }}">
+                    <template is="user-info-item" data="{{ title:item.title, data:item.data }}"></template>
+                </block>
+            </view>
         </view>
     </view>
+    <!-- loading -->
+    <loading hidden="{{ !isLoading }}">
+        加载中...
+    </loading>
 </view>
 

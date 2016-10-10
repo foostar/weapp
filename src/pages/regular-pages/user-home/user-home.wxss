@@ -134,7 +134,6 @@ page {
     color: #999;
 }
 .user-publish-bar {
-    padding-top: 20rpx;
     text-align: right;
     color: #BEBEBE;
 }
@@ -143,4 +142,59 @@ page {
     height: 160rpx;
     background-size: cover;
     background-position: 50%;
+    margin-bottom: 20rpx;
+}
+.user-publish-bar-icon {
+    width: 24rpx;
+    height: 22rpx;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-left: 10rpx;
+    display: inline-block;
+}
+.user-publish-bar-text {
+    margin-left: 10rpx;
+}
+
+.user-info-list {
+    margin-bottom: 20rpx;
+}
+.user-info-item {
+    font-size: 28rpx;
+}
+.user-info-title {
+    background: #fff;
+    display: inline-block;
+    width: 28%;
+    text-align: right;
+    padding-right: 2%;
+    padding-bottom: 20rpx;
+    padding-top: 20rpx;
+    height: 34rpx;
+    vertical-align: top;
+}
+.user-info-data {
+    background: #fff;
+    display: inline-block;
+    height: 34rpx;
+    line-height: 34rpx;
+    width: 70%;
+    padding-bottom: 20rpx;
+    padding-top: 20rpx;
+    color: #888;
+    position: relative;
+}
+.user-info-data:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ccc;
+    height: 2rpx;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    overflow: hidden;
+    z-index: 1;
 }

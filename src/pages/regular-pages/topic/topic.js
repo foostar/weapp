@@ -23,9 +23,9 @@ Page({
             id: data.id,
             color: app.globalData.info.appColor
         })
-        this.featchData()
+        this.fetchData()
     },
-    featchData: function () {
+    fetchData: function () {
         // NEW HOT
         var ti_id = this.data.id
         Promise

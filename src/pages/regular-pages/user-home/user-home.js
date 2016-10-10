@@ -8,7 +8,8 @@ Page({
         currentIndex: 0,
         tabs: ['发表', '资料'],
         info: {},
-        topics: {}
+        topics: {},
+        isLoading: true
     },
     changeTabs: function (e) {
         // 切换选项卡
@@ -29,10 +30,10 @@ Page({
             uid: data.uid,
             color: app.globalData.info.appColor
         })
-        this.featchData()
+        this.fetchData()
         console.log(this.data.info)
     },
-    featchData: function () {
+    fetchData: function () {
         var uid = this.data.uid
         Promise
             .all([
@@ -51,7 +52,8 @@ Page({
                 this.setData({
                     info: info,
                     topics: topics,
-                    tabs: ['发表(' + topics.total_num + ')', '资料']
+                    tabs: ['发表(' + topics.total_num + ')', '资料'],
+                    isLoading: false
                 })
             })
     }

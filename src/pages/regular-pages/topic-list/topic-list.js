@@ -13,7 +13,7 @@ Page({
     changeModuleId: function (e) {
         app.to(e.currentTarget.dataset.moduleId, true)
     },
-    featchData: function () {
+    fetchData: function () {
         var querys = [ app.api.topic() ];
         if (this.data.isLogin) {
             querys.push(app.api.mytopic())
@@ -48,10 +48,10 @@ Page({
                 isLogin: true,
                 userInfo: userInfo
             })
-            this.featchData()
+            this.fetchData()
         })
         // 获取数据
-        this.featchData()
+        this.fetchData()
     },
     onReady: function () {
         var title = app.globalData.modules[app.globalData.moduleId].componentList[0].title
