@@ -8,6 +8,8 @@ App({
         const event = this.event = new Events()
         event.trigger('launch')
 
+        let queue = []
+        let requestNum = 0
         const api = this.api = new mobcent.API('http://bbs.xiaoyun.com', {
             parse: (response) => {
                 response.ok = true
@@ -15,10 +17,9 @@ App({
             },
             fetch: (url, data) => {
                 // console.log(url, data)
-                return new Promise((resolve, reject) => {
+                const request = () => new Promise((resolve, reject) => {
                     wx.request({
-                        // url: url,
-                        url: `http://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`,
+                        url,
                         data: data.body,
                         header: data.headers,
                         method: data.method,
@@ -26,6 +27,25 @@ App({
                         error: reject
                     })
                 })
+                requestNum += 1
+                if (requestNum >= 5) {
+                    return new Promise((resolve, reject) => {
+                        queue.push({
+                            request,
+                            resolve,
+                            reject
+                        })
+                    })
+                }
+                const promise = request()
+                promise.then(() => {
+                    requestNum -= 1
+                    if (queue.length) {
+                        const d = queue.shift()
+                        d.request().then(d.resolve, d.reject)
+                    }
+                })
+                return promise
             }
         })
         api.forumKey = 'jVXS7QIncwlSJ86Py1'
@@ -48,12 +68,12 @@ App({
         // this.getUserInfo((res) => {
         //     console.log(res)
         // })
-        var userInfo = wx.getStorageSync('userInfo')
+        const userInfo = wx.getStorageSync('userInfo')
         if (userInfo) {
             this.globalData.userInfo = userInfo
             api.token = userInfo.token
             api.secret = userInfo.secret
-        }  
+        }
     },
     getModule(id) {
         if (id === undefined || id === null) {
