@@ -8,6 +8,7 @@
     "pages/regular-pages/topic-list/topic-list",
     "pages/regular-pages/create-forum/create-forum",
     "pages/regular-pages/community/community",
+    "pages/regular-pages/community/community-forum",
     "pages/regular-pages/topic/topic",
     "pages/regular-pages/login/login",
     "pages/regular-pages/register/register",

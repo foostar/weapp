@@ -1,3 +1,4 @@
+@import './resetcss/reset.wxss';
 /**app.wxss**/
 view, text {
     -webkit-text-size-adjust: none;
@@ -38,6 +39,29 @@ view, text {
   visibility: hidden;
   font-size: 0;
   height: 0;
+}
+@media screen and (max-width:321px){
+    .font-title{font-size:16px}
+    .font-subhead{font-size:15px;}
+    .font-wide{font-size:14px;}
+    .font-normal{font-size:12px;}
+    body{font-size:12px;}
+}
+
+@media screen and (min-width:321px) and (max-width:400px){
+    .font-title{font-size:18px}
+    .font-subhead{font-size:17px;}
+    .font-wide{font-size:16px;}
+    .font-normal{font-size:14px;}
+    body{font-size:14px;}
+}
+
+@media screen and (min-width:400px){
+    .font-title{font-size:20px}
+    .font-subhead{font-size:19px;}
+    .font-wide{font-size:18px;}
+    .font-normal{font-size:16px;}
+    body{font-size:16px;}
 }
 
 /* 消息提示样式*/
@@ -106,6 +130,16 @@ view, text {
 /* 评论数 message */
 .icon-message {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAYAAADafVyIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDA1RENFODA1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDA1RENFN0Y1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNjZCQjk1QjUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozNjZCQjk1QzUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtoEBuAAAAFgSURBVHjaYty5c6cxAwPDAiDWYaAuuALECSxAYhkQqzFQH4AcvIwFyXBGckxxc3PDKr5r167/ILOZGGgMRi0YeAtYsIhpAXEZEN8C4k4g/gsVFwbiOii7CYjfQlMLM5Aqh6bGHmCqukLIgpVIme4xEC+GsluAOAPKZgPiTCg7CohboWxQptUlFES/kdg/cYjjYv8hJoiCgDgHiO8A8Wok8Wogfg11VB+ajwWAWAWIpxBjwQMgLsEi/hmIm7HkZFCOnTGaDyjKB3+gtBwQf8ER9r9x6BcA5gNsjuSBpSqQ5HYo5yE086DjX0A8C80ADyA+BMTvceh5CFW3E+TyBCCeDMROQMyOxTW8QJwKxBxAHAdNMelQuY9A/A+LHlD+2QfEuSAL3gFxNJ5gdADizUAcC8SsQBwBNRRUbLRBkylFkXwAiF2hwREBjacgaPHwn1qp6AQ0CEG0JRBvJDYVAQQYAGRqV0XOfjzdAAAAAElFTkSuQmCC)
+}
+/* 搜索 */
+.icon-search{
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC7klEQVRYR8WWUVLaUBSG/z8d6KN0BeKMhD7GGeFVXIG4guIKalcgXYF2BeIKwBXoMzgDvpXEmWYH1UdyaU7npkkaMSGBWryPcHPPd8/57zk/8caLq8Sv1RqWCLYMg1XfF1d/O5+re9edPK5yTnJvLsDHqlX1S6Uzki0A1bRAIjIh0JspdbUqTCZAtWpVyqXSOcmODirAPYCB7/u3EQTJqgFYINsAtgG4Anyx7eGgaEZSAXSqDbKvbywiV4ZS3e/uJEh51jLNZpvAhQYRkZ7tjE6KQLwA0MEJ3AAgyM4qt9EBzVqjR/KTAAPbHh7nQTwD0Gl/Xy6PReSDAC3HGU3yDkj7v15rXID8DJFvU2d0uuyMZwARvS9y4jij3jrBo29MszkgcPTL9w8fHu5i3SyeGQNotUu5/EPX3HZGgfD+ZYUidgmMp87oMOusGCC6PT1vJ09wRcFMs9klcOaL7GWVMwaom039hB5te2gVDZC3L3xNYwG+2vawm7Y/ACiyMS9Y1v/6YhBxp85IN7IXKwDY3d1vvTOMmzzBrANRrzVuQW5P7eHOsgx0DPLyfwBE2praw9Smt6kMHBQCeI33v5hmXQIhK1niDjIQdsCfr9UDkhB1sykCXNv2UA+sdBHqX02zqUfqVpZY1hFgOKD6yzL7tw/s7p/CMM5fswxB+gHLU6qa5RNigLAMevjIzPP2VjUWixmKnnbeQHo+jP7M9H7RUZpVltBFjUk+zTzPWnaZF28znucrmIokSBi8T9Iq0ldSm0MCYmIodVx0OGnRQeSSZEVDFXFGmZ4wNhXhQRQZTB/urhfTHozdcvmIIh2QLRF58kXaBtkJnFFOJpe64kBIZBfkQRxYJDYXAlR0qsPbPoXOuBvVvEg5c215NC1JtinSAqmtuXbAkVN2RWSglBqkiS2CgMjtTKnjxT2FANZpQslvkprylDpMQmwEIOi0kVsWmSQhNgaQBbFRgCRE1PI3DhA5sPl8PtFaeBOApEB/Ayk4xjCMFSeIAAAAAElFTkSuQmCC) no-repeat center center;
+  background-size:80% 80%;
+}
+/* 扫一扫 */
+.icon-scan{
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABVElEQVRYR+1XQU6DQBT9fyxx2xvIgqEuWZRurTeoJ6jeQE/Q3qDewPYGegJZYxNx2ZEFR2ArxBkzJkOKaMo0kHExLMnj/ZfHvP/nIxh+8Gd9SsNrRDzrSVdWFMVTliW54q8JGNEwAsSLnop/0wohkqIsL5WISoDnjacnhDwLgCvG4sc+RFAaBgTxFTi/26Xbe1mjEjDyxrdAyGrH4sZv6VKMdFkgRozFy5oA358sEWBhBVgHjDlgPAXnbuCKwWCm8tll9Pa5fH8y45znabqNajHsq+Ah3l6bzqHi/8sB1w2Gp44zF4jDNsqPxaAQ+UdZbhrDSI5hgvhwLLHOd/sDz54B60DlgOyE3HEW7P3lRudA6WJly/8ESBqd0F5IrAPGHTB+IVFLg7HFRObZp+EaEee62dbBC4A3xuLg191QvpQrGiFkqkPaFss5j1QD+lNAW7KucF/1YekhKGqSHQAAAABJRU5ErkJggg==) no-repeat center center;
+  background-size:80% 80%;
 }
 /* 顶 精 热 */
 .icon-tag-ding, .icon-tag-jing, .icon-tag-re {

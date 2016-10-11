@@ -15,6 +15,7 @@ Page({
     console.log('取出缓存里的数据', app)
     const module = app.getModule()
     app.getResources(module).then(resources => {
+      console.log("resources",resources,module)
       this.setData({
         resources
       })
@@ -56,6 +57,7 @@ Page({
   },
   // 改变全局的moduleId
   changeModuleId(e) {
+    console.log("moduleId",e.currentTarget.dataset.moduleId)
     app.to(e.currentTarget.dataset.moduleId, true)
   },
     clickItem(e) {
