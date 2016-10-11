@@ -27,12 +27,12 @@
     <view class="tabs-list">
       <view class="tpcinfo-list" wx:if="{{ currentIndex == 0 }}">
         <block wx:for="{{ newList }}">
-          <template is="tieba" data="{{userAvatar: item.userAvatar, user_nick_name: item.user_nick_name, last_reply_date: item.last_reply_date, title: item.title, subject: item.subject, imageList: item.imageList, hits: item.hits, replies: item.replies }}"></template>
+          <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
         </block>
       </view>
       <view class="tpcinfo-list" wx:if="{{ currentIndex == 1 }}">
         <block wx:for="{{ hotList }}">
-          <template is="tieba" data="{{userAvatar: item.userAvatar, user_nick_name: item.user_nick_name, last_reply_date: item.last_reply_date, title: item.title, subject: item.subject, imageList: item.imageList, hits: item.hits, replies: item.replies }}"></template>
+          <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
         </block>
       </view>
     </view>

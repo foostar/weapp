@@ -74,6 +74,9 @@ Page({
     this.setData({
       currentIndex: e.currentTarget.dataset.index
     })
-  }
+  },
+    clickItem(e) {
+        app.showPost(e.currentTarget.id)
+    }
 })
 

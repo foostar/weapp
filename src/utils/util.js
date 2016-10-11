@@ -1,8 +1,3 @@
-function formatNumber(n) {
-    n = n.toString()
-    return n[1] ? n : '0' + n
-}
-
 function formateText(str = '', length = 40) {
     length = parseInt(length, 10)
     if (str.length > length) {
@@ -14,7 +9,7 @@ function formateText(str = '', length = 40) {
     return str
 }
 
-const dateFormat = (date, format = 'yyyy-MM-dd hh:mm-ss', readability = true) => {
+const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = true) => {
     if (typeof date === 'string' && /^\d+$/.test(date)) {
         date = new Date(+date)
     }
@@ -44,7 +39,7 @@ const dateFormat = (date, format = 'yyyy-MM-dd hh:mm-ss', readability = true) =>
         'm+': date.getMinutes(),    // 分
         's+': date.getSeconds(),    // 秒
         'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
-        S: date.getMilliseconds(), // 毫秒
+        S: date.getMilliseconds(),  // 毫秒
     }
     if (/(y+)/.test(format)) {
         format = format.replace(RegExp.$1, String(date.getFullYear()).substr(4 - RegExp.$1.length))
