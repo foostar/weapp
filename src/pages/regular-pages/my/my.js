@@ -83,6 +83,11 @@ Page({
         var typePage = e.target.dataset.page
         console.log(e)
         if(this.data.isLogin) {
+            if(typePage == 'myInfo') {
+                return wx.navigateTo({
+                    url:'/pages/regular-pages/my-info/my-info'
+                })
+            }
             wx.navigateTo({
                 url:'/pages/regular-pages/my/topics?type='+typePage
             })

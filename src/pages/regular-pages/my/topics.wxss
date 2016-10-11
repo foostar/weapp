@@ -28,9 +28,6 @@
     min-height: 22px;
     font-size: 15px;
     color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .topics-item-info {

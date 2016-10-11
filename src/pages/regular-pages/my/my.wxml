@@ -49,7 +49,7 @@
             <text class="personal-manage-item-title">我的手机</text>
             <image class="icon-arrow"></image>
         </view>
-        <view class="personal-manage-item">
+        <view class="personal-manage-item" bindtap='toNavigationPage' data-page="myInfo">
             <image class="icon icon-info"></image>
             <text class="personal-manage-item-title">我的消息</text>
             <image class="icon-arrow"></image>

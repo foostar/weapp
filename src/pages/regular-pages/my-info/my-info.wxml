@@ -1,0 +1,10 @@
+<view class="personal-manage-item">
+    <image class="icon icon-info"></image>
+    <text class="personal-manage-item-title">我的消息</text>
+    <image class="icon-arrow"></image>
+</view>
+<view class="personal-manage-item">
+    <image class="icon icon-verify"></image>
+    <text class="personal-manage-item-title">用户认证</text>
+    <image class="icon-arrow"></image>
+</view>

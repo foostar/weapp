@@ -3,10 +3,10 @@
     <block wx:for="{{list}}">
         <view class="topics-item-box" >
             <view class="topics-item-context" style="{{ item.pic_path == '' ? 'width: 100%;' : 'width:auto;'}}">
-                <view class="topics-item-title"><text wx:if="{{item.top == 1}}">🆙</text><text wx:if="{{item.hot == 1}}">［热］</text>{{item.title}}</view>
+                <view class="topics-item-title"><text wx:if="{{item.top == 1}}" class="topics-item-top">顶</text><text wx:if="{{item.hot == 1}}" class="topics-item-hot">［热］</text>{{item.title}}</view>
                 <view class="topics-item-info">
                     <view class="topics-item-date" style="text-align: left;">{{item.last_reply_date}}</view>
-                    <view class="topics-item-date" style="text-align: center;">{{item.user_nick_name}}</view>
+                    <view class="topics-item-date" style="text-align: left;">{{item.user_nick_name}}</view>
                     <view class="topics-item-date" style="text-align: right;">{{item.hits+'阅读'}}</view>
                 </view>
             </view>
