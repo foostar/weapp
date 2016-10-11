@@ -50,7 +50,6 @@ App({
             }
         })
         api.forumKey = CONFIG.FORUM_KEY
-
         const promise = Promise.all([
             api.app(),
             api.ui()
@@ -99,8 +98,13 @@ App({
                             resources[module.id] = data
                         })
                     } else if (module.type === 'forumlist') {
-                        // resources[ module.id ] = await api.forumList()
-                        // resources[ module.id ].rec = await api.recForumList()
+                        return Promise.all([
+                            api.forumList(),
+                            api.recForumList()
+                        ]).then(([ forumList, recForumList ]) => {
+                            resources[module.id] = forumList
+                            resources[module.id].rec = recForumList
+                        })
                     } else if (module.type === 'topiclistSimple') {
                         return api.forum(module.extParams.forumId, {
                             sortby: module.extParams.orderby || 'all'
@@ -142,6 +146,7 @@ App({
         return getResources(m).then(() => resources)
     },
     to(module, isReplace) {
+
         let to = wx.navigateTo
         if (isReplace) {
             to = wx.redirectTo
@@ -170,6 +175,12 @@ App({
             if (module.componentList[0].type === 'talk') {
                 return to({
                     url: '/pages/regular-pages/topic-list/topic-list'
+                })
+            }
+            // 社区版块列表
+            if (module.componentList[0].type === 'forumlist') {
+                return to({
+                    url: '/pages/regular-pages/community/community-forum'
                 })
             }
         }

@@ -4,3 +4,4 @@ node_modules/
 weapp/
 src/lib/mobcent.js
 .idea
+src/config.js

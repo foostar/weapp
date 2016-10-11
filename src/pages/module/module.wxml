@@ -74,6 +74,10 @@
   </view>
 </template>
 
+<template name="subnav-subnavTopbar">
+  <view>1234</view>
+</template>
+
 <view class="module-container">
   <scroll-view class="view">
     <template is="{{module.type + '-' + module.style}}" wx:if="{{!!module}}" data="{{module, resources}}" />
