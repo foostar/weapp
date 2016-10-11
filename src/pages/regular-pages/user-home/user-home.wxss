@@ -49,15 +49,21 @@ page {
     font-size: 32rpx;
     padding-bottom: 20rpx;
 }
-.user-tag {
+.user-tag, .user-verify-tag {
     text-align: center;
     display: inline-block;
     padding: 8rpx 10rpx;
     border-radius: 4rpx;
     font-size: 24rpx;
-    background: #41a5fa;
     color: #fff;
     margin-bottom: 30rpx;
+}
+.user-tag {
+    background: #41a5fa;
+}
+.user-verify-tag {
+    margin-left: 20rpx;
+    background: #FA460A;
 }
 .user-bar {
     font-size: 26rpx;
@@ -162,6 +168,8 @@ page {
 }
 .user-info-item {
     font-size: 28rpx;
+    height: 74rpx;
+    line-height: 74rpx;
 }
 .user-info-title {
     background: #fff;
@@ -172,6 +180,7 @@ page {
     padding-bottom: 20rpx;
     padding-top: 20rpx;
     height: 34rpx;
+    line-height: 34rpx;
     vertical-align: top;
 }
 .user-info-data {

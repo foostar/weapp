@@ -102,3 +102,37 @@
 .icon-message {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAYAAADafVyIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDA1RENFODA1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDA1RENFN0Y1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNjZCQjk1QjUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozNjZCQjk1QzUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtoEBuAAAAFgSURBVHjaYty5c6cxAwPDAiDWYaAuuALECSxAYhkQqzFQH4AcvIwFyXBGckxxc3PDKr5r167/ILOZGGgMRi0YeAtYsIhpAXEZEN8C4k4g/gsVFwbiOii7CYjfQlMLM5Aqh6bGHmCqukLIgpVIme4xEC+GsluAOAPKZgPiTCg7CohboWxQptUlFES/kdg/cYjjYv8hJoiCgDgHiO8A8Wok8Wogfg11VB+ajwWAWAWIpxBjwQMgLsEi/hmIm7HkZFCOnTGaDyjKB3+gtBwQf8ER9r9x6BcA5gNsjuSBpSqQ5HYo5yE086DjX0A8C80ADyA+BMTvceh5CFW3E+TyBCCeDMROQMyOxTW8QJwKxBxAHAdNMelQuY9A/A+LHlD+2QfEuSAL3gFxNJ5gdADizUAcC8SsQBwBNRRUbLRBkylFkXwAiF2hwREBjacgaPHwn1qp6AQ0CEG0JRBvJDYVAQQYAGRqV0XOfjzdAAAAAElFTkSuQmCC)
 }
+/* 顶 精 热 */
+.icon-tag-ding, .icon-tag-jing, .icon-tag-re {
+    color: #fff;
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 6rpx;
+    margin-right: 10rpx;
+    display: inline-block;
+    vertical-align: middle;
+}
+.icon-tag-ding {
+    background-color: #F70505;
+}
+.icon-tag-jing {
+    background-color: #0BBDA9;
+}
+.icon-tag-re {
+    background-color: #F78005;
+}
+.icon-tag-ding:after, .icon-tag-jing:after, .icon-tag-re:after {
+    display: block;
+    text-align: center;
+    font-size: 18rpx;
+    line-height: 34rpx;
+}
+.icon-tag-ding:after {
+    content: '顶';
+}
+.icon-tag-jing:after {
+    content: '精';
+}
+.icon-tag-re:after {
+    content: '热';
+}
