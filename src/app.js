@@ -8,7 +8,7 @@ App({
         const event = this.event = new Events()
         event.trigger('launch')
 
-        const api = this.api = new mobcent.API('http://bbs.xiaoyun.com', {
+        const api = this.api = new mobcent.API('http://www.eeff.net', {
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
@@ -29,10 +29,12 @@ App({
             }
         })
         api.forumKey = 'jVXS7QIncwlSJ86Py1'
+        //api.forumKey = 'oqlhMstl7oeiSQg4I8'
         const promise = Promise.all([
             api.app(),
             api.ui()
         ]).then(([ appResult, uiResult ]) => {
+            console.log("uiResult",uiResult)
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
             const tabs = this.globalData.tabs = uiResult.body.navigation.navItemList
@@ -78,8 +80,13 @@ App({
                             resources[module.id] = data
                         })
                     } else if (module.type === 'forumlist') {
-                        // resources[ module.id ] = await api.forumList()
-                        // resources[ module.id ].rec = await api.recForumList()
+                        return Promise.all([
+                            api.forumList(),
+                            api.recForumList()
+                        ]).then(([ forumList, recForumList ]) => {
+                            resources[module.id] = forumList
+                            resources[module.id].rec = recForumList
+                        })
                     } else if (module.type === 'topiclistSimple') {
                         return api.forum(module.extParams.forumId, {
                             sortby: module.extParams.orderby || 'all'

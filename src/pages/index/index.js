@@ -15,6 +15,7 @@ Page({
     console.log('取出缓存里的数据', app)
     const module = app.getModule()
     app.getResources(module).then(resources => {
+      console.log("resources",resources,module)
       this.setData({
         resources
       })
