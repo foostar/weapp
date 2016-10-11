@@ -12,7 +12,12 @@
                 <view class="user-publish-info-from">来自 {{ item.board_name }}</view>
             </view>
             <view class="user-publish-topic">
-                <view class="user-publish-topic-title">{{ item.title }}</view>
+                <view class="user-publish-topic-title">
+                    <view wx:if="{{item.essence == 1}}" class="icon-tag-jing"></view>
+                    <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
+                    <view wx:if="{{item.hot == 1}}" class="icon-tag-re"></view>
+                    {{ item.title }}
+                </view>
                 <view class="user-publish-topic-desc">{{ item.subject }}</view>
                 <view wx:if="{{ !!item.pic_path }}" style="background-image: url({{ item.pic_path }})" class="user-publish-topic-image" ></view>
             </view>
@@ -43,6 +48,9 @@
             </view>
             <view class="user-name">{{ info.name }}</view>
             <view class="user-tag">{{ info.userTitle }}</view>
+            <block wx:for="{{ info.verify }}">
+                <view class="user-verify-tag" wx:if="{{ index < 2 }}">{{ item.verifyName }}</view>
+            </block>
             <view class="user-bar">
                 <view class="user-bar-item" bindtap="toNavigationPage" data-page="myReply">参与: {{ info.reply_posts_num || 0 }}</view>
                 <view class="user-bar-stall"></view>
