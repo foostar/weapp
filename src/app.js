@@ -8,6 +8,8 @@ App({
         const event = this.event = new Events()
         event.trigger('launch')
 
+        let queue = []
+        let requestNum = 0
         const api = this.api = new mobcent.API('http://www.eeff.net', {
             parse: (response) => {
                 response.ok = true
@@ -15,10 +17,9 @@ App({
             },
             fetch: (url, data) => {
                 // console.log(url, data)
-                return new Promise((resolve, reject) => {
+                const request = () => new Promise((resolve, reject) => {
                     wx.request({
-                        // url: url,
-                        url: `http://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`,
+                        url,
                         data: data.body,
                         header: data.headers,
                         method: data.method,
@@ -26,15 +27,33 @@ App({
                         error: reject
                     })
                 })
+                requestNum += 1
+                if (requestNum >= 5) {
+                    return new Promise((resolve, reject) => {
+                        queue.push({
+                            request,
+                            resolve,
+                            reject
+                        })
+                    })
+                }
+                const promise = request()
+                promise.then(() => {
+                    requestNum -= 1
+                    if (queue.length) {
+                        const d = queue.shift()
+                        d.request().then(d.resolve, d.reject)
+                    }
+                })
+                return promise
             }
         })
-        api.forumKey = 'jVXS7QIncwlSJ86Py1'
-        //api.forumKey = 'oqlhMstl7oeiSQg4I8'
+        //api.forumKey = 'jVXS7QIncwlSJ86Py1'
+        api.forumKey = 'oqlhMstl7oeiSQg4I8'
         const promise = Promise.all([
             api.app(),
             api.ui()
         ]).then(([ appResult, uiResult ]) => {
-            console.log("uiResult",uiResult)
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
             const tabs = this.globalData.tabs = uiResult.body.navigation.navItemList
@@ -50,12 +69,12 @@ App({
         // this.getUserInfo((res) => {
         //     console.log(res)
         // })
-        var userInfo = wx.getStorageSync('userInfo')
+        const userInfo = wx.getStorageSync('userInfo')
         if (userInfo) {
             this.globalData.userInfo = userInfo
             api.token = userInfo.token
             api.secret = userInfo.secret
-        }  
+        }
     },
     getModule(id) {
         if (id === undefined || id === null) {
@@ -128,6 +147,7 @@ App({
         return getResources(m).then(() => resources)
     },
     to(module, isReplace) {
+
         let to = wx.navigateTo
         if (isReplace) {
             to = wx.redirectTo
@@ -156,6 +176,12 @@ App({
             if (module.componentList[0].type === 'talk') {
                 return to({
                     url: '/pages/regular-pages/topic-list/topic-list'
+                })
+            }
+            // 社区版块列表
+            if (module.componentList[0].type === 'forumlist') {
+                return to({
+                    url: '/pages/regular-pages/community/community-forum'
                 })
             }
         }

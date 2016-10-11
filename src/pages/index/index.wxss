@@ -1,5 +1,6 @@
 @import "../../components/layout/layout.wxss";
 @import "../../components/tab-bar/tab-bar.wxss";
+@import "../../components/top-bar/top-bar.wxss";
 @import "../../components/go-to-top/go-to-top.wxss";
 
 .module-container {

@@ -57,6 +57,7 @@ Page({
   },
   // 改变全局的moduleId
   changeModuleId(e) {
+    console.log("moduleId",e.currentTarget.dataset.moduleId)
     app.to(e.currentTarget.dataset.moduleId, true)
   },
     clickItem(e) {

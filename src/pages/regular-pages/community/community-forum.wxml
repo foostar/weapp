@@ -1,0 +1,7 @@
+<!-- 引入模版 -->
+<import src="/components/tab-bar/tab-bar.wxml"/>
+<import src="/components/top-bar/top-bar.wxml"/>
+<!-- 顶部导航条 -->
+<template is="top-bar" data="{{module,color,active}}" />
+<!-- 底部导航条 -->
+<template is="tab-bar" data="{{tabs}}" />
