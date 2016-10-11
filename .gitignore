@@ -1,5 +1,6 @@
 .DS_Store
 npm-debug.log
 node_modules/
+weapp/
 src/lib/mobcent.js
 .idea

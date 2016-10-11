@@ -22,6 +22,12 @@
 
 #### 已有事件列表
 
+##### launch
+
+`launch`
+
+程序启动成功事件
+
 ##### login
 
 `login (userInfo)`

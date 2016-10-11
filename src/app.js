@@ -1,6 +1,7 @@
 const mobcent = require('./lib/mobcent.js')
 const util = require('./utils/util.js')
 const Events = require('./lib/Events.js')
+const CONFIG = require('./config.js')
 
 App({
     onLaunch() {
@@ -10,7 +11,7 @@ App({
 
         let queue = []
         let requestNum = 0
-        const api = this.api = new mobcent.API('http://bbs.xiaoyun.com', {
+        const api = this.api = new mobcent.API(CONFIG.FORUM_URL, {
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
@@ -48,7 +49,8 @@ App({
                 return promise
             }
         })
-        api.forumKey = 'jVXS7QIncwlSJ86Py1'
+        api.forumKey = CONFIG.FORUM_KEY
+
         const promise = Promise.all([
             api.app(),
             api.ui()
@@ -60,7 +62,6 @@ App({
                 modules[x.id] = x
             })
             this.globalData.moduleId = tabs[0].moduleId
-                // console.log(this.globalData)
             return this.globalData
         })
         this.ready = () => promise
