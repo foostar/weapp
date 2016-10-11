@@ -2,7 +2,6 @@ var app = getApp()
 Page({
     data:{
         isLogin:false,
-
     },
     onLoad(){
         console.log(app)
@@ -11,7 +10,6 @@ Page({
                 isLogin:true
             })
         }
-
     },
     onReady(){
         wx.setNavigationBarTitle({
@@ -20,5 +18,14 @@ Page({
     },
     switchChange(){
         console.log()
-    }
+    },
+    // 跳转网页
+    toNavigationPage(e) {
+        var typePage = e.target.dataset.page
+        console.log(e)
+        wx.navigateTo({
+            url:'/pages/regular-pages/my/topics?type='+typePage
+        })
+    },
+
 })
