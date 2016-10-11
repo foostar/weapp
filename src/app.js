@@ -157,6 +157,12 @@ App({
             url: '/pages/index/index'
         })
     },
+    showPost(id) {
+        this.globalData.postId = id
+        wx.navigateTo({
+            url: '/pages/regular-pages/post/post'
+        })
+    },
     getUserInfo(cb) {
         const that = this
         if (this.globalData.userInfo) {
