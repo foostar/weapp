@@ -1,0 +1,128 @@
+.page-post {
+    background-color: #EFEFF4;
+}
+.post-title {
+    line-height: 80rpx;
+    font-size: 46rpx;
+    padding: 24rpx 20rpx;
+    border-bottom: 1rpx solid #DDD;
+    background: #FFF;
+}
+.post-meta {
+    height: 88rpx;
+    padding: 20rpx;
+    background: #FFF;
+}
+.post-user-avatar {
+    display: block;
+    height: 72rpx;
+    width: 72rpx;
+    margin: 8rpx 0;
+    border-radius: 50%;
+    float: left;
+}
+.post-meta-content {
+    height: 100%;
+    margin-left: 90rpx;
+}
+.post-info {
+    height: 48rpx;
+}
+.post-user-name {
+    float: left;
+    height: 48rpx;
+    line-height: 48rpx;
+    font-size: 30rpx;
+    color: #6C6C6C;
+}
+.post-level-tag {
+    float: left;
+    height: 40rpx;
+    line-height: 40rpx;
+    margin: 2rpx;
+    margin-left: 10rpx;
+    border-radius: 6rpx;
+    font-size: 24rpx;
+    border: 1rpx solid #000;
+    transform: scale(.6);
+    transform-origin: 0 50%;
+    overflow: hidden;
+}
+.post-level-num {
+    display: inline-block;
+    padding: 0 10rpx;
+    background: #CCC;
+}
+.post-level-text {
+    padding: 0 10rpx;
+}
+.post-info-ext {
+    height: 40rpx;
+}
+.post-info-ext text {
+    font-size: 24rpx;
+    color: #A4A4A4;
+}
+.post-info-ext text {
+    margin-right: 10rpx;
+}
+
+.post-content {
+    padding: 20rpx 28rpx 40rpx;
+    margin-bottom: 20rpx;
+    background: #FFF;
+}
+
+.post-content text {
+    font-size: 34rpx;
+    word-wrap: break-word;
+}
+.hits-number {
+    font-size: 28rpx;
+    color: #6E6E6E;
+}
+
+
+.align-left {
+    text-align: left;
+}
+.align-center {
+    text-align: center;
+}
+.align-right {
+    text-align: right;
+}
+
+.post-comments {
+    height: 100px;
+    margin-bottom: 20rpx;
+    background: #FFF;
+}
+.post-comment-item {
+    padding: 20rpx 28rpx;
+    border-bottom: 1rpx solid #DDD;
+}
+.post-comment-content {
+    margin-top: 10rpx;
+    margin-left: 90rpx;
+}
+.post-comment-content text {
+    font-size: 30rpx;
+    word-wrap: break-word;
+}
+.post-card-title {
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 28rpx;
+    border-bottom: 1rpx solid #DDD;
+    font-size: 32rpx;
+    color: #666;
+}
+.post-comment-info {
+    margin-top: 10rpx;
+}
+.post-comment-info text {
+    color: #A09F9F;
+    font-size: 24rpx;
+    margin-right: 10rpx;
+}

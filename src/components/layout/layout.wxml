@@ -44,7 +44,7 @@
   </view>
   <view wx:if="{{!!resources[module.componentList[currentTab].id]}}">
     <block wx:for="{{resources[module.componentList[currentTab].id].list}}">
-      <template is="{{module.componentList[currentTab].style}}" data="{{...item}}" />
+      <template is="{{module.componentList[currentTab].style}}" data="{{...item, id: item.topic_id}}" />
     </block>
   </view>
 </template>
@@ -69,7 +69,7 @@
  */
 -->
 <template name="tieba">
-  <view class="cell-tieba">
+  <view class="cell-tieba" bindtap="clickItem" id="{{id}}">
     <view class="cell-tieba-header">
       <view>
         <image class="cell-tieba-header-avatar" src="{{userAvatar}}" />

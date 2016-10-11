@@ -1,0 +1,101 @@
+<template name="post-div">
+    <view class="{{'align-' + (attribs.align || 'left')}}">
+        <block wx:for="{{childNodes}}">
+            <template is="{{'post-' + item.tagName}}" data="{{...item}}" />
+        </block>
+    </view>
+</template>
+
+<template name="post-font-1">
+    <view>
+        <block wx:for="{{childNodes}}">
+            <block wx:if="{{item.tagName === 'font'}}">
+                <template is="post-font-2" data="{{...item}}" />
+            </block>
+            <text wx:elif="{{item.value}}">{{item.value}}</text>
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+        </block>
+    </view>
+</template>
+
+<template name="post-font-2">
+    <view>
+        <block wx:for="{{childNodes}}">
+            <text wx:if="{{item.value}}">{{item.value}}</text>
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+        </block>
+    </view>
+</template>
+
+<template name="post-font">
+    <view>
+        <block wx:for="{{childNodes}}">
+            <block wx:if="{{item.tagName === 'font'}}">
+                <template is="post-font-1" data="{{...item}}" />
+            </block>
+            <text wx:elif="{{item.value}}">{{item.value}}</text>
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+        </block>
+    </view>
+</template>
+
+<template name="post-br">
+    <view />
+</template>
+
+<template name="post-img">
+    <image src="{{attribs.src}}" mode="aspectFit" style="width: 100%;" />
+</template>
+
+<template name="post-info">
+    <view class="post-info">
+        <view class="post-user-name">{{username}}</view>
+        <view class="post-level-tag">
+            <text class="post-level-num">V.{{level}}</text>
+            <text class="post-level-text">{{title}}</text>
+        </view>
+    </view>
+</template>
+
+<view class="page-post">
+    <view class="post-title">{{topic.title}}</view>
+    <view class="post-meta">
+        <image class="post-user-avatar" src="{{topic.icon}}" />
+        <view class="post-meta-content">
+            <template is="post-info" data="{{username: topic.user_nick_name, level: topic.level, title: topic.userTitle}}"></template>
+            <view class="post-info-ext">
+                <text>楼主</text>
+                <text>{{topic.create_date}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="post-content">
+        <block wx:for="{{topic.content}}">
+            <image wx:if="{{item.type === 1}}" style="width: 100%" mode="aspectFit" src="{{item.originalInfo}}" />
+            <text wx:elif="{{item.type === 0}}">{{item.infor}}</text>
+        </block>
+        <!-- <block wx:for="{{topic.contentTree.childNodes}}">
+            <template is="{{'post-' + item.tagName}}" data="{{...item}}" />
+        </block> -->
+        <view class="hits-number">浏览{{topic.hits}}人</view>
+    </view>
+    <view class="post-comments">
+        <view class="post-card-title">评论</view>
+        <view wx:for="{{list}}" class="clearfix post-comment-item">
+            <image class="post-user-avatar" src="{{item.icon}}" />
+            <view class="post-meta-content">
+                <template is="post-info" data="{{username: item.reply_name, level: item.level, title: item.userTitle}}"></template>
+            </view>
+            <view class="post-comment-content">
+                <block wx:for="{{item.reply_content}}">
+                    <image wx:if="{{item.type === 1}}" style="width: 100%" mode="aspectFit" src="{{item.originalInfo}}" />
+                    <text wx:elif="{{item.type === 0}}">{{item.infor}}</text>
+                </block>
+                <view class="post-comment-info">
+                    <text>{{item.position}}楼</text>
+                    <text>{{item.posts_date}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

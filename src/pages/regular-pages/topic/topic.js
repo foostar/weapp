@@ -77,6 +77,9 @@ Page({
         wx.navigateTo({
             url: '/pages/regular-pages/user-home/user-home?uid=' + e.currentTarget.dataset.uid
         })
+    },
+    clickItem(e) {
+        app.showPost(e.currentTarget.id)
     }
 })
 
