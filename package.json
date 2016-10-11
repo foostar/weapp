@@ -3,23 +3,30 @@
   "version": "1.0.0",
   "description": "weapp",
   "main": ".eslintrc.js",
-  "dependencies": {},
+  "dependencies": {
+    "mobcent": "^0.1.3"
+  },
   "devDependencies": {
+    "babel-eslint": "^7.0.0",
+    "babel-preset-es2015": "^6.16.0",
     "eslint": "^3.7.1",
     "eslint-config-airbnb-base": "^8.0.0",
-    "eslint-plugin-import": "^2.0.0",
-    "mobcent": "^0.1.3",
-    "babel-eslint": "^7.0.0",
     "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-contrib-copy": "^0.1.2",
+    "gulp-uglify": "^2.0.0",
     "pre-commit": "^1.1.3"
   },
   "scripts": {
+    "install": "npm run install:mobcent",
+    "install:mobcent": "mobpath=src/lib/mobcent.js && cp node_modules/mobcent/lib/mobcent.js $mobpath && echo \"/* eslint-disable */\" | cat - $mobpath > $TMPDIR/mobcent.js && mv $TMPDIR/mobcent.js $mobpath",
     "test": "npm run test:lint",
     "test:lint": "npm run test:srclint",
     "test:srclint": "eslint src --ext '.js'"
   },
-  "precommit": [
-  ],
+  "precommit": [],
   "repository": {
     "type": "git",
     "url": "git@git.yunpro.cn:yunmi/weapp.git"
