@@ -1,0 +1,22 @@
+.manage-item {
+    background-color: #fff;
+    color: #484848;
+    position: relative;
+    border-bottom: 1rpx solid #ccc;
+}
+
+.icon {
+    width: 88rpx;
+    height: 88rpx;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:100%;
+    position: absolute;
+    margin: 20rpx;
+}
+
+.personal-manage-item-title {
+    font-size: 32rpx;
+    line-height: 128rpx;
+    padding-left: 128rpx;
+}

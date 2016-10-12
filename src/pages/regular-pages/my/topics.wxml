@@ -11,7 +11,7 @@
                 </view>
                 <view class="topics-item-info">
                     <view class="topics-item-date" style="text-align: left;">{{item.last_reply_date}}</view>
-                    <view class="topics-item-date" style="text-align: center;">{{item.user_nick_name}}</view>
+                    <view class="topics-item-date" style="text-align: left;">{{item.user_nick_name}}</view>
                     <view class="topics-item-date" style="text-align: right;">{{item.hits+'阅读'}}</view>
                 </view>
             </view>

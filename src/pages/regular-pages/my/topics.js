@@ -7,13 +7,16 @@ Page({
         list:'',
         title:'',
         apiType:'',
-        isUserList: false
+        isUserList: false,
+        isNotify: false
     },
     onLoad(e){
         const { type, uid } = e
+        console.log(type)
         const { userInfo } = app.globalData
         let apiType = ''
         let title = ''
+        let isNotify = false
         let promise  = {}
         const userId = userInfo.uid
         const isMy =  (!uid || uid == userId)
@@ -46,15 +49,36 @@ Page({
                 apiType = 'followed'
                 title = isMy ? '我的粉丝' : 'Ta的粉丝'
                 break;
+            case 'at': 
+                apiType = 'at'
+                title = '提到我的'
+                isNotify = true
+                break;
+            case 'friend': 
+                apiType = 'friend'
+                title = '提到我的'
+                isNotify = true
+                break;
+            case 'post':
+                apiType = 'post'
+                title = '评论'
+                isNotify = true
+                break;
             default: 
                 apiType = 'favorite'
         }
         let obj = {
             userId: isMy ? userId : uid,
             title,
-            apiType
+            apiType,
+            isNotify
         }
-        if(apiType == 'friend' || apiType == 'follow' || apiType == 'followed') {
+        console.log(obj)
+        if (obj.isNotify) {
+            // 是否是我的消息
+            promise = app.api.getNotifyList(obj.apiType)
+            console.log('是否是我的消息')
+        } else if (apiType == 'friend' || apiType == 'follow' || apiType == 'followed') {
             obj.isUserList = true // 是否是用户列表
             // 好友列表
             promise = app.api.getUserList(obj.userId, apiType)

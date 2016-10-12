@@ -1,23 +1,16 @@
-var app = getApp()
+
 Page({
-    data:{
-        isLogin:false,
+    data: {
+        isUpdate: false,
+        
     },
-    onLoad(){
-        console.log(app)
-        if(app.globalData.userInfo){
-            this.setData({
-                isLogin:true
-            })
-        }
+    onLoad(e) {
+        
     },
     onReady(){
         wx.setNavigationBarTitle({
-            title: '设置'
+            title: '我的消息'
         })
-    },
-    switchChange(){
-        console.log()
     },
     // 跳转网页
     toNavigationPage(e) {
@@ -26,6 +19,5 @@ Page({
         wx.navigateTo({
             url:'/pages/regular-pages/my/topics?type='+typePage
         })
-    },
-
-})
+    }
+})  
