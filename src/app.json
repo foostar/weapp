@@ -8,13 +8,15 @@
     "pages/regular-pages/topic-list/topic-list",
     "pages/regular-pages/create-forum/create-forum",
     "pages/regular-pages/community/community",
+    "pages/regular-pages/community/community-forum",
     "pages/regular-pages/topic/topic",
     "pages/regular-pages/login/login",
     "pages/regular-pages/register/register",
     "pages/regular-pages/user-home/user-home",
     "pages/regular-pages/setting/setting",
     "pages/regular-pages/my/topics",
-    "pages/regular-pages/my-info/my-info"
+    "pages/regular-pages/my-info/my-info",
+    "pages/regular-pages/post/post"
   ],
   "window":{
     "backgroundTextStyle":"light",

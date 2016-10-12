@@ -1,6 +1,7 @@
 const mobcent = require('./lib/mobcent.js')
 const util = require('./utils/util.js')
 const Events = require('./lib/Events.js')
+const CONFIG = require('./config.js')
 
 App({
     onLaunch() {
@@ -8,17 +9,18 @@ App({
         const event = this.event = new Events()
         event.trigger('launch')
 
-        const api = this.api = new mobcent.API('http://bbs.xiaoyun.com', {
+        let queue = []
+        let requestNum = 0
+        const api = this.api = new mobcent.API(CONFIG.FORUM_URL, {
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
             },
             fetch: (url, data) => {
                 // console.log(url, data)
-                return new Promise((resolve, reject) => {
+                const request = () => new Promise((resolve, reject) => {
                     wx.request({
-                        // url: url,
-                        url: `http://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`,
+                        url,
                         data: data.body,
                         header: data.headers,
                         method: data.method,
@@ -26,9 +28,28 @@ App({
                         error: reject
                     })
                 })
+                requestNum += 1
+                if (requestNum >= 5) {
+                    return new Promise((resolve, reject) => {
+                        queue.push({
+                            request,
+                            resolve,
+                            reject
+                        })
+                    })
+                }
+                const promise = request()
+                promise.then(() => {
+                    requestNum -= 1
+                    if (queue.length) {
+                        const d = queue.shift()
+                        d.request().then(d.resolve, d.reject)
+                    }
+                })
+                return promise
             }
         })
-        api.forumKey = 'jVXS7QIncwlSJ86Py1'
+        api.forumKey = CONFIG.FORUM_KEY
         const promise = Promise.all([
             api.app(),
             api.ui()
@@ -40,7 +61,6 @@ App({
                 modules[x.id] = x
             })
             this.globalData.moduleId = tabs[0].moduleId
-                // console.log(this.globalData)
             return this.globalData
         })
         this.ready = () => promise
@@ -48,12 +68,12 @@ App({
         // this.getUserInfo((res) => {
         //     console.log(res)
         // })
-        var userInfo = wx.getStorageSync('userInfo')
+        const userInfo = wx.getStorageSync('userInfo')
         if (userInfo) {
             this.globalData.userInfo = userInfo
             api.token = userInfo.token
             api.secret = userInfo.secret
-        }  
+        }
     },
     getModule(id) {
         if (id === undefined || id === null) {
@@ -78,8 +98,13 @@ App({
                             resources[module.id] = data
                         })
                     } else if (module.type === 'forumlist') {
-                        // resources[ module.id ] = await api.forumList()
-                        // resources[ module.id ].rec = await api.recForumList()
+                        return Promise.all([
+                            api.forumList(),
+                            api.recForumList()
+                        ]).then(([ forumList, recForumList ]) => {
+                            resources[module.id] = forumList
+                            resources[module.id].rec = recForumList
+                        })
                     } else if (module.type === 'topiclistSimple') {
                         return api.forum(module.extParams.forumId, {
                             sortby: module.extParams.orderby || 'all'
@@ -121,6 +146,7 @@ App({
         return getResources(m).then(() => resources)
     },
     to(module, isReplace) {
+
         let to = wx.navigateTo
         if (isReplace) {
             to = wx.redirectTo
@@ -151,10 +177,22 @@ App({
                     url: '/pages/regular-pages/topic-list/topic-list'
                 })
             }
+            // 社区版块列表
+            if (module.componentList[0].type === 'forumlist') {
+                return to({
+                    url: '/pages/regular-pages/community/community-forum'
+                })
+            }
         }
 
         to({
             url: '/pages/index/index'
+        })
+    },
+    showPost(id) {
+        this.globalData.postId = id
+        wx.navigateTo({
+            url: '/pages/regular-pages/post/post'
         })
     },
     getUserInfo(cb) {
