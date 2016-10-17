@@ -1,5 +1,8 @@
 @import './resetcss/reset.wxss';
 /**app.wxss**/
+page {
+    height: 100%;
+}
 view, text {
     -webkit-text-size-adjust: none;
     color: #343434;

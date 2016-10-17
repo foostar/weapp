@@ -1,6 +1,6 @@
 const mobcent = require('./lib/mobcent.js')
 const util = require('./utils/util.js')
-const Events = require('./lib/Events.js')
+const Events = require('./lib/events.js')
 const CONFIG = require('./config.js')
 
 App({
@@ -146,7 +146,6 @@ App({
         return getResources(m).then(() => resources)
     },
     to(module, isReplace) {
-
         let to = wx.navigateTo
         if (isReplace) {
             to = wx.redirectTo
