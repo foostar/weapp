@@ -1,7 +1,7 @@
 <!-- 引入模版 -->
 <import src="/components/tab-bar/tab-bar.wxml"/>
-<import src="/components/top-bar/top-bar.wxml"/>
+<import src="/components/layout/layout.wxml"/>
 <!-- 顶部导航条 -->
-<template is="top-bar" data="{{module,color,active}}" />
+<template is="{{module.type + '-' + module.style}}" data="{{module, appColor, activeModule, isLoading, nestModule, resources, windowHeight, windowWidth, currentBoard, currentBoardList}}" />
 <!-- 底部导航条 -->
-<template is="tab-bar" data="{{tabs}}" />
+<template is="tab-bar" data="{{tabs, appColor, currentTab}}" />

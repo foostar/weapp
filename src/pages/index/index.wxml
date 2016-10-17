@@ -6,7 +6,7 @@
 <view class="module-container">
   <scroll-view class="view" scroll-y scroll-top="{{scrollTop}}" scroll-into-view="{{toView}}" upper-threshold="200" bindscrolltoupper="goToTop">
     <view id="top"></view>
-    <template is="{{module.type + '-' + module.style}}" wx:if="{{!!module}}" data="{{module, resources, currentTab}}" />
+    <template is="{{module.type + '-' + module.style}}" wx:if="{{!!module}}" data="{{module, resources, currentTab, isLoading}}" />
     <view class="load-more">
         <text>{{loadMoreWord}}</text>
     </view>

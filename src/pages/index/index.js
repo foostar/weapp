@@ -8,6 +8,7 @@ Page({
     currentTab: 0,
     loadMoreWord: '加载更多',
     scrollTop: 0,
+    isLoading:true,
     toView: '',
     goToTopHidden: true
   },

@@ -126,12 +126,12 @@ App({
                         //     mytopics,
                         // }
                     } else if (module.type === 'moduleRef') {
-                        // if (parent.type === 'layout') return
-                        // const ref = entities.modules[ module.extParams.moduleId ]
-                        // if (ref.type === 'custom') {
-                        //     Object.assign(ref, camelizeKeys((await api.custom(ref.id)).body.module))
-                        // }
-                        // await getResources(ref, m)
+                        /*if (parent.type === 'layout') return
+                        const ref = this.globalData.modules[ module.extParams.moduleId ]
+                        if (ref.type === 'custom') {
+                            // Object.assign(ref, camelizeKeys((await api.custom(ref.id)).body.module))
+                        }
+                        return getResources(ref)*/
                     } else if (module.type === 'subnav') {
                         return getResources(module.componentList)
                     } else if (module.type === 'full') {
@@ -177,7 +177,7 @@ App({
                     url: '/pages/regular-pages/topic-list/topic-list'
                 })
             }
-            // 社区版块列表
+            // topnavbar 样式应用
             if (module.componentList[0].type === 'forumlist') {
                 return to({
                     url: '/pages/regular-pages/community/community-forum'
@@ -212,6 +212,14 @@ App({
                 }
             })
         }
+    },
+    isLogin() {
+        if (!this.globalData.userInfo) {
+            return wx.navigateTo({
+                url: '/pages/regular-pages/login/login'
+            })
+        }
+        return true
     },
     globalData: {
         userInfo: null
