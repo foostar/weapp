@@ -2,7 +2,6 @@
   "pages":[
     "pages/loading/loading",
     "pages/index/index",
-    "pages/logs/logs",
     "pages/regular-pages/my/my",
     "pages/regular-pages/forum/forum",
     "pages/regular-pages/topic-list/topic-list",
@@ -15,6 +14,7 @@
     "pages/regular-pages/user-home/user-home",
     "pages/regular-pages/setting/setting",
     "pages/regular-pages/my/topics",
+    "pages/regular-pages/my-info/my-info",
     "pages/regular-pages/post/post"
   ],
   "window":{

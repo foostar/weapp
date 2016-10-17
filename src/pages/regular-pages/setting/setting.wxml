@@ -1,6 +1,6 @@
 <!-- 登录后 -->
 <view wx:if="{{isLogin}}">
-    <view class="list-item" wx:if="{{isLogin}}">修改密码</view>
+    <view class="list-item" bindtap="" data-page="updatepassword" >修改密码</view>
     <view class="list-item" wx:if="{{isLogin}}">回复提示通知
         <switch class="switch-style" checked bindchange="switchChange" data-class=""></switch>
     </view>
