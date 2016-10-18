@@ -58,15 +58,15 @@ Page({
     },
     // 改变题提示状态
     bindChange() {
-        if (this.data.isLogin){
+        if (this.data.isLogin) {
             this.setData({
                 modalHidden: !this.data.modalHidden
             })
         } else {
             wx.navigateTo({
-                url:'/pages/regular-pages/login/login'
+                url: '/pages/regular-pages/login/login'
             })
-        } 
+        }
     },
     // 用户登出
     logout(){
@@ -75,25 +75,23 @@ Page({
             userInfo: null,
             modalHidden: !this.data.modalHidden
         })
+        app.api.secret = ''
+        app.api.token = ''
         app.globalData.userInfo = null
         wx.setStorageSync('userInfo', null)
+        app.event.trigger('logout')
     },
     // 跳转网页
     toNavigationPage(e) {
         var typePage = e.target.dataset.page
         console.log(e)
-        if(this.data.isLogin) {
-            if(typePage == 'myInfo') {
-                return wx.navigateTo({
-                    url:'/pages/regular-pages/my-info/my-info'
-                })
-            }
+        if (this.data.isLogin) {
             wx.navigateTo({
-                url:'/pages/regular-pages/my/topics?type='+typePage
+                url: '/pages/regular-pages/my/topics?type='+typePage
             })
         } else {
             wx.navigateTo({
-                url:'/pages/regular-pages/login/login'
+                url: '/pages/regular-pages/login/login'
             })
         } 
     },

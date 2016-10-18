@@ -1,8 +1,6 @@
 @import "../../components/viewer/viewer.wxss";
 @import "../../components/layout/layout.wxss";
 @import "../../components/tabbar/tabbar.wxss";
-@import "../../components/top-bar/top-bar.wxss";
-@import "../../components/go-to-top/go-to-top.wxss";
 
 .ui-container {
     width: 100%;

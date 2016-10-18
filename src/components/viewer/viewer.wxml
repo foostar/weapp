@@ -1,7 +1,7 @@
-<import src="../subnavtopbar/subnavtopbar.wxml" />
+<import src="../module/module.wxml" />
 
 <template name="viewer">
     <scroll-view class="viewer" scroll-y scroll-top="{{scrollTop}}" scroll-into-view="{{toView}}" upper-threshold="200" bindscrolltoupper="goToTop">
-        <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], module, resources}}" />
+        <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], key: 'm_' + module.id, module, resources}}" />
     </scroll-view>
 </template>

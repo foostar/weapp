@@ -2,4 +2,6 @@
     引入 tabs 的css样式
 */
 @import "/pages/index/index.wxss";
-@import "/components/top-bar/top-bar.wxss";
+page{
+    height:100%;
+}

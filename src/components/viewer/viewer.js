@@ -1,26 +1,24 @@
 const Component = require('../../lib/component')
+const components = require('../../lib/components')
+const Module = require('../module/module')
 const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
 
-const components = {
-    'subnav-subnavTopbar': SubnavTopbar
-}
+components.type['moduleRef-flat'] = Module
+components.type['subnav-subnavTopbar'] = SubnavTopbar
+components.template['subnav-subnavTopbar'] = 'subnavtopbar'
+components.template['moduleRef-flat'] = 'module'
 
 function Viewer(key, module) {
     Component.call(this, key)
-    this.add(new components[`${module.type}-${module.style}`](`m_${module.id}`))
+    this.module = module
+    this.add(components.create(module))
     this.data = {
-        components: {
-            'subnav-subnavTopbar': 'subnavtopbar'
-        }
+        components: components.template
     }
 }
 
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
-
-// Viewer.prototype.handleTouch = function (event) {
-//     this.parent.selectTab(Number(event.currentTarget.dataset.index))
-// }
 
 module.exports = Viewer

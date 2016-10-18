@@ -9,7 +9,6 @@ Page(createPage({
         tabSelected: 0,
         module: null,
         resources: {},
-        currentTab: 0,
         loadMoreWord: '加载更多',
         scrollTop: 0,
         toView: '',
@@ -26,26 +25,22 @@ Page(createPage({
                 resources
             })
         })
+        let tabSelected = 0
+        app.globalData.tabs.forEach((item, index) => {
+            if (item.moduleId === module.id) {
+                tabSelected = index
+            }
+        })
         this.setData({
             tabs: app.globalData.tabs,
-            module
+            module,
+            tabSelected
         })
     },
     onReady() {
         const module = app.getModule()
         wx.setNavigationBarTitle({
             title: module.title
-        })
-    },
-    switchTab(e) {
-        const { index, moduleId } = e.currentTarget.dataset
-        app.getResources(moduleId).then(resources => {
-            this.setData({
-                resources
-            })
-        })
-        this.setData({
-            currentTab: index
         })
     },
     goToTop() {
@@ -56,14 +51,15 @@ Page(createPage({
         })
     },
     scrolltoupper() {
-        console.log(12222242345678)
         this.setData({
             goToTopHidden: false
         })
     },
     selectTab(index) {
         const moduleId = this.data.tabs[index].moduleId
+        if (moduleId === this.data.module.id) return
         const module = app.globalData.modules[moduleId]
+        this.add(new Viewer('viewer', module))
         this.setData({
             module,
             tabSelected: index

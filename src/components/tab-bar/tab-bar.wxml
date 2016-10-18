@@ -1,0 +1,11 @@
+<template name="tab-bar">
+  <view class="tab-bar">
+    <view class="tab-item" wx:for="{{tabs}}">
+      <view bindtap="changeModuleId" data-module-id="{{item.moduleId}}">
+        <image wx:if="{{item.moduleId == currentTab}}" class="tab-item-image" mode="aspectFit" src="{{'http://icons.apps.xiaoyun.com/main/' + item.icon + '_h/' + appColor}}" />
+        <image wx:else class="tab-item-image" mode="aspectFit" src="{{'http://icons.apps.xiaoyun.com/main/' + item.icon + '_n/' + appColor}}" />
+        <text wx:if="{{item.moduleId != 2}}" class="tab-itme-name">{{item.title}}</text>
+      </view>
+    </view>
+  </view>
+</template>
