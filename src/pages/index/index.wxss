@@ -1,5 +1,4 @@
 @import "../../components/viewer/viewer.wxss";
-@import "../../components/layout/layout.wxss";
 @import "../../components/tabbar/tabbar.wxss";
 
 .ui-container {

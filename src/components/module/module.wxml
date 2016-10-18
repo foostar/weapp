@@ -2,6 +2,10 @@
     <include src="../forumlistsplit/forumlistsplit.wxml" />
 </template>
 
+<template name="forumlistcard">
+    <include src="../forumlistcard/forumlistcard.wxml" />
+</template>
+
 <template name="subnavtopbar">
     <include src="../subnavtopbar/subnavtopbar.wxml" />
 </template>
@@ -12,10 +16,6 @@
 
 <template name="subnavcustom">
     <include src="../subnavcustom/subnavcustom.wxml" />
-</template>
-
-<template name="forumlistsplit">
-    <include src="../forumlistsplit/forumlistsplit.wxml" />
 </template>
 
 <template name="fullcard">
@@ -44,6 +44,10 @@
 
 <template name="topiclistsimple">
     <include src="../topiclistsimple/topiclistsimple.wxml" />
+</template>
+
+<template name="talk">
+    <include src="../talk/talk.wxml" />
 </template>
 
 <template name="module">

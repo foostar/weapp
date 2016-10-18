@@ -11,6 +11,9 @@ const LayoutSlider = require('../layoutslider/layoutslider')
 const LayoutFourCol = require('../layoutfourcol/layoutfourcol')
 const LayoutTransparent = require('../layouttransparent/layouttransparent')
 const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
+const ForumlistCard = require('../forumlistcard/forumlistcard')
+const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
+const Talk = require('../talk/talk')
 
 components.type['moduleRef-flat'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
@@ -25,6 +28,10 @@ components.type['layout-layoutFourCol'] = LayoutFourCol
 components.type['layout-layoutTransparent'] = LayoutTransparent
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
+components.type['forumlist-card'] = ForumlistCard
+components.type['forumlist-boardSplit'] = ForumlistSplit
+components.type['talk-flat'] = Talk
+
 components.template['subnav-subnavTopbar'] = 'subnavtopbar'
 components.template['layout-layoutSubnavFlat'] = 'subnavflat'
 components.template['customSubnav-flat'] = 'subnavcustom'
@@ -38,6 +45,9 @@ components.template['layout-layoutFourCol'] = 'layoutfourcol'
 components.template['layout-layoutTransparent'] = 'layouttransparent'
 components.template['topiclistSimple-tieba'] = 'topiclistsimple'
 components.template['topiclistSimple-flat'] = 'topiclistsimple'
+components.template['forumlist-card'] = 'forumlistcard'
+components.template['forumlist-boardSplit'] = 'forumlistsplit'
+components.template['talk-flat'] = 'talk'
 // topiclistSimple-flat
 
 function Viewer(key, module) {

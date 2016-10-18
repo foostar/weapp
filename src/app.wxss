@@ -2,6 +2,7 @@
 /**app.wxss**/
 page {
     height: 100%;
+    background: #EFEFF4;
 }
 view, text {
     -webkit-text-size-adjust: none;

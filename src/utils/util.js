@@ -10,6 +10,7 @@ function formateText(str = '', length = 40) {
 }
 
 const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = true) => {
+    if (!date) return ''
     if (typeof date === 'string' && /^\d+$/.test(date)) {
         date = new Date(+date)
     }

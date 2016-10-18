@@ -1,9 +1,10 @@
 @import "../subnavtopbar/subnavtopbar.wxss";
 @import "../subnavflat/subnavflat.wxss";
+@import "../forumlistcard/forumlistcard.wxss";
 @import "../forumlistsplit/forumlistsplit.wxss";
 @import "../discover/discover.wxss";
 @import "../layoutslider/layoutslider.wxss";
 @import "../layoutfourcol/layoutfourcol.wxss";
 @import "../layouttransparent/layouttransparent.wxss";
 @import "../topiclistsimple/topiclistsimple.wxss";
-
+@import "../talk/talk.wxss";

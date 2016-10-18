@@ -1,9 +1,3 @@
-@import "/pages/index/index.wxss";
-
-page {
-    background-color: #efefef;
-}
-
 .community-section-title {
     font-size: 30rpx;
     text-align: center;

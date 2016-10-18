@@ -17,5 +17,4 @@
     </view>
 </view>
 
-<import src="/pages/module/module.wxml"/> 
-<template is="tab-bar" data="{{tabs}}" />
+<import src="/pages/module/module.wxml"/>
