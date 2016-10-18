@@ -1,5 +1,5 @@
 <view class="layout-four-col">
-    <view class="layout-four-col-item" wx:for="{{componentList}}">
+    <view class="layout-four-col-item {{item.iconStyle}}" wx:for="{{componentList}}">
         <image mode="aspectFit" src="{{item.icon}}"></image>
         <text>{{item.title || item.desc}}</text>
     </view>

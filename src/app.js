@@ -8,7 +8,7 @@ const randStr = () => {
 }
 
 const completeId = (module) => {
-    if (!module.id) {
+    if (!parseInt(module.id)) {
         module.id = randStr()
     }
     module.componentList.forEach(completeId)

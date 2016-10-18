@@ -4,7 +4,11 @@
 @import "../forumlistsplit/forumlistsplit.wxss";
 @import "../discover/discover.wxss";
 @import "../layoutslider/layoutslider.wxss";
-@import "../layoutfourcol/layoutfourcol.wxss";
+@import "../layout1collowfixed/layout1collowfixed.wxss";
+@import "../layout3coltext/layout3coltext.wxss";
+@import "../layout4col/layout4col.wxss";
 @import "../layouttransparent/layouttransparent.wxss";
+@import "../layoutseparator/layoutseparator.wxss";
 @import "../topiclistsimple/topiclistsimple.wxss";
 @import "../talk/talk.wxss";
+@import "../subnavcustom/subnavcustom.wxss";

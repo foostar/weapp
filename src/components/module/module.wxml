@@ -34,8 +34,16 @@
     <include src="../layoutslider/layoutslider.wxml" />
 </template>
 
-<template name="layoutfourcol">
-    <include src="../layoutfourcol/layoutfourcol.wxml" />
+<template name="layout1collowfixed">
+    <include src="../layout1collowfixed/layout1collowfixed.wxml" />
+</template>
+
+<template name="layout3coltext">
+    <include src="../layout3coltext/layout3coltext.wxml" />
+</template>
+
+<template name="layout4col">
+    <include src="../layout4col/layout4col.wxml" />
 </template>
 
 <template name="layouttransparent">
@@ -48,6 +56,10 @@
 
 <template name="talk">
     <include src="../talk/talk.wxml" />
+</template>
+
+<template name="layoutseparator">
+    <include src="../layoutseparator/layoutseparator.wxml" />
 </template>
 
 <template name="module">

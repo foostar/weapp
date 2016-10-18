@@ -1,12 +1,16 @@
 const Component = require('../../lib/component')
 const components = require('../../lib/components')
 
+const app = getApp()
+
 function Module(key, module) {
     Component.call(this, key)
-    // this.add(new components.type[`${module.type}-${module.style}`](`m_${module.id}`, module))
-    // this.data = {
-    //     components: components.template
-    // }
+    module = app.getModule(module.extParams.moduleId)
+    this.add(components.create(module))
+    this.data = {
+        module,
+        components: components.template
+    }
 }
 
 Module.prototype = Object.create(Component.prototype)

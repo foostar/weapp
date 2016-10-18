@@ -12,16 +12,24 @@
     position: relative;
 }
 
-.layout-four-col-item image {
+.layout-four-col-item.circle image {
     width: 100%;
     height: 90rpx;
     margin: 15rpx 0;
 }
-.layout-four-col-item text {
+
+.layout-four-col-item.circle text {
     height: 40rpx;
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
     font-size: 12rpx;
+}
+
+.layout-four-col-item image {
+    height: 100%;
+    width: 100%;
+}
+.layout-four-col-item text {
 }

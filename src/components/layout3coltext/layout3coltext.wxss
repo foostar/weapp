@@ -1,0 +1,16 @@
+.layout3coltext {
+    flex-direction: row;
+    display: flex;
+}
+.layout-3-col-text-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 5rpx;
+    padding: 15rpx 0;
+    background: #F0F0F0;
+}
+
+.layout-3-col-text-item text {
+    font-size: 28rpx;
+}
