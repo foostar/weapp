@@ -2,6 +2,7 @@
   "pages":[
     "pages/loading/loading",
     "pages/index/index",
+    "pages/changepassword/changepassword",
     "pages/regular-pages/my/my",
     "pages/regular-pages/forum/forum",
     "pages/regular-pages/topic-list/topic-list",
