@@ -1,10 +1,10 @@
 const Component = require('../../lib/component')
-const components = require('../../lib/components')
 
 function LayoutSlider(key, module) {
     Component.call(this, key)
 
     this.data = {
+        style: module.style,
         componentList: module.componentList
     }
 }

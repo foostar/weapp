@@ -2,7 +2,6 @@ const Component = require('../../lib/component')
 
 function Layout1ColLowFixed(key, module) {
     Component.call(this, key)
-    console.log(module)
     this.data = {
         componentList: module.componentList
     }

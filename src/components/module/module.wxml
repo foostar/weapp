@@ -34,8 +34,24 @@
     <include src="../layoutslider/layoutslider.wxml" />
 </template>
 
+<template name="layoutseparator">
+    <include src="../layoutseparator/layoutseparator.wxml" />
+</template>
+
+<template name="layoutimage">
+    <include src="../layoutimage/layoutimage.wxml" />
+</template>
+
 <template name="layout1collowfixed">
     <include src="../layout1collowfixed/layout1collowfixed.wxml" />
+</template>
+
+<template name="layout1colsuperlow">
+    <include src="../layout1colsuperlow/layout1colsuperlow.wxml" />
+</template>
+
+<template name="layout3colmid">
+    <include src="../layout3colmid/layout3colmid.wxml" />
 </template>
 
 <template name="layout3coltext">
@@ -58,8 +74,8 @@
     <include src="../talk/talk.wxml" />
 </template>
 
-<template name="layoutseparator">
-    <include src="../layoutseparator/layoutseparator.wxml" />
+<template name="custom">
+    <include src="../custom/custom.wxml" />
 </template>
 
 <template name="module">
