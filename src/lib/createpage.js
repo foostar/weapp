@@ -51,6 +51,7 @@ function createPage(config) {
     // })
 
     const onLoad = config.onLoad
+    const onReady = config.onReady
 
     // const getter = Component.prototype.__lookupGetter__('children')
     // let children
@@ -71,7 +72,7 @@ function createPage(config) {
 
     config.onLoad = function () {
         this.page = this
-        this.event = new Events()
+        Events.mixTo(this)
         const setData = this.setData
         this.setData = function (data) {
             data.children = Object.assign({}, this.data.children, data.children)
@@ -88,7 +89,14 @@ function createPage(config) {
             load.call(this, children)
         }
         this.loaded = true
-        this.event.trigger('load')
+        this.trigger('load')
+    }
+
+    config.onReady = function () {
+        if (onReady) {
+            onReady.apply(this, arguments)
+        }
+        this.trigger('ready')
     }
 
     return config

@@ -1,13 +1,21 @@
 <template name="forumlistsplit">
-    <include src="../forumlistsplit/forumlistsplit.wxml"/>
+    <include src="../forumlistsplit/forumlistsplit.wxml" />
 </template>
 
 <template name="subnavtopbar">
-    <include src="../subnavtopbar/subnavtopbar.wxml"/>
+    <include src="../subnavtopbar/subnavtopbar.wxml" />
 </template>
 
 <template name="forumlistsplit">
-    <include src="../forumlistsplit/forumlistsplit.wxml"/>
+    <include src="../forumlistsplit/forumlistsplit.wxml" />
+</template>
+
+<template name="fullcard">
+    <include src="../fullcard/fullcard.wxml" />
+</template>
+
+<template name="discover">
+    <include src="../discover/discover.wxml" />
 </template>
 
 <template name="module">

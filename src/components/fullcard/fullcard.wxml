@@ -1,0 +1,4 @@
+<import src="../module/module.wxml" />
+<view class="fullcard">
+    <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], key: 'm_' + module.id}}" />
+</view>
