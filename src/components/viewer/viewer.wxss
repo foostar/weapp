@@ -1,0 +1,7 @@
+@import "../module/module.wxss";
+
+.viewer {
+    width: 100%;
+    overflow: hidden;
+    flex: 1;
+}

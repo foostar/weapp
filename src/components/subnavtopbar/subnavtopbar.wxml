@@ -1,0 +1,23 @@
+<import src="../module/module.wxml" />
+<view class="subnavtopbar">
+    <view class="topbar-bar">
+        <view wx:if="{{module.leftTopbars.length > 0}}" class="topbar-icon">
+            <block wx:for="{{module.leftTopbars}}">
+                <image src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
+            </block>
+        </view>
+        <view class="top-bar">
+            <block wx:for="{{tabs}}">
+                <view bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-id="{{item.id}}" class="{{item.id == selected ? 'active' : ''}} font-wide text-color"> {{item.title}} </view>
+            </block>
+        </view>
+        <view wx:if="{{module.rightTopbars.length > 0}}" class="topbar-icon">
+            <block wx:for="{{module.rightTopbars}}">
+                <image src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
+            </block>
+        </view>
+    </view>
+    <view class="topbar-content">
+        <template is="{{components[modules[selected].type + '-' + modules[selected].style]}}" data="{{...children['m_' + selected], key: 'm_' + selected}}" />
+    </view>
+</view>

@@ -1,16 +1,7 @@
-<import src="../../components/tab-bar/tab-bar.wxml" />
-<import src="../../components/layout/layout.wxml" />
-<import src="../../components/go-to-top/go-to-top.wxml" />
-<import src="../../components/common/common.wxml" />
+<import src="../../components/viewer/viewer.wxml" />
+<import src="../../components/tabbar/tabbar.wxml" />
 
-<view class="module-container">
-  <scroll-view class="view" scroll-y scroll-top="{{scrollTop}}" scroll-into-view="{{toView}}" upper-threshold="200" bindscrolltoupper="goToTop">
-    <view id="top"></view>
-    <template is="{{module.type + '-' + module.style}}" wx:if="{{!!module}}" data="{{module, resources, currentTab}}" />
-    <view class="load-more">
-        <text>{{loadMoreWord}}</text>
-    </view>
-  </scroll-view>
-  <template is="tab-bar" data="{{tabs}}" />
-  <template is="go-to-top" data="{{goToTopHidden}}"></template>
+<view class="ui-container">
+    <template is="viewer" data="{{...children.viewer, module}}"></template>
+    <template is="tabbar" data="{{...children.tabbar, key: 'tabbar', selected: tabSelected, tabs}}" />
 </view>

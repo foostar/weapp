@@ -1,0 +1,2 @@
+@import "../subnavtopbar/subnavtopbar.wxss";
+@import "../forumlistsplit/forumlistsplit.wxss";

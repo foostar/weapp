@@ -1,6 +1,6 @@
 const mobcent = require('./lib/mobcent.js')
 const util = require('./utils/util.js')
-const Events = require('./lib/Events.js')
+const Events = require('./lib/events.js')
 const CONFIG = require('./config.js')
 
 App({
@@ -126,12 +126,12 @@ App({
                         //     mytopics,
                         // }
                     } else if (module.type === 'moduleRef') {
-                        // if (parent.type === 'layout') return
-                        // const ref = entities.modules[ module.extParams.moduleId ]
-                        // if (ref.type === 'custom') {
-                        //     Object.assign(ref, camelizeKeys((await api.custom(ref.id)).body.module))
-                        // }
-                        // await getResources(ref, m)
+                        /*if (parent.type === 'layout') return
+                        const ref = this.globalData.modules[ module.extParams.moduleId ]
+                        if (ref.type === 'custom') {
+                            // Object.assign(ref, camelizeKeys((await api.custom(ref.id)).body.module))
+                        }
+                        return getResources(ref)*/
                     } else if (module.type === 'subnav') {
                         return getResources(module.componentList)
                     } else if (module.type === 'full') {
@@ -144,50 +144,6 @@ App({
                 })
         }
         return getResources(m).then(() => resources)
-    },
-    to(module, isReplace) {
-
-        let to = wx.navigateTo
-        if (isReplace) {
-            to = wx.redirectTo
-        }
-        if (typeof module !== 'object') {
-            return this.to(this.getModule(module), isReplace)
-        }
-        this.globalData.moduleId = module.id
-        if (module.type === 'full') {
-            if (module.componentList[0].type === 'discover') {
-                return to({
-                    url: '/pages/regular-pages/my/my'
-                })
-            }
-
-            if (module.componentList[0].type === 'forumlist') {
-                return to({
-                    url: '/pages/regular-pages/community/community'
-                })
-            }
-        }
-
-        // todo 后期合并 yuchunyu
-        if (module.type === 'subnav') {
-            // 话题列表
-            if (module.componentList[0].type === 'talk') {
-                return to({
-                    url: '/pages/regular-pages/topic-list/topic-list'
-                })
-            }
-            // 社区版块列表
-            if (module.componentList[0].type === 'forumlist') {
-                return to({
-                    url: '/pages/regular-pages/community/community-forum'
-                })
-            }
-        }
-
-        to({
-            url: '/pages/index/index'
-        })
     },
     showPost(id) {
         this.globalData.postId = id
@@ -212,6 +168,14 @@ App({
                 }
             })
         }
+    },
+    isLogin() {
+        if (!this.globalData.userInfo) {
+            return wx.navigateTo({
+                url: '/pages/regular-pages/login/login'
+            })
+        }
+        return true
     },
     globalData: {
         userInfo: null

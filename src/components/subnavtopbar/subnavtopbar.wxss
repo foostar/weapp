@@ -1,17 +1,24 @@
-.subnavTopbar{
+.subnavtopbar {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.topbar-bar{
     width:100%;
     height:75rpx;
-    position:fixed;
-    top:0;
-    left:0;
     background:#fff;
     display:flex;
     justify-content:space-between;
     line-height:75rpx;
+    padding-bottom:8rpx;
+    box-sizing:border-box;
 }
-.topbar-icon{
+.topbar-icon, .topbar-icon image{
     width:75rpx;
     height:75rpx;
+}
+.topbar-icon{
     margin:0 15rpx;
 }
 .top-bar{
@@ -26,4 +33,8 @@
 .top-bar .active{
     border-bottom:4.8rpx solid currentColor
 }
-
+.topbar-content{
+    width:100%;background-color:#fff;overflow:hidden;
+    flex: 1;
+    display:flex;
+}

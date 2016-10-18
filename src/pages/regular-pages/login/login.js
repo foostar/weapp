@@ -16,12 +16,12 @@ Page({
     },
     onReady(){
         if (app.globalData.userInfo) {
-           wx.redirectTo({
+            wx.redirectTo({
                 url:'/pages/regular-pages/my/my'    
             }) 
         }
         wx.setNavigationBarTitle({
-          title: '登录'
+            title: '登录'
         })
     },
     login(e){
