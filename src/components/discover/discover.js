@@ -4,6 +4,7 @@ const app = getApp()
 
 function Discover(key, module) {
     Component.call(this, key)
+    console.log(module)
     this.data = {
         modalHidden: true
     }
@@ -27,6 +28,7 @@ Discover.prototype.onLoad = function () {
     })
     // 获取用户的主配置信息
     app.api.getSetting().then(res => {
+        console.log("res",res)
         this.setData({
             setting: res.body
         })

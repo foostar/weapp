@@ -1,6 +1,9 @@
 const Component = require('../../lib/component')
 const components = require('../../lib/components')
 const Module = require('../module/module')
+/*
+ *   @模块引入
+ */
 const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
 const SubnavFlat = require('../subnavflat/subnavflat')
 const SubnavCustom = require('../subnavcustom/subnavcustom')
@@ -14,7 +17,9 @@ const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
 const ForumlistCard = require('../forumlistcard/forumlistcard')
 const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
 const Talk = require('../talk/talk')
-
+/*
+ *   @定义组件类型
+ */
 components.type['moduleRef-flat'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
 components.type['layout-layoutSubnavFlat'] = SubnavFlat
@@ -31,7 +36,9 @@ components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
-
+/*
+ *   @定义组件模板
+ */
 components.template['subnav-subnavTopbar'] = 'subnavtopbar'
 components.template['layout-layoutSubnavFlat'] = 'subnavflat'
 components.template['customSubnav-flat'] = 'subnavcustom'
@@ -48,8 +55,9 @@ components.template['topiclistSimple-flat'] = 'topiclistsimple'
 components.template['forumlist-card'] = 'forumlistcard'
 components.template['forumlist-boardSplit'] = 'forumlistsplit'
 components.template['talk-flat'] = 'talk'
-// topiclistSimple-flat
-
+/*
+ *   @视图层注册机
+ */
 function Viewer(key, module) {
     Component.call(this, key)
     this.module = module

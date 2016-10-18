@@ -13,7 +13,6 @@ function SubnavTopbar(key, module) {
     module.componentList.forEach((x) => {
         modules[x.id] = x
     })
-
     this.data = {
         components: components.template,
         selected: module.componentList[0].id,
