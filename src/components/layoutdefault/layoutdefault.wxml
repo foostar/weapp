@@ -1,0 +1,7 @@
+<import src="../module/module.wxml" />
+
+<view class="layoutdefault">
+    <block wx:for="{{componentList}}">
+        <template is="{{components[item.type + '-' + item.style]}}" data="{{...children['m_' + item.id], key: 'm_' + item.id}}" />
+    </block>
+</view>

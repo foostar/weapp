@@ -6,6 +6,14 @@
     <include src="../subnavtopbar/subnavtopbar.wxml" />
 </template>
 
+<template name="subnavflat">
+    <include src="../subnavflat/subnavflat.wxml" />
+</template>
+
+<template name="subnavcustom">
+    <include src="../subnavcustom/subnavcustom.wxml" />
+</template>
+
 <template name="forumlistsplit">
     <include src="../forumlistsplit/forumlistsplit.wxml" />
 </template>
@@ -16,6 +24,26 @@
 
 <template name="discover">
     <include src="../discover/discover.wxml" />
+</template>
+
+<template name="layoutdefault">
+    <include src="../layoutdefault/layoutdefault.wxml" />
+</template>
+
+<template name="layoutslider">
+    <include src="../layoutslider/layoutslider.wxml" />
+</template>
+
+<template name="layoutfourcol">
+    <include src="../layoutfourcol/layoutfourcol.wxml" />
+</template>
+
+<template name="layouttransparent">
+    <include src="../layouttransparent/layouttransparent.wxml" />
+</template>
+
+<template name="topiclistsimple">
+    <include src="../topiclistsimple/topiclistsimple.wxml" />
 </template>
 
 <template name="module">

@@ -29,25 +29,6 @@
   </block>
 </template>
 
-<template name="layout-layoutSubnavFlat">
-  <view class="tab-nav-bar">
-    <block wx:for="{{module.componentList}}">
-      <view class="tab-nav-bar-item" bindtap="switchTab" data-index="{{index}}" data-module-id="{{item.id}}">
-        <block wx:if="{{currentTab == index}}">
-          <text class="tab-nav-bar-item-cur">{{item.title}}</text>
-        </block>
-        <block wx:else>
-          <text>{{item.title}}</text>
-        </block>
-      </view>
-    </block>
-  </view>
-  <view wx:if="{{!!resources[module.componentList[currentTab].id]}}">
-    <block wx:for="{{resources[module.componentList[currentTab].id].list}}">
-      <template is="{{module.componentList[currentTab].style}}" data="{{...item, id: item.topic_id}}" />
-    </block>
-  </view>
-</template>
 
 <template name="customSubnav-flat">
   <block wx:if="{{!!nestModule}}" wx:for="{{nestModule.componentList}}">
@@ -71,62 +52,7 @@
  * replies
  */
 -->
-<template name="tieba">
-  <view class="cell-tieba" bindtap="clickItem" id="{{id}}">
-    <view class="cell-tieba-header">
-      <view>
-        <image class="cell-tieba-header-avatar" src="{{userAvatar}}" />
-        <view class="cell-tieba-header-meta">
-          <text>{{user_nick_name}}</text>
-          <text class="cell-tieba-header-time">{{last_reply_date}}</text>
-        </view>
-      </view>
-      <view class="cell-tieba-title">{{title}}</view>
-    </view>
-    <view class="cell-tieba-content">{{subject}}</view>
-    <view class="cell-tieba-thumb" wx:if="{{imageList.length > 0}}">
-      <block wx:for="{{imageList}}">
-        <view wx:if="{{index < 3}}" class="cell-tieba-thumb-container">
-          <image src="{{item}}" mode="aspectFill"></image>
-        </view>
-      </block>
-    </view>
-    <view class="cell-tieba-status">
-      <text class="hits">{{hits}}</text>
-      <text class="replies">{{replies}}</text>
-    </view>
-  </view>
-</template>
 
-<!-- cell-flat -->
-<template name="flat">
-  <view class="cell-flat">
-    <view class="cell-flat-title">{{title}}</view>
-    <view class="cell-flat-content">
-      <block wx:if="{{imageList.length === 1}}">
-        <view class="cell-flat-thumb-container-1">
-          <image src="{{imageList[ 0 ]}}" mode="aspectFill"></image>
-        </view>
-        <view class="cell-flat-content-subject-1">{{subject}}</view>
-      </block>
-      <block wx:elif="{{imageList.length > 1}}}">
-        <view class="cell-flat-content-subject">{{subject}}</view>
-        <view class="cell-flat-thumb">
-          <block wx:for="{{imageList}}">
-            <view wx:if="{{index < 3}}" class="cell-flat-thumb-container">
-              <image src="{{item}}" mode="aspectFill"></image>
-            </view>
-          </block>
-        </view>
-      </block>
-    </view>
-    <view class="cell-flat-info">
-      <text class="cell-flat-info-time">{{last_reply_date}}</text>
-      <text class="cell-flat-info-author">{{user_nick_name}}</text>
-      <text class="hits">{{hits}}阅读</text>
-    </view>
-  </view>
-</template>
 <!-- 
 /**
  *   @二级导航

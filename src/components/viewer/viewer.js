@@ -2,19 +2,43 @@ const Component = require('../../lib/component')
 const components = require('../../lib/components')
 const Module = require('../module/module')
 const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
+const SubnavFlat = require('../subnavflat/subnavflat')
+const SubnavCustom = require('../subnavcustom/subnavcustom')
 const Fullcard = require('../fullcard/fullcard')
 const Discover = require('../discover/discover')
+const LayoutDefault = require('../layoutdefault/layoutdefault')
+const LayoutSlider = require('../layoutslider/layoutslider')
+const LayoutFourCol = require('../layoutfourcol/layoutfourcol')
+const LayoutTransparent = require('../layouttransparent/layouttransparent')
+const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
 
 components.type['moduleRef-flat'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
+components.type['layout-layoutSubnavFlat'] = SubnavFlat
+components.type['customSubnav-flat'] = SubnavCustom
 components.type['full-card'] = Fullcard
 components.type['full-flat'] = Fullcard
 components.type['discover-flat'] = Discover
+components.type['layout-layoutDefault'] = LayoutDefault
+components.type['layout-layoutSlider'] = LayoutSlider
+components.type['layout-layoutFourCol'] = LayoutFourCol
+components.type['layout-layoutTransparent'] = LayoutTransparent
+components.type['topiclistSimple-tieba'] = TopiclistSimple
+components.type['topiclistSimple-flat'] = TopiclistSimple
 components.template['subnav-subnavTopbar'] = 'subnavtopbar'
+components.template['layout-layoutSubnavFlat'] = 'subnavflat'
+components.template['customSubnav-flat'] = 'subnavcustom'
 components.template['moduleRef-flat'] = 'module'
 components.template['full-card'] = 'fullcard'
 components.template['full-flat'] = 'fullcard'
 components.template['discover-flat'] = 'discover'
+components.template['layout-layoutDefault'] = 'layoutdefault'
+components.template['layout-layoutSlider'] = 'layoutslider'
+components.template['layout-layoutFourCol'] = 'layoutfourcol'
+components.template['layout-layoutTransparent'] = 'layouttransparent'
+components.template['topiclistSimple-tieba'] = 'topiclistsimple'
+components.template['topiclistSimple-flat'] = 'topiclistsimple'
+// topiclistSimple-flat
 
 function Viewer(key, module) {
     Component.call(this, key)

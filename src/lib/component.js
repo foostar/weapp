@@ -22,6 +22,9 @@ Component.prototype.add = function (child) {
 }
 
 Component.prototype.setData = function (data) {
+    if (data.children && this.data && this.data.children) {
+        data.children = Object.assign({}, this.data.children, data.children)
+    }
     this.data = Object.assign({}, this.data, data)
     this.parent.setData({
         children: {

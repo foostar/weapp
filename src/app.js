@@ -3,6 +3,17 @@ const util = require('./utils/util.js')
 const Events = require('./lib/events.js')
 const CONFIG = require('./config.js')
 
+const randStr = () => {
+    return `a${Math.random().toString(32).split('.')[1]}`
+}
+
+const completeId = (module) => {
+    if (!module.id) {
+        module.id = randStr()
+    }
+    module.componentList.forEach(completeId)
+}
+
 App({
     onLaunch() {
         // 添加监听事件
@@ -57,6 +68,8 @@ App({
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
             const tabs = this.globalData.tabs = uiResult.body.navigation.navItemList
+            // 处理没有ID的module
+            uiResult.body.moduleList.forEach(completeId)
             uiResult.body.moduleList.forEach((x) => {
                 modules[x.id] = x
             })
