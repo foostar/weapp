@@ -18,3 +18,5 @@
 @import "../talk/talk.wxss";
 @import "../subnavcustom/subnavcustom.wxss";
 @import "../messagelistflat/messagelistflat.wxss";
+@import "../notsupport/notsupport.wxss";
+

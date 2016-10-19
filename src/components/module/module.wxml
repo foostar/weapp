@@ -94,6 +94,10 @@
     <include src="../custom/custom.wxml" />
 </template>
 
+<template name="notsupport">
+    <include src="../notsupport/notsupport.wxml" />
+</template>    
+
 
 <template name="module">
     <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], key: 'm_' + module.id, module, resources}}" />

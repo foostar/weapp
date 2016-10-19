@@ -1,7 +1,3 @@
-page {
-    height: 0;
-}
-
 .error-header {
     width: 240rpx;
     height: 240rpx;
