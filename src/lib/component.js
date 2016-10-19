@@ -45,6 +45,7 @@ Component.prototype.setData = function (data) {
 
 Component.prototype.load = function () {
     if (this.loaded) return
+    this.loaded = true
     const children = this.children
     load.call(this, children)
     this.onLoad()
