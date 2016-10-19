@@ -30,6 +30,10 @@
     <include src="../layoutdefault/layoutdefault.wxml" />
 </template>
 
+<template name="layoutline">
+    <include src="../layoutline/layoutline.wxml" />
+</template>
+
 <template name="layoutslider">
     <include src="../layoutslider/layoutslider.wxml" />
 </template>
@@ -48,6 +52,10 @@
 
 <template name="layout1colsuperlow">
     <include src="../layout1colsuperlow/layout1colsuperlow.wxml" />
+</template>
+
+<template name="layout2collow">
+    <include src="../layout2collow/layout2collow.wxml" />
 </template>
 
 <template name="layout3colmid">

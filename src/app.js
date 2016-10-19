@@ -8,9 +8,7 @@ const randStr = () => {
 }
 
 const completeId = (module) => {
-    if (!parseInt(module.id)) {
-        module.id = randStr()
-    }
+    module.id = randStr()
     module.componentList.forEach(completeId)
 }
 
@@ -60,6 +58,13 @@ App({
                 return promise
             }
         })
+        const custom = api.custom
+        api.custom = function () {
+            return custom.apply(api, arguments).then((data) => {
+                data.body.module.componentList.forEach(completeId)
+                return data
+            })
+        }
         api.forumKey = CONFIG.FORUM_KEY
         const promise = Promise.all([
             api.app(),
@@ -69,9 +74,9 @@ App({
             const modules = this.globalData.modules = {}
             const tabs = this.globalData.tabs = uiResult.body.navigation.navItemList
             // 处理没有ID的module
-            uiResult.body.moduleList.forEach(completeId)
             uiResult.body.moduleList.forEach((x) => {
                 modules[x.id] = x
+                x.componentList.forEach(completeId)
             })
             this.globalData.moduleId = tabs[0].moduleId
             return this.globalData

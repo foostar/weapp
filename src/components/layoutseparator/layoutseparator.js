@@ -5,7 +5,7 @@ function LayoutSeparator(key) {
 }
 
 LayoutSeparator.prototype = Object.create(Component.prototype)
-LayoutSeparator.prototype.name = 'tabbar'
+LayoutSeparator.prototype.name = 'layoutseparator'
 LayoutSeparator.prototype.constructor = LayoutSeparator
 
 module.exports = LayoutSeparator

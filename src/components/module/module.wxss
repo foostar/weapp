@@ -6,11 +6,14 @@
 @import "../layoutslider/layoutslider.wxss";
 @import "../layoutimage/layoutimage.wxss";
 @import "../layout1collowfixed/layout1collowfixed.wxss";
+@import "../layout1colsuperlow/layout1colsuperlow.wxss";
+@import "../layout2collow/layout2collow.wxss";
 @import "../layout3colmid/layout3colmid.wxss";
 @import "../layout3coltext/layout3coltext.wxss";
 @import "../layout4col/layout4col.wxss";
 @import "../layouttransparent/layouttransparent.wxss";
 @import "../layoutseparator/layoutseparator.wxss";
+@import "../layoutline/layoutline.wxss";
 @import "../topiclistsimple/topiclistsimple.wxss";
 @import "../talk/talk.wxss";
 @import "../subnavcustom/subnavcustom.wxss";
