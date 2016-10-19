@@ -26,7 +26,7 @@
         <input class="input" name="username" placeholder="请输入用户名（不要使用手机号）" type="text"></input>
     </view>
     <view class="form-box icon-email">
-        <input class="input" name="email" placeholder="请输入你的邮箱" type="text"></input>
+        <input class="input" name="email" placeholder="请输入你的邮箱" type="email" value=""></input>
     </view>
     <view class="form-box icon-password">
         <input class="input" name="password" placeholder="请输入密码" password="ture"></input>

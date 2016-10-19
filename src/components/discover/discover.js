@@ -1,10 +1,29 @@
 const Component = require('../../lib/component')
-
+const components = require('../../lib/components')
 const app = getApp()
 
 function Discover(key, module) {
     Component.call(this, key)
+    var childrenModule = {} 
+    console.log(')))))', module)
+    module.componentList.forEach((m) => {
+        // 只有当style discoverCustom 时读取自组建
+        if(m.style === 'discoverCustom') {
+            m.id = 'discoverCustom'
+            this.add(components.create(m))
+            childrenModule = m
+        }
+    })
+
+    // 我的 page 的 data
     this.data = {
+        module: childrenModule,
+        components: components.template,
+        isWallet: true,
+        isLogin: false,
+        tabs:[],
+        userInfo:{},
+        setting:{},
         modalHidden: true
     }
 }
@@ -87,9 +106,13 @@ Discover.prototype.logout = function () {
 }
 // 跳转网页
 Discover.prototype.toNavigationPage = function (e) {
-    var typePage = e.target.dataset.page
-    console.log(e)
+    var typePage = e.currentTarget.dataset.page
     if (this.data.isLogin) {
+        if(typePage == 'myInfo') {
+            return wx.navigateTo({
+                url: '/pages/regular-pages/my-info/my-info'
+            })
+        }
         wx.navigateTo({
             url: '/pages/regular-pages/my/topics?type='+typePage
         })
