@@ -91,8 +91,7 @@ function Viewer(key, module) {
     this.module = module
     this.add(components.create(module))
     this.data = {
-        hasScroll: checkHasScroll(module),
-        components: components.template
+        hasScroll: checkHasScroll(module)
     }
 }
 
