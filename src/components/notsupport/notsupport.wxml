@@ -1,9 +1,5 @@
-<import src="../../components/module/module.wxml" />
-
-<template is="notsupport" />
-
-<!-- <view class="error-section">
+<view class="error-section">
     <image class="error-header icon-sorry"></image>
     <view class="error-font">很抱歉，暂不支持这个功能</view>
     <view class="error-font">程序员正在加班加点开发</view>
-</view> -->
+</view>

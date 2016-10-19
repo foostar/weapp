@@ -13,7 +13,9 @@ MessagelistFlat.prototype.name = 'messagelistflat'
 MessagelistFlat.prototype.constructor = MessagelistFlat
 
 MessagelistFlat.prototype.onLoad = function () {
-
+    wx.setNavigationBarTitle({
+        title: '消息中心'
+    })
 }
 
 module.exports = MessagelistFlat
