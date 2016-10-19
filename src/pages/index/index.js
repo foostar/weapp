@@ -18,13 +18,7 @@ Page(createPage({
         const module = app.getModule()
         this.add(new Viewer('viewer', module))
         this.add(new Tabbar('tabbar'))
-        console.log('取出缓存里的数据', app)
-        app.getResources(module).then(resources => {
-            console.log("resources",resources,module)
-            this.setData({
-                resources
-            })
-        })
+
         let tabSelected = 0
         app.globalData.tabs.forEach((item, index) => {
             if (item.moduleId === module.id) {

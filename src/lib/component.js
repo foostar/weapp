@@ -1,4 +1,5 @@
 const { load } = require('./createpage')
+const components = require('./components')
 
 function Component(key) {
     if (!this.name) {
@@ -21,8 +22,20 @@ Component.prototype.add = function (child) {
     }
 }
 
+Component.prototype.addByModule = function (module) {
+    if (Array.isArray(module)) {
+        return module.forEach(this.addByModule.bind(this))
+    }
+    this.add(components.create(module))
+}
+
 Component.prototype.setData = function (data) {
-    this.data = Object.assign({}, this.data, data)
+    if (data.children && this.data && this.data.children) {
+        data.children = Object.assign({}, this.data.children, data.children)
+    }
+    this.data = Object.assign({
+        components: components.template
+    }, this.data, data)
     this.parent.setData({
         children: {
             [this.key]: this.data

@@ -1,0 +1,5 @@
+<view class="layout1collowfixed">
+    <view class="layout-1-col-low-fixed-item" wx:for="{{componentList}}">
+        <image mode="aspectFit" src="{{item.icon}}"></image>
+    </view>
+</view>

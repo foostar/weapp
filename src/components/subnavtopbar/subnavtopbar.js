@@ -1,12 +1,9 @@
 const Component = require('../../lib/component')
-const components = require('../../lib/components')
 
 function SubnavTopbar(key, module) {
     Component.call(this, key)
 
-    module.componentList.forEach((m) => {
-        this.add(components.create(m))
-    })
+    this.addByModule(module.componentList)
 
     const modules = {}
 
@@ -15,7 +12,6 @@ function SubnavTopbar(key, module) {
     })
 
     this.data = {
-        components: components.template,
         selected: module.componentList[0].id,
         modules,
         tabs: module.componentList.map((x) => {

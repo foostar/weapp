@@ -1,15 +1,8 @@
-const ForumlistSplit = require('../components/forumlistsplit/forumlistsplit')
-const type = {
-    'forumlist-boardSplit': ForumlistSplit
-}
-
-const template = {
-    'forumlist-boardSplit': 'forumlistsplit'
-}
+const type = {}
 
 module.exports = {
     type,
-    template,
+    template: {},
     create(module) {
         const typeName = `${module.type}-${module.style}`
         const Class = type[typeName]

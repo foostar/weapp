@@ -2,6 +2,6 @@
 
 .viewer {
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
     flex: 1;
 }

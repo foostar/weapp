@@ -1,0 +1,10 @@
+<import src="../module/module.wxml" />
+
+<view class="tab-nav-bar">
+    <block wx:if="{{tabs.length > 1}}" wx:for="{{tabs}}">
+        <view class="tab-nav-bar-item" bindtap="subnavflat_switchTab" data-event-key="{{key}}" data-id="{{item.id}}">
+            <text class="{{selected == item.id ? 'tab-nav-bar-item-cur' : ''}}">{{item.title}}</text>
+        </view>
+    </block>
+</view>
+<template is="{{components[modules[selected].type + '-' + modules[selected].style]}}" data="{{...children['m_' + selected], key: 'm_' + selected}}" />

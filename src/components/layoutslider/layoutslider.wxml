@@ -1,0 +1,9 @@
+<view class="layoutslider">
+    <swiper class="layout-slider {{style}}" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{1500}}">
+        <block wx:for="{{componentList}}">
+            <swiper-item>
+                <image mode="aspectFill" src="{{item.icon}}" class="slide-image" />
+            </swiper-item>
+        </block>
+    </swiper>
+</view>

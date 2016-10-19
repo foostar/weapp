@@ -1,0 +1,5 @@
+.layoutseparator {
+    border-top: 1rpx solid #CCC;
+    height: 15rpx;
+    background: #EFEFF4;
+}

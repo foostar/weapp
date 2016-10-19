@@ -2,7 +2,6 @@
     引入 tabs 的css样式    
 */
 @import "/components/buttons-tab/buttons-tab.wxss";
-@import "/components/layout/layout.wxss";
 
 page {
     background: #efeff4;
