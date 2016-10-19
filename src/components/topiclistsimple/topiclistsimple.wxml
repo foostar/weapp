@@ -1,7 +1,7 @@
 <import src="../module/module.wxml" />
 
 <template name="tieba">
-    <view class="cell-tieba" bindtap="clickItem" id="{{id}}">
+    <view class="cell-tieba" id="{{id}}">
         <view class="cell-tieba-header">
             <view>
                 <image class="cell-tieba-header-avatar" src="{{userAvatar}}" />

@@ -4,7 +4,7 @@
     <view wx:if="{{hasScroll}}" class="viewer">
         <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], key: 'm_' + module.id}}" />
     </view>
-    <scroll-view wx:else class="viewer" scroll-y scroll-top="{{scrollTop}}" scroll-into-view="{{toView}}" upper-threshold="200" bindscrolltoupper="goToTop">
+    <scroll-view wx:else class="viewer" scroll-y>
         <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], key: 'm_' + module.id}}" />
     </scroll-view>
 </template>

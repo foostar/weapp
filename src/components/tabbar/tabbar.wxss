@@ -29,4 +29,5 @@
     bottom: 2rpx;
     text-align: center;
     font-size: 7rpx;
+    color: #555;
 }
