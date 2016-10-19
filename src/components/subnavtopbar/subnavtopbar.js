@@ -33,30 +33,6 @@ SubnavTopbar.prototype.changeTap = function (event) {
         selected: id
     })
     this.children[`m_${id}`].load()
-    // var self = this
-    // this.setData({
-    //     activeModule: self.data.module.componentList[event.target.dataset.id]
-    // })
-    // if (event.target.dataset.type !== 'moduleRef') {
-    //     return app.getResources(event.target.dataset.id).then((resources) => {
-    //         this.setData({
-    //             resources,
-    //             templateResources: resources,
-    //             nestModule: {},
-    //             isLoading: true
-    //         })
-    //     })
-    // }
-    // const getResources = app.getResources(event.target.dataset.moduleId)
-    // const nestModule = app.getModule(event.target.dataset.moduleId)
-    // getResources.then((resources) => {
-    //     return this.setData({
-    //         resources,
-    //         templateResources: resources,
-    //         nestModule,
-    //         isLoading: true
-    //     })
-    // })
 }
 
 module.exports = SubnavTopbar

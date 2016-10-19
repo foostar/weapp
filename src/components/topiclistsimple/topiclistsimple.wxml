@@ -59,6 +59,6 @@
 </template>
 
 
-<block wx:for="{{resources[module.id].list}}">
+<block wx:for="{{resources.list}}">
     <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
 </block>

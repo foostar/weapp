@@ -30,7 +30,15 @@ ForumlistSplit.prototype.onLoad = function () {
     this.fetchData()
 }
 ForumlistSplit.prototype.fetchData = function () {
-    app.getResources(this.module).then((resources) => {
+    const module = this.module
+    Promise.all([
+        app.api.forumList(),
+        app.api.recForumList()
+    ]).then(([ forumList, recForumList ]) => {
+        const resources = {}
+        resources[module.id] = forumList
+        resources[module.id].rec = recForumList
+
         this.setData({
             currentBoard: 10000,
             currentBoardList: resources[this.module.id].rec.recommendedBoard,
