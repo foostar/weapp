@@ -102,7 +102,6 @@ const checkHasScroll = (module) => {
 function Viewer(key, module) {
     Component.call(this, key)
     this.module = module
-    console.log(module)
     this.add(components.create(module))
     this.data = {
         hasScroll: checkHasScroll(module)

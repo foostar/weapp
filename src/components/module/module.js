@@ -4,7 +4,7 @@ const app = getApp()
 
 function Module(key, module) {
     Component.call(this, key)
-    module = app.getModule(module.extParams.moduleId)
+    module = app.globalData.modules[module.extParams.moduleId]
     this.addByModule(module)
     this.data = { module }
 }

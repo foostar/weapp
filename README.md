@@ -57,24 +57,6 @@ app.event.on('login', userInfo => {
 
 获取指定ID的module，如果不指定ID，则获取当前module数据
 
-##### getResources
-
-`getResources(module)`
-
-获取module关联的数据资源。 module 可以是 module 对象或 moduleId，如不传入参数，则获取当前 module 的关联数据。
-
-##### to
-
-`to(module, isReplace)`
-
-跳转到指定的 module 页面，如果 `isReplace === true`，则调用 `wx.redirectTo`。
-
-##### showPost
-
-`showPost(id)`
-
-打开指定的帖子详情页面。
-
 ##### getUserInfo
 
 `getUserInfo(cb)`
