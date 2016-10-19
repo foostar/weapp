@@ -1,5 +1,9 @@
 var app = getApp()
 Page({
+    data:{
+        errMessage: '', 
+        isShow: false
+    },
     onLoad() {
         this.setData({
             appColor: app.globalData.info.appColor
@@ -14,5 +18,42 @@ Page({
 
     // 修改密码
     changepassword(e){
-    }
+        console.log(e)
+        const { oldPassword, newPassword, replacePassword } = e.detail.value
+        if (newPassword !== replacePassword) {
+            this.setData({
+                errMessage: '确认密码输入不一致', 
+                isShow: true
+            })
+             return setTimeout(this.closeMessagePrompt, 1500)
+        }
+        console.log(app)
+
+        app.api.updateUserPassword(oldPassword, newPassword)
+        .then(res => {
+            console.log('检测手机和验证码', res)
+        })
+        .catch(err => {
+            if(parseInt(err.status) / 100 == 4) {
+                this.setData({
+                    isShow: true,
+                    errMessage: err.message
+                })
+                setTimeout(this.closeMessagePrompt, 1500)
+            }
+        })
+
+
+
+
+
+    },
+
+    // 关闭页面提示信息
+    closeMessagePrompt(){
+        this.setData({
+            isShow: false,
+            errMessage:''
+        })
+    },
 })
