@@ -1,0 +1,15 @@
+.error-header {
+    width: 240rpx;
+    height: 240rpx;
+    display: block;
+    margin: 80rpx auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.error-font {
+    text-align: center;
+    font-size: 14px;
+    color: #ccc;
+}

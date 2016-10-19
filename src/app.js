@@ -54,6 +54,7 @@ App({
             api.app(),
             api.ui()
         ]).then(([ appResult, uiResult ]) => {
+            console.log(appResult)
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
             const tabs = this.globalData.tabs = uiResult.body.navigation.navItemList

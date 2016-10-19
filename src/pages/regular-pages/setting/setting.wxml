@@ -20,7 +20,7 @@
 
 
 <!-- 固定样式 -->
-<view class="list-item">分享应用</view>
-<view class="list-item">清空缓存</view>
-<view class="list-item">新版本检测</view>
-<view class="list-item">关于</view>
+<view class="list-item" bindtap="toNavigationPage" data-page="error">分享应用</view>
+<!-- <view class="list-item">清空缓存</view> -->
+<!-- <view class="list-item">新版本检测</view> -->
+<view class="list-item" bindtap="toNavigationPage" data-page="about">关于</view>

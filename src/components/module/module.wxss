@@ -1,3 +1,4 @@
 @import "../subnavtopbar/subnavtopbar.wxss";
 @import "../forumlistsplit/forumlistsplit.wxss";
 @import "../discover/discover.wxss";
+@import "../messagelistflat/messagelistflat.wxss";

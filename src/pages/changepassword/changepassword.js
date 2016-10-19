@@ -18,7 +18,6 @@ Page({
 
     // 修改密码
     changepassword(e){
-        console.log(e)
         const { oldPassword, newPassword, replacePassword } = e.detail.value
         if (newPassword !== replacePassword) {
             this.setData({
@@ -32,6 +31,7 @@ Page({
         app.api.updateUserPassword(oldPassword, newPassword)
         .then(res => {
             console.log('检测手机和验证码', res)
+            wx.navigateBack()
         })
         .catch(err => {
             if(parseInt(err.status) / 100 == 4) {
@@ -42,11 +42,6 @@ Page({
                 setTimeout(this.closeMessagePrompt, 1500)
             }
         })
-
-
-
-
-
     },
 
     // 关闭页面提示信息
