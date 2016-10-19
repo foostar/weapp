@@ -5,7 +5,9 @@ const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
 const SubnavFlat = require('../subnavflat/subnavflat')
 const SubnavCustom = require('../subnavcustom/subnavcustom')
 const Fullcard = require('../fullcard/fullcard')
-const Discover = require('../discover/discover')
+const Discover = require('../discover/discover')   // 我的
+const DiscoverCustom = require('../discovercustom/discovercustom') 
+const MessagelistFlat = require('../messagelistflat/messagelistflat')
 const LayoutDefault = require('../layoutdefault/layoutdefault')
 const LayoutLine = require('../layoutline/layoutline')
 const LayoutSlider = require('../layoutslider/layoutslider')
@@ -24,6 +26,7 @@ const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
 const Talk = require('../talk/talk')
 const Custom = require('../custom/custom')
 
+
 components.type['moduleRef-flat'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
 components.type['layout-layoutSubnavFlat'] = SubnavFlat
@@ -31,6 +34,8 @@ components.type['customSubnav-flat'] = SubnavCustom
 components.type['full-card'] = Fullcard
 components.type['full-flat'] = Fullcard
 components.type['discover-flat'] = Discover
+components.type['layout-discoverCustom'] = DiscoverCustom
+components.type['messagelist-flat'] = MessagelistFlat
 components.type['layout-layoutDefault'] = LayoutDefault
 components.type['layout-layoutLine'] = LayoutLine
 components.type['layout-layoutSlider'] = LayoutSlider
@@ -58,6 +63,8 @@ components.template['moduleRef-flat'] = 'module'
 components.template['full-card'] = 'fullcard'
 components.template['full-flat'] = 'fullcard'
 components.template['discover-flat'] = 'discover'
+components.template['layout-discoverCustom'] = 'discovercustom'
+components.template['messagelist-flat'] = 'messagelistflat'
 components.template['layout-layoutDefault'] = 'layoutdefault'
 components.template['layout-layoutLine'] = 'layoutline'
 components.template['layout-layoutSlider'] = 'layoutslider'
@@ -86,9 +93,11 @@ const checkHasScroll = (module) => {
     return module.componentList.map(checkHasScroll).some(x => x)
 }
 
+
 function Viewer(key, module) {
     Component.call(this, key)
     this.module = module
+    console.log(module)
     this.add(components.create(module))
     this.data = {
         hasScroll: checkHasScroll(module)

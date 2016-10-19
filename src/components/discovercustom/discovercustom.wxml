@@ -1,0 +1,7 @@
+<block wx:for="{{list}}">
+    <view class="personal-manage-item" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">
+        <image class="icon" src="{{item.icon}}"></image>
+        <text class="personal-manage-item-title">{{item.title}}</text>
+        <image class="icon-arrow"></image>
+    </view>
+</block>

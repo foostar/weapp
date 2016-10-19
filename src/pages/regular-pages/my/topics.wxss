@@ -101,6 +101,12 @@
     line-height: 40rpx;
     height: 40rpx;
 }
+/* 无内容提示 */
+.no-content {
+    color: #ccc;
+    text-align: center;
+    margin: 30rpx 0;
+}
 
 .user-item-data-desc {
     line-height: 40rpx;

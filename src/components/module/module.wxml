@@ -26,6 +26,14 @@
     <include src="../discover/discover.wxml" />
 </template>
 
+<template name="discovercustom">
+    <include src="../discovercustom/discovercustom.wxml" />
+</template>
+
+<template name="messagelistflat">
+    <include src="../messagelistflat/messagelistflat.wxml" />
+</template>
+
 <template name="layoutdefault">
     <include src="../layoutdefault/layoutdefault.wxml" />
 </template>
@@ -85,6 +93,7 @@
 <template name="custom">
     <include src="../custom/custom.wxml" />
 </template>
+
 
 <template name="module">
     <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], key: 'm_' + module.id, module, resources}}" />
