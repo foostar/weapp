@@ -29,6 +29,3 @@
     </block>
 </view>
 
-<block wx:for="{{resources.list}}">
-    <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
-</block>

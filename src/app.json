@@ -6,6 +6,7 @@
     "pages/blank/blank",
     "pages/about/about",
     "pages/error/error",
+    "pages/callbackpassword/callbackpassword",
     "pages/regular-pages/forum/forum",
     "pages/regular-pages/topic-list/topic-list",
     "pages/regular-pages/create-forum/create-forum",
