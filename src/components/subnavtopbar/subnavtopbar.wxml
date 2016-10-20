@@ -3,22 +3,23 @@
 <view class="subnavtopbar">
     <view class="topbar-bar">
         <view wx:if="{{module.leftTopbars.length > 0}}" class="topbar-icon">
-            <block wx:for="{{module.leftTopbars}}">
-                <image src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
-            </block>
+            <image wx:for="{{module.leftTopbars}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
         </view>
         <view class="top-bar">
-            <block wx:for="{{tabs}}">
-                <view bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-id="{{item.id}}" class="{{item.id == selected ? 'active' : ''}} font-wide text-color"> {{item.title}} </view>
-            </block>
+            <view wx:for="{{tabs}}" bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}" class="{{item.id == selected ? 'active' : ''}} font-wide text-color"> {{item.title}} </view>
+            <view class="top-bar-indicator" style="transform: translateX({{index * 100 + '%'}}); width: {{width}};">
+                <view class="tabs-indicator-inner bg-color"></view>
+            </view>
         </view>
         <view wx:if="{{module.rightTopbars.length > 0}}" class="topbar-icon">
-            <block wx:for="{{module.rightTopbars}}">
-                <image src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
-            </block>
+            <image wx:for="{{module.rightTopbars}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
         </view>
     </view>
-    <scroll-view scroll-y class="topbar-content">
-        <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
-    </scroll-view>
+    <view class="subnav-content-container topbar-content" style="transform: translateX({{-index * (100 / tabs.length) + '%'}}); width: {{tabs.length}}00%">
+        <scroll-view wx:for="{{tabs}}" class="subnav-content" scroll-y class="topbar-content">
+            <view hidden="{{(selected === item.id || animating) ? false : true}}">
+                <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
+            </view>
+        </scroll-view>
+    </view>
 </view>

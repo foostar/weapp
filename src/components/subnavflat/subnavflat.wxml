@@ -10,9 +10,9 @@
         <view class="tabs-indicator-inner bg-color"></view>
     </view>
 </view>
-<view class="subnav-content-container" style="transform: translateX({{-index * 50 + '%'}}); width: {{tabs.length}}00%">
+<view class="subnav-content-container" style="transform: translateX({{-index * (100 / tabs.length) + '%'}}); width: {{tabs.length}}00%">
     <view wx:for="{{tabs}}" class="subnav-content">
-        <view class="subnav-content-inner" hidden="{{(selected === item.id || animating) ? false : true}}">
+        <view hidden="{{(selected === item.id || animating) ? false : true}}">
             <template wx:if="{{children[item.id]}}" is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
         </view>
     </view>

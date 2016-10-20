@@ -31,8 +31,7 @@ SubnavFlat.prototype.name = 'subnavflat'
 SubnavFlat.prototype.constructor = SubnavFlat
 
 SubnavFlat.prototype.switchTab = function (event) {
-    const id = event.currentTarget.dataset.id
-    const index = event.currentTarget.dataset.index
+    const { id, index } = event.currentTarget.dataset
     clearTimeout(this._timer)
     this.setData({
         index,
@@ -43,7 +42,6 @@ SubnavFlat.prototype.switchTab = function (event) {
         if (!this.children[id]) {
             this.addByModule(this.module.componentList[index])
         }
-        this.children[id].load()
         this.setData({
             animating: false
         })
