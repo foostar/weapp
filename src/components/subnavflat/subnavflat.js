@@ -2,8 +2,9 @@ const Component = require('../../lib/component')
 
 function SubnavFlat(key, module) {
     Component.call(this, key)
+    this.module = module
 
-    this.addByModule(module.componentList)
+    this.addByModule(module.componentList[0])
 
     const modules = {}
 
@@ -33,11 +34,21 @@ SubnavFlat.prototype.constructor = SubnavFlat
 SubnavFlat.prototype.switchTab = function (event) {
     const id = event.currentTarget.dataset.id
     const index = event.currentTarget.dataset.index
+    clearTimeout(this._timer)
     this.setData({
         index,
-        selected: id
+        selected: id,
+        animating: true
     })
-    this.children[`m_${id}`].load()
+    this._timer = setTimeout(() => {
+        if (!this.children[id]) {
+            this.addByModule(this.module.componentList[index])
+        }
+        this.children[id].load()
+        this.setData({
+            animating: false
+        })
+    }, 300)
 }
 
 module.exports = SubnavFlat
