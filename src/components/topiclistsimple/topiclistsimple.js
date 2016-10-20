@@ -19,7 +19,8 @@ function TopiclistSimple(key, module) {
         resources: {},
         isLoading: false,
         appIcon: app.globalData.info.appIcon,
-        endPage: 0
+        endPage: 0,
+        over:false
     }
 
 }
@@ -38,7 +39,16 @@ TopiclistSimple.prototype.onLoad = function(){
     app.event.on('nextPage', function(){
         let { page, endPage } = that.data
         if (page < endPage) {
+            that.setData({
+                isLoading: true
+            })
             that.fetchData(that.data.module, page + 1)
+
+        } else {
+            that.setData({
+                isLoading: false,
+                over: true
+            })   
         }
     })
 }
