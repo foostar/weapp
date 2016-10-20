@@ -12,11 +12,9 @@ function TopiclistSimple(key, module) {
             forumInfo = false
         }
     })
-    console.log(forumInfo,module)
     app.api.forum(module.extParams.forumId, {
         sortby: module.extParams.orderby || 'all'
     }).then((data) => {
-        console.log("data",data)
         data.list = data.list.map((v) => {
             v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
             v.last_reply_date = util.formatTime(v.last_reply_date)
@@ -42,7 +40,16 @@ TopiclistSimple.prototype.focusForum = function (e) {
     self.setData({
         isLoading: false
     })
-    if (e.target.dataset.focus == 1) return
+    if (e.target.dataset.focus == 1) {
+        return app.api.userfavorite(boardId, { action: 'delfavorite', idType: 'fid' }).then(() => {
+            var resources = self.data.resources
+            resources.forumInfo.is_focus = 0
+            self.setData({
+                resources,
+                isLoading: true
+            })
+        })
+    }
     app.api.userfavorite(boardId, { action: 'favorite', idType: 'fid' }).then(() => {
         var resources = self.data.resources
         resources.forumInfo.is_focus = 1

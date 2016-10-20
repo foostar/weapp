@@ -8,7 +8,7 @@ function Layout3ColText(key, module) {
 }
 
 Layout3ColText.prototype = Object.create(Component.prototype)
-Layout3ColText.prototype.name = 'layout3col'
+Layout3ColText.prototype.name = 'layout3coltext'
 Layout3ColText.prototype.constructor = Layout3ColText
 
 module.exports = Layout3ColText

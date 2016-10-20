@@ -34,6 +34,8 @@ Component.prototype.setData = function (data) {
         data.children = Object.assign({}, this.data.children, data.children)
     }
     this.data = Object.assign({
+        key: this.key,
+        template: this.name,
         components: components.template
     }, this.data, data)
     this.parent.setData({

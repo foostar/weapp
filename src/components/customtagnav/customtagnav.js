@@ -1,14 +1,9 @@
 const Component = require('../../lib/component')
-const components = require('../../lib/components')
-
-const app = getApp()
 
 function CustomTagNav(key, module) {
     Component.call(this, key)
 
-    module.componentList.forEach((m) => {
-        this.add(components.create(m))
-    })
+    this.addByModule(module.componentList)
 
     const modules = {}
 
@@ -16,7 +11,6 @@ function CustomTagNav(key, module) {
         modules[x.id] = x
     })
     this.data = {
-        components: components.template,
         selected: module.componentList[0].id,
         modules,
         tabs: module.componentList.map((x) => {
@@ -33,13 +27,12 @@ CustomTagNav.prototype.name = 'customtagnav'
 CustomTagNav.prototype.constructor = CustomTagNav
 
 CustomTagNav.prototype.changeTap = function (event) {
-    console.log(event.target.dataset)
     if (!event.target.dataset.role) return
     const id = event.target.dataset.id
     this.setData({
         selected: id
     })
-    this.children[`m_${id}`].load()
+    // this.children[`m_${id}`].load()
 }
 
 module.exports = CustomTagNav

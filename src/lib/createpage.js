@@ -11,7 +11,9 @@ const bindHandlers = (page, children) => {
             .forEach((name) => {
                 page[`${key}_${name}`] = function (event) {
                     const component = children[event.currentTarget.dataset.eventKey]
+                    /* eslint-disable */
                     component[name].apply(component, arguments)
+                    /* eslint-enable */
                 }
             })
     })
@@ -80,7 +82,9 @@ function createPage(config) {
         }
 
         if (onLoad) {
+            /* eslint-disable */
             onLoad.apply(this, arguments)
+            /* eslint-enable */
         }
 
         const children = this.children
@@ -94,7 +98,9 @@ function createPage(config) {
 
     config.onReady = function () {
         if (onReady) {
+            /* eslint-disable */
             onReady.apply(this, arguments)
+            /* eslint-enable */
         }
         this.trigger('ready')
     }

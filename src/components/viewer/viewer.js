@@ -9,7 +9,7 @@ const SubnavFlat = require('../subnavflat/subnavflat')
 const SubnavCustom = require('../subnavcustom/subnavcustom')
 const Fullcard = require('../fullcard/fullcard')
 const Discover = require('../discover/discover')   // 我的
-const DiscoverCustom = require('../discovercustom/discovercustom') 
+const DiscoverCustom = require('../discovercustom/discovercustom')
 const MessagelistFlat = require('../messagelistflat/messagelistflat')
 const LayoutDefault = require('../layoutdefault/layoutdefault')
 const LayoutLine = require('../layoutline/layoutline')
@@ -59,6 +59,7 @@ components.type['layout-layoutTransparent'] = LayoutTransparent
 components.type['layout-layoutSeparator'] = LayoutSeparator
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
+components.type['topiclistSimple-card'] = TopiclistSimple
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
@@ -67,44 +68,6 @@ components.type['subnav-flat'] = CustomTagNav
 components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
 components.type['newlivelist-flat'] = NotSupport
-/*
- *   @定义组件模板
- */
-components.template['subnav-subnavTopbar'] = 'subnavtopbar'
-components.template['layout-layoutSubnavFlat'] = 'subnavflat'
-components.template['customSubnav-flat'] = 'subnavcustom'
-components.template['moduleRef-flat'] = 'module'
-components.template['full-card'] = 'fullcard'
-components.template['full-flat'] = 'fullcard'
-components.template['discover-flat'] = 'discover'
-components.template['layout-discoverCustom'] = 'discovercustom'
-components.template['messagelist-flat'] = 'messagelistflat'
-components.template['layout-layoutDefault'] = 'layoutdefault'
-components.template['layout-layoutLine'] = 'layoutline'
-components.template['layout-layoutSlider'] = 'layoutslider'
-components.template['layout-layoutSlider_Mid'] = 'layoutslider'
-components.template['layout-layoutImage'] = 'layoutimage'
-components.template['layout-layoutOneCol_Low_Fixed'] = 'layout1collowfixed'
-components.template['layout-layoutOneCol_Super_Low'] = 'layout1colsuperlow'
-components.template['layout-layoutTwoCol_Low'] = 'layout2collow'
-components.template['layout-layoutThreeCol_Mid'] = 'layout3colmid'
-components.template['layout-layoutThreeColText'] = 'layout3coltext'
-components.template['layout-layoutFourCol'] = 'layout4col'
-components.template['layout-layoutTransparent'] = 'layouttransparent'
-components.template['layout-layoutSeparator'] = 'layoutseparator'
-components.template['topiclistSimple-tieba'] = 'topiclistsimple'
-components.template['topiclistSimple-flat'] = 'topiclistsimple'
-components.template['forumlist-card'] = 'forumlistcard'
-components.template['forumlist-boardSplit'] = 'forumlistsplit'
-components.template['talk-flat'] = 'talk'
-components.template['layout-discoverCustom'] = 'discovercustom'
-components.template['subnav-flat'] = 'customtagnav'
-components.template['custom-flat'] = 'custom'
-components.template['not-support'] = 'notsupport'
-components.template['newlivelist-flat'] = 'notsupport'
-/*
- *   @视图层注册机
- */
 
 // topiclistSimple-flat
 

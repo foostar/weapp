@@ -19,6 +19,6 @@
         </view>
     </view>
     <scroll-view scroll-y class="topbar-content">
-        <template is="{{components[modules[selected].type + '-' + modules[selected].style]}}" data="{{...children['m_' + selected], key: 'm_' + selected}}" />
+        <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
     </scroll-view>
 </view>

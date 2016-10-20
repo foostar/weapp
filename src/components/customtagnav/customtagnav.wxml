@@ -6,6 +6,6 @@
         </block>
     </scroll-view>
     <scroll-view scroll-y="true" class="customtag-content">
-        <template is="{{components[modules[selected].type + '-' + modules[selected].style]}}" data="{{...children['m_' + selected], key: 'm_' + selected}}" />
+        <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
     </scroll-view>
 </view>

@@ -1,5 +1,4 @@
 const Component = require('../../lib/component')
-const components = require('../../lib/components')
 
 const app = getApp()
 
@@ -7,18 +6,16 @@ function Discover(key, module) {
     Component.call(this, key)
     var childrenModule = {}
     module.componentList.forEach((m) => {
-
         // 只有当style discoverCustom 时读取自组建
         if (m.style === 'discoverCustom') {
             m.id = 'discoverCustom'
-            this.add(components.create(m))
+            this.addByModule(m)
             childrenModule = m
         }
     })
     // 我的 page 的 data
     this.data = {
         module: childrenModule,
-        components: components.template,
         isWallet: true,
         isLogin: false,
         tabs: [],
@@ -108,7 +105,7 @@ Discover.prototype.logout = function () {
 Discover.prototype.toNavigationPage = function (e) {
     var typePage = e.currentTarget.dataset.page
     if (this.data.isLogin) {
-        if(typePage == 'myInfo') {
+        if (typePage == 'myInfo') {
             return wx.navigateTo({
                 url: '/pages/regular-pages/my-info/my-info'
             })
