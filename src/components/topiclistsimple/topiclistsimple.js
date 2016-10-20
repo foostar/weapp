@@ -1,9 +1,17 @@
 const Component = require('../../lib/component')
+const util = require('../../utils/util')
 
 const app = getApp()
 var i = 1
 function TopiclistSimple(key, module) {
     Component.call(this, key)
+    let forumInfo = true
+    const topicList = [ '官方公告', '站长访谈' ]
+    topicList.forEach((v) => {
+        if (v == module.title) {
+            forumInfo = false
+        }
+    })
     // 添加分页
     this.data = {
         page:1,
@@ -13,6 +21,7 @@ function TopiclistSimple(key, module) {
         appIcon: app.globalData.info.appIcon,
         endPage: 0
     }
+
 }
 
 TopiclistSimple.prototype = Object.create(Component.prototype)
@@ -36,13 +45,6 @@ TopiclistSimple.prototype.onLoad = function(){
 // 请求数据
 TopiclistSimple.prototype.fetchData = function (module, page){
     let list = this.data.resources.list ? this.data.resources.list : []
-    let forumInfo = true
-    const topicList = [ '官方公告', '站长访谈' ]
-    topicList.forEach((v) => {
-        if (v == module.title) {
-            forumInfo = false
-        }
-    })
     app.api.forum(module.extParams.forumId, {
         page,
         sortby: module.extParams.orderby || 'all'
@@ -60,15 +62,11 @@ TopiclistSimple.prototype.fetchData = function (module, page){
             page,
             resources: data,
             isLoading: true,
-            endPage: parseInt(data.total_num / 20 + 1),
-            forumInfo
+            endPage: parseInt(data.total_num / 20 + 1)
         })
     })
 }
 
-TopiclistSimple.prototype = Object.create(Component.prototype)
-TopiclistSimple.prototype.name = 'topiclistsimple'
-TopiclistSimple.prototype.constructor = TopiclistSimple
 TopiclistSimple.prototype.focusForum = function (e) {
     const self = this
     const boardId = e.target.dataset.id
