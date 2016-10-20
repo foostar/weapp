@@ -48,25 +48,10 @@ module.exports =
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.fns = exports.API = undefined;
+	var API = __webpack_require__(1);
+	var fns = __webpack_require__(2);
 
-	var _API = __webpack_require__(1);
-
-	var _API2 = _interopRequireDefault(_API);
-
-	var _fns = __webpack_require__(2);
-
-	var fns = _interopRequireWildcard(_fns);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.API = _API2.default;
-	exports.fns = fns;
+	module.exports = { API: API, fns: fns };
 
 /***/ },
 /* 1 */
@@ -74,18 +59,22 @@ module.exports =
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _fns = __webpack_require__(2);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+	var _require = __webpack_require__(2);
+
+	var raw = _require.raw;
+	var md5 = _require.md5;
+	var timeout = _require.timeout;
+	var isNil = _require.isNil;
+	var omitBy = _require.omitBy;
+	var merge = _require.merge;
+
+
 	var generateHash = function generateHash() {
-	    return (0, _fns.md5)(('' + Date.now()).slice(0, 5) + 'appbyme_key').slice(8, 16);
+	    return md5(('' + Date.now()).slice(0, 5) + 'appbyme_key').slice(8, 16);
 	};
 
 	var API = function () {
@@ -104,23 +93,7 @@ module.exports =
 	                response.headers._headers['content-type'] = 'application/json';
 	                _this._cookie = response.headers._headers['set-cookie'];
 	                /* eslint-enable */
-	                return response.text().then(function (json) {
-	                    try {
-	                        json = JSON.parse(json);
-	                    } catch (err) {
-	                        try {
-	                            /* eslint-disable */
-	                            var vm = __webpack_require__(4);
-	                            /* eslint-enable */
-	                            var sandbox = { json: null };
-	                            var script = new vm.Script('json=' + json, sandbox);
-	                            var context = vm.createContext(sandbox);
-	                            script.runInContext(context);
-	                            json = sandbox.json;
-	                        } catch (e) {
-	                            json = {};
-	                        }
-	                    }
+	                return response.json().then(function (json) {
 	                    return { json: json, response: response };
 	                }, function () {
 	                    return Promise.reject(new Error('API 格式错误'));
@@ -155,7 +128,7 @@ module.exports =
 	    }, {
 	        key: 'news',
 	        value: function news(id) {
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            if (!options.page) options.page = 1;
 	            if (!options.pageSize) options.pageSize = 20;
@@ -168,7 +141,7 @@ module.exports =
 	    }, {
 	        key: 'article',
 	        value: function article(id) {
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            if (!options.page) options.page = 1;
 	            options.aid = id;
@@ -183,7 +156,7 @@ module.exports =
 	        value: function post(id) {
 	            var _this2 = this;
 
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            if (!options.boardId) options.boardId = 0;
 	            if (!options.page) options.page = 1;
@@ -200,7 +173,7 @@ module.exports =
 	    }, {
 	        key: 'forum',
 	        value: function forum(id) {
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            if (!options.boardId) options.boardId = 0;
 	            if (!options.page) options.page = 1;
@@ -214,14 +187,14 @@ module.exports =
 	    }, {
 	        key: 'forumList',
 	        value: function forumList() {
-	            var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	            return this.fetch('forum/forumlist', {}, options);
 	        }
 	    }, {
 	        key: 'recForumList',
 	        value: function recForumList() {
-	            var options = arguments.length <= 0 || arguments[0] === undefined ? { type: 'rec' } : arguments[0];
+	            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { type: 'rec' };
 
 	            return this.fetch('forum/forumlist', {}, options);
 	        }
@@ -255,7 +228,7 @@ module.exports =
 	    }, {
 	        key: 'signup',
 	        value: function signup(username, password, email) {
-	            var options = arguments.length <= 3 || arguments[3] === undefined ? {} : arguments[3];
+	            var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
 	            options.username = encodeURIComponent(username);
 	            options.password = password;
@@ -267,7 +240,7 @@ module.exports =
 	    }, {
 	        key: 'createTopic',
 	        value: function createTopic(json) {
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            if (!options.act) {
 	                options.act = 'new';
@@ -299,7 +272,7 @@ module.exports =
 	    }, {
 	        key: 'uploadAvatar',
 	        value: function uploadAvatar(file) {
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            var form = new FormData();
 	            form.append('userAvatar', file);
@@ -314,8 +287,8 @@ module.exports =
 	    }, {
 	        key: 'topic',
 	        value: function topic() {
-	            var search = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var search = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            options.type = 'UNCARE';
 	            if (!options.page) options.page = 1;
@@ -328,7 +301,7 @@ module.exports =
 	    }, {
 	        key: 'topicdtl',
 	        value: function topicdtl() {
-	            var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	            if (!options.page) options.page = 1;
 	            if (!options.pageSize) options.pageSize = 20;
@@ -342,7 +315,7 @@ module.exports =
 	    }, {
 	        key: 'mytopic',
 	        value: function mytopic() {
-	            var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	            options.type = 'CARE';
 	            return this.fetch('topic/mytopic', {}, options);
@@ -352,7 +325,7 @@ module.exports =
 	    }, {
 	        key: 'caretpcByTopic',
 	        value: function caretpcByTopic(id) {
-	            var type = arguments.length <= 1 || arguments[1] === undefined ? 'CARE' : arguments[1];
+	            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'CARE';
 	            var data = arguments[2];
 
 	            var options = {};
@@ -397,9 +370,9 @@ module.exports =
 	    }, {
 	        key: 'search',
 	        value: function search() {
-	            var keyword = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
-	            var type = arguments.length <= 1 || arguments[1] === undefined ? 'post' : arguments[1];
-	            var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	            var keyword = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+	            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'post';
+	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 	            if (!options.page) options.page = 1;
 	            if (!options.pageSize) options.pageSize = 20;
@@ -418,8 +391,8 @@ module.exports =
 	    }, {
 	        key: 'getUserList',
 	        value: function getUserList(uid) {
-	            var type = arguments.length <= 1 || arguments[1] === undefined ? 'follow' : arguments[1];
-	            var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'follow';
+	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 	            if (!options.page) options.page = 1;
 	            if (!options.pageSize) options.pageSize = 20;
@@ -428,14 +401,25 @@ module.exports =
 	            options.uid = uid;
 	            return this.fetch('user/userlist', {}, options);
 	        }
+	    }, {
+	        key: 'getNewNotifyList',
+	        value: function getNewNotifyList() {
+	            var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'post';
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+	            if (!options.page) options.page = 1;
+	            if (!options.pageSize) options.pageSize = 20;
+	            options.type = type;
+	            return this.fetch('message/notifylistex', {}, options);
+	        }
 
 	        // 消息接口 回复与@我列表／好友申请 post,at,friend
 
 	    }, {
 	        key: 'getNotifyList',
 	        value: function getNotifyList() {
-	            var type = arguments.length <= 0 || arguments[0] === undefined ? 'post' : arguments[0];
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'post';
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            if (!options.page) options.page = 1;
 	            if (!options.pageSize) options.pageSize = 20;
@@ -448,8 +432,8 @@ module.exports =
 	    }, {
 	        key: 'getTopicList',
 	        value: function getTopicList(uid) {
-	            var type = arguments.length <= 1 || arguments[1] === undefined ? 'topic' : arguments[1];
-	            var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'topic';
+	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 	            if (!options.page) options.page = 1;
 	            if (!options.pageSize) options.pageSize = 20;
@@ -464,14 +448,14 @@ module.exports =
 	    }, {
 	        key: 'sendattachmentex',
 	        value: function sendattachmentex() {
-	            var module = arguments.length <= 0 || arguments[0] === undefined ? 'forum' : arguments[0];
+	            var module = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'forum';
 
 	            var _this3 = this;
 
 	            var files = arguments[1];
-	            var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
-	            var fs = __webpack_require__(6);
+	            var fs = __webpack_require__(4);
 	            if (!options.type) options.type = 'image';
 	            options.module = module;
 	            var form = new FormData();
@@ -498,7 +482,7 @@ module.exports =
 	    }, {
 	        key: 'support',
 	        value: function support(tid) {
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            options.tid = tid;
 	            if (!options.type) options.type = 'topic';
@@ -518,7 +502,7 @@ module.exports =
 	    }, {
 	        key: 'userfavorite',
 	        value: function userfavorite(id) {
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            options.id = id;
 	            if (!options.action) options.action = 'favorite';
@@ -540,7 +524,7 @@ module.exports =
 	    }, {
 	        key: 'useradmin',
 	        value: function useradmin() {
-	            var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	            var tid = arguments[1];
 
 	            if (!options.type) options.type = 'follow';
@@ -562,7 +546,7 @@ module.exports =
 	    }, {
 	        key: 'report',
 	        value: function report() {
-	            var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	            return this.fetch('user/report', {}, options);
 	        }
@@ -596,7 +580,7 @@ module.exports =
 	    }, {
 	        key: 'getSetting',
 	        value: function getSetting() {
-	            var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	            var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
 	            // 暂时只用到了 板块的主题获取
 	            if (!options.getSetting) {
@@ -617,7 +601,7 @@ module.exports =
 	    }, {
 	        key: 'getCode',
 	        value: function getCode(mobile) {
-	            var act = arguments.length <= 1 || arguments[1] === undefined ? 'register' : arguments[1];
+	            var act = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'register';
 
 	            return this.fetch('app/getcode', {}, {
 	                mobile: mobile,
@@ -629,7 +613,7 @@ module.exports =
 	    }, {
 	        key: 'checkMobileCode',
 	        value: function checkMobileCode(mobile, code) {
-	            var type = arguments.length <= 2 || arguments[2] === undefined ? 'register' : arguments[2];
+	            var type = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'register';
 
 	            return this.fetch('app/checkmobilecode', {}, {
 	                mobile: mobile,
@@ -642,7 +626,7 @@ module.exports =
 	    }, {
 	        key: 'platFormInfo',
 	        value: function platFormInfo(oauthToken, openId) {
-	            var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
 	            options.username = encodeURIComponent(options.username);
 	            options.isValidation = 1;
@@ -658,8 +642,8 @@ module.exports =
 	    }, {
 	        key: 'savePlatFormInfo',
 	        value: function savePlatFormInfo() {
-	            var act = arguments.length <= 0 || arguments[0] === undefined ? 'register' : arguments[0];
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var act = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'register';
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            options.username = encodeURIComponent(options.username);
 	            options.act = act;
@@ -730,7 +714,7 @@ module.exports =
 	    }, {
 	        key: 'fetch',
 	        value: function fetch(endpoint) {
-	            var request = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var request = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            var _this4 = this;
 
@@ -745,14 +729,14 @@ module.exports =
 	                request.body = JSON.stringify(request.body);
 	            }
 	            var fetchAPI = function fetchAPI(url) {
-	                return (0, _fns.timeout)(15000, _this4.options.fetch(url, (0, _fns.merge)({}, {
+	                return timeout(15000, _this4.options.fetch(url, merge({}, {
 	                    headers: Object.assign({
 	                        Accept: 'application/json',
 	                        'Content-Type': 'application/json'
-	                    }, (0, _fns.omitBy)({
+	                    }, omitBy({
 	                        'X-Real-IP': _this4._realIP,
 	                        'X-Forwarded-For': _this4._forwardedFor
-	                    }, _fns.isNil))
+	                    }, isNil))
 	                }, request)), { code: null, message: '与服务器连接失败，请稍后重试...' }).then(_this4.options.parse).then(function (_ref) {
 	                    var json = _ref.json;
 	                    var response = _ref.response;
@@ -789,14 +773,14 @@ module.exports =
 	                    sync: 2,
 	                    force: true
 	                });
-	                return dataCache.get(fullUrl, { sync: (0, _fns.isNil)(sync) ? 2 : sync });
+	                return dataCache.get(fullUrl, { sync: isNil(sync) ? 2 : sync });
 	            }
 	            return fetchAPI(fullUrl);
 	        }
 	    }, {
 	        key: 'generateURL',
 	        value: function generateURL(router) {
-	            var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            options.sdkVersion = options.sdkVersion || this.sdkVersion;
 	            options.egnVersion = options.egnVersion || this.egnVersion;
@@ -805,12 +789,12 @@ module.exports =
 	            options.forumKey = options.forumKey || this._forumKey;
 	            options.apphash = generateHash();
 
-	            return this.path + '?r=' + router + '&' + (0, _fns.raw)(options);
+	            return this.path + '?r=' + router + '&' + raw(options);
 	        }
 	    }, {
 	        key: 'clearCache',
 	        value: function clearCache(endpoint) {
-	            var request = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	            var request = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 	            var options = arguments[2];
 
 	            var fullUrl = this.generateURL(endpoint, options);
@@ -853,7 +837,7 @@ module.exports =
 	    return API;
 	}();
 
-	exports.default = API;
+	module.exports = API;
 
 /***/ },
 /* 2 */
@@ -861,20 +845,11 @@ module.exports =
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.timeout = exports.merge = exports.omitBy = exports.isNil = exports.raw = exports.md5 = exports.dateFormat = undefined;
+	var md5Fn = __webpack_require__(3);
 
-	var _blueimpMd = __webpack_require__(3);
-
-	var _blueimpMd2 = _interopRequireDefault(_blueimpMd);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var dateFormat = exports.dateFormat = function dateFormat(date) {
-	    var format = arguments.length <= 1 || arguments[1] === undefined ? 'yyyy-MM-dd hh:mm-ss' : arguments[1];
-	    var readability = arguments.length <= 2 || arguments[2] === undefined ? true : arguments[2];
+	exports.dateFormat = function (date) {
+	    var format = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'yyyy-MM-dd hh:mm-ss';
+	    var readability = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
 	    if (typeof date === 'string' && /^\d+$/.test(date)) {
 	        date = new Date(+date);
@@ -917,21 +892,21 @@ module.exports =
 	    return format;
 	};
 
-	var md5 = exports.md5 = function md5(str) {
-	    return (0, _blueimpMd2.default)(str);
+	exports.md5 = function (str) {
+	    return md5Fn(str);
 	};
 
-	var raw = exports.raw = function raw(args, up) {
+	exports.raw = function (args, up) {
 	    return Object.keys(args).sort().reduce(function (a, b) {
 	        return a + '&' + (up ? b.toLowerCase() : b) + '=' + args[b];
 	    }, '').slice(1);
 	};
 
-	var isNil = exports.isNil = function isNil(v) {
+	exports.isNil = function (v) {
 	    return v == null;
 	};
 
-	var omitBy = exports.omitBy = function omitBy(obj, predicate) {
+	exports.omitBy = function (obj, predicate) {
 	    var newObj = {};
 	    for (var key in obj) {
 	        if (!predicate(obj[key], key)) {
@@ -941,11 +916,11 @@ module.exports =
 	    return newObj;
 	};
 
-	var merge = exports.merge = function merge(destination, source) {
+	exports.merge = function (destination, source) {
 	    for (var property in source) {
 	        if (source[property] && source[property].constructor && source[property].constructor === Object) {
 	            destination[property] = destination[property] || {};
-	            merge(destination[property], source[property]);
+	            exports.merge(destination[property], source[property]);
 	        } else {
 	            destination[property] = source[property];
 	        }
@@ -953,8 +928,8 @@ module.exports =
 	    return destination;
 	};
 
-	var timeout = exports.timeout = function timeout(ms, promise) {
-	    var err = arguments.length <= 2 || arguments[2] === undefined ? new Error('timeout') : arguments[2];
+	exports.timeout = function (ms, promise) {
+	    var err = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new Error('timeout');
 	    return new Promise(function (resolve, reject) {
 	        setTimeout(function () {
 	            reject(err);
@@ -1252,165 +1227,6 @@ module.exports =
 
 /***/ },
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var indexOf = __webpack_require__(5);
-
-	var Object_keys = function (obj) {
-	    if (Object.keys) return Object.keys(obj)
-	    else {
-	        var res = [];
-	        for (var key in obj) res.push(key)
-	        return res;
-	    }
-	};
-
-	var forEach = function (xs, fn) {
-	    if (xs.forEach) return xs.forEach(fn)
-	    else for (var i = 0; i < xs.length; i++) {
-	        fn(xs[i], i, xs);
-	    }
-	};
-
-	var defineProp = (function() {
-	    try {
-	        Object.defineProperty({}, '_', {});
-	        return function(obj, name, value) {
-	            Object.defineProperty(obj, name, {
-	                writable: true,
-	                enumerable: false,
-	                configurable: true,
-	                value: value
-	            })
-	        };
-	    } catch(e) {
-	        return function(obj, name, value) {
-	            obj[name] = value;
-	        };
-	    }
-	}());
-
-	var globals = ['Array', 'Boolean', 'Date', 'Error', 'EvalError', 'Function',
-	'Infinity', 'JSON', 'Math', 'NaN', 'Number', 'Object', 'RangeError',
-	'ReferenceError', 'RegExp', 'String', 'SyntaxError', 'TypeError', 'URIError',
-	'decodeURI', 'decodeURIComponent', 'encodeURI', 'encodeURIComponent', 'escape',
-	'eval', 'isFinite', 'isNaN', 'parseFloat', 'parseInt', 'undefined', 'unescape'];
-
-	function Context() {}
-	Context.prototype = {};
-
-	var Script = exports.Script = function NodeScript (code) {
-	    if (!(this instanceof Script)) return new Script(code);
-	    this.code = code;
-	};
-
-	Script.prototype.runInContext = function (context) {
-	    if (!(context instanceof Context)) {
-	        throw new TypeError("needs a 'context' argument.");
-	    }
-	    
-	    var iframe = document.createElement('iframe');
-	    if (!iframe.style) iframe.style = {};
-	    iframe.style.display = 'none';
-	    
-	    document.body.appendChild(iframe);
-	    
-	    var win = iframe.contentWindow;
-	    var wEval = win.eval, wExecScript = win.execScript;
-
-	    if (!wEval && wExecScript) {
-	        // win.eval() magically appears when this is called in IE:
-	        wExecScript.call(win, 'null');
-	        wEval = win.eval;
-	    }
-	    
-	    forEach(Object_keys(context), function (key) {
-	        win[key] = context[key];
-	    });
-	    forEach(globals, function (key) {
-	        if (context[key]) {
-	            win[key] = context[key];
-	        }
-	    });
-	    
-	    var winKeys = Object_keys(win);
-
-	    var res = wEval.call(win, this.code);
-	    
-	    forEach(Object_keys(win), function (key) {
-	        // Avoid copying circular objects like `top` and `window` by only
-	        // updating existing context properties or new properties in the `win`
-	        // that was only introduced after the eval.
-	        if (key in context || indexOf(winKeys, key) === -1) {
-	            context[key] = win[key];
-	        }
-	    });
-
-	    forEach(globals, function (key) {
-	        if (!(key in context)) {
-	            defineProp(context, key, win[key]);
-	        }
-	    });
-	    
-	    document.body.removeChild(iframe);
-	    
-	    return res;
-	};
-
-	Script.prototype.runInThisContext = function () {
-	    return eval(this.code); // maybe...
-	};
-
-	Script.prototype.runInNewContext = function (context) {
-	    var ctx = Script.createContext(context);
-	    var res = this.runInContext(ctx);
-
-	    forEach(Object_keys(ctx), function (key) {
-	        context[key] = ctx[key];
-	    });
-
-	    return res;
-	};
-
-	forEach(Object_keys(Script.prototype), function (name) {
-	    exports[name] = Script[name] = function (code) {
-	        var s = Script(code);
-	        return s[name].apply(s, [].slice.call(arguments, 1));
-	    };
-	});
-
-	exports.createScript = function (code) {
-	    return exports.Script(code);
-	};
-
-	exports.createContext = Script.createContext = function (context) {
-	    var copy = new Context();
-	    if(typeof context === 'object') {
-	        forEach(Object_keys(context), function (key) {
-	            copy[key] = context[key];
-	        });
-	    }
-	    return copy;
-	};
-
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	
-	var indexOf = [].indexOf;
-
-	module.exports = function(arr, obj){
-	  if (indexOf) return arr.indexOf(obj);
-	  for (var i = 0; i < arr.length; ++i) {
-	    if (arr[i] === obj) return i;
-	  }
-	  return -1;
-	};
-
-/***/ },
-/* 6 */
 /***/ function(module, exports) {
 
 	
