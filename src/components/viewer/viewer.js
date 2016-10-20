@@ -25,6 +25,7 @@ const ForumlistCard = require('../forumlistcard/forumlistcard')
 const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
 const Talk = require('../talk/talk')
 const Custom = require('../custom/custom')
+const NotSupport = require('../notsupport/notsupport')
 
 
 components.type['moduleRef-flat'] = Module
@@ -55,6 +56,8 @@ components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
 components.type['custom-flat'] = Custom
+components.type['not-support'] = NotSupport
+components.type['newlivelist-flat'] = NotSupport
 
 components.template['subnav-subnavTopbar'] = 'subnavtopbar'
 components.template['layout-layoutSubnavFlat'] = 'subnavflat'
@@ -84,6 +87,8 @@ components.template['forumlist-card'] = 'forumlistcard'
 components.template['forumlist-boardSplit'] = 'forumlistsplit'
 components.template['talk-flat'] = 'talk'
 components.template['custom-flat'] = 'custom'
+components.template['not-support'] = 'notsupport'
+components.template['newlivelist-flat'] = 'notsupport'
 // topiclistSimple-flat
 
 const checkHasScroll = (module) => {

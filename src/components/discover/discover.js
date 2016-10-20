@@ -5,7 +5,6 @@ const app = getApp()
 function Discover(key, module) {
     Component.call(this, key)
     var childrenModule = {} 
-    console.log(')))))', module)
     module.componentList.forEach((m) => {
         // 只有当style discoverCustom 时读取自组建
         if(m.style === 'discoverCustom') {
