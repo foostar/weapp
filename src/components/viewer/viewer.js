@@ -59,6 +59,7 @@ components.type['layout-layoutTransparent'] = LayoutTransparent
 components.type['layout-layoutSeparator'] = LayoutSeparator
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
+components.type['topiclistSimple-card'] = TopiclistSimple
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk

@@ -25,8 +25,6 @@
         </view>
     </view>
 </template>
-
-
 <!-- cell-flat -->
 <template name="flat">
     <view class="cell-flat">
@@ -53,6 +51,33 @@
             <text class="cell-flat-info-time">{{last_reply_date}}</text>
             <text class="cell-flat-info-author">{{user_nick_name}}</text>
             <text class="hits">{{hits}}阅读</text>
+        </view>
+    </view>
+</template>
+<!-- card -->
+<template name="card">
+    <view class="cell-card" bindtap="clickItem" id="{{id}}">
+        <view class="cell-card-header">
+            <view>
+                <image class="cell-card-header-avatar" src="{{userAvatar}}" />
+                <view class="cell-card-header-meta">
+                    <text>{{user_nick_name}}</text>
+                    <text class="cell-card-header-time">{{last_reply_date}}</text>
+                </view>
+            </view>
+            <view class="cell-card-title">{{title}}</view>
+        </view>
+        <view class="cell-card-content">{{subject}}</view>
+        <view class="cell-card-thumb" wx:if="{{imageList.length > 0}}">
+            <block wx:for="{{imageList}}">
+                <view wx:if="{{index < 3}}" class="cell-card-thumb-container">
+                    <image src="{{item}}" mode="aspectFill"></image>
+                </view>
+            </block>
+        </view>
+        <view class="cell-card-status">
+            <text class="hits">{{hits}}</text>
+            <text class="replies">{{replies}}</text>
         </view>
     </view>
 </template>

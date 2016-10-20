@@ -16,25 +16,23 @@ Page(createPage({
     onLoad(data) {
         const { moduleId } = data // 存导航栏标题, onReady 再设置
         const module = app.globalData.modules[moduleId]
-        const { title } = module
+        console.log(module)
         this.add(new Viewer('viewer', module))
         this.setData({
             module,
-            title,
             appIcon: app.globalData.info.appIcon,
             appColor: app.globalData.info.appColor
         })
     },
     onReady() {
-        var self = this
-        wx.setNavigationBarTitle({
-            title: self.data.title
-        })
     },
     goToTop() {
         this.setData({
             // scrollTop:    0
             toView: 'top'
         })
+    },
+    clickItem(e) {
+        app.showPost(e.currentTarget.id)
     }
 }))

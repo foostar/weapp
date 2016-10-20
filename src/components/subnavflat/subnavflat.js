@@ -10,7 +10,6 @@ function SubnavFlat(key, module) {
     module.componentList.forEach((x) => {
         modules[x.id] = x
     })
-
     const tabs = module.componentList.map((x) => {
         return {
             id: x.id,
@@ -37,7 +36,7 @@ SubnavFlat.prototype.switchTab = function (event) {
         index,
         selected: id
     })
-    this.children[`m_${id}`].load()
+    // this.children[`m_${id}`].load()
 }
 
 module.exports = SubnavFlat
