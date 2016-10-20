@@ -2,6 +2,8 @@
   "pages":[
     "pages/loading/loading",
     "pages/index/index",
+    "pages/changepassword/changepassword",
+    "pages/blank/blank",
     "pages/regular-pages/forum/forum",
     "pages/regular-pages/topic-list/topic-list",
     "pages/regular-pages/create-forum/create-forum",
@@ -16,9 +18,9 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#50920A",
     "navigationBarTitleText": "加载中...",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle":"white",
     "backgroundColor":"#3f3f3f"
   }
 }

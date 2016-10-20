@@ -1,5 +1,5 @@
 @import "../module/module.wxss";
-
+@import '../../resetcss/reset.wxss';
 .viewer {
     width: 100%;
     overflow: hidden;

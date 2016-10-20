@@ -1,7 +1,9 @@
 const Component = require('../../lib/component')
 const components = require('../../lib/components')
 
-function SubnavFlat(key, module) {
+const app = getApp()
+
+function CustomTagNav(key, module) {
     Component.call(this, key)
 
     module.componentList.forEach((m) => {
@@ -13,7 +15,6 @@ function SubnavFlat(key, module) {
     module.componentList.forEach((x) => {
         modules[x.id] = x
     })
-    console.log("navflatmodules", modules)
     this.data = {
         components: components.template,
         selected: module.componentList[0].id,
@@ -27,16 +28,19 @@ function SubnavFlat(key, module) {
     }
 }
 
-SubnavFlat.prototype = Object.create(Component.prototype)
-SubnavFlat.prototype.name = 'subnavflat'
-SubnavFlat.prototype.constructor = SubnavFlat
+CustomTagNav.prototype = Object.create(Component.prototype)
+CustomTagNav.prototype.name = 'customtagnav'
+CustomTagNav.prototype.constructor = CustomTagNav
 
-SubnavFlat.prototype.switchTab = function (event) {
-    const id = event.currentTarget.dataset.id
+CustomTagNav.prototype.changeTap = function (event) {
+    console.log(event.target.dataset)
+    if (!event.target.dataset.role) return
+    const id = event.target.dataset.id
     this.setData({
         selected: id
     })
     this.children[`m_${id}`].load()
 }
 
-module.exports = SubnavFlat
+module.exports = CustomTagNav
+

@@ -1,12 +1,12 @@
 .text-color{
-    color:#51CB78
+    color:#50920A
 }
 .bg-color{
-    background-color:#51CB78
+    background-color:#50920A
 }
 .border-color{
-    border-color:#51CB78
+    border-color:#50920A
 }
 .shadow-color{
-    box-shadow: 3px 3px 5px #51CB78;
+    box-shadow: 3px 3px 5px #50920A;
 }

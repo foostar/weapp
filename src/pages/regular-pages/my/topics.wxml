@@ -1,5 +1,6 @@
 <!-- 帖子列表 -->
 <view wx:if="{{ !isUserList }}">
+    <view wx:if="{{list.length == 0 }}" class="no-content">暂无相关内容</view>
     <block wx:for="{{list}}">
         <view class="topics-item-box" >
             <view class="topics-item-context" style="{{ item.pic_path == '' ? 'width: 100%;' : 'width:auto;'}}">
@@ -22,6 +23,7 @@
 
 <!-- 好友列表 -->
 <view wx:if="{{ isUserList }}">
+    <view wx:if="{{list.length == 0 }}" class="no-content">暂无相关内容</view>
     <block wx:for="{{list}}">
         <view class="user-list-item">
             <view class="user-item-data">

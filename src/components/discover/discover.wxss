@@ -1,3 +1,6 @@
+page {
+    background-color: #efefef;
+}
 .personal-user-card {
     background-color: #fff;
     height: 284rpx;

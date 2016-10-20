@@ -17,9 +17,12 @@ const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
 const ForumlistCard = require('../forumlistcard/forumlistcard')
 const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
 const Talk = require('../talk/talk')
+const DiscoverCustom = require('../discovercustom/discovercustom')
+const CustomTagNav = require('../customtagnav/customtagnav')
 /*
  *   @定义组件类型
  */
+
 components.type['moduleRef-flat'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
 components.type['layout-layoutSubnavFlat'] = SubnavFlat
@@ -36,6 +39,8 @@ components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
+components.type['layout-discoverCustom'] = DiscoverCustom
+components.type['subnav-flat'] = CustomTagNav
 /*
  *   @定义组件模板
  */
@@ -55,9 +60,12 @@ components.template['topiclistSimple-flat'] = 'topiclistsimple'
 components.template['forumlist-card'] = 'forumlistcard'
 components.template['forumlist-boardSplit'] = 'forumlistsplit'
 components.template['talk-flat'] = 'talk'
+components.template['layout-discoverCustom'] = 'discovercustom'
+components.template['subnav-flat'] = 'customtagnav'
 /*
  *   @视图层注册机
  */
+
 function Viewer(key, module) {
     Component.call(this, key)
     this.module = module

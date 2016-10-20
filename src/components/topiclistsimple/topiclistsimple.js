@@ -6,9 +6,12 @@ function TopiclistSimple(key, module) {
     Component.call(this, key)
     app.getResources(module)
         .then(data => {
+            console.log("resources",data)
             this.setData({
                 module,
-                resources: data
+                resources: data,
+                isLoading: true,
+                appIcon: app.globalData.info.appIcon
             })
         })
 }
@@ -16,5 +19,4 @@ function TopiclistSimple(key, module) {
 TopiclistSimple.prototype = Object.create(Component.prototype)
 TopiclistSimple.prototype.name = 'topiclistsimple'
 TopiclistSimple.prototype.constructor = TopiclistSimple
-
 module.exports = TopiclistSimple

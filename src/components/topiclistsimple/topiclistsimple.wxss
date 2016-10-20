@@ -1,3 +1,65 @@
+/* ========== forum-info ========== */
+.forum-info-container{
+    background:#fff;
+    border-bottom:2rpx solid #ddd;
+    padding:30rpx;
+    box-sizing:border-box;
+    display:flex;
+    justify-content:space-between;
+    
+}
+.foruminfo-icon,.foruminfo-icon image{
+    width:110rpx;
+    height:110rpx;
+    border-radius:5px;
+}
+.foruminfo-content{
+    flex:1;
+    padding-left:25rpx;
+}
+.foruminfo-forumname{
+    color:#000;
+    margin-bottom:8rpx;
+}
+.foruminfo-meta text{
+    margin-left:10rpx;
+}
+.foruminfo-meta,.foruminfo-des{
+    line-height:30rpx;
+}
+.foruminfo-meta,.foruminfo-des,.foruminfo-meta text{
+    color:#a4a4a4
+}
+.foruminfo-handler{
+    color:#fff;
+    display:inline-block;
+    padding:0rpx 20rpx;
+    height:65rpx;
+    line-height:65rpx;
+    border-radius:5px;
+    box-sizing:border-box;
+    background-color:#a4a4a4
+}
+.stick-container{
+    background:#fff;
+}
+.stick-item{
+    display:flex;
+    padding:8rpx 20rpx;
+    line-height:45rpx;
+    border-bottom:2rpx solid #ddd;
+}
+.stick-tag{
+    padding:0 12rpx;
+    color:#fff;
+    height:40rpx;
+    line-height:42rpx;
+    margin-right:20rpx;
+    border-radius:5px;
+}
+.liststyle-container{
+    margin-top:30rpx
+}
 /* ========== cell-tieba ========== */
 .cell-tieba {
     width: 100%;

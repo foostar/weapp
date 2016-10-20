@@ -98,6 +98,9 @@ Page({
         app.api.checkMobileCode(mobile, verify)
             .then(res => {
                 console.log('检测手机和验证码', res)
+                this.setData({
+                    isVerify: true
+                })
             })
             .catch(err => {
                 if(parseInt(err.status) / 100 == 4) {
@@ -131,7 +134,19 @@ Page({
     signup(e){
         const {username, password, email} = e.detail.value
         app.api.signup(username, password, email)
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+                app.globalData.userInfo = res
+                app.api.token = res.token
+                app.api.secret = res.secret
+                app.event.trigger('login', res)
+                try {
+                    wx.setStorageSync('userInfo', res)
+                    wx.navigateBack()
+                } catch (err) { 
+                    console.log(err)
+                }
+            })
             .catch(err => {
                 if(parseInt(err.status) / 100 == 4) {
                     this.setData({
