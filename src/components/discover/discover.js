@@ -1,28 +1,29 @@
 const Component = require('../../lib/component')
 const components = require('../../lib/components')
+
 const app = getApp()
 
 function Discover(key, module) {
     Component.call(this, key)
-    var childrenModule = {} 
+    var childrenModule = {}
     module.componentList.forEach((m) => {
+
         // 只有当style discoverCustom 时读取自组建
-        if(m.style === 'discoverCustom') {
+        if (m.style === 'discoverCustom') {
             m.id = 'discoverCustom'
             this.add(components.create(m))
             childrenModule = m
         }
     })
-
     // 我的 page 的 data
     this.data = {
         module: childrenModule,
         components: components.template,
         isWallet: true,
         isLogin: false,
-        tabs:[],
-        userInfo:{},
-        setting:{},
+        tabs: [],
+        userInfo: {},
+        setting: {},
         modalHidden: true
     }
 }
@@ -52,7 +53,7 @@ Discover.prototype.onLoad = function () {
     app.event.on('login', userInfo => {
         this.setData({
             isLogin: true,
-            userInfo: userInfo
+            userInfo
         })
     })
     wx.setNavigationBarTitle({
@@ -60,9 +61,9 @@ Discover.prototype.onLoad = function () {
     })
 }
 Discover.prototype.toLogin = function () {
-    if (!this.data.isLogin){
+    if (!this.data.isLogin) {
         wx.navigateTo({
-            url:'/pages/regular-pages/login/login'
+            url: '/pages/regular-pages/login/login'
         })
     }
 }
@@ -71,7 +72,7 @@ Discover.prototype.toLogin = function () {
     // 跳转到设置页
 Discover.prototype.toSetting = function () {
     wx.navigateTo({
-        url:'/pages/regular-pages/setting/setting'
+        url: '/pages/regular-pages/setting/setting'
     })
 }
     // 改变全局的moduleId
@@ -113,19 +114,18 @@ Discover.prototype.toNavigationPage = function (e) {
             })
         }
         wx.navigateTo({
-            url: '/pages/regular-pages/my/topics?type='+typePage
+            url: `/pages/regular-pages/my/topics?type=${typePage}`
         })
     } else {
         wx.navigateTo({
             url: '/pages/regular-pages/login/login'
         })
-    } 
+    }
 }
     // 跳到用户主页
 Discover.prototype.toUserHome = function (e) {
     wx.navigateTo({
-        url: '/pages/regular-pages/user-home/user-home?uid=' + e.currentTarget.dataset.uid
+        url: `/pages/regular-pages/user-home/user-home?uid=${e.currentTarget.dataset.uid}`
     })
 }
-
 module.exports = Discover

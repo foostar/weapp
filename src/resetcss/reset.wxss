@@ -8,5 +8,5 @@
     border-color:#51CB78 !important;
 }
 .shadow-color{
-    box-shadow: 3px 3px 5px #51CB78;
+    box-shadow: 3px 3px 5px #50920A;
 }

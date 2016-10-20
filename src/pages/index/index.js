@@ -42,5 +42,8 @@ Page(createPage({
             module,
             tabSelected: index
         })
+    },
+    clickItem(e) {
+        app.showPost(e.currentTarget.id)
     }
 }))

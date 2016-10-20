@@ -20,5 +20,9 @@ DiscoverCustom.prototype.constructor = DiscoverCustom
 DiscoverCustom.prototype.onLoad = function () {
 
 }
-
+DiscoverCustom.prototype.toNavigationPage = function (e) {
+    wx.navigateTo({
+        url: `/pages/blank/blank?moduleId=${e.target.dataset.id}`
+    })
+}
 module.exports = DiscoverCustom

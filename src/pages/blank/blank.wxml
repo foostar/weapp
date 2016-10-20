@@ -1,0 +1,4 @@
+<import src="../../components/viewer/viewer.wxml" />
+<view class="ui-container">
+    <template is="viewer" data="{{...children.viewer, module}}"></template>
+</view>

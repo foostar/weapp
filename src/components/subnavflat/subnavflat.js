@@ -17,7 +17,6 @@ function SubnavFlat(key, module) {
             title: x.title
         }
     })
-
     this.data = {
         index: 0,
         width: `${100 / tabs.length}%`,

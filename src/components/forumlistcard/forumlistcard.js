@@ -9,6 +9,7 @@ function ForumlistCard(key) {
         const { list } = res
         list.forEach((boardCategory) => {
             boardCategory.board_list.forEach((board) => {
+                console.log(board)
                 board.url = `/pages/regular-pages/forum/forum?boardId=${board.board_id}&title=${board.board_name}`
                 board.last_posts_date = formatTime(board.last_posts_date)
             })

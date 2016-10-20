@@ -1,0 +1,28 @@
+.customtag-wapper{
+    display:flex;
+    overflow:hidden;
+    height:100%;
+    flex-direction: column;
+}
+.customtag-box{
+    width:100%;
+    height:90rpx;
+    white-space:nowrap;
+    background:#fff;
+    flex:0;
+}
+.customtag-item{
+    display:inline-block;
+    width:25%;
+    height:90rpx;
+    text-align: center;
+    line-height:90rpx;
+    box-sizing:border-box;
+}
+.customtag-content{
+    flex:1;
+    overflow:hidden;
+}
+.customtag-box .active{
+    border-bottom:5rpx solid currentColor;
+}

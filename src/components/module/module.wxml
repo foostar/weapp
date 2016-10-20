@@ -90,6 +90,10 @@
     <include src="../talk/talk.wxml" />
 </template>
 
+<template name="customtagnav">
+    <include src="../customtagnav/customtagnav.wxml" />
+</template>
+
 <template name="custom">
     <include src="../custom/custom.wxml" />
 </template>

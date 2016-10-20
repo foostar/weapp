@@ -16,7 +16,9 @@ function TopiclistSimple(key, module) {
         })
         this.setData({
             module,
-            resources: data
+            resources: data,
+            isLoading: true,
+            appIcon: app.globalData.info.appIcon
         })
     })
 }
@@ -24,5 +26,7 @@ function TopiclistSimple(key, module) {
 TopiclistSimple.prototype = Object.create(Component.prototype)
 TopiclistSimple.prototype.name = 'topiclistsimple'
 TopiclistSimple.prototype.constructor = TopiclistSimple
-
+TopiclistSimple.prototype.clickItem = function (e) {
+    app.showPost(e.currentTarget.id)
+}
 module.exports = TopiclistSimple

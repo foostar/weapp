@@ -16,7 +16,7 @@
 @import "../layoutline/layoutline.wxss";
 @import "../topiclistsimple/topiclistsimple.wxss";
 @import "../talk/talk.wxss";
+@import "../customtagnav/customtagnav.wxss";
 @import "../subnavcustom/subnavcustom.wxss";
 @import "../messagelistflat/messagelistflat.wxss";
 @import "../notsupport/notsupport.wxss";
-
