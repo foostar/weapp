@@ -2,9 +2,9 @@
 
 <template name="viewer">
     <view wx:if="{{hasScroll}}" class="viewer">
-        <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], key: 'm_' + module.id}}" />
+        <template is="{{children[module.id].template}}" data="{{...children[module.id]}}" />
     </view>
     <scroll-view wx:else class="viewer" scroll-y>
-        <template is="{{components[module.type + '-' + module.style]}}" wx:if="{{!!module}}" data="{{...children['m_' + module.id], key: 'm_' + module.id}}" />
+        <template is="{{children[module.id].template}}" data="{{...children[module.id]}}" />
     </scroll-view>
 </template>

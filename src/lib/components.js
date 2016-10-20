@@ -10,6 +10,6 @@ module.exports = {
             console.warn(`${typeName} 暂不支持`)
             return null
         }
-        return new Class(`m_${module.id}`, module)
+        return new Class(module.id, module)
     }
 }

@@ -2,6 +2,6 @@
 
 <view class="layouttransparent">
     <block wx:for="{{componentList}}">
-        <template is="{{components[item.type + '-' + item.style]}}" data="{{...children['m_' + item.id], key: 'm_' + item.id}}" />
+        <template is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
     </block>
 </view>
