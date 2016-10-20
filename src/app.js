@@ -35,8 +35,15 @@ App({
                         success: resolve,
                         error: reject
                     })
+                }).then((result) => {
+                    requestNum -= 1
+                    return result
+                }, (err) => {
+                    requestNum -= 1
+                    return Promise.reject(err)
                 })
                 requestNum += 1
+                console.log(requestNum, queue)
                 if (requestNum >= 5) {
                     return new Promise((resolve, reject) => {
                         queue.push({
@@ -48,10 +55,14 @@ App({
                 }
                 const promise = request()
                 promise.then(() => {
-                    requestNum -= 1
                     if (queue.length) {
                         const d = queue.shift()
                         d.request().then(d.resolve, d.reject)
+                    }
+                }, (err) => {
+                    if (queue.length) {
+                        const d = queue.shift()
+                        d.reject(err)
                     }
                 })
                 return promise

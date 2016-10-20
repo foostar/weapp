@@ -11,7 +11,6 @@ function SubnavFlat(key, module) {
     module.componentList.forEach((x) => {
         modules[x.id] = x
     })
-
     const tabs = module.componentList.map((x) => {
         return {
             id: x.id,
