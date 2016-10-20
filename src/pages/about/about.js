@@ -2,15 +2,14 @@ var app = getApp()
 
 Page({
     data: {
-        info:{}
+        info: {}
     },
     onLoad() {
-        console.log(app)
         this.setData({
             info: app.globalData.info
         })
     },
-    onReady(){
+    onReady() {
         wx.setNavigationBarTitle({
             title: '关于'
         })

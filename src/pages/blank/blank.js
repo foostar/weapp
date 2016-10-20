@@ -32,7 +32,6 @@ Page(createPage({
         })
     },
     goToTop() {
-        console.log('触发 scrolltoupper 事件')
         this.setData({
             // scrollTop:    0
             toView: 'top'

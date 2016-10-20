@@ -10,7 +10,7 @@ NotSupport.prototype.constructor = NotSupport
 
 NotSupport.prototype.onLoad = function () {
     wx.setNavigationBarTitle({
-        title:''
+        title: ''
     })
 }
 

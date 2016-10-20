@@ -1,11 +1,7 @@
 const Component = require('../../lib/component')
-const components = require('../../lib/components')
-const app = getApp()
 
-function MessagelistFlat(key, module) {
+function MessagelistFlat(key) {
     Component.call(this, key)
-    
-
 }
 
 MessagelistFlat.prototype = Object.create(Component.prototype)

@@ -26,7 +26,7 @@
     "test:lint": "npm run test:srclint",
     "test:srclint": "eslint src --ext '.js'"
   },
-  "precommit": [],
+  "precommit": ["test"],
   "repository": {
     "type": "git",
     "url": "git@git.yunpro.cn:yunmi/weapp.git"

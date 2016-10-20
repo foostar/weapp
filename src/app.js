@@ -61,7 +61,9 @@ App({
         // 处理自定义页面的ID问题
         const custom = api.custom
         api.custom = function () {
+            /* eslint-disable */
             return custom.apply(api, arguments).then((data) => {
+            /* eslint-enable */
                 data.body.module.componentList.forEach(completeId)
                 return data
             })

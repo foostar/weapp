@@ -1,16 +1,11 @@
 const Component = require('../../lib/component')
-const components = require('../../lib/components')
-const app = getApp()
 
 function DiscoverCustom(key, module) {
     Component.call(this, key)
-    console.log('hahahah',module)
-    module.componentList.map((m) => {
-        this.add(components.create(m))
-    })
+    this.addByModule(module.componentList)
     this.data = {
-        list : module.componentList
-    } 
+        list: module.componentList
+    }
 }
 
 DiscoverCustom.prototype = Object.create(Component.prototype)
