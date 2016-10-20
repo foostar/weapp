@@ -2,6 +2,9 @@
     width: 100%;
     height: 380rpx;
 }
+.layout-slider.layoutSlider_Mid {
+    height: 300rpx;
+}
 .layout-slider image {
     width: 100%;
     height: 100%;

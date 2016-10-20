@@ -1,3 +1,7 @@
+.forumlistsplit {
+    display: flex;
+    height: 100%;
+}
 .boardSplit-title{
     width:200rpx;
     box-shadow:3rpx 3rpx 5rpx #ccc;

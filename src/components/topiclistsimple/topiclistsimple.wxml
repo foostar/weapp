@@ -4,19 +4,19 @@
     加载中...
 </loading>
 <!--  -->
-<view wx:if="{{resources[module.id].forumInfo}}" class="forum-info-container">
+<view wx:if="{{resources.forumInfo}}" class="forum-info-container">
     <view class="foruminfo-icon">
         <image src="{{appIcon}}"/>
     </view>
     <view class="foruminfo-content">
-        <view class="foruminfo-forumname font-wide">{{resources[module.id].forumInfo.title}}</view>
-        <view class="foruminfo-meta font-mini">主题：{{resources[module.id].forumInfo.posts_total_num }}  <text>今日：{{resources[module.id].forumInfo.td_posts_num}}</text></view>
-        <view class="foruminfo-des font-mini">{{resources[module.id].forumInfo.description}}</view>
+        <view class="foruminfo-forumname font-wide">{{resources.forumInfo.title}}</view>
+        <view class="foruminfo-meta font-mini">主题：{{resources.forumInfo.posts_total_num }}  <text>今日：{{resources.forumInfo.td_posts_num}}</text></view>
+        <view class="foruminfo-des font-mini">{{resources.forumInfo.description}}</view>
     </view>
-    <view class="foruminfo-handler font-mini {{resources[module.id].forumInfo.is_focus == 1 ? '' : 'bg-color'}}">{{resources[module.id].forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
+    <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}">{{resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
 </view>
-<view wx:if="{{!!resources[module.id].topTopicList}}" class="stick-container font-mini">
-    <block wx:for="{{resources[module.id].topTopicList}}">
+<view wx:if="{{!!resources.topTopicList}}" class="stick-container font-mini">
+    <block wx:for="{{resources.topTopicList}}">
         <view data-id="{{item.id}}" class="stick-item">
             <view class="stick-tag bg-color">置顶</view>
             <view class="stick">{{item.title}}</view>
@@ -24,7 +24,11 @@
     </block>
 </view>
 <view class="liststyle-container">
-    <block wx:for="{{resources[module.id].list}}">
+    <block wx:for="{{resources.list}}">
         <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
     </block>
 </view>
+
+<block wx:for="{{resources.list}}">
+    <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
+</block>

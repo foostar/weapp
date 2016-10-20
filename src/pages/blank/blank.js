@@ -15,7 +15,7 @@ Page(createPage({
     },
     onLoad(data) {
         const { moduleId } = data // 存导航栏标题, onReady 再设置
-        const module = app.getModule(moduleId)
+        const module = app.globalData.modules[moduleId]
         const { title } = module
         this.add(new Viewer('viewer', module))
         this.setData({

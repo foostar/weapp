@@ -4,7 +4,6 @@ Page({
         isLogin:false,
     },
     onLoad(){
-        console.log(app)
         if(app.globalData.userInfo){
             this.setData({
                 isLogin:true
@@ -28,9 +27,8 @@ Page({
     toNavigationPage(e) {
         var typePage = e.currentTarget.dataset.page
         console.log(typePage)
-
         wx.navigateTo({
-            url:`/pages/${typePage}/${typePage}`
+            url: `/pages/${typePage}/${typePage}`
         })
     },
 

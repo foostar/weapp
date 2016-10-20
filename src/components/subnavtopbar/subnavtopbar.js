@@ -1,12 +1,9 @@
 const Component = require('../../lib/component')
-const components = require('../../lib/components')
 
 function SubnavTopbar(key, module) {
     Component.call(this, key)
 
-    module.componentList.forEach((m) => {
-        this.add(components.create(m))
-    })
+    this.addByModule(module.componentList)
 
     const modules = {}
 
@@ -14,7 +11,6 @@ function SubnavTopbar(key, module) {
         modules[x.id] = x
     })
     this.data = {
-        components: components.template,
         selected: module.componentList[0].id,
         modules,
         tabs: module.componentList.map((x) => {
@@ -36,30 +32,6 @@ SubnavTopbar.prototype.changeTap = function (event) {
         selected: id
     })
     this.children[`m_${id}`].load()
-    // var self = this
-    // this.setData({
-    //     activeModule: self.data.module.componentList[event.target.dataset.id]
-    // })
-    // if (event.target.dataset.type !== 'moduleRef') {
-    //     return app.getResources(event.target.dataset.id).then((resources) => {
-    //         this.setData({
-    //             resources,
-    //             templateResources: resources,
-    //             nestModule: {},
-    //             isLoading: true
-    //         })
-    //     })
-    // }
-    // const getResources = app.getResources(event.target.dataset.moduleId)
-    // const nestModule = app.getModule(event.target.dataset.moduleId)
-    // getResources.then((resources) => {
-    //     return this.setData({
-    //         resources,
-    //         templateResources: resources,
-    //         nestModule,
-    //         isLoading: true
-    //     })
-    // })
 }
 
 module.exports = SubnavTopbar

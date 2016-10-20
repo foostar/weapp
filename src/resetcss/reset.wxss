@@ -1,11 +1,11 @@
 .text-color{
-    color:#50920A
+    color:#51CB78 !important;
 }
 .bg-color{
-    background-color:#50920A
+    background-color:#51CB78 !important;
 }
 .border-color{
-    border-color:#50920A
+    border-color:#51CB78 !important;
 }
 .shadow-color{
     box-shadow: 3px 3px 5px #50920A;

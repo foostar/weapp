@@ -106,9 +106,13 @@ Discover.prototype.logout = function () {
 }
 // 跳转网页
 Discover.prototype.toNavigationPage = function (e) {
-    var typePage = e.target.dataset.page
-    console.log(e)
+    var typePage = e.currentTarget.dataset.page
     if (this.data.isLogin) {
+        if(typePage == 'myInfo') {
+            return wx.navigateTo({
+                url: '/pages/regular-pages/my-info/my-info'
+            })
+        }
         wx.navigateTo({
             url: `/pages/regular-pages/my/topics?type=${typePage}`
         })

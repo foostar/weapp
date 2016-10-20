@@ -1,7 +1,11 @@
 const Component = require('../../lib/component')
+const CONFIG = require('../../config')
 
 function Tabbar(key) {
     Component.call(this, key)
+    this.data = {
+        color: CONFIG.COLOR
+    }
 }
 
 Tabbar.prototype = Object.create(Component.prototype)

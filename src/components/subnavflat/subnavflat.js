@@ -1,29 +1,28 @@
 const Component = require('../../lib/component')
-const components = require('../../lib/components')
 
 function SubnavFlat(key, module) {
     Component.call(this, key)
 
-    module.componentList.forEach((m) => {
-        this.add(components.create(m))
-    })
+    this.addByModule(module.componentList)
 
     const modules = {}
 
     module.componentList.forEach((x) => {
         modules[x.id] = x
     })
-    console.log("navflatmodules", modules)
+
+    const tabs = module.componentList.map((x) => {
+        return {
+            id: x.id,
+            title: x.title
+        }
+    })
     this.data = {
-        components: components.template,
+        index: 0,
+        width: `${100 / tabs.length}%`,
         selected: module.componentList[0].id,
         modules,
-        tabs: module.componentList.map((x) => {
-            return {
-                id: x.id,
-                title: x.title
-            }
-        })
+        tabs
     }
 }
 
@@ -33,7 +32,9 @@ SubnavFlat.prototype.constructor = SubnavFlat
 
 SubnavFlat.prototype.switchTab = function (event) {
     const id = event.currentTarget.dataset.id
+    const index = event.currentTarget.dataset.index
     this.setData({
+        index,
         selected: id
     })
     this.children[`m_${id}`].load()

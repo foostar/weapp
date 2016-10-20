@@ -1,0 +1,5 @@
+<view class="layout3coltext">
+    <view class="layout-3-col-text-item" wx:for="{{componentList}}">
+        <text>{{item.title || item.desc}}</text>
+    </view>
+</view>
