@@ -4,30 +4,35 @@
     加载中...
 </loading>
 <!--  -->
-<block wx:if="{{forumInfo}}">
-    <view wx:if="{{resources.forumInfo}}" class="forum-info-container">
-        <view class="foruminfo-icon">
-            <image src="{{appIcon}}"/>
-        </view>
-        <view class="foruminfo-content">
-            <view class="foruminfo-forumname font-wide">{{resources.forumInfo.title}}</view>
-            <view class="foruminfo-meta font-mini">主题：{{resources.forumInfo.posts_total_num }}  <text>今日：{{resources.forumInfo.td_posts_num}}</text></view>
-            <view class="foruminfo-des font-mini">{{resources.forumInfo.description}}</view>
-        </view>
-        <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}"  bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}" data-id="{{resources.forumInfo.id}}" data-focus="{{resources.forumInfo.is_focus}}">{{resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
+<view wx:if="{{resources.forumInfo}}" class="forum-info-container">
+    <view class="foruminfo-icon">
+        <image src="{{appIcon}}"/>
     </view>
-    <view wx:if="{{!!resources.topTopicList}}" class="stick-container font-mini">
-        <block wx:for="{{resources.topTopicList}}">
-            <view data-id="{{item.id}}" class="stick-item">
-                <view class="stick-tag bg-color">置顶</view>
-                <view class="stick">{{item.title}}</view>
-            </view>
-        </block>
-        <view class="stick-item stick-more">更多</view>
+    <view class="foruminfo-content">
+        <view class="foruminfo-forumname font-wide">{{resources.forumInfo.title}}</view>
+        <view class="foruminfo-meta font-mini">主题：{{resources.forumInfo.posts_total_num }}  <text>今日：{{resources.forumInfo.td_posts_num}}</text></view>
+        <view class="foruminfo-des font-mini">{{resources.forumInfo.description}}</view>
     </view>
-</block>
-<view class="liststyle-container {{resources.forumInfo ? '' : 'liststyle-index'}}">
+    <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}">{{resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
+</view>
+<view wx:if="{{!!resources.topTopicList}}" class="stick-container font-mini">
+    <block wx:for="{{resources.topTopicList}}">
+        <view data-id="{{item.id}}" class="stick-item">
+            <view class="stick-tag bg-color">置顶</view>
+            <view class="stick">{{item.title}}</view>
+        </view>
+    </block>
+</view>
+<view class="liststyle-container">
     <block wx:for="{{resources.list}}">
         <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
     </block>
 </view>
+
+<!-- 加载中 -->
+<view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
+<!-- 没有了 -->
+<view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>
+
+
+

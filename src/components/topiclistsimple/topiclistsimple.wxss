@@ -244,3 +244,10 @@
 .cell-flat-info .hits {
     float: right;
 }
+
+.liststyle-foot-title {
+    text-align: center;
+    font-size: 12px;
+    line-height: 80rpx;
+    color: #ccc;
+}

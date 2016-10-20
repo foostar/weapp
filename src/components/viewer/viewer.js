@@ -1,6 +1,7 @@
 const Component = require('../../lib/component')
 const components = require('../../lib/components')
 const Module = require('../module/module')
+const {requestFun} = require('../../utils/util')
 /*
  *   @模块引入
  */
@@ -71,6 +72,8 @@ components.type['newlivelist-flat'] = NotSupport
 
 // topiclistSimple-flat
 
+const app = getApp()
+
 const checkHasScroll = (module) => {
     if (module.type === 'subnav') {
         return true
@@ -90,5 +93,10 @@ function Viewer(key, module) {
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
+
+Viewer.prototype.nextPage = function(){
+    console.log('加载下一页')
+    app.event.trigger('nextPage')
+}
 
 module.exports = Viewer
