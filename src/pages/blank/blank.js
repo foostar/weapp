@@ -14,8 +14,10 @@ Page(createPage({
         appColor: '',
     },
     onLoad(data) {
+        var self = this
         const { moduleId } = data // 存导航栏标题, onReady 再设置
         const module = app.globalData.modules[moduleId]
+        console.log(module)
         const { title } = module
         this.add(new Viewer('viewer', module))
         this.setData({
@@ -23,6 +25,9 @@ Page(createPage({
             title,
             appIcon: app.globalData.info.appIcon,
             appColor: app.globalData.info.appColor
+        })
+        wx.setNavigationBarTitle({
+            title: self.data.title
         })
     },
     onReady() {
@@ -37,5 +42,8 @@ Page(createPage({
             // scrollTop:    0
             toView: 'top'
         })
+    },
+    clickItem(e) {
+        app.showPost(e.currentTarget.id)
     }
 }))

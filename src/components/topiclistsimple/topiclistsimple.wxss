@@ -60,6 +60,9 @@
 .liststyle-container{
     margin-top:30rpx
 }
+.liststyle-index{
+    margin-top:0
+}
 /* ========== cell-tieba ========== */
 .cell-tieba {
     width: 100%;
