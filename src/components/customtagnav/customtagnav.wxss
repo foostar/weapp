@@ -16,6 +16,10 @@
     width:25%;
     height:90rpx;
     text-align: center;
+    overflow:hidden;
+    word-break:break-all;  
+    white-space:nowrap;
+    text-overflow:ellipsis; 
     line-height:90rpx;
     box-sizing:border-box;
 }

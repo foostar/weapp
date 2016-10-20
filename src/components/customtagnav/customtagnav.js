@@ -32,7 +32,7 @@ CustomTagNav.prototype.changeTap = function (event) {
     this.setData({
         selected: id
     })
-    this.children[`m_${id}`].load()
+    // this.children[`m_${id}`].load()
 }
 
 module.exports = CustomTagNav
