@@ -3,8 +3,8 @@ page {
 }
 
 .error-header {
-    width: 240rpx;
-    height: 240rpx;
+    width: 400rpx;
+    height: 300rpx;
     display: block;
     margin: 80rpx auto;
     background-position: center;
