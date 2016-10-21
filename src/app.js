@@ -19,12 +19,19 @@ App({
 
         let queue = []
         let requestNum = 0
+
         const api = this.api = new mobcent.API(CONFIG.FORUM_URL, {
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
             },
             fetch: (url, data) => {
+                const next = () => {
+                    if (queue.length) {
+                        const d = queue.shift()
+                        d.request().then(d.resolve, d.reject)
+                    }
+                }
                 // console.log(url, data)
                 const request = () => new Promise((resolve, reject) => {
                     wx.request({
@@ -37,14 +44,15 @@ App({
                     })
                 }).then((result) => {
                     requestNum -= 1
+                    next()
                     return result
                 }, (err) => {
                     requestNum -= 1
+                    next()
                     return Promise.reject(err)
                 })
                 requestNum += 1
-                console.log(requestNum, queue)
-                if (requestNum >= 5) {
+                if (requestNum >= 6) {
                     return new Promise((resolve, reject) => {
                         queue.push({
                             request,
@@ -54,17 +62,6 @@ App({
                     })
                 }
                 const promise = request()
-                promise.then(() => {
-                    if (queue.length) {
-                        const d = queue.shift()
-                        d.request().then(d.resolve, d.reject)
-                    }
-                }, (err) => {
-                    if (queue.length) {
-                        const d = queue.shift()
-                        d.reject(err)
-                    }
-                })
                 return promise
             }
         })

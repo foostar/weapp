@@ -58,26 +58,116 @@
 <template name="card">
     <view class="cell-card" bindtap="clickItem" id="{{id}}">
         <view class="cell-card-header">
-            <view>
+            <view class="cell-card-user">
                 <image class="cell-card-header-avatar" src="{{userAvatar}}" />
-                <view class="cell-card-header-meta">
-                    <text>{{user_nick_name}}</text>
-                    <text class="cell-card-header-time">{{last_reply_date}}</text>
+                <view class="cell-card-header-meta font-wide">
+                    <view class="cell-card-header-name">{{user_nick_name}}</view>
+                    <view class="cell-card-header-time font-mini">{{last_reply_date}}</view>
+                </view>
+                <block wx:for="{{verify}}">
+                    <image wx:if="{{index < 3}}" class="cell-card-verify" src="{{item.icon}}"></image>
+                </block>
+            </view>
+            <view class="cell-card-from font-normal">
+                来自:
+                <navigator class="text-color">{{board_name}}</navigator>
+            </view>
+        </view>
+        <view class="cell-card-content">
+            <view class="cell-card-title">{{title}}</view>
+            <view class="cell-card-subject font-normal">{{subject}}asdfasfasdfasf</view>
+        </view>
+        <view class="cell-card-meta font-mini">
+            <view class="hits"><image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAYAAADafVyIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RTAxQUJEMUUyREQzMTFFNEE5MzRERTA0RTg2OUZEQTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RTAxQUJEMUYyREQzMTFFNEE5MzRERTA0RTg2OUZEQTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFMDFBQkQxQzJERDMxMUU0QTkzNERFMDRFODY5RkRBNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFMDFBQkQxRDJERDMxMUU0QTkzNERFMDRFODY5RkRBNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqBqWToAAAIsSURBVHja1NVPSBRhGMfxddvsFMVGHTTIsA6RhWgH62YlhoaHvSRJpIeK7BKKdYrKjCK8SS5qUKApBruEIiKah0i8aH8udTES9KIR6DEzp+8Dv4FhmpnbHhz4gM687/PMPM/7vht3HCeWS/FYjq+cJ0hks9mo5OdQhzIcwR49W8cC5jGC6VQqtRUUJC+Tyfx3Dw14gGL8xRy+4afG7McxnMIOfMd9DJLIiSrRAUygH3/QjAJUoAl3pEn3CjXGxg7YXCqSDEtwCLOoRBtOII3ViBKv8MZpjb2rue9JUuhPYLUdxz5cQCc2fcHsSxqlwPuAJJt4xp81OKgv2e1N0KN6p/Au4E2vqqkvZUH3Yr5Ek4pxFL1uAst6Ca22GgKCF2nwFzW1TE3vw+GAJNPqUz1fUWUJ2rXcnofU+SLycUPjPuEadqI2ZE4XPlpsS7CBXRGbzvEsX/fa8j0L3GP23ILeQwlaQgaO4Tde4IyW5yvdGwuZcxsnbW/E1dTX6MDZgMGLuKzGzWgpH9dmXPQPpu4W4wneWNMTun9LGd+q4eP+efiA8/p/Kmh/ELzaAuMHrrt1cs+WGq2iUTzEU+1Q97KAg0H1IHBCK6ddX1XF26/7d/IyTmNSA+3suYlkRCOTBLc3/YrHesEKgi95O+29fulL6vEI3VpynxVkzbPzrQ+lnsPuivXSf9glQpblEIbVdDuuy2H13asxa9rNaZV0KvS4tp+1bf2LlvME/wQYAEii4bhhfBFqAAAAAElFTkSuQmCC"/>{{hits}}</view>
+            <view class="replies"><image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAYAAADafVyIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDA1RENFODA1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDA1RENFN0Y1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNjZCQjk1QjUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozNjZCQjk1QzUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtoEBuAAAAFgSURBVHjaYty5c6cxAwPDAiDWYaAuuALECSxAYhkQqzFQH4AcvIwFyXBGckxxc3PDKr5r167/ILOZGGgMRi0YeAtYsIhpAXEZEN8C4k4g/gsVFwbiOii7CYjfQlMLM5Aqh6bGHmCqukLIgpVIme4xEC+GsluAOAPKZgPiTCg7CohboWxQptUlFES/kdg/cYjjYv8hJoiCgDgHiO8A8Wok8Wogfg11VB+ajwWAWAWIpxBjwQMgLsEi/hmIm7HkZFCOnTGaDyjKB3+gtBwQf8ER9r9x6BcA5gNsjuSBpSqQ5HYo5yE086DjX0A8C80ADyA+BMTvceh5CFW3E+TyBCCeDMROQMyOxTW8QJwKxBxAHAdNMelQuY9A/A+LHlD+2QfEuSAL3gFxNJ5gdADizUAcC8SsQBwBNRRUbLRBkylFkXwAiF2hwREBjacgaPHwn1qp6AQ0CEG0JRBvJDYVAQQYAGRqV0XOfjzdAAAAAElFTkSuQmCC"/>{{replies}}</view>
+        </view>
+    </view>
+</template>
+<!--imageSudoku-->
+<template name="imageSudoku">
+    <view class="cell-imageSudoku-wrapper" bindtap="clickItem" id="{{id}}">
+        <view class="cell-imageSudoku">
+            <image class="cell-imageSudoku-avatar" src="{{userAvatar}}" />
+            <view class="cell-imageSudoku-content font-normal">
+                <view class="cell-imageSudoku-author">
+                    <view class="cell-imageSudoku-username">{{user_nick_name}}</view>
+                    <block wx:for="{{verify}}">
+                        <image wx:if="{{index < 3}}" class="cell-imageSudoku-verify" src="{{item.icon}}"></image>
+                    </block>
+                    <view class="cell-imageSudoku-from font-mini">
+                        来自:
+                        <navigator class="text-color">{{board_name}}</navigator>
+                    </view>
+                </view>
+                <view class="cell-imageSudoku-subject">
+                    <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
+                    {{subject}}
+                </view>
+                <view class="cell-imageSudoku-mes font-mini">
+                    <view class="cell-imageSudoku-date color-gray">{{last_reply_date}}</view>
+                    <view class="cell-imageSudoku-meta">
+                        <view class="cell-imageSudoku-like color-gray">
+                            <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAYAAADafVyIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QkUwMEVEMDFEODcwMTFFNUE0QzVBMkQ2MTEzRUI4NzYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkUwMEVEMDJEODcwMTFFNUE0QzVBMkQ2MTEzRUI4NzYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowQzQxMUExQUQ4NkUxMUU1QTRDNUEyRDYxMTNFQjg3NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCRTAwRUQwMEQ4NzAxMUU1QTRDNUEyRDYxMTNFQjg3NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pgewz88AAAI3SURBVHjarJXPS1RRFMfnjVNpkUYZZVSk/aAfIBRIRItQKFsNRRC0khFCchEERUFQEVT/QEQRzKBYUctaiIW0MAYhgqBFi6goEVFUZBhELWf6nOH74PF4zpuGd+HDnbk/zrnne869z0mn07Eq2wl4BNvgC3SlUqmf/kXxKo03wgDsgo9wFO4HLazWwTPYCj2c+hT9NByIysELaAfTdiCTyZyh3wTvghYn/sPwBngNx+C5nV7jJs0U3FzJQT+0wN+AuR9wGVqhD5rgicasXYH9MAuDRFOj8VXae8uMnIMi5HySrYUjSuRhWNSp+zxrbGxCBg95xh1og53mYAluw0MZtbYASXgFx2EYLsF3X5SPlYuS1CQ8704QjY2fT+j0Jk8B8j4Df1SOF1fISwGjCzKYgDblyuztsMOXS7KFPQ9DFRbBRngKe+SgAT6FVZFpWVuhA4v+JRyU7J2wJRGLqCGVRfvAk4M7dNcjcYCxZrq7kmVZueuwGx5VBA26gI36v155uBaPSJ7PujP7YLveKotiMiyCosq3nDz1dqF0SQtKsONWYpiDmgqq6Czcg3U6kO2pgw/wvpxEi9p0OsTBN3gLIzAqB7a3F+ly7k2eCdj4S2HbCbv1JATpn6XLeiSzx/CCoii9IfbjKpyE1e4TAM0quSW9U73wVXOOx6CbK2ONLtgcjLkOxnX79no3au63nuSkpNod8pFypMYNIpt2jXR46tffZiXVG30LNkvjclU3gfFJd+CfAAMAxHaRi/kTbEMAAAAASUVORK5CYII="/>
+                            {{recommendAdd}}
+                        </view>
+                        <view class="cell-imageSudoku-replies color-gray">
+                        <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAYAAADafVyIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDA1RENFODA1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDA1RENFN0Y1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNjZCQjk1QjUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozNjZCQjk1QzUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtoEBuAAAAFgSURBVHjaYty5c6cxAwPDAiDWYaAuuALECSxAYhkQqzFQH4AcvIwFyXBGckxxc3PDKr5r167/ILOZGGgMRi0YeAtYsIhpAXEZEN8C4k4g/gsVFwbiOii7CYjfQlMLM5Aqh6bGHmCqukLIgpVIme4xEC+GsluAOAPKZgPiTCg7CohboWxQptUlFES/kdg/cYjjYv8hJoiCgDgHiO8A8Wok8Wogfg11VB+ajwWAWAWIpxBjwQMgLsEi/hmIm7HkZFCOnTGaDyjKB3+gtBwQf8ER9r9x6BcA5gNsjuSBpSqQ5HYo5yE086DjX0A8C80ADyA+BMTvceh5CFW3E+TyBCCeDMROQMyOxTW8QJwKxBxAHAdNMelQuY9A/A+LHlD+2QfEuSAL3gFxNJ5gdADizUAcC8SsQBwBNRRUbLRBkylFkXwAiF2hwREBjacgaPHwn1qp6AQ0CEG0JRBvJDYVAQQYAGRqV0XOfjzdAAAAAElFTkSuQmCC"/>
+                        {{replies}}</view>
+                    </view>
                 </view>
             </view>
-            <view class="cell-card-title">{{title}}</view>
         </view>
-        <view class="cell-card-content">{{subject}}</view>
-        <view class="cell-card-thumb" wx:if="{{imageList.length > 0}}">
-            <block wx:for="{{imageList}}">
-                <view wx:if="{{index < 3}}" class="cell-card-thumb-container">
-                    <image src="{{item}}" mode="aspectFill"></image>
+    </view>
+</template>
+<!--circle-->
+<template name="circle">
+    <view class="cell-wrapper" bindtap="clickItem" id="{{id}}">
+        <view class="cell-container cell-flex-container">
+            <image class="cell-avatar" src="{{userAvatar}}" />
+            <view class="cell-circle-content font-normal">
+                <view class="cell-circle-author">
+                    <view class="cell-circle-username">
+                        <view class="cell-circle-name">{{user_nick_name}}</view>
+                        <view class="cell-circle-date font-mini color-gray">{{last_reply_date}}</view>
+                    </view>
+                    <block wx:for="{{verify}}">
+                        <image wx:if="{{index < 3}}" class="cell-verify" src="{{item.icon}}"></image>
+                    </block>
+                    <view class="cell-from font-mini">
+                        来自:
+                        <navigator class="text-color">{{board_name}}</navigator>
+                    </view>
                 </view>
-            </block>
-        </view>
-        <view class="cell-card-status">
-            <text class="hits">{{hits}}</text>
-            <text class="replies">{{replies}}</text>
+                <view class="cell-circle-subject-wrapper">
+                    <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
+                    <view class="cell-circle-title">{{title}}</view>
+                    <view class="cell-circle-subject font-mini color-gray">{{subject}}</view>
+                </view>
+                <view class="cell-circle-mes font-mini">
+                    <view class="cell-imageSudoku-like color-gray">
+                        <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAYAAADafVyIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QkUwMEVEMDFEODcwMTFFNUE0QzVBMkQ2MTEzRUI4NzYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkUwMEVEMDJEODcwMTFFNUE0QzVBMkQ2MTEzRUI4NzYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowQzQxMUExQUQ4NkUxMUU1QTRDNUEyRDYxMTNFQjg3NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCRTAwRUQwMEQ4NzAxMUU1QTRDNUEyRDYxMTNFQjg3NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pgewz88AAAI3SURBVHjarJXPS1RRFMfnjVNpkUYZZVSk/aAfIBRIRItQKFsNRRC0khFCchEERUFQEVT/QEQRzKBYUctaiIW0MAYhgqBFi6goEVFUZBhELWf6nOH74PF4zpuGd+HDnbk/zrnne869z0mn07Eq2wl4BNvgC3SlUqmf/kXxKo03wgDsgo9wFO4HLazWwTPYCj2c+hT9NByIysELaAfTdiCTyZyh3wTvghYn/sPwBngNx+C5nV7jJs0U3FzJQT+0wN+AuR9wGVqhD5rgicasXYH9MAuDRFOj8VXae8uMnIMi5HySrYUjSuRhWNSp+zxrbGxCBg95xh1og53mYAluw0MZtbYASXgFx2EYLsF3X5SPlYuS1CQ8704QjY2fT+j0Jk8B8j4Df1SOF1fISwGjCzKYgDblyuztsMOXS7KFPQ9DFRbBRngKe+SgAT6FVZFpWVuhA4v+JRyU7J2wJRGLqCGVRfvAk4M7dNcjcYCxZrq7kmVZueuwGx5VBA26gI36v155uBaPSJ7PujP7YLveKotiMiyCosq3nDz1dqF0SQtKsONWYpiDmgqq6Czcg3U6kO2pgw/wvpxEi9p0OsTBN3gLIzAqB7a3F+ly7k2eCdj4S2HbCbv1JATpn6XLeiSzx/CCoii9IfbjKpyE1e4TAM0quSW9U73wVXOOx6CbK2ONLtgcjLkOxnX79no3au63nuSkpNod8pFypMYNIpt2jXR46tffZiXVG30LNkvjclU3gfFJd+CfAAMAxHaRi/kTbEMAAAAASUVORK5CYII="/>
+                    </view>
+                    <view class="cell-imageSudoku-replies color-gray">
+                    <image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAWCAYAAADafVyIAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDA1RENFODA1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDA1RENFN0Y1NUQzMTFFNUJGNEZFOEU5MkJCREI5RTIiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNjZCQjk1QjUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozNjZCQjk1QzUxMTExMUU1QUVEQkJFMDg0MTMwODI2NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtoEBuAAAAFgSURBVHjaYty5c6cxAwPDAiDWYaAuuALECSxAYhkQqzFQH4AcvIwFyXBGckxxc3PDKr5r167/ILOZGGgMRi0YeAtYsIhpAXEZEN8C4k4g/gsVFwbiOii7CYjfQlMLM5Aqh6bGHmCqukLIgpVIme4xEC+GsluAOAPKZgPiTCg7CohboWxQptUlFES/kdg/cYjjYv8hJoiCgDgHiO8A8Wok8Wogfg11VB+ajwWAWAWIpxBjwQMgLsEi/hmIm7HkZFCOnTGaDyjKB3+gtBwQf8ER9r9x6BcA5gNsjuSBpSqQ5HYo5yE086DjX0A8C80ADyA+BMTvceh5CFW3E+TyBCCeDMROQMyOxTW8QJwKxBxAHAdNMelQuY9A/A+LHlD+2QfEuSAL3gFxNJ5gdADizUAcC8SsQBwBNRRUbLRBkylFkXwAiF2hwREBjacgaPHwn1qp6AQ0CEG0JRBvJDYVAQQYAGRqV0XOfjzdAAAAAElFTkSuQmCC"/></view>
+                </view>
+                <view wx:if="{{recommendAdd || reply.length > 0}}" class="cell-circle-reply font-mini">
+                    <view wx:if="{{recommendAdd}}" class="cell-circle-reply-like font-mini">
+                        <view class="cell-circle-reply-recommendAdd"><image src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAbCAYAAAAdx42aAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpBNDBGQjZCRDY3NUExMUU1QkJBNTg5N0JCMUI5OUIwMiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpBNDBGQjZCRTY3NUExMUU1QkJBNTg5N0JCMUI5OUIwMiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkE0MEZCNkJCNjc1QTExRTVCQkE1ODk3QkIxQjk5QjAyIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkE0MEZCNkJDNjc1QTExRTVCQkE1ODk3QkIxQjk5QjAyIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+7j0bwgAAAtxJREFUeNq8lmtojXEcx8+ZMx1nYbnMpZHEGzWUJPHCtVAY75BLbEkLeyGNFLVyXx1lxbxwyau5lUu2vBW5leLNjBnJYu6jtdk5j8+vvtPj6Txn51nn+NWnp+f/XP6//+8edhwnFERWlZ9I93gobIZF8Ahqod39wrUzO//5IC+UPRkIpt0xGAN74BTE0n2UTQU2wUbYB4uhCkphbrqPIlnafA7UwC1ZoRPeuCyTUwvMhIvwDiq1eT6sg2a4l0sFzNTXwdGGL7VuQbhcMfAl3Q/ClgVEdlSmSvq9B11EcLeyYACUQRxaYT081ruD4DaMhmXw0fsv/tPx96a0LF7M9RCM10apxBRrgh0wAvZDOdwEy6sWTzCehU/wTMp6//sAjqJIuwXhWFgjfzXrA7ckYArMgBewAUqgGo7AL8/7bVCvOIhqzXFdzUK77BnWrIzodF1wGI3O+xSfCi4n4Tg8haXQ6GOtRhF2bex1Z40sVZvnMXMoTQyYnIYlaTZ3S8oSyyFt/ZUsEYuk2CSVmFt+Ksc/BMwUq4TzYTj0KOC3Kw5aghSi331YyU+K5bpxiqd8nf4C1vgWRIFwP+tGqxpUoVlA6X7AQgtr1GWzF/hJN9xXbbjDqa1c18E0mBDJ8eZ2wAJ3QHJq23MWfDVyrcBa2OpSIClXzlYNeZ1rBTqVPY78X6TT34CDuCOZawWuwFVXXRii+yJlROh/BKHjcsEPM7tSs7A/A0mmdcByfZ76TI/WrNyPgtXKiM9BFYhq6MxEhqlZlfSaGhksS9iAUo3/E0EUSEqBBfAwg/dtEq5w+do2XqEWbk2vKdVMmOijDJtsgwZ1xL4UfuJZs1a+BSb7DaUFFIlYisBMqpiYEiPhEuyFu9ARIBCnqwx/9yoQVrfbrcHEO5BYEE1UBFdpIKnX8NKWQSftPcRUjW0NXgXeqs9P8hkibO25OAeXYSUslEUyyYyIvovj//fuB38EGACNf8niztZ1RQAAAABJRU5ErkJggg=="/>{{recommendAdd}}</view>
+                        <block wx:for="{{zanList}}">
+                            <view class="cell-circle-likemember">{{item.username}}{{index < zanList.length-1 ? ',' : ''}}</view>
+                        </block>
+                    </view>
+                    <view class="cell-circle-reply-main font-mini">
+                        <block wx:for="{{reply}}" wx:if="{{!!reply}}">
+                            <view class="cell-circle-reply-box" wx:if="{{index < 6}}">
+                                <view class="cell-circle-reply-author">{{item.username}}:</view>
+                                <view class="cell-circle-reply-content">{{item.text}}</view>
+                            </view>
+                        </block>
+                    </view>
+                    <view wx:if="{{replies > 6}}" class="cell-circle-reply-more font-mini">查看全部评论({{replies}})</view>
+                </view>
+            </view>
         </view>
     </view>
 </template>

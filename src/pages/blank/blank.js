@@ -12,16 +12,27 @@ Page(createPage({
         isLoading: false,
         appIcon: '',
         appColor: '',
+        golbalFetch: true
     },
     onLoad(data) {
+        var self = this
         const { moduleId } = data // 存导航栏标题, onReady 再设置
         const module = app.globalData.modules[moduleId]
-        console.log(module)
         this.add(new Viewer('viewer', module))
         this.setData({
             module,
             appIcon: app.globalData.info.appIcon,
             appColor: app.globalData.info.appColor
+        })
+        app.event.on('golbal-fetching', () => {
+            self.setData({
+                golbalFetch: false
+            })
+        })
+        app.event.on('golbal-done', () => {
+            self.setData({
+                golbalFetch: true
+            })
         })
     },
     onReady() {

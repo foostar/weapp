@@ -1,7 +1,6 @@
 const Component = require('../../lib/component')
 const components = require('../../lib/components')
 const Module = require('../module/module')
-const {requestFun} = require('../../utils/util')
 /*
  *   @模块引入
  */
@@ -61,6 +60,8 @@ components.type['layout-layoutSeparator'] = LayoutSeparator
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['topiclistSimple-card'] = TopiclistSimple
+components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
+components.type['topiclistSimple-circle'] = TopiclistSimple
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
@@ -94,8 +95,7 @@ Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
 
-Viewer.prototype.nextPage = function(){
-    console.log('加载下一页')
+Viewer.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }
 

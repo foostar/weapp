@@ -1,4 +1,7 @@
 <import src="../../components/viewer/viewer.wxml" />
+<loading hidden="{{golbalFetch}}">
+    加载中...
+</loading>
 <view class="ui-container">
     <template is="viewer" data="{{...children.viewer, module}}"></template>
 </view>

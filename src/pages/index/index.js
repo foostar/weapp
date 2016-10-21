@@ -8,9 +8,11 @@ Page(createPage({
     data: {
         tabs: [],
         tabSelected: 0,
-        module: null
+        module: null,
+        golbalFetch: true
     },
     onLoad() {
+        let self = this
         let tabSelected = 0
         const { modules, tabs } = app.globalData
         const module = modules[tabs[tabSelected].moduleId]
@@ -20,6 +22,16 @@ Page(createPage({
             if (item.moduleId === module.id) {
                 tabSelected = index
             }
+        })
+        app.event.on('golbal-fetching', () => {
+            self.setData({
+                golbalFetch: false
+            })
+        })
+        app.event.on('golbal-done', () => {
+            self.setData({
+                golbalFetch: true
+            })
         })
         this.setData({
             tabs: app.globalData.tabs,

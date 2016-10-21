@@ -1,4 +1,38 @@
 /* ========== forum-info ========== */
+.cell-wrapper{
+    border-bottom:2rpx solid #ddd;
+    background:#fff;
+}
+.cell-container{
+    padding:20rpx;
+}
+.cell-flex-container{
+    display:flex;
+}
+.color-gray{
+    color:#a4a4a4;
+}
+.cell-avatar{
+    width:110rpx;
+    height:110rpx;
+    margin-right:25rpx;
+    border-radius:5px;
+}
+.cell-verify{
+    width:75rpx;
+    height:26rpx;
+    margin-right:1rpx;
+}
+.cell-from navigator{
+    display:inline-block;
+}
+.liststyle-foot-title {
+    text-align: center;
+    font-size: 12px;
+    line-height: 80rpx;
+    color: #ccc;
+}
+/* ========== forum-info ========== */
 .forum-info-container{
     background:#fff;
     border-bottom:2rpx solid #ddd;
@@ -244,10 +278,217 @@
 .cell-flat-info .hits {
     float: right;
 }
+/* ========== cell-card ========== */
+.cell-card {
+    background-color: #fff;
+    margin-top:20rpx;
+    border-bottom: 2rpx solid #ddd;
+}
+.cell-card-header{
+    display:flex;
+    width:100%;
+    padding: 20rpx 20rpx 0 20rpx;
+    box-sizing:border-box;
+    justify-content:space-between;
+}
+.cell-card-user{
+    display:flex;
+}
+.cell-card-header-meta{
+    width:150rpx;
+    margin-right:15rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.cell-card-header-name{
+    margin-bottom:5rpx;
+    margin-top:0rpx;
+}
+.cell-card-verify{
+    width:75rpx;
+    height:26rpx;
+    margin-right:8rpx;
+    margin-top:10rpx;
+}
+.cell-card-header-avatar{
+    width:80rpx;
+    height:80rpx;
+    border-radius:5px;
+    margin-right:20rpx;
+}
+.cell-card-header-time{
+    color:#a4a4a4;
+    line-height:37rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.cell-card-from navigator{
+    display:inline-block;
+}
+.cell-card-subject{
+    color:#a4a4a4;
+    margin-top:10rpx;
+    line-height:35rpx;
+}
+.cell-card-content{
+    padding:18rpx 20rpx;
+    border-bottom: 2rpx solid #ddd;
+}
+.cell-card-meta{
+    padding:10rpx 0;
+    display:flex;
+}
+.cell-card-meta view{
+    flex:1;
+    text-align:center; 
+    color:#a4a4a4;
+    line-height:30rpx;
+    box-sizing: border-box;
+}
+.cell-card-meta .hits{
+    border-right: 2rpx solid #ddd;
+}
+.cell-card-meta view image{
+    width:28rpx;
+    height:22rpx;
+    margin-right:7rpx;
+    height:auto;
+    display:inline-block;
+}
+/* ========== cell-imageSudoku ========== */
+.cell-imageSudoku-wrapper{
+    border-bottom:2rpx solid #ddd;
+    background:#fff;
+}
+.cell-imageSudoku{
+    padding:20rpx;
+}
+.cell-imageSudoku{
+    display:flex;
+}
+.cell-imageSudoku-content{
+    flex:1;
+}
+.cell-imageSudoku-avatar{
+    width:110rpx;
+    height:110rpx;
+    margin-right:25rpx;
+    border-radius:5px;
+}
+.cell-imageSudoku-author{
+    display:flex;
+    justify-content: space-between;
+}
+.cell-imageSudoku-mes{
+    display:flex;
+    justify-content: space-between;
+    color:#a4a4a4;
+}
+.cell-imageSudoku-from navigator{
+    display:inline-block;
+}
+.cell-imageSudoku-verify{
+    width:75rpx;
+    height:26rpx;
+    margin-right:1rpx;
+}
+.cell-imageSudoku-subject{
+    padding:15rpx 0 20rpx;
+}
+.cell-imageSudoku-meta{
+    display:flex;
+    justify-content: space-between;
+}
+.cell-imageSudoku-meta view image{
+    width:28rpx;
+    height:22rpx;
+    position:relative;
+    top:3rpx;
+    height:auto;
+    display:inline-block;
+}
+.cell-imageSudoku-like{
+    margin-right:12rpx;
+}
 
-.liststyle-foot-title {
-    text-align: center;
-    font-size: 12px;
-    line-height: 80rpx;
-    color: #ccc;
+/* ========== cell-circle ========== */
+.cell-circle-author{
+    display:flex;
+    justify-content: space-between;
+    margin-top:8rpx;
+}
+.cell-circle-mes{
+    display:flex;
+    justify-content: flex-end;
+    margin-bottom:20rpx;
+}
+.cell-circle-mes view{
+    padding:5rpx 20rpx;
+    border-radius:10px;
+    border:2rpx solid #ddd;
+}
+.cell-circle-mes view image{
+    width:28rpx;
+    height:22rpx;
+    position:relative;
+    top:3rpx;
+    height:auto;
+    display:inline-block;
+}
+.cell-circle-subject-wrapper{
+    padding:20rpx 0;
+}
+.cell-circle-title{
+    margin-bottom:10rpx;
+}
+.cell-circle-content{
+    flex:1;
+}
+.cell-circle-name{
+    line-height:35rpx;
+    margin-bottom:12rpx;
+}
+.cell-circle-reply{
+    background:#f2f2f2;
+}
+.cell-circle-reply-like,.cell-circle-reply-main{
+    padding:12rpx 10rpx;
+}
+.cell-circle-reply-like{
+    border-bottom: 2rpx solid #ddd;
+    display:flex;
+}
+.cell-circle-reply-recommendAdd{
+    margin-right:5rpx;
+    color:#555;
+}
+.cell-circle-reply-recommendAdd image{
+    width:28rpx;
+    height:22rpx;
+    position:relative;
+    margin-right:5rpx;
+    height:auto;
+    display:inline-block;
+}
+.cell-circle-reply-main{
+    padding-top:5rpx;
+}
+.cell-circle-likemember{
+    color:#2db7f5;
+    margin-left:12rpx;
+}
+.cell-circle-reply-author{
+    color:#2db7f5;
+    margin-right:8rpx;
+}
+.cell-circle-reply-box{
+    display:flex;
+    padding-top:8rpx;
+    line-height:35rpx;
+}
+.cell-circle-reply-more{
+    padding:8rpx 10rpx;
+    border-top:2rpx solid #ddd;
 }
