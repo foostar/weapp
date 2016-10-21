@@ -20,7 +20,7 @@
                 <view class="stick">{{item.title}}</view>
             </view>
         </block>
-        <view class="stick-item stick-more">更多</view>
+        <view class="stick-item stick-more" wx:if="{{resources.topTopicList.length > 3}}">更多</view>
     </view>
 </block>
 <view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
