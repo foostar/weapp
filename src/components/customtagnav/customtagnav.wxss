@@ -10,6 +10,7 @@
     white-space:nowrap;
     background:#fff;
     flex:0;
+    border-bottom:2rpx solid #ddd;
 }
 .customtag-item{
     display:inline-block;

@@ -6,7 +6,6 @@ function CustomTagNav(key, module) {
     this.addByModule(module.componentList)
 
     const modules = {}
-
     module.componentList.forEach((x) => {
         modules[x.id] = x
     })
@@ -32,7 +31,7 @@ CustomTagNav.prototype.changeTap = function (event) {
     this.setData({
         selected: id
     })
-    // this.children[`m_${id}`].load()
+    // this.children[id].load()
 }
 
 module.exports = CustomTagNav

@@ -2,7 +2,6 @@ const Component = require('../../lib/component')
 
 function DiscoverCustom(key, module) {
     Component.call(this, key)
-    this.addByModule(module.componentList)
     this.data = {
         list: module.componentList
     }
@@ -17,7 +16,7 @@ DiscoverCustom.prototype.onLoad = function () {
 }
 DiscoverCustom.prototype.toNavigationPage = function (e) {
     wx.navigateTo({
-        url: `/pages/blank/blank?moduleId=${e.target.dataset.id}`
+        url: `/pages/blank/blank?moduleId=${e.currentTarget.dataset.id}`
     })
 }
 module.exports = DiscoverCustom
