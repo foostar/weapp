@@ -26,7 +26,7 @@
         <view class="stick-item stick-more">更多</view>
     </view>
 </block>
-<view class="liststyle-container {{resources.forumInfo ? '' : 'liststyle-index'}}">
+<view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
     <block wx:for="{{resources.list}}">
         <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
     </block>
