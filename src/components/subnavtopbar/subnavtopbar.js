@@ -2,23 +2,27 @@ const Component = require('../../lib/component')
 
 function SubnavTopbar(key, module) {
     Component.call(this, key)
+    this.module = module
 
-    this.addByModule(module.componentList)
+    this.addByModule(module.componentList[0])
 
     const modules = {}
 
     module.componentList.forEach((x) => {
         modules[x.id] = x
     })
+    const tabs = module.componentList.map((x) => {
+        return {
+            id: x.id,
+            title: x.title
+        }
+    })
     this.data = {
+        index: 0,
+        width: `${100 / tabs.length}%`,
         selected: module.componentList[0].id,
         modules,
-        tabs: module.componentList.map((x) => {
-            return {
-                id: x.id,
-                title: x.title
-            }
-        })
+        tabs
     }
 }
 
@@ -27,11 +31,21 @@ SubnavTopbar.prototype.name = 'subnavtopbar'
 SubnavTopbar.prototype.constructor = SubnavTopbar
 
 SubnavTopbar.prototype.changeTap = function (event) {
-    const id = event.currentTarget.dataset.id
+    const { id, index } = event.currentTarget.dataset
+    clearTimeout(this._timer)
     this.setData({
-        selected: id
+        index,
+        selected: id,
+        animating: true
     })
-    this.children[`m_${id}`].load()
+    this._timer = setTimeout(() => {
+        if (!this.children[id]) {
+            this.addByModule(this.module.componentList[index])
+        }
+        this.setData({
+            animating: false
+        })
+    }, 300)
 }
 
 module.exports = SubnavTopbar

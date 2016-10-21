@@ -73,6 +73,8 @@ components.type['newlivelist-flat'] = NotSupport
 
 // topiclistSimple-flat
 
+const app = getApp()
+
 const checkHasScroll = (module) => {
     if (module.type === 'subnav') {
         return true
@@ -92,5 +94,9 @@ function Viewer(key, module) {
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
+
+Viewer.prototype.nextPage = function () {
+    app.event.trigger('nextPage')
+}
 
 module.exports = Viewer

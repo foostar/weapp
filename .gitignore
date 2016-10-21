@@ -1,7 +1,7 @@
-.DS_Store
 npm-debug.log
+src/lib/mobcent.js
+src/config.js
 node_modules/
 weapp/
-src/lib/mobcent.js
 .idea
-src/config.js
+.DS_Store

@@ -1,8 +1,5 @@
 <import src="../module/module.wxml" />
 <import src="../cellstyle/cellstyle"/>
-<loading hidden="{{isLoading}}">
-    加载中...
-</loading>
 <!--  -->
 <block wx:if="{{forumInfo}}">
     <view wx:if="{{resources.forumInfo}}" class="forum-info-container">
@@ -31,3 +28,7 @@
         <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
     </block>
 </view>
+<!-- 加载中 -->
+<view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
+<!-- 没有了 -->
+<view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>

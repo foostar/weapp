@@ -26,6 +26,12 @@
 .cell-from navigator{
     display:inline-block;
 }
+.liststyle-foot-title {
+    text-align: center;
+    font-size: 12px;
+    line-height: 80rpx;
+    color: #ccc;
+}
 /* ========== forum-info ========== */
 .forum-info-container{
     background:#fff;

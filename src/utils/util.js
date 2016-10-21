@@ -1,3 +1,4 @@
+/* eslint-disabled */
 function formateText(str = '', length = 40) {
     length = parseInt(length, 10)
     if (str.length > length) {
@@ -8,6 +9,7 @@ function formateText(str = '', length = 40) {
     }
     return str
 }
+
 
 const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = true) => {
     if (!date) return ''
