@@ -1,0 +1,16 @@
+<import src="../module/module.wxml" />
+<import src="../cellstyle/cellstyle"/>
+<swiper class="news-swiper" indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{resources.piclist}}">
+    <swiper-item data-fid="{{item.fid}}" class="news-slide-item" data-sourceId="{{item.source_id}}">
+      <image  src="{{item.pic_path}}" class="news-slide-image" mode="aspectFill"/>
+      <view class="news-slide-title font-normal">{{item.title}}</view>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="liststyle-container liststyle-index">
+    <block wx:for="{{resources.list}}">
+        <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
+    </block>
+</view>
