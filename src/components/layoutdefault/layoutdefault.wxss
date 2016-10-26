@@ -1,0 +1,4 @@
+.layoutdefault {
+    padding: 10rpx;
+    background-color: #fff;
+}

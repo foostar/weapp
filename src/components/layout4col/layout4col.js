@@ -1,13 +1,14 @@
-const Component = require('../../lib/component')
+const TouchComponent = require('../../lib/touchcomponent')
 
 function Layout4Col(key, module) {
-    Component.call(this, key)
+    TouchComponent.call(this, key, module)
     this.data = {
+        style: module.style,
         componentList: module.componentList
     }
 }
 
-Layout4Col.prototype = Object.create(Component.prototype)
+Layout4Col.prototype = Object.create(TouchComponent.prototype)
 Layout4Col.prototype.name = 'layout4col'
 Layout4Col.prototype.constructor = Layout4Col
 

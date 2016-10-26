@@ -1,0 +1,52 @@
+.layout1col1row {
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    background: #fff;
+}
+.layout-1-col-1-row-item {
+    flex: 220;
+    display: flex;
+}
+.layout-1-col-1-row-item:first-child {
+    flex: 410;
+}
+.layout-1-col-1-row-item image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.layout-1-col-1-row-item.circle {
+    display: block;
+}
+.layout-1-col-1-row-item.circle image {
+    height: 61.5%;
+    margin: 0 auto;
+}
+/* 默认 */
+.layoutdefault .layout-1-col-1-row-item {
+    margin: 10rpx;
+    height: 240.95238rpx; 
+}
+.layoutdefault .layout-1-col-1-row-item.circle image {
+    width: 148.185714rpx;
+}
+/* 图片 */
+.layoutimage .layout-1-col-1-row-item {
+    margin: 5rpx;
+    height: 251.428571rpx;
+}
+.layoutimage .layout-1-col-1-row-item.circle image {
+    width: 154.628571rpx;
+}
+/* 线性 */
+.layoutline .layout-1-col-1-row-item {
+    height: 261.904761rpx;
+}
+.layoutline .layout-1-col-1-row-item.circle image {
+    width: 160.9688rpx;
+}
+.layoutline .layout-1-col-1-row-item:first-child {
+    border-right: 1px #ccc solid;
+    border-bottom: 1px #ccc solid;
+}

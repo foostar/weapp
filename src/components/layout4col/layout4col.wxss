@@ -1,35 +1,85 @@
-.layout-four-col {
+.layout4col {
     width: 100%;
-    height: 160rpx;
     flex-direction: row;
     display: flex;
     background: #fff;
 }
 
-.layout-four-col-item {
+.layout-4-col-item {
     flex: 1;
     display: flex;
     position: relative;
 }
 
-.layout-four-col-item.circle image {
-    width: 100%;
-    height: 90rpx;
-    margin: 15rpx 0;
-}
-
-.layout-four-col-item.circle text {
-    height: 40rpx;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 12rpx;
-}
-
-.layout-four-col-item image {
+.layout-4-col-item image {
     height: 100%;
     width: 100%;
+    display: block;
 }
-.layout-four-col-item text {
+.layoutFourCol_Super_Low.textOverlapUp_Video:after, .layoutFourCol_Super_Low.textOverlapDown_Video:after {
+    width: 54rpx;
+    height: 54rpx;
+    margin-left: -27rpx;
+    margin-top: -27rpx;
+}
+/* 圆 */
+.layout-4-col-item.circle {
+    display: block;
+}
+.layout-4-col-item.circle image {
+    height: 61.5%;
+    margin: 0 auto;
+}
+
+/* 默认 */
+.layoutdefault .layout-4-col-item {
+    margin: 10rpx;
+}
+.layoutdefault .layout-4-col-item.layoutFourCol {
+    height: 162.5rpx;
+}
+.layoutdefault .layout-4-col-item.layoutFourCol_Super_Low {
+    height: 85rpx;
+}
+.layoutdefault .layout-4-col-item.layoutFourCol.circle image {
+    width: 99.9375rpx;
+}
+.layoutdefault .layout-4-col-item.layoutFourCol_Super_Low.circle image {
+    width: 52.275rpx;
+}
+/* 图片墙 */
+.layoutimage .layout-4-col-item {
+    margin: 5rpx;
+}
+.layoutimage .layout-4-col-item.layoutFourCol {
+    height: 175rpx;
+}
+.layoutimage .layout-4-col-item.layoutFourCol_Super_Low {
+    height: 91.5384615rpx;
+}
+.layoutimage .layout-4-col-item.layoutFourCol.circle image {
+    width: 107.625rpx;
+}
+.layoutimage .layout-4-col-item.layoutFourCol_Super_Low.circle image {
+    width: 56.2961538rpx;
+}
+/* 线性 */
+.layoutline .layout-4-col-item.layoutFourCol {
+    height: 187.5rpx;
+}
+.layoutline .layout-4-col-item.layoutFourCol_Super_Low {
+    height: 98.076923rpx;
+}
+.layoutline .layout-4-col-item {
+    border-bottom: 1px #ccc solid;
+    border-right: 1px #ccc solid;
+}
+.layoutline .layout-4-col-item:last-child {
+    border-right: 0px;
+}
+.layoutline .layout-4-col-item.layoutFourCol.circle image {
+    width: 115.3126rpx;
+}
+.layoutline .layout-4-col-item.layoutFourCol_Super_Low.circle image {
+    width: 60.1876rpx;
 }

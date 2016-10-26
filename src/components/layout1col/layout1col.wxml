@@ -1,0 +1,6 @@
+<view class="layout1col">
+    <view class="layout-1-col-item {{style}} {{item.iconStyle}}" bindtap="layout1col_touch" data-index="{{ index }}" data-event-key="{{key}}" wx:for="{{componentList}}">
+        <image mode="aspectFit" src="{{item.icon}}"></image>
+        <text>{{ item.desc }}</text>
+    </view>
+</view>

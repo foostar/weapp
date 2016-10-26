@@ -3,3 +3,15 @@
     height: 15rpx;
     background: #EFEFF4;
 }
+
+.layoutdefault .layoutseparator {
+    margin: 10rpx;
+}
+
+.layoutimage .layoutseparator {
+    margin: 5rpx;
+}
+
+.layoutline .layoutseparator {
+    margin-top: 1rpx;
+}
