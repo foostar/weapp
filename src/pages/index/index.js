@@ -56,6 +56,8 @@ Page(createPage({
         })
     },
     clickItem(e) {
-        app.showPost(e.currentTarget.id)
+        if (!e.currentTarget.role) {
+            return app.showPost(e.currentTarget.id)
+        }
     }
 }))

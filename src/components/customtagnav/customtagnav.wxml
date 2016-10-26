@@ -2,10 +2,10 @@
 <view class="customtag-wapper">
     <scroll-view scroll-x="true" class="customtag-box" bindtap="customtagnav_changeTap" data-event-key="{{key}}">
         <block wx:for="{{tabs}}">
-            <view class="customtag-item font-wide text-color {{ item.id == selected ? 'active' : ''}}" data-role="tag" data-id="{{item.id}}">{{item.title}}</view>
+            <view class="customtag-item font-wide text-color {{ item.id == selected ? 'active' : ''}}" data-role="tag" data-index="{{index}}" data-id="{{item.id}}">{{item.title}}</view>
         </block>
     </scroll-view>
-    <scroll-view scroll-y="true" class="customtag-content">
+    <scroll-view scroll-y="true" class="customtag-content" bindscrolltolower="customtagnav_nextPage" data-event-key="{{key}}" scroll-top="{{scrollTop}}">
         <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
     </scroll-view>
 </view>

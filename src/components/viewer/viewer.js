@@ -35,6 +35,7 @@ const Talk = require('../talk/talk')
 const CustomTagNav = require('../customtagnav/customtagnav')
 const Custom = require('../custom/custom')
 const NotSupport = require('../notsupport/notsupport')
+const NewsList = require('../newslist/newslist')
 /*
  *   @定义组件类型
  */
@@ -94,6 +95,7 @@ components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['topiclistSimple-card'] = TopiclistSimple
 components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
 components.type['topiclistSimple-circle'] = TopiclistSimple
+components.type['newslist-tieba'] = NewsList
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
