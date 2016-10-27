@@ -5,6 +5,7 @@
 @import "../discover/discover.wxss";
 @import "../layoutslider/layoutslider.wxss";
 @import "../layoutimage/layoutimage.wxss";
+@import "../layoutline/layoutline.wxss";
 @import "../layout1col/layout1col.wxss";
 @import "../layout2col/layout2col.wxss";
 @import "../layout3col/layout3col.wxss";
@@ -18,7 +19,7 @@
 @import "../layout3row1col/layout3row1col.wxss";
 @import "../layouttransparent/layouttransparent.wxss";
 @import "../layoutseparator/layoutseparator.wxss";
-@import "../layoutline/layoutline.wxss";
+@import "../layoutnewsauto/layoutnewsauto.wxss";
 @import "../topiclistsimple/topiclistsimple.wxss";
 @import "../talk/talk.wxss";
 @import "../customtagnav/customtagnav.wxss";

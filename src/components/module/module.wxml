@@ -102,6 +102,11 @@
     <include src="../layouttransparent/layouttransparent.wxml" />
 </template>
 
+<template name="layoutnewsauto">
+    <include src="../layoutnewsauto/layoutnewsauto.wxml" />
+</template>
+
+
 <template name="topiclistsimple">
     <include src="../topiclistsimple/topiclistsimple.wxml" />
 </template>

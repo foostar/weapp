@@ -1,0 +1,6 @@
+<import src="../cellstyle/cellstyle"/>
+<view class="layoutnewsauto">
+    <block wx:for="{{componentList}}">
+        <template is="{{item.style}}" data="{{...item, id: item.extParams.articleId}}" />
+    </block>
+</view>

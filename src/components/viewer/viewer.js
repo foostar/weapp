@@ -28,6 +28,9 @@ const Layout2Row1Col = require('../layout2row1col/layout2row1col')
 const Layout3Row1Col = require('../layout3row1col/layout3row1col')
 const LayoutTransparent = require('../layouttransparent/layouttransparent')
 const LayoutSeparator = require('../layoutseparator/layoutseparator')
+
+const LayoutNewsAuto = require('../layoutnewsauto/layoutnewsauto')
+
 const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
 const ForumlistCard = require('../forumlistcard/forumlistcard')
 const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
@@ -89,6 +92,8 @@ components.type['layout-layoutThreeRowOneCol'] = Layout3Row1Col // 3+1样式
 
 components.type['layout-layoutTransparent'] = LayoutTransparent
 components.type['layout-layoutSeparator'] = LayoutSeparator // 分割线
+
+components.type['layout-layoutNewsAuto'] = LayoutNewsAuto // 列表自动样式
 
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
