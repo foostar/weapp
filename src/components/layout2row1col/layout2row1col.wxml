@@ -1,0 +1,22 @@
+<view class="layout2row1col">
+    <view class="layout-flex-column">
+        <view class="layout-flex-row">
+            <view class="layout-2-row-1-col-item {{style}} {{componentList[0].iconStyle}}" bindtap="layout2row1col_touch" data-index="0" data-event-key="{{key}}">
+                <image mode="{{componentList[0].iconStyle == 'circle' ? 'aspectFill' : 'aspectFit' }}" src="{{componentList[0].icon}}"></image>
+                <text>{{ componentList[0].desc }}</text>
+            </view>
+        </view>
+        <view class="layout-flex-row">
+            <view class="layout-2-row-1-col-item {{style}} {{componentList[1].iconStyle}}" bindtap="layout2row1col_touch" data-index="1" data-event-key="{{key}}">
+                <image mode="{{componentList[1].iconStyle == 'circle' ? 'aspectFill' : 'aspectFit' }}" src="{{componentList[1].icon}}"></image>
+                <text>{{ componentList[1].desc }}</text>
+            </view>
+        </view>
+    </view>
+    <view class="layout-flex-column">
+        <view class="layout-2-row-1-col-item {{style}} {{componentList[2].iconStyle}}" bindtap="layout2row1col_touch" data-index="2" data-event-key="{{key}}">
+            <image mode="{{componentList[2].iconStyle == 'circle' ? 'aspectFill' : 'aspectFit' }}" src="{{componentList[2].icon}}"></image>
+            <text>{{ componentList[2].desc }}</text>
+        </view>
+    </view>
+</view>

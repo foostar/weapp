@@ -1,6 +1,6 @@
-<view class="layout-four-col">
-    <view class="layout-four-col-item {{item.iconStyle}}" wx:for="{{componentList}}">
-        <image mode="aspectFit" src="{{item.icon}}"></image>
-        <text>{{item.title || item.desc}}</text>
+<view class="layout4col">
+    <view class="layout-4-col-item {{style}} {{item.iconStyle}}" bindtap="layout4col_touch" data-index="{{ index }}" data-event-key="{{key}}" wx:for="{{componentList}}">
+        <image mode="{{item.iconStyle == 'circle' ? 'aspectFill' : 'aspectFit' }}" src="{{item.icon}}"></image>
+        <text>{{ item.desc }}</text>
     </view>
 </view>
