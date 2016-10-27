@@ -1,5 +1,0 @@
-<view class="layout3colmid">
-    <view class="layout-3-col-mid-item" wx:for="{{componentList}}">
-        <image mode="aspectFit" src="{{item.icon}}"></image>
-    </view>
-</view>

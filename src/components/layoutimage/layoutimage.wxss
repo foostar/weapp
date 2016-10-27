@@ -1,0 +1,4 @@
+.layoutimage {
+    padding: 5rpx;
+    background-color: #fff;
+}
