@@ -19,6 +19,12 @@ view, text {
 }
 
 /* common */
+.color-gray{
+    color:#a4a4a4;
+}
+.color-member{
+    color:#259;
+}
 .line-bottom {
     position: relative;
 }

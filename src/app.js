@@ -129,7 +129,8 @@ App({
         }
     },
     isLogin() {
-        if (!this.globalData.userInfo) {
+        console.log(this.globalData.userInfo)
+        if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
             return wx.navigateTo({
                 url: '/pages/regular-pages/login/login'
             })

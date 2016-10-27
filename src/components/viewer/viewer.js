@@ -61,6 +61,7 @@ components.type['layout-layoutSeparator'] = LayoutSeparator
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['topiclistSimple-card'] = TopiclistSimple
+components.type['topiclistSimple-neteaseNews'] = TopiclistSimple
 components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
 components.type['topiclistSimple-circle'] = TopiclistSimple
 components.type['newslist-tieba'] = NewsList

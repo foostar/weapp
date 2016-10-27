@@ -59,12 +59,17 @@ TopiclistSimple.prototype.fetchData = function (module, page) {
         sortby: module.extParams.orderby || 'all'
     }).then((data) => {
         data.list = data.list.map((v) => {
+            let faceResult
             v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
             v.last_reply_date = util.formatTime(v.last_reply_date)
             v.subject = util.formateText(v.subject)
+            faceResult = util.infoToFace(v.subject)
+            v.hasFace = faceResult.hasFace
+            v.subject = faceResult.data
             return v
         })
         data.list = list.concat(data.list)
+        console.log('data', data)
         app.event.trigger('golbal-done')
         this.setData({
             module,

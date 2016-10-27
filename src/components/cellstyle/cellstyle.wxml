@@ -11,7 +11,13 @@
             </view>
             <view class="cell-tieba-title">{{title}}</view>
         </view>
-        <view class="cell-tieba-content">{{subject}}</view>
+        <view wx:if="{{hasFace}}" class="cell-tieba-content">
+            <block wx:for="{{subject}}">
+                <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                <image wx:else src="{{item.content}}" class="face" />
+            </block>
+        </view>
+        <view wx:else class="cell-tieba-content">{{subject}}</view>
         <view class="cell-tieba-thumb" wx:if="{{imageList.length > 0}}">
             <block wx:for="{{imageList}}">
                 <view wx:if="{{index < 3}}" class="cell-tieba-thumb-container">
@@ -22,6 +28,22 @@
         <view class="cell-tieba-status">
             <text class="hits">{{hits}}</text>
             <text class="replies">{{replies}}</text>
+        </view>
+    </view>
+</template>
+<!-- cell-netease -->
+<template name="neteaseNews">
+    <view class="cell-wrapper cell-netease-wrapper cell-container cell-flex-container" bindtap="clickItem" id="{{id}}">
+        <view class="cell-netease-content {{imageList.length > 0 ? 'cell-netease-info' : ''}}">
+            <view class="cell-netease-title font-wide">{{title}}</view>
+            <view class="cell-netease-subject font-normal color-gray">
+                {{subject}}
+                <view class="cell-netease-meta font-mini color-gray">{{reply.length > 0 ? reply.length : 0}}评</view>
+            </view>
+            
+        </view>
+        <view class="cell-netease-image" wx:if="{{imageList.length > 0}}">
+            <image src="{{imageList[0]}}"/>
         </view>
     </view>
 </template>
