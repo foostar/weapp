@@ -1,7 +1,0 @@
-.layout-1-col-low-fixed-item {
-    height: 150rpx;
-}
-.layout-1-col-low-fixed-item image {
-    height: 100%;
-    width: 100%;
-}

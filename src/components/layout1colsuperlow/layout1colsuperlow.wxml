@@ -1,5 +1,0 @@
-<view class="layout1colsuperlow">
-    <view class="layout-1-col-super-low-item" wx:for="{{componentList}}">
-        <image mode="aspectFit" src="{{item.icon}}"></image>
-    </view>
-</view>

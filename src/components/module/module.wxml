@@ -54,33 +54,58 @@
     <include src="../layoutimage/layoutimage.wxml" />
 </template>
 
-<template name="layout1collowfixed">
-    <include src="../layout1collowfixed/layout1collowfixed.wxml" />
+<template name="layout1col">
+    <include src="../layout1col/layout1col.wxml" />
 </template>
 
-<template name="layout1colsuperlow">
-    <include src="../layout1colsuperlow/layout1colsuperlow.wxml" />
+<template name="layout2col">
+    <include src="../layout2col/layout2col.wxml" />
 </template>
 
-<template name="layout2collow">
-    <include src="../layout2collow/layout2collow.wxml" />
-</template>
-
-<template name="layout3colmid">
-    <include src="../layout3colmid/layout3colmid.wxml" />
-</template>
-
-<template name="layout3coltext">
-    <include src="../layout3coltext/layout3coltext.wxml" />
+<template name="layout3col">
+    <include src="../layout3col/layout3col.wxml" />
 </template>
 
 <template name="layout4col">
     <include src="../layout4col/layout4col.wxml" />
 </template>
 
+<template name="layoutcoltext">
+    <include src="../layoutcoltext/layoutcoltext.wxml" />
+</template>
+
+<template name="layout1col1row">
+    <include src="../layout1col1row/layout1col1row.wxml" />
+</template>
+
+<template name="layout1col2row">
+    <include src="../layout1col2row/layout1col2row.wxml" />
+</template>
+
+<template name="layout1col3row">
+    <include src="../layout1col3row/layout1col3row.wxml" />
+</template>
+
+<template name="layout1row1col">
+    <include src="../layout1row1col/layout1row1col.wxml" />
+</template>
+
+<template name="layout2row1col">
+    <include src="../layout2row1col/layout2row1col.wxml" />
+</template>
+
+<template name="layout3row1col">
+    <include src="../layout3row1col/layout3row1col.wxml" />
+</template>
+
 <template name="layouttransparent">
     <include src="../layouttransparent/layouttransparent.wxml" />
 </template>
+
+<template name="layoutnewsauto">
+    <include src="../layoutnewsauto/layoutnewsauto.wxml" />
+</template>
+
 
 <template name="topiclistsimple">
     <include src="../topiclistsimple/topiclistsimple.wxml" />

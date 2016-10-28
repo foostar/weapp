@@ -1,0 +1,103 @@
+.layout3row1col {
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    background: #fff;
+}
+.layout-3-row-1-col-item {
+    flex: 1;
+    display: flex;
+}
+.layout-3-row-1-col-item image {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.layout3row1col .layout-flex-row {
+    flex-direction: row;
+    display: flex;
+}
+.layout3row1col .layout-flex-column {
+    flex: 144;
+    display: flex;
+    flex-direction: column;
+}
+.layout3row1col .layout-flex-column:last-child {
+    flex: 430;
+}
+
+.layout-1-col-3-row-item.circle {
+    display: block;
+}
+.layout-1-col-3-row-item.circle image {
+    height: 61.5%;
+    margin: 0 auto;
+}
+
+/* 默认 */
+.layoutdefault .layout3row1col .layout-3-row-1-col-item {
+    margin: 10rpx;
+}
+.layoutdefault .layout3row1col .layout-flex-row .layout-3-row-1-col-item {
+    height: 166.980255rpx;
+}
+.layoutdefault .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item {
+    height: 540.940766rpx;
+}
+.layoutdefault .layout3row1col .layout-flex-row .layout-3-row-1-col-item.textImage image {
+    height: 122.980255rpx;
+}
+.layoutdefault .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item.textImage image {
+    height: 496.940766rpx;
+}
+.layoutdefault .layout3row1col .layout-flex-row .layout-3-row-1-col-item.circle image {
+    width: 102.692856rpx;
+}
+.layoutdefault .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item.circle image {
+    width: 332.678571rpx;
+}
+/* 图片 */
+.layoutimage .layout3row1col .layout-3-row-1-col-item {
+    margin: 5rpx;
+}
+.layoutimage .layout3row1col .layout-flex-row .layout-3-row-1-col-item {
+    height: 181.486643rpx;
+}
+.layoutimage .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item {
+    height: 564.45993rpx;
+}
+.layoutimage .layout3row1col .layout-flex-row .layout-3-row-1-col-item.textImage image {
+    height: 137.486643rpx;
+}
+.layoutimage .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item.textImage image {
+    height: 520.45993rpx;
+}
+.layoutimage .layout3row1col .layout-flex-row .layout-3-row-1-col-item.circle image {
+    width: 111.614285rpx;
+}
+.layoutimage .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item.circle image {
+    width: 347.142856rpx;
+}
+/* 线性 */
+.layoutline .layout3row1col .layout-flex-row .layout-3-row-1-col-item {
+    height: 194.659698rpx;
+    border-bottom: 1px #ccc solid;
+}
+.layoutline .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item {
+    height: 587.979094rpx;
+    border-bottom: 1px #ccc solid;
+    border-left: 1px #ccc solid;
+}
+.layoutline .layout3row1col .layout-flex-row .layout-3-row-1-col-item.textImage image {
+    height: 150.659698rpx;
+}
+.layoutline .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item.textImage image {
+    height: 543.979094rpx;
+}
+.layoutline .layout3row1col .layout-flex-row .layout-3-row-1-col-item.circle image {
+    width: 120.616875rpx;
+}
+.layoutline .layout3row1col .layout-flex-column:last-child .layout-3-row-1-col-item.circle image {
+    width: 361.85124rpx;
+}

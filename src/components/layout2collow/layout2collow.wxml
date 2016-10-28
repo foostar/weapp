@@ -1,5 +1,0 @@
-<view class="layout2collow">
-    <view class="layout-2-col-low-item" wx:for="{{componentList}}">
-        <image mode="aspectFit" src="{{item.icon}}"></image>
-    </view>
-</view>
