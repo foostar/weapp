@@ -5,7 +5,6 @@ function SubnavFlat(key, module) {
     this.module = module
 
     this.addByModule(module.componentList[0])
-
     const modules = {}
 
     module.componentList.forEach((x) => {

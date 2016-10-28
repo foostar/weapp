@@ -43,7 +43,7 @@
             
         </view>
         <view class="cell-netease-image" wx:if="{{imageList.length > 0}}">
-            <image src="{{imageList[0]}}"/>
+            <image src="{{imageList[0]}}" mode="aspectFill"/>
         </view>
     </view>
 </template>

@@ -82,10 +82,12 @@
             <block wx:for="{{topic.content}}">
                 <image wx:if="{{item.type === 1}}" style="width: 100%" mode="aspectFit" src="{{item.originalInfo}}" />
                 <block wx:elif="{{item.type === 0}}">
-                    <block wx:if="{{item.hasFace}}" wx:for="{{item.subject}}">
-                        <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
-                        <image wx:else class="face" src="{{item.content}}" />
-                    </block>
+                    <view wx:if="{{item.hasFace}}" >
+                        <block wx:for="{{item.subject}}">
+                            <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                            <image wx:else class="face" src="{{item.content}}" />
+                        </block>
+                    </view>
                     <text wx:else>{{item.infor}}</text>
                 </block>
             </block>
@@ -129,10 +131,12 @@
                         <block wx:for="{{item.reply_content}}">
                             <image wx:if="{{item.type === 1}}" style="width: 100%" mode="aspectFit" src="{{item.originalInfo}}" />
                             <block wx:elif="{{item.type === 0}}">
-                                <block wx:if="{{item.hasFace}}" wx:for="{{item.subject}}">
-                                    <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
-                                    <image wx:else class="face" src="{{item.content}}" />
-                                </block>
+                                <view wx:if="{{item.hasFace}}">
+                                    <block wx:for="{{item.subject}}">
+                                        <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                                        <image wx:else class="face" src="{{item.content}}" />
+                                    </block>
+                                </view>
                                 <text wx:else>{{item.infor}}</text>
                             </block>
                         </block>  
