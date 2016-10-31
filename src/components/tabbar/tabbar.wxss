@@ -28,6 +28,6 @@
     position: absolute;
     bottom: 2rpx;
     text-align: center;
-    font-size: 7rpx;
+    font-size: 20rpx;
     color: #555;
 }

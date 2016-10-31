@@ -1,5 +1,6 @@
 const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
+const util = require('./utils/util')
 const CONFIG = require('./config.js')
 
 const randStr = () => {
@@ -76,6 +77,22 @@ App({
                 return data
             })
         }
+
+        // 处理forum数据
+        const forum = api.forum
+        api.forum = function () {
+            /* eslint-disable */
+            return forum.apply(api, arguments).then((data) => {
+            /* eslint-enable */
+                data.list.forEach((v) => {
+                    v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
+                    v.last_reply_date = util.formatTime(v.last_reply_date)
+                    v.subject = util.formateText(v.subject)
+                })
+                return data
+            })
+        }
+
 
         api.forumKey = CONFIG.FORUM_KEY
         const promise = Promise.all([

@@ -1,6 +1,30 @@
 const { load } = require('./createpage')
 const components = require('./components')
 
+function scrollChildren(children, event) {
+    /* eslint-disable */
+    const ListComponent = require('./listcomponent')
+    /* eslint-enable */
+    Object.keys(children).forEach((key) => {
+        const child = children[key]
+        if (!child || !child.shown) return
+        if (child instanceof ListComponent) {
+            /* eslint-disable */
+            child._onScrollToLower(event)
+            /* eslint-enable */
+        } else {
+            scrollChildren(child.children, event)
+        }
+    })
+}
+
+
+const fns = {
+    scrollToLower(event) {
+        scrollChildren(this.children, event)
+    }
+}
+
 function Component(key) {
     if (!this.name) {
         throw new Error('请覆盖 name 属性')
@@ -8,6 +32,11 @@ function Component(key) {
     this.children = {}
     this.key = key
     this.loaded = false
+    this.shown = false
+
+    Object.keys(fns).forEach((name) => {
+        this.constructor.prototype[name] = fns[name]
+    })
 }
 
 Component.prototype.add = function (child) {
@@ -20,6 +49,60 @@ Component.prototype.add = function (child) {
     if (this.loaded) {
         child.load()
     }
+}
+
+Component.prototype.remove = function (child) {
+    if (!child) {
+        return
+    }
+    delete child.parent
+    delete child.page
+    delete this.children[child.key]
+    child.unload()
+}
+
+Component.prototype.load = function () {
+    if (this.loaded) return
+    this.loaded = true
+    const children = this.children
+    load.call(this, children)
+    if (this.page.shown) {
+        this.show()
+    } else {
+        this.page.once('show', () => {
+            this.show()
+        })
+    }
+    this.onLoad()
+}
+
+Component.prototype.unload = function () {
+    if (!this.loaded) return
+    this.loaded = false
+    const children = this.children
+    Object.keys(children).forEach((key) => {
+        this.children[key].unload()
+    })
+    if (this.page.shown) {
+        this.hide()
+    }
+    this.onUnload()
+}
+
+Component.prototype.show = function () {
+    if (this.shown) {
+        return
+    }
+    this.shown = true
+    this.onShow()
+}
+
+Component.prototype.hide = function () {
+    if (!this.shown) {
+        return
+    }
+    this.shown = false
+    this.onHide()
 }
 
 Component.prototype.addByModule = function (module) {
@@ -45,14 +128,9 @@ Component.prototype.setData = function (data) {
     })
 }
 
-Component.prototype.load = function () {
-    if (this.loaded) return
-    this.loaded = true
-    const children = this.children
-    load.call(this, children)
-    this.onLoad()
-}
-
 Component.prototype.onLoad = function () {}
+Component.prototype.onUnload = function () {}
+Component.prototype.onShow = function () {}
+Component.prototype.onHide = function () {}
 
 module.exports = Component
