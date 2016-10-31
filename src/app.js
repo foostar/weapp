@@ -32,7 +32,7 @@ App({
                         const d = queue.shift()
                         d.request().then(d.resolve, d.reject)
                     } else {
-                        event.trigger('golbal-done')
+                        wx.hideToast()
                     }
                 }
                 // console.log(url, data)
@@ -64,7 +64,11 @@ App({
                         })
                     })
                 }
-                event.trigger('golbal-fetching')
+                wx.showToast({
+                    title: '加载中',
+                    icon: 'loading',
+                    duration: 10000
+                })
                 const promise = request()
                 return promise
             }

@@ -128,16 +128,6 @@ function Viewer(key, module) {
     this.data = {
         hasScroll: checkHasScroll(module),
     }
-    app.event.on('golbal-fetching', () => {
-        wx.showToast({
-            title: '加载中',
-            icon: 'loading',
-            duration: 10000
-        })
-    })
-    app.event.on('golbal-done', () => {
-        wx.hideToast()
-    })
 }
 
 Viewer.prototype = Object.create(Component.prototype)

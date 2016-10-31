@@ -64,7 +64,7 @@ const infoToFace = (str) => {
     str = str.replace(faceRegExp, (word, text) => {
         let data
         if (sesourceAddress[text]) {
-            data = `,/images/face/${sesourceAddress[text]}.png,`
+            data = `,https://cdn-wz.xiaoyun.com/m/img/face/${sesourceAddress[text]}.png,`
         } else if (bbsFaceReg.test(text)) {
             data = `,${text.replace('mobcent_phiz=', '')},`
         } else {
@@ -78,7 +78,7 @@ const infoToFace = (str) => {
         faceArr = str.split(',')
         faceArr.forEach((v) => {
             if (v) {
-                if (/^\/images\//.test(v)) {
+                if (/\/img\//g.test(v)) {
                     faceResult.push({ type: 'image', content: v })
                 } else if (/^http:/.test(v)) {
                     faceResult.push({ type: 'image', content: v })

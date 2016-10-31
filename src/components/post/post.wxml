@@ -58,9 +58,6 @@
 </template>
 
 <scroll-view scroll-y="true" class="page-post" bindscrolltolower="post_nextPage" data-event-key="{{key}}">
-    <loading hidden="{{isLoading}}">
-        加载中...
-    </loading>
     <view>
         <view class="post-title">
             {{topic.title}}
@@ -80,8 +77,10 @@
         </view>
         <view class="post-content font-wide {{list.length > 0 ? '' : 'post-content-large'}}">
             <block wx:for="{{topic.content}}" wx:key="{{index}}">
-                <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" wx:if="{{item.type === 1}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.loadSrc}}" />
-
+                <view wx:if="{{item.type === 1}}" class="post-content-image">
+                    <image wx:if="{{item.unloaded}}" class="post-content-preload" style="width: 100%" mode="aspectFit" src="{{item.loadSrc}}" />
+                    <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.originalInfo}}" />
+                </view>
                 <block wx:elif="{{item.type === 0}}">
                     <view wx:if="{{item.hasFace}}" >
                         <block wx:for="{{item.subject}}" wx:key="{{index}}">
@@ -144,7 +143,7 @@
                         <view class="post-comment-info">
                             <text class="color-gray font-mini">{{item.position}}楼</text>
                             <text>{{item.posts_date}}</text>
-                            <view class="post-replies"  data-quote="{{item.reply_posts_id}}" data-role="quote" data-event-key="{{key}}" catchtap="post_comment" data-id="{{item.reply_posts_id}}"></view>
+                            <view class="post-replies" data-quote="{{item.reply_posts_id}}" data-role="quote" data-event-key="{{key}}" catchtap="post_comment" data-id="{{item.reply_posts_id}}"></view>
                         </view>
                     </view>
                 </view>

@@ -14,6 +14,14 @@
     line-height: 80rpx;
     color: #ccc;
 }
+.post-content-image{
+    position:relative;
+}
+.post-content-preload{
+    position:absolute;
+    left:0;
+    top:0
+}
 .post-comment-quote{
     color:#333;
     background:#ddd;

@@ -72,6 +72,7 @@ Post.prototype.fetchData = function (tid, option) {
                 }
                 if (v.type == 1) {
                     v.loadSrc = app.globalData.loadSrc
+                    v.unloaded = true
                 }
             })
             data.endPage = parseInt((data.total_num / 20) + 1, 10)
@@ -90,7 +91,7 @@ Post.prototype.imageLoaded = function (e) {
     const imageWidth = e.detail.width
     const imageHeight = e.detail.height
     const index = e.currentTarget.dataset.index
-    this.data.topic.content[index].loadSrc = this.data.topic.content[index].originalInfo
+    this.data.topic.content[index].unloaded = false
     this.data.topic.content[index].imageHeight = `${((windowWidth * imageHeight) / imageWidth).toFixed(2)}px`
 
     this.setData(this.data)
@@ -99,10 +100,7 @@ Post.prototype.imageLoaded = function (e) {
  * @操作窗口
  */
 Post.prototype.actionSheetTap = function (e) {
-    var self = this
     const id = e.currentTarget.dataset.id
-    this.data.actionSheetHidden = !this.data.actionSheetHidden
-    this.data.reportUser = id
     /* if (!e.currentTarget.dataset.role) {
          this.data.list.forEach((v) => {
             if (v.reply_posts_id == id) {
@@ -113,30 +111,32 @@ Post.prototype.actionSheetTap = function (e) {
     } else {
         self.data.managePanel = self.data.topic.managePanel
     }*/
-    self.data.managePanel = []
-    this.setData(self.data)
+    this.setData({
+        actionSheetHidden: !this.data.actionSheetHidden,
+        reportUser: id,
+        managePanel: []
+    })
 }
 
 Post.prototype.actionSheetChange = function () {
-    var self = this
-    this.data.actionSheetHidden = !this.data.actionSheetHidden
-    this.setData(self.data)
+    this.setData({
+        actionSheetHidden: !this.data.actionSheetHidden
+    })
 }
 /*
  * @下一页
  */
 Post.prototype.nextPage = function () {
-    var that = this
-    let { page, endPage } = that.data
+    var self = this
+    let { page, endPage } = self.data
     if (page < endPage) {
-        that.data.isFetching = true
-        that.setData(that.data)
-        that.fetchData(that.data.module, { page: page + 1 })
+        this.setData({ isFetching: true })
+        this.fetchData(self.data.module, { page: page + 1 })
     } else {
-        that.data.isFetching = false
-        that.data.over = true
-        that.setData(that.data)
-        console.log(that.data)
+        this.setData({
+            isFetching: false,
+            over: true
+        })
     }
 }
 /*
@@ -144,20 +144,20 @@ Post.prototype.nextPage = function () {
  */
 Post.prototype.reportUser = function (e) {
     if (!app.isLogin()) return
-    this.data.actionSheetHidden = true
-    this.data.isLoading = false
-    this.setData(this.data)
+    this.setData({
+        actionSheetHidden: true,
+        isLoading: false
+    })
     var isType = 'thread'
-    var self = this
     const id = e.currentTarget.dataset.id
     if (e.currentTarget.dataset.role) {
         isType = 'post'
     }
     app.api.report({ id, isType })
         .then(() => {
-            self.data.isLoading = true
+            this.data.isLoading = true
             console.log('举报成功')
-            self.cancelAction()
+            this.cancelAction()
         })
 }
 /*
@@ -165,8 +165,6 @@ Post.prototype.reportUser = function (e) {
  */
 Post.prototype.foucsUser = function (e) {
     if (!app.isLogin()) return
-    this.data.isLoading = false
-    this.setData(this.data)
     var type = 'follow',
             result = 1,
             self = this
@@ -176,7 +174,6 @@ Post.prototype.foucsUser = function (e) {
     }
     app.api.useradmin({ uid: e.currentTarget.dataset.id, type })
         .then(() => {
-            self.data.isLoading = true
             self.data.topic.isFollow = result
             self.setData(self.data)
         })
@@ -193,8 +190,6 @@ Post.prototype.cancelAction = function () {
  */
 Post.prototype.colletHandler = function (e) {
     if (!app.isLogin()) return
-    this.data.isLoading = false
-    this.setData(this.data)
     var action = 'favorite'
     var isFavor = 1
     var self = this
@@ -203,11 +198,8 @@ Post.prototype.colletHandler = function (e) {
         isFavor = 0
     }
     app.api.userfavorite(e.currentTarget.dataset.id, { action, idType: 'tid' })
-        .then((data) => {
-            self.data.topic.is_favor = isFavor
-            self.data.isLoading = true
-            self.setData(self.data)
-            console.log(data)
+        .then(() => {
+            self.setData({ 'topic.is_favor': isFavor })
         })
 }
 /*
@@ -218,20 +210,18 @@ Post.prototype.likeHandler = function (e) {
     if (e.currentTarget.dataset.like == 1) return
     const id = e.currentTarget.dataset.id
     var self = this
-    this.data.isLoading = false
-    this.setData(this.data)
     app.api.support(id, { type: 'topic' })
         .then(() => {
-            self.data.topic.isLike = 1
-            self.data.isLoading = true
-            self.data.topic.zanList.push({
+            this.data.topic.isLike = 1
+            this.data.isLoading = true
+            this.data.topic.zanList.push({
                 'count(distinct recommenduid)': 1,
                 dateline: Date.now(),
                 recommenduid: app.globalData.userInfo.uid,
                 tid: id,
                 username: app.globalData.userInfo.userName
             })
-            self.setData(self.data)
+            this.setData(self.data)
         })
 }
 /*
@@ -242,6 +232,8 @@ Post.prototype.comment = function (e) {
     this.cancelAction()
     if (e.currentTarget.dataset.role && e.currentTarget.dataset.role == 'quote') {
         this.data.isQuote = e.currentTarget.dataset.quote
+    } else {
+        this.data.isQuote = 0
     }
     this.data.isCommenting = false
     this.setData(self.data)
@@ -252,8 +244,6 @@ Post.prototype.comment = function (e) {
 Post.prototype.formSubmit = function (e) {
     if (!app.isLogin()) return
     var self = this
-    self.data.isLoading = false
-    this.setData(self.data)
     let data = {
         fid: self.data.boardId,
         isShowPostion: 0,
