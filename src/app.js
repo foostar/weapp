@@ -20,8 +20,6 @@ App({
 
         let queue = []
         let requestNum = 0
-        let self = this
-        console.log(self)
 
         const api = this.api = new mobcent.API(CONFIG.FORUM_URL, {
             parse: (response) => {
