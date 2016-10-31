@@ -126,14 +126,23 @@ function Viewer(key, module) {
     this.module = module
     this.add(components.create(module))
     this.data = {
-        hasScroll: checkHasScroll(module)
+        hasScroll: checkHasScroll(module),
     }
+    app.event.on('golbal-fetching', () => {
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            duration: 10000
+        })
+    })
+    app.event.on('golbal-done', () => {
+        wx.hideToast()
+    })
 }
 
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
-
 Viewer.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }

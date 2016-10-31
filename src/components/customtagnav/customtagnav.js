@@ -9,7 +9,6 @@ function CustomTagNav(key, module) {
     module.componentList.forEach((x) => {
         modules[x.id] = x
     })
-    console.log(module.componentList)
     this.data = {
         index: 0,
         selected: module.componentList[0].id,

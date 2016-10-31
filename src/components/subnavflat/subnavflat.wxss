@@ -21,7 +21,7 @@
 .tabs-indicator {
     position: absolute;
     height: 1rpx;
-    bottom: 0;
+    bottom: 1rpx;
     z-index: 999;
     transition: .3s;
 }

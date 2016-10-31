@@ -1,5 +1,6 @@
 const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
+const util = require('./utils/util')
 const CONFIG = require('./config.js')
 
 const randStr = () => {
@@ -19,6 +20,8 @@ App({
 
         let queue = []
         let requestNum = 0
+        let self = this
+        console.log(self)
 
         const api = this.api = new mobcent.API(CONFIG.FORUM_URL, {
             parse: (response) => {
@@ -30,6 +33,8 @@ App({
                     if (queue.length) {
                         const d = queue.shift()
                         d.request().then(d.resolve, d.reject)
+                    } else {
+                        event.trigger('golbal-done')
                     }
                 }
                 // console.log(url, data)
@@ -61,6 +66,7 @@ App({
                         })
                     })
                 }
+                event.trigger('golbal-fetching')
                 const promise = request()
                 return promise
             }
@@ -76,6 +82,22 @@ App({
                 return data
             })
         }
+
+        // 处理forum数据
+        const forum = api.forum
+        api.forum = function () {
+            /* eslint-disable */
+            return forum.apply(api, arguments).then((data) => {
+            /* eslint-enable */
+                data.list.forEach((v) => {
+                    v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
+                    v.last_reply_date = util.formatTime(v.last_reply_date)
+                    v.subject = util.formateText(v.subject)
+                })
+                return data
+            })
+        }
+
 
         api.forumKey = CONFIG.FORUM_KEY
         const promise = Promise.all([

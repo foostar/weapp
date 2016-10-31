@@ -17,7 +17,6 @@ Page(createPage({
         golbalFetch: true
     },
     onLoad(data) {
-        var self = this
         let module
         if (data.type) {
             module = {
@@ -50,7 +49,7 @@ Page(createPage({
             appIcon: app.globalData.info.appIcon,
             appColor: app.globalData.info.appColor
         })
-        app.event.on('golbal-fetching', () => {
+/*        app.event.on('golbal-fetching', () => {
             self.setData({
                 golbalFetch: false
             })
@@ -59,7 +58,7 @@ Page(createPage({
             self.setData({
                 golbalFetch: true
             })
-        })
+        })*/
     },
     onReady() {
     },

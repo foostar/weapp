@@ -522,6 +522,7 @@
 }
 .cell-circle-reply{
     background:#f2f2f2;
+    margin-bottom:20rpx;
 }
 .cell-circle-reply-like,.cell-circle-reply-main{
     padding:12rpx 10rpx;
