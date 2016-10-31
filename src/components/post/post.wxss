@@ -1,4 +1,3 @@
-@import "../../../resetcss/reset.wxss";
 .page-post {
     background-color: #EFEFF4;
     height:100%;
@@ -26,7 +25,7 @@
     line-height:50rpx;
 }
 .triangle-bottom {width:0;height:0;border-left:20rpx solid transparent;border-top:20rpx solid #ddd;border-right:20rpx solid transparent;position:absolute;bottom:-18rpx}
-.hits{
+.post-hits{
     padding-left: 35rpx;
     line-height:35rpx;
     height:35rpx;
@@ -64,7 +63,7 @@
     margin-right:10rpx;
     color:#555;
 }
-.replies{
+.post-replies{
     width:28rpx;
     height:30rpx;
     float:right;
@@ -179,7 +178,7 @@
 }
 
 .post-content-large{
-    padding-bottom:80rpx;
+    padding-bottom:90rpx;
 }
 
 .post-content text {

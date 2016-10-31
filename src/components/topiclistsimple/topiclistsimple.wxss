@@ -36,6 +36,7 @@
 }
 .cell-container{
     padding:20rpx;
+    padding-bottom:0;
 }
 .cell-flex-container{
     display:flex;
@@ -415,6 +416,7 @@
 }
 .cell-imageSudoku{
     padding:20rpx;
+    padding-bottom:0;
 }
 .cell-imageSudoku{
     display:flex;
@@ -455,11 +457,15 @@
     display:flex;
     justify-content: space-between;
 }
+.cell-imageSudoku-mes .cell-imageSudoku-meta{
+    position:relative;
+    top:12rpx;
+}
 .cell-imageSudoku-meta view{
     padding-left:35rpx;
 }
 .cell-imageSudoku-meta .cell-imageSudoku-like{
-    background-position: 0 0;
+    background-position: 0 2rpx;
 }
 .cell-imageSudoku-meta .cell-imageSudoku-replies{
     background-position: 0 5rpx;

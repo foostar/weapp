@@ -39,6 +39,7 @@ const CustomTagNav = require('../customtagnav/customtagnav')
 const Custom = require('../custom/custom')
 const NotSupport = require('../notsupport/notsupport')
 const NewsList = require('../newslist/newslist')
+const Post = require('../post/post')
 /*
  *   @定义组件类型
  */
@@ -105,12 +106,10 @@ components.type['newslist-tieba'] = NewsList
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
-components.type['layout-discoverCustom'] = DiscoverCustom
 components.type['subnav-flat'] = CustomTagNav
 components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
-components.type['newlivelist-flat'] = NotSupport
-
+components.type['post-flat'] = Post
 // topiclistSimple-flat
 
 const app = getApp()

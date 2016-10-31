@@ -107,7 +107,7 @@ App({
     showPost(id) {
         this.globalData.postId = id
         wx.navigateTo({
-            url: '/pages/regular-pages/post/post'
+            url: '/pages/blank/blank?type=post'
         })
     },
     getUserInfo(cb) {
@@ -129,7 +129,6 @@ App({
         }
     },
     isLogin() {
-        console.log(this.globalData.userInfo)
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
             return wx.navigateTo({
                 url: '/pages/regular-pages/login/login'
@@ -138,6 +137,7 @@ App({
         return true
     },
     globalData: {
+        loadSrc: '/images/dz_icon_article_default.png',
         userInfo: null
     }
 })

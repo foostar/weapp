@@ -97,11 +97,30 @@ const infoToFace = (str) => {
         data: str
     }
 }
+const pagetype = [
+    { type: 'webapp', desc: '外部URL', isAchieve: false },
+    { type: 'plugin', desc: 'plugin', isAchieve: false },
+    { type: 'userinfo', desc: '用户中心', isAchieve: true },
+    { type: 'userlist', desc: '用户列表', isAchieve: true },
+    { type: 'messagelist', desc: '消息列表', isAchieve: true },
+    { type: 'mall', desc: '微商城', isAchieve: false },
+    { type: 'setting', desc: '设置', isAchieve: true },
+    { type: 'search', desc: '搜索', isAchieve: false },
+    { type: 'fasttext', desc: '发表文字', isAchieve: true },
+    { type: 'fastimage', desc: '发表图片', isAchieve: true },
+    { type: 'fastcamera', desc: '发表拍照', isAchieve: false },
+    { type: 'fastaudio', desc: '发表语音', isAchieve: false },
+    { type: 'sign', desc: '签到', isAchieve: false },
+    { type: 'scan', desc: '二维码扫描', isAchieve: false },
+    { type: 'newlivelist', desc: '直播间', isAchieve: false },
+    { type: 'configSwitch', desc: '配置切换', isAchieve: false }
+]
 module.exports = {
     dateFormat,
     formatTime(date) {
         return dateFormat(date)
     },
     formateText,
-    infoToFace
+    infoToFace,
+    pagetype
 }

@@ -12,14 +12,14 @@
             <view class="cell-tieba-title">{{title}}</view>
         </view>
         <view wx:if="{{hasFace}}" class="cell-tieba-content">
-            <block wx:for="{{subject}}">
+            <block wx:for="{{subject}}" wx:key="{{index}}">
                 <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                 <image wx:else src="{{item.content}}" class="face" />
             </block>
         </view>
         <view wx:else class="cell-tieba-content">{{subject}}</view>
         <view class="cell-tieba-thumb" wx:if="{{imageList.length > 0}}">
-            <block wx:for="{{imageList}}">
+            <block wx:for="{{imageList}}" wx:key="{{index}}">
                 <view wx:if="{{index < 3}}" class="cell-tieba-thumb-container">
                     <image src="{{item}}" mode="aspectFill"></image>
                 </view>
@@ -61,7 +61,7 @@
             <block wx:elif="{{imageList.length > 1}}}">
                 <view class="cell-flat-content-subject">{{subject}}</view>
                 <view class="cell-flat-thumb">
-                    <block wx:for="{{imageList}}">
+                    <block wx:for="{{imageList}}" wx:key="{{index}}">
                         <view wx:if="{{index < 3}}" class="cell-flat-thumb-container">
                             <image src="{{item}}" mode="aspectFill"></image>
                         </view>
@@ -87,7 +87,7 @@
                     <view class="cell-card-header-time font-mini">{{last_reply_date}}</view>
                 </view>
                 <view class="cell-flag">
-                    <block wx:for="{{verify}}">
+                    <block wx:for="{{verify}}" wx:key="{{index}}">
                         <image wx:if="{{index < 3}}" class="cell-verify" src="{{item.icon}}"></image>
                     </block>
                 </view>
@@ -101,7 +101,7 @@
             <view class="cell-card-title">{{title}}</view>
             <view class="cell-card-subject font-normal">{{subject}}</view>
             <view class="cell-tieba-thumb cell-content-image-wrapper" wx:if="{{imageList.length > 0}}">
-                <block wx:for="{{imageList}}">
+                <block wx:for="{{imageList}}" wx:key="{{index}}">
                     <view wx:if="{{index < 3}}" class="cell-tieba-thumb-container">
                         <image src="{{item}}" mode="aspectFill"></image>
                     </view>
@@ -124,7 +124,7 @@
                     <view class="cell-imageSudoku-author-box">
                         <view class="cell-imageSudoku-username">{{user_nick_name}}</view>
                         <view class="cell-flag">
-                            <block wx:for="{{verify}}">
+                            <block wx:for="{{verify}}" wx:key="{{index}}">
                                 <image wx:if="{{index < 3}}" class="cell-verify" src="{{item.icon}}" mode="aspectFill"></image>
                             </block>
                         </view>
@@ -138,7 +138,7 @@
                     <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
                     <view class="cell-imageSudoku-subject">{{subject}}</view>
                     <view wx:if="{{imageList.length > 0}}" class="cell-circle-image-wrapper">
-                        <block wx:for="{{imageList}}">
+                        <block wx:for="{{imageList}}" wx:key="{{index}}">
                             <image  wx:if="{{index < 9}}" class="cell-circle-image-normal" src="{{item}}" mode="aspectFill"></image>
                         </block>
                     </view>
@@ -169,7 +169,7 @@
                         <view class="cell-circle-date font-mini color-gray">{{last_reply_date}}</view>
                     </view>
                     <view class="cell-flag">
-                        <block wx:for="{{verify}}">
+                        <block wx:for="{{verify}}" wx:key="{{index}}">
                             <image wx:if="{{index < 3}}" class="cell-verify" src="{{item.icon}}"></image>
                         </block>
                     </view>
@@ -190,12 +190,12 @@
                 <view wx:if="{{recommendAdd || reply.length > 0}}" class="cell-circle-reply font-mini">
                     <view wx:if="{{recommendAdd}}" class="cell-circle-reply-like font-mini">
                         <view class="cell-circle-reply-recommendAdd">{{recommendAdd}}</view>
-                        <block wx:for="{{zanList}}">
+                        <block wx:for="{{zanList}}" wx:key="{{index}}">
                             <view class="cell-circle-likemember color-member">{{item.username}}{{index < zanList.length-1 ? ',' : ''}}</view>
                         </block>
                     </view>
                     <view class="cell-circle-reply-main font-mini color-member" wx:if="{{!!reply}}">
-                        <block wx:for="{{reply}}">
+                        <block wx:for="{{reply}}" wx:key="{{index}}">
                             <view class="cell-circle-reply-box" wx:if="{{index < 6}}">
                                 <view class="cell-circle-reply-author color-member">{{item.username}}:</view>
                                 <view class="cell-circle-reply-content">{{item.text}}</view>
