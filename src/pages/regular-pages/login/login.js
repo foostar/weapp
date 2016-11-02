@@ -7,8 +7,6 @@ Page({
         isShow: false
     },
     onLoad() {
-        console.log('111111111')
-        console.log(app)
         // 获取app 图标 主题颜色
         this.setData({
             appIcon: app.globalData.info.appIcon,
@@ -43,7 +41,6 @@ Page({
             }
         })
         .catch((err) => {
-            console.log(err)
             if (parseInt(err.status) / 100 == 4) {
                 this.setData({
                     isShow: true,

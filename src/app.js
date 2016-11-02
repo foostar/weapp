@@ -1,5 +1,6 @@
 const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
+const util = require('./utils/util')
 const CONFIG = require('./config.js')
 
 const randStr = () => {
@@ -30,6 +31,8 @@ App({
                     if (queue.length) {
                         const d = queue.shift()
                         d.request().then(d.resolve, d.reject)
+                    } else {
+                        wx.hideToast()
                     }
                 }
                 // console.log(url, data)
@@ -61,6 +64,11 @@ App({
                         })
                     })
                 }
+                wx.showToast({
+                    title: '加载中',
+                    icon: 'loading',
+                    duration: 10000
+                })
                 const promise = request()
                 return promise
             }
@@ -76,6 +84,22 @@ App({
                 return data
             })
         }
+
+        // 处理forum数据
+        const forum = api.forum
+        api.forum = function () {
+            /* eslint-disable */
+            return forum.apply(api, arguments).then((data) => {
+            /* eslint-enable */
+                data.list.forEach((v) => {
+                    v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
+                    v.last_reply_date = util.formatTime(v.last_reply_date)
+                    v.subject = util.formateText(v.subject)
+                })
+                return data
+            })
+        }
+
 
         api.forumKey = CONFIG.FORUM_KEY
         const promise = Promise.all([
@@ -107,7 +131,7 @@ App({
     showPost(id) {
         this.globalData.postId = id
         wx.navigateTo({
-            url: '/pages/regular-pages/post/post'
+            url: '/pages/blank/blank?type=post'
         })
     },
     getUserInfo(cb) {
@@ -129,7 +153,7 @@ App({
         }
     },
     isLogin() {
-        if (!this.globalData.userInfo) {
+        if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
             return wx.navigateTo({
                 url: '/pages/regular-pages/login/login'
             })
@@ -137,6 +161,7 @@ App({
         return true
     },
     globalData: {
+        loadSrc: '/images/dz_icon_article_default.png',
         userInfo: null
     }
 })

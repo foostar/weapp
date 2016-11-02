@@ -1,15 +1,14 @@
-const Component = require('../../lib/component')
+const TouchComponent = require('../../lib/touchcomponent')
 
 function LayoutSlider(key, module) {
-    Component.call(this, key)
-
+    TouchComponent.call(this, key, module)
     this.data = {
         style: module.style,
         componentList: module.componentList
     }
 }
 
-LayoutSlider.prototype = Object.create(Component.prototype)
+LayoutSlider.prototype = Object.create(TouchComponent.prototype)
 LayoutSlider.prototype.name = 'layoutslider'
 LayoutSlider.prototype.constructor = LayoutSlider
 

@@ -1,9 +1,9 @@
 <template name="tabbar">
     <view class="tabbar">
-        <view class="tabbar-item" wx:for="{{tabs}}" wx:for-index="index">
+        <view class="tabbar-item" wx:for="{{tabs}}" wx:key="{{index}}" wx:for-index="index">
             <view bindtap="tabbar_handleTouch" data-event-key="{{key}}" data-index="{{index}}">
                 <image class="tabbar-item-image" mode="aspectFit" src="{{'http://icons.apps.xiaoyun.com/main/' + item.icon + '_' + (selected === index ? 'h' : 'n') + '/' + (selected === index ? color : '555')}}" />
-                <text class="tabbar-itme-name {{selected === index ? 'text-color' : ''}}">{{item.title}}</text>
+                <text class="tabbar-itme-name font-normal {{selected === index ? 'text-color' : ''}}">{{item.title}}</text>
             </view>
         </view>
     </view>

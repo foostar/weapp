@@ -12,7 +12,6 @@ Page(createPage({
         golbalFetch: true
     },
     onLoad() {
-        let self = this
         let tabSelected = 0
         const { modules, tabs } = app.globalData
         const module = modules[tabs[tabSelected].moduleId]
@@ -22,16 +21,6 @@ Page(createPage({
             if (item.moduleId === module.id) {
                 tabSelected = index
             }
-        })
-        app.event.on('golbal-fetching', () => {
-            self.setData({
-                golbalFetch: false
-            })
-        })
-        app.event.on('golbal-done', () => {
-            self.setData({
-                golbalFetch: true
-            })
         })
         this.setData({
             tabs: app.globalData.tabs,
@@ -56,6 +45,8 @@ Page(createPage({
         })
     },
     clickItem(e) {
-        app.showPost(e.currentTarget.id)
+        if (!e.currentTarget.role) {
+            return app.showPost(e.currentTarget.id)
+        }
     }
 }))

@@ -1,0 +1,5 @@
+<view class="layoutcoltext">
+    <view class="layout-col-text-item" bindtap="layoutcoltext_touch" data-index="{{ index }}" data-event-key="{{key}}" wx:for="{{componentList}}">
+        <text>{{item.title || item.desc}}</text>
+    </view>
+</view>

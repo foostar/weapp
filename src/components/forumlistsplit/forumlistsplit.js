@@ -14,7 +14,6 @@ ForumlistSplit.prototype.constructor = ForumlistSplit
 ForumlistSplit.prototype.onLoad = function () {
     // this.page.disableScroll()
     // 判断用户是否登录
-    app.event.trigger('golbal-fetching')
     if (app.globalData.userInfo) {
         this.setData({
             isLogin: true,
@@ -38,7 +37,6 @@ ForumlistSplit.prototype.fetchData = function () {
     ]).then(([ forumList, recForumList ]) => {
         const resources = forumList
         resources.rec = recForumList
-        app.event.trigger('golbal-done')
         this.setData({
             currentBoard: 10000,
             currentBoardList: resources.rec.recommendedBoard,

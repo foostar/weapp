@@ -53,7 +53,11 @@ function createPage(config) {
     // })
 
     const onLoad = config.onLoad
+    const onUnload = config.onUnload
     const onReady = config.onReady
+    const onShow = config.onShow
+    const onHide = config.onHide
+    // const onReachBottom = config.onReachBottom
 
     // const getter = Component.prototype.__lookupGetter__('children')
     // let children
@@ -96,6 +100,18 @@ function createPage(config) {
         this.trigger('load')
     }
 
+    config.onUnload = function () {
+        const children = this.children
+        Object.keys(children).forEach((key) => {
+            children[key].unload()
+        })
+        if (onUnload) {
+            /* eslint-disable */
+            onUnload.apply(this, arguments)
+            /* eslint-enable */
+        }
+    }
+
     config.onReady = function () {
         if (onReady) {
             /* eslint-disable */
@@ -103,6 +119,34 @@ function createPage(config) {
             /* eslint-enable */
         }
         this.trigger('ready')
+    }
+
+    config.onShow = function () {
+        this.shown = true
+        const children = this.children
+        Object.keys(children).forEach((key) => {
+            children[key].show()
+        })
+        if (onShow) {
+            /* eslint-disable */
+            onShow.apply(this, arguments)
+            /* eslint-enable */
+        }
+        this.trigger('show')
+    }
+
+    config.onHide = function () {
+        this.shown = false
+        const children = this.children
+        Object.keys(children).forEach((key) => {
+            children[key].hide()
+        })
+        if (onHide) {
+            /* eslint-disable */
+            onHide.apply(this, arguments)
+            /* eslint-enable */
+        }
+        this.trigger('hide')
     }
 
     return config

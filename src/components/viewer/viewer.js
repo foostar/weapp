@@ -13,16 +13,24 @@ const DiscoverCustom = require('../discovercustom/discovercustom')
 const MessagelistFlat = require('../messagelistflat/messagelistflat')
 const LayoutDefault = require('../layoutdefault/layoutdefault')
 const LayoutLine = require('../layoutline/layoutline')
-const LayoutSlider = require('../layoutslider/layoutslider')
 const LayoutImage = require('../layoutimage/layoutimage')
-const Layout1ColLowFixed = require('../layout1collowfixed/layout1collowfixed')
-const Layout1ColSuperLow = require('../layout1colsuperlow/layout1colsuperlow')
-const Layout2ColLow = require('../layout2collow/layout2collow')
-const Layout3ColMid = require('../layout3colmid/layout3colmid')
-const Layout3ColText = require('../layout3coltext/layout3coltext')
+const LayoutSlider = require('../layoutslider/layoutslider')
+const Layout1Col = require('../layout1col/layout1col')
+const Layout2Col = require('../layout2col/layout2col')
+const Layout3Col = require('../layout3col/layout3col')
 const Layout4Col = require('../layout4col/layout4col')
+const LayoutColText = require('../layoutcoltext/layoutcoltext')
+const Layout1Col1Row = require('../layout1col1row/layout1col1row')
+const Layout1Col2Row = require('../layout1col2row/layout1col2row')
+const Layout1Col3Row = require('../layout1col3row/layout1col3row')
+const Layout1Row1Col = require('../layout1row1col/layout1row1col')
+const Layout2Row1Col = require('../layout2row1col/layout2row1col')
+const Layout3Row1Col = require('../layout3row1col/layout3row1col')
 const LayoutTransparent = require('../layouttransparent/layouttransparent')
 const LayoutSeparator = require('../layoutseparator/layoutseparator')
+
+const LayoutNewsAuto = require('../layoutnewsauto/layoutnewsauto')
+
 const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
 const ForumlistCard = require('../forumlistcard/forumlistcard')
 const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
@@ -30,10 +38,11 @@ const Talk = require('../talk/talk')
 const CustomTagNav = require('../customtagnav/customtagnav')
 const Custom = require('../custom/custom')
 const NotSupport = require('../notsupport/notsupport')
+const NewsList = require('../newslist/newslist')
+const Post = require('../post/post')
 /*
  *   @定义组件类型
  */
-
 
 components.type['moduleRef-flat'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
@@ -44,33 +53,63 @@ components.type['full-flat'] = Fullcard
 components.type['discover-flat'] = Discover
 components.type['layout-discoverCustom'] = DiscoverCustom
 components.type['messagelist-flat'] = MessagelistFlat
+// 风格区
 components.type['layout-layoutDefault'] = LayoutDefault
 components.type['layout-layoutLine'] = LayoutLine
-components.type['layout-layoutSlider'] = LayoutSlider
-components.type['layout-layoutSlider_Mid'] = LayoutSlider
 components.type['layout-layoutImage'] = LayoutImage
-components.type['layout-layoutOneCol_Low_Fixed'] = Layout1ColLowFixed
-components.type['layout-layoutOneCol_Super_Low'] = Layout1ColSuperLow
-components.type['layout-layoutTwoCol_Low'] = Layout2ColLow
-components.type['layout-layoutThreeCol_Mid'] = Layout3ColMid
-components.type['layout-layoutThreeColText'] = Layout3ColText
-components.type['layout-layoutFourCol'] = Layout4Col
+
+components.type['layout-layoutSlider'] = LayoutSlider // 幻灯片样式(高)
+components.type['layout-layoutSlider_Mid'] = LayoutSlider // 幻灯片样式(中)
+components.type['layout-layoutSlider_Low'] = LayoutSlider // 幻灯片样式(低)
+
+components.type['layout-layoutOneCol_High'] = Layout1Col // 单栏样式(高)
+components.type['layout-layoutOneCol_Low'] = Layout1Col // 单栏样式(中)
+components.type['layout-layoutOneCol_Low_Fixed'] = Layout1Col // 单栏样式(低)
+components.type['layout-layoutOneCol_Super_Low'] = Layout1Col // 单栏样式(超低)
+
+components.type['layout-layoutTwoCol_High'] = Layout2Col // 双栏样式(高)
+components.type['layout-layoutTwoCol_Mid'] = Layout2Col // 双栏样式(中)
+components.type['layout-layoutTwoCol_Low'] = Layout2Col // 双栏样式(低)
+components.type['layout-layoutTwoCol_Super_Low'] = Layout2Col // 双栏样式(超低)
+
+components.type['layout-layoutThreeCol_High'] = Layout3Col // 三栏样式(高)
+components.type['layout-layoutThreeCol_Mid'] = Layout3Col // 三栏样式(中)
+components.type['layout-layoutThreeCol_Low'] = Layout3Col // 三栏样式(低)
+components.type['layout-layoutThreeCol_Super_Low'] = Layout3Col // 三栏样式(超低)
+
+components.type['layout-layoutFourCol'] = Layout4Col // 四栏样式
+components.type['layout-layoutFourCol_Super_Low'] = Layout4Col // 四栏样式(超低)
+
+components.type['layout-layoutTwoColText'] = LayoutColText // 两栏文字
+components.type['layout-layoutThreeColText'] = LayoutColText // 三栏文字
+
+components.type['layout-layoutOneColOneRow'] = Layout1Col1Row // 1(大)+1样式
+components.type['layout-layoutOneColTwoRow'] = Layout1Col2Row // 1+2样式
+components.type['layout-layoutOneColThreeRow'] = Layout1Col3Row // 1+3样式
+
+components.type['layout-layoutOneRowOneCol'] = Layout1Row1Col // 1+1(大)样式
+components.type['layout-layoutTwoRowOneCol'] = Layout2Row1Col // 2+1样式
+components.type['layout-layoutThreeRowOneCol'] = Layout3Row1Col // 3+1样式
+
 components.type['layout-layoutTransparent'] = LayoutTransparent
-components.type['layout-layoutSeparator'] = LayoutSeparator
+components.type['layout-layoutSeparator'] = LayoutSeparator // 分割线
+
+components.type['layout-layoutNewsAuto'] = LayoutNewsAuto // 列表自动样式
+
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['topiclistSimple-card'] = TopiclistSimple
+components.type['topiclistSimple-neteaseNews'] = TopiclistSimple
 components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
 components.type['topiclistSimple-circle'] = TopiclistSimple
+components.type['newslist-tieba'] = NewsList
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
-components.type['layout-discoverCustom'] = DiscoverCustom
 components.type['subnav-flat'] = CustomTagNav
 components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
-components.type['newlivelist-flat'] = NotSupport
-
+components.type['post-flat'] = Post
 // topiclistSimple-flat
 
 const app = getApp()
@@ -87,14 +126,13 @@ function Viewer(key, module) {
     this.module = module
     this.add(components.create(module))
     this.data = {
-        hasScroll: checkHasScroll(module)
+        hasScroll: checkHasScroll(module),
     }
 }
 
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
-
 Viewer.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }
