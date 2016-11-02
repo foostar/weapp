@@ -39,7 +39,7 @@ Page({
             }
         })
         .catch((err) => {
-            if (parseInt(err.status, 10) / 100 == 4) {
+            if (parseInt(err.status / 100, 10) == 4) {
                 this.setData({
                     isShow: true,
                     errMessage: err.message
