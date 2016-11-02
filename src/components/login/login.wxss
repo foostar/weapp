@@ -1,0 +1,47 @@
+.from-view {
+    height: 236rpx;
+    padding-top: 100rpx;
+    padding-bottom: 20rpx;
+}
+
+.app-icon {
+    width: 200rpx;
+    height: 200rpx;
+    margin: auto;
+    display: block;
+    border-radius: 10rpx;
+}
+.form-box {
+    background-repeat: no-repeat;
+    background-position: left;
+    margin: 10rpx 40rpx;
+    border-bottom: 1rpx solid #ccc;
+}
+
+.icon-username {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABM0lEQVQ4T6WTy3GDMBCGtTDi7HTgdEAHoQQdJA23UALpwB3EJXBktDqQDkgH7iDuIJxhYDPyGA8Wsj2e6Kjd/fbfF7B/PgjFCyE2nPNPxtjL2f47DMNH0zSd778CuOAkSVoiKhDx4AKUUikAVH3fZz5kBVBK7Ymosda2y2xSygwABCKWy/8QoEXELFSaUmplexbQIKJ4pKAgoo21du+VUAJAh4jVXYAzaq2d0w8RfcVx3E3T9M4YezXGFA+nMDtorQURnXoBAK0xpgn1ZdUDF8gYeyOi9EoqgBvptw+6ApylH6Moquq6Pi4BeZ5vp2lyJWyXpVwA58ypMWZ3b7u11s5+mJUsAVUURTs/sw9zSsZxLOeFugCklKU/ultKlgsVvAXOues43QIAgGvmqdTgNT5z4X+fCo8ROARd3wAAAABJRU5ErkJggg==)
+}
+
+.icon-password {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA/ElEQVQ4T6WTyw2DMAyGYwlx7gjtBozQEbg44tgRGIERGKFn+5IROkI36AqceciVK1IFSBBVfQM7n3+/wOxYWZYndTvnulQYxBxVVZ2naWoB4Kl+ESmMMQ0zf75D2wA0a57nbd/3dZjZWntf/1PQBoCINwDoiMiFmWZwTUTNrgJrbbMO8g8Q0TFz+Q/gwczXKMDXLiKdlpDquogooPYN/fYAEdthGJq9kSnUJyKi26KJiLiRl1IR9ilUsAEoVCHrun8BtDOgDtUcBmigPlyP9TAgdQtRQGpVY43U2NgUCgDQWl97F2qMueiB+lVf3IJKzrJMLy9p4zg+w115A+ZGpBE28adDAAAAAElFTkSuQmCC)
+}
+.input {
+    padding-left: 40rpx;
+    height: 100rpx;
+}
+
+.register-text{
+    display: block;
+    text-align: right;
+    margin: 10rpx 40rpx;
+    font-size: 32rpx;
+    padding: 40rpx 0;
+}
+
+
+.login-btn {
+    border: 0;
+    margin: 10rpx 40rpx;
+    color: #fff;
+    text-align: center;
+}

@@ -12,7 +12,7 @@
         <view class="user-login" style="background-image:url({{userInfo.avatar}});"></view>
         <view class="personal-user-info-name">{{userInfo.userName}}</view>
         <view class="personal-user-info-desc">
-            <text style="margin-right: 10rpx;" wx:if="{{userInfo.creditShowList[0]}}">{{userInfo.creditShowList[0].title +':'+ userInfo.creditShowList[0].data   }}</text>
+            <text style="margin-right: 10rpx;" wx:if="{{userInfo.creditShowList[0]}}">{{userInfo.creditShowList[0].title +':'+ userInfo.creditShowList[0].data }}</text>
             <text wx:if="{{userInfo.creditShowList[1]}}">{{userInfo.creditShowList[1].title +':'+ userInfo.creditShowList[1].data}}</text>
         </view>
         <view class="personal-user-info-level">{{userInfo.userTitle}}</view>
@@ -46,7 +46,9 @@
                 <image class="icon-arrow"></image>
             </view>
         </navigator>
-        <navigator url="/pages/regular-pages/create-forum/create-forum?fid=123&actType=new&isTopic=true&ti_id=123">
+        <!-- <navigator url="/pages/regular-pages/create-forum/create-forum?fid=123&actType=new&isTopic=true&ti_id=123"> -->
+        <navigator url="/pages/blank/blank?type=createforum">
+
             <view class="personal-manage-item" wx:if="{{true}}">
                 <image class="icon icon-info"></image>
                 <text class="personal-manage-item-title">发表话题</text>

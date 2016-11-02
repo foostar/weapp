@@ -113,11 +113,18 @@ function createPage(config) {
     }
 
     config.onReady = function () {
+
         if (onReady) {
             /* eslint-disable */
             onReady.apply(this, arguments)
             /* eslint-enable */
         }
+
+        const children = this.children
+        Object.keys(children).forEach((key) => {
+            children[key].ready()
+        })
+
         this.trigger('ready')
     }
 

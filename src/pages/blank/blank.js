@@ -22,10 +22,11 @@ Page(createPage({
             module = {
                 componentList: [],
                 extParams: {},
-                title: '出错了！',
+                title: '',
                 id: data.type,
                 style: 'flat',
-                type: data.type
+                type: data.type,
+                data: data.data ? JSON.parse(data.data) : ''
             }
         } else {
             module = JSON.parse(data.data)
