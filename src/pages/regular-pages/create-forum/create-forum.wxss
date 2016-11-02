@@ -43,6 +43,43 @@ page {
 .publish-text-input {
     padding: 20rpx;
     font-size: 28rpx;
+    width:auto;
+}
+
+.upload-images {
+    width: 128rpx;
+    height: 128rpx;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8rpx;
+    margin: 10rpx;
+    overflow: hidden;
+}
+
+/* 删除上传图片 */
+.delete-upload-box {
+    width: 0;
+    display: inline-block;
+    top:-130rpx;
+    left:-20rpx;
+    position: relative;
+}
+
+/* 删除上传图片按钮 */
+.delete-upload-btn {
+    width: 30rpx;
+    height: 30rpx;
+    overflow:hidden;
+    border-radius: 50%;
+    background: rgba(255,0,0,.6);
+    line-height: 30rpx;
+    position: absolute;
+    text-align: center;
+    font-size: 26rpx;
+    color:#fff;
+    top: -15rpx;
+    left: -15rpx;
 }
 
 .image-upload-btn {

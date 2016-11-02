@@ -1,4 +1,4 @@
-<view class="publish-select-warp">
+<view class="publish-select-warp" wx:if="{{fid == null}}">
     <text class="publish-select-label">发送到</text>
     <picker class="publish-select" bindchange="selectChange" value="{{selectIndex}}" range="{{selectNameArray}}">
         <view class="picker">{{selectNameArray[selectIndex]}}</view>
@@ -7,8 +7,16 @@
 
 <view class="publish-content">
     <input class="publish-title" type="text" bindinput="changeTitle" placeholder="标题" />
-    <input class="publish-text-input" type="text" bindinput="changeConent" placeholder="说点什么吧..."/>
+    <!-- <input class="publish-text-input" type="text" bindinput="changeConent" placeholder="说点什么吧..."/> -->
+    <textarea class="publish-text-input" placeholder="说点什么吧..." bindfocus="textareaFocus" bindblur="blurAndChangeContent" ></textarea>
+
+    <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
+        <image wx:if="{{idx < 9}}" src="{{item}}" class="upload-images" bindtap="previewImage" data-current-url="{{item}}" />
+        <view class="delete-upload-box">
+            <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="deleteImage" data-current-url="{{item}}">x</view>
+        </view>
+    </block>
     <view class="image-upload-btn" bindtap="chooseImg" />
 </view>
 
-<button bindtap="submit" class="publish-submit-btn">发　　布</button>
+<button bindtap="submit" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>

@@ -7,11 +7,11 @@
     "pages/about/about",
     "pages/error/error",
     "pages/callbackpassword/callbackpassword",
-    "pages/regular-pages/forum/forum",
-    "pages/regular-pages/topic-list/topic-list",
-    "pages/regular-pages/create-forum/create-forum",
-    "pages/regular-pages/topic/topic",
     "pages/regular-pages/login/login",
+    "pages/regular-pages/forum/forum",
+    "pages/regular-pages/create-forum/create-forum",
+    "pages/regular-pages/topic-list/topic-list",
+    "pages/regular-pages/topic/topic",
     "pages/regular-pages/register/register",
     "pages/regular-pages/user-home/user-home",
     "pages/regular-pages/setting/setting",
@@ -26,4 +26,5 @@
     "navigationBarTextStyle":"white",
     "backgroundColor":"#3f3f3f"
   }
+
 }

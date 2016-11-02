@@ -39,11 +39,20 @@
             <text class="personal-manage-item-title">我的收藏</text>
             <image class="icon-arrow"></image>
         </view>
-        <view class="personal-manage-item" wx:if="{{false}}">
-            <image class="icon icon-info"></image>
-            <text class="personal-manage-item-title">我的草稿</text>
-            <image class="icon-arrow"></image>
-        </view>
+        <navigator url="/pages/regular-pages/create-forum/create-forum">
+            <view class="personal-manage-item" wx:if="{{true}}">
+                <image class="icon icon-info"></image>
+                <text class="personal-manage-item-title">我的草稿</text>
+                <image class="icon-arrow"></image>
+            </view>
+        </navigator>
+        <navigator url="/pages/regular-pages/create-forum/create-forum?fid=123&actType=new&isTopic=true&ti_id=123">
+            <view class="personal-manage-item" wx:if="{{true}}">
+                <image class="icon icon-info"></image>
+                <text class="personal-manage-item-title">发表话题</text>
+                <image class="icon-arrow"></image>
+            </view>
+        </navigator>
         <view class="personal-manage-item" wx:if="{{setting.plugin.isMobileRegisterValidation && setting.plugin.changeMobile}}">
             <image class="icon icon-my-phone"></image>
             <text class="personal-manage-item-title">我的手机</text>
