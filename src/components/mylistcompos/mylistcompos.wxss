@@ -1,0 +1,118 @@
+.topics-item-box {
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    color: #a6a6a6;
+    padding: 16rpx;
+    border-bottom: 1rpx solid #ccc;
+    min-height: 110rpx;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.topics-item-context {
+    flex: 1;
+    position: relative;
+    height: 110rpx;
+    display: flex;
+    flex-direction: row;
+}
+.topics-item-pic {
+    margin-left: 16rpx;
+    width: 180rpx;
+    height: 114rpx;
+    display: block;
+}
+
+.topics-item-title {
+    min-height: 22px;
+    font-size: 15px;
+    color: #333;
+}
+
+.topics-item-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.topics-item-date {
+    font-size: 26rpx;
+    flex: 1;
+}
+
+.topics-item-subject {
+    font-size: 13px;
+    overflow: hidden;
+    line-clamp:3;
+    white-space: nowrap
+}
+.user-list-item {
+    background-color: #fff;
+    padding: 20rpx;
+    position: relative;
+    color: #bebebe;
+    border-bottom: 1rpx solid #ccc;
+}
+.user-item-image {
+    width: 132rpx;
+    height: 132rpx;
+    border-radius: 10rpx;
+    background-size: 100%;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 20rpx;
+    left: 20rpx;
+}
+
+.user-item-data {
+    padding-left: 152rpx;
+    height: 132rpx;   
+}
+
+.user-item-data-info {
+    height: 30rpx;
+    margin-bottom: 10rpx;
+    width: auto;
+}
+.user-item-data-info-name {
+    text-align: left;
+    font-size: 28rpx;
+    line-height: 30rpx;
+    color: #000;
+}
+.user-item-data-info-dateline {
+    font-size: 20rpx;
+    line-height: 30rpx;
+    float: right;
+}
+
+.user-item-data-badge {
+    display:initial;
+    font-size: 24rpx;
+    background: #41a5fa;
+    color: #fff;
+    text-align: center;
+    padding: 2rpx 10rpx;
+    border-radius: 4rpx;
+    line-height: 40rpx;
+    height: 40rpx;
+}
+/* 无内容提示 */
+.no-content {
+    color: #ccc;
+    text-align: center;
+    margin: 30rpx 0;
+}
+
+.user-item-data-desc {
+    line-height: 40rpx;
+    font-size: 24rpx;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

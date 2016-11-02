@@ -61,6 +61,17 @@ Component.prototype.remove = function (child) {
     child.unload()
 }
 
+Component.prototype.ready = function () {
+    if (this.isReady) return
+    if (!this.loaded) return
+    this.isReady = true
+    const children = this.children
+    Object.keys(children).forEach((key) => {
+        this.children[key].ready()
+    })
+    this.onReady()
+}
+
 Component.prototype.load = function () {
     if (this.loaded) return
     this.loaded = true
@@ -132,5 +143,6 @@ Component.prototype.onLoad = function () {}
 Component.prototype.onUnload = function () {}
 Component.prototype.onShow = function () {}
 Component.prototype.onHide = function () {}
+Component.prototype.onReady = function () {}
 
 module.exports = Component

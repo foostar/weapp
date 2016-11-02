@@ -135,6 +135,19 @@
     <include src="../post/post.wxml" />
 </template>
 
+<template name="login">
+    <include src="../login/login.wxml" />
+</template>
+
+<template name="mylistcompos">
+    <include src="../mylistcompos/mylistcompos.wxml" />
+</template>
+
+<template name="createforum">
+    <include src="../createforum/createforum.wxml" />
+</template>
+
+
 <template name="module">
     <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}" />
 </template>
