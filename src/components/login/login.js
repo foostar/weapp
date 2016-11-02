@@ -46,7 +46,8 @@ Login.prototype.toLogin = function (e) {
         }
     })
     .catch(err => {
-        if (parseInt(err.status) / 100 == 4) {
+        console.log(err.status)
+        if (parseInt(err.status, 10) / 100 == 4) {
             this.setData({
                 isShow: true,
                 errMessage: err.message

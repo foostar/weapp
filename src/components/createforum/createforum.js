@@ -3,7 +3,6 @@ const Component = require('../../lib/component')
 const app = getApp()
 
 function Createforum(key, module) {
-    console.log(module)
     this.pageData = module.data ? module.data : ''
     Component.call(this, key)
     this.data = {
@@ -32,17 +31,13 @@ Createforum.prototype.constructor = Createforum
 
 Createforum.prototype.onLoad = function () {
     let opts = this.pageData
-    let fid = opts.fid ? opts.fid : null
-    let actType = opts.actType ? opts.actType : 'new'
-    let isTopic = opts.isTopic ? opts.isTopic : false
-    let tiId = opts.ti_id ? opts.ti_id : ''
+    let data = Object.assign({
+        fid: null,
+        actType: 'new',
+        isTopic: false,
+        tiId: ''
+    }, opts)
 
-    let data = {
-        actType,
-        isTopic,
-        tiId,
-        fid
-    }
 
     if (app.globalData.userInfo) {
         // 判断用户是否登录
@@ -55,7 +50,7 @@ Createforum.prototype.onLoad = function () {
         console.info('no auth')
     }
     // 当没有版块ID时 需要获取板块列表
-    if (!fid) {
+    if (!data.fid) {
         app.api.forumList().then((res) => {
             const { list } = res
             const selectType = list[0].board_list[0].board_id
@@ -69,7 +64,7 @@ Createforum.prototype.onLoad = function () {
             this.setData(data)
         })
     } else {
-        Object.assign(data, { selectType: fid })
+        Object.assign(data, { selectType: data.fid })
         this.setData(data)
     }
 }

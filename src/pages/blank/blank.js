@@ -19,14 +19,18 @@ Page(createPage({
     onLoad(data) {
         let module
         if (data.type) {
-            module = {
-                componentList: [],
-                extParams: {},
-                title: '',
-                id: data.type,
-                style: 'flat',
-                type: data.type,
-                data: data.data ? JSON.parse(data.data) : ''
+            try {
+                module = {
+                    componentList: [],
+                    extParams: {},
+                    title: '',
+                    id: data.type,
+                    style: 'flat',
+                    type: data.type
+                }
+                Object.assign(module, { data: JSON.parse(data.data) })
+            } catch (e) {
+                console.log(e)
             }
         } else {
             module = JSON.parse(data.data)

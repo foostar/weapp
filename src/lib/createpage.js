@@ -113,7 +113,6 @@ function createPage(config) {
     }
 
     config.onReady = function () {
-
         if (onReady) {
             /* eslint-disable */
             onReady.apply(this, arguments)

@@ -24,11 +24,9 @@ Page({
         })
     },
     login(e) {
-        console.error('aaaaaaa')
         const { username, password } = e.detail.value
         app.api.signin(username, password)
         .then(res => {
-            console.log(res)
             app.globalData.userInfo = res
             app.api.token = res.token
             app.api.secret = res.secret
@@ -41,7 +39,7 @@ Page({
             }
         })
         .catch((err) => {
-            if (parseInt(err.status) / 100 == 4) {
+            if (parseInt(err.status, 10) / 100 == 4) {
                 this.setData({
                     isShow: true,
                     errMessage: err.message
