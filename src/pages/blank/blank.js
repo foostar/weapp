@@ -1,6 +1,8 @@
 const createPage = require('../../lib/createpage.js')
 const Viewer = require('../../components/viewer/viewer')
+const untils = require('../../utils/util.js')
 
+const pagetype = untils.pagetype
 var app = getApp()
 Page(createPage({
     data: {
@@ -15,16 +17,39 @@ Page(createPage({
         golbalFetch: true
     },
     onLoad(data) {
-        var self = this
-        const { moduleId } = data // 存导航栏标题, onReady 再设置
-        const module = app.globalData.modules[moduleId]
+        let module
+        if (data.type) {
+            module = {
+                componentList: [],
+                extParams: {},
+                title: '出错了！',
+                id: data.type,
+                style: 'flat',
+                type: data.type
+            }
+        } else {
+            module = JSON.parse(data.data)
+            // 检测是否支持当前版块
+            pagetype.forEach((v) => {
+                if (v.type == module.type && !v.isAchieve) {
+                    module = {
+                        componentList: [],
+                        extParams: {},
+                        title: '出错了！',
+                        style: 'support',
+                        type: 'not'
+                    }
+                }
+            })
+        }
+        // 加载module
         this.add(new Viewer('viewer', module))
         this.setData({
             module,
             appIcon: app.globalData.info.appIcon,
             appColor: app.globalData.info.appColor
         })
-        app.event.on('golbal-fetching', () => {
+/*        app.event.on('golbal-fetching', () => {
             self.setData({
                 golbalFetch: false
             })
@@ -33,7 +58,7 @@ Page(createPage({
             self.setData({
                 golbalFetch: true
             })
-        })
+        })*/
     },
     onReady() {
     },

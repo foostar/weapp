@@ -54,11 +54,73 @@ const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = true) =>
     })
     return format
 }
+const sesourceAddress = { 泪: 'lei', 怒: 'nu', 心: 'xin', 晕: 'yun', 衰: 'shuai', 来: 'lai', 萌: 'meng', 囧: 'jiong', 酷: 'ku', 汗: 'han', 嘘: 'xu', 吐: 'tu', 睡: 'shui', 包: 'bao', 耶: 'ye', 饭: 'fan', 赞: 'zan', 咖啡: 'kafei', 礼物: 'liwu', 猪头: 'zhutou', 抱抱: 'baobao', 握手: 'woshou', 吃惊: 'chijing', 白眼: 'baiyan', 疑问: 'yiwen', 阴险: 'yinxian', 送花: 'songhua', 威武: 'weiwu', 围观: 'weiguan', 撇嘴: 'piezui', 发呆: 'fadai', 敲打: 'qiaoda', 委屈: 'weiqu', 兔子: 'tuzi', 哈哈: 'haha', 抓狂: 'zhuakuang', 嘻嘻: 'xixi', 偷笑: 'touxiao', 生病: 'shengbing', 爱你: 'aini', 害羞: 'haixiu', 馋嘴: 'chanzui', 可怜: 'kelian', 鼓掌: 'guzhang', 花心: 'huaxin', 亲亲: 'qinqin', 鄙视: 'bishi', 呵呵: 'hehe', 傲慢: 'aoman', 月亮: 'yueliang', 太阳: 'taiyang', 谢谢: 'xiexie', 蓝心: 'lanxin', 神马: 'shenma', 坑爹: 'kengdie', 魔鬼: 'mogui', 紫心: 'zixin', 绿心: 'lvxin', 黄心: 'huangxin', 音符: 'yinfu', 闪烁: 'shansuo', 星星: 'xingxing', 雨滴: 'yudi', 火焰: 'huoyan', 便便: 'bianbian', 下雨: 'xiayu', 多云: 'duoyun', 闪电: 'shandian', 雪花: 'xuehua', 旋风: 'xuanfeng', 房子: 'fangzi', 烟花: 'yanhua', 踩一脚: 'caiyijiao', 有木有: 'youmuyou', 外星人: 'waixingren', 挖鼻屎: 'wabishi', 太开心: 'taikaixin', 心碎了: 'xinsuile', 糗大了: 'qiudale', 左哼哼: 'zuohengheng', 右哼哼: 'youhengheng', 做鬼脸: 'zuoguilian', 要哭了: 'yaokule', ok: 'ok', good: 'good', Hold: 'hold', ByeBye: 'byebye' }
 
+const infoToFace = (str) => {
+    const faceRegExp = /\[([^\]]*)\]/g
+    const bbsFaceReg = /^mobcent/
+    var result = false
+    result = faceRegExp.test(str)
+    str = str.replace(faceRegExp, (word, text) => {
+        let data
+        if (sesourceAddress[text]) {
+            data = `,https://cdn-wz.xiaoyun.com/m/img/face/${sesourceAddress[text]}.png,`
+        } else if (bbsFaceReg.test(text)) {
+            data = `,${text.replace('mobcent_phiz=', '')},`
+        } else {
+            data = word
+        }
+        return data
+    })
+    var faceArr = []
+    var faceResult = []
+    if (result) {
+        faceArr = str.split(',')
+        faceArr.forEach((v) => {
+            if (v) {
+                if (/\/img\//g.test(v)) {
+                    faceResult.push({ type: 'image', content: v })
+                } else if (/^http:/.test(v)) {
+                    faceResult.push({ type: 'image', content: v })
+                } else {
+                    faceResult.push({ type: 'text', content: v })
+                }
+            }
+        })
+        return {
+            hasFace: result,
+            data: faceResult
+        }
+    }
+    return {
+        hasFace: result,
+        data: str
+    }
+}
+const pagetype = [
+    { type: 'webapp', desc: '外部URL', isAchieve: false },
+    { type: 'plugin', desc: 'plugin', isAchieve: false },
+    { type: 'userinfo', desc: '用户中心', isAchieve: true },
+    { type: 'userlist', desc: '用户列表', isAchieve: true },
+    { type: 'messagelist', desc: '消息列表', isAchieve: true },
+    { type: 'mall', desc: '微商城', isAchieve: false },
+    { type: 'setting', desc: '设置', isAchieve: true },
+    { type: 'search', desc: '搜索', isAchieve: false },
+    { type: 'fasttext', desc: '发表文字', isAchieve: true },
+    { type: 'fastimage', desc: '发表图片', isAchieve: true },
+    { type: 'fastcamera', desc: '发表拍照', isAchieve: false },
+    { type: 'fastaudio', desc: '发表语音', isAchieve: false },
+    { type: 'sign', desc: '签到', isAchieve: false },
+    { type: 'scan', desc: '二维码扫描', isAchieve: false },
+    { type: 'newlivelist', desc: '直播间', isAchieve: false },
+    { type: 'configSwitch', desc: '配置切换', isAchieve: false }
+]
 module.exports = {
     dateFormat,
     formatTime(date) {
         return dateFormat(date)
     },
-    formateText
+    formateText,
+    infoToFace,
+    pagetype
 }

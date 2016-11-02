@@ -39,6 +39,7 @@ const CustomTagNav = require('../customtagnav/customtagnav')
 const Custom = require('../custom/custom')
 const NotSupport = require('../notsupport/notsupport')
 const NewsList = require('../newslist/newslist')
+const Post = require('../post/post')
 /*
  *   @定义组件类型
  */
@@ -98,18 +99,17 @@ components.type['layout-layoutNewsAuto'] = LayoutNewsAuto // 列表自动样式
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['topiclistSimple-card'] = TopiclistSimple
+components.type['topiclistSimple-neteaseNews'] = TopiclistSimple
 components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
 components.type['topiclistSimple-circle'] = TopiclistSimple
 components.type['newslist-tieba'] = NewsList
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
-components.type['layout-discoverCustom'] = DiscoverCustom
 components.type['subnav-flat'] = CustomTagNav
 components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
-components.type['newlivelist-flat'] = NotSupport
-
+components.type['post-flat'] = Post
 // topiclistSimple-flat
 
 const app = getApp()
@@ -126,14 +126,13 @@ function Viewer(key, module) {
     this.module = module
     this.add(components.create(module))
     this.data = {
-        hasScroll: checkHasScroll(module)
+        hasScroll: checkHasScroll(module),
     }
 }
 
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
-
 Viewer.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }

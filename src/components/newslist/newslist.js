@@ -28,7 +28,6 @@ NewsList.prototype.clickItem = function (e) {
 }
 
 NewsList.prototype.onLoad = function () {
-    app.event.trigger('golbal-fetching')
     this.fetchData(this.data.module, this.data.page)
     let that = this
     // 加载下一页的数据
@@ -61,7 +60,6 @@ NewsList.prototype.fetchData = function (module, page) {
             return v
         })
         data.list = list.concat(data.list)
-        app.event.trigger('golbal-done')
         this.setData({
             module,
             page,

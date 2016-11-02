@@ -2,9 +2,6 @@
 <import src="../../components/tabbar/tabbar.wxml" />
 
 <view class="ui-container">
-    <loading hidden="{{golbalFetch}}">
-        加载中...
-    </loading>
     <template is="viewer" data="{{...children.viewer, module}}"></template>
     <template is="tabbar" data="{{...children.tabbar, key: 'tabbar', selected: tabSelected, tabs}}" />
 </view>

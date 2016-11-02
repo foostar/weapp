@@ -1,4 +1,5 @@
 const ListComponent = require('../../lib/listcomponent')
+const util = require('../../utils/util.js')
 
 const app = getApp()
 function TopiclistSimple(key, module) {
@@ -17,8 +18,8 @@ function TopiclistSimple(key, module) {
         forumInfo,
         resources: {},
         isLoading: false,
+        globalFetch: app.globalData.globalFetch,
         appIcon: app.globalData.info.appIcon,
-        endPage: 0,
         over: false
     }
 }
@@ -34,16 +35,26 @@ TopiclistSimple.prototype.clickItem = function (e) {
 TopiclistSimple.prototype.fetchData = function (page, number) {
     const module = this.data.module
     let list = this.data.resources.list ? this.data.resources.list : []
+    if (this.data.over) return Promise.reject()
+    this.setData({
+        isLoading: true
+    })
     return app.api.forum(module.extParams.forumId, {
         page,
         sortby: module.extParams.orderby || 'all'
     }).then((data) => {
+        data.list = data.list.map((v) => {
+            let faceResult = util.infoToFace(v.subject)
+            v.hasFace = faceResult.hasFace
+            v.subject = faceResult.data
+            return v
+        })
         data.list = list.concat(data.list)
         this.setData({
             module,
             resources: data,
-            isLoading: true,
-            endPage: parseInt((data.total_num / number) + 1, 10)
+            isLoading: false,
+            over: page >= parseInt((data.total_num / number) + 1, 10)
         })
     })
 }

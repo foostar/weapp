@@ -129,7 +129,11 @@
     
 <template name="newslist">
     <include src="../newslist/newslist.wxml" />
-</template> 
+</template>
+
+<template name="post">
+    <include src="../post/post.wxml" />
+</template>
 
 <template name="module">
     <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}" />

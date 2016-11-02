@@ -14,7 +14,7 @@
         <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}"  bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}" data-id="{{resources.forumInfo.id}}" data-focus="{{resources.forumInfo.is_focus}}">{{resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
     </view>
     <view wx:if="{{!!resources.topTopicList}}" class="stick-container font-mini">
-        <block wx:for="{{resources.topTopicList}}">
+        <block wx:for="{{resources.topTopicList}}" wx:key="{{index}}">
             <view data-id="{{item.id}}" class="stick-item">
                 <view class="stick-tag bg-color">置顶</view>
                 <view class="stick">{{item.title}}</view>
@@ -24,7 +24,7 @@
     </view>
 </block>
 <view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
-    <block wx:for="{{resources.list}}">
+    <block wx:for="{{resources.list}}" wx:key="{{index}}">
         <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
     </block>
 </view>

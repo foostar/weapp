@@ -1,5 +1,4 @@
 <import src="../module/module.wxml" />
-
 <template name="viewer">
     <view wx:if="{{hasScroll}}" class="viewer">
         <template is="{{children[module.id].template}}" data="{{...children[module.id]}}" />
