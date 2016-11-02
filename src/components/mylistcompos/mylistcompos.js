@@ -92,7 +92,7 @@ Mylistcompos.prototype.onLoad = function () {
         // 是否是我的消息
         promise = app.api.getNotifyList(obj.apiType)
         console.log('是否是我的消息')
-    } else if (apiType == 'friend' || apiType == 'follow' || apiType == 'followed') {
+    } else if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed') {
         obj.isUserList = true // 是否是用户列表
         // 好友列表
         promise = app.api.getUserList(obj.userId, apiType)
@@ -103,14 +103,14 @@ Mylistcompos.prototype.onLoad = function () {
     }
 
     promise.then(res => {
-        if (apiType == 'favorite' || apiType == 'topic' || apiType == 'reply') {
+        if (apiType === 'favorite' || apiType === 'topic' || apiType === 'reply') {
             res.list.map((item, index) => {
                 res.list[index].last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
                 res.list[index].pic_path = item.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
                 return res
             })
         }
-        if (apiType == 'friend' || apiType == 'follow' || apiType == 'followed') {
+        if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed') {
             res.list.map((item, index) => {
                 res.list[index].lastLogin = formatTime(item.lastLogin)
                 return res
