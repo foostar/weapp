@@ -16,8 +16,7 @@
     "pages/regular-pages/user-home/user-home",
     "pages/regular-pages/setting/setting",
     "pages/regular-pages/my/topics",
-    "pages/regular-pages/my-info/my-info",
-    "pages/regular-pages/post/post"
+    "pages/regular-pages/my-info/my-info"
   ],
   "window":{
     "backgroundTextStyle":"light",
