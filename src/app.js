@@ -27,6 +27,7 @@ App({
                 return { json: response.data, response }
             },
             fetch: (url, data) => {
+                url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`
                 const next = () => {
                     if (queue.length) {
                         const d = queue.shift()

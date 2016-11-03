@@ -94,7 +94,6 @@
 }
 
 .post-comments {
-    height: 100px;
     margin-bottom: 20rpx;
     background: #FFF;
 }
