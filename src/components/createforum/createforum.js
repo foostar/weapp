@@ -99,7 +99,6 @@ Createforum.prototype.onLoad = function () {
     // 当没有版块ID时 需要获取板块列表
     if (!data.fid) {
         app.api.forumList().then((res) => {
-            console.log(res)
             const { list } = res
             const selectType = list[0].board_list[0].board_id
             const selectNameArray = [] // [...Array(10).keys()]
@@ -145,7 +144,6 @@ Createforum.prototype.selectTopicId = function (e) {
 
 // 当textarea失去焦点存储数据
 Createforum.prototype.blurAndChangeContent = function (e) {
-    console.log('content', e)
     const { value: content } = e.detail
     this.setData({
         content,

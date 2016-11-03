@@ -26,16 +26,16 @@ function uploadImage(tmpurl, selectType) {
     console.log(tmpurl)
     return new Promise((resolve, reject) => {
         wx.uploadFile({
-            // url: CONFIG.FORUM_URL + '/mobcent/app/web/index.php?r=forum/sendattachmentex',
-            url: 'http://10.10.9.182/dev_gbk/mobcent/app/web/index.php?r=forum/sendattachmentex&accessToken=12345678&accessSecret=12345678',
+            url: CONFIG.FORUM_URL + '/mobcent/app/web/index.php?r=forum/sendattachmentex',
+            // url: 'http://10.10.9.182/dev_gbk/mobcent/app/web/index.php?r=forum/sendattachmentex&accessToken=12345678&accessSecret=12345678',
             filePath: tmpurl,
             name: 'uploadFile[]',
             formData: {
                 type: 'image',
                 module: 'forum',
-                // fid: selectType,
-                // accessToken,
-                // accessSecret
+                fid: selectType,
+                accessToken,
+                accessSecret
             },
             success: response => {
                 console.log('success', response)
