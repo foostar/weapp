@@ -58,6 +58,7 @@
                 </view>
                 <view class="cell-flat-content-subject-1">{{subject}}</view>
             </block>
+
             <block wx:elif="{{imageList.length > 1}}}">
                 <view class="cell-flat-content-subject">{{subject}}</view>
                 <view class="cell-flat-thumb">

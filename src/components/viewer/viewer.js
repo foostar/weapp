@@ -109,6 +109,7 @@ components.type['talk-flat'] = Talk
 components.type['subnav-flat'] = CustomTagNav
 components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
+
 components.type['post-flat'] = Post
 // topiclistSimple-flat
 
