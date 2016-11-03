@@ -26,3 +26,8 @@
 @import "../subnavcustom/subnavcustom.wxss";
 @import "../messagelistflat/messagelistflat.wxss";
 @import "../notsupport/notsupport.wxss";
+@import "../post/post.wxss";
+@import "../login/login.wxss";
+@import "../mylistcompos/mylistcompos.wxss";
+@import "../createforum/createforum.wxss";
+

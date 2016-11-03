@@ -1,22 +1,13 @@
-const Component = require('../../lib/component')
+const TouchComponent = require('../../lib/touchcomponent')
 
 function DiscoverCustom(key, module) {
-    Component.call(this, key)
+    TouchComponent.call(this, key, module)
     this.data = {
         list: module.componentList
     }
 }
 
-DiscoverCustom.prototype = Object.create(Component.prototype)
+DiscoverCustom.prototype = Object.create(TouchComponent.prototype)
 DiscoverCustom.prototype.name = 'discovercustom'
 DiscoverCustom.prototype.constructor = DiscoverCustom
-
-DiscoverCustom.prototype.onLoad = function () {
-
-}
-DiscoverCustom.prototype.toNavigationPage = function (e) {
-    wx.navigateTo({
-        url: `/pages/blank/blank?moduleId=${e.currentTarget.dataset.id}`
-    })
-}
 module.exports = DiscoverCustom

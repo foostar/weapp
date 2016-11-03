@@ -60,7 +60,8 @@ Discover.prototype.onLoad = function () {
 Discover.prototype.toLogin = function () {
     if (!this.data.isLogin) {
         wx.navigateTo({
-            url: '/pages/regular-pages/login/login'
+            // url: '/pages/regular-pages/login/login'
+            url: '/pages/blank/blank?type=login'
         })
     }
 }
@@ -76,15 +77,22 @@ Discover.prototype.toSetting = function () {
 Discover.prototype.changeModuleId = function (e) {
     app.to(e.currentTarget.dataset.moduleId, true)
 }
-    // 改变题提示状态
+// 改变题提示状态
 Discover.prototype.bindChange = function () {
     if (this.data.isLogin) {
-        this.setData({
-            modalHidden: !this.data.modalHidden
+        wx.showModal({
+            title: '帐号管理',
+            content: '是否要退出用户',
+            success: res => {
+                if (res.confirm) {
+                    this.logout()
+                }
+            }
         })
     } else {
         wx.navigateTo({
-            url: '/pages/regular-pages/login/login'
+            // url: '/pages/regular-pages/login/login'
+            url: '/pages/blank/blank?type=login'
         })
     }
 }
@@ -93,7 +101,6 @@ Discover.prototype.logout = function () {
     this.setData({
         isLogin: false,
         userInfo: null,
-        modalHidden: !this.data.modalHidden
     })
     app.api.secret = ''
     app.api.token = ''
@@ -110,12 +117,16 @@ Discover.prototype.toNavigationPage = function (e) {
                 url: '/pages/regular-pages/my-info/my-info'
             })
         }
+
         wx.navigateTo({
-            url: `/pages/regular-pages/my/topics?type=${typePage}`
+            // url: `/pages/regular-pages/my/topics?type=${typePage}`
+            url: `/pages/blank/blank?type=mylistcompos&data=${JSON.stringify({ type: typePage })}`
         })
     } else {
+        // 登录页面
         wx.navigateTo({
-            url: '/pages/regular-pages/login/login'
+            // url: '/pages/regular-pages/login/login'
+            url: '/pages/blank/blank?type=login'
         })
     }
 }

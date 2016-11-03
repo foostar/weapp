@@ -1,6 +1,6 @@
 <template name="post-div">
     <view class="{{'align-' + (attribs.align || 'left')}}">
-        <block wx:for="{{childNodes}}">
+        <block wx:for="{{childNodes}}" wx:key="{{index}}">
             <template is="{{'post-' + item.tagName}}" data="{{...item}}" />
         </block>
     </view>
@@ -8,7 +8,7 @@
 
 <template name="post-font-1">
     <view>
-        <block wx:for="{{childNodes}}">
+        <block wx:for="{{childNodes}}" wx:key="{{index}}">
             <block wx:if="{{item.tagName === 'font'}}">
                 <template is="post-font-2" data="{{...item}}" />
             </block>
@@ -20,7 +20,7 @@
 
 <template name="post-font-2">
     <view>
-        <block wx:for="{{childNodes}}">
+        <block wx:for="{{childNodes}}" wx:key="{{index}}">
             <text wx:if="{{item.value}}">{{item.value}}</text>
             <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
         </block>
@@ -29,7 +29,7 @@
 
 <template name="post-font">
     <view>
-        <block wx:for="{{childNodes}}">
+        <block wx:for="{{childNodes}}" wx:key="{{index}}">
             <block wx:if="{{item.tagName === 'font'}}">
                 <template is="post-font-1" data="{{...item}}" />
             </block>
@@ -57,10 +57,7 @@
     </view>
 </template>
 
-<scroll-view scroll-y="true" class="page-post" bindscrolltolower="nextPage">
-    <loading hidden="{{isLoading}}">
-        加载中...
-    </loading>
+<scroll-view scroll-y="true" class="page-post" bindscrolltolower="post_nextPage" data-event-key="{{key}}">
     <view>
         <view class="post-title">
             {{topic.title}}
@@ -76,14 +73,17 @@
                     </view>
                 </view>
             </view>
-            <view wx:if="{{!creater}}" class="focus font-normal text-color" bindtap="foucsUser" data-focus="{{topic.isFollow}}" data-id="{{topic.user_id}}">{{topic.isFollow ? '已关注TA' : '关注TA'}}</view>
+            <view wx:if="{{!creater}}" class="focus font-normal text-color" bindtap="post_foucsUser" data-event-key="{{key}}" data-focus="{{topic.isFollow}}" data-id="{{topic.user_id}}">{{topic.isFollow ? '已关注TA' : '关注TA'}}</view>
         </view>
-        <view class="post-content font-wide">
-            <block wx:for="{{topic.content}}">
-                <image wx:if="{{item.type === 1}}" style="width: 100%" mode="aspectFit" src="{{item.originalInfo}}" />
+        <view class="post-content font-wide {{list.length > 0 ? '' : 'post-content-large'}}">
+            <block wx:for="{{topic.content}}" wx:key="{{index}}">
+                <view wx:if="{{item.type === 1}}" class="post-content-image">
+                    <image wx:if="{{item.unloaded}}" class="post-content-preload" style="width: 100%" mode="aspectFit" src="{{item.loadSrc}}" />
+                    <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.originalInfo}}" />
+                </view>
                 <block wx:elif="{{item.type === 0}}">
                     <view wx:if="{{item.hasFace}}" >
-                        <block wx:for="{{item.subject}}">
+                        <block wx:for="{{item.subject}}" wx:key="{{index}}">
                             <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                             <image wx:else class="face" src="{{item.content}}" />
                         </block>
@@ -97,18 +97,18 @@
             <!-- <view class="hits-number">浏览{{topic.hits}}人</view> -->
             <view wx:if="{{topic.zanList.length > 0}}" class="zanList-wrapper font-mini">
                 <view class="reply-recommendAdd">{{topic.zanList.length}}</view>
-                <block wx:for="{{topic.zanList}}">
+                <block wx:for="{{topic.zanList}}" wx:key="{{index}}">
                     <view class="zanList color-member">{{item.username}}{{index < topic.zanList.length-1 ? ',' : ''}}</view>
                 </block>
             </view>
             <view class="topic-comment-info">
-                <view class="hits hits-number">浏览{{topic.hits}}人</view>
-                <view class="post-manage" data-id="{{topic.topic_id}}" data-role="topic" bindtap="actionSheetTap"></view>
+                <view class="post-hits hits-number">浏览{{topic.hits}}人</view>
+                <view class="post-manage" data-id="{{topic.topic_id}}" data-role="topic" bindtap="post_actionSheetTap" data-event-key="{{key}}"></view>
             </view>
         </view>
         <view class="post-comments" wx:if="{{list.length > 0}}">
             <view class="post-card-title">评论</view>
-            <view wx:for="{{list}}" class="clearfix post-comment-item">
+            <view wx:for="{{list}}" wx:key="{{index}}" class="clearfix post-comment-item">
                 <image class="post-user-avatar" src="{{item.icon}}" />
                 <view class="post-warpper">
                     <view class="post-info-wapper">
@@ -119,20 +119,20 @@
                                 <text class="post-level-text">{{item.userTitle}}</text>
                             </view>
                         </view>
-                        <view class="post-manage" data-id="{{item.reply_posts_id}}" bindtap="actionSheetTap"></view>
+                        <view class="post-manage" data-id="{{item.reply_posts_id}}" bindtap="post_actionSheetTap" data-event-key="{{key}}"></view>
                     </view>
                     <view class="post-comment-content">
                         <view wx:if="{{item.is_quote == '1'}}" class="font-normal post-comment-quote">
                             <view class="triangle-bottom"></view>
-                            <block wx:if="{{item.quote_subject}}" wx:for="{{item.quote_subject}}">
+                            <block wx:for="{{item.quote_subject}}" wx:key="{{index}}">
                                 <view>{{item}}</view>
                             </block>
                         </view>
-                        <block wx:for="{{item.reply_content}}">
+                        <block wx:for="{{item.reply_content}}" wx:key="{{index}}">
                             <image wx:if="{{item.type === 1}}" style="width: 100%" mode="aspectFit" src="{{item.originalInfo}}" />
                             <block wx:elif="{{item.type === 0}}">
                                 <view wx:if="{{item.hasFace}}">
-                                    <block wx:for="{{item.subject}}">
+                                    <block wx:for="{{item.subject}}" wx:key="{{index}}">
                                         <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                                         <image wx:else class="face" src="{{item.content}}" />
                                     </block>
@@ -143,7 +143,7 @@
                         <view class="post-comment-info">
                             <text class="color-gray font-mini">{{item.position}}楼</text>
                             <text>{{item.posts_date}}</text>
-                            <view class="replies"  data-quote="{{item.reply_posts_id}}" data-role="quote" catchtap="comment" data-id="{{item.reply_posts_id}}"></view>
+                            <view class="post-replies" data-quote="{{item.reply_posts_id}}" data-role="quote" data-event-key="{{key}}" catchtap="post_comment" data-id="{{item.reply_posts_id}}"></view>
                         </view>
                     </view>
                 </view>
@@ -154,26 +154,26 @@
             <view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>
         </view>
     </view>
-    <action-sheet hidden="{{actionSheetHidden}}" bindchange="actionSheetChange">
-        <block wx:for="{{managePanel}}">
+    <action-sheet hidden="{{actionSheetHidden}}" bindchange="post_actionSheetChange" data-event-key="{{key}}">
+        <block wx:for="{{managePanel}}" wx:key="{{index}}">
             <action-sheet-item class="item" data-name="{{item.title}}">{{item.title}}</action-sheet-item>
         </block>
-        <action-sheet-item class="item" data-id="{{reportUser}}" catchtap="reportUser">举报</action-sheet-item>
+        <action-sheet-item class="item" data-id="{{reportUser}}" data-event-key="{{key}}" catchtap="post_reportUser">举报</action-sheet-item>
         <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
     </action-sheet>
-    <view class="post-mask" wx:if="{{!isCommenting}}" bindtap="cancelAction"></view>
+    <view class="post-mask" wx:if="{{!isCommenting}}" bindtap="post_cancelAction" data-event-key="{{key}}"></view>
     <view class="post-footer-wrapper">
         <view class="post-footer" wx:if="{{isCommenting}}">
-            <view class="post-mark font-mini" catchtap="comment">
+            <view class="post-mark font-mini" catchtap="post_comment" data-event-key="{{key}}">
                 <view class="post-mark-title color-gray">回个话鼓励下楼主</view>
                 <view class="post-mark-comments color-gray">{{list.length}}条评论</view>
             </view>
             <view class="post-mark-meta">
-                <view data-like="{{topic.isLike}}" data-id="{{topic.topic_id}}" bindtap="likeHandler" class="post-mark-meta-item post-mark-meta-like {{topic.isLike ? 'liked' : ''}}"></view>
-                <view data-collet="{{topic.is_favor}}" data-id="{{topic.topic_id}}" bindtap="colletHandler" class="post-mark-meta-item post-mark-meta-collet {{topic.is_favor ? 'colleted' : ''}}"></view>
+                <view data-like="{{topic.isLike}}" data-id="{{topic.topic_id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-like {{topic.isLike ? 'liked' : ''}}"></view>
+                <view data-collet="{{topic.is_favor}}" data-id="{{topic.topic_id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-collet {{topic.is_favor ? 'colleted' : ''}}"></view>
             </view>
         </view>
-        <form wx:else bindsubmit="formSubmit" bindreset="formReset" class="post-footer post-form">
+        <form wx:else bindsubmit="post_formSubmit" data-event-key="{{key}}" bindreset="post_formReset" class="post-footer post-form">
             <input class="font-mini" type="text" name="comment" auto-focus/>
             <button type="default" class="font-mini" formType="submit">发送</button>
         </form>

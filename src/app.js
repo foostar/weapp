@@ -32,10 +32,11 @@ App({
                     if (queue.length) {
                         const d = queue.shift()
                         d.request().then(d.resolve, d.reject)
+                    } else {
+                        // wx.hideToast()
                     }
                 }
-                // console.log(url, data)
-                const request = () => new Promise((resolve, reject) => {
+                const request = () => (new Promise((resolve, reject) => {
                     wx.request({
                         url,
                         data: data.body,
@@ -44,7 +45,7 @@ App({
                         success: resolve,
                         error: reject
                     })
-                }).then((result) => {
+                })).then((result) => {
                     requestNum -= 1
                     next()
                     return result
@@ -63,6 +64,11 @@ App({
                         })
                     })
                 }
+                // wx.showToast({
+                //     title: '加载中',
+                //     icon: 'loading',
+                //     duration: 10000
+                // })
                 const promise = request()
                 return promise
             }
@@ -125,7 +131,7 @@ App({
     showPost(id) {
         this.globalData.postId = id
         wx.navigateTo({
-            url: '/pages/regular-pages/post/post'
+            url: '/pages/blank/blank?type=post'
         })
     },
     getUserInfo(cb) {
@@ -147,7 +153,7 @@ App({
         }
     },
     isLogin() {
-        if (!this.globalData.userInfo) {
+        if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
             return wx.navigateTo({
                 url: '/pages/regular-pages/login/login'
             })
@@ -155,6 +161,7 @@ App({
         return true
     },
     globalData: {
+        loadSrc: '/images/dz_icon_article_default.png',
         userInfo: null
     }
 })

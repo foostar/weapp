@@ -118,6 +118,12 @@ function createPage(config) {
             onReady.apply(this, arguments)
             /* eslint-enable */
         }
+
+        const children = this.children
+        Object.keys(children).forEach((key) => {
+            children[key].ready()
+        })
+
         this.trigger('ready')
     }
 
