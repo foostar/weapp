@@ -1,0 +1,25 @@
+<import src="/components/common/common.wxml"/>
+
+<!-- 登录头部 -->
+<view class="from-view login-icon">
+    <image src="{{appIcon}}" class="app-icon"></image>
+</view>
+<!-- 登录form表单 -->
+<form bindsubmit="login_toLogin" data-event-key="{{key}}">
+    <view class="form-box icon-username">
+        <input class="input" name="username" placeholder="请输入用户名/手机号" type="text"></input>
+    </view>
+    <view class="form-box icon-password">
+        <input class="input" name="password" placeholder="请输入密码" password="true"></input>
+    </view>
+    <!-- 找回密码暂时无法实现 -->
+    <!--  <navigator url="/pages/callbackpassword/callbackpassword" class="register-text"><text style="color:{{appColor}}" >找回密码</text></navigator> -->
+    <button class="login-btn" style="background-color: {{appColor}}" formType="submit">登录</button>
+    <navigator url="/pages/regular-pages/register/register">
+        <button class="login-btn" style="color: {{appColor}}; border: 1px solid {{appColor}};" >注册</button>
+    </navigator>
+</form>
+
+<!-- 消息提示 -->
+<template is="message-prompts" data="{{errMessage, isShow}}"></template>
+

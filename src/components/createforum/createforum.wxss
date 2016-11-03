@@ -1,7 +1,3 @@
-page {
-    background-color: #efefef;
-    overflow: hidden;
-}
 .publish-select-warp {
     margin: 20rpx 0;
     display: flex;

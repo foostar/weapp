@@ -40,6 +40,11 @@ const Custom = require('../custom/custom')
 const NotSupport = require('../notsupport/notsupport')
 const NewsList = require('../newslist/newslist')
 const Post = require('../post/post')
+// 固定页面
+const Login = require('../login/login')
+const Mylistcompos = require('../mylistcompos/mylistcompos')
+const Createforum = require('../createforum/createforum')
+
 /*
  *   @定义组件类型
  */
@@ -111,6 +116,10 @@ components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
 
 components.type['post-flat'] = Post
+components.type['login-flat'] = Login   // 登录页面
+components.type['mylistcompos-flat'] = Mylistcompos // 我的好友、发表、收藏列表
+components.type['createforum-flat'] = Createforum    // 发帖组件
+
 // topiclistSimple-flat
 
 const app = getApp()

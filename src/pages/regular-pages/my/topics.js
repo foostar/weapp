@@ -3,16 +3,15 @@ var { dateFormat, formatTime } = require('../../../utils/util.js')
 
 Page({
     data: {
-        userId:'',
-        list:'',
-        title:'',
-        apiType:'',
+        userId: '',
+        list: '',
+        title: '',
+        apiType: '',
         isUserList: false,
         isNotify: false
     },
-    onLoad(e){
+    onLoad(e) {
         const { type, uid } = e
-        console.log(type)
         const { userInfo } = app.globalData
         let apiType = ''
         let title = ''
@@ -21,7 +20,7 @@ Page({
         const userId = userInfo.uid
         const isMy =  (!uid || uid == userId)
         switch(type) {
-            case 'myCollection': 
+            case 'myCollection':
                 apiType = 'favorite'
                 title = '我的收藏'
                 break;
