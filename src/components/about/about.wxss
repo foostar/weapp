@@ -1,0 +1,30 @@
+
+.about-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    min-height: 90rpx;
+}
+
+.about-box-title {
+    width: 200rpx;
+    text-align: center;
+    padding:10rpx;
+}
+.about-box-content {
+    flex:1;
+    padding:10rpx;
+}
+.downLoad-QRCode {
+    width: 240rpx;
+    height: 240rpx;
+    display: block;
+    margin: 40rpx auto;
+}
+.downLoad-desc {
+    text-align: center;
+    font-size: 12px;
+}
