@@ -1,0 +1,53 @@
+.forum-tabs {
+    flex: 1;
+    display: flex;
+    margin-top:20rpx;
+    flex-direction: column;
+}
+
+.forum-tabs-title-warp-placeholder {
+    height: 72rpx;
+}
+
+.forum-tabs-title-warp {
+    display: flex;
+    height: 72rpx;
+    line-height: 72rpx;
+    position: relative;
+    border-bottom: 1rpx solid #ccc;
+}
+
+.forum-tabs-title-warp.fixed{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.forum-tabs-title {
+    flex: 1;
+    text-align: center;
+    font-size: 28rpx;
+    background-color: #fff;
+}
+.forum-tabs-indicator {
+    position: absolute;
+    height: 5rpx;
+    width: 33.3333333%;
+    bottom: 0;
+    transition: .3s;
+}
+.forum-edit-btn {
+    position: fixed;
+    width: 90rpx;
+    height: 90rpx;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC4klEQVRYR7WXjVFTURCFz3aAFYgVGCowVKBUIFSgdgAVGCoQKiBUYKhAqEA7UCpY57tzl9m8vP+EO8MwyX255+zPOXef6ZWWu3+WdC5pWSEeJa3M7DZD2qHx3f1I0g9JnzrOhsipmf1j/zUI3CXwe0nrSoRMkBXWxsxOD07A3YmctLPuzWwrC+7+VdL3un9mZuuDZcDdV5K+1MMfJH2QdGFmN7kU7k4J3ku6NbPzgxBwd6ImelY5OEV7aWZXQSIRfTCz5d4EGuDlUHdfSPop6VoSab8zswtIuDs98VHS/gQq0K8a3VOV3HEF/0b63T2aklJACGIohf3V7AykKDkswOECIaKjDJSG3qAZ+U/tWc+SjpHiLALuTpQAAc5hSOxPje6pAb40s0d3J/IwpaKAWTKsRsNh1LmAVwAIPdceAIhnClBDnlvKmJSBBjgB4GibCnDS0QPZG67NjKZ8WVMJZJcrkXSAX9FgbfLM4JNK0JbGqvXLnh4Ib9hxxSAyKgMNlytpTB3e1oDRA+AUhcTlMzkDHS6HrChH9AAN98bMFm3y7AIfLEEDvKQxAYTRkOZmA4Y8F2aGPDtXZwncfSeNmEfD5QDnWkWSrB159oF3ZqDH5X7Xaza7XO6BIHKCNwyBtxJogGM0HMr0QnThcny3SSaUXW7nCh5dgjajkUQkABSXi8OwY+rb53KTM+Du0d38lnHqbSWQm4yr9R0PNMB3XG4OAa5M5rbQenym0aIMo11uDgGajE4v+q5R4nSMWhDI1+ygy00iUK9YCLAwlTI2VxIxcjHVxLXLVq/LTSWQJ9at2T2RYKjwOgfsDb4lwzSrMUAiMxqQ+7w4WTUm7He0y03NwN96eDERd6cBGR7pAUoQJvMyhIwBGHqmWHGyXbR+VD/Hu12cATBjFGN2r78Pgeb9IBAvFTQefyghFrVmf913q00BbSOA5HiTydFSgpuxnr4vgZAZr1SAbr1OzT18zO/+A+v0sTBMeUoXAAAAAElFTkSuQmCC);
+    background-size: 50%;
+    background-position: 50%;
+    opacity: .8;
+    background-repeat: no-repeat;
+    background-color: #fa460a;
+    bottom: 52rpx;
+    right: 40rpx;
+    border-radius: 50%;
+}

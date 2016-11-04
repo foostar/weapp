@@ -33,9 +33,6 @@ Page(createPage({
                 type: data.type,
                 data: data.data
             }
-            if (data.data) {
-                module.data = JSON.parse(data.data)
-            }
         } else {
             module = data.data
             // 检测是否支持当前版块
@@ -58,16 +55,6 @@ Page(createPage({
             appIcon: app.globalData.info.appIcon,
             appColor: app.globalData.info.appColor
         })
-/*        app.event.on('golbal-fetching', () => {
-            self.setData({
-                golbalFetch: false
-            })
-        })
-        app.event.on('golbal-done', () => {
-            self.setData({
-                golbalFetch: true
-            })
-        })*/
     },
     onReady() {
     },

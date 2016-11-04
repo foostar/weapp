@@ -152,10 +152,16 @@ App({
             })
         }
     },
+    createForum(param) {
+        const data = JSON.stringify(param)
+        wx.navigateTo({
+            url: `/pages/blank/blank?type=createforum&data=${data}`
+        })
+    },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
             return wx.navigateTo({
-                url: '/pages/regular-pages/login/login'
+                url: '/pages/blank/blank?type=login'
             })
         }
         return true

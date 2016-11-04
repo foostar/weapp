@@ -32,6 +32,7 @@ const LayoutSeparator = require('../layoutseparator/layoutseparator')
 const LayoutNewsAuto = require('../layoutnewsauto/layoutnewsauto')
 
 const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
+const TopiclistComplex = require('../topiclistcomplex/topiclistcomplex')
 const ForumlistCard = require('../forumlistcard/forumlistcard')
 const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
 const Talk = require('../talk/talk')
@@ -107,6 +108,7 @@ components.type['topiclistSimple-card'] = TopiclistSimple
 components.type['topiclistSimple-neteaseNews'] = TopiclistSimple
 components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
 components.type['topiclistSimple-circle'] = TopiclistSimple
+components.type['topiclistComplex-flat'] = TopiclistComplex
 components.type['newslist-tieba'] = NewsList
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit

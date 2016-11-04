@@ -1,0 +1,22 @@
+<import src="../module/module.wxml" />
+<import src="../cellstyle/cellstyle"/>
+<import src="../forum/forum"/>
+<template is="forumInfo" data="{{resources,topTopicList, appIcon}}" />
+<view class="forum-tabs">
+    <view class="forum-tabs-title-warp-placeholder">
+        <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
+            <text bindtap="topiclistcomplex_changeTabs" data-sort="all" data-event-key="{{key}}" data-index="{{0}}" class="forum-tabs-title text-color">全部</text>
+            <text bindtap="topiclistcomplex_changeTabs" data-sort="new" data-event-key="{{key}}" data-index="{{1}}" class="forum-tabs-title text-color">最新</text>
+            <text bindtap="topiclistcomplex_changeTabs" data-sort="marrow" data-event-key="{{key}}" data-index="{{2}}" class="forum-tabs-title text-color">精华</text>
+            <view class="forum-tabs-indicator bg-color" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
+        </view>
+    </view>
+    <block wx:for="{{resources.list}}" wx:key="{{index}}">
+        <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
+    </block>
+</view>
+<view class="forum-edit-btn bg-color" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>
+<!-- 加载中 -->
+<view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
+<!-- 没有了 -->
+<view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>

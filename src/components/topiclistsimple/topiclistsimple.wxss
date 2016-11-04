@@ -251,7 +251,15 @@
 .cell-flat {
     background-color: #fff;
     padding: 20rpx;
+    padding-bottom: 10rpx;
     border-bottom: 1rpx solid #ddd;
+}
+.cell-flat-content-subject-1{
+    margin:8rpx 0;
+    height:80rpx;
+}
+.cell-flat-thumb-container-1{
+    top:-27rpx;
 }
 .cell-flat-title {
     font-size: 32rpx;
@@ -260,7 +268,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
-
 .cell-flat-content-subject {
     font-size: 26rpx;
     color: #a4a4a4;
@@ -321,14 +328,22 @@
     font-size: 24rpx;
     color: #a4a4a4;
     margin-top: 16rpx;
+    display:flex;
+    justify-content: space-between;
 }
 .cell-flat-info-time {
-    width: 210rpx;
+    width: 300rpx;
     display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .cell-flat-info .hits {
     float: right;
+}
+.cell-flat-mini{
+    width:76%;
 }
 /* ========== cell-card ========== */
 .cell-card {
@@ -576,7 +591,7 @@
     justify-content: space-between;
 }
 .cell-netease-title{
-    margin-bottom:15rpx;
+    margin-bottom:10rpx;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -584,11 +599,16 @@
 .cell-netease-subject{
     margin-bottom:10rpx;
 }
+
 .cell-netease-subject{
     height:90rpx;
     overflow:hidden;
     line-height:45rpx;
     position:relative;
+}
+.cell-netease-subject text{
+    font-size:28rpx;
+    color:#a4a4a4;
 }
 .cell-netease-meta{
     position:absolute;

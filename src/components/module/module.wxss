@@ -30,4 +30,5 @@
 @import "../login/login.wxss";
 @import "../mylistcompos/mylistcompos.wxss";
 @import "../createforum/createforum.wxss";
+@import "../topiclistcomplex/topiclistcomplex.wxss";
 
