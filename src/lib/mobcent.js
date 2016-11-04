@@ -84,7 +84,7 @@ module.exports =
 	        _classCallCheck(this, API);
 
 	        var defaults = {
-	            fetch: fetch,
+	            // fetch: fetch,
 	            cache: true,
 	            logger: console,
 	            dataCache: null,
@@ -163,9 +163,9 @@ module.exports =
 	            if (!options.pageSize) options.pageSize = 20;
 	            options.topicId = id;
 	            if (this._appId === 41961 || this._appId === 220972) {
-	                fetch(this._rootPath + '/mobcent/app/web/updateView.php?tid=' + id).catch(function (err) {
-	                    _this2.options.logger.error(err);
-	                });
+	                // fetch(this._rootPath + '/mobcent/app/web/updateView.php?tid=' + id).catch(function (err) {
+	                //     _this2.options.logger.error(err);
+	                // });
 	                return this.fetch('forum/postlist', {}, options);
 	            }
 	            return this.fetch('forum/postlist', {}, options, 1);
@@ -935,9 +935,9 @@ module.exports =
 	exports.timeout = function (ms, promise) {
 	    var err = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new Error('timeout');
 	    return new Promise(function (resolve, reject) {
-	        setTimeout(function () {
-	            reject(err);
-	        }, ms);
+	        // setTimeout(function () {
+	        //     reject(err);
+	        // }, ms);
 	        promise.then(resolve, reject);
 	    });
 	};

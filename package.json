@@ -4,7 +4,7 @@
   "description": "weapp",
   "main": ".eslintrc.js",
   "dependencies": {
-    "mobcent": "^0.1.12"
+    "mobcent": "^0.1.13"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
@@ -26,7 +26,9 @@
     "test:lint": "npm run test:srclint",
     "test:srclint": "eslint src --ext '.js'"
   },
-  "precommit": ["test"],
+  "precommit": [
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git@git.yunpro.cn:yunmi/weapp.git"

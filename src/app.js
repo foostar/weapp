@@ -27,16 +27,16 @@ App({
                 return { json: response.data, response }
             },
             fetch: (url, data) => {
+                url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`
                 const next = () => {
                     if (queue.length) {
                         const d = queue.shift()
                         d.request().then(d.resolve, d.reject)
                     } else {
-                        wx.hideToast()
+                        // wx.hideToast()
                     }
                 }
-                // console.log(url, data)
-                const request = () => new Promise((resolve, reject) => {
+                const request = () => (new Promise((resolve, reject) => {
                     wx.request({
                         url,
                         data: data.body,
@@ -45,7 +45,7 @@ App({
                         success: resolve,
                         error: reject
                     })
-                }).then((result) => {
+                })).then((result) => {
                     requestNum -= 1
                     next()
                     return result
@@ -64,11 +64,11 @@ App({
                         })
                     })
                 }
-                wx.showToast({
-                    title: '加载中',
-                    icon: 'loading',
-                    duration: 10000
-                })
+                // wx.showToast({
+                //     title: '加载中',
+                //     icon: 'loading',
+                //     duration: 10000
+                // })
                 const promise = request()
                 return promise
             }
