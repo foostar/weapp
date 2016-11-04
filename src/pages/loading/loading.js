@@ -6,7 +6,7 @@ Page({
     data: {
         image: CONFIG.START_IMAGE
     },
-    onLoad() {
+    onLoad: () => {
         Promise.all([
             new Promise((resolve) => {
                 setTimeout(resolve, 800)

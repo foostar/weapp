@@ -36,7 +36,7 @@ page {
     line-height: 90rpx;
     font-size: 28rpx;
     padding: 0 20rpx;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 
 .publish-text-input {

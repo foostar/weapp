@@ -10,7 +10,7 @@
         <input class="input" name="username" placeholder="请输入用户名/手机号" type="text"></input>
     </view>
     <view class="form-box icon-password">
-        <input class="input" name="password" placeholder="请输入密码" password="true"></input>
+        <input class="input" name="password" placeholder="请输入密码" placeholder-style="text" password="true"></input>
     </view>
     <!-- 找回密码暂时无法实现 -->
     <!--  <navigator url="/pages/callbackpassword/callbackpassword" class="register-text"><text style="color:{{appColor}}" >找回密码</text></navigator> -->

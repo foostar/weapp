@@ -30,7 +30,7 @@ view, text {
 .line-bottom:after {
     content: '';
     display: block;
-    height: 1rpx;
+    height: 1px;
     width: 100%;
     position: absolute;
     bottom: 0;

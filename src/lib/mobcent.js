@@ -84,7 +84,6 @@ module.exports =
 	        _classCallCheck(this, API);
 
 	        var defaults = {
-	            // fetch: fetch,
 	            cache: true,
 	            logger: console,
 	            dataCache: null,
@@ -154,20 +153,12 @@ module.exports =
 	    }, {
 	        key: 'post',
 	        value: function post(id) {
-	            var _this2 = this;
-
 	            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	            if (!options.boardId) options.boardId = 0;
 	            if (!options.page) options.page = 1;
 	            if (!options.pageSize) options.pageSize = 20;
 	            options.topicId = id;
-	            if (this._appId === 41961 || this._appId === 220972) {
-	                // fetch(this._rootPath + '/mobcent/app/web/updateView.php?tid=' + id).catch(function (err) {
-	                //     _this2.options.logger.error(err);
-	                // });
-	                return this.fetch('forum/postlist', {}, options);
-	            }
 	            return this.fetch('forum/postlist', {}, options, 1);
 	        }
 	    }, {
@@ -450,7 +441,7 @@ module.exports =
 	        value: function sendattachmentex() {
 	            var module = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'forum';
 
-	            var _this3 = this;
+	            var _this2 = this;
 
 	            var files = arguments[1];
 	            var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
@@ -467,7 +458,7 @@ module.exports =
 	                    if (err) return reject(err);
 	                    var headers = form.getHeaders();
 	                    headers['Content-Length'] = length;
-	                    resolve(_this3.fetch('forum/sendattachmentex', {
+	                    resolve(_this2.fetch('forum/sendattachmentex', {
 	                        method: 'POST',
 	                        body: form,
 	                        headers: headers
@@ -716,7 +707,7 @@ module.exports =
 	        value: function fetch(endpoint) {
 	            var request = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-	            var _this4 = this;
+	            var _this3 = this;
 
 	            var options = arguments[2];
 	            var sync = arguments[3];
@@ -729,15 +720,15 @@ module.exports =
 	                request.body = JSON.stringify(request.body);
 	            }
 	            var fetchAPI = function fetchAPI(url) {
-	                return timeout(15000, _this4.options.fetch(url, merge({}, {
+	                return timeout(15000, _this3.options.fetch(url, merge({}, {
 	                    headers: Object.assign({
 	                        Accept: 'application/json',
 	                        'Content-Type': 'application/json'
 	                    }, omitBy({
-	                        'X-Real-IP': _this4._realIP,
-	                        'X-Forwarded-For': _this4._forwardedFor
+	                        'X-Real-IP': _this3._realIP,
+	                        'X-Forwarded-For': _this3._forwardedFor
 	                    }, isNil))
-	                }, request)), { code: null, message: '与服务器连接失败，请稍后重试...' }).then(_this4.options.parse).then(function (_ref) {
+	                }, request)), { code: null, message: '与服务器连接失败，请稍后重试...' }).then(_this3.options.parse).then(function (_ref) {
 	                    var json = _ref.json;
 	                    var response = _ref.response;
 
@@ -761,7 +752,7 @@ module.exports =
 	                        }
 	                    return json;
 	                }).catch(function (err) {
-	                    _this4.options.logger.error(url);
+	                    _this3.options.logger.error(url);
 	                    return Promise.reject(err);
 	                });
 	            };
@@ -935,9 +926,9 @@ module.exports =
 	exports.timeout = function (ms, promise) {
 	    var err = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : new Error('timeout');
 	    return new Promise(function (resolve, reject) {
-	        // setTimeout(function () {
-	        //     reject(err);
-	        // }, ms);
+	        // setTimeout(() => {
+	        //     reject(err)
+	        // }, ms)
 	        promise.then(resolve, reject);
 	    });
 	};

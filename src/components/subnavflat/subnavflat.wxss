@@ -9,7 +9,7 @@
 .tab-nav-bar-item {
     flex: 1;
     display: flex;
-    border-bottom: 1rpx solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
 }
 .tab-nav-bar-item text {
     line-height: 66rpx;
@@ -20,8 +20,8 @@
 
 .tabs-indicator {
     position: absolute;
-    height: 1rpx;
-    bottom: 1rpx;
+    height: 1px;
+    bottom: 1px;
     z-index: 999;
     transition: .3s;
 }

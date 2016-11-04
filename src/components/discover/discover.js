@@ -78,19 +78,21 @@ Discover.prototype.changeModuleId = function (e) {
 }
 // 改变题提示状态
 Discover.prototype.bindChange = function () {
+    console.log('帐号管理', this.data)
+    var selt = this
     if (this.data.isLogin) {
+        // this.logout()
         wx.showModal({
             title: '帐号管理',
             content: '是否要退出用户',
             success: res => {
                 if (res.confirm) {
-                    this.logout()
+                    selt.logout()
                 }
             }
         })
     } else {
         wx.navigateTo({
-            // url: '/pages/regular-pages/login/login'
             url: '/pages/blank/blank?type=login'
         })
     }
@@ -116,15 +118,12 @@ Discover.prototype.toNavigationPage = function (e) {
                 url: '/pages/regular-pages/my-info/my-info'
             })
         }
-
         wx.navigateTo({
-            // url: `/pages/regular-pages/my/topics?type=${typePage}`
             url: `/pages/blank/blank?type=mylistcompos&data=${JSON.stringify({ type: typePage })}`
         })
     } else {
         // 登录页面
         wx.navigateTo({
-            // url: '/pages/regular-pages/login/login'
             url: '/pages/blank/blank?type=login'
         })
     }

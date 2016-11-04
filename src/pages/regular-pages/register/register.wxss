@@ -28,12 +28,12 @@
     background-repeat: no-repeat;
     background-position: left;
     margin: 10rpx 40rpx;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 .form-box-mobile {
     background-repeat: no-repeat;
     background-position: left;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
     margin-right: 20rpx;
 }
 .input {

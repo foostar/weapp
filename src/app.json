@@ -2,10 +2,10 @@
   "pages":[
     "pages/loading/loading",
     "pages/index/index",
-    "pages/changepassword/changepassword",
     "pages/blank/blank",
     "pages/about/about",
     "pages/error/error",
+    "pages/changepassword/changepassword",
     "pages/callbackpassword/callbackpassword",
     "pages/regular-pages/login/login",
     "pages/regular-pages/forum/forum",
