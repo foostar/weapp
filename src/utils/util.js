@@ -125,30 +125,13 @@ const pagetype = [
     { type: 'newlivelist', desc: '直播间', isAchieve: false },
     { type: 'configSwitch', desc: '配置切换', isAchieve: false }
 ]
-/* eslint-disable */
-var merge = function () {
-    var destination = arguments[0];
-    for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var property in source) {
-            if (source[property] && source[property].constructor && source[property].constructor === Object) {
-                destination[property] = destination[property] || {};
-                merge(destination[property], source[property]);
-            } else {
-                destination[property] = source[property];
-            }
-        }
-    }
-    return destination;
-};
-/* eslint-enable*/
 /*
  * @列表数据格式
  */
 const formatListData = (dataList) => {
     let componentList = []
     dataList.forEach((v) => {
-        componentList.push(merge({}, v, v.extParams, {
+        componentList.push(Object.assign({}, v, v.extParams, {
             subject: v.extParams.summary
         }))
     })
