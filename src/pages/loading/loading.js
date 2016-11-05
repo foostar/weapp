@@ -13,7 +13,6 @@ Page({
             }),
             app.ready()
         ]).then(() => {
-            console.log('ready')
             wx.redirectTo({
                 url: '../index/index'
             })
