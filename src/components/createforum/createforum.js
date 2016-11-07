@@ -22,9 +22,9 @@ function sequenceTasks(tasks) {
 
 // 图片上传
 function uploadImage(tmpurl, selectType) {
-    const accessToken = app.globalData.userInfo.token
-    const accessSecret = app.globalData.userInfo.secret
     return new Promise((resolve, reject) => {
+        const accessToken = app.globalData.userInfo.token
+        const accessSecret = app.globalData.userInfo.secret
         wx.uploadFile({
             url: `${CONFIG.FORUM_URL}/mobcent/app/web/index.php?r=forum/sendattachmentex`,
             filePath: tmpurl,

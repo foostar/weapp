@@ -6,9 +6,6 @@ function Custom(key, module) {
     Component.call(this, key)
     app.api.custom(module.id).then(data => {
         Object.assign(module, data.body.module)
-        this.setData({
-            componentList: module.componentList
-        })
         this.addByModule(module.componentList)
     })
 }

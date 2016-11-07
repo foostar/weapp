@@ -1,29 +1,27 @@
 /* eslint-disable */
 if (typeof Object.assign != 'function') {
-   (function () {
-        Object.assign = function (target) {
-            'use strict';
-            // We must check against these specific cases.
-            if (target === undefined || target === null) {
-                throw new TypeError('Cannot convert undefined or null to object');
-            }
+    Object.assign = function(target) {
+        'use strict';
+        if (target == null) {
+            throw new TypeError('Cannot convert undefined or null to object');
+        }
 
-            var output = Object(target);
-            for (var index = 1; index < arguments.length; index++) {
-                var source = arguments[index];
-                if (source !== undefined && source !== null) {
-                for (var nextKey in source) {
-                    if (source.hasOwnProperty(nextKey)) {
-                        output[nextKey] = source[nextKey];
+        target = Object(target);
+        for (var index = 1; index < arguments.length; index++) {
+            var source = arguments[index];
+            if (source != null) {
+                for (var key in source) {
+                    if (Object.prototype.hasOwnProperty.call(source, key)) {
+                        target[key] = source[key];
                     }
                 }
             }
         }
-            return output;
-        };
-    })();
+        return target;
+    };
 }
-/*eslint-enable */
+/* eslint-enable */
+
 const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
 const util = require('./utils/util')
@@ -140,6 +138,8 @@ App({
                 x.componentList.forEach(completeId)
             })
             return this.globalData
+        }, (err) => {
+            console.log('error', err)
         })
         this.ready = () => promise
         // 微信登录
@@ -177,10 +177,29 @@ App({
             })
         }
     },
+    createForum(param) {
+        const data = JSON.stringify(param)
+        wx.navigateTo({
+            url: `/pages/blank/blank?type=createforum&data=${data}`
+        })
+    },
+    getSystemInfo() {
+        return new Promise((resolve) => {
+            wx.getSystemInfo({
+                success(res) {
+                    resolve(res)
+                }
+            })
+        })
+    },
+    isIphone(model) {
+        var reg = /iphone/ig
+        return reg.test(model)
+    },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
             return wx.navigateTo({
-                url: '/pages/regular-pages/login/login'
+                url: '/pages/blank/blank?type=login'
             })
         }
         return true

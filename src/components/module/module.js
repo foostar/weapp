@@ -6,7 +6,7 @@ function Module(key, module) {
     Component.call(this, key)
     module = app.globalData.modules[module.extParams.moduleId]
     this.addByModule(module)
-    this.data = { module }
+    this.data = { moduleId: module.id }
 }
 
 Module.prototype = Object.create(Component.prototype)

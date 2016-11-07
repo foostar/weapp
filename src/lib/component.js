@@ -33,11 +33,27 @@ function Component(key) {
     this.key = key
     this.loaded = false
     this.shown = false
+    this._data = {
+        key: this.key,
+        template: this.name
+    }
 
     Object.keys(fns).forEach((name) => {
         this.constructor.prototype[name] = fns[name]
     })
 }
+
+Object.defineProperty(Component.prototype, 'data', {
+    get() {
+        return this._data
+    },
+    set(data) {
+        this._data = Object.assign({
+            key: this.key,
+            template: this.name
+        }, data)
+    }
+})
 
 Component.prototype.add = function (child) {
     if (!child) {
@@ -124,19 +140,31 @@ Component.prototype.addByModule = function (module) {
 }
 
 Component.prototype.setData = function (data) {
-    if (data.children && this.data && this.data.children) {
-        data.children = Object.assign({}, this.data.children, data.children)
+    if (data.children && this._data && this._data.children) {
+        data.children = Object.assign({}, this._data.children, data.children)
     }
-    this.data = Object.assign({
-        key: this.key,
-        template: this.name,
-        components: components.template
-    }, this.data, data)
-    this.parent.setData({
-        children: {
-            [this.key]: this.data
-        }
-    })
+    if (data.children && !Object.keys(data.children).length) {
+        delete data.children
+    }
+    if (data.children) {
+        data.keys = Object.keys(data.children)
+    }
+    this._data = Object.assign({}, this._data, data)
+
+    const setData = () => {
+        this.parent.setData({
+            children: {
+                [this.key]: this._data
+            }
+        })
+    }
+
+    if (!this.parent.isPage) {
+        return setData()
+    }
+
+    this._sdt && clearTimeout(this._sdt)
+    this._sdt = setTimeout(setData, 10)
 }
 
 Component.prototype.onLoad = function () {}

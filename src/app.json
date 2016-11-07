@@ -6,9 +6,7 @@
     "pages/error/error",
     "pages/regular-pages/forum/forum",
     "pages/regular-pages/topic-list/topic-list",
-    "pages/regular-pages/topic/topic",
-    "pages/regular-pages/user-home/user-home",
-    "pages/regular-pages/my/topics"
+    "pages/regular-pages/topic/topic"
   ],
   "window":{
     "backgroundTextStyle":"light",

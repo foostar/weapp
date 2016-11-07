@@ -3,9 +3,6 @@ const Component = require('../../lib/component')
 function LayoutDefault(key, module) {
     Component.call(this, key)
     this.addByModule(module.componentList)
-    this.data = {
-        componentList: module.componentList
-    }
 }
 
 LayoutDefault.prototype = Object.create(Component.prototype)

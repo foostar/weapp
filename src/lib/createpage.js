@@ -1,4 +1,4 @@
-const Events = require('./events')
+const Events = require('./events.js')
 
 const bindHandlers = (page, children) => {
     const types = {}
@@ -78,6 +78,7 @@ function createPage(config) {
 
     config.onLoad = function () {
         this.page = this
+        this.isPage = true
         Events.mixTo(this)
         const setData = this.setData
         this.setData = function (data) {

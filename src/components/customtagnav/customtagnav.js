@@ -4,16 +4,10 @@ var app = getApp()
 function CustomTagNav(key, module) {
     Component.call(this, key)
     this.addByModule(module.componentList[0])
-
-    const modules = {}
-    module.componentList.forEach((x) => {
-        modules[x.id] = x
-    })
+    this.module = module
     this.data = {
         index: 0,
         selected: module.componentList[0].id,
-        modules,
-        module,
         scrollTop: 0,
         tabs: module.componentList.map((x) => {
             return {
@@ -39,7 +33,7 @@ CustomTagNav.prototype.changeTap = function (event) {
         scrollTop: 0
     })
     if (!this.children[id]) {
-        this.addByModule(this.data.module.componentList[index])
+        this.addByModule(this.module.componentList[index])
     }
     // this.children[id].load()
 }

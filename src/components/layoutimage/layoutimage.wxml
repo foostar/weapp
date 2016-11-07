@@ -1,7 +1,7 @@
 <import src="../module/module.wxml" />
 
 <view class="layoutimage">
-    <block wx:for="{{componentList}}">
-        <template is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
+    <block wx:for="{{keys}}">
+        <template is="{{children[item].template}}" data="{{...children[item]}}" />
     </block>
 </view>

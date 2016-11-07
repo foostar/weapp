@@ -147,6 +147,10 @@
     <include src="../createforum/createforum.wxml" />
 </template>
 
+<template name="topiclistcomplex">
+    <include src="../topiclistcomplex/topiclistcomplex.wxml" />
+</template>
+
 <template name="about">
     <include src="../about/about.wxml" />
 </template>
@@ -172,5 +176,5 @@
 </template>
 
 <template name="module">
-    <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}" />
+    <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
 </template>

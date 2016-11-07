@@ -2,6 +2,6 @@
 <import src="../../components/tabbar/tabbar.wxml" />
 
 <view class="ui-container">
-    <template is="viewer" data="{{...children.viewer, module}}"></template>
-    <template is="tabbar" data="{{...children.tabbar, key: 'tabbar', selected: tabSelected, tabs}}" />
+    <template is="viewer" data="{{...children.viewer}}"></template>
+    <template is="tabbar" data="{{...children.tabbar, selected: tabSelected, tabs}}" />
 </view>
