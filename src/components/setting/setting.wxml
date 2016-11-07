@@ -1,0 +1,26 @@
+<!-- 登录后 -->
+<view wx:if="{{isLogin}}">
+    <view class="list-item" bindtap="setting_toNavigationPage" data-event-key="{{key}}" data-page="changepassword" >修改密码</view>
+    <view class="list-item" wx:if="{{isLogin}}">回复提示通知
+        <switch class="switch-style" checked bindchange="switchChange" data-class=""></switch>
+    </view>
+    <view class="list-item" wx:if="{{isLogin}}">@提示通知
+        <switch class="switch-style" checked bindchange="switchChange" data-class=""></switch>
+    </view>
+    <view class="list-item" wx:if="{{isLogin}}">提示音
+        <switch class="switch-style" checked bindchange="switchChange" data-class=""></switch>
+    </view>
+    <view class="list-item" wx:if="{{isLogin}}">定位服务
+        <switch class="switch-style" checked bindchange="switchChange" data-class=""></switch>
+    </view>
+    <view class="list-item" wx:if="{{isLogin}}">位置信息
+        <switch class="switch-style" checked bindchange="switchChange" data-class=""></switch>
+    </view>
+</view>
+
+
+<!-- 固定样式 -->
+<view class="list-item" bindtap="setting_toNavigationPage" data-event-key="{{key}}" data-page="notsupport">分享应用</view>
+<!-- <view class="list-item">清空缓存</view> -->
+<!-- <view class="list-item">新版本检测</view> -->
+<view class="list-item" bindtap="setting_toNavigationPage" data-event-key="{{key}}" data-page="about">关于</view>

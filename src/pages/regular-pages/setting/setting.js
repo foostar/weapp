@@ -28,7 +28,7 @@ Page({
         var typePage = e.currentTarget.dataset.page
         console.log(typePage)
         wx.navigateTo({
-            url: `/pages/${typePage}/${typePage}`
+            url: `/pages/blank/blank?type=${typePage}`
         })
     },
 

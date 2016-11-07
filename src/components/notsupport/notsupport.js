@@ -8,9 +8,9 @@ NotSupport.prototype = Object.create(Component.prototype)
 NotSupport.prototype.name = 'notsupport'
 NotSupport.prototype.constructor = NotSupport
 
-NotSupport.prototype.onLoad = function () {
+NotSupport.prototype.onReady = function () {
     wx.setNavigationBarTitle({
-        title: ''
+        title: '暂不支持'
     })
 }
 
