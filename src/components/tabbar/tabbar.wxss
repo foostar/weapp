@@ -6,7 +6,7 @@
     display: flex;
     overflow: hidden;
     bottom: 0;
-    border-top: 1rpx solid #CCC;
+    border-top: 1px solid #CCC;
     background-color: #fff;
 }
 .tabbar-item {

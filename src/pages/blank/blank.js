@@ -55,16 +55,6 @@ Page(createPage({
             appIcon: app.globalData.info.appIcon,
             appColor: app.globalData.info.appColor
         })
-/*        app.event.on('golbal-fetching', () => {
-            self.setData({
-                golbalFetch: false
-            })
-        })
-        app.event.on('golbal-done', () => {
-            self.setData({
-                golbalFetch: true
-            })
-        })*/
     },
     onReady() {
     },

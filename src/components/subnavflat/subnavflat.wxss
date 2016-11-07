@@ -9,7 +9,7 @@
 .tab-nav-bar-item {
     flex: 1;
     display: flex;
-    border-bottom: 1rpx solid #E0E0E0;
+    border-bottom: 1px solid #E0E0E0;
 }
 .tab-nav-bar-item text {
     line-height: 66rpx;

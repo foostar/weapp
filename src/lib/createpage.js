@@ -1,4 +1,4 @@
-const Events = require('./events')
+const Events = require('./events.js')
 
 const bindHandlers = (page, children) => {
     const types = {}

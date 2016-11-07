@@ -5,6 +5,8 @@ function ListComponent(key) {
     this.pageIndex = 0
     this.pageNumber = 20
     this.isFetching = false
+    this.resources = {}
+    this.orderby = ''
 }
 
 ListComponent.prototype = Object.create(Component.prototype)
@@ -17,12 +19,14 @@ ListComponent.prototype.onLoad = function () {
 ListComponent.prototype.nextPage = function () {
     if (this.isFetching) return
     this.isFetching = true
-    this.fetchData(this.pageIndex + 1, this.pageNumber)
+    this.fetchData({
+        page: this.pageIndex + 1,
+        orderby: this.orderby
+    }, this.pageNumber)
         .then(() => {
             this.pageIndex += 1
             this.isFetching = false
-        })
-        .then(() => {
+        }, () => {
             this.isFetching = false
         })
 }
