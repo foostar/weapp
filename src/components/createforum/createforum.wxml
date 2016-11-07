@@ -1,22 +1,37 @@
+
+
+<view class="createforum-publish-content">
+    <input class="createforum-publish-title" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
+    <!-- <input class="publish-text-input" type="text" bindinput="changeConent" placeholder="说点什么吧..."/> -->
+    <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea>
+
+</view>
+<view class="createforum-publish-images">
+    <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
+        <image wx:if="{{idx < 9}}" src="{{item}}" style="{{idx === 4  ? 'margin-right: 0': ''}}" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
+        <view class="delete-upload-box">
+            <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="createforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
+        </view>
+    </block>
+    <view wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="createforum_chooseImg" data-event-key="{{key}}" />
+</view>
+
+
 <view class="publish-select-warp" wx:if="{{fid == null}}">
-    <text class="publish-select-label">发送到</text>
-    <picker class="publish-select" bindchange="selectChange" value="{{selectIndex}}" range="{{selectNameArray}}">
+    <text class="publish-select-label">板块信息</text>
+    <picker class="publish-select" bindchange="createforum_selectChange" data-event-key="{{key}}" value="{{selectIndex}}" range="{{selectNameArray}}">
         <view class="picker">{{selectNameArray[selectIndex]}}</view>
     </picker>
 </view>
 
-<view class="publish-content">
-    <input class="publish-title" type="text" bindinput="changeTitle" placeholder="标题" />
-    <!-- <input class="publish-text-input" type="text" bindinput="changeConent" placeholder="说点什么吧..."/> -->
-    <textarea class="publish-text-input" placeholder="说点什么吧..." bindfocus="textareaFocus" bindblur="blurAndChangeContent" ></textarea>
-
-    <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
-        <image wx:if="{{idx < 9}}" src="{{item}}" class="upload-images" bindtap="previewImage" data-current-url="{{item}}" />
-        <view class="delete-upload-box">
-            <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="deleteImage" data-current-url="{{item}}">x</view>
-        </view>
-    </block>
-    <view class="image-upload-btn" bindtap="chooseImg" />
+<view wx:if="{{topicList.length}}" class="createforum-publish-topicList">
+    <view class="createforum-topic-label">主题</view>
+    <view class="createforum-topic-list">
+        <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="classificationType_id">
+            <view class="createforum-topic-item {{selectTopicId == topic.classificationType_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.classificationType_id}}">{{topic.classificationType_name}}</view>
+        </block>
+    </view>
 </view>
 
-<button bindtap="submit" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>
+
+<button bindtap="createforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>

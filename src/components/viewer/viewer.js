@@ -44,6 +44,8 @@ const Post = require('../post/post')
 const Login = require('../login/login')
 const Mylistcompos = require('../mylistcompos/mylistcompos')
 const Createforum = require('../createforum/createforum')
+const About = require('../about/about')
+const Setting = require('../setting/setting')
 
 /*
  *   @定义组件类型
@@ -118,6 +120,9 @@ components.type['post-flat'] = Post
 components.type['login-flat'] = Login   // 登录页面
 components.type['mylistcompos-flat'] = Mylistcompos // 我的好友、发表、收藏列表
 components.type['createforum-flat'] = Createforum    // 发帖组件
+components.type['about-flat'] = About    // 关于app
+components.type['setting-flat'] = Setting  // 设置
+components.type['notsupport-flat'] = NotSupport   // 固定页面不支持功能
 
 // topiclistSimple-flat
 

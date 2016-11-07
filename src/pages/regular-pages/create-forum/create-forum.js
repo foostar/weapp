@@ -21,11 +21,13 @@ function sequenceTasks(tasks) {
 
 // 图片上传
 function uploadImage(tmpurl, selectType) {
+    console.log(tmpurl)
     return new Promise((resolve, reject) => {
         const accessToken = app.globalData.userInfo.token
         const accessSecret = app.globalData.userInfo.secret
         wx.uploadFile({
             url: CONFIG.FORUM_URL + '/mobcent/app/web/index.php?r=forum/sendattachmentex',
+            // url: 'http://10.10.9.182/dev_gbk/mobcent/app/web/index.php?r=forum/sendattachmentex&accessToken=12345678&accessSecret=12345678',
             filePath: tmpurl,
             name: 'uploadFile[]',
             formData: {
@@ -36,10 +38,11 @@ function uploadImage(tmpurl, selectType) {
                 accessSecret
             },
             success: response => {
-                console.log(response)
+                console.log('success', response)
                 return resolve(response)
             },
             fail: err => {
+                console.log('fail', err)
                 reject(err)
             }
         })
@@ -182,23 +185,22 @@ Page({
                     console.log('上传失败', err)
                 })
 
-                /*
-                return wx.uploadFile({
-                    // url: `http://10.10.9.182/dev_gbk/mobcent/app/web/index.php?r=forum/sendattachmentex&accessToken=${app.api._token}&accessSecret=${app.api._secret}`,
-                    url: 'http://10.10.9.182/dev_gbk/mobcent/app/web/index.php?r=forum/sendattachmentex&accessToken=12345678&accessSecret=12345678',
-                    filePath: imagelist[0],
-                    name: 'uploadFile[]',
-                    success: response => {
-                        console.log('int', response)
-                    },
-                    fail: err => {
-                        console.log('int err', err)
-                    },
-                    complete: result => {
-                        console.log('int complete', result)
-                    }
-                })
-                */
+                // console.log('-----------')
+                // return wx.uploadFile({
+                //     // url: `http://10.10.9.182/dev_gbk/mobcent/app/web/index.php?r=forum/sendattachmentex&accessToken=${app.api._token}&accessSecret=${app.api._secret}`,
+                //     url: 'http://10.10.9.182/dev_gbk/mobcent/app/web/index.php?r=forum/sendattachmentex&accessToken=12345678&accessSecret=12345678',
+                //     filePath: imagelist[0],
+                //     name: 'uploadFile[]',
+                //     success: response => {
+                //         console.log('int', response)
+                //     },
+                //     fail: err => {
+                //         console.log('int err', err)
+                //     },
+                //     complete: result => {
+                //         console.log('int complete', result)
+                //     }
+                // })
             },
             fail: err => {
                 console.log('err', err)

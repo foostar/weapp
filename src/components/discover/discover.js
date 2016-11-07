@@ -66,11 +66,10 @@ Discover.prototype.toLogin = function () {
     }
 }
 
-
     // 跳转到设置页
 Discover.prototype.toSetting = function () {
     wx.navigateTo({
-        url: '/pages/regular-pages/setting/setting'
+        url: '/pages/blank/blank?type=setting'
     })
 }
     // 改变全局的moduleId
