@@ -18,7 +18,6 @@ function TopiclistSimple(key, module) {
         forumInfo,
         resources: {},
         isLoading: false,
-        globalFetch: app.globalData.globalFetch,
         appIcon: app.globalData.info.appIcon,
         over: false
     }
@@ -32,16 +31,16 @@ TopiclistSimple.prototype.clickItem = function (e) {
 }
 
 // 请求数据
-TopiclistSimple.prototype.fetchData = function (page, number) {
+TopiclistSimple.prototype.fetchData = function (param, number) {
     const module = this.data.module
-    let list = this.data.resources.list ? this.data.resources.list : []
+    let list = param.list || this.data.resources.list || []
     if (this.data.over) return Promise.reject()
     this.setData({
         isLoading: true
     })
     return app.api.forum(module.extParams.forumId, {
-        page,
-        sortby: module.extParams.orderby || 'all'
+        page: param.page,
+        sortby: param.orderby || 'all'
     }).then((data) => {
         data.list = data.list.map((v) => {
             let faceResult = util.infoToFace(v.subject)
@@ -50,12 +49,18 @@ TopiclistSimple.prototype.fetchData = function (page, number) {
             return v
         })
         data.list = list.concat(data.list)
+        if (data.page == 1) {
+            this.setData({
+                topTopicList: data.topTopicList
+            })
+        }
         this.setData({
-            module,
             resources: data,
             isLoading: false,
-            over: page >= parseInt((data.total_num / number) + 1, 10)
+            over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
+    }, (err) => {
+        return Promise.reject(err)
     })
 }
 

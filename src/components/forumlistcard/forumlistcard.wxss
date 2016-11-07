@@ -20,7 +20,7 @@
     padding: 24rpx 10rpx 24rpx 16rpx;
 }
 .border-right {
-    border-right: 1rpx solid #ccc;
+    border-right: 1px solid #ccc;
 }
 
 .community-icon {

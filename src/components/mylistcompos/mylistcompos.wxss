@@ -4,7 +4,7 @@
     display: flex;
     color: #a6a6a6;
     padding: 16rpx;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
     min-height: 110rpx;
     flex-direction: row;
     justify-content: space-between;
@@ -54,7 +54,7 @@
     padding: 20rpx;
     position: relative;
     color: #bebebe;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 .user-item-image {
     width: 132rpx;

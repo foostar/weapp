@@ -1,4 +1,7 @@
 /* eslint-disabled */
+/*
+ * @格式化文本
+ */
 function formateText(str = '', length = 40) {
     length = parseInt(length, 10)
     if (str.length > length) {
@@ -9,8 +12,9 @@ function formateText(str = '', length = 40) {
     }
     return str
 }
-
-
+/*
+ * @格式化日期
+ */
 const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = true) => {
     if (!date) return ''
     if (typeof date === 'string' && /^\d+$/.test(date)) {
@@ -54,6 +58,9 @@ const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = true) =>
     })
     return format
 }
+/*
+ * @格式化表情
+ */
 const sesourceAddress = { 泪: 'lei', 怒: 'nu', 心: 'xin', 晕: 'yun', 衰: 'shuai', 来: 'lai', 萌: 'meng', 囧: 'jiong', 酷: 'ku', 汗: 'han', 嘘: 'xu', 吐: 'tu', 睡: 'shui', 包: 'bao', 耶: 'ye', 饭: 'fan', 赞: 'zan', 咖啡: 'kafei', 礼物: 'liwu', 猪头: 'zhutou', 抱抱: 'baobao', 握手: 'woshou', 吃惊: 'chijing', 白眼: 'baiyan', 疑问: 'yiwen', 阴险: 'yinxian', 送花: 'songhua', 威武: 'weiwu', 围观: 'weiguan', 撇嘴: 'piezui', 发呆: 'fadai', 敲打: 'qiaoda', 委屈: 'weiqu', 兔子: 'tuzi', 哈哈: 'haha', 抓狂: 'zhuakuang', 嘻嘻: 'xixi', 偷笑: 'touxiao', 生病: 'shengbing', 爱你: 'aini', 害羞: 'haixiu', 馋嘴: 'chanzui', 可怜: 'kelian', 鼓掌: 'guzhang', 花心: 'huaxin', 亲亲: 'qinqin', 鄙视: 'bishi', 呵呵: 'hehe', 傲慢: 'aoman', 月亮: 'yueliang', 太阳: 'taiyang', 谢谢: 'xiexie', 蓝心: 'lanxin', 神马: 'shenma', 坑爹: 'kengdie', 魔鬼: 'mogui', 紫心: 'zixin', 绿心: 'lvxin', 黄心: 'huangxin', 音符: 'yinfu', 闪烁: 'shansuo', 星星: 'xingxing', 雨滴: 'yudi', 火焰: 'huoyan', 便便: 'bianbian', 下雨: 'xiayu', 多云: 'duoyun', 闪电: 'shandian', 雪花: 'xuehua', 旋风: 'xuanfeng', 房子: 'fangzi', 烟花: 'yanhua', 踩一脚: 'caiyijiao', 有木有: 'youmuyou', 外星人: 'waixingren', 挖鼻屎: 'wabishi', 太开心: 'taikaixin', 心碎了: 'xinsuile', 糗大了: 'qiudale', 左哼哼: 'zuohengheng', 右哼哼: 'youhengheng', 做鬼脸: 'zuoguilian', 要哭了: 'yaokule', ok: 'ok', good: 'good', Hold: 'hold', ByeBye: 'byebye' }
 
 const infoToFace = (str) => {
@@ -97,6 +104,9 @@ const infoToFace = (str) => {
         data: str
     }
 }
+/*
+ * @页面的类别
+ */
 const pagetype = [
     { type: 'webapp', desc: '外部URL', isAchieve: false },
     { type: 'plugin', desc: 'plugin', isAchieve: false },
@@ -115,12 +125,25 @@ const pagetype = [
     { type: 'newlivelist', desc: '直播间', isAchieve: false },
     { type: 'configSwitch', desc: '配置切换', isAchieve: false }
 ]
+/*
+ * @列表数据格式
+ */
+const formatListData = (dataList) => {
+    let componentList = []
+    dataList.forEach((v) => {
+        componentList.push(Object.assign({}, v, v.extParams, {
+            subject: v.extParams.summary
+        }))
+    })
+    return componentList
+}
 module.exports = {
     dateFormat,
     formatTime(date) {
         return dateFormat(date)
     },
     formateText,
+    formatListData,
     infoToFace,
     pagetype
 }

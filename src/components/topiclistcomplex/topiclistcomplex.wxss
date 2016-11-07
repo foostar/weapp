@@ -1,0 +1,53 @@
+.forum-tabs {
+    flex: 1;
+    display: flex;
+    margin-top:20rpx;
+    flex-direction: column;
+}
+
+.forum-tabs-title-warp-placeholder {
+    height: 72rpx;
+}
+
+.forum-tabs-title-warp {
+    display: flex;
+    height: 72rpx;
+    line-height: 72rpx;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+
+.forum-tabs-title-warp.fixed{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.forum-tabs-title {
+    flex: 1;
+    text-align: center;
+    font-size: 28rpx;
+    background-color: #fff;
+}
+.forum-tabs-indicator {
+    position: absolute;
+    height: 5rpx;
+    width: 33.3333333%;
+    bottom: 0;
+    transition: .3s;
+}
+.forum-edit-btn {
+    position: fixed;
+    width: 90rpx;
+    height: 90rpx;
+    
+    background-size: 50%;
+    background-position: 50%;
+    opacity: .8;
+    background-repeat: no-repeat;
+    background-color: #fa460a;
+    bottom: 52rpx;
+    right: 40rpx;
+    border-radius: 50%;
+}

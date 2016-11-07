@@ -1,27 +1,9 @@
 <import src="../module/module.wxml" />
 <import src="../cellstyle/cellstyle"/>
+<import src="../forum/forum"/>
 <!--  -->
 <block wx:if="{{forumInfo}}">
-    <view wx:if="{{resources.forumInfo}}" class="forum-info-container">
-        <view class="foruminfo-icon">
-            <image src="{{appIcon}}"/>
-        </view>
-        <view class="foruminfo-content">
-            <view class="foruminfo-forumname font-wide">{{resources.forumInfo.title}}</view>
-            <view class="foruminfo-meta font-mini">主题：{{resources.forumInfo.posts_total_num }}  <text>今日：{{resources.forumInfo.td_posts_num}}</text></view>
-            <view class="foruminfo-des font-mini">{{resources.forumInfo.description}}</view>
-        </view>
-        <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}"  bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}" data-id="{{resources.forumInfo.id}}" data-focus="{{resources.forumInfo.is_focus}}">{{resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
-    </view>
-    <view wx:if="{{!!resources.topTopicList}}" class="stick-container font-mini">
-        <block wx:for="{{resources.topTopicList}}" wx:key="{{index}}">
-            <view data-id="{{item.id}}" class="stick-item">
-                <view class="stick-tag bg-color">置顶</view>
-                <view class="stick">{{item.title}}</view>
-            </view>
-        </block>
-        <view class="stick-item stick-more" wx:if="{{resources.topTopicList.length > 3}}">更多</view>
-    </view>
+    <template is="forumInfo" data="{{resources, topTopicList, appIcon}}" />
 </block>
 <view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
     <block wx:for="{{resources.list}}" wx:key="{{index}}">
