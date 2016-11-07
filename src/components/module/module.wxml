@@ -155,7 +155,13 @@
     <include src="../setting/setting.wxml" />
 </template>
 
+<template name="changepassword">
+    <include src="../changepassword/changepassword.wxml" />
+</template>
 
+<template name="register">
+    <include src="../register/register" />
+</template>
 
 <template name="module">
     <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}" />

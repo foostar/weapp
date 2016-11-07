@@ -32,5 +32,8 @@
 @import "../createforum/createforum.wxss";
 @import "../about/about.wxss";
 @import "../setting/setting.wxss";
+@import "../changepassword/changepassword.wxss";
+@import "../register/register.wxss";
+
 
 

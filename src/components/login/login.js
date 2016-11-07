@@ -44,9 +44,8 @@ Login.prototype.toLogin = function (e) {
         } catch (err) {
             console.log(err)
         }
-    })
+    }, error => console.log(error))
     .catch(err => {
-        console.log(err.status)
         if (parseInt(err.status, 10) / 100 == 4) {
             this.setData({
                 isShow: true,
