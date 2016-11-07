@@ -48,6 +48,7 @@ const About = require('../about/about')
 const Setting = require('../setting/setting')
 const Changepassword = require('../changepassword/changepassword')
 const Register = require('../register/register')
+const Myinfo = require('../myinfo/myinfo')
 
 /*
  *   @定义组件类型
@@ -127,6 +128,8 @@ components.type['setting-flat'] = Setting  // 设置
 components.type['notsupport-flat'] = NotSupport   // 固定页面不支持功能
 components.type['changepassword-flat'] = Changepassword  // 修改密码
 components.type['register-flat'] = Register   // 注册页面
+components.type['myinfo-flat'] = Myinfo       // 我的消息
+
 
 // topiclistSimple-flat
 

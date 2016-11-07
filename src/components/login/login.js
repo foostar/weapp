@@ -44,25 +44,27 @@ Login.prototype.toLogin = function (e) {
         } catch (err) {
             console.log(err)
         }
-    }, error => console.log(error))
+    })
     .catch(err => {
         if (parseInt(err.status, 10) / 100 == 4) {
             this.setData({
                 isShow: true,
                 errMessage: err.message
             })
-            setTimeout(this.closeMessagePrompt, 1500)
+            this.closeMessagePrompt()
         }
     })
 }
 
 Login.prototype.closeMessagePrompt = function () {
-    this.setData({
-        isShow: false,
-        errMessage: ''
-    })
+    var selt = this
+    setTimeout(() => {
+        selt.setData({
+            isShow: false,
+            errMessage: ''
+        })
+    }, 1500)
 }
-
 
 module.exports = Login
 

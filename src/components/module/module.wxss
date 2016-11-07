@@ -34,6 +34,7 @@
 @import "../setting/setting.wxss";
 @import "../changepassword/changepassword.wxss";
 @import "../register/register.wxss";
+@import "../myinfo/myinfo.wxss";
 
 
 

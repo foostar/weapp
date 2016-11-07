@@ -163,6 +163,10 @@
     <include src="../register/register" />
 </template>
 
+<template name="myinfo">
+    <include src="../myinfo/myinfo" />
+</template>
+
 <template name="module">
     <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}" />
 </template>

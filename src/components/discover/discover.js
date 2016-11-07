@@ -115,7 +115,7 @@ Discover.prototype.toNavigationPage = function (e) {
     if (this.data.isLogin) {
         if (typePage == 'myInfo') {
             return wx.navigateTo({
-                url: '/pages/regular-pages/my-info/my-info'
+                url: '/pages/blank/blank?type=myinfo'
             })
         }
         wx.navigateTo({

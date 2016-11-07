@@ -1,11 +1,11 @@
-.manage-item {
+.myinfo-manage-item {
     background-color: #fff;
     color: #484848;
     position: relative;
     border-bottom: 1px solid #ccc;
 }
 
-.icon {
+.myinfo-icon {
     width: 88rpx;
     height: 88rpx;
     background-repeat: no-repeat;
@@ -15,8 +15,20 @@
     margin: 20rpx;
 }
 
-.personal-manage-item-title {
+.myinfo-personal-manage-item-title {
     font-size: 32rpx;
     line-height: 128rpx;
     padding-left: 128rpx;
+}
+
+.myinfo-icon-arrow {
+    background-size: 100%;
+    width:36rpx;
+    height:36rpx;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    margin-top: -16rpx;
+    right: 30rpx;
 }
