@@ -36,7 +36,7 @@
     -webkit-box-flex: 1;
     -ms-flex: 1;
     border: 0;
-    border-bottom: 4rpx solid transparent;
+    border-bottom: 2px solid transparent;
     border-radius: 0;
     font-size: 28rpx;
     text-align: center;

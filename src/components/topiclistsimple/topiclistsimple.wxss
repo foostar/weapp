@@ -84,7 +84,7 @@
 /* ========== forum-info ========== */
 .forum-info-container{
     background:#fff;
-    border-bottom:2rpx solid #ddd;
+    border-bottom:1px solid #ddd;
     padding:30rpx;
     box-sizing:border-box;
     display:flex;
@@ -130,7 +130,7 @@
     display:flex;
     padding:8rpx 20rpx;
     line-height:45rpx;
-    border-bottom:2rpx solid #ddd;
+    border-bottom:1px solid #ddd;
     color:#a4a4a4;
 }
 .stick{
@@ -160,7 +160,7 @@
     background: #fff;
     padding: 20rpx;
     box-sizing: border-box;
-    border-bottom: 1rpx solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .cell-tieba-header {
 }
@@ -250,7 +250,7 @@
     background-color: #fff;
     padding: 20rpx;
     padding-bottom: 10rpx;
-    border-bottom: 1rpx solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .cell-flat-content-subject-1{
     margin:8rpx 0;
@@ -347,7 +347,7 @@
 .cell-card {
     background-color: #fff;
     margin-top:20rpx;
-    border-bottom: 2rpx solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .cell-card-header{
     display:flex;
@@ -399,7 +399,7 @@
 }
 .cell-card-content{
     padding:18rpx 20rpx;
-    border-bottom: 2rpx solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .cell-card-meta{
     padding:10rpx 0;
@@ -413,7 +413,7 @@
     box-sizing: border-box;
 }
 .cell-card-meta .hits{
-    border-right: 2rpx solid #ddd;
+    border-right: 1px solid #ddd;
 }
 .cell-card-meta view image{
     width:28rpx;
@@ -424,7 +424,7 @@
 }
 /* ========== cell-imageSudoku ========== */
 .cell-imageSudoku-wrapper{
-    border-bottom:2rpx solid #ddd;
+    border-bottom:1px solid #ddd;
     background:#fff;
 }
 .cell-imageSudoku{
@@ -508,7 +508,7 @@
     width:65rpx;
     height:35rpx;
     border-radius:10px;
-    border:2rpx solid #ddd;
+    border:1px solid #ddd;
 }
 .cell-circle-mes view image{
     width:28rpx;
@@ -556,7 +556,7 @@
     display:inline-block;
 }
 .cell-circle-reply-main{
-    border-top: 2rpx solid #ddd;
+    border-top: 1px solid #ddd;
     padding-top:5rpx;
 }
 .cell-circle-likemember{
@@ -572,7 +572,7 @@
 }
 .cell-circle-reply-more{
     padding:8rpx 10rpx;
-    border-top:2rpx solid #ddd;
+    border-top:1px solid #ddd;
 }
 .cell-circle-username{
     width:150rpx;

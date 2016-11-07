@@ -10,7 +10,7 @@
     white-space:nowrap;
     background:#fff;
     flex:0;
-    border-bottom:2rpx solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .customtag-item{
     display:inline-block;
@@ -29,5 +29,5 @@
     overflow:hidden;
 }
 .customtag-box .active{
-    border-bottom:5rpx solid currentColor;
+    border-bottom:3px solid currentColor;
 }

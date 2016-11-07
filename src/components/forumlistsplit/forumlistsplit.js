@@ -38,7 +38,7 @@ ForumlistSplit.prototype.fetchData = function () {
         resources.rec = recForumList
         const windowHeight = systemInfo.windowHeight
         const windowWidth = systemInfo.windowWidth
-        const viewHeight = `${((750 / windowWidth) * windowHeight) - 35}rpx`
+        const viewHeight = `${((750 / windowWidth) * windowHeight) - 45}rpx`
         const device = !app.isIphone(systemInfo.model)
         // viewHeight = `${((windowWidth / 750) * viewHeight) - 64}px`
         this.setData({

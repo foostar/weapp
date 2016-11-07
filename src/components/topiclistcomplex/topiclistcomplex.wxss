@@ -14,7 +14,7 @@
     height: 72rpx;
     line-height: 72rpx;
     position: relative;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 
 .forum-tabs-title-warp.fixed{

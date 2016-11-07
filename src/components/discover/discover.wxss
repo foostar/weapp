@@ -11,7 +11,7 @@ page {
     padding: 28rpx;
     position: relative;
     height: 132rpx;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
     color: #565656;
     font-size: 36rpx;
     line-height: 132rpx;
@@ -75,7 +75,7 @@ page {
     display: flex;
     flex-direction: row;
     height: 96rpx;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 .personal-quick-btn{
     color: #484848;
@@ -110,7 +110,7 @@ page {
     line-height: 48rpx;
     font-size: 32rpx;
     position: relative;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 .personal-manage-item-title {
     margin-left: 80rpx;

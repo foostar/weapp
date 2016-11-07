@@ -51,13 +51,13 @@ page {
 }
 
 .forum-top-section {
-    border-top: 1rpx solid #ccc;
+    border-top: 1px solid #ccc;
     background-color: #fff;
     margin-bottom: 20rpx;
 }
 
 .forum-top-item {
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
     height: 80rpx;
     line-height: 80rpx;
     padding: 0 20rpx;
@@ -100,7 +100,7 @@ page {
     height: 72rpx;
     line-height: 72rpx;
     position: relative;
-    border-bottom: 1rpx solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 
 .forum-tabs-title-warp.fixed{
@@ -140,7 +140,7 @@ page {
     padding: 20rpx;
     background-color: #fff;
     margin-bottom: 20rpx;
-    border-bottom: 1rpx solid #eee;
+    border-bottom: 1px solid #eee;
 }
 .forum-item-header {
     display: flex;

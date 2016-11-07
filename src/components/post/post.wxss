@@ -52,7 +52,7 @@
     height:45rpx;
     line-height:45rpx;
     color:#343434;
-    border:2rpx solid currentColor;
+    border:2px solid currentColor;
     text-align:center;
     margin-top:45rpx;
     margin-right:30rpx;
@@ -108,7 +108,7 @@
     line-height: 80rpx;
     font-size: 46rpx;
     padding: 24rpx 20rpx 10rpx;
-    border-bottom: 1rpx solid #DDD;
+    border-bottom: 1px solid #DDD;
     background: #FFF;
 }
 .post-meta {
@@ -150,7 +150,7 @@
     margin-left: 10rpx;
     border-radius: 6rpx;
     font-size: 24rpx;
-    border: 1rpx solid #000;
+    border: 1px solid #000;
     transform: scale(.6);
     transform-origin: 0 50%;
     overflow: hidden;
@@ -226,7 +226,7 @@
     left:0;
     bottom:0;
     z-index:20;
-    border-top: 2rpx solid #DDD;
+    border-top: 2px solid #DDD;
 }
 .post-footer{
     display:flex;
@@ -238,13 +238,13 @@
     display:flex;
     justify-content: space-between;
     padding:0 20rpx;
-    border:2rpx solid #ddd;
+    border:1px solid #ddd;
     line-height:60rpx;
     border-radius: 5px;
     box-sizing: border-box;
 }
 .post-footer input{
-    border:2rpx solid #ddd;
+    border:1px solid #ddd;
     border-radius: 5px;
     width:500rpx;
     height:55rpx;
@@ -274,7 +274,7 @@
 .post-mark-meta-item{
     width:58rpx;
     height:55rpx;
-    border:2rpx solid #ccc;
+    border:1px solid #ccc;
     border-radius: 50%;
     background:#fff;
     margin-right:20rpx;
@@ -296,7 +296,7 @@
 }
 .post-comment-item {
     padding: 20rpx 28rpx;
-    border-bottom: 2rpx solid #DDD;
+    border-bottom: 1px solid #DDD;
     display:flex;
 }
 .post-comment-content {
@@ -319,7 +319,7 @@
     height: 80rpx;
     line-height: 80rpx;
     padding: 0 28rpx;
-    border-bottom: 1rpx solid #DDD;
+    border-bottom: 1px solid #DDD;
     font-size: 32rpx;
     color: #666;
 }
