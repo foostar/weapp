@@ -131,7 +131,7 @@ Discover.prototype.toNavigationPage = function (e) {
     // 跳到用户主页
 Discover.prototype.toUserHome = function (e) {
     wx.navigateTo({
-        url: `/pages/regular-pages/user-home/user-home?uid=${e.currentTarget.dataset.uid}`
+        url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.uid })}`
     })
 }
 module.exports = Discover

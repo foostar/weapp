@@ -167,6 +167,10 @@
     <include src="../myinfo/myinfo" />
 </template>
 
+<template name="userhome">
+    <include src="../user-home/user-home" />
+</template>
+
 <template name="module">
     <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}" />
 </template>
