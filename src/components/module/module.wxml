@@ -158,5 +158,5 @@
 
 
 <template name="module">
-    <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}" />
+    <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
 </template>

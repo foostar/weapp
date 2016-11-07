@@ -7,9 +7,7 @@ var app = getApp()
 Page(createPage({
     data: {
         tabs: [],
-        tabSelected: 0,
-        module: null,
-        golbalFetch: true
+        tabSelected: 0
     },
     onLoad() {
         let tabSelected = 0
@@ -22,25 +20,24 @@ Page(createPage({
                 tabSelected = index
             }
         })
+        this.module = module
         this.setData({
             tabs: app.globalData.tabs,
-            module,
             tabSelected
         })
     },
     onReady() {
         wx.setNavigationBarTitle({
-            title: this.data.module.title
+            title: this.module.title
         })
     },
     selectTab(index) {
         const { modules, tabs } = app.globalData
         const moduleId = tabs[index].moduleId
-        if (moduleId === this.data.module.id) return
-        const module = modules[moduleId]
+        if (moduleId === this.module.id) return
+        const module = this.module = modules[moduleId]
         this.add(new Viewer('viewer', module))
         this.setData({
-            module,
             tabSelected: index
         })
     },

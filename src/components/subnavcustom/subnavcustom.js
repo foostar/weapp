@@ -3,9 +3,6 @@ const Component = require('../../lib/component')
 function SubnavCustom(key, module) {
     Component.call(this, key)
     this.addByModule(module.componentList)
-    this.data = {
-        componentList: module.componentList
-    }
 }
 
 SubnavCustom.prototype = Object.create(Component.prototype)

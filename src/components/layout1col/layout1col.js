@@ -4,7 +4,7 @@ function Layout1Col(key, module) {
     TouchComponent.call(this, key, module)
     this.data = {
         style: module.style,
-        componentList: module.componentList
+        list: module.componentList
     }
 }
 

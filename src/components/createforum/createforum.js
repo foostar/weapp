@@ -2,8 +2,6 @@ const Component = require('../../lib/component')
 const CONFIG = require('../../config.js')
 
 const app = getApp()
-const accessToken = app.globalData.userInfo.token
-const accessSecret = app.globalData.userInfo.secret
 
 // 顺序处理任务
 function sequenceTasks(tasks) {
@@ -25,6 +23,8 @@ function sequenceTasks(tasks) {
 // 图片上传
 function uploadImage(tmpurl, selectType) {
     return new Promise((resolve, reject) => {
+        const accessToken = app.globalData.userInfo.token
+        const accessSecret = app.globalData.userInfo.secret
         wx.uploadFile({
             url: `${CONFIG.FORUM_URL}/mobcent/app/web/index.php?r=forum/sendattachmentex`,
             filePath: tmpurl,

@@ -3,20 +3,20 @@
 <view class="subnavtopbar">
     <view class="topbar-bar">
         <view wx:if="{{module.leftTopbars.length > 0}}" class="topbar-icon">
-            <image wx:for="{{module.leftTopbars}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
+            <image wx:for="{{module.leftTopbars}}" wx:key="{{index}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
         </view>
         <view class="top-bar">
-            <view wx:for="{{tabs}}" bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}" class="{{item.id == selected ? 'active' : ''}} font-wide text-color"> {{item.title}} </view>
+            <view wx:for="{{tabs}}" wx:key="{{item.id}}" bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}" class="{{item.id == selected ? 'active' : ''}} font-wide text-color"> {{item.title}} </view>
             <view class="top-bar-indicator" style="transform: translateX({{index * 100 + '%'}}); width: {{width}};">
                 <view class="top-bar-indicator-inner bg-color"></view>
             </view>
         </view>
         <view wx:if="{{module.rightTopbars.length > 0}}" class="topbar-icon">
-            <image wx:for="{{module.rightTopbars}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
+            <image wx:for="{{module.rightTopbars}}" wx:key="{{index}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
         </view>
     </view>
     <view class="subnav-topbar-content-container" style="transform: translateX({{-index * (100 / tabs.length) + '%'}}); width: {{tabs.length}}00%">
-        <scroll-view wx:for="{{tabs}}" class="topbar-content" scroll-y class="topbar-content">
+        <scroll-view wx:for="{{tabs}}" wx:key="{{item.id}}" class="topbar-content" scroll-y class="topbar-content">
             <view style="height: 100%" hidden="{{(selected === item.id || animating) ? false : true}}">
                 <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
             </view>

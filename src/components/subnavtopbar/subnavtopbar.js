@@ -21,7 +21,6 @@ function SubnavTopbar(key, module) {
         index: 0,
         width: `${100 / tabs.length}%`,
         selected: module.componentList[0].id,
-        modules,
         tabs
     }
 }

@@ -140,6 +140,7 @@ function Viewer(key, module) {
     this.module = module
     this.add(components.create(module))
     this.data = {
+        moduleId: module.id,
         hasScroll: checkHasScroll(module),
     }
 }
