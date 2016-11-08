@@ -65,7 +65,7 @@ function Createforum(key, module) {
         isTopic: false,
         tiId: '',
         fid: null,
-        appColor: '#ccc',
+        appColor: app.config.COLOR,
         topicList: [],
         selectTopicId: '',
         isfocus: false   // textarea 焦点
@@ -90,8 +90,7 @@ Createforum.prototype.onLoad = function () {
         // 判断用户是否登录
         Object.assign(data, {
             isLogin: true,
-            userInfo: app.globalData.userInfo,
-            appColor: app.config.COLOR
+            userInfo: app.globalData.userInfo
         })
     } else {
         console.info('no auth')

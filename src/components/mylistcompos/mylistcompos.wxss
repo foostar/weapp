@@ -1,4 +1,4 @@
-.topics-item-box {
+.mylistcompos-topics-item-box {
     position: relative;
     background-color: #fff;
     display: flex;
@@ -10,53 +10,53 @@
     justify-content: space-between;
 }
 
-.topics-item-context {
+.mylistcompos-topics-item-context {
     flex: 1;
     position: relative;
     height: 110rpx;
     display: flex;
     flex-direction: row;
 }
-.topics-item-pic {
+.mylistcompos-topics-item-pic {
     margin-left: 16rpx;
     width: 180rpx;
     height: 114rpx;
     display: block;
 }
 
-.topics-item-title {
+.mylistcompos-topics-item-title {
     min-height: 22px;
     font-size: 15px;
     color: #333;
 }
 
-.topics-item-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.mylistcompos-topics-item-info {
+    display: inline-block;
     position: absolute;
-    bottom: 0;
+    bottom: -10rpx;
+    left: 0px;
     width: 100%;
 }
-.topics-item-date {
+.mylistcompos-topics-item-date {
+    width: 33%;
     font-size: 26rpx;
-    flex: 1;
+    display: inline-block;
 }
 
-.topics-item-subject {
+.mylistcompos-topics-item-subject {
     font-size: 13px;
     overflow: hidden;
     line-clamp:3;
     white-space: nowrap
 }
-.user-list-item {
+.mylistcompos-user-list-item {
     background-color: #fff;
     padding: 20rpx;
     position: relative;
     color: #bebebe;
     border-bottom: 1px solid #ccc;
 }
-.user-item-image {
+.mylistcompos-user-item-image {
     width: 132rpx;
     height: 132rpx;
     border-radius: 10rpx;
@@ -68,29 +68,29 @@
     left: 20rpx;
 }
 
-.user-item-data {
+.mylistcompos-user-item-data {
     padding-left: 152rpx;
     height: 132rpx;   
 }
 
-.user-item-data-info {
+.mylistcompos-user-item-data-info {
     height: 30rpx;
     margin-bottom: 10rpx;
     width: auto;
 }
-.user-item-data-info-name {
+.mylistcompos-user-item-data-info-name {
     text-align: left;
     font-size: 28rpx;
     line-height: 30rpx;
     color: #000;
 }
-.user-item-data-info-dateline {
+.mylistcompos-user-item-data-info-dateline {
     font-size: 20rpx;
     line-height: 30rpx;
     float: right;
 }
 
-.user-item-data-badge {
+.mylistcompos-user-item-data-badge {
     display:initial;
     font-size: 24rpx;
     background: #41a5fa;
@@ -102,13 +102,13 @@
     height: 40rpx;
 }
 /* 无内容提示 */
-.no-content {
+.mylistcompos-no-content {
     color: #ccc;
     text-align: center;
     margin: 30rpx 0;
 }
 
-.user-item-data-desc {
+.mylistcompos-user-item-data-desc {
     line-height: 40rpx;
     font-size: 24rpx;
     word-wrap: break-word;

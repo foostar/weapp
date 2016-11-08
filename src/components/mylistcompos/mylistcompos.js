@@ -1,23 +1,76 @@
-const Component = require('../../lib/component')
+const ListComponent = require('../../lib/listcomponent')
 const { dateFormat, formatTime } = require('../../utils/util.js')
 
 const app = getApp()
+
+function switchType(type, isMy) {
+    var result = {}
+    switch (type) {
+        case 'myCollection':
+            result.apiType = 'favorite'
+            result.title = '我的收藏'
+            break
+        case 'myFriend':
+            result.apiType = 'friend'
+            result.title = '我的好友'
+            break
+        case 'myTopic':
+            result.apiType = 'topic'
+            result.title = '我的发表'
+            break
+        case 'myInfo':
+            result.apiType = 'myInfo'
+            result.title = '我的消息'
+            break
+        case 'myReply':
+            result.apiType = 'reply'
+            result.title = isMy ? '我的参与' : 'Ta的参与'
+            break
+        case 'myFollow':
+            result.apiType = 'follow'
+            result.title = isMy ? '我的关注' : 'Ta的关注'
+            break
+        case 'myFollowed':
+            result.apiType = 'followed'
+            result.title = isMy ? '我的粉丝' : 'Ta的粉丝'
+            break
+        case 'at':
+            result.apiType = 'at'
+            result.title = '提到我的'
+            result.isNotify = true
+            break
+        case 'friend':
+            result.apiType = 'friend'
+            result.title = '提到我的'
+            result.isNotify = true
+            break
+        case 'post':
+            result.apiType = 'post'
+            result.title = '评论'
+            result.isNotify = true
+            break
+        default:
+            result.apiType = 'favorite'
+    }
+    return result
+}
 
 function Mylistcompos(key, module) {
     if (module.data) {
         this.papeData = module.data
     }
-    Component.call(this, key)
+    ListComponent.call(this, key)
     this.data = {
         userId: '',
-        list: '',
+        list: [],
         title: '',
         apiType: '',
+        page: 0,
         isUserList: false,
         isNotify: false
     }
 }
-Mylistcompos.prototype = Object.create(Component.prototype)
+Mylistcompos.prototype = Object.create(ListComponent.prototype)
 Mylistcompos.prototype.name = 'mylistcompos'
 Mylistcompos.prototype.constructor = Mylistcompos
 Mylistcompos.prototype.onReady = function () {
@@ -26,80 +79,39 @@ Mylistcompos.prototype.onReady = function () {
     })
 }
 Mylistcompos.prototype.onLoad = function () {
+    this.nextPage()
+}
+// 加载下一页
+Mylistcompos.prototype.nextPage = function () {
+    let { list, page } = this.data
     const { type, uid } = this.papeData
     const { userInfo } = app.globalData
-    let apiType = ''
-    let title = ''
-    let isNotify = false
     let promise = {}
     const userId = userInfo.uid
     const isMy = (!uid || uid == userId)
-    switch (type) {
-        case 'myCollection':
-            apiType = 'favorite'
-            title = '我的收藏'
-            break
-        case 'myFriend':
-            apiType = 'friend'
-            title = '我的好友'
-            break
-        case 'myTopic':
-            apiType = 'topic'
-            title = '我的发表'
-            break
-        case 'myInfo':
-            apiType = 'myInfo'
-            title = '我的消息'
-            break
-        case 'myReply':
-            apiType = 'reply'
-            title = isMy ? '我的参与' : 'Ta的参与'
-            break
-        case 'myFollow':
-            apiType = 'follow'
-            title = isMy ? '我的关注' : 'Ta的关注'
-            break
-        case 'myFollowed':
-            apiType = 'followed'
-            title = isMy ? '我的粉丝' : 'Ta的粉丝'
-            break
-        case 'at':
-            apiType = 'at'
-            title = '提到我的'
-            isNotify = true
-            break
-        case 'friend':
-            apiType = 'friend'
-            title = '提到我的'
-            isNotify = true
-            break
-        case 'post':
-            apiType = 'post'
-            title = '评论'
-            isNotify = true
-            break
-        default:
-            apiType = 'favorite'
-    }
-    let obj = {
+    const switchtype = switchType(type, isMy)
+    let obj = Object.assign({
         userId: isMy ? userId : uid,
-        title,
-        apiType,
-        isNotify
+        isNotify: false,
+        page: page += 1
+    }, switchtype)
+
+    let { apiType } = obj
+    let options = {
+        page
     }
 
     if (obj.isNotify) {
         // 是否是我的消息
-        promise = app.api.getNotifyList(obj.apiType)
-        console.log('是否是我的消息')
+        promise = app.api.getNotifyList(obj.apiType, options)
     } else if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed') {
         obj.isUserList = true // 是否是用户列表
         // 好友列表
-        promise = app.api.getUserList(obj.userId, apiType)
+        promise = app.api.getUserList(obj.userId, apiType, options)
     } else {
         obj.isUserList = false // 是否是用户列表
         // 收藏帖子列表
-        promise = app.api.getTopicList(obj.userId, apiType)
+        promise = app.api.getTopicList(obj.userId, apiType, options)
     }
 
     promise.then(res => {
@@ -116,7 +128,7 @@ Mylistcompos.prototype.onLoad = function () {
                 return res
             })
         }
-        obj.list = res.list
+        obj.list = list.concat(res.list)
         this.setData(obj)
     })
     .catch(err => console.log(err))
