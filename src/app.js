@@ -137,6 +137,7 @@ App({
                 modules[x.id] = x
                 x.componentList.forEach(completeId)
             })
+            this.config = CONFIG
             return this.globalData
         }, (err) => {
             console.log('error', err)

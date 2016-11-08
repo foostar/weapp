@@ -20,7 +20,7 @@ Login.prototype.onLoad = function () {
     // 获取app 图标 主题颜色
     this.setData({
         appIcon: app.globalData.info.appIcon,
-        appColor: app.globalData.info.appColor
+        appColor: app.config.COLOR
     })
 }
 
@@ -46,7 +46,7 @@ Login.prototype.toLogin = function (e) {
         }
     })
     .catch(err => {
-        if (parseInt(err.status, 10) / 100 == 4) {
+        if (parseInt(err.status / 100, 10) === 4) {
             this.setData({
                 isShow: true,
                 errMessage: err.message
@@ -57,9 +57,8 @@ Login.prototype.toLogin = function (e) {
 }
 
 Login.prototype.closeMessagePrompt = function () {
-    var selt = this
     setTimeout(() => {
-        selt.setData({
+        this.setData({
             isShow: false,
             errMessage: ''
         })

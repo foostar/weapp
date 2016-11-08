@@ -20,7 +20,7 @@ Myinfo.prototype.onLoad = function () {
     // 获取app 图标 主题颜色
     this.setData({
         appIcon: app.globalData.info.appIcon,
-        appColor: app.globalData.info.appColor
+        appColor: app.config.COLOR
     })
 }
 

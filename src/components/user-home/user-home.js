@@ -29,7 +29,7 @@ UserHome.prototype.onLoad = function () {
         obj.isLogin = true
     }
     obj.uid = this.papeData.uid
-    obj.color = app.globalData.info.appColor
+    obj.color = app.config.COLOR
 
     this.setData(obj)
     this.fetchData()
