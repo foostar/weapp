@@ -53,7 +53,7 @@ Page(createPage({
         this.setData({
             module,
             appIcon: app.globalData.info.appIcon,
-            appColor: app.globalData.info.appColor
+            appColor: `#${app.config.COLOR}`
         })
     },
     onReady() {

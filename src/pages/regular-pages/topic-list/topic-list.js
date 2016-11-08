@@ -31,7 +31,7 @@ Page({
         // 设置tabs 和 color
         this.setData({
             tabs: app.globalData.tabs,
-            color: app.globalData.info.appColor
+            color: `#${app.config.COLOR}`
         })
         // 判断用户是否登录
         if (app.globalData.userInfo) {

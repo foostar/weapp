@@ -1,6 +1,6 @@
 <view class="layoutslider">
     <swiper class="layout-slider {{style}}" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{1500}}">
-        <block wx:for="{{componentList}}">
+        <block wx:for="{{componentList}}" wx:key="{{item.id}}">
             <swiper-item>
                 <view class="slider-image-container" bindtap="layoutslider_touch" data-event-key="{{key}}">
                     <image mode="aspectFill" src="{{item.icon}}" class="slide-image" />

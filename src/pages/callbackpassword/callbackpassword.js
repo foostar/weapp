@@ -1,2 +1,0 @@
-/* eslint-disabled */
-Page({})

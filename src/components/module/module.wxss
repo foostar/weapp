@@ -33,4 +33,11 @@
 @import "../topiclistcomplex/topiclistcomplex.wxss";
 @import "../about/about.wxss";
 @import "../setting/setting.wxss";
+@import "../changepassword/changepassword.wxss";
+@import "../register/register.wxss";
+@import "../myinfo/myinfo.wxss";
+@import "../user-home/user-home.wxss";
+
+
+
 

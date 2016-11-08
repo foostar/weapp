@@ -47,6 +47,10 @@ const Mylistcompos = require('../mylistcompos/mylistcompos')
 const Createforum = require('../createforum/createforum')
 const About = require('../about/about')
 const Setting = require('../setting/setting')
+const Changepassword = require('../changepassword/changepassword')
+const Register = require('../register/register')
+const Myinfo = require('../myinfo/myinfo')
+const UserHome = require('../user-home/user-home')
 
 /*
  *   @定义组件类型
@@ -108,10 +112,15 @@ components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['topiclistSimple-card'] = TopiclistSimple
 components.type['topiclistSimple-neteaseNews'] = TopiclistSimple
-// components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
+components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
 components.type['topiclistSimple-circle'] = TopiclistSimple
 components.type['topiclistComplex-flat'] = TopiclistComplex
 components.type['newslist-tieba'] = NewsList
+components.type['newslist-flat'] = NewsList
+components.type['newslist-card'] = NewsList
+components.type['newslist-neteaseNews'] = NewsList
+components.type['newslist-imageSudoku'] = NewsList
+components.type['newslist-circle'] = NewsList
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
@@ -126,6 +135,10 @@ components.type['createforum-flat'] = Createforum    // 发帖组件
 components.type['about-flat'] = About    // 关于app
 components.type['setting-flat'] = Setting  // 设置
 components.type['notsupport-flat'] = NotSupport   // 固定页面不支持功能
+components.type['changepassword-flat'] = Changepassword  // 修改密码
+components.type['register-flat'] = Register   // 注册页面
+components.type['myinfo-flat'] = Myinfo       // 我的消息
+components.type['userhome-flat'] = UserHome   // 用户主页
 
 // topiclistSimple-flat
 
@@ -143,6 +156,7 @@ function Viewer(key, module) {
     this.module = module
     this.add(components.create(module))
     this.data = {
+        moduleId: module.id,
         hasScroll: checkHasScroll(module),
     }
 }

@@ -11,10 +11,11 @@ function TopiclistSimple(key, module) {
             forumInfo = false
         }
     })
+    this.module = module
     // 添加分页
     this.data = {
         page: 1,
-        module,
+        style: module.style,
         forumInfo,
         resources: {},
         isLoading: false,
@@ -32,7 +33,7 @@ TopiclistSimple.prototype.clickItem = function (e) {
 
 // 请求数据
 TopiclistSimple.prototype.fetchData = function (param, number) {
-    const module = this.data.module
+    const module = this.module
     let list = param.list || this.data.resources.list || []
     if (this.data.over) return Promise.reject()
     this.setData({

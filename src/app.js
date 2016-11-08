@@ -21,6 +21,7 @@ if (typeof Object.assign != 'function') {
     };
 }
 /* eslint-enable */
+
 const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
 const util = require('./utils/util')
@@ -43,8 +44,7 @@ App({
 
         let queue = []
         let requestNum = 0
-
-        const api = this.api = new mobcent.API(CONFIG.FORUM_URL, {
+        const api = this.api = new mobcent.API(CONFIG.URL, {
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
@@ -124,7 +124,8 @@ App({
         }
 
         const getSystemInfo = this.getSystemInfo()
-        api.forumKey = CONFIG.FORUM_KEY
+
+        api.forumKey = CONFIG.KEY
         const promise = Promise.all([
             api.app(),
             api.ui(),
@@ -139,6 +140,8 @@ App({
                 modules[x.id] = x
                 x.componentList.forEach(completeId)
             })
+            this.config = CONFIG
+            console.log(appResult, uiResult)
             return this.globalData
         }, (err) => {
             console.log('error', err)

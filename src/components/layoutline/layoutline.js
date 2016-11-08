@@ -3,9 +3,6 @@ const Component = require('../../lib/component')
 function LayoutLine(key, module) {
     Component.call(this, key)
     this.addByModule(module.componentList)
-    this.data = {
-        componentList: module.componentList
-    }
 }
 
 LayoutLine.prototype = Object.create(Component.prototype)

@@ -90,7 +90,7 @@ page {
 .personal-quick-btn-after {
     display: block;
     background: #CCC;
-    width: 2rpx;
+    width: 1px;
     height: 52rpx;
     margin: 22rpx 0;
 }

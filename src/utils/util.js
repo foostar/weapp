@@ -1,7 +1,8 @@
-/* eslint-disabled */
+/* eslint-disable */
 /*
  * @格式化文本
  */
+
 function formateText(str = '', length = 40) {
     length = parseInt(length, 10)
     if (str.length > length) {
@@ -147,3 +148,4 @@ module.exports = {
     infoToFace,
     pagetype
 }
+

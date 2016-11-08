@@ -1,0 +1,17 @@
+<view>
+    <view class="myinfo-manage-item" bindtap="myinfo_toNavigationPage" data-event-key="{{key}}" data-page="at">
+        <image class="myinfo-icon icon-take-me"></image>
+        <text class="myinfo-personal-manage-item-title">提到我的</text>
+        <image class="myinfo-icon-arrow"></image>
+    </view>
+    <view class="myinfo-manage-item" bindtap="myinfo_toNavigationPage" data-event-key="{{key}}" data-page="post">
+        <image class="myinfo-icon icon-my-reply"></image>
+        <text class="myinfo-personal-manage-item-title">评论</text>
+        <image class="myinfo-icon-arrow"></image>
+    </view>
+    <view class="myinfo-manage-item" bindtap="myinfo_toNavigationPage" data-event-key="{{key}}" data-page="friend">
+        <image class="myinfo-icon icon-system-info"></image>
+        <text class="myinfo-personal-manage-item-title">系统消息</text>
+        <image class="myinfo-icon-arrow"></image>
+    </view>
+</view>

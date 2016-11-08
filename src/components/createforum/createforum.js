@@ -3,7 +3,6 @@ const CONFIG = require('../../config.js')
 
 const app = getApp()
 
-
 // 顺序处理任务
 function sequenceTasks(tasks) {
     // 处理图片上船
@@ -23,11 +22,11 @@ function sequenceTasks(tasks) {
 
 // 图片上传
 function uploadImage(tmpurl, selectType) {
-    const accessToken = app.globalData.userInfo.token
-    const accessSecret = app.globalData.userInfo.secret
     return new Promise((resolve, reject) => {
+        const accessToken = app.globalData.userInfo.token
+        const accessSecret = app.globalData.userInfo.secret
         wx.uploadFile({
-            url: `${CONFIG.FORUM_URL}/mobcent/app/web/index.php?r=forum/sendattachmentex`,
+            url: `${CONFIG.URL}/mobcent/app/web/index.php?r=forum/sendattachmentex`,
             filePath: tmpurl,
             name: 'uploadFile[]',
             formData: {
@@ -66,7 +65,7 @@ function Createforum(key, module) {
         isTopic: false,
         tiId: '',
         fid: null,
-        appColor: '#ccc',
+        appColor: `#${app.config.COLOR}`,
         topicList: [],
         selectTopicId: '',
         isfocus: false   // textarea 焦点
@@ -91,8 +90,7 @@ Createforum.prototype.onLoad = function () {
         // 判断用户是否登录
         Object.assign(data, {
             isLogin: true,
-            userInfo: app.globalData.userInfo,
-            appColor: app.globalData.info.appColor
+            userInfo: app.globalData.userInfo
         })
     } else {
         console.info('no auth')
