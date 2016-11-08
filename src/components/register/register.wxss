@@ -1,7 +1,7 @@
-.thema-register-header {
+.register-thema-register-header {
     height: 434rpx;
 }
-.app-icon {
+.register-app-icon {
     border-radius: 200rpx;
     border: 4px solid #fff;
     box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.8);
@@ -11,43 +11,43 @@
     display: block;
 }
 
-.login-btn {
+.register-login-btn {
     border: 0;
     margin: 10rpx 40rpx;
     color: #fff;
     text-align: center;
 }
 
-.from-view {
+.register-from-view {
     height: 236rpx;
     padding-top: 100rpx;
     padding-bottom: 20rpx;
 }
 
-.form-box {
+.register-form-box {
     background-repeat: no-repeat;
     background-position: left;
     margin: 10rpx 40rpx;
     border-bottom: 1px solid #ccc;
 }
-.form-box-mobile {
+.register-form-box-mobile {
     background-repeat: no-repeat;
     background-position: left;
     border-bottom: 1px solid #ccc;
     margin-right: 20rpx;
 }
-.input {
+.register-input {
     padding-left: 40rpx;
     height: 100rpx;
     font-size: 26rpx;
 }
-.mobile-box {
+.register-mobile-box {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin: 10rpx 40rpx;
 }
-.mobile-btn {
+.register-mobile-btn {
     flex:1;
     justify-content: center;
     align-items: center;

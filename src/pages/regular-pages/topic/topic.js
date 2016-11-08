@@ -1,3 +1,4 @@
+/* eslint-disable */
 var app = getApp(),
     util = require('../../../utils/util.js')
 
@@ -15,12 +16,12 @@ Page({
         hotTotalNum: 0,
         color: '#000',
         currentIndex: 0,
-        tabs: ['最新', '最热']
+        tabs: [ '最新', '最热' ]
     },
     onLoad: function (data) {
         this.setData({
             id: data.id,
-            color: app.globalData.info.appColor
+            color: app.config.COLOR
         })
         this.fetchData()
     },

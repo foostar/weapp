@@ -5,11 +5,6 @@ function SubnavFlat(key, module) {
     this.module = module
 
     this.addByModule(module.componentList[0])
-    const modules = {}
-
-    module.componentList.forEach((x) => {
-        modules[x.id] = x
-    })
     const tabs = module.componentList.map((x) => {
         return {
             id: x.id,
@@ -20,7 +15,6 @@ function SubnavFlat(key, module) {
         index: 0,
         width: `${100 / tabs.length}%`,
         selected: module.componentList[0].id,
-        modules,
         tabs
     }
 }

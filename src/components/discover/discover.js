@@ -78,19 +78,21 @@ Discover.prototype.changeModuleId = function (e) {
 }
 // 改变题提示状态
 Discover.prototype.bindChange = function () {
+    console.log('帐号管理', this.data)
+    var self = this
     if (this.data.isLogin) {
+        // this.logout()
         wx.showModal({
             title: '帐号管理',
             content: '是否要退出用户',
             success: res => {
                 if (res.confirm) {
-                    this.logout()
+                    self.logout()
                 }
             }
         })
     } else {
         wx.navigateTo({
-            // url: '/pages/regular-pages/login/login'
             url: '/pages/blank/blank?type=login'
         })
     }
@@ -113,18 +115,15 @@ Discover.prototype.toNavigationPage = function (e) {
     if (this.data.isLogin) {
         if (typePage == 'myInfo') {
             return wx.navigateTo({
-                url: '/pages/regular-pages/my-info/my-info'
+                url: '/pages/blank/blank?type=myinfo'
             })
         }
-
         wx.navigateTo({
-            // url: `/pages/regular-pages/my/topics?type=${typePage}`
             url: `/pages/blank/blank?type=mylistcompos&data=${JSON.stringify({ type: typePage })}`
         })
     } else {
         // 登录页面
         wx.navigateTo({
-            // url: '/pages/regular-pages/login/login'
             url: '/pages/blank/blank?type=login'
         })
     }
@@ -132,7 +131,7 @@ Discover.prototype.toNavigationPage = function (e) {
     // 跳到用户主页
 Discover.prototype.toUserHome = function (e) {
     wx.navigateTo({
-        url: `/pages/regular-pages/user-home/user-home?uid=${e.currentTarget.dataset.uid}`
+        url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.uid })}`
     })
 }
 module.exports = Discover

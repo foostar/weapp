@@ -21,6 +21,7 @@ if (typeof Object.assign != 'function') {
     };
 }
 /* eslint-enable */
+
 const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
 const util = require('./utils/util')
@@ -43,7 +44,6 @@ App({
 
         let queue = []
         let requestNum = 0
-
         const api = this.api = new mobcent.API(CONFIG.FORUM_URL, {
             parse: (response) => {
                 response.ok = true
@@ -137,6 +137,7 @@ App({
                 modules[x.id] = x
                 x.componentList.forEach(completeId)
             })
+            this.config = CONFIG
             return this.globalData
         }, (err) => {
             console.log('error', err)

@@ -91,7 +91,7 @@ Createforum.prototype.onLoad = function () {
         Object.assign(data, {
             isLogin: true,
             userInfo: app.globalData.userInfo,
-            appColor: app.globalData.info.appColor
+            appColor: app.config.COLOR
         })
     } else {
         console.info('no auth')

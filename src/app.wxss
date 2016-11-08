@@ -24,19 +24,6 @@ view, text {
 .color-member{
     color:#259;
 }
-.line-bottom {
-    position: relative;
-}
-.line-bottom:after {
-    content: '';
-    display: block;
-    height: 1rpx;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #ddd;
-}
 
 .clearfix:after, .clearfix:before {
   content: '';
@@ -77,7 +64,7 @@ view, text {
 
 /* 消息提示样式*/
 .message-prompts {
-    background-color: rgba(0,0,0,.4);
+    background-color: rgba(0,0,0,.3);
     color: #fff;
     position:fixed;
     bottom: 300rpx;
