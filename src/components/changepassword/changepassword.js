@@ -17,7 +17,7 @@ Changepassword.prototype.constructor = Changepassword
 
 Changepassword.prototype.onLoad = function () {
     this.setData({
-        appColor: app.config.COLOR
+        appColor: `#${app.config.COLOR}`
     })
 }
 

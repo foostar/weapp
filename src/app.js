@@ -44,7 +44,7 @@ App({
 
         let queue = []
         let requestNum = 0
-        const api = this.api = new mobcent.API(CONFIG.FORUM_URL, {
+        const api = this.api = new mobcent.API(CONFIG.URL, {
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
@@ -124,7 +124,7 @@ App({
         }
 
 
-        api.forumKey = CONFIG.FORUM_KEY
+        api.forumKey = CONFIG.KEY
         const promise = Promise.all([
             api.app(),
             api.ui()
@@ -138,6 +138,7 @@ App({
                 x.componentList.forEach(completeId)
             })
             this.config = CONFIG
+            console.log(appResult, uiResult)
             return this.globalData
         }, (err) => {
             console.log('error', err)

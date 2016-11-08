@@ -29,7 +29,7 @@ Register.prototype.onLoad = function () {
      // 获取app 图标 主题颜色
     this.setData({
         appIcon: app.globalData.info.appIcon,
-        appColor: app.config.COLOR
+        appColor: `#${app.config.COLOR}`
     })
     // 获取用户的主配置信息
     app.api.getSetting().then(res => {
