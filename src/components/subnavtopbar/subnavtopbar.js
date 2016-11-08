@@ -25,11 +25,20 @@ function SubnavTopbar(key, module) {
         tabs
     }
 }
-
+const app = getApp()
 SubnavTopbar.prototype = Object.create(Component.prototype)
 SubnavTopbar.prototype.name = 'subnavtopbar'
 SubnavTopbar.prototype.constructor = SubnavTopbar
-
+SubnavTopbar.prototype.onLoad = function () {
+    const windowHeight = app.globalData.systemInfo.windowHeight
+    const windowWidth = app.globalData.systemInfo.windowWidth
+    const viewHeight = `${((750 / windowWidth) * windowHeight) - 55}rpx`
+    const device = !app.isIphone()
+    this.setData({
+        viewHeight,
+        device
+    })
+}
 SubnavTopbar.prototype.changeTap = function (event) {
     const { id, index } = event.currentTarget.dataset
     clearTimeout(this._timer)

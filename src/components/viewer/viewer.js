@@ -150,6 +150,7 @@ function Viewer(key, module) {
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
+
 Viewer.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }

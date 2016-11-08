@@ -31,15 +31,14 @@ ForumlistSplit.prototype.fetchData = function () {
     const module = this.module
     Promise.all([
         app.api.forumList(),
-        app.api.recForumList(),
-        app.getSystemInfo()
-    ]).then(([ forumList, recForumList, systemInfo ]) => {
+        app.api.recForumList()
+    ]).then(([ forumList, recForumList ]) => {
         const resources = forumList
         resources.rec = recForumList
-        const windowHeight = systemInfo.windowHeight
-        const windowWidth = systemInfo.windowWidth
+        const windowHeight = app.globalData.systemInfo.windowHeight
+        const windowWidth = app.globalData.systemInfo.windowWidth
         const viewHeight = `${((750 / windowWidth) * windowHeight) - 45}rpx`
-        const device = !app.isIphone(systemInfo.model)
+        const device = !app.isIphone()
         // viewHeight = `${((windowWidth / 750) * viewHeight) - 64}px`
         this.setData({
             currentBoard: 10000,

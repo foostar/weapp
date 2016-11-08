@@ -123,12 +123,14 @@ App({
             })
         }
 
-
+        const getSystemInfo = this.getSystemInfo()
         api.forumKey = CONFIG.FORUM_KEY
         const promise = Promise.all([
             api.app(),
-            api.ui()
-        ]).then(([ appResult, uiResult ]) => {
+            api.ui(),
+            getSystemInfo
+        ]).then(([ appResult, uiResult, systemInfo ]) => {
+            this.globalData.systemInfo = systemInfo
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
             this.globalData.tabs = uiResult.body.navigation.navItemList
@@ -192,9 +194,9 @@ App({
             })
         })
     },
-    isIphone(model) {
+    isIphone() {
         var reg = /iphone/ig
-        return reg.test(model)
+        return reg.test(this.globalData.systemInfo.model)
     },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {

@@ -1,9 +1,9 @@
 <import src="../module/module.wxml" />
 <template name="viewer">
-    <view wx:if="{{hasScroll}}" class="viewer">
+    <!-- <view wx:if="{{hasScroll}}" class="viewer">
         <template is="{{children[module.id].template}}" data="{{...children[module.id]}}" />
-    </view>
-    <scroll-view bindscrolltolower="viewer_scrollToLower" data-event-key="{{key}}" wx:else class="viewer" scroll-y data-template="{{module.id}}">
+    </view> -->
+    <scroll-view bindscrolltolower="viewer_scrollToLower" data-event-key="{{key}}" class="viewer" scroll-y data-template="{{module.id}}">
         <template is="{{children[module.id].template}}" data="{{...children[module.id]}}" />
     </scroll-view>
 </template>

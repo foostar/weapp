@@ -1,6 +1,6 @@
 <import src="../module/module.wxml" />
 
-<view class="tab-nav-bar">
+<view class="tab-nav-bar" wx:if="{{tabs.length > 1}}">
     <block wx:if="{{tabs.length > 1}}" wx:for="{{tabs}}">
         <view class="tab-nav-bar-item" bindtap="subnavflat_switchTab" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}">
             <text class="{{selected == item.id ? 'text-color border-color' : ''}}">{{item.title}}</text>
@@ -10,7 +10,7 @@
         <view class="tabs-indicator-inner bg-color"></view>
     </view>
 </view>
-<view class="subnav-content-container" style="transform: translateX({{-index * (100 / tabs.length) + '%'}}); width: {{tabs.length}}00%">
+<view class="subnav-content-container">
     <view wx:for="{{tabs}}" class="subnav-content">
         <view hidden="{{(selected === item.id || animating) ? false : true}}">
             <template wx:if="{{children[item.id]}}" is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
