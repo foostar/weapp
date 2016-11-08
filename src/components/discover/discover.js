@@ -79,7 +79,7 @@ Discover.prototype.changeModuleId = function (e) {
 // 改变题提示状态
 Discover.prototype.bindChange = function () {
     console.log('帐号管理', this.data)
-    var selt = this
+    var self = this
     if (this.data.isLogin) {
         // this.logout()
         wx.showModal({
@@ -87,7 +87,7 @@ Discover.prototype.bindChange = function () {
             content: '是否要退出用户',
             success: res => {
                 if (res.confirm) {
-                    selt.logout()
+                    self.logout()
                 }
             }
         })
