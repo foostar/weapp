@@ -35,6 +35,6 @@
 }
 
 .layoutline .layout-col-text-item {
-    margin: 0 1px;
-    padding: 1px 0;
+    margin: 0 1rpx;
+    padding: 1rpx 0;
 }

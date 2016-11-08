@@ -24,19 +24,6 @@ view, text {
 .color-member{
     color:#259;
 }
-.line-bottom {
-    position: relative;
-}
-.line-bottom:after {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #ddd;
-}
 
 .clearfix:after, .clearfix:before {
   content: '';

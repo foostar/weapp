@@ -20,8 +20,8 @@
 
 .tabs-indicator {
     position: absolute;
-    height: 1px;
-    bottom: 1px;
+    height: 1rpx;
+    bottom: 1rpx;
     z-index: 999;
     transition: .3s;
 }
