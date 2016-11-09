@@ -1,4 +1,11 @@
 module.exports = {
+
+    // 测试App
+    // ID: 12345,
+    // COLOR: '50920a',
+    // KEY: 'VA3vkAMz1kduY8T8HM',
+    // URL: 'http://bbs.appbyme.com/dzx31g'
+
     // 淋巴瘤之家
     // ID: 18894,
     // COLOR: '51cb78',
@@ -18,10 +25,10 @@ module.exports = {
     // URL: 'http://bbs.bianzhirensheng.com',
 
     // 吴川脚爆爆
-    ID: 98984,
-    COLOR: '33aef3',
-    KEY: '93bQovPsRKHplIpin9',
-    URL: 'http://www.wcjbb.com',
+    // ID: 98984,
+    // COLOR: '33aef3',
+    // KEY: '93bQovPsRKHplIpin9',
+    // URL: 'http://www.wcjbb.com',
 
     // 蒙城汇
     // ID: 127597,
@@ -56,9 +63,9 @@ module.exports = {
     // START_IMAGE: 'http://img.appbyme.com/d/img/aca/loadingPage/2016/08/23/original/7baff549-08bf-4607-8a0e-194fb7be6801.png',
 
     // 小云社群
-    // ID: 229171,
-    // COLOR: 'fa460a',
-    // KEY: 'jVXS7QIncwlSJ86Py1',
-    // URL: 'http://bbs.xiaoyun.com',
-    // START_IMAGE: 'http://img.appbyme.com/d/img/aca/loadingPage/2016/08/23/original/7baff549-08bf-4607-8a0e-194fb7be6801.png',
+    ID: 229171,
+    COLOR: 'fa460a',
+    KEY: 'jVXS7QIncwlSJ86Py1',
+    URL: 'http://bbs.xiaoyun.com',
+    START_IMAGE: 'http://img.appbyme.com/d/img/aca/loadingPage/2016/08/23/original/7baff549-08bf-4607-8a0e-194fb7be6801.png',
 }

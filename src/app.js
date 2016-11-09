@@ -66,7 +66,11 @@ App({
                         header: data.headers,
                         method: data.method,
                         success: resolve,
-                        error: reject
+                        error: reject,
+                        complete(info) {
+                            console.log('request info: ')
+                            console.log(info)
+                        }
                     })
                 })).then((result) => {
                     requestNum -= 1
@@ -138,7 +142,6 @@ App({
                 x.componentList.forEach(completeId)
             })
             this.config = CONFIG
-            console.log(appResult, uiResult)
             return this.globalData
         }, (err) => {
             console.log('error', err)

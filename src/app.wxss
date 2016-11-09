@@ -1,20 +1,11 @@
 
 /**app.wxss**/
 page {
-    height: 100%;
     background: #EFEFF4;
 }
 view, text {
     color: #343434;
     font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,微软雅黑,Arial,sans-serif;
-}
-.container {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
 }
 
 /* common */

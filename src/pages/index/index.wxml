@@ -1,7 +1,7 @@
 <import src="../../components/viewer/viewer.wxml" />
 <import src="../../components/tabbar/tabbar.wxml" />
 
-<view class="ui-container">
+<view class="index-page">
     <template is="viewer" data="{{...children.viewer}}"></template>
     <template is="tabbar" data="{{...children.tabbar, selected: tabSelected, tabs}}" />
 </view>
