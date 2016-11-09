@@ -24,11 +24,9 @@ function SubnavTopbar(key, module) {
         tabs
     }
 }
-
 SubnavTopbar.prototype = Object.create(Component.prototype)
 SubnavTopbar.prototype.name = 'subnavtopbar'
 SubnavTopbar.prototype.constructor = SubnavTopbar
-
 SubnavTopbar.prototype.changeTap = function (event) {
     const { id, index } = event.currentTarget.dataset
     clearTimeout(this._timer)

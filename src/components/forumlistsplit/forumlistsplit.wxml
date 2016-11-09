@@ -1,5 +1,5 @@
 <view class="forumlistsplit">
-    <scroll-view scroll-y="true" style="height:{{device && viewHeight}}" bindtap="forumlistsplit_changeBoard" data-event-key="{{key}}" class="boardSplit-title">
+    <scroll-view scroll-y="true" bindtap="forumlistsplit_changeBoard" data-event-key="{{key}}" class="boardSplit-title">
         <view wx:if="{{currentBoard == 10000}}" class="font-subhead active" data-id="10000">我的关注</view>
         <view wx:else class="font-wide" data-id="10000">我的关注</view>
         <block wx:for="{{resources.list}}">
@@ -7,7 +7,7 @@
             <view wx:else class="font-wide" data-id="{{item.board_category_id}}">{{item.board_category_name}}</view>
         </block>
     </scroll-view>
-    <scroll-view scroll-y="true" style="height:{{device && viewHeight}}" class="boardSplit-content" bindtap="forumlistsplit_focusBoard" data-event-key="{{key}}">
+    <scroll-view scroll-y="true" class="boardSplit-content" bindtap="forumlistsplit_focusBoard" data-event-key="{{key}}">
         <block wx:if="{{currentBoard == 10000}}">
             <view class="focusBoardList">
                 <block wx:for="{{resources.rec.focusBoard}}">
