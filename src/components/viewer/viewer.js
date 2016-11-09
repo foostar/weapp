@@ -51,6 +51,7 @@ const Changepassword = require('../changepassword/changepassword')
 const Register = require('../register/register')
 const Myinfo = require('../myinfo/myinfo')
 const UserHome = require('../user-home/user-home')
+const UserList = require('../userlist/userlist')
 
 /*
  *   @定义组件类型
@@ -134,6 +135,8 @@ components.type['changepassword-flat'] = Changepassword  // 修改密码
 components.type['register-flat'] = Register   // 注册页面
 components.type['myinfo-flat'] = Myinfo       // 我的消息
 components.type['userhome-flat'] = UserHome   // 用户主页
+
+components.type['userlist-flat'] = UserList   // 用户列表
 
 // topiclistSimple-flat
 

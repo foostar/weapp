@@ -175,6 +175,10 @@
     <include src="../user-home/user-home" />
 </template>
 
+<template name="userlist">
+    <include src="../userlist/userlist" />
+</template>
+
 <template name="module">
     <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
 </template>

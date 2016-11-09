@@ -6,6 +6,7 @@
     display: flex;
     overflow: hidden;
     bottom: 0;
+    position: fixed;
     border-top: 1px solid #CCC;
     background-color: #fff;
 }

@@ -26,7 +26,7 @@ function uploadImage(tmpurl, selectType) {
         const accessToken = app.globalData.userInfo.token
         const accessSecret = app.globalData.userInfo.secret
         wx.uploadFile({
-            url: `${CONFIG.FORUM_URL}/mobcent/app/web/index.php?r=forum/sendattachmentex`,
+            url: `${CONFIG.URL}/mobcent/app/web/index.php?r=forum/sendattachmentex`,
             filePath: tmpurl,
             name: 'uploadFile[]',
             formData: {
@@ -65,7 +65,7 @@ function Createforum(key, module) {
         isTopic: false,
         tiId: '',
         fid: null,
-        appColor: app.config.COLOR,
+        appColor: `#${app.config.COLOR}`,
         topicList: [],
         selectTopicId: '',
         isfocus: false   // textarea 焦点

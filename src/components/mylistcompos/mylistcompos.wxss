@@ -108,6 +108,11 @@
     margin: 30rpx 0;
 }
 
+.mylistcompos-user-follow {
+    position: absolute;
+    right: 0;
+}
+
 .mylistcompos-user-item-data-desc {
     line-height: 40rpx;
     font-size: 24rpx;

@@ -21,7 +21,7 @@ Page({
     onLoad: function (data) {
         this.setData({
             id: data.id,
-            color: app.config.COLOR
+            color: `#${app.config.COLOR}`
         })
         this.fetchData()
     },
