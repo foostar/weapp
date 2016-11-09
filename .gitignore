@@ -2,6 +2,7 @@ npm-debug.log
 src/lib/mobcent.js
 src/config.js
 node_modules/
+src/pages/test
 weapp/
 .idea
 .DS_Store
