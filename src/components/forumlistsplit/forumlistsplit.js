@@ -35,15 +35,8 @@ ForumlistSplit.prototype.fetchData = function () {
     ]).then(([ forumList, recForumList ]) => {
         const resources = forumList
         resources.rec = recForumList
-        const windowHeight = app.globalData.systemInfo.windowHeight
-        const windowWidth = app.globalData.systemInfo.windowWidth
-        const viewHeight = `${((750 / windowWidth) * windowHeight) - 45}rpx`
-        const device = !app.isIphone()
-        // viewHeight = `${((windowWidth / 750) * viewHeight) - 64}px`
         this.setData({
             currentBoard: 10000,
-            viewHeight,
-            device,
             currentBoardList: resources.rec.recommendedBoard,
             resources,
             isLoading: true,

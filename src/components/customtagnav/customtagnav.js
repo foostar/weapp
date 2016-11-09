@@ -21,18 +21,6 @@ function CustomTagNav(key, module) {
 CustomTagNav.prototype = Object.create(Component.prototype)
 CustomTagNav.prototype.name = 'customtagnav'
 CustomTagNav.prototype.constructor = CustomTagNav
-CustomTagNav.prototype.onLoad = function () {
-    const windowHeight = app.globalData.systemInfo.windowHeight
-    const windowWidth = app.globalData.systemInfo.windowWidth
-    const viewHeight = `${((750 / windowWidth) * windowHeight) + 25}rpx`
-    const device = !app.isIphone()
-    this.setData({
-        viewHeight,
-        device
-    })
-}
-CustomTagNav.prototype.scrollToLower = function () {
-}
 CustomTagNav.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }
