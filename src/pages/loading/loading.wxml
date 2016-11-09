@@ -1,3 +1,2 @@
 <view class="loading">
-  <image mode="aspectFill" src="{{image}}"></image>
 </view>

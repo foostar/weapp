@@ -169,6 +169,7 @@ function Viewer(key, module) {
     this.module = module
     this.add(components.create(module))
     this.data = {
+        name: app.config.NAME,
         moduleId: module.id,
         hasScroll: checkHasScroll(module),
     }

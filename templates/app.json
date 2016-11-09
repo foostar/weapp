@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/loading/loading",
     "pages/index/index",
     "pages/blank/blank",
@@ -7,13 +7,5 @@
     "pages/regular-pages/forum/forum",
     "pages/regular-pages/topic-list/topic-list",
     "pages/regular-pages/topic/topic"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor":"<%= THEME_COLOR %>",
-    "navigationBarTitleText": "<%= NAME %>",
-    "navigationBarTextStyle":"white",
-    "backgroundColor":"#FFF"
-  }
-
+  ]
 }

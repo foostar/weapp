@@ -37,14 +37,21 @@ program
             prepend: false
         })
 
-        // const stream = process.stdin
-
-        list.option('测试31G', 12345)
+        list
+            .option('蒙城汇', 127597)
+            .option('好友驿站', 231345)
+            .option('爱钓鱼', 177432)
+            .option('龟友天下', 55911)
+            .option('郑州在线', 176489)
             .option('淋巴瘤之家', 18894)
+            .option('乐清上班族网', 113825)
+            .option('重钓网', 47269)
+            .option('龙岩KK网', 73245)
+            .option('----- 以上为预售购买用户，需要特殊照顾 -----', null)
+            .option('测试31G', 12345)
             .option('新青年麻醉', 85576)
             .option('编织人生', 70909)
             .option('吴川脚爆爆', 98984)
-            .option('蒙城汇', 127597)
             .option('丹东妈妈网', 127539)
             .option('穿针引线', 74583)
             .option('湖南妈妈网', 73529)
@@ -53,7 +60,11 @@ program
             .list()
 
         list.on('select', options => {
-            genConfig(options[0].value)
+            if (options[0].value) {
+                genConfig(options[0].value)
+            } else {
+                process.exit(0)
+            }
         })
 
         list.on('cancel', () => {

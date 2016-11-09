@@ -2,4 +2,4 @@
 <loading hidden="{{golbalFetch}}">
     加载中...
 </loading>
-<template is="viewer" data="{{...children.viewer, module}}"></template>
+<template is="viewer" data="{{...children.viewer}}"></template>
