@@ -15,11 +15,9 @@
             <image wx:for="{{module.rightTopbars}}" wx:key="{{index}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
         </view>
     </view>
-    <view class="subnav-topbar-content-container" style="transform: translateX({{-index * (100 / tabs.length) + '%'}}); width: {{tabs.length}}00%">
-        <scroll-view wx:for="{{tabs}}" wx:key="{{item.id}}" class="topbar-content" scroll-y class="topbar-content">
-            <view style="height: 100%" hidden="{{(selected === item.id || animating) ? false : true}}">
-                <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
-            </view>
+    <view class="subnav-topbar-content-container">
+        <scroll-view wx:for="{{tabs}}" wx:if="{{(selected === item.id || animating) ? true : false}}" class="topbar-content" scroll-y class="topbar-content">
+            <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
         </scroll-view>
     </view>
 </view>

@@ -32,11 +32,8 @@
 }
 
 .subnav-content-container {
-    display: flex;
-    flex-direction: row;
-    transition: .3s;
+    width:100%;
 }
 .subnav-content {
-    flex: 1;
-    overflow: hidden;
+    width:100%;
 }
