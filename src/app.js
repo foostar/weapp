@@ -27,6 +27,8 @@ const Events = require('./lib/events.js')
 const util = require('./utils/util')
 const CONFIG = require('./config.js')
 
+CONFIG.COLOR = CONFIG.THEME_COLOR.slice(1).toLowerCase()
+
 const randStr = () => {
     return `a${Math.random().toString(32).split('.')[1]}`
 }
