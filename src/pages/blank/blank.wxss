@@ -1,2 +1,1 @@
 @import "../index/index.wxss";
-@import '../../resetcss/reset.wxss';

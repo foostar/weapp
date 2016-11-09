@@ -1,24 +1,18 @@
 #!/usr/bin/env node
 const program = require('commander')
-const fs = require('fs')
-const path = require('path')
 const selectShell = require('select-shell')
-const { getInfoByAppId } = require('../lib/app')
+const { generateConfigByAppId } = require('../lib/app')
 require('colors')
 
 const genConfig = (appId) => {
     console.log(`正在获取 app: <${appId}> 数据...`)
-    getInfoByAppId(appId, (err, config) => {
-        if (err) {
-            return console.error(err)
-        }
-        fs.writeFile(path.join(__dirname, '../src/config.js'), `/* eslint-disable */\nmodule.exports=${JSON.stringify(config)}`, (error) => {
-            if (err) {
-                return console.error(error)
-            }
-            console.log(`生成 <${config.NAME}> 配置完成`.green)
-            process.exit(0)
-        })
+    generateConfigByAppId(appId).then(() => {
+        console.log(`生成 <${appId}> 配置完成`.green)
+        process.exit(0)
+    }, (err) => {
+        console.log('生成失败！'.red)
+        console.error(err)
+        process.exit(0)
     })
 }
 

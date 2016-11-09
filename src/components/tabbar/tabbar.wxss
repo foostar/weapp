@@ -1,4 +1,3 @@
-@import '../../resetcss/reset.wxss';
 .tabbar {
     height: 88rpx;
     width: 100%;

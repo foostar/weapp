@@ -1,4 +1,4 @@
-
+@import './theme.wxss';
 /**app.wxss**/
 page {
     background: #EFEFF4;

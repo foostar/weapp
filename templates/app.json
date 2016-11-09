@@ -10,10 +10,10 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#50920A",
-    "navigationBarTitleText": "加载中...",
+    "navigationBarBackgroundColor":"<%= THEME_COLOR %>",
+    "navigationBarTitleText": "<%= NAME %>",
     "navigationBarTextStyle":"white",
-    "backgroundColor":"#3f3f3f"
+    "backgroundColor":"#FFF"
   }
 
 }

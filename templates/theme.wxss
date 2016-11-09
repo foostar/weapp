@@ -1,0 +1,12 @@
+.text-color{
+    color: <%= THEME_COLOR %> !important;
+}
+.bg-color{
+    background-color: <%= THEME_COLOR %> !important;
+}
+.border-color{
+    border-color: <%= THEME_COLOR %> !important;
+}
+.shadow-color{
+    box-shadow: 3px 3px 5px <%= THEME_COLOR %>;
+}

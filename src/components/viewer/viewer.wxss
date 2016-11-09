@@ -1,5 +1,4 @@
 @import "../module/module.wxss";
-@import '../../resetcss/reset.wxss';
 .viewer {
     height: 100%;
     width: 100%;
