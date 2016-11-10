@@ -1,7 +1,6 @@
 .layoutcoltext {
     flex-direction: row;
     display: flex;
-    background-color: #fff;
 }
 .layout-col-text-item {
     flex: 1;
@@ -9,32 +8,45 @@
     justify-content: center;
 }
 
+.layout-col-text-item {
+    margin-left: 24rpx;
+    display: flex;
+    flex-direction: column;
+}
+.layout-col-text-item:last-child {
+    margin-right: 24rpx;
+}
+.layoutimage .layout-col-text-item {
+    margin-left: 10rpx;
+}
+.layoutimage .layout-col-text-item:last-child {
+    margin-right: 10rpx;
+}
+.layoutline .layout-col-text-item {
+    margin-left: 0;
+    display: none;
+}
+
+
 .layout-col-text-item text {
-    font-size: 24rpx;
+    font-size: 32rpx;
     width: 100%;
-    height: 60rpx;
+    height: 94rpx;
+    line-height: 94rpx;
     text-align: center;
     color: black;
-    border-radius: 6rpx;
-    background: rgba(0,0,0,0.2);
-    line-height: 60rpx;
+    background: #F6F6F6;
     overflow-x: hidden;
     margin-left: 0;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.layoutdefault .layout-col-text-item {
-    margin: 0 10rpx;
-    padding: 16rpx 0;
+.layoutimage .layout-col-text-item text {
+    height: 92rpx;
+    line-height: 92rpx;
 }
-
-.layoutimage .layout-col-text-item {
-    margin: 0 5rpx;
-    padding: 10rpx 0;
-}
-
-.layoutline .layout-col-text-item {
-    margin: 0 1rpx;
-    padding: 1rpx 0;
+.layoutimage .layout-col-text-item.layoutTwoColText text {
+    height: 168rpx;
+    line-height: 168rpx;
 }

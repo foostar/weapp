@@ -4,6 +4,7 @@
 @import "../forumlistsplit/forumlistsplit.wxss";
 @import "../discover/discover.wxss";
 @import "../layoutslider/layoutslider.wxss";
+@import "../layoutdefault/layoutdefault.wxss";
 @import "../layoutimage/layoutimage.wxss";
 @import "../layoutline/layoutline.wxss";
 @import "../layout1col/layout1col.wxss";

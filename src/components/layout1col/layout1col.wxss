@@ -1,100 +1,45 @@
 .layout-1-col-item {
-}
-.layout-1-col-item image {
-    height: 100%;
-    width: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
 }
 
-.layoutOneCol_Super_Low.textOverlapUp_Video:after, .layoutOneCol_Super_Low.textOverlapDown_Video:after {
-    width: 54rpx;
-    height: 54rpx;
-    margin-left: -27rpx;
-    margin-top: -27rpx;
-}
 
-/* 默认 */
-.layoutdefault .layout-1-col-item {
-    margin: 10rpx;
+.layout-1-col-item.layoutOneCol_High {
+    height: 755rpx;
 }
-.layoutdefault .layout-1-col-item.layoutOneCol_High image {
-    height: 710rpx;
-}
-.layoutdefault .layout-1-col-item.layoutOneCol_Low image {
-    height: 355rpx;
-}
-.layoutdefault .layout-1-col-item.layoutOneCol_Low_Fixed image {
-    height: 133.125rpx;
-}
-.layoutdefault .layout-1-col-item.layoutOneCol_Super_Low image {
-    height: 77.65625rpx;
-}
-/* 默认 上图下文 */
-.layoutdefault .layout-1-col-item.layoutOneCol_High.textImage image {
-    height: 666rpx;
-}
-.layoutdefault .layout-1-col-item.layoutOneCol_Low.textImage image {
-    height: 311rpx;   
-}
-.layoutdefault .layout-1-col-item.layoutOneCol_Low_Fixed.textImage image {
-    height: 89.125rpx;
-}
-.layoutdefault .layout-1-col-item.layoutOneCol_Super_Low.textImage image {
-    height: 33.65625rpx;
-}
-/* 图片墙风格 */
-.layoutimage .layout-1-col-item {
-    margin: 5rpx;
-}
-.layoutimage .layout-1-col-item.layoutOneCol_High image {
-    height: 730rpx;
-}
-.layoutimage .layout-1-col-item.layoutOneCol_Low {
-    height: 365rpx;
-}
-.layoutimage .layout-1-col-item.layoutOneCol_Low_Fixed image {
-    height: 136.875rpx;
-}
-.layoutimage .layout-1-col-item.layoutOneCol_Super_Low image {
-    height: 79.84375rpx;
-}
-/* 图片墙风格 上图下文 */
-.layoutimage .layout-1-col-item.layoutOneCol_High.textImage image {
-    height: 686rpx;
-}
-.layoutimage .layout-1-col-item.layoutOneCol_Low.textImage image {
-    height: 321rpx;   
-}
-.layoutimage .layout-1-col-item.layoutOneCol_Low_Fixed.textImage image {
-    height: 92.875rpx;
-}
-.layoutimage .layout-1-col-item.layoutOneCol_Super_Low.textImage image {
-    height: 35.84375rpx;
-}
-
-/* 线性 */
-.layoutline .layout-1-col-item.layoutOneCol_High image {
+.layoutline .layout-1-col-item.layoutOneCol_High {
     height: 750rpx;
 }
-.layoutline .layout-1-col-item.layoutOneCol_Low image {
+
+
+.layout-1-col-item.layoutOneCol_Low {
+    height: 380rpx;
+}
+.layoutimage .layout-1-col-item.layoutOneCol_Low {
+    height: 378rpx;
+}
+.layoutline .layout-1-col-item.layoutOneCol_Low {
     height: 375rpx;
 }
-.layoutline .layout-1-col-item.layoutOneCol_Low_Fixed image {
-    height: 140.625rpx;
+
+
+.layout-1-col-item.layoutOneCol_Low_Fixed {
+    height: 147rpx;
 }
-.layoutline .layout-1-col-item.layoutOneCol_Super_Low image {
-    height: 82.03125rpx;
+.layoutimage .layout-1-col-item.layoutOneCol_Low_Fixed {
+    height: 145rpx;
 }
-/* 线性 上图下文 */
-.layoutline .layout-1-col-item.layoutOneCol_High.textImage image {
-    height: 706rpx;
+.layoutline .layout-1-col-item.layoutOneCol_Low_Fixed {
+    height: 142rpx;
 }
-.layoutline .layout-1-col-item.layoutOneCol_Low.textImage image {
-    height: 331rpx;   
+
+
+.layout-1-col-item.layoutOneCol_Super_Low {
+    height: 88rpx;
 }
-.layoutline .layout-1-col-item.layoutOneCol_Low_Fixed.textImage image {
-    height: 96.625rpx;
+.layoutimage .layout-1-col-item.layoutOneCol_Super_Low {
+    height: 87rpx;
 }
-.layoutline .layout-1-col-item.layoutOneCol_Super_Low.textImage image {
-    height: 38.03125rpx;
+.layoutline .layout-1-col-item.layoutOneCol_Super_Low {
+    height: 83rpx;
 }

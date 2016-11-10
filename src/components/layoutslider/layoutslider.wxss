@@ -1,12 +1,12 @@
 .layout-slider {
     width: 100%;
-    height: 375rpx;
+    height: 396rpx;
 }
 .layout-slider.layoutSlider_Mid {
     height: 281.25rpx;
 }
 .layout-slider.layoutSlider_Low {
-    height: 187.5rpx;
+    height: 210rpx;
 }
 .layout-slider image {
     width: 100%;
