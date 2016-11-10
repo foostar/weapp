@@ -1,6 +1,11 @@
 page {
     background-color: #efefef;
 }
+.personal-wrapper{
+    position: absolute;
+    top:0;
+    bottom:0;
+}
 .personal-user-card {
     background-color: #fff;
     height: 284rpx;

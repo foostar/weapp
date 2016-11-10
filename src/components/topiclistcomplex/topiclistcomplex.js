@@ -24,6 +24,7 @@ TopiclistComplex.prototype.name = 'topiclistcomplex'
 TopiclistComplex.prototype.constructor = TopiclistComplex
 // 请求数据
 TopiclistComplex.prototype.fetchData = function (param, number) {
+    if (!app.isLogin()) return
     const module = this.data.module
     let list = param.list || this.data.resources.list || []
     if (this.data.over) return Promise.reject()
@@ -51,6 +52,8 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
             isLoading: false,
             over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
+    }, () => {
+        this.setData({ resources: {}, over: true, isLoading: false })
     })
 }
 // 切换orderby

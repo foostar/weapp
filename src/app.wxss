@@ -1,6 +1,10 @@
 @import './components/viewer/viewer.wxss';
 @import './theme.wxss';
 /**app.wxss**/
+page {
+    background: #EFEFF4;
+    height:100%;
+}
 view, text {
     color: #343434;
     font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,微软雅黑,Arial,sans-serif;

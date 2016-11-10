@@ -1,7 +1,7 @@
 <import src="../module/module.wxml" />
 <import src="../cellstyle/cellstyle"/>
 <import src="../forum/forum"/>
-<template is="forumInfo" data="{{resources,topTopicList, appIcon}}" />
+<template is="forumInfo" data="{{resources, topTopicList, appIcon, complex:true, forumInfo:true}}" />
 <view class="forum-tabs">
     <view class="forum-tabs-title-warp-placeholder">
         <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">

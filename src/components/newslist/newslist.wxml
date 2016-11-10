@@ -10,7 +10,11 @@
   </block>
 </swiper>
 <view class="liststyle-container liststyle-index">
-    <block wx:for="{{resources.list}}">
+    <block wx:for="{{resources.list}}" wx:key="{{index}}">
         <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
     </block>
 </view>
+<!-- 加载中 -->
+<view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
+<!-- 没有了 -->
+<view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>

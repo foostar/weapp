@@ -127,7 +127,7 @@
             </view>
         </view>
         <view class="cell-card-meta font-mini">
-            {{hits}}
+            <view class="hits">{{hits}}</view>
             <view class="replies">{{replies}}</view>
         </view>
     </view>

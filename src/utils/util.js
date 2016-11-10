@@ -1,3 +1,4 @@
+
 /* eslint-disable */
 /*
  * @格式化文本
@@ -18,6 +19,9 @@ function formateText(str = '', length = 40) {
  */
 const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = true) => {
     if (!date) return ''
+    if (typeof date === 'string' && /[\u4e00-\u9fa5]+/g.test(date)) {
+        return date
+    }
     if (typeof date === 'string' && /^\d+$/.test(date)) {
         date = new Date(+date)
     }
@@ -138,6 +142,23 @@ const formatListData = (dataList) => {
     })
     return componentList
 }
+/*
+ * @判断子集是否有滚动条
+ */
+const checkHasScroll = (module) => {
+    let app = getApp()
+    if (module.type === 'subnav') {
+        return true
+    }
+    if (module.type === 'moduleRef') {
+        module = app.globalData.modules[module.extParams.moduleId]
+        if (module.type === 'subnav') {
+            return true
+        }
+    }
+    return module.componentList.map(checkHasScroll).some(x => x)
+}
+
 module.exports = {
     dateFormat,
     formatTime(date) {
@@ -146,6 +167,7 @@ module.exports = {
     formateText,
     formatListData,
     infoToFace,
+    checkHasScroll,
     pagetype
 }
 
