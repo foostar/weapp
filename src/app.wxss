@@ -1,4 +1,5 @@
-
+@import './components/viewer/viewer.wxss';
+@import './theme.wxss';
 /**app.wxss**/
 page {
     background: #EFEFF4;

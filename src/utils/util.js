@@ -1,3 +1,4 @@
+
 /* eslint-disable */
 /*
  * @格式化文本
@@ -141,6 +142,23 @@ const formatListData = (dataList) => {
     })
     return componentList
 }
+/*
+ * @判断子集是否有滚动条
+ */
+const checkHasScroll = (module) => {
+    var app = getApp()
+    if (module.type === 'subnav') {
+        return true
+    }
+    if (module.type === 'moduleRef') {
+        let moduleRef = app.globalData.modules[module.extParams.moduleId]
+        if (moduleRef.type === 'subnav') {
+            return true
+        }
+    }
+    return module.componentList.map(checkHasScroll).some(x => x)
+}
+
 module.exports = {
     dateFormat,
     formatTime(date) {
@@ -149,6 +167,7 @@ module.exports = {
     formateText,
     formatListData,
     infoToFace,
+    checkHasScroll,
     pagetype
 }
 

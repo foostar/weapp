@@ -7,6 +7,14 @@
 
 `src/lib/*`该目录下为外部类库脚本，不可修改。
 
+切换配置
+
+cli/weapp.js init
+
+切换指定 APPID 配置
+
+cli/weapp.js init <appid>
+
 ----
 ### 全局事件
 

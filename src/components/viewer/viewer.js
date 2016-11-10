@@ -1,6 +1,7 @@
 const Component = require('../../lib/component')
 const components = require('../../lib/components')
 const Module = require('../module/module')
+const { checkHasScroll } = require('../../utils/util.js')
 /*
  *   @模块引入
  */
@@ -162,24 +163,12 @@ components.type['userhome-flat'] = UserHome   // 用户主页
 
 const app = getApp()
 
-const checkHasScroll = (module) => {
-    if (module.type === 'subnav') {
-        return true
-    }
-    if (module.type === 'moduleRef') {
-        let moduleRef = app.globalData.modules[module.extParams.moduleId]
-        if (moduleRef.type === 'subnav') {
-            return true
-        }
-    }
-    return module.componentList.map(checkHasScroll).some(x => x)
-}
-
 function Viewer(key, module) {
     Component.call(this, key)
     this.module = module
     this.add(components.create(module))
     this.data = {
+        name: app.config.NAME,
         moduleId: module.id,
         hasScroll: checkHasScroll(module),
     }

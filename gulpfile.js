@@ -15,8 +15,7 @@ gulp.task('default', [ 'copy' ], () => {
     return gulp.src('src/**/*.js')
         .pipe(babel({
             presets: [ 'es2015' ],
-            plugins: ['transform-runtime']
         }))
-        /*.pipe(uglify())*/
+        .pipe(uglify())
         .pipe(gulp.dest('weapp'))
 })

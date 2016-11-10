@@ -1,12 +1,17 @@
-@import "../../components/viewer/viewer.wxss";
 @import "../../components/tabbar/tabbar.wxss";
 
 .index-page {
-    position: absolute;
     width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #F0F0F0;
+}
+
+.viewer-container {
+    position: absolute;
     top: 0;
     bottom: 88rpx;
-    overflow: hidden;
+    width: 100%;
 }
 
 .load-more {
