@@ -29,11 +29,12 @@
     <view wx:if="{{!!topTopicList}}" class="stick-container font-mini">
         <block wx:for="{{topTopicList}}" wx:key="{{index}}">
             <view data-id="{{item.id}}" class="stick-item">
-                <view wx:if="{{index < 1}}" class="stick-tag bg-color">置顶</view>
-                <view wx:else class="stick-tag bg-color" style="width:105rpx;">置顶</view>
+                <view class="stick-tag bg-color">置顶</view>
                 <view class="stick">{{item.title}}</view>
             </view>
         </block>
-        <view class="stick-item stick-more" wx:if="{{topTopicList.length > 3}}">更多</view>
+        <view class="stick-item stick-more" wx:if="{{topTopicList.length > 3}}">
+            <image class="stick-more-icon" src="{{iconSrc}}dz_board_top_more.png"/>更多
+        </view>
     </view>
 </template>

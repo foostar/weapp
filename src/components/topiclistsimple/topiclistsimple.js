@@ -18,6 +18,7 @@ function TopiclistSimple(key, module) {
         style: module.style,
         forumInfo,
         resources: {},
+        iconSrc: app.globalData.iconSrc,
         isLoading: false,
         appIcon: app.globalData.info.appIcon,
         over: false

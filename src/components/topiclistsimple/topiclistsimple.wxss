@@ -23,6 +23,13 @@
     padding-left:30rpx;
     box-sizing:border-box;
 }
+.stick-more-icon{
+    width:28rpx;
+    height:28rpx;
+    position:relative;
+    top:8rpx;
+    margin-right: 8rpx
+}
 .face{
     display:inline-block;
     width:40rpx;
@@ -376,6 +383,13 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.cell-card-meta view .card-icon-image{
+    width:28rpx;
+    height:25rpx;
+    margin-right:8rpx;
+    position:relative;
+    top:2rpx;
+}
 .cell-card-title{
     font-size:34rpx;
 }
@@ -420,9 +434,10 @@
 }
 .cell-card-meta view{
     flex:1;
-    text-align:center; 
     color:#a4a4a4;
     line-height:30rpx;
+    display:flex;
+    justify-content:center;
     box-sizing: border-box;
 }
 .cell-card-meta .hits{

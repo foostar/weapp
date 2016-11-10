@@ -20,6 +20,7 @@ function NewsList(key, module) {
         duration: 800,
         resources: {},
         isLoading: false,
+        iconSrc: app.globalData.iconSrc,
         appIcon: app.globalData.info.appIcon,
         over: false,
         isImage: module.style === 'image',

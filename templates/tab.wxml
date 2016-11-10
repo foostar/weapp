@@ -1,2 +1,4 @@
 <import src="../../components/viewer/viewer.wxml" />
-<template is="viewer" data="{{...children.viewer}}"></template>
+<view class="index-page">
+    <template is="viewer" data="{{...children.viewer}}"></template>
+</view>
