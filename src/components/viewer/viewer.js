@@ -173,7 +173,6 @@ function Viewer(key, module) {
         hasScroll: checkHasScroll(module),
     }
 }
-
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer

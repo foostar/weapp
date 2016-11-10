@@ -146,13 +146,13 @@ const formatListData = (dataList) => {
  * @判断子集是否有滚动条
  */
 const checkHasScroll = (module) => {
-    var app = getApp()
+    let app = getApp()
     if (module.type === 'subnav') {
         return true
     }
     if (module.type === 'moduleRef') {
-        let moduleRef = app.globalData.modules[module.extParams.moduleId]
-        if (moduleRef.type === 'subnav') {
+        module = app.globalData.modules[module.extParams.moduleId]
+        if (module.type === 'subnav') {
             return true
         }
     }
