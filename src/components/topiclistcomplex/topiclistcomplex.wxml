@@ -1,7 +1,7 @@
 <import src="../module/module.wxml" />
 <import src="../cellstyle/cellstyle"/>
 <import src="../forum/forum"/>
-<template is="forumInfo" data="{{resources, topTopicList, appIcon, complex:true, forumInfo:true}}" />
+<template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, complex:true, forumInfo:true}}" />
 <view class="forum-tabs">
     <view class="forum-tabs-title-warp-placeholder">
         <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
@@ -15,7 +15,7 @@
         <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
     </block>
 </view>
-<view class="forum-edit-btn bg-color" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>
+<view class="forum-edit-btn bg-color" style="background:url({{iconSrc}}dz_list_go_top.png) no-repeat center center #fa460a;background-size:56rpx;" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>
 <!-- 加载中 -->
 <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
 <!-- 没有了 -->

@@ -11,7 +11,7 @@
 </swiper>
 <view class="liststyle-container liststyle-index">
     <block wx:for="{{resources.list}}" wx:key="{{index}}">
-        <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
+        <template is="{{module.style}}" data="{{...item, id: item.topic_id, iconSrc}}" />
     </block>
 </view>
 <!-- 加载中 -->

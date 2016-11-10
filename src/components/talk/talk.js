@@ -4,6 +4,9 @@ const app = getApp()
 
 function Talk(key) {
     Component.call(this, key)
+    this.data = {
+        iconSrc: app.globalData.iconSrc
+    }
 }
 
 Talk.prototype = Object.create(Component.prototype)

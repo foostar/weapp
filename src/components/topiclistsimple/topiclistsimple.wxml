@@ -3,11 +3,11 @@
 <import src="../forum/forum"/>
 <!--  -->
 <block wx:if="{{forumInfo}}">
-    <template is="forumInfo" data="{{resources, topTopicList, appIcon}}" />
+    <template is="forumInfo" data="{{resources, topTopicList, appIcon, iconSrc}}" />
 </block>
 <view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
     <block wx:for="{{resources.list}}" wx:key="{{index}}">
-        <template is="{{style}}" data="{{...item, id: item.topic_id}}" />
+        <template is="{{style}}" data="{{...item, id: item.topic_id, iconSrc}}" />
     </block>
 </view>
 <!-- 加载中 -->

@@ -15,6 +15,7 @@ function NewsList(key, module) {
         duration: 800,
         resources: {},
         isLoading: false,
+        iconSrc: app.globalData.iconSrc,
         appIcon: app.globalData.info.appIcon,
         endPage: 0,
         over: false
