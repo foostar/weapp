@@ -2,14 +2,23 @@
     height: 100%;
     width: 100%;
 }
-.topbar-bar{
+.subnavtopbar-bar {
     width: 100%;
+    background: #FFF;
     height: 75rpx;
-    background:#fff;
-    justify-content:space-between;
-    line-height:75rpx;
-    box-sizing:border-box;
+    line-height: 75rpx;
 }
+.subnavtopbar-bar-nav {
+    width: 55%;
+    margin: 0 auto;
+    display: flex;
+    position: relative;
+}
+.subnavtopbar-bar-nav view{
+    flex: 1;
+    text-align: center;
+}
+
 .subnav-topbar-content-container {
     width: 100%;
     position: absolute;
@@ -22,16 +31,6 @@
 }
 .topbar-icon{
     margin:0 15rpx;
-}
-.top-bar{
-    width:55%;
-    margin:0 auto;
-    display:flex;
-    position: relative;
-}
-.top-bar view{
-    flex:1;
-    text-align:center;
 }
 .subnavtopbar-content-container {
     flex: 1;

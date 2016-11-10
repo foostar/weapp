@@ -2,6 +2,8 @@
 <import src="../../components/tabbar/tabbar.wxml" />
 
 <view class="index-page">
-    <template is="viewer" data="{{...children.viewer}}"></template>
+    <view class="viewer-container">
+        <template is="viewer" data="{{...children.viewer}}"></template>
+    </view>
     <template is="tabbar" data="{{...children.tabbar, selected: tabSelected, tabs}}" />
 </view>

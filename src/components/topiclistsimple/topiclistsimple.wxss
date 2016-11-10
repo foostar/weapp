@@ -47,7 +47,7 @@
 .cell-avatar{
     width:110rpx;
     height:110rpx;
-    margin-right:25rpx;
+    margin-right:15rpx;
     border-radius:5px;
 }
 .cell-content-image-wrapper{
@@ -137,7 +137,8 @@
     color:#a4a4a4;
 }
 .stick-tag{
-    padding:0 12rpx;
+    width:90rpx;
+    text-align:center;
     color:#fff;
     height:40rpx;
     line-height:42.5rpx;
@@ -254,7 +255,7 @@
 }
 .cell-flat-content-subject-1{
     margin:8rpx 0;
-    height:80rpx;
+    height:82rpx;
 }
 .cell-flat-thumb-container-1{
     top:-27rpx;
@@ -279,7 +280,7 @@
 }
 .cell-flat-thumb {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .cell-flat-thumb-container {
     width: 228rpx;
@@ -302,10 +303,20 @@
     color: #a4a4a4;
     float: left;
     width: 76%;
+    overflow: hidden;
     /*white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;*/
     /*margin-right: 154rpx;*/
+}
+.cell-flat-content-subject-1 text,.cell-flat-content-subject-1 image{
+    position:relative;
+    top:-8rpx;
+    line-height:30rpx;
+    color:#a4a4a4;
+}
+.cell-flat-content-subject-1 image{
+    top:-2rpx;
 }
 .cell-flat-thumb-container-1 {
     width: 144rpx;
@@ -330,7 +341,6 @@
     justify-content: space-between;
 }
 .cell-flat-info-time {
-    width: 300rpx;
     display: inline-block;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -365,6 +375,9 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+.cell-card-title{
+    font-size:34rpx;
 }
 .cell-card-header-name{
     margin-bottom:5rpx;
@@ -536,16 +549,25 @@
     margin-bottom:20rpx;
 }
 .cell-circle-reply-like,.cell-circle-reply-main{
-    padding:12rpx 10rpx;
+    padding:12rpx 15rpx;
 }
+
 .cell-circle-reply-like{
-    display:flex;
+    display:block;
+    overflow:hidden;
+    border-bottom: 1px solid #ddd;
 }
+.cell-circle-reply-like view{
+    float:left;
+    word-break: break-all;
+}
+
 .cell-circle-reply-recommendAdd{
     padding-left:35rpx;
     background-size:32rpx;
     margin-right:5rpx;
     color:#555;
+    position: relative;
 }
 .cell-circle-reply-recommendAdd image{
     width:28rpx;
@@ -556,22 +578,26 @@
     display:inline-block;
 }
 .cell-circle-reply-main{
-    border-top: 1px solid #ddd;
     padding-top:5rpx;
 }
 .cell-circle-likemember{
     margin-left:12rpx;
+    display:inline-block;
+    height:35rpx;
+    line-height:35rpx;
+    margin-bottom:6rpx;
 }
 .cell-circle-reply-author{
     margin-right:8rpx;
+    float:left;
 }
 .cell-circle-reply-box{
-    display:flex;
+    overflow:hidden;
     padding-top:8rpx;
-    line-height:35rpx;
+    line-height:40rpx;
 }
 .cell-circle-reply-more{
-    padding:8rpx 10rpx;
+    padding:10rpx 15rpx 12rpx;
     border-top:1px solid #ddd;
 }
 .cell-circle-username{

@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/loading/loading",
+    "pages/index/index",
+    "pages/blank/blank",
+    "pages/error/error",
+    "pages/regular-pages/forum/forum",
+    "pages/regular-pages/topic-list/topic-list",
+    "pages/regular-pages/topic/topic"
+  ]
+}

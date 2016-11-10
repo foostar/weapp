@@ -1,19 +1,36 @@
 <template name="forumInfo">
-    <view wx:if="{{resources.forumInfo}}" class="forum-info-container">
+    <view wx:if="{{forumInfo && complex}}" class="forum-info-container">
+        <view class="foruminfo-icon">
+            <image src="{{appIcon ? appIcon : '/images/dz_icon_article_default.png'}}"/>
+        </view>
+        <view class="foruminfo-content">
+            <view class="foruminfo-forumname font-wide">{{resources.forumInfo ? resources.forumInfo.title : '暂无'}}</view>
+            <view class="foruminfo-meta font-mini">主题：{{resources.forumInfo ? resources.forumInfo.posts_total_num : 0 }}  <text>今日：{{resources.forumInfo ? resources.forumInfo.td_posts_num : 0}}</text></view>
+            <view class="foruminfo-des font-mini">{{resources.forumInfo ? resources.forumInfo.description : ''}}</view>
+        </view>
+        <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}"  bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}" data-id="{{resources.forumInfo.id}}" data-focus="{{resources.forumInfo.is_focus}}">{{resources.forumInfo && resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
+    </view>
+    <view wx:elif="{{resources.forumInfo}}" class="forum-info-container">
         <view class="foruminfo-icon">
             <image src="{{appIcon}}"/>
         </view>
         <view class="foruminfo-content">
             <view class="foruminfo-forumname font-wide">{{resources.forumInfo.title}}</view>
-            <view class="foruminfo-meta font-mini">主题：{{resources.forumInfo.posts_total_num }}  <text>今日：{{resources.forumInfo.td_posts_num}}</text></view>
+            <view class="foruminfo-meta font-mini">主题：{{resources.forumInfo.posts_total_num}}  <text>今日：{{resources.forumInfo.td_posts_num}}</text></view>
             <view class="foruminfo-des font-mini">{{resources.forumInfo.description}}</view>
         </view>
         <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}"  bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}" data-id="{{resources.forumInfo.id}}" data-focus="{{resources.forumInfo.is_focus}}">{{resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
     </view>
+
+
+
+
+    
     <view wx:if="{{!!topTopicList}}" class="stick-container font-mini">
         <block wx:for="{{topTopicList}}" wx:key="{{index}}">
             <view data-id="{{item.id}}" class="stick-item">
-                <view class="stick-tag bg-color">置顶</view>
+                <view wx:if="{{index < 1}}" class="stick-tag bg-color">置顶</view>
+                <view wx:else class="stick-tag bg-color" style="width:105rpx;">置顶</view>
                 <view class="stick">{{item.title}}</view>
             </view>
         </block>

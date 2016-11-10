@@ -6,6 +6,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "commander": "^2.9.0",
+    "ejs": "^2.5.2",
     "mobcent": "^0.1.13",
     "node-fetch": "^1.6.3",
     "request": "^2.78.0",

@@ -1,6 +1,7 @@
 const Component = require('../../lib/component')
 const components = require('../../lib/components')
 const Module = require('../module/module')
+const { checkHasScroll } = require('../../utils/util.js')
 /*
  *   @模块引入
  */
@@ -126,6 +127,11 @@ components.type['topiclistSimple-circle'] = TopiclistSimple
  *  @复杂帖子列表、门户主页
  */
 components.type['topiclistComplex-flat'] = TopiclistComplex
+components.type['topiclistComplex-tieba'] = TopiclistComplex
+components.type['topiclistComplex-card'] = TopiclistComplex
+components.type['topiclistComplex-neteaseNews'] = TopiclistComplex
+components.type['topiclistComplex-imageSudoku'] = TopiclistComplex
+components.type['topiclistComplex-circle'] = TopiclistComplex
 /*
  *  @门户列表
  */
@@ -165,29 +171,19 @@ components.type['userlist-flat'] = UserList   // 用户列表
 
 const app = getApp()
 
-const checkHasScroll = (module) => {
-    if (module.type === 'subnav') {
-        return true
-    }
-    return module.componentList.map(checkHasScroll).some(x => x)
-}
-
 function Viewer(key, module) {
     Component.call(this, key)
     this.module = module
     this.add(components.create(module))
     this.data = {
+        name: app.config.NAME,
         moduleId: module.id,
         hasScroll: checkHasScroll(module),
     }
 }
-
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
-Viewer.prototype.scroll = function () {
-
-}
 Viewer.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }

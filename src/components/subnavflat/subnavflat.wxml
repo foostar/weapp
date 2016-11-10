@@ -2,7 +2,7 @@
 
 <view class="tab-nav-bar" wx:if="{{tabs.length > 1}}">
     <block wx:if="{{tabs.length > 1}}" wx:for="{{tabs}}">
-        <view class="tab-nav-bar-item" bindtap="subnavflat_switchTab" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}">
+        <view class="tab-nav-bar-item" bindtap="subnavflat_switchTab" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}" style="width: {{width}}">
             <text class="{{selected == item.id ? 'text-color border-color' : ''}}">{{item.title}}</text>
         </view>
     </block>

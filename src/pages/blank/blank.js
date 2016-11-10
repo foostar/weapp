@@ -23,7 +23,9 @@ Page(createPage({
         } catch (err) {
             data.data = null
         }
-        if (data.type) {
+        if (data.moduleId) {
+            module = app.globalData.modules[data.moduleId]
+        } else if (data.type) {
             module = {
                 componentList: [],
                 extParams: {},
@@ -50,11 +52,6 @@ Page(createPage({
         })
         // 加载module
         this.add(new Viewer('viewer', module))
-        this.setData({
-            module,
-            appIcon: app.globalData.info.appIcon,
-            appColor: `#${app.config.COLOR}`
-        })
     },
     onReady() {
     },
