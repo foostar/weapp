@@ -27,6 +27,8 @@ const Events = require('./lib/events.js')
 const util = require('./utils/util')
 const CONFIG = require('./config.js')
 
+CONFIG.COLOR = CONFIG.THEME_COLOR.slice(1).toLowerCase()
+
 const randStr = () => {
     return `a${Math.random().toString(32).split('.')[1]}`
 }
@@ -123,12 +125,15 @@ App({
             })
         }
 
+        const getSystemInfo = this.getSystemInfo()
 
         api.forumKey = CONFIG.KEY
         const promise = Promise.all([
             api.app(),
-            api.ui()
-        ]).then(([ appResult, uiResult ]) => {
+            api.ui(),
+            getSystemInfo
+        ]).then(([ appResult, uiResult, systemInfo ]) => {
+            this.globalData.systemInfo = systemInfo
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
             this.globalData.tabs = uiResult.body.navigation.navItemList
@@ -193,9 +198,9 @@ App({
             })
         })
     },
-    isIphone(model) {
+    isIphone() {
         var reg = /iphone/ig
-        return reg.test(model)
+        return reg.test(this.globalData.systemInfo.model)
     },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {

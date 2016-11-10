@@ -26,7 +26,8 @@
 }
 .customtag-content{
     flex:1;
-    overflow:hidden;
+    height:100%;
+    overflow:auto;
 }
 .customtag-box .active{
     border-bottom:3px solid currentColor;

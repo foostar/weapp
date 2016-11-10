@@ -3,7 +3,7 @@
     <view wx:if="{{hasScroll && children[moduleId].template}}" class="viewer">
         <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
     </view>
-    <scroll-view wx:elif="{{children[moduleId].template}}" class="viewer" scroll-y bindscrolltolower="viewer_scrollToLower" data-event-key="{{key}}" data-template="{{moduleId}}">
+    <scroll-view wx:elif="{{children[moduleId].template}}" class="viewer" scroll-y bindscrolltolower="viewer_scrollToLower" bindscroll="viewer_scroll" data-event-key="{{key}}" data-template="{{moduleId}}">
         <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
     </scroll-view>
 </template>

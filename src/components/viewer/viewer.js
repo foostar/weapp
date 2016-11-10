@@ -58,6 +58,11 @@ const UserList = require('../userlist/userlist')
  */
 
 components.type['moduleRef-flat'] = Module
+components.type['moduleRef-tieba'] = Module
+components.type['moduleRef-card'] = Module
+components.type['moduleRef-neteaseNews'] = Module
+components.type['moduleRef-imageSudoku'] = Module
+components.type['moduleRef-circle'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
 components.type['layout-layoutSubnavFlat'] = SubnavFlat
 components.type['customSubnav-flat'] = SubnavCustom
@@ -108,15 +113,33 @@ components.type['layout-layoutTransparent'] = LayoutTransparent
 components.type['layout-layoutSeparator'] = LayoutSeparator // 分割线
 
 components.type['layout-layoutNewsAuto'] = LayoutNewsAuto // 列表自动样式
-
+/*
+ *  @帖子列表
+ */
 components.type['topiclistSimple-tieba'] = TopiclistSimple
 components.type['topiclistSimple-flat'] = TopiclistSimple
 components.type['topiclistSimple-card'] = TopiclistSimple
 components.type['topiclistSimple-neteaseNews'] = TopiclistSimple
-// components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
+components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
 components.type['topiclistSimple-circle'] = TopiclistSimple
+/*
+ *  @复杂帖子列表、门户主页
+ */
 components.type['topiclistComplex-flat'] = TopiclistComplex
+/*
+ *  @门户列表
+ */
 components.type['newslist-tieba'] = NewsList
+components.type['newslist-flat'] = NewsList
+components.type['newslist-card'] = NewsList
+components.type['newslist-neteaseNews'] = NewsList
+components.type['newslist-imageSudoku'] = NewsList
+components.type['newslist-circle'] = NewsList
+components.type['newslist-imageBig'] = NewsList
+components.type['newslist-image'] = NewsList // 图片1
+components.type['newslist-image2'] = NewsList // 图片2
+
+
 components.type['forumlist-card'] = ForumlistCard
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
@@ -162,6 +185,9 @@ function Viewer(key, module) {
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
+Viewer.prototype.scroll = function () {
+
+}
 Viewer.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }
