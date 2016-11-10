@@ -6,7 +6,7 @@
         <view class="personal-user-info" wx:if="{{!isLogin}}" bindtap="discover_toLogin" data-event-key="{{key}}">
             <view class="user-avator user-unLogin"></view>
             <text>请点击登录/注册</text>
-            <image class="icon-arrow"></image>
+            <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
         </view>
 
         <view class="personal-user-info" wx:if="{{isLogin}}" bindtap="discover_toUserHome" data-event-key="{{key}}" data-uid="{{ userInfo.uid }}">
@@ -17,7 +17,7 @@
                 <text wx:if="{{userInfo.creditShowList[1]}}">{{userInfo.creditShowList[1].title +':'+ userInfo.creditShowList[1].data}}</text>
             </view>
             <view class="personal-user-info-level">{{userInfo.userTitle}}</view>
-            <image class="icon-arrow"></image>
+            <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
         </view>
 
         <view class="personal-quick-btns">
@@ -38,13 +38,13 @@
             <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">
                 <image class="icon icon-info"></image>
                 <text class="personal-manage-item-title">我的收藏</text>
-                <image class="icon-arrow"></image>
+                <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view>
             <navigator url="/pages/regular-pages/create-forum/create-forum">
                 <view class="personal-manage-item" wx:if="{{true}}">
-                    <image class="icon icon-info"></image>
+                    <image class="icon icon-info" src="{{iconSrc}}dz_personal_draft.png"></image>
                     <text class="personal-manage-item-title">我的草稿</text>
-                    <image class="icon-arrow"></image>
+                    <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
                 </view>
             </navigator>
             <!-- <navigator url="/pages/regular-pages/create-forum/create-forum?fid=123&actType=new&isTopic=true&ti_id=123"> -->
@@ -53,24 +53,24 @@
                 <view class="personal-manage-item" wx:if="{{true}}">
                     <image class="icon icon-info"></image>
                     <text class="personal-manage-item-title">发表话题</text>
-                    <image class="icon-arrow"></image>
+                    <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
                 </view>
             </navigator>
             <view class="personal-manage-item" wx:if="{{setting.plugin.isMobileRegisterValidation && setting.plugin.changeMobile}}">
                 <image class="icon icon-my-phone"></image>
                 <text class="personal-manage-item-title">我的手机</text>
                 <text wx:if="{{userInfo.mobile ? true : false}}" style="float:right; padding-right:52rpx;">{{userInfo.mobile}}</text>
-                <image class="icon-arrow"></image>
+                <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view>
             <view class="personal-manage-item" wx:if="{{}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myInfo">
-                <image class="icon icon-info"></image>
+                <image class="icon icon-info" src="{{iconSrc}}dz_personal_message.png"></image>
                 <text class="personal-manage-item-title">我的消息</text>
-                <image class="icon-arrow"></image>
+                <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view>
             <view class="personal-manage-item" wx:if="{{setting.user.verify}}">
                 <image class="icon icon-verify"></image>
                 <text class="personal-manage-item-title">用户认证</text>
-                <image class="icon-arrow"></image>
+                <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view>
         </view>
     </view>
@@ -84,14 +84,14 @@
     <view class="personal-manage-card">
         <view class="personal-manage-items">
             <view class="personal-manage-item" bindtap="discover_bindChange" data-event-key="{{key}}">
-                <image class="icon icon-account-manager"></image>
+                <image class="icon icon-account-manager" src="{{iconSrc}}dz_personal_manage.png"></image>
                 <text class="personal-manage-item-title">帐号管理</text>
-                <image class="icon-arrow"></image>
+                <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view>
             <view class="personal-manage-item" bindtap="discover_toSetting" data-event-key="{{key}}">
-                <image class="icon icon-user-manager"></image>
+                <image class="icon icon-user-manager" src="{{iconSrc}}dz_personal_setting.png"></image>
                 <text class="personal-manage-item-title">个人管理</text>
-                <image class="icon-arrow"></image>
+                <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view>
         </view>
     </view>

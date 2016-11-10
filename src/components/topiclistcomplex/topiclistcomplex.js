@@ -13,6 +13,7 @@ function TopiclistComplex(key, module) {
         resources: {},
         tabsIndex: 0,
         isLoading: false,
+        iconSrc: app.globalData.iconSrc,
         orderby: module.extParams.orderby,
         appIcon: app.globalData.info.appIcon,
         over: false
