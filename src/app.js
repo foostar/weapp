@@ -68,11 +68,7 @@ App({
                         header: data.headers,
                         method: data.method,
                         success: resolve,
-                        error: reject,
-                        complete(info) {
-                            console.log('request info: ')
-                            console.log(info)
-                        }
+                        error: reject
                     })
                 })).then((result) => {
                     requestNum -= 1

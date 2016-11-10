@@ -71,8 +71,12 @@ function createPage(config) {
         child.parent = this
         child.page = this
         this.children[child.key] = child
+
         if (this.loaded) {
-            child.load()
+            const children = this.children
+            if (children) {
+                load.call(this, children)
+            }
         }
     }
 

@@ -1,4 +1,5 @@
 const Component = require('../../lib/component')
+const { checkHasScroll } = require('../../utils/util.js')
 
 function SubnavTopbar(key, module) {
     Component.call(this, key)
@@ -21,6 +22,7 @@ function SubnavTopbar(key, module) {
         index: 0,
         width: `${100 / tabs.length}%`,
         selected: module.componentList[0].id,
+        hasScroll: checkHasScroll(module),
         tabs
     }
 }
