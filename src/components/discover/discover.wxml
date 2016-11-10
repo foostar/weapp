@@ -1,98 +1,99 @@
 <import src="../module/module.wxml" />
 
 <!-- 我的页面 -->
-<view class="personal-user-card">
-    <view class="personal-user-info" wx:if="{{!isLogin}}" bindtap="discover_toLogin" data-event-key="{{key}}">
-        <view class="user-avator user-unLogin"></view>
-        <text>请点击登录/注册</text>
-        <image class="icon-arrow"></image>
-    </view>
-
-    <view class="personal-user-info" wx:if="{{isLogin}}" bindtap="discover_toUserHome" data-event-key="{{key}}" data-uid="{{ userInfo.uid }}">
-        <view class="user-login" style="background-image:url({{userInfo.avatar}});"></view>
-        <view class="personal-user-info-name">{{userInfo.userName}}</view>
-        <view class="personal-user-info-desc">
-            <text style="margin-right: 10rpx;" wx:if="{{userInfo.creditShowList[0]}}">{{userInfo.creditShowList[0].title +':'+ userInfo.creditShowList[0].data }}</text>
-            <text wx:if="{{userInfo.creditShowList[1]}}">{{userInfo.creditShowList[1].title +':'+ userInfo.creditShowList[1].data}}</text>
-        </view>
-        <view class="personal-user-info-level">{{userInfo.userTitle}}</view>
-        <image class="icon-arrow"></image>
-    </view>
-
-    <view class="personal-quick-btns">
-        <view class="personal-quick-btn" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">我的收藏</view>
-        <view class="personal-quick-btn-after">
-            <text class="after-box"></text>
-        </view>
-        <view class="personal-quick-btn" bindtap="discover_toNavigationPage" data-event-key="{{key}}" data-page="myFriend">我的好友</view>
-        <view class="personal-quick-btn-after">
-            <text class="after-box"></text>
-        </view>
-        <view class="personal-quick-btn" bindtap="discover_toNavigationPage" data-event-key="{{key}}" data-page="myTopic">我的发表</view>
-    </view>
-</view>
-
-<view class="personal-manage-card">
-    <view class="personal-manage-items">
-        <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">
-            <image class="icon icon-info"></image>
-            <text class="personal-manage-item-title">我的收藏</text>
+<scroll-view scroll-y class="personal-wrapper">
+    <view class="personal-user-card">
+        <view class="personal-user-info" wx:if="{{!isLogin}}" bindtap="discover_toLogin" data-event-key="{{key}}">
+            <view class="user-avator user-unLogin"></view>
+            <text>请点击登录/注册</text>
             <image class="icon-arrow"></image>
         </view>
-        <navigator url="/pages/regular-pages/create-forum/create-forum">
-            <view class="personal-manage-item" wx:if="{{true}}">
+
+        <view class="personal-user-info" wx:if="{{isLogin}}" bindtap="discover_toUserHome" data-event-key="{{key}}" data-uid="{{ userInfo.uid }}">
+            <view class="user-login" style="background-image:url({{userInfo.avatar}});"></view>
+            <view class="personal-user-info-name">{{userInfo.userName}}</view>
+            <view class="personal-user-info-desc">
+                <text style="margin-right: 10rpx;" wx:if="{{userInfo.creditShowList[0]}}">{{userInfo.creditShowList[0].title +':'+ userInfo.creditShowList[0].data }}</text>
+                <text wx:if="{{userInfo.creditShowList[1]}}">{{userInfo.creditShowList[1].title +':'+ userInfo.creditShowList[1].data}}</text>
+            </view>
+            <view class="personal-user-info-level">{{userInfo.userTitle}}</view>
+            <image class="icon-arrow"></image>
+        </view>
+
+        <view class="personal-quick-btns">
+            <view class="personal-quick-btn" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">我的收藏</view>
+            <view class="personal-quick-btn-after">
+                <text class="after-box"></text>
+            </view>
+            <view class="personal-quick-btn" bindtap="discover_toNavigationPage" data-event-key="{{key}}" data-page="myFriend">我的好友</view>
+            <view class="personal-quick-btn-after">
+                <text class="after-box"></text>
+            </view>
+            <view class="personal-quick-btn" bindtap="discover_toNavigationPage" data-event-key="{{key}}" data-page="myTopic">我的发表</view>
+        </view>
+    </view>
+
+    <view class="personal-manage-card">
+        <view class="personal-manage-items">
+            <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">
                 <image class="icon icon-info"></image>
-                <text class="personal-manage-item-title">我的草稿</text>
+                <text class="personal-manage-item-title">我的收藏</text>
                 <image class="icon-arrow"></image>
             </view>
-        </navigator>
-        <!-- <navigator url="/pages/regular-pages/create-forum/create-forum?fid=123&actType=new&isTopic=true&ti_id=123"> -->
-        <navigator url="/pages/blank/blank?type=createforum">
+            <navigator url="/pages/regular-pages/create-forum/create-forum">
+                <view class="personal-manage-item" wx:if="{{true}}">
+                    <image class="icon icon-info"></image>
+                    <text class="personal-manage-item-title">我的草稿</text>
+                    <image class="icon-arrow"></image>
+                </view>
+            </navigator>
+            <!-- <navigator url="/pages/regular-pages/create-forum/create-forum?fid=123&actType=new&isTopic=true&ti_id=123"> -->
+            <navigator url="/pages/blank/blank?type=createforum">
 
-            <view class="personal-manage-item" wx:if="{{true}}">
-                <image class="icon icon-info"></image>
-                <text class="personal-manage-item-title">发表话题</text>
+                <view class="personal-manage-item" wx:if="{{true}}">
+                    <image class="icon icon-info"></image>
+                    <text class="personal-manage-item-title">发表话题</text>
+                    <image class="icon-arrow"></image>
+                </view>
+            </navigator>
+            <view class="personal-manage-item" wx:if="{{setting.plugin.isMobileRegisterValidation && setting.plugin.changeMobile}}">
+                <image class="icon icon-my-phone"></image>
+                <text class="personal-manage-item-title">我的手机</text>
+                <text wx:if="{{userInfo.mobile ? true : false}}" style="float:right; padding-right:52rpx;">{{userInfo.mobile}}</text>
                 <image class="icon-arrow"></image>
             </view>
-        </navigator>
-        <view class="personal-manage-item" wx:if="{{setting.plugin.isMobileRegisterValidation && setting.plugin.changeMobile}}">
-            <image class="icon icon-my-phone"></image>
-            <text class="personal-manage-item-title">我的手机</text>
-            <text wx:if="{{userInfo.mobile ? true : false}}" style="float:right; padding-right:52rpx;">{{userInfo.mobile}}</text>
-            <image class="icon-arrow"></image>
-        </view>
-        <view class="personal-manage-item" wx:if="{{}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myInfo">
-            <image class="icon icon-info"></image>
-            <text class="personal-manage-item-title">我的消息</text>
-            <image class="icon-arrow"></image>
-        </view>
-        <view class="personal-manage-item" wx:if="{{setting.user.verify}}">
-            <image class="icon icon-verify"></image>
-            <text class="personal-manage-item-title">用户认证</text>
-            <image class="icon-arrow"></image>
+            <view class="personal-manage-item" wx:if="{{}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myInfo">
+                <image class="icon icon-info"></image>
+                <text class="personal-manage-item-title">我的消息</text>
+                <image class="icon-arrow"></image>
+            </view>
+            <view class="personal-manage-item" wx:if="{{setting.user.verify}}">
+                <image class="icon icon-verify"></image>
+                <text class="personal-manage-item-title">用户认证</text>
+                <image class="icon-arrow"></image>
+            </view>
         </view>
     </view>
-</view>
 
-<view class="personal-manage-card" >
-    <view class="personal-manage-items">
-        <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}"  />
-    </view>
-</view>
-
-<view class="personal-manage-card">
-    <view class="personal-manage-items">
-        <view class="personal-manage-item" bindtap="discover_bindChange" data-event-key="{{key}}">
-            <image class="icon icon-account-manager"></image>
-            <text class="personal-manage-item-title">帐号管理</text>
-            <image class="icon-arrow"></image>
-        </view>
-        <view class="personal-manage-item" bindtap="discover_toSetting" data-event-key="{{key}}">
-            <image class="icon icon-user-manager"></image>
-            <text class="personal-manage-item-title">个人管理</text>
-            <image class="icon-arrow"></image>
+    <view class="personal-manage-card" >
+        <view class="personal-manage-items">
+            <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}"  />
         </view>
     </view>
-</view>
 
+    <view class="personal-manage-card">
+        <view class="personal-manage-items">
+            <view class="personal-manage-item" bindtap="discover_bindChange" data-event-key="{{key}}">
+                <image class="icon icon-account-manager"></image>
+                <text class="personal-manage-item-title">帐号管理</text>
+                <image class="icon-arrow"></image>
+            </view>
+            <view class="personal-manage-item" bindtap="discover_toSetting" data-event-key="{{key}}">
+                <image class="icon icon-user-manager"></image>
+                <text class="personal-manage-item-title">个人管理</text>
+                <image class="icon-arrow"></image>
+            </view>
+        </view>
+    </view>
+</scroll-view>
 <modal title="账户管理" hidden="{{modalHidden}}" bindconfirm="discover_logout" bindcancel="discover_bindChange" data-event-key="{{key}}"></modal>

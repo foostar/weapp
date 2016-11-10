@@ -9,7 +9,7 @@
     height:90rpx;
     white-space:nowrap;
     background:#fff;
-    flex:0;
+    box-sizing: border-box;
     border-bottom: 1px solid #ddd;
 }
 .customtag-item{
@@ -25,9 +25,9 @@
     box-sizing:border-box;
 }
 .customtag-content{
-    flex:1;
-    height:100%;
-    overflow:auto;
+    position: absolute;
+    top:90rpx;
+    bottom:0;
 }
 .customtag-box .active{
     border-bottom:3px solid currentColor;

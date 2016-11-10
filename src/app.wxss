@@ -2,6 +2,7 @@
 /**app.wxss**/
 page {
     background: #EFEFF4;
+    height:100%;
 }
 view, text {
     color: #343434;

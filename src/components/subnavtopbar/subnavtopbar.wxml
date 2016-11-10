@@ -16,7 +16,7 @@
         </view>
     </view>
     <view class="subnav-topbar-content-container">
-        <scroll-view wx:for="{{tabs}}" wx:if="{{(selected === item.id || animating) ? true : false}}" class="topbar-content" scroll-y class="topbar-content">
+        <scroll-view wx:for="{{tabs}}" wx:if="{{(selected === item.id || animating) ? true : false}}" class="topbar-content" bindscrolltolower="subnavtopbar_scrollToLower" data-event-key="{{key}}" scroll-y class="topbar-content">
             <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
         </scroll-view>
     </view>

@@ -1,9 +1,9 @@
 module.exports = {
     // 测试App
-    ID: 12345,
-    COLOR: '50920a',
-    KEY: 'VA3vkAMz1kduY8T8HM',
-    URL: 'http://bbs.appbyme.com/dzx31g',
+    // ID: 12345,
+    // COLOR: '50920a',
+    // KEY: 'VA3vkAMz1kduY8T8HM',
+    // URL: 'http://bbs.appbyme.com/dzx31g',
 
     // 淋巴瘤之家
     // ID: 18894,
@@ -36,10 +36,10 @@ module.exports = {
     // URL: 'http://mengchenghui.com',
 
     // 丹东妈妈网
-    // ID: 127539,
-    // COLOR: '51cb78',
-    // KEY: 'qTcFs8KjUsJoYTFGXK',
-    // URL: 'http://www.dandongmama.com',
+    ID: 127539,
+    COLOR: '51cb78',
+    KEY: 'qTcFs8KjUsJoYTFGXK',
+    URL: 'http://www.dandongmama.com',
 
     // 穿针引线
     // ID: 74583,
