@@ -212,6 +212,7 @@ App({
     },
     globalData: {
         loadSrc: '/images/dz_icon_article_default.png',
+        iconSrc: 'http://ogeqm3xfh.bkt.clouddn.com/images/app/',
         userInfo: null
     }
 })

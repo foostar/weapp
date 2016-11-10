@@ -1,7 +1,11 @@
 const Component = require('../../lib/component')
 
+var app = getApp()
 function MessagelistFlat(key) {
     Component.call(this, key)
+    this.data = {
+        iconSrc: app.globalData.iconSrc
+    }
 }
 
 MessagelistFlat.prototype = Object.create(Component.prototype)

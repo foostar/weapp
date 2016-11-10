@@ -2,6 +2,6 @@
     <view class="personal-manage-item" bindtap='discovercustom_touch' data-event-key="{{key}}" data-page="myCollection" data-index="{{ index }}" data-id="{{item.extParams.moduleId}}">
         <image class="icon" src="{{item.icon}}"></image>
         <text class="personal-manage-item-title">{{item.title}}</text>
-        <image class="icon-arrow"></image>
+        <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
     </view>
 </block>
