@@ -35,6 +35,8 @@ const LayoutNewsAuto = require('../layoutnewsauto/layoutnewsauto')
 const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
 const TopiclistComplex = require('../topiclistcomplex/topiclistcomplex')
 const ForumlistCard = require('../forumlistcard/forumlistcard')
+const ForumlistFlat = require('../forumlistflat/forumlistflat')
+
 const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
 const Talk = require('../talk/talk')
 const CustomTagNav = require('../customtagnav/customtagnav')
@@ -145,8 +147,8 @@ components.type['newslist-imageBig'] = NewsList
 components.type['newslist-image'] = NewsList // 图片1
 components.type['newslist-image2'] = NewsList // 图片2
 
-
-components.type['forumlist-card'] = ForumlistCard
+components.type['forumlist-flat'] = ForumlistFlat
+components.type['forumlist-card'] = ForumlistCard // 卡片样式
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
 components.type['subnav-flat'] = CustomTagNav
