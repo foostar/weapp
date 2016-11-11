@@ -1,4 +1,4 @@
-
+<import src="/components/cellstyle/cellstyle.wxml"/>
 <viwe class="tpcinfo-main">
     <!-- card -->
     <view class="tpcinfo-header" style="background-image: url({{ tpcinfo.ti_cover }})">
@@ -23,7 +23,7 @@
 
 
     <!-- list -->
-    <view class="tpcinfo-list-panel">
+    <!-- <view class="tpcinfo-list-panel">
         <template is="buttons-tab" data="{{ currentIndex, tabs, color }}"/>
         <view class="tabs-list">
             <view class="tpcinfo-list" wx:if="{{ currentIndex == 0 }}">
@@ -37,24 +37,30 @@
                 </block>
             </view>
         </view>
-    </view>
-
+    </view> -->
 
     <view class="forum-tabs">
         <view class="forum-tabs-title-warp-placeholder">
             <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
                 <text bindtap="topic_changeTabs" data-sort="new" data-event-key="{{key}}" data-index="{{1}}" class="forum-tabs-title text-color">最新</text>
-                <text bindtap="topic_changeTabs" data-sort="marrow" data-event-key="{{key}}" data-index="{{2}}" class="forum-tabs-title text-color">最热</text>
-                <view class="forum-tabs-indicator bg-color" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
+                <text bindtap="topic_changeTabs" data-sort="marrow" data-event-key="{{key}}" data-index="{{0}}" class="forum-tabs-title text-color">最热</text>
+                <view class="forum-tabs-indicator bg-color"/>
             </view>
         </view>
-        <block wx:for="{{resources.list}}" wx:key="{{index}}">
+
+        <block wx:if="{{currentIndex == 1}}" wx:for="{{newList}}" wx:key="{{index}}">
             <view bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
-                <template is="{{module.style}}" data="{{...item, iconSrc}}" />
+                <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
+            </view>
+        </block>
+        <block wx:if="{{currentIndex == 0}}" wx:for="{{newList}}" wx:key="{{index}}">
+            <view bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
+                <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
             </view>
         </block>
     </view>
-    <view class="forum-edit-btn bg-color" style="background:url({{iconSrc}}dz_list_go_top.png) no-repeat center center #fa460a;background-size:56rpx;" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>
+
+
     <!-- 加载中 -->
     <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
     <!-- 没有了 -->

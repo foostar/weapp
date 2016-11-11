@@ -15,13 +15,8 @@ function Topic(key, module) {
         topUser: [],
         partinNum: 0,
         newList: [],
-        newPage: 0,
-        newTotalNum: 0,
         hotList: [],
-        hotPage: 0,
-        hotTotalNum: 0,
-        color: '#000',
-        currentIndex: 0,
+        currentIndex: 1,
         tabs: [ '最新', '最热' ]
     }
 }
@@ -29,65 +24,72 @@ Topic.prototype = Object.create(ListComponent.prototype)
 Topic.prototype.name = 'topic'
 Topic.prototype.constructor = Topic
 
-Topic.prototype.onLoad = function () {
-    this.setData({
-        id: this.papeData.id,
-        color: `#${app.config.COLOR}`
-    })
-    this.fetchData()
-}
-
-Topic.prototype.fetchData = function () {
+Topic.prototype.fetchData = function (param, number) {
+    const currentIndex = parseInt(this.data.currentIndex, 10)
     // NEW HOT
     /* eslint-disable */
     const ti_id = this.papeData.id
     /* eslint-enable */
-    Promise
-        .all([
-            app.api.topicdtl({ ti_id, orderby: 'NEW' }),
-            app.api.topicdtl({ ti_id, orderby: 'HOT' })
-        ])
-        .then(([ resultByNew, resultByHot ]) => {
-            resultByNew.list = resultByNew.list.map(v => {
-                v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
-                v.last_reply_date = util.formatTime(v.last_reply_date)
-                v.subject = util.formateText(v.subject)
-                v.title = util.formateText(v.title)
-                return v
-            })
-            resultByHot.list = resultByHot.list.map(v => {
-                v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
-                v.last_reply_date = util.formatTime(v.last_reply_date)
-                v.subject = util.formateText(v.subject)
-                v.title = util.formateText(v.title)
-                return v
-            })
-            this.setData({
-                tpcinfo: resultByNew.tpcinfo,
-                topUser: resultByNew.topUser,
-                partinNum: resultByNew.partinNum,
-                newList: resultByNew.list,
-                newPage: resultByNew.page,
-                newTotalNum: resultByNew.total_num,
-                hotList: resultByHot.list,
-                hotPage: resultByHot.page,
-                hotTotalNum: resultByHot.total_num,
-            })
+    let list = param.list || currentIndex === 1 ? this.data.newList : this.data.hotList || []
+    if (this.data.over) return Promise.reject()
+    this.setData({
+        isLoading: true,
+        color: `#${app.config.COLOR}`
+    })
+    return app.api.topicdtl({
+        ti_id,
+        page: param.page,
+        orderby: currentIndex === 1 ? 'NEW' : 'HOT'
+    }).then((data) => {
+        data.list = data.list.map(v => {
+            v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
+            v.last_reply_date = util.formatTime(v.last_reply_date)
+            v.subject = util.formateText(v.subject)
+            v.title = util.formateText(v.title)
+            return v
         })
-}
 
-Topic.prototype.onReady = function () {
-    var title = this.data.tpcinfo.ti_title
-    // 修改导航条
-    wx.setNavigationBarTitle({
-        title
+        data.list = list.concat(data.list)
+        if (data.page == 1) {
+            this.setData({
+                tpcinfo: data.tpcinfo,
+                topUser: data.topUser,
+                partinNum: data.partinNum
+            })
+        }
+        console.log(currentIndex, currentIndex === 1 ? 'NEW' : 'HOT')
+        if (currentIndex === 1) {
+            this.setData({
+                newList: data.list,
+                isLoading: false,
+                over: param.page >= parseInt((data.total_num / number) + 1, 10)
+            })
+        } else {
+            this.setData({
+                hotList: data.list,
+                isLoading: false,
+                over: param.page >= parseInt((data.total_num / number) + 1, 10)
+            })
+        }
+    }, () => {
+        this.setData({ resources: {}, over: true, isLoading: false })
     })
 }
+
 Topic.prototype.changeTabs = function (e) {
     // 切换选项卡
     this.setData({
         currentIndex: e.currentTarget.dataset.index
     })
+    const { index, sort } = e.currentTarget.dataset
+    const tabsIndex = Number(index)
+    this.orderby = sort
+    this.setData({ tabsIndex, orderby: sort, over: false })
+    this.pageIndex = 1
+    this.fetchData({
+        page: this.pageIndex,
+        orderby: sort
+    }, 20)
 }
 Topic.prototype.toUserHome = function (e) {
     wx.navigateTo({
