@@ -1,47 +1,80 @@
-.community-section-title {
-    font-size: 30rpx;
+.forum-list-flat-panel {    
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    overflow: hidden;
+}
+.forum-list-flat-title {
     text-align: center;
-    width: 100%;
-    padding: 14rpx 0;
-    line-height: 1.5;
+    background-color: #ededed;
+    color: #2e2e2e;
+    font-size: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #d9d9d9;
+
 }
-.community-block-warp {
+.forum-list-flat-items {
+    overflow: hidden;
     background-color: #fff;
-    display: flex;
-    flex-wrap: wrap;
 }
-.community-block {
-    border-top: 1px solid #ccc;
+.forum-list-flat-item-panel {
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+}
+
+.forum-list-flat-item {
     width: 50%;
-    box-sizing: border-box;
-    display: flex;
-    font-size: 26rpx;
-    line-height: 1.5;
-    padding: 24rpx 10rpx 24rpx 16rpx;
+    border-bottom: 1px solid #d9d9d9;
+    float: left;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
 }
 .border-right {
-    border-right: 1px solid #ccc;
-}
+    width: 49.5%;
+    border-right: 1px solid #d9d9d9;
 
-.community-icon {
-    margin-right: 20rpx;
-    width: 75rpx;
-    height: 75rpx;
 }
-.community-content {
-    flex: 1;
+.border-bottom {
+    border-bottom: 0px solid #d9d9d9;
 }
-.community-block-title {
-    /*margin-bottom: 20rpx;*/
+.forum-list-flat-item-icon {
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 5px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 12px 8px;
+    float: left;
 }
-.community-block-small {
-    color: #ccc;
-    font-size: 24rpx;
-    transform-origin: 0 50%;
+.forum-list-flat-item-info {
+    vertical-align: middle;
+    width: 100%;
+    padding-right: 36px;
+    padding: 12px 36px 12px 8px;
 }
-
-.community-count {
-    float: right;
-    font-size: 24rpx;
+.forum-list-flat-item-info-title {
+    font-size: 13px;
+    color: #4d4d4d;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.forum-list-flat-item-info-time {
+    color: #d4d4d4;
+    margin-right: -36px;
+    font-size: 12px;
+}
+.forum-list-flat-item-num {
+    position: absolute;
     color: #0091fd;
+    top: 5px;
+    right: 10px;
+    font-size: 12px;
 }
