@@ -1,5 +1,0 @@
-<import src="/pages/module/module.wxml"/> 
-<!-- 话题列表主面板 -->
-
-
-<template is="tab-bar" data="{{tabs}}" />

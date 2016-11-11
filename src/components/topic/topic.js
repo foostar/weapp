@@ -30,9 +30,9 @@ Topic.prototype = Object.create(Component.prototype)
 Topic.prototype.name = 'topic'
 Topic.prototype.constructor = Topic
 
-Topic.prototype.onLoad = function (data) {
+Topic.prototype.onLoad = function () {
     this.setData({
-        id: data.id,
+        id: this.papeData.id,
         color: `#${app.config.COLOR}`
     })
     this.fetchData()
@@ -40,13 +40,14 @@ Topic.prototype.onLoad = function (data) {
 
 Topic.prototype.fetchData = function () {
     // NEW HOT
-    var ti_id = this.data.id
+    const ti_id = this.papeData.id
     Promise
         .all([
-            app.api.topicdtl({ 'ti_id': ti_id, 'orderby': 'NEW' }),
-            app.api.topicdtl({ 'ti_id': ti_id, 'orderby': 'HOT' })
+            app.api.topicdtl({ ti_id, orderby: 'NEW' }),
+            app.api.topicdtl({ ti_id, orderby: 'HOT' })
         ])
         .then(([ resultByNew, resultByHot ]) => {
+            console.log('=>>>>>>>', resultByNew, resultByHot)
             resultByNew.list = resultByNew.list.map(v => {
                 v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
                 v.last_reply_date = util.formatTime(v.last_reply_date)
@@ -79,7 +80,7 @@ Topic.prototype.onReady = function () {
     var title = this.data.tpcinfo.ti_title
     // 修改导航条
     wx.setNavigationBarTitle({
-        title: title
+        title
     })
 }
 Topic.prototype.changeTabs = function (e) {
@@ -90,7 +91,7 @@ Topic.prototype.changeTabs = function (e) {
 }
 Topic.prototype.toUserHome = function (e) {
     wx.navigateTo({
-        url: '/pages/regular-pages/user-home/user-home?uid=' + e.currentTarget.dataset.uid
+        url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.uid })}`
     })
 }
 Topic.prototype.clickItem = function (e) {
