@@ -73,7 +73,7 @@
 .forum-list-flat-item-num {
     position: absolute;
     color: #0091fd;
-    top: 6rpx;
-    right: 6rpx;
+    top: 10rpx;
+    right: 20rpx;
     font-size: 12px;
 }

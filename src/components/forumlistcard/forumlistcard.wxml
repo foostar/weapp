@@ -17,9 +17,7 @@
                                     {{panel.board_list[index].last_posts_date}}
                                 </view>
                             </view>
-                            <view wx:if="{{panel.board_list[index].td_posts_num != 0}}" class="forum-list-flat-item-num">
-                                （{{panel.board_list[index].td_posts_num}}）
-                            </view>
+                            <view wx:if="{{panel.board_list[index].td_posts_num != 0}}" class="forum-list-flat-item-num">({{panel.board_list[index].td_posts_num}})</view>
                         </view>
 
                         <view class="border-right"></view>
@@ -32,11 +30,9 @@
                                     {{panel.board_list[index+1].last_posts_date}}
                                 </view>
                             </view>
-                            <view wx:if="{{panel.board_list[index+1].td_posts_num != 0}}" class="forum-list-flat-item-num">
-                                （{{panel.board_list[index+1].td_posts_num}}）
-                            </view>
+                            <view wx:if="{{panel.board_list[index+1].td_posts_num != 0}}" class="forum-list-flat-item-num">({{panel.board_list[index+1].td_posts_num}})</view>
                         </view>
-                        
+
                     </view>
                 </block>
             </block>
