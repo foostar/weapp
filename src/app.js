@@ -120,6 +120,9 @@ App({
                     v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
                     v.last_reply_date = util.formatTime(v.last_reply_date)
                     v.subject = util.formateText(v.subject)
+                    let faceResult = util.infoToFace(v.subject)
+                    v.hasFace = faceResult.hasFace
+                    v.subject = faceResult.data
                 })
                 return data
             })
@@ -187,6 +190,22 @@ App({
         const data = JSON.stringify(param)
         wx.navigateTo({
             url: `/pages/blank/blank?type=createforum&data=${data}`
+        })
+    },
+    showTopic(param) {
+        const { eventKey, id, title } = param
+        let module = {
+            componentList: [],
+            extParams: {
+                forumId: id
+            },
+            title,
+            style: 'flat',
+            id: eventKey,
+            type: 'topiclistComplex'
+        }
+        wx.navigateTo({
+            url: `/pages/blank/blank?data=${JSON.stringify(module)}`
         })
     },
     getSystemInfo() {

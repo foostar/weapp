@@ -1,5 +1,4 @@
 const ListComponent = require('../../lib/listcomponent')
-const util = require('../../utils/util.js')
 
 const app = getApp()
 function TopiclistSimple(key, module) {
@@ -44,23 +43,17 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
         page: param.page,
         sortby: param.orderby || 'all'
     }).then((data) => {
-        data.list = data.list.map((v) => {
-            v.last_reply_date = util.formatTime(v.last_reply_date)
-            v.subject = util.formateText(v.subject)
-            let faceResult = util.infoToFace(v.subject)
-            v.hasFace = faceResult.hasFace
-            v.subject = faceResult.data
-            return v
-        })
         data.list = list.concat(data.list)
         if (data.page == 1) {
             this.setData({
                 topTopicList: data.topTopicList
             })
         }
+        let appIcon = (data.forumInfo && data.forumInfo.icon) || app.globalData.loadSrc
         this.setData({
             resources: data,
             isLoading: false,
+            appIcon,
             over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
     }, (err) => {
@@ -69,21 +62,22 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
 }
 
 TopiclistSimple.prototype.focusForum = function (e) {
-    const self = this
+    if (!e.target.dataset.role) return
+    if (!app.isLogin()) return
     const boardId = e.target.dataset.id
     if (e.target.dataset.focus == 1) {
         return app.api.userfavorite(boardId, { action: 'delfavorite', idType: 'fid' }).then(() => {
-            var resources = self.data.resources
+            var resources = this.data.resources
             resources.forumInfo.is_focus = 0
-            self.setData({
+            this.setData({
                 resources
             })
         })
     }
     app.api.userfavorite(boardId, { action: 'favorite', idType: 'fid' }).then(() => {
-        var resources = self.data.resources
+        var resources = this.data.resources
         resources.forumInfo.is_focus = 1
-        self.setData({
+        this.setData({
             resources
         })
     })

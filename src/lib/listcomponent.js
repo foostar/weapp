@@ -1,5 +1,6 @@
 const Component = require('./component')
 
+var app = getApp()
 function ListComponent(key) {
     Component.call(this, key)
     this.pageIndex = 0
@@ -14,6 +15,11 @@ ListComponent.prototype.constructor = ListComponent
 
 ListComponent.prototype.onLoad = function () {
     this.nextPage()
+    app.event.on('login', () => {
+        this.pageIndex = 0
+        this.isFetching = false
+        this.nextPage()
+    })
 }
 
 ListComponent.prototype.nextPage = function () {

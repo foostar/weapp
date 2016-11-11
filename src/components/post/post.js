@@ -12,6 +12,7 @@ function Post(key) {
         isLoading: false,
         over: false,
         isFetching: false,
+        iconsrc: app.globalData.iconSrc,
         isCommenting: true,
         actionSheetHidden: true
     }

@@ -8,7 +8,7 @@
             <view class="foruminfo-meta font-mini">主题：{{resources.forumInfo ? resources.forumInfo.posts_total_num : 0 }}  <text>今日：{{resources.forumInfo ? resources.forumInfo.td_posts_num : 0}}</text></view>
             <view class="foruminfo-des font-mini">{{resources.forumInfo ? resources.forumInfo.description : ''}}</view>
         </view>
-        <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}"  bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}" data-id="{{resources.forumInfo.id}}" data-focus="{{resources.forumInfo.is_focus}}">{{resources.forumInfo && resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
+        <view class="foruminfo-handler font-mini {{resources.forumInfo.is_focus == 1 ? '' : 'bg-color'}}" data-role="focus" data-id="{{resources.forumInfo.id}}" data-focus="{{resources.forumInfo.is_focus}}">{{resources.forumInfo && resources.forumInfo.is_focus == 1 ? '已关注' : '关注'  }}</view>
     </view>
     <view wx:elif="{{resources.forumInfo}}" class="forum-info-container">
         <view class="foruminfo-icon">

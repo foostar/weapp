@@ -148,4 +148,12 @@ ForumlistSplit.prototype.unFocus = function (boardId) {
         })
     })
 }
+/*
+ *   @查看borad
+ */
+ForumlistSplit.prototype.checkBoard = function (e) {
+    if (!e.target.dataset.role) {
+        app.showTopic(e.currentTarget.dataset)
+    }
+}
 module.exports = ForumlistSplit

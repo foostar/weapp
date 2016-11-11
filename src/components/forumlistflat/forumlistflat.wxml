@@ -4,7 +4,7 @@
         <text>{{item.board_category_name}}</text>
     </view>
     <view class="community-block-warp">
-        <view wx:for="{{item.board_list}}" wx:key="{{index}}" bindtap="forumlistflat_navigator" data-event-key="{{key}}" data-url="{{item.url}}" class="community-block {{index % 2  ? '' : 'border-right'}}">
+        <view wx:for="{{item.board_list}}" wx:key="{{index}}" bindtap="forumlistflat_navigator" data-event-key="{{key}}" data-id="{{item.board_id}}" data-title="{{item.board_name}}" class="community-block {{index % 2  ? '' : 'border-right'}}">
             <image wx:if="{{item.board_img}}" class="community-icon" src="{{item.board_img}}" />
             <view class="community-content">
                 <view class="community-block-title">
