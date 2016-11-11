@@ -3,6 +3,7 @@ const TouchComponent = require('../../lib/touchcomponent')
 function LayoutColText(key, module) {
     TouchComponent.call(this, key, module)
     this.data = {
+        style: module.style,
         componentList: module.componentList
     }
 }

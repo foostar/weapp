@@ -1,111 +1,72 @@
 .layout3col {
-    width: 100%;
+    display: flex;
     flex-direction: row;
-    display: flex;
-    background: #fff;
 }
+
 .layout-3-col-item {
-    flex: 1;
+    margin-left: 24rpx;
     display: flex;
+    flex-direction: column;
 }
-.layout-3-col-item image {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.layoutThreeCol_Super_Low.textOverlapUp_Video:after, .layoutThreeCol_Super_Low.textOverlapDown_Video:after {
-    width: 54rpx;
-    height: 54rpx;
-    margin-left: -27rpx;
-    margin-top: -27rpx;
-}
-
-/* 圆 */
-.layout-3-col-item.circle {
-    display: block;
-}
-.layout-3-col-item.circle image {
-    height: 61.5%;
-    margin: 0 auto;
-}
-
-/* 默认 */
-.layoutdefault .layout-3-col-item {
-    margin: 10rpx;
-}
-.layoutdefault .layout-3-col-item.layoutThreeCol_High {
-    height: 291.304348rpx;
-}
-.layoutdefault .layout-3-col-item.layoutThreeCol_Mid {
-    height: 223.333331rpx;   
-}
-.layoutdefault .layout-3-col-item.layoutThreeCol_Low {
-    height: 167.5rpx;
-}
-.layoutdefault .layout-3-col-item.layoutThreeCol_Super_Low {
-    height: 82.5362347rpx;
-}
-.layoutdefault .layout-3-col-item.layoutThreeCol_Mid.circle image {
-    width: 137.349998rpx;
-}
-.layoutdefault .layout-3-col-item.layoutThreeCol_Low.circle image {
-    width: 103.0125rpx;
-}
-.layoutdefault .layout-3-col-item.layoutThreeCol_Super_Low.circle image {
-    width: 50.7597843rpx;
-}
-/* 图片墙风格 */
 .layoutimage .layout-3-col-item {
-    margin: 5rpx;
-}
-.layoutimage .layout-3-col-item.layoutThreeCol_High {
-    height: 308.695651rpx;
-}
-.layoutimage .layout-3-col-item.layoutThreeCol_Mid {
-    height: 236.666665rpx;   
-}
-.layoutimage .layout-3-col-item.layoutThreeCol_Low {
-    height: 177.499999rpx;
-}
-.layoutimage .layout-3-col-item.layoutThreeCol_Super_Low {
-    height: 87.4637678rpx;
-}
-.layoutimage .layout-3-col-item.layoutThreeCol_Mid.circle image {
-    width: 189.847825rpx;
-}
-.layoutimage .layout-3-col-item.layoutThreeCol_Low.circle image {
-    width: 109.162499rpx;
-}
-.layoutimage .layout-3-col-item.layoutThreeCol_Super_Low.circle image {
-    width: 53.7902172rpx;
-}
-/* 线性 */
-.layoutline .layout-3-col-item.layoutThreeCol_High {
-    height: 326.086956rpx;
-}
-.layoutline .layout-3-col-item.layoutThreeCol_Mid {
-    height: 250rpx;   
-}
-.layoutline .layout-3-col-item.layoutThreeCol_Low {
-    height: 187.499999rpx;
-}
-.layoutline .layout-3-col-item.layoutThreeCol_Super_Low {
-    height: 92.3913042rpx;
+    margin-left: 10rpx;
 }
 .layoutline .layout-3-col-item {
-    border-bottom: 1px #ccc solid;
-    border-right: 1px #ccc solid;
+    margin-left: 0;
 }
-.layoutline .layout-3-col-item:last-child {
-    border-right: 0px;
+
+
+.layout-3-col-item.layoutThreeCol_High {
+    width: 221rpx;
+    height: 287rpx;
 }
-.layoutline .layout-3-col-item.layoutThreeCol_Mid.circle image {
-    width: 159.8126rpx;
+.layoutimage .layout-3-col-item.layoutThreeCol_High {
+    width: 237rpx;
+    height: 238rpx;
 }
-.layoutline .layout-3-col-item.layoutThreeCol_Low.circle image {
-    width: 115.3126rpx;
+.layoutline .layout-3-col-item.layoutThreeCol_High {
+    width: 250rpx;
+    height: 319rpx;
 }
-.layoutline .layout-3-col-item.layoutThreeCol_Super_Low.circle image {
-    width: 56.7188rpx;
+
+
+.layout-3-col-item.layoutThreeCol_Mid {
+    width: 221rpx;
+    height: 222rpx;
+}
+.layoutimage .layout-3-col-item.layoutThreeCol_Mid {
+    width: 237rpx;
+    height: 238rpx;
+}
+.layoutline .layout-3-col-item.layoutThreeCol_Mid {
+    width: 250rpx;
+    height: 251rpx;
+}
+
+
+.layout-3-col-item.layoutThreeCol_Low {
+    width: 221rpx;
+    height: 155rpx;
+}
+.layoutimage .layout-3-col-item.layoutThreeCol_Low {
+    width: 237rpx;
+    height: 167rpx;
+}
+.layoutline .layout-3-col-item.layoutThreeCol_Low {
+    width: 250rpx;
+    height: 188rpx;
+}
+
+
+.layout-3-col-item.layoutThreeCol_Super_Low {
+    width: 221rpx;
+    height: 86rpx;
+}
+.layoutimage .layout-3-col-item.layoutThreeCol_Super_Low {
+    width: 237rpx;
+    height: 98rpx;
+}
+.layoutline .layout-3-col-item.layoutThreeCol_Super_Low {
+    width: 250rpx;
+    height: 118rpx;
 }

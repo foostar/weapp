@@ -143,14 +143,6 @@ view, text {
 .textImage {
     background-color: #fff;
 }
-.textImage text {
-    display: block;
-    font-size: 26rpx;
-    text-align: center;
-    width: 100%;
-    height: 44rpx;
-    line-height: 44rpx;
-}
 /* 文字覆盖在下 */
 .textOverlapDown {
     position: relative;
@@ -162,19 +154,6 @@ view, text {
 /* 视频_文字覆盖在下 */
 .textOverlapDown_Video {
     position: relative;
-}
-.textOverlapDown text, .textOverlapUp_Video text, .textOverlapDown_Video text, .circle text {
-    position: absolute;
-    width: 100%;
-    font-size: 26rpx;
-    text-align: center;
-    left: 0;
-    right: 0;
-    height: 44rpx;
-    line-height: 44rpx;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
 }
 .textOverlapDown text, .textOverlapUp_Video text, .textOverlapDown_Video text {
     background-color: rgba(0,0,0,0.2);
@@ -199,12 +178,4 @@ view, text {
     margin-left: -45rpx;
     margin-top: -45rpx;
     background-size: cover;
-}
-/* 圆形 */
-.circle {
-    position: relative;
-    display: block;
-}
-.circle image {
-    border-radius: 3000rpx;
 }

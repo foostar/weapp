@@ -2,6 +2,7 @@ const TouchComponent = require('../../lib/touchcomponent')
 
 function Layout1Col(key, module) {
     TouchComponent.call(this, key, module)
+    console.log(module)
     this.data = {
         style: module.style,
         list: module.componentList

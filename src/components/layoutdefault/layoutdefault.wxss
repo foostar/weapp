@@ -1,4 +1,76 @@
+.layout-title {
+    height: 66rpx;
+    line-height: 66rpx;
+    border-bottom: 1rpx solid #D0D0D0;
+    padding: 0 36rpx;
+    position: relative;
+    font-size: 32rpx;
+}
+
+.layout-title:before {
+    content: '';
+    position: absolute;
+    width: 15rpx;
+    left: 10rpx;
+    top: 17rpx;
+    bottom: 17rpx;
+    background: #52911C;
+}
+
+.layout-row image {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+/* 上图下文 */
+.textImage text {
+    display: flex;
+    height: 95rpx;
+    line-height: 90rpx;
+    font-size: 30rpx
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* 文字覆盖图片 */
+.textOverlapDown text {
+    bottom: 0;
+}
+
+/* TODO:; */
+/* 文字视频 上 */
+.textOverlapUp_Video text {
+    top: 0;
+}
+/* 文字视频 下 */
+.textOverlapDown_Video text {
+    bottom: 0;
+}
+
+.textOverlapDown text, .textOverlapUp_Video text, .textOverlapDown_Video text {
+    position: absolute;
+    width: 100%;
+    font-size: 26rpx;
+    left: 0;
+    right: 0;
+    height: 40rpx;
+    line-height: 40rpx;
+    padding: 2rpx;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+
 .layoutdefault {
-    padding: 10rpx;
     background-color: #fff;
+    margin-bottom: 20rpx;
+    overflow: hidden;
+    border-bottom: 1rpx solid #D0D0D0;
+}
+.layoutdefault .layout-row {
+    margin: 16rpx 0;
 }

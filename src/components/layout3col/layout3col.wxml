@@ -1,6 +1,6 @@
-<view class="layout3col">
+<view class="layout3col layout-row">
     <view class="layout-3-col-item {{style}} {{item.iconStyle}}" bindtap="layout3col_touch" data-index="{{ index }}" data-event-key="{{key}}" wx:for="{{componentList}}">
-        <image mode="{{item.iconStyle == 'circle' ? 'aspectFill' : 'aspectFit' }}" src="{{item.icon}}"></image>
+        <image mode="aspectFill" src="{{item.icon}}"></image>
         <text>{{ item.desc }}</text>
     </view>
 </view>
