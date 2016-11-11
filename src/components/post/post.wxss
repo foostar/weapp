@@ -52,9 +52,9 @@
     bottom:-18rpx
 }
 .post-hits{
-    padding-left: 35rpx;
-    line-height:35rpx;
-    height:35rpx;
+    padding-left: 40rpx;
+    line-height: 35rpx;
+    height: 35rpx;
     background-size: 28rpx auto;
 }
 .post-manage{
@@ -70,13 +70,14 @@
 /* zanlist-block */
 .zanlist-wrapper{
     background: #FFF;
-    padding: 20rpx;
-    margin-bottom: 20rpx;
 }
 .zanlist-btn {
     font-size: 28rpx;
     display: inline-block;
-    padding: 0 10rpx;
+    padding: 0 10rpx 0 40rpx;
+    background-repeat: no-repeat;
+    background-size: auto 70%;
+    background-position: center left;
 }
 .zanlist {
     line-height: 40rpx;
@@ -232,6 +233,8 @@
 }
 
 .hits-number {
+    background-repeat: no-repeat;
+    background-size: auto 90%;
     font-size: 28rpx;
     color: #6E6E6E;
 }
@@ -289,18 +292,18 @@
     line-height: 70rpx;
     box-sizing: border-box;
 }
-.post-footer button{
-    float:right;
+.post-footer button {
+    float: right;
     height: 70rpx;
     width: 140rpx;
-    border:none;
+    border: none;
     line-height: 70rpx;
     top: -70rpx;
 }
-.post-form{
+.post-form {
     display:block
 }
-.post-mask{
+.post-mask {
     width:100%;
     height:100%;
     position:fixed;
@@ -315,12 +318,14 @@
     height: 60rpx;
     border: 1rpx solid #D0D0D0;
     border-radius: 50%;
-    background: #fff;
+    background-color: #fff;
     margin: 4rpx 0 4rpx 20rpx;
     box-sizing: border-box;
+    background-position: center;
 }
 .post-mark-meta-like{
-    background-size:58rpx auto;
+    background-size: 60%;
+    background-repeat: no-repeat;
 }
 .liked{
     

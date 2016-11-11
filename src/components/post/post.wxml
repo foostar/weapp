@@ -97,13 +97,13 @@
             </block> -->
             <!-- <view class="hits-number">浏览{{topic.hits}}人</view> -->
             <view class="topic-comment-info">
-                <view class="post-hits hits-number">浏览{{topic.hits}}人</view>
+                <view class="post-hits hits-number" style="background-image: url({{iconsrc}}dz_list_circle_pv.png)">浏览{{topic.hits}}人</view>
                 <view class="post-manage" data-id="{{topic.topic_id}}" data-role="topic" bindtap="post_actionSheetTap" data-event-key="{{key}}"></view>
             </view>
         </view>
 
         <view wx:if="{{topic.zanList.length > 0}}" class="zanlist-wrapper post-card font-mini">
-            <text class="zanlist-btn">{{topic.zanList.length}} 人</text>
+            <text class="zanlist-btn" style="background-image: url({{iconsrc}}dz_posts_goodjob.png)">{{topic.zanList.length}} 人</text>
             <block wx:for="{{topic.zanList}}" wx:key="{{index}}">
                 <text class="zanlist">{{item.username}}</text>
                 <text wx:if="{{index < topic.zanList.length-1}}">，</text>
@@ -173,8 +173,8 @@
                 <view class="post-mark-comments color-gray">{{list.length}}条评论</view>
             </view>
             <view class="post-mark-meta">
-                <view data-like="{{topic.isLike}}" data-id="{{topic.topic_id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-like {{topic.isLike ? 'liked' : ''}}"></view>
-                <view data-collet="{{topic.is_favor}}" data-id="{{topic.topic_id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-collet {{topic.is_favor ? 'colleted' : ''}}"></view>
+                <view style="background-image: url({{iconsrc}}dz_posts_goodjob.png);" data-like="{{topic.isLike}}" data-id="{{topic.topic_id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-like {{topic.isLike ? 'liked' : ''}}"></view>
+                <view style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_n.png)" data-collet="{{topic.is_favor}}" data-id="{{topic.topic_id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-collet {{topic.is_favor ? 'colleted' : ''}}"></view>
             </view>
         </view>
         <form wx:else bindsubmit="post_formSubmit" data-event-key="{{key}}" bindreset="post_formReset" class="post-footer post-form">
