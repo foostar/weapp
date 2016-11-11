@@ -4,7 +4,6 @@
         <view class="customtag-item font-wide text-color {{ item.id == selected ? 'active' : ''}}" data-role="tag" bindtap="customtagnav_changeTap" data-event-key="{{key}}" data-index="{{index}}" data-id="{{item.id}}">{{item.title}}</view>
     </block>
 </scroll-view>
-
 <scroll-view bindscrolltolower="customtagnav_scrollToLower" data-event-key="{{key}}" scroll-y class="customtag-content">
     <template is="{{children[selected].template}}" data="{{...children[selected]}}" />
 </scroll-view>
