@@ -61,7 +61,6 @@ Discover.prototype.onLoad = function () {
 Discover.prototype.toLogin = function () {
     if (!this.data.isLogin) {
         wx.navigateTo({
-            // url: '/pages/regular-pages/login/login'
             url: '/pages/blank/blank?type=login'
         })
     }

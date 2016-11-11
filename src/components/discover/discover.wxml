@@ -41,7 +41,6 @@
                 <text class="personal-manage-item-title">我的收藏</text>
                 <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view>
-            <!-- <navigator url="/pages/regular-pages/create-forum/create-forum?fid=123&actType=new&isTopic=true&ti_id=123"> -->
             <navigator url="/pages/blank/blank?type=createforum">
                 <view class="personal-manage-item" wx:if="{{true}}">
                     <image class="icon icon-info"></image>

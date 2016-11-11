@@ -1,5 +1,4 @@
-/* eslint-disable */
-const Component = require('../../lib/component')
+const ListComponent = require('../../lib/listcomponent')
 const util = require('../../utils/util.js')
 
 const app = getApp()
@@ -9,7 +8,7 @@ function Topic(key, module) {
     if (module.data) {
         this.papeData = module.data
     }
-    Component.call(this, key)
+    ListComponent.call(this, key)
     this.data = {
         id: '',
         tpcinfo: {},
@@ -26,7 +25,7 @@ function Topic(key, module) {
         tabs: [ '最新', '最热' ]
     }
 }
-Topic.prototype = Object.create(Component.prototype)
+Topic.prototype = Object.create(ListComponent.prototype)
 Topic.prototype.name = 'topic'
 Topic.prototype.constructor = Topic
 
@@ -40,14 +39,15 @@ Topic.prototype.onLoad = function () {
 
 Topic.prototype.fetchData = function () {
     // NEW HOT
+    /* eslint-disable */
     const ti_id = this.papeData.id
+    /* eslint-enable */
     Promise
         .all([
             app.api.topicdtl({ ti_id, orderby: 'NEW' }),
             app.api.topicdtl({ ti_id, orderby: 'HOT' })
         ])
         .then(([ resultByNew, resultByHot ]) => {
-            console.log('=>>>>>>>', resultByNew, resultByHot)
             resultByNew.list = resultByNew.list.map(v => {
                 v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
                 v.last_reply_date = util.formatTime(v.last_reply_date)

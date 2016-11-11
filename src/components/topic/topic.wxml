@@ -1,5 +1,3 @@
-<!-- <import src="/components/buttons-tab/buttons-tab.wxml"/> -->
-<!-- <import src="/components/layout/layout.wxml"/> -->
 
 <viwe class="tpcinfo-main">
     <!-- card -->
@@ -41,5 +39,25 @@
         </view>
     </view>
 
-    
+
+    <view class="forum-tabs">
+        <view class="forum-tabs-title-warp-placeholder">
+            <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
+                <text bindtap="topic_changeTabs" data-sort="new" data-event-key="{{key}}" data-index="{{1}}" class="forum-tabs-title text-color">最新</text>
+                <text bindtap="topic_changeTabs" data-sort="marrow" data-event-key="{{key}}" data-index="{{2}}" class="forum-tabs-title text-color">最热</text>
+                <view class="forum-tabs-indicator bg-color" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
+            </view>
+        </view>
+        <block wx:for="{{resources.list}}" wx:key="{{index}}">
+            <view bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
+                <template is="{{module.style}}" data="{{...item, iconSrc}}" />
+            </view>
+        </block>
+    </view>
+    <view class="forum-edit-btn bg-color" style="background:url({{iconSrc}}dz_list_go_top.png) no-repeat center center #fa460a;background-size:56rpx;" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>
+    <!-- 加载中 -->
+    <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
+    <!-- 没有了 -->
+    <view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>
+
 </viwe>
