@@ -3,7 +3,7 @@ const { dateFormat } = require('../../utils/util')
 
 const app = getApp()
 
-function ForumlistCard(key) {
+function ForumlistFlat(key) {
     Component.call(this, key)
     app.api.forumList().then((res) => { // 获取用户的主配置信息
         const { list } = res
@@ -17,13 +17,13 @@ function ForumlistCard(key) {
     })
 }
 
-ForumlistCard.prototype = Object.create(Component.prototype)
-ForumlistCard.prototype.name = 'forumlistcard'
-ForumlistCard.prototype.constructor = ForumlistCard
+ForumlistFlat.prototype = Object.create(Component.prototype)
+ForumlistFlat.prototype.name = 'forumlistflat'
+ForumlistFlat.prototype.constructor = ForumlistFlat
 
-ForumlistCard.prototype.navigator = function (e) {
+ForumlistFlat.prototype.navigator = function (e) {
     const { url } = e.currentTarget.dataset
     wx.navigateTo({ url })
 }
 
-module.exports = ForumlistCard
+module.exports = ForumlistFlat

@@ -37,19 +37,19 @@ Page(createPage({
             }
         } else {
             module = data.data
-            // 检测是否支持当前版块
-            pagetype.forEach((v) => {
-                if (v.type == module.type && !v.isAchieve) {
-                    module = {
-                        componentList: [],
-                        extParams: {},
-                        title: '出错了！',
-                        style: 'support',
-                        type: 'not'
-                    }
-                }
-            })
         }
+        // 检测是否支持当前版块
+        pagetype.forEach((v) => {
+            if (v.type == module.type && !v.isAchieve) {
+                module = {
+                    componentList: [],
+                    extParams: {},
+                    title: '出错了！',
+                    style: 'support',
+                    type: 'not'
+                }
+            }
+        })
         // 加载module
         this.add(new Viewer('viewer', module))
     },

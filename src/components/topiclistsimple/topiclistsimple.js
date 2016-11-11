@@ -1,5 +1,4 @@
 const ListComponent = require('../../lib/listcomponent')
-const util = require('../../utils/util.js')
 
 const app = getApp()
 function TopiclistSimple(key, module) {
@@ -44,14 +43,6 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
         page: param.page,
         sortby: param.orderby || 'all'
     }).then((data) => {
-        data.list = data.list.map((v) => {
-            v.last_reply_date = util.formatTime(v.last_reply_date)
-            v.subject = util.formateText(v.subject)
-            let faceResult = util.infoToFace(v.subject)
-            v.hasFace = faceResult.hasFace
-            v.subject = faceResult.data
-            return v
-        })
         data.list = list.concat(data.list)
         if (data.page == 1) {
             this.setData({

@@ -1,47 +1,79 @@
-.community-section-title {
-    font-size: 30rpx;
+.forum-list-card-panel {    
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #d9d9d9;
+    overflow: hidden;
+}
+.forum-list-card-title {
     text-align: center;
-    width: 100%;
-    padding: 14rpx 0;
-    line-height: 1.5;
+    background-color: #ededed;
+    color: #2e2e2e;
+    font-size: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+
 }
-.community-block-warp {
+.forum-list-card-items {
+    overflow: hidden;
     background-color: #fff;
-    display: flex;
-    flex-wrap: wrap;
 }
-.community-block {
-    border-top: 1px solid #ccc;
+.forum-list-card-item {
+    border-top: 1px solid #d9d9d9;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+}
+.forum-list-card-item-panel {
+    height: 60px;
+    overflow: hidden;
+    position: relative;
     width: 50%;
-    box-sizing: border-box;
-    display: flex;
-    font-size: 26rpx;
-    line-height: 1.5;
-    padding: 24rpx 10rpx 24rpx 16rpx;
-}
-.border-right {
-    border-right: 1px solid #ccc;
+    float: left;
 }
 
-.community-icon {
-    margin-right: 20rpx;
-    width: 75rpx;
-    height: 75rpx;
-}
-.community-content {
-    flex: 1;
-}
-.community-block-title {
-    /*margin-bottom: 20rpx;*/
-}
-.community-block-small {
-    color: #ccc;
-    font-size: 24rpx;
-    transform-origin: 0 50%;
+.forum-list-card-border-right {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    left:50%;
 }
 
-.community-count {
-    float: right;
-    font-size: 24rpx;
+.forum-list-card-item-icon {
+    background-size: cover;
+    background-position: 50%;
+    border-radius: 5px;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 12px 8px;
+    float: left;
+}
+.forum-list-card-item-info {
+    vertical-align: middle;
+    width: 100%;
+    padding-right: 36px;
+    padding: 12px 36px 12px 8px;
+}
+.forum-list-card-item-info-title {
+    font-size: 13px;
+    color: #4d4d4d;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.forum-list-card-item-info-time {
+    color: #d4d4d4;
+    margin-right: -36px;
+    font-size: 12px;
+    line-height: 20px;
+}
+.forum-list-card-item-num {
+    position: absolute;
     color: #0091fd;
+    top: 10rpx;
+    right: 20rpx;
+    font-size: 12px;
 }

@@ -2,6 +2,16 @@
     background-color: #EFEFF4;
     height:100%;
 }
+.post-container {
+    position: absolute;
+    top: 0;
+    bottom: 100rpx;
+}
+.post-card {
+    padding: 20rpx 30rpx;
+    margin-bottom: 20rpx;
+}
+
 .face,.post-comment-content .face{
     display:inline-block;
     width:40rpx;
@@ -23,22 +33,28 @@
     top:0
 }
 .post-comment-quote{
-    color:#333;
-    background:#ddd;
-    margin-top:20rpx;
-    margin-bottom:25rpx;
-    padding:5rpx 15rpx;
-    border-radius:5px;
-    position:relative;
-    line-height:50rpx;
+    color: #333;
+    background: #F0F0F0;
+    margin-top: 20rpx;
+    margin-bottom: 25rpx;
+    padding: 5rpx 15rpx;
+    border-radius: 5px;
+    position: relative;
+    line-height: 50rpx;
 }
-.triangle-bottom {width:0;height:0;border-left:20rpx solid transparent;border-top:20rpx solid #ddd;border-right:20rpx solid transparent;position:absolute;bottom:-18rpx}
+.triangle-bottom {
+    width:0;
+    height:0;
+    border-left:20rpx solid transparent;
+    border-top:20rpx solid #F0F0F0;
+    border-right:20rpx solid transparent;
+    position:absolute;
+    bottom:-18rpx
+}
 .post-hits{
-    padding-left: 35rpx;
-    line-height:35rpx;
-    height:35rpx;
-    margin-top:10rpx;
-    
+    padding-left: 40rpx;
+    line-height: 35rpx;
+    height: 35rpx;
     background-size: 28rpx auto;
 }
 .post-manage{
@@ -47,23 +63,31 @@
     
     background-size:cover;
 }
-.focus{
-    width:150rpx;
-    height:45rpx;
-    line-height:45rpx;
-    color:#343434;
-    border:2px solid currentColor;
-    text-align:center;
-    margin-top:45rpx;
-    margin-right:30rpx;
+
+
+
+
+/* zanlist-block */
+.zanlist-wrapper{
+    background: #FFF;
 }
-.zanList-wrapper{
-    margin-top:20rpx;
-    display:flex;
-    align-item:flex-start;
-    background:#f2f2f2;
-    padding:10rpx 15rpx 8rpx;
+.zanlist-btn {
+    font-size: 28rpx;
+    display: inline-block;
+    padding: 0 10rpx 0 40rpx;
+    background-repeat: no-repeat;
+    background-size: auto 70%;
+    background-position: center left;
 }
+.zanlist {
+    line-height: 40rpx;
+    font-size: 28rpx;
+    color: #3c83ba;
+}
+
+
+
+
 .reply-recommendAdd{
     padding-left:35rpx;
     
@@ -100,21 +124,34 @@
     border-right:1px solid #fff;
 }
 .post-meta-wrapper{
-    display:flex;
-    justify-content:space-between;
-    background:#fff;
+    background: #fff;
+    margin-bottom: 0;
+    position: relative;
+}
+.focus {
+    padding: 8rpx 10rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #343434;
+    border: 1px solid currentColor;
+    margin-top: 15rpx;
+    margin-right: 10rpx;
+    border-radius: 8rpx;
+    position: absolute;
+    top: 20rpx;
+    right: 20rpx;
 }
 .post-title {
     line-height: 80rpx;
-    font-size: 46rpx;
-    padding: 24rpx 20rpx 10rpx;
+    font-size: 42rpx;
+    padding: 22rpx 20rpx;
     border-bottom: 1px solid #DDD;
     background: #FFF;
 }
 .post-meta {
     height: 88rpx;
-    padding: 20rpx;
     background: #FFF;
+    margin-right: 100rpx;
 }
 .post-user-avatar {
     display: block;
@@ -138,9 +175,8 @@
     font-size: 30rpx;
     color: #6C6C6C;
 }
-.post-info-wapper{
-    display:flex;
-    justify-content: space-between;
+.post-info-wapper {
+    margin-left: 90rpx;
 }
 .post-level-tag {
     float: left;
@@ -151,7 +187,7 @@
     border-radius: 6rpx;
     font-size: 24rpx;
     border: 1px solid #000;
-    transform: scale(.6);
+    transform: scale(.7);
     transform-origin: 0 50%;
     overflow: hidden;
 }
@@ -164,9 +200,7 @@
 .post-level-text {
     padding: 0 10rpx;
 }
-.post-warpper{
-    flex:1;
-    margin-left:20rpx;
+.post-warpper {
 }
 .post-info-ext {
     height: 40rpx;
@@ -180,9 +214,8 @@
 }
 
 .post-content {
-    padding: 20rpx 28rpx 20rpx;
     background: #FFF;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .post-content-large{
@@ -200,6 +233,8 @@
 }
 
 .hits-number {
+    background-repeat: no-repeat;
+    background-size: auto 90%;
     font-size: 28rpx;
     color: #6E6E6E;
 }
@@ -213,55 +248,62 @@
     text-align: right;
 }
 .post-comments {
-    margin-bottom: 80rpx;
     background: #FFF;
 }
-.post-footer-wrapper{
-    width:100%;
-    padding:12.5rpx 30rpx;
-    height:80rpx;
+
+
+
+
+
+
+.post-footer-wrapper {
+    width: 100%;
     box-sizing: border-box;
-    background:#f2f2f2;
-    position:fixed;
-    left:0;
-    bottom:0;
-    z-index:20;
-    border-top: 2px solid #DDD;
+    background: #FFF;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+    height: 100rpx;
+    padding: 15rpx 20rpx;
+    border-top: 1rpx solid #D0D0D0;
 }
-.post-footer{
-    display:flex;
+.post-footer {
+    display: flex;
     justify-content: space-between;
 }
-.post-mark{
-    width:500rpx;
-    height:55rpx;
+.post-mark {
+    width: 550rpx;
+    height: 70rpx;
+    line-height: 70rpx;
     display:flex;
     justify-content: space-between;
-    padding:0 20rpx;
-    border:1px solid #ddd;
-    line-height:60rpx;
-    border-radius: 5px;
+    padding: 0 20rpx;
+    border: 1px solid #D0D0D0;
+    border-radius: 10rpx;
     box-sizing: border-box;
 }
 .post-footer input{
-    border:1px solid #ddd;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    width:500rpx;
-    height:55rpx;
-    line-height:60rpx;
+    width: 500rpx;
+    height: 70rpx;
+    padding: 0 20rpx;
+    line-height: 70rpx;
     box-sizing: border-box;
 }
-.post-footer button{
-    float:right;
-    height:55rpx;
-    border:none;
-    line-height:58rpx;
-    top:-55rpx;
+.post-footer button {
+    float: right;
+    height: 70rpx;
+    width: 140rpx;
+    border: none;
+    line-height: 70rpx;
+    top: -70rpx;
 }
-.post-form{
+.post-form {
     display:block
 }
-.post-mask{
+.post-mask {
     width:100%;
     height:100%;
     position:fixed;
@@ -272,16 +314,18 @@
     display:flex;
 }
 .post-mark-meta-item{
-    width:58rpx;
-    height:55rpx;
-    border:1px solid #ccc;
+    width: 60rpx;
+    height: 60rpx;
+    border: 1rpx solid #D0D0D0;
     border-radius: 50%;
-    background:#fff;
-    margin-right:20rpx;
+    background-color: #fff;
+    margin: 4rpx 0 4rpx 20rpx;
     box-sizing: border-box;
+    background-position: center;
 }
 .post-mark-meta-like{
-    background-size:58rpx auto;
+    background-size: 60%;
+    background-repeat: no-repeat;
 }
 .liked{
     
@@ -297,10 +341,10 @@
 .post-comment-item {
     padding: 20rpx 28rpx;
     border-bottom: 1px solid #DDD;
-    display:flex;
 }
 .post-comment-content {
-    margin-top: 10rpx;
+    margin-top: -20rpx;
+    margin-left: 90rpx;
 }
 .post-comment-content text {
     font-size: 30rpx;
@@ -311,9 +355,9 @@
     margin:20rpx 0;
 }
 .topic-comment-info{
-    display:flex;
-    justify-content:space-between;
-    margin-top:15rpx;
+    display: flex;
+    justify-content: space-between;
+    margin: 30rpx 0 10rpx;
 }
 .post-card-title {
     height: 80rpx;

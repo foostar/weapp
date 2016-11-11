@@ -35,6 +35,8 @@ const LayoutNewsAuto = require('../layoutnewsauto/layoutnewsauto')
 const TopiclistSimple = require('../topiclistsimple/topiclistsimple')
 const TopiclistComplex = require('../topiclistcomplex/topiclistcomplex')
 const ForumlistCard = require('../forumlistcard/forumlistcard')
+const ForumlistFlat = require('../forumlistflat/forumlistflat')
+
 const ForumlistSplit = require('../forumlistsplit/forumlistsplit')
 const Talk = require('../talk/talk')
 const CustomTagNav = require('../customtagnav/customtagnav')
@@ -52,6 +54,7 @@ const Changepassword = require('../changepassword/changepassword')
 const Register = require('../register/register')
 const Myinfo = require('../myinfo/myinfo')
 const UserHome = require('../user-home/user-home')
+const UserList = require('../userlist/userlist')
 
 /*
  *   @定义组件类型
@@ -140,7 +143,12 @@ components.type['newslist-card'] = NewsList
 components.type['newslist-neteaseNews'] = NewsList
 components.type['newslist-imageSudoku'] = NewsList
 components.type['newslist-circle'] = NewsList
-components.type['forumlist-card'] = ForumlistCard
+components.type['newslist-imageBig'] = NewsList
+components.type['newslist-image'] = NewsList // 图片1
+components.type['newslist-image2'] = NewsList // 图片2
+
+components.type['forumlist-flat'] = ForumlistFlat
+components.type['forumlist-card'] = ForumlistCard // 卡片样式
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
 components.type['subnav-flat'] = CustomTagNav
@@ -158,6 +166,8 @@ components.type['changepassword-flat'] = Changepassword  // 修改密码
 components.type['register-flat'] = Register   // 注册页面
 components.type['myinfo-flat'] = Myinfo       // 我的消息
 components.type['userhome-flat'] = UserHome   // 用户主页
+
+components.type['userlist-flat'] = UserList   // 用户列表
 
 // topiclistSimple-flat
 

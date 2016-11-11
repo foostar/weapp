@@ -1,6 +1,6 @@
 <!-- cell-tieba -->
 <template name="tieba">
-    <view class="cell-tieba" bindtap="clickItem" id="{{id}}">
+    <view class="cell-tieba">
         <view class="cell-tieba-header">
             <view>
                 <image class="cell-tieba-header-avatar" src="{{userAvatar}}" />
@@ -34,7 +34,7 @@
 </template>
 <!-- cell-netease -->
 <template name="neteaseNews">
-    <view class="cell-wrapper cell-netease-wrapper cell-container cell-flex-container" bindtap="clickItem" id="{{id}}">
+    <view class="cell-wrapper cell-netease-wrapper cell-container cell-flex-container">
         <view class="cell-netease-content {{imageList.length > 0 ? 'cell-netease-info' : ''}}">
             <view class="cell-netease-title font-wide">{{title}}</view>
             <view class="cell-netease-subject font-normal color-gray">
@@ -49,55 +49,62 @@
     </view>
 </template>
 <!-- cell-flat -->
+<template name="flat-info">
+    <view class="cell-flat-info {{imageList.length < 3 ? 'cell-flat-mini' : ''}}">
+        <text class="cell-flat-info-time">{{last_reply_date}}</text>
+        <text class="cell-flat-info-author">{{user_nick_name}}</text>
+        <text class="hits">{{hits}}阅读</text>
+    </view>
+</template>
+<template name="flat-title">
+    <view class="cell-flat-title">
+        <view wx:if="{{essence == 1}}" class="icon-tag-jing bg-color"></view>
+        <view wx:if="{{top == 1}}" class="icon-tag-ding bg-color"></view>
+        <view wx:if="{{hot == 1}}" class="icon-tag-re bg-color"></view>
+        {{title}}
+    </view>
+</template>
 <template name="flat">
-    <view class="cell-flat" bindtap="clickItem" id="{{id}}">
-        <view class="cell-flat-title {{imageList.length === 1 ? 'cell-flat-mini' : ''}}">
-            <view wx:if="{{essence == 1}}" class="icon-tag-jing bg-color"></view>
-            <view wx:if="{{top == 1}}" class="icon-tag-ding bg-color"></view>
-            <view wx:if="{{hot == 1}}" class="icon-tag-re bg-color"></view>
-            {{title}}
-        </view>
+    <view wx:if="{{imageList.length > 0 && imageList.length < 3}}" class="cell-flat cell-flat-mini">
         <view class="cell-flat-content">
-            <block wx:if="{{imageList.length === 1}}">
-                <view class="cell-flat-thumb-container-1">
-                    <image src="{{imageList[ 0 ]}}" mode="aspectFill"></image>
-                </view>
-                <view wx:if="{{hasFace}}" class="cell-flat-content-subject-1">
-                    <block wx:for="{{subject}}" wx:key="{{index}}">
-                        <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
-                        <image wx:else src="{{item.content}}" class="face" />
-                    </block>
-                </view>
-                <view wx:else class="cell-flat-content-subject-1">{{subject}}</view>
-            </block>
-
-            <block wx:elif="{{imageList.length > 1}}}">
-                <view wx:if="{{hasFace}}" class="cell-flat-content-subject">
-                    <block wx:for="{{subject}}" wx:key="{{index}}">
-                        <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
-                        <image wx:else src="{{item.content}}" class="face" />
-                    </block>
-                </view>
-                <view wx:else class="cell-flat-content-subject">{{subject}}</view>
-                <view class="cell-flat-thumb">
-                    <block wx:for="{{imageList}}" wx:key="{{index}}">
-                        <view wx:if="{{index < 3}}" class="cell-flat-thumb-container">
-                            <image src="{{item}}" mode="aspectFill"></image>
-                        </view>
-                    </block>
+            <template is="flat-title" data="{{essence, top, hot, title}}"></template>
+            <view wx:if="{{hasFace}}" class="cell-flat-content-subject">
+                <block wx:for="{{subject}}" wx:key="{{index}}">
+                    <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                    <image wx:else src="{{item.content}}" class="face" />
+                </block>
+            </view>
+            <view wx:else class="cell-flat-content-subject">{{subject}}</view>
+        </view>
+        <view class="cell-flat-thumb-container">
+            <image src="{{imageList[ 0 ]}}" mode="aspectFill"></image>
+        </view>
+        <template is="flat-info" data="{{last_reply_date, user_nick_name, hits}}"></template>
+    </view>
+    <view wx:else class="cell-flat">
+        <template is="flat-title" data="{{essence, top, hot, title}}"></template>
+        <view class="cell-flat-content">
+            <view wx:if="{{hasFace}}" class="cell-flat-content-subject {{imageList.length ? 'subject-oneline' : ''}}">
+                <block wx:for="{{subject}}" wx:key="{{index}}">
+                    <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                    <image wx:else src="{{item.content}}" class="face" />
+                </block>
+            </view>
+            <view wx:else class="cell-flat-content-subject {{imageList.length ? 'subject-oneline' : ''}}">{{subject}}</view>
+        </view>
+        <view class="cell-flat-thumb">
+            <block wx:for="{{imageList}}" wx:key="{{index}}">
+                <view wx:if="{{index < 3}}" class="cell-flat-thumb-container">
+                    <image src="{{item}}" mode="aspectFill"></image>
                 </view>
             </block>
         </view>
-        <view class="cell-flat-info {{imageList.length === 1 ? 'cell-flat-mini' : ''}}">
-            <text class="cell-flat-info-time">{{last_reply_date}}</text>
-            <text class="cell-flat-info-author">{{user_nick_name}}</text>
-            <text class="hits">{{hits}}阅读</text>
-        </view>
+        <template is="flat-info" data="{{last_reply_date, user_nick_name, hits}}"></template>
     </view>
 </template>
 <!-- card -->
 <template name="card">
-    <view class="cell-card" bindtap="clickItem" id="{{id}}">
+    <view class="cell-card">
         <view class="cell-card-header">
             <view class="cell-card-user">
                 <image class="cell-card-header-avatar" src="{{userAvatar}}" />
@@ -140,7 +147,7 @@
 </template>
 <!--imageSudoku-->
 <template name="imageSudoku">
-    <view class="cell-imageSudoku-wrapper" bindtap="clickItem" id="{{id}}">
+    <view class="cell-imageSudoku-wrapper">
         <view class="cell-imageSudoku">
             <image class="cell-imageSudoku-avatar" src="{{userAvatar}}" />
             <view class="cell-imageSudoku-content font-normal">
@@ -183,7 +190,7 @@
 </template>
 <!--circle-->
 <template name="circle">
-    <view class="cell-wrapper" bindtap="clickItem" id="{{id}}">
+    <view class="cell-wrapper">
         <view class="cell-container cell-flex-container">
             <image class="cell-avatar" src="{{userAvatar}}" />
             <view class="cell-circle-content font-normal">
@@ -232,3 +239,59 @@
         </view>
     </view>
 </template>
+<!-- imageBig -->
+<template name="imageBig">
+    <view class="cell-image-box " bindtap="clickItem" id="{{id}}"> 
+        <view class="cell-image-big" style="background-image:url({{pic_path}})">
+            <view class="cell-image-big-cover"></view>
+            <view class="cell-image-big-title-bar">
+                <view class="cell-image-big-title">{{title}}</view>   
+                <view class="cell-image-big-username">{{user_nick_name}}</view> 
+            </view>
+            <view class="cell-image-big-bar">
+                <view class="cell-image-big-time">{{last_reply_date}}</view>
+                <view class="cell-image-big-info">
+                    <view class="cell-image-big-hits">{{hits}}</view>
+                    <view class="cell-image-big-replies">{{replies}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+
+
+<!-- 图片样式1 newslist-image image -->
+<template name="image">
+    <view class="list-image-item" bindtap="clickItem" id="{{id}}">
+        <image src="{{pic_path}}" style="width:{{scale_width}}px; height:{{scale_height}}px;" />
+        <view class="list-image-item-count">{{hits}}</view>
+        <view class="list-image-title">{{title}}</view>
+        <view class="list-image-avatar" style="background-image:url({{userAvatar}});" ></view>
+        <view class="list-image-meta">
+            <view class="list-image-username">{{user_nick_name}}</view>
+            <view class="list-image-date">{{last_reply_date}}</view>
+        </view>
+    </view>
+</template>
+
+<!-- 图片样式2 -->
+<template name="image2">
+    <view class="cell-image-two" style="width:{{image2Size}}px;" bindtap="clickItem" id="{{id}}">
+        <view class="cell-image-two-header">
+            <view class="cell-image-two-avatar" style="background-image:url({{userAvatar}});"></view>
+            <view class="cell-image-two-user">
+                <view class="cell-image-two-username">
+                    {{user_nick_name}}
+                </view>
+                <view class="cell-image-two-time">
+                    {{last_reply_date}}
+                </view>
+            </view>
+        </view>
+        <image src="{{pic_path}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
+        <view class="cell-image-two-footer">
+            <view class="cell-image-two-zan-btn">赞</view>
+        </view>
+    </view>
+</template>
+

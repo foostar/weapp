@@ -2,6 +2,10 @@
     <include src="../forumlistsplit/forumlistsplit.wxml" />
 </template>
 
+<template name="forumlistflat">
+    <include src="../forumlistflat/forumlistflat.wxml" />
+</template>
+
 <template name="forumlistcard">
     <include src="../forumlistcard/forumlistcard.wxml" />
 </template>
@@ -173,6 +177,10 @@
 
 <template name="userhome">
     <include src="../user-home/user-home" />
+</template>
+
+<template name="userlist">
+    <include src="../userlist/userlist" />
 </template>
 
 <template name="module">

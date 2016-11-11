@@ -33,6 +33,7 @@
         </view>
     </view>
 
+
     <view class="personal-manage-card">
         <view class="personal-manage-items">
             <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">
@@ -49,7 +50,6 @@
             </navigator>
             <!-- <navigator url="/pages/regular-pages/create-forum/create-forum?fid=123&actType=new&isTopic=true&ti_id=123"> -->
             <navigator url="/pages/blank/blank?type=createforum">
-
                 <view class="personal-manage-item" wx:if="{{true}}">
                     <image class="icon icon-info"></image>
                     <text class="personal-manage-item-title">发表话题</text>
