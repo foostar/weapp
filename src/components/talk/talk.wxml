@@ -13,22 +13,20 @@
             <view class="topic-list-item-text">您尚未关注任何话题</view>
         </view>
         <block wx:for="{{ mytopic.list }}" wx:key="{{index}}">
-            <!-- <navigator url="/pages/regular-pages/topic/topic?id={{ item.ti_id }}" hover-class="none"> -->
-            <navigator url="/pages/blank/blank?type=topic&data={{id={{ item.ti_id }}}} " hover-class="none">
-                <view class="topic-list-item" wx:if="{{ isLogin }}">
-                    <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
-                    <view class="topic-list-item-info">
-                        <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
-                        <view class="topic-list-item-info-bar">
-                            <text>{{ item.ti_topiccount }}人参加 </text>
-                            <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
-                        </view>
-                    </view>
-                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
-                        <text class="text-white">关注</text>
+            <view class="topic-list-item" wx:if="{{ isLogin }}" bindtap="talk_toNavigator" data-event-key="{{key}}" data-id="{{item.ti_id}}">
+                <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
+                <view class="topic-list-item-info">
+                    <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
+                    <view class="topic-list-item-info-bar">
+                        <text>{{ item.ti_topiccount }}人参加 </text>
+                        <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
                     </view>
                 </view>
-            </navigator>
+                <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
+                    <text class="text-white">关注</text>
+                </view>
+            </view>
+
         </block>
 
     </view>
@@ -38,20 +36,18 @@
             <view class="topic-title" style="color: {{ color }}">推荐</view>
         </view>
         <block wx:for="{{ topic.list }}" wx:key="{{index}}">
-            <view class="topic-list-item">
-                <navigator url="/pages/regular-pages/topic/topic?id={{ item.ti_id }}" hover-class="none">
-                    <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
-                    <view class="topic-list-item-info">
-                        <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
-                        <view class="topic-list-item-info-bar">
-                            <text>{{ item.ti_topiccount }}人参加 </text>
-                            <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
-                        </view>
+            <view class="topic-list-item" bindtap="talk_toNavigator" data-event-key="{{key}}" data-id="{{item.ti_id}}">
+                <view class="topic-list-item-image" style="background-image: url({{ item.ti_cover }})"></view>
+                <view class="topic-list-item-info">
+                    <view class="topic-list-item-info-username">{{ item.ti_title }}</view>
+                    <view class="topic-list-item-info-bar">
+                        <text>{{ item.ti_topiccount }}人参加 </text>
+                        <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
                     </view>
-                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
-                        <text class="text-white">关注</text>
-                    </view>
-                </navigator>
+                </view>
+                <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
+                    <text class="text-white">关注</text>
+                </view>
             </view>
         </block>
     </view>

@@ -53,9 +53,16 @@ Talk.prototype.fetchData = function () {
 Talk.prototype.toLogin = function () {
     if (!this.data.isLogin) {
         wx.navigateTo({
-            url: '/pages/regular-pages/login/login'
+            url: '/pages/blank/blank?type=login'
         })
     }
+}
+// 跳转到话题页
+Talk.prototype.toNavigator = function (e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+        url: `/pages/blank/blank?type=topic&data=${JSON.stringify({ id })}`
+    })
 }
 
 module.exports = Talk
