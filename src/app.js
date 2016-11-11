@@ -192,6 +192,22 @@ App({
             url: `/pages/blank/blank?type=createforum&data=${data}`
         })
     },
+    showTopic(param) {
+        const { eventKey, id, title } = param
+        let module = {
+            componentList: [],
+            extParams: {
+                forumId: id
+            },
+            title,
+            style: 'flat',
+            id: eventKey,
+            type: 'topiclistComplex'
+        }
+        wx.navigateTo({
+            url: `/pages/blank/blank?data=${JSON.stringify(module)}`
+        })
+    },
     getSystemInfo() {
         return new Promise((resolve) => {
             wx.getSystemInfo({

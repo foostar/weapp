@@ -14,7 +14,9 @@
         </view>
     </view>
     <block wx:for="{{resources.list}}" wx:key="{{index}}">
-        <template is="{{module.style}}" data="{{...item, id: item.topic_id}}" />
+        <view bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
+            <template is="{{module.style}}" data="{{...item, iconSrc}}" />
+        </view>
     </block>
 </view>
 <view class="forum-edit-btn bg-color" style="background:url({{iconSrc}}dz_list_go_top.png) no-repeat center center #fa460a;background-size:56rpx;" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>

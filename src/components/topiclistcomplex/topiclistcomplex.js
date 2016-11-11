@@ -51,6 +51,9 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
         this.setData({ resources: {}, over: true, isLoading: false })
     })
 }
+TopiclistComplex.prototype.clickItem = function (e) {
+    app.showPost(e.currentTarget.id)
+}
 // 切换orderby
 TopiclistComplex.prototype.changeTabs = function (e) {
     const { index, sort } = e.currentTarget.dataset
