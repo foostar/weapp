@@ -33,16 +33,24 @@
     top:0
 }
 .post-comment-quote{
-    color:#333;
-    background:#ddd;
-    margin-top:20rpx;
-    margin-bottom:25rpx;
-    padding:5rpx 15rpx;
-    border-radius:5px;
-    position:relative;
-    line-height:50rpx;
+    color: #333;
+    background: #F0F0F0;
+    margin-top: 20rpx;
+    margin-bottom: 25rpx;
+    padding: 5rpx 15rpx;
+    border-radius: 5px;
+    position: relative;
+    line-height: 50rpx;
 }
-.triangle-bottom {width:0;height:0;border-left:20rpx solid transparent;border-top:20rpx solid #ddd;border-right:20rpx solid transparent;position:absolute;bottom:-18rpx}
+.triangle-bottom {
+    width:0;
+    height:0;
+    border-left:20rpx solid transparent;
+    border-top:20rpx solid #F0F0F0;
+    border-right:20rpx solid transparent;
+    position:absolute;
+    bottom:-18rpx
+}
 .post-hits{
     padding-left: 35rpx;
     line-height:35rpx;
@@ -166,9 +174,8 @@
     font-size: 30rpx;
     color: #6C6C6C;
 }
-.post-info-wapper{
-    display:flex;
-    justify-content: space-between;
+.post-info-wapper {
+    margin-left: 90rpx;
 }
 .post-level-tag {
     float: left;
@@ -192,9 +199,7 @@
 .post-level-text {
     padding: 0 10rpx;
 }
-.post-warpper{
-    flex:1;
-    margin-left:20rpx;
+.post-warpper {
 }
 .post-info-ext {
     height: 40rpx;
@@ -248,11 +253,11 @@
 
 
 
-.post-footer-wrapper{
+.post-footer-wrapper {
     width: 100%;
     box-sizing: border-box;
     background: #FFF;
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     z-index: 20;
@@ -260,8 +265,8 @@
     padding: 15rpx 20rpx;
     border-top: 1rpx solid #D0D0D0;
 }
-.post-footer{
-    display:flex;
+.post-footer {
+    display: flex;
     justify-content: space-between;
 }
 .post-mark {
@@ -280,15 +285,17 @@
     border-radius: 5px;
     width: 500rpx;
     height: 70rpx;
+    padding: 0 20rpx;
     line-height: 70rpx;
     box-sizing: border-box;
 }
 .post-footer button{
     float:right;
-    height:55rpx;
+    height: 70rpx;
+    width: 140rpx;
     border:none;
-    line-height:58rpx;
-    top:-55rpx;
+    line-height: 70rpx;
+    top: -70rpx;
 }
 .post-form{
     display:block
@@ -329,10 +336,10 @@
 .post-comment-item {
     padding: 20rpx 28rpx;
     border-bottom: 1px solid #DDD;
-    display:flex;
 }
 .post-comment-content {
-    margin-top: 10rpx;
+    margin-top: -20rpx;
+    margin-left: 90rpx;
 }
 .post-comment-content text {
     font-size: 30rpx;
