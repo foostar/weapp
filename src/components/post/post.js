@@ -32,7 +32,7 @@ Post.prototype.fetchData = function (tid, option) {
     this.setData(self.data)
     var options = option || {}
     var isLike = 0
-    var systemInfo = wx.getSystemInfoSync()
+    var systemInfo = app.globalData.systemInfo
     this.data.windowWidth = systemInfo.windowWidth
     this.data.windowHeight = systemInfo.windowHeight
     app.api.post(tid, options)
