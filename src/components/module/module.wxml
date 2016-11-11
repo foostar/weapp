@@ -18,6 +18,10 @@
     <include src="../subnavflat/subnavflat.wxml" />
 </template>
 
+<template name="subnavcard">
+    <include src="../subnavcard/subnavcard.wxml" />
+</template>
+
 <template name="subnavcustom">
     <include src="../subnavcustom/subnavcustom.wxml" />
 </template>
@@ -168,20 +172,21 @@
 </template>
 
 <template name="register">
-    <include src="../register/register" />
+    <include src="../register/register.wxml" />
 </template>
 
 <template name="myinfo">
-    <include src="../myinfo/myinfo" />
+    <include src="../myinfo/myinfo.wxml" />
 </template>
 
 <template name="userhome">
-    <include src="../user-home/user-home" />
+    <include src="../user-home/user-home.wxml" />
 </template>
 
 <template name="userlist">
-    <include src="../userlist/userlist" />
+    <include src="../userlist/userlist.wxml" />
 </template>
+
 
 <template name="module">
     <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />

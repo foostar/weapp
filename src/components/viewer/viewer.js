@@ -7,6 +7,9 @@ const { checkHasScroll } = require('../../utils/util.js')
  */
 const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
 const SubnavFlat = require('../subnavflat/subnavflat')
+const SubnavCard = require('../subnavcard/subnavcard')
+
+
 const SubnavCustom = require('../subnavcustom/subnavcustom')
 const Fullcard = require('../fullcard/fullcard')
 const Discover = require('../discover/discover')   // 我的
@@ -151,9 +154,14 @@ components.type['forumlist-flat'] = ForumlistFlat
 components.type['forumlist-card'] = ForumlistCard // 卡片样式
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
-components.type['subnav-flat'] = CustomTagNav
+
+components.type['subnav-flat'] = CustomTagNav   // 标签导航 目前只有 扁平样式
+components.type['subnav-card'] = SubnavCard
+
+
 components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
+components.type['webapp-flat'] = NotSupport
 
 components.type['post-flat'] = Post
 components.type['login-flat'] = Login   // 登录页面
