@@ -3,7 +3,9 @@
 <import src="../forum/forum"/>
 <!--  -->
 <block wx:if="{{forumInfo}}">
-    <template is="forumInfo" data="{{resources, topTopicList, appIcon, iconSrc}}" />
+    <view bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}">
+        <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon }}" />
+    </view>
 </block>
 <view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
     <block wx:for="{{resources.list}}" wx:key="{{item.topic_id}}">

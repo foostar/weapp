@@ -9,7 +9,6 @@ function ForumlistFlat(key) {
         const { list } = res
         list.forEach((boardCategory) => {
             boardCategory.board_list.forEach((board) => {
-                board.url = `/pages/regular-pages/forum/forum?boardId=${board.board_id}&title=${board.board_name}`
                 board.last_posts_date = dateFormat(board.last_posts_date, 'yyyy-MM-dd')
             })
         })
@@ -22,8 +21,7 @@ ForumlistFlat.prototype.name = 'forumlistflat'
 ForumlistFlat.prototype.constructor = ForumlistFlat
 
 ForumlistFlat.prototype.navigator = function (e) {
-    const { url } = e.currentTarget.dataset
-    wx.navigateTo({ url })
+    app.showTopic(e.currentTarget.dataset)
 }
 
 module.exports = ForumlistFlat

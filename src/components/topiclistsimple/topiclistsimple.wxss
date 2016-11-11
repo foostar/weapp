@@ -142,6 +142,10 @@
 }
 .stick{
     color:#a4a4a4;
+    flex:1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .stick-tag{
     width:90rpx;

@@ -49,9 +49,11 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
                 topTopicList: data.topTopicList
             })
         }
+        let appIcon = (data.forumInfo && data.forumInfo.icon) || app.globalData.loadSrc
         this.setData({
             resources: data,
             isLoading: false,
+            appIcon,
             over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
     }, (err) => {
@@ -60,21 +62,22 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
 }
 
 TopiclistSimple.prototype.focusForum = function (e) {
-    const self = this
+    if (!e.target.dataset.role) return
+    if (!app.isLogin()) return
     const boardId = e.target.dataset.id
     if (e.target.dataset.focus == 1) {
         return app.api.userfavorite(boardId, { action: 'delfavorite', idType: 'fid' }).then(() => {
-            var resources = self.data.resources
+            var resources = this.data.resources
             resources.forumInfo.is_focus = 0
-            self.setData({
+            this.setData({
                 resources
             })
         })
     }
     app.api.userfavorite(boardId, { action: 'favorite', idType: 'fid' }).then(() => {
-        var resources = self.data.resources
+        var resources = this.data.resources
         resources.forumInfo.is_focus = 1
-        self.setData({
+        this.setData({
             resources
         })
     })
