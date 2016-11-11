@@ -10,13 +10,23 @@
             <text bindtap="topiclistcomplex_changeTabs" data-sort="all" data-event-key="{{key}}" data-index="{{0}}" class="forum-tabs-title text-color">全部</text>
             <text bindtap="topiclistcomplex_changeTabs" data-sort="new" data-event-key="{{key}}" data-index="{{1}}" class="forum-tabs-title text-color">最新</text>
             <text bindtap="topiclistcomplex_changeTabs" data-sort="marrow" data-event-key="{{key}}" data-index="{{2}}" class="forum-tabs-title text-color">精华</text>
-            <view class="forum-tabs-indicator bg-color" style="transform: translateX({{tabsIndex * 100 + '%'}})" />
+            <text wx:if="{{hasChildrens}}" bindtap="topiclistcomplex_changeTabs" data-event-key="{{key}}" data-index="{{3}}" class="forum-tabs-title text-color">子版块</text>
+            <view class="forum-tabs-indicator bg-color" style="width:{{hasChildrens ? '25%' : '33.33333%'}};transform: translateX({{tabsIndex * 100 + '%'}})" />
         </view>
     </view>
     <block wx:for="{{resources.list}}" wx:key="{{index}}">
-        <view bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
-            <template is="{{module.style}}" data="{{...item, iconSrc}}" />
+        <view wx:if="{{showList}}" bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}" data-user="{{item.user_id}}">
+            <template is="{{module.style}}" data="{{...item, iconSrc }}" />
         </view>
+    </block>
+    <block wx:for="{{boardChild}}" wx:key="{{index}}">
+        <view wx:if="{{!showList}}" bindtap="topiclistcomplex_checkchild" data-event-key="{{key}}" data-title="{{item.board_name}}" data-id="{{item.board_id}}" class="borad-child">
+            <image class="borad-child-image" src="{{item.board_img}}"></image>
+            <view class="borad-child-content">
+                <view class="borad-child-title">{{item.board_name}}</view>
+                <view class="borad-child-date">{{item.last_posts_date}}</view>
+            </view>
+       </view>
     </block>
 </view>
 <view class="forum-edit-btn bg-color" style="background:url({{iconSrc}}dz_list_go_top.png) no-repeat center center #fa460a;background-size:56rpx;" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>
