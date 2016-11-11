@@ -58,6 +58,7 @@ const Register = require('../register/register')
 const Myinfo = require('../myinfo/myinfo')
 const UserHome = require('../user-home/user-home')
 const UserList = require('../userlist/userlist')
+const Topic = require('../topic/topic')
 
 /*
  *   @定义组件类型
@@ -176,6 +177,8 @@ components.type['myinfo-flat'] = Myinfo       // 我的消息
 components.type['userhome-flat'] = UserHome   // 用户主页
 
 components.type['userlist-flat'] = UserList   // 用户列表
+components.type['topic-flat'] = Topic         // 话题主页
+
 
 // topiclistSimple-flat
 

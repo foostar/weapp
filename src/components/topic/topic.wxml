@@ -1,0 +1,40 @@
+<import src="/components/buttons-tab/buttons-tab.wxml"/>
+<import src="/components/layout/layout.wxml"/>
+
+<viwe class="tpcinfo-main">
+    <!-- card -->
+    <view class="tpcinfo-header" style="background-image: url({{ tpcinfo.ti_cover }})">
+        <view class="tpcinfo-header-cover">
+            <view class="tpcinfo-header-title">{{ tpcinfo.ti_title }}</view>
+            <view class="tpcinfo-header-content">{{ tpcinfo.ti_content }}</view>
+        </view>
+    </view>
+    <!-- topuser -->
+    <view class="tpcinfo-users">
+        <view class="tpcinfo-users-list">
+            <view class="tpcinfo-users-item" style="background-image: url({{ tpcinfo.icon }})" bindtap="toUserHome" data-uid="{{ tpcinfo.ti_authorid }}">
+                <view class="tpcinfo-users-author">发起人</view>
+            </view>
+            <block wx:for="{{ topUser }}">
+                <view class="tpcinfo-users-item" style="background-image: url({{ item.avatar }})" bindtap="toUserHome" data-uid="{{ item.uid }}"></view>
+            </block>
+        </view>
+        <view class="tpcinfo-users-count" style="color: {{ color }}">{{ partinNum }}人</view>
+    </view>
+    <!-- list -->
+    <view class="tpcinfo-list-panel">
+        <template is="buttons-tab" data="{{ currentIndex, tabs, color }}"/>
+        <view class="tabs-list">
+            <view class="tpcinfo-list" wx:if="{{ currentIndex == 0 }}">
+                <block wx:for="{{ newList }}">
+                    <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
+                </block>
+            </view>
+            <view class="tpcinfo-list" wx:if="{{ currentIndex == 1 }}">
+                <block wx:for="{{ hotList }}">
+                    <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
+                </block>
+            </view>
+        </view>
+    </view>
+</viwe>

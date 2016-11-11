@@ -187,6 +187,10 @@
     <include src="../userlist/userlist.wxml" />
 </template>
 
+<template name="topic">
+    <include src="../topic/topic.wxml" />
+</template>
+
 
 <template name="module">
     <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
