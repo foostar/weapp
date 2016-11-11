@@ -148,4 +148,24 @@ ForumlistSplit.prototype.unFocus = function (boardId) {
         })
     })
 }
+/*
+ *   @查看borad
+ */
+ForumlistSplit.prototype.checkBoard = function (e) {
+    if (!e.target.dataset.role) {
+        let module = {
+            componentList: [],
+            extParams: {
+                forumId: e.currentTarget.dataset.id
+            },
+            title: e.currentTarget.dataset.title,
+            style: 'flat',
+            id: e.currentTarget.dataset.eventKey,
+            type: 'topiclistComplex'
+        }
+        wx.navigateTo({
+            url: `/pages/blank/blank?data=${JSON.stringify(module)}`
+        })
+    }
+}
 module.exports = ForumlistSplit

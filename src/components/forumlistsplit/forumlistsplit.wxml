@@ -11,57 +11,51 @@
         <block wx:if="{{currentBoard == 10000}}">
             <view class="focusBoardList">
                 <block wx:for="{{resources.rec.focusBoard}}">
-                    <view class="font-normal text-color boardContent-box">
-                        <navigator url="/pages/regular-pages/forum/forum?boardId=+{{item.board_id}}&title={{item.board_name}}">
-                            <image class="boardContent-image" src="{{item.board_img}}"/>
-                            <view class="boardContent-info font-normal">
-                                <view class="info-title font-wide">{{item.board_name}}</view>
-                                <view class="info-meta font-mini">
-                                    
-                                    {{item.favNum}}
-                                    
-                                    {{item.td_posts_num}}
-                                </view>
+                    <view class="font-normal text-color boardContent-box" data-id="{{item.board_id}}" data-title="{{item.board_name}}" bindtap="forumlistsplit_checkBoard" data-event-key="{{key}}">
+                        <image class="boardContent-image" src="{{item.board_img}}"/>
+                        <view class="boardContent-info font-normal">
+                            <view class="info-title font-wide">{{item.board_name}}</view>
+                            <view class="info-meta font-mini">
+                                
+                                {{item.favNum}}
+                                
+                                {{item.td_posts_num}}
                             </view>
-                        </navigator>
+                        </view>
                         <view data-role="unfocus" data-id="{{item.board_id}}" class="boardFocus_btn font-normal">取消</view>
                     </view>
                 </block>
             </view>
             <view class="currentBoard_title font-mini">猜你喜欢</view>
             <block wx:for="{{resources.rec.recommendedBoard}}">
-                <view class="font-normal text-color boardContent-box">
-                    <navigator url="/pages/regular-pages/forum/forum?boardId=+{{item.board_id}}&title={{item.board_name}}">
-                        <image class="boardContent-image" src="{{item.board_img}}"/>
-                        <view class="boardContent-info font-normal">
-                            <view class="info-title font-wide">{{item.board_name}}</view>
-                            <view class="info-meta font-mini">
-                                
-                                {{item.favNum}}
-                                
-                                {{item.td_posts_num}}
-                            </view>
+                <view class="font-normal text-color boardContent-box" data-id="{{item.board_id}}" data-title="{{item.board_name}}" bindtap="forumlistsplit_checkBoard" data-event-key="{{key}}">
+                    <image class="boardContent-image" src="{{item.board_img}}"/>
+                    <view class="boardContent-info font-normal">
+                        <view class="info-title font-wide">{{item.board_name}}</view>
+                        <view class="info-meta font-mini">
+                            
+                            {{item.favNum}}
+                            
+                            {{item.td_posts_num}}
                         </view>
-                    </navigator>
+                    </view>
                     <view data-role="focus" data-id="{{item.board_id}}" class="boardFocus_btn font-normal bg-color">关注</view>
                 </view>
             </block>
         </block>
         <block wx:else>
             <block wx:for="{{currentBoardList}}">
-                <view class="text-color boardContent-box">
-                    <navigator url="/pages/regular-pages/forum/forum?boardId=+{{item.board_id}}&title={{item.board_name}}">
-                        <image class="boardContent-image" src="{{item.board_img}}"/>
-                        <view class="boardContent-info font-normal">
-                            <view class="info-title font-wide">{{item.board_name}}</view>
-                            <view class="info-meta font-mini">
-                                
-                                {{item.favNum}}
-                                
-                                {{item.td_posts_num}}
-                            </view>
+                <view class="text-color boardContent-box" data-id="{{item.board_id}}" data-title="{{item.board_name}}" bindtap="forumlistsplit_checkBoard" data-event-key="{{key}}">
+                    <image class="boardContent-image" src="{{item.board_img}}"/>
+                    <view class="boardContent-info font-normal">
+                        <view class="info-title font-wide">{{item.board_name}}</view>
+                        <view class="info-meta font-mini">
+                            
+                            {{item.favNum}}
+                            
+                            {{item.td_posts_num}}
                         </view>
-                    </navigator>
+                    </view>
                     <view data-role="focus" data-id="{{item.board_id}}" class="boardFocus_btn font-normal bg-color {{item.is_focus == 0 ? '' : 'boardFocused_btn'}}">{{item.is_focus == 0 ? '关注' : '已关注'}}</view>
                 </view>
             </block>

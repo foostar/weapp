@@ -1,7 +1,9 @@
 <import src="../module/module.wxml" />
 <import src="../cellstyle/cellstyle"/>
 <import src="../forum/forum"/>
-<template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, complex:true, forumInfo:true}}" />
+<view bindtap="topiclistcomplex_focusForum"  data-event-key="{{key}}">
+    <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, complex:true, forumInfo:true}}" />
+</view>
 <view class="forum-tabs">
     <view class="forum-tabs-title-warp-placeholder">
         <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">

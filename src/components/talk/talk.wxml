@@ -5,7 +5,7 @@
             <view class="topic-title" style="color: {{ color }}">已关注</view>
         </view>
         <view class="topic-list-item" wx:if="{{ !isLogin }}" bindtap="toLogin">
-            <view class="topic-list-item-icon" style="color: {{ color }}"></view>
+            <view class="topic-list-item-icon"  style="background: url({{iconSrc}}dz_talk_focus_icon.png) no-repeat center center {{color}};background-size:56rpx;"></view>
             <view class="topic-list-item-text">请先点击此处登录</view>
         </view>
         <view class="topic-list-item" wx:if="{{ isLogin && mytopic.list.length === 0 }}">
