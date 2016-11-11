@@ -120,6 +120,9 @@ App({
                     v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
                     v.last_reply_date = util.formatTime(v.last_reply_date)
                     v.subject = util.formateText(v.subject)
+                    let faceResult = util.infoToFace(v.subject)
+                    v.hasFace = faceResult.hasFace
+                    v.subject = faceResult.data
                 })
                 return data
             })

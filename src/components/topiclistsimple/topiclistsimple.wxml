@@ -6,8 +6,10 @@
     <template is="forumInfo" data="{{resources, topTopicList, appIcon, iconSrc}}" />
 </block>
 <view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
-    <block wx:for="{{resources.list}}" wx:key="{{index}}">
-        <template is="{{style}}" data="{{...item, id: item.topic_id, iconSrc}}" />
+    <block wx:for="{{resources.list}}" wx:key="{{item.topic_id}}">
+        <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
+            <template is="{{style}}" data="{{...item, iconSrc}}" />
+        </view>
     </block>
 </view>
 <!-- 加载中 -->

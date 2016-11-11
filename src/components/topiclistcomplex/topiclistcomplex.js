@@ -1,5 +1,4 @@
 const ListComponent = require('../../lib/listcomponent')
-const util = require('../../utils/util.js')
 
 const app = getApp()
 
@@ -36,12 +35,6 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
         page: param.page,
         sortby: param.orderby || 'all'
     }).then((data) => {
-        data.list = data.list.map((v) => {
-            let faceResult = util.infoToFace(v.subject)
-            v.hasFace = faceResult.hasFace
-            v.subject = faceResult.data
-            return v
-        })
         data.list = list.concat(data.list)
         if (data.page == 1) {
             this.setData({
