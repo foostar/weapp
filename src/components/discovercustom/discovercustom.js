@@ -1,8 +1,11 @@
 const TouchComponent = require('../../lib/touchcomponent')
 
+const app = getApp()
+
 function DiscoverCustom(key, module) {
     TouchComponent.call(this, key, module)
     this.data = {
+        iconSrc: app.globalData.iconSrc,
         list: module.componentList
     }
 }

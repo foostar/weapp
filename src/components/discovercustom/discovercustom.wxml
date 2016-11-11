@@ -1,7 +1,13 @@
-<block wx:for="{{list}}" wx:key="{{index}}">
-    <view class="personal-manage-item" bindtap='discovercustom_touch' data-event-key="{{key}}" data-page="myCollection" data-index="{{ index }}" data-id="{{item.extParams.moduleId}}">
-        <image class="icon" src="{{item.icon}}"></image>
-        <text class="personal-manage-item-title">{{item.title}}</text>
+<template name="touch-cell">
+    <view class="personal-manage-item">
+        <image class="icon" src="{{icon}}"></image>
+        <text class="personal-manage-item-title">{{title}}</text>
         <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
+    </view>
+</template>
+
+<block wx:for="{{list}}" wx:key="{{index}}">
+    <view bindtap='discovercustom_touch' data-event-key="{{key}}" data-page="myCollection" data-index="{{ index }}" data-id="{{item.extParams.moduleId}}">
+        <template is="touch-cell" data="{{iconSrc, icon: item.icon, title: item.title}}"></template>
     </view>
 </block>
