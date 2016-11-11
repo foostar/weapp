@@ -239,3 +239,59 @@
         </view>
     </view>
 </template>
+<!-- imageBig -->
+<template name="imageBig">
+    <view class="cell-image-box " bindtap="clickItem" id="{{id}}"> 
+        <view class="cell-image-big" style="background-image:url({{pic_path}})">
+            <view class="cell-image-big-cover"></view>
+            <view class="cell-image-big-title-bar">
+                <view class="cell-image-big-title">{{title}}</view>   
+                <view class="cell-image-big-username">{{user_nick_name}}</view> 
+            </view>
+            <view class="cell-image-big-bar">
+                <view class="cell-image-big-time">{{last_reply_date}}</view>
+                <view class="cell-image-big-info">
+                    <view class="cell-image-big-hits">{{hits}}</view>
+                    <view class="cell-image-big-replies">{{replies}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
+
+
+<!-- 图片样式1 newslist-image image -->
+<template name="image">
+    <view class="list-image-item" bindtap="clickItem" id="{{id}}">
+        <image src="{{pic_path}}" style="width:{{scale_width}}px; height:{{scale_height}}px;" />
+        <view class="list-image-item-count">{{hits}}</view>
+        <view class="list-image-title">{{title}}</view>
+        <view class="list-image-avatar" style="background-image:url({{userAvatar}});" ></view>
+        <view class="list-image-meta">
+            <view class="list-image-username">{{user_nick_name}}</view>
+            <view class="list-image-date">{{last_reply_date}}</view>
+        </view>
+    </view>
+</template>
+
+<!-- 图片样式2 -->
+<template name="image2">
+    <view class="cell-image-two" style="width:{{image2Size}}px;" bindtap="clickItem" id="{{id}}">
+        <view class="cell-image-two-header">
+            <view class="cell-image-two-avatar" style="background-image:url({{userAvatar}});"></view>
+            <view class="cell-image-two-user">
+                <view class="cell-image-two-username">
+                    {{user_nick_name}}
+                </view>
+                <view class="cell-image-two-time">
+                    {{last_reply_date}}
+                </view>
+            </view>
+        </view>
+        <image src="{{pic_path}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
+        <view class="cell-image-two-footer">
+            <view class="cell-image-two-zan-btn">赞</view>
+        </view>
+    </view>
+</template>
+

@@ -2,16 +2,30 @@
 <import src="../cellstyle/cellstyle"/>
 <swiper wx:if="{{resources.piclist.length}}" class="news-swiper" indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-  <block wx:for="{{resources.piclist}}">
-    <swiper-item data-fid="{{item.fid}}" class="news-slide-item" data-sourceId="{{item.source_id}}">
-      <image  src="{{item.pic_path}}" class="news-slide-image" mode="aspectFill"/>
-      <view class="news-slide-title font-normal">{{item.title}}</view>
-    </swiper-item>
-  </block>
+   <block wx:for="{{resources.piclist}}">
+        <swiper-item data-fid="{{item.fid}}" class="news-slide-item" data-sourceId="{{item.source_id}}">
+            <image src="{{item.pic_path}}" class="news-slide-image" mode="aspectFill"/>
+            <view class="news-slide-title font-normal">{{item.title}}</view>
+        </swiper-item>
+    </block>
 </swiper>
-<view class="liststyle-container liststyle-index">
-    <block wx:for="{{resources.list}}" wx:key="{{index}}">
-        <template is="{{module.style}}" data="{{...item, id: item.topic_id, iconSrc}}" />
+
+<!-- 图片1或2 -->
+<view class="liststyle-image-box" wx:if="{{isImage}}">
+    <view class="left-layout">
+        <block wx:for="{{leftLayout.data}}">
+            <template is="{{module.style}}" data="{{...item, id: item.source_id}}" />
+        </block>
+    </view>
+    <view class="right-layout">
+        <block wx:for="{{rightLayout.data}}">
+            <template is="{{module.style}}" data="{{...item, id: item.source_id}}" />
+        </block>
+    </view>
+</view>
+<view class="liststyle-container liststyle-index" wx:else>
+    <block wx:for="{{resources.list}}">
+        <template is="{{module.style}}" data="{{...item, id: item.topic_id, image2Size}}" />
     </block>
 </view>
 <!-- 加载中 -->
