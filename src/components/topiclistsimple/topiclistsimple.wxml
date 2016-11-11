@@ -9,7 +9,7 @@
 </block>
 <view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
     <block wx:for="{{resources.list}}" wx:key="{{item.topic_id}}">
-        <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
+        <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}" data-user="{{item.user_id}}">
             <template is="{{style}}" data="{{...item, iconSrc}}" />
         </view>
     </block>

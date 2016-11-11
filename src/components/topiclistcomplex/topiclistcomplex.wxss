@@ -53,3 +53,26 @@
     right: 40rpx;
     border-radius: 50%;
 }
+.borad-child{
+    padding:30rpx;
+    background:#fff;
+    display:flex;
+}
+.borad-child-image{
+    width:90rpx;
+    height:90rpx;
+    margin-right:20rpx;
+}
+.borad-child-content{
+    flex:1
+}
+.borad-child-title{
+    font-size:32rpx;
+    color:#343434;
+    margin-top:7rpx;
+}
+.borad-child-date{
+    font-size:28rpx;
+    color:#999;
+    margin-top:12rpx;
+}

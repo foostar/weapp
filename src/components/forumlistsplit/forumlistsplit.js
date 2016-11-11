@@ -27,6 +27,9 @@ ForumlistSplit.prototype.onLoad = function () {
     })
     this.fetchData()
 }
+/*
+ *  @切换版块关注列表
+ */
 ForumlistSplit.prototype.fetchData = function () {
     const module = this.module
     Promise.all([

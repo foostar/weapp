@@ -23,9 +23,7 @@ Page(createPage({
         } catch (err) {
             data.data = null
         }
-        if (data.moduleId) {
-            module = app.globalData.modules[data.moduleId]
-        } else if (data.type) {
+        if (data.type) {
             module = {
                 componentList: [],
                 extParams: {},

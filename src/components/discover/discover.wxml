@@ -4,7 +4,7 @@
 <scroll-view scroll-y class="personal-wrapper">
     <view class="personal-user-card">
         <view class="personal-user-info" wx:if="{{!isLogin}}" bindtap="discover_toLogin" data-event-key="{{key}}">
-            <view class="user-avator user-unLogin"></view>
+            <view class="user-avator user-unLogin" style="background-image:url({{iconSrc}}dz_posts_grade_default.png)"></view>
             <text>请点击登录/注册</text>
             <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
         </view>

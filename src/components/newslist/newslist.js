@@ -40,6 +40,11 @@ NewsList.prototype.name = 'newslist'
 NewsList.prototype.constructor = NewsList
 
 NewsList.prototype.clickItem = function (e) {
+    if (e.target.dataset.role == 'avatar') {
+        return wx.navigateTo({
+            url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.user })}`
+        })
+    }
     app.showPost(e.currentTarget.id)
 }
 

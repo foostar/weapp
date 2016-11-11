@@ -28,6 +28,12 @@ TopiclistSimple.prototype = Object.create(ListComponent.prototype)
 TopiclistSimple.prototype.name = 'topiclistsimple'
 TopiclistSimple.prototype.constructor = TopiclistSimple
 TopiclistSimple.prototype.clickItem = function (e) {
+    if (e.target.dataset.role == 'avatar') {
+        if (app.isLogin()) return
+        return wx.navigateTo({
+            url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.user })}`
+        })
+    }
     app.showPost(e.currentTarget.id)
 }
 
