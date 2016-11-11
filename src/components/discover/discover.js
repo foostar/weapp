@@ -21,6 +21,7 @@ function Discover(key, module) {
         tabs: [],
         userInfo: {},
         setting: {},
+        loadSrc: app.globalData.loadSrc,
         iconSrc: app.globalData.iconSrc,
         modalHidden: true
     }

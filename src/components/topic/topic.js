@@ -57,7 +57,6 @@ Topic.prototype.fetchData = function (param, number) {
                 partinNum: data.partinNum
             })
         }
-        console.log(currentIndex, currentIndex === 1 ? 'NEW' : 'HOT')
         if (currentIndex === 1) {
             this.setData({
                 newList: data.list,
@@ -81,14 +80,12 @@ Topic.prototype.changeTabs = function (e) {
     this.setData({
         currentIndex: e.currentTarget.dataset.index
     })
-    const { index, sort } = e.currentTarget.dataset
-    const tabsIndex = Number(index)
-    this.orderby = sort
-    this.setData({ tabsIndex, orderby: sort, over: false })
+    const { index } = e.currentTarget.dataset
+    const currentIndex = Number(index)
+    this.setData({ currentIndex, newList: [], hotList: [], over: false })
     this.pageIndex = 1
     this.fetchData({
-        page: this.pageIndex,
-        orderby: sort
+        page: this.pageIndex
     }, 20)
 }
 Topic.prototype.toUserHome = function (e) {

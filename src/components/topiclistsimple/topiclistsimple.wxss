@@ -23,13 +23,6 @@
     padding-left:30rpx;
     box-sizing:border-box;
 }
-.stick-more-icon{
-    width:28rpx;
-    height:28rpx;
-    position:relative;
-    top:8rpx;
-    margin-right: 8rpx
-}
 .face{
     display:inline-block;
     width:40rpx;
@@ -90,75 +83,96 @@
 }
 /* ========== forum-info ========== */
 .forum-info-container{
-    background:#fff;
-    border-bottom:1px solid #ddd;
-    padding:30rpx;
-    box-sizing:border-box;
-    display:flex;
-    justify-content:space-between;
+    background: #fff;
+    padding: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
     
 }
 .foruminfo-icon,.foruminfo-icon image{
-    width:110rpx;
-    height:110rpx;
-    border-radius:5px;
+    width: 124rpx;
+    height: 124rpx;
+    border-radius: 10rpx;
 }
 .foruminfo-content{
     flex:1;
     padding-left:25rpx;
 }
 .foruminfo-forumname{
-    color:#000;
-    margin-bottom:3rpx;
+    color: #000;
+    margin-bottom: 4rpx;
+}
+.foruminfo-meta {
+    margin: 6rpx 0;
 }
 .foruminfo-meta text{
     margin-left:10rpx;
 }
-.foruminfo-meta,.foruminfo-des{
-    line-height:35rpx;
+.foruminfo-des {
+    height: 70rpx;
+    overflow: hidden;
 }
-.foruminfo-meta,.foruminfo-des,.foruminfo-meta text{
-    color:#a4a4a4
+.foruminfo-meta, .foruminfo-des {
+    line-height: 35rpx;
 }
-.foruminfo-handler{
-    color:#fff;
-    display:inline-block;
-    padding:0rpx 20rpx;
-    height:65rpx;
-    line-height:68rpx;
-    border-radius:5px;
-    box-sizing:border-box;
-    background-color:#a4a4a4
+.foruminfo-meta, .foruminfo-des, .foruminfo-meta text {
+    color: #777;
+    font-size: 28rpx;
 }
-.stick-container{
-    background:#fff;
+.foruminfo-handler {
+    color: #fff;
+    display: inline-block;
+    height: 56rpx;
+    line-height: 56rpx;
+    width: 160rpx;
+    text-align: center;
+    border-radius: 6rpx;
+    font-size: 28rpx;
+    box-sizing: border-box;
+    background-color: #a4a4a4
 }
-.stick-item{
-    display:flex;
-    padding:8rpx 20rpx;
-    line-height:45rpx;
-    border-bottom:1px solid #ddd;
-    color:#a4a4a4;
+.stick-container {
+    background: #fff;
+}
+.stick-item {
+    height: 79rpx;
+    display: flex;
+    padding: 22rpx 20rpx;
+    border-top: 1rpx solid #D0D0D0;
+    box-sizing: border-box;
 }
 .stick{
-    color:#a4a4a4;
+    color: #777;
     flex:1;
+    line-height: 35rpx;
+    font-size: 28rpx;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
-.stick-tag{
-    width:90rpx;
-    text-align:center;
-    color:#fff;
-    height:40rpx;
-    line-height:42.5rpx;
-    margin-right:20rpx;
-    border-radius:5px;
+.stick-tag {
+    width: 70rpx;
+    font-size: 22rpx;
+    text-align: center;
+    color: #fff;
+    height: 35rpx;
+    line-height: 35rpx;
+    margin-right: 20rpx;
+    border-radius: 6rpx;
 }
-.stick-more{
-    text-align:center;
-    justify-content:center;
+.stick-more {
+    line-height: 35rpx;
+    font-size: 28rpx;
+    text-align: center;
+    justify-content: center;
+}
+.stick-more-icon{
+    width: 24rpx;
+    height: 24rpx;
+    position: relative;
+    margin-top: 5rpx;
+    margin-left: 8rpx
 }
 .liststyle-container{
     margin-top:30rpx

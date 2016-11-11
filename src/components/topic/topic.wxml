@@ -19,43 +19,24 @@
         </view>
         <view class="tpcinfo-users-count" style="color: {{ color }}">{{ partinNum }}人</view>
     </view>
-
-
-
     <!-- list -->
-    <!-- <view class="tpcinfo-list-panel">
-        <template is="buttons-tab" data="{{ currentIndex, tabs, color }}"/>
-        <view class="tabs-list">
-            <view class="tpcinfo-list" wx:if="{{ currentIndex == 0 }}">
-                <block wx:for="{{ newList }}">
-                    <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
-                </block>
-            </view>
-            <view class="tpcinfo-list" wx:if="{{ currentIndex == 1 }}">
-                <block wx:for="{{ hotList }}">
-                    <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
-                </block>
-            </view>
-        </view>
-    </view> -->
-
     <view class="forum-tabs">
         <view class="forum-tabs-title-warp-placeholder">
             <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
                 <text bindtap="topic_changeTabs" data-sort="new" data-event-key="{{key}}" data-index="{{1}}" class="forum-tabs-title text-color">最新</text>
                 <text bindtap="topic_changeTabs" data-sort="marrow" data-event-key="{{key}}" data-index="{{0}}" class="forum-tabs-title text-color">最热</text>
-                <view class="forum-tabs-indicator bg-color"/>
+                <view class="tic-navbar bg-color {{currentIndex == 1 ? 'tic-navbar-left' :'tic-navbar-right'}}"/>
             </view>
         </view>
 
         <block wx:if="{{currentIndex == 1}}" wx:for="{{newList}}" wx:key="{{index}}">
             <view bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
-                <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
+                <template is="flat" data="{{id: item.topic_id, ...item}}"></template>
             </view>
         </block>
-        <block wx:if="{{currentIndex == 0}}" wx:for="{{newList}}" wx:key="{{index}}">
+        <block wx:if="{{currentIndex == 0}}" wx:for="{{hotList}}" wx:key="{{index}}">
             <view bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
-                <template is="tieba" data="{{id: item.topic_id, ...item}}"></template>
+                <template is="flat" data="{{id: item.topic_id, ...item}}"></template>
             </view>
         </block>
     </view>

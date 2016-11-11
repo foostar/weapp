@@ -79,3 +79,15 @@ page {
     line-height: 72rpx;
     font-size: 24rpx;
 }
+.tic-navbar {
+    width: 50%;
+    position: absolute;
+    height: 6rpx;
+    top: 70rpx;
+}
+.tic-navbar-left {
+    left: 0;
+}
+.tic-navbar-right {
+    right: 0;
+}

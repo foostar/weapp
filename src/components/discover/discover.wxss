@@ -63,6 +63,13 @@ page {
     font-size: 24rpx;
 }
 .user-unLogin {
+    width: 90rpx;
+    height: 90rpx;
+}
+.user-unLogin image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10rpx;
 }
 .icon-arrow {
     background-size: 100%;
