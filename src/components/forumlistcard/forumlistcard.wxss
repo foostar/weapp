@@ -11,10 +11,16 @@
     font-size: 15px;
     padding-top: 7px;
     padding-bottom: 7px;
-    border-bottom: 1px solid #d9d9d9;
 
 }
 .forum-list-flat-items {
+    overflow: hidden;
+    background-color: #fff;
+}
+.forum-list-flat-item {
+    border-top: 1px solid #d9d9d9;
+    height: 60px;
+    position: relative;
     overflow: hidden;
     background-color: #fff;
 }
@@ -22,25 +28,17 @@
     height: 60px;
     overflow: hidden;
     position: relative;
-}
-
-.forum-list-flat-item {
     width: 50%;
-    border-bottom: 1px solid #d9d9d9;
     float: left;
-    height: 60px;
-    position: relative;
-    overflow: hidden;
-    background-color: #fff;
 }
-.border-right {
-    width: 49.5%;
-    border-right: 1px solid #d9d9d9;
 
+.border-right {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    left:50%;
 }
-.border-bottom {
-    border-bottom: 0px solid #d9d9d9;
-}
+
 .forum-list-flat-item-icon {
     background-size: cover;
     background-position: 50%;
@@ -70,11 +68,12 @@
     color: #d4d4d4;
     margin-right: -36px;
     font-size: 12px;
+    line-height: 20px;
 }
 .forum-list-flat-item-num {
     position: absolute;
     color: #0091fd;
-    top: 5px;
-    right: 10px;
+    top: 6rpx;
+    right: 6rpx;
     font-size: 12px;
 }

@@ -1,5 +1,5 @@
 const Component = require('../../lib/component')
-const { formatTime } = require('../../utils/util')
+const { dateFormat } = require('../../utils/util')
 
 const app = getApp()
 
@@ -10,7 +10,7 @@ function ForumlistCard(key) {
         list.forEach((boardCategory) => {
             boardCategory.board_list.forEach((board) => {
                 board.url = `/pages/regular-pages/forum/forum?boardId=${board.board_id}&title=${board.board_name}`
-                board.last_posts_date = formatTime(board.last_posts_date)
+                board.last_posts_date = dateFormat(board.last_posts_date, 'yyyy-MM-dd')
             })
         })
         this.setData({ list })

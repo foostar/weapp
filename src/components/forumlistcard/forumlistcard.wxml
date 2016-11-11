@@ -1,37 +1,46 @@
 <import src="/pages/module/module.wxml"/>
 
-<view wx:for="{{list}}" class="community-section">
+<view wx:for="{{list}}" class="community-section" wx:for-item="panel">
     <view class="forum-list-flat-panel">
-        <view class="forum-list-flat-title">{{item.board_category_name}}</view>
+        <view class="forum-list-flat-title">{{panel.board_category_name}}</view>
         <view class="forum-list-flat-items"  >
-            <view class="forum-list-flat-item {{index % 2  ? '' : 'border-right'}}" wx:for="{{item.board_list}}" wx:key="{{index}}" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-url="{{item.url}}">
-                <view class="forum-list-flat-item-panel">
-                    <image wx:if="{{item.board_img}}" class="forum-list-flat-item-icon" src="{{item.board_img}}" />
-                    <view class="forum-list-flat-item-info">
-                        <view class="forum-list-flat-item-info-title">{{item.board_name}}</view>
-                        <view class="forum-list-flat-item-info-time">
-                            {{item.last_posts_date}}
+
+            <block wx:for="{{panel.board_list}}" wx:key="{{index}}">
+                <block wx:if="{{(index % 2 === 0)}}">
+                    <view class="forum-list-flat-item">
+
+                        <view class="forum-list-flat-item-panel" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-url="{{panel.board_list[index].url}}">
+                            <image wx:if="{{panel.board_list[index].board_img}}" class="forum-list-flat-item-icon" src="{{panel.board_list[index].board_img}}" />
+                            <view class="forum-list-flat-item-info">
+                                <view class="forum-list-flat-item-info-title">{{panel.board_list[index].board_name}}</view>
+                                <view class="forum-list-flat-item-info-time">
+                                    {{panel.board_list[index].last_posts_date}}
+                                </view>
+                            </view>
+                            <view wx:if="{{panel.board_list[index].td_posts_num != 0}}" class="forum-list-flat-item-num">
+                                （{{panel.board_list[index].td_posts_num}}）
+                            </view>
                         </view>
+
+                        <view class="border-right"></view>
+
+                        <view wx:if="{{panel.board_list[index+1]}}" class="forum-list-flat-item-panel" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-url="{{panel.board_list[index+1].url}}">
+                            <image wx:if="{{panel.board_list[index+1].board_img}}" class="forum-list-flat-item-icon" src="{{panel.board_list[index+1].board_img}}" />
+                            <view class="forum-list-flat-item-info">
+                                <view class="forum-list-flat-item-info-title">{{panel.board_list[index+1].board_name}}</view>
+                                <view class="forum-list-flat-item-info-time">
+                                    {{panel.board_list[index+1].last_posts_date}}
+                                </view>
+                            </view>
+                            <view wx:if="{{panel.board_list[index+1].td_posts_num != 0}}" class="forum-list-flat-item-num">
+                                （{{panel.board_list[index+1].td_posts_num}}）
+                            </view>
+                        </view>
+                        
                     </view>
-                    <view wx:if="{{item.td_posts_num != 0}}" class="forum-list-flat-item-num">
-                        （{{item.td_posts_num}})
-                    </view>
-                </view>
-            </view>
+                </block>
+            </block>
         </view>
     </view>
-  <!--   <view class="community-block-warp">
-        <view wx:for="{{item.board_list}}" wx:key="{{index}}" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-url="{{item.url}}" class="community-block {{index % 2  ? '' : 'border-right'}}">
-            <image class="community-icon" src="{{item.board_img}}" />
-            <view class="community-content">
-                <view class="community-block-title">
-                    <text wx:if="{{item.td_posts_num != 0}}" class="community-count">({{item.td_posts_num}})</text>
-                    <text>{{item.board_name}}</text>
-                </view>
-                <view class="community-block-small"><text class="">{{item.last_posts_date}}</text></view>
-            </view>
-        </view>
-        <view wx:if="{{item.board_list.length % 2}}" class="community-block" />
-    </view> -->
 </view>
 
