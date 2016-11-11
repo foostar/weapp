@@ -3,7 +3,7 @@
     <view class="cell-tieba">
         <view class="cell-tieba-header">
             <view>
-                <image class="cell-tieba-header-avatar" src="{{userAvatar}}" />
+                <image data-role="avatar" class="cell-tieba-header-avatar" src="{{userAvatar}}" />
                 <view class="cell-tieba-header-meta">
                     <text>{{user_nick_name}}</text>
                     <text class="cell-tieba-header-time">{{last_reply_date}}</text>
@@ -107,7 +107,7 @@
     <view class="cell-card">
         <view class="cell-card-header">
             <view class="cell-card-user">
-                <image class="cell-card-header-avatar" src="{{userAvatar}}" />
+                <image class="cell-card-header-avatar" data-role="avatar" src="{{userAvatar}}" />
                 <view class="cell-card-header-meta font-wide">
                     <view class="cell-card-header-name">{{user_nick_name}}</view>
                     <view class="cell-card-header-time font-mini">{{last_reply_date}}</view>
@@ -149,7 +149,7 @@
 <template name="imageSudoku">
     <view class="cell-imageSudoku-wrapper">
         <view class="cell-imageSudoku">
-            <image class="cell-imageSudoku-avatar" src="{{userAvatar}}" />
+            <image class="cell-imageSudoku-avatar" data-role="avatar" src="{{userAvatar}}" />
             <view class="cell-imageSudoku-content font-normal">
                 <view class="cell-imageSudoku-author">
                     <view class="cell-imageSudoku-author-box">
@@ -192,7 +192,7 @@
 <template name="circle">
     <view class="cell-wrapper">
         <view class="cell-container cell-flex-container">
-            <image class="cell-avatar" src="{{userAvatar}}" />
+            <image class="cell-avatar"  data-role="avatar" src="{{userAvatar}}" />
             <view class="cell-circle-content font-normal">
                 <view class="cell-circle-author">
                     <view class="cell-circle-username">
@@ -241,7 +241,7 @@
 </template>
 <!-- imageBig -->
 <template name="imageBig">
-    <view class="cell-image-box " bindtap="clickItem" id="{{id}}"> 
+    <view class="cell-image-box "> 
         <view class="cell-image-big" style="background-image:url({{pic_path}})">
             <view class="cell-image-big-cover"></view>
             <view class="cell-image-big-title-bar">
@@ -262,11 +262,11 @@
 
 <!-- 图片样式1 newslist-image image -->
 <template name="image">
-    <view class="list-image-item" bindtap="clickItem" id="{{id}}">
+    <view class="list-image-item">
         <image src="{{pic_path}}" style="width:{{scale_width}}px; height:{{scale_height}}px;" />
         <view class="list-image-item-count">{{hits}}</view>
         <view class="list-image-title">{{title}}</view>
-        <view class="list-image-avatar" style="background-image:url({{userAvatar}});" ></view>
+        <view class="list-image-avatar" data-role="avatar" style="background-image:url({{userAvatar}});" ></view>
         <view class="list-image-meta">
             <view class="list-image-username">{{user_nick_name}}</view>
             <view class="list-image-date">{{last_reply_date}}</view>
@@ -276,9 +276,9 @@
 
 <!-- 图片样式2 -->
 <template name="image2">
-    <view class="cell-image-two" style="width:{{image2Size}}px;" bindtap="clickItem" id="{{id}}">
+    <view class="cell-image-two" style="width:{{image2Size}}px;">
         <view class="cell-image-two-header">
-            <view class="cell-image-two-avatar" style="background-image:url({{userAvatar}});"></view>
+            <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{userAvatar}});"></view>
             <view class="cell-image-two-user">
                 <view class="cell-image-two-username">
                     {{user_nick_name}}

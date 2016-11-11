@@ -1,4 +1,5 @@
 const ListComponent = require('../../lib/listcomponent')
+const util = require('../../utils/util.js')
 
 const app = getApp()
 
@@ -12,6 +13,7 @@ function TopiclistComplex(key, module) {
         resources: {},
         tabsIndex: 0,
         isLoading: false,
+        showList: true,
         iconSrc: app.globalData.iconSrc,
         orderby: module.extParams.orderby,
         appIcon: app.globalData.info.appIcon,
@@ -30,36 +32,75 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
     this.setData({
         isLoading: true
     })
-    return app.api.forum(module.extParams.forumId, {
-        page: param.page,
-        sortby: param.orderby || 'all'
-    }).then((data) => {
+    return Promise.all([
+        app.api.forumList({ fid: module.extParams.forumId }),
+        app.api.forum(module.extParams.forumId, {
+            page: param.page,
+            sortby: param.orderby || 'all'
+        })
+    ]).then(([ boardChild, data ]) => {
+        let hasChildrens = false
+        try {
+            hasChildrens = !!boardChild.list[0].board_list.length
+            boardChild = boardChild.list[0].board_list
+            boardChild.forEach((v) => {
+                v.last_reply_date = util.formatTime(v.last_reply_date)
+                v.last_posts_date = util.formatTime(v.last_posts_date)
+            })
+        } catch (err) {
+            hasChildrens = false
+        }
         data.list = list.concat(data.list)
         if (data.page == 1) {
             this.setData({
                 topTopicList: data.topTopicList
             })
         }
+        let navWidth = '33.33333%'
+        if (hasChildrens) {
+            navWidth = '25%'
+        }
         let appIcon = (data.forumInfo && data.forumInfo.icon) || app.globalData.loadSrc
         this.setData({
             resources: data,
             isLoading: false,
             appIcon,
+            hasChildrens,
+            boardChild,
+            navWidth,
             over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
     }, () => {
         this.setData({ resources: {}, over: true, isLoading: false })
     })
 }
+// 查看子版块
+TopiclistComplex.prototype.checkchild = function (e) {
+    app.showTopic(e.currentTarget.dataset)
+}
+// 查看详情
 TopiclistComplex.prototype.clickItem = function (e) {
+    if (e.target.dataset.role == 'avatar') {
+        if (app.isLogin()) return
+        return wx.navigateTo({
+            url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.user })}`
+        })
+    }
     app.showPost(e.currentTarget.id)
 }
 // 切换orderby
 TopiclistComplex.prototype.changeTabs = function (e) {
     const { index, sort } = e.currentTarget.dataset
     const tabsIndex = Number(index)
-    this.orderby = sort
     this.setData({ tabsIndex, orderby: sort, over: false })
+    if (tabsIndex == 3) {
+        return this.setData({
+            showList: false,
+            over: true
+        })
+    }
+    this.orderby = sort
+    this.setData({ tabsIndex, orderby: sort, showList: true, over: false })
     this.pageIndex = 1
     this.fetchData({
         page: this.pageIndex,
