@@ -1,36 +1,36 @@
 <import src="/pages/module/module.wxml"/>
 
 <view wx:for="{{list}}" class="community-section" wx:for-item="panel">
-    <view class="forum-list-flat-panel">
-        <view class="forum-list-flat-title">{{panel.board_category_name}}</view>
-        <view class="forum-list-flat-items"  >
+    <view class="forum-list-card-panel">
+        <view class="forum-list-card-title">{{panel.board_category_name}}</view>
+        <view class="forum-list-card-items"  >
 
             <block wx:for="{{panel.board_list}}" wx:key="{{index}}">
                 <block wx:if="{{(index % 2 === 0)}}">
-                    <view class="forum-list-flat-item">
+                    <view class="forum-list-card-item">
 
-                        <view class="forum-list-flat-item-panel" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-url="{{panel.board_list[index].url}}">
-                            <image wx:if="{{panel.board_list[index].board_img}}" class="forum-list-flat-item-icon" src="{{panel.board_list[index].board_img}}" />
-                            <view class="forum-list-flat-item-info">
-                                <view class="forum-list-flat-item-info-title">{{panel.board_list[index].board_name}}</view>
-                                <view class="forum-list-flat-item-info-time">
+                        <view class="forum-list-card-item-panel" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-url="{{panel.board_list[index].url}}">
+                            <image wx:if="{{panel.board_list[index].board_img}}" class="forum-list-card-item-icon" src="{{panel.board_list[index].board_img}}" />
+                            <view class="forum-list-card-item-info">
+                                <view class="forum-list-card-item-info-title">{{panel.board_list[index].board_name}}</view>
+                                <view class="forum-list-card-item-info-time">
                                     {{panel.board_list[index].last_posts_date}}
                                 </view>
                             </view>
-                            <view wx:if="{{panel.board_list[index].td_posts_num != 0}}" class="forum-list-flat-item-num">({{panel.board_list[index].td_posts_num}})</view>
+                            <view wx:if="{{panel.board_list[index].td_posts_num != 0}}" class="forum-list-card-item-num">({{panel.board_list[index].td_posts_num}})</view>
                         </view>
 
-                        <view class="border-right"></view>
+                        <view class="forum-list-card-border-right"></view>
 
-                        <view wx:if="{{panel.board_list[index+1]}}" class="forum-list-flat-item-panel" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-url="{{panel.board_list[index+1].url}}">
-                            <image wx:if="{{panel.board_list[index+1].board_img}}" class="forum-list-flat-item-icon" src="{{panel.board_list[index+1].board_img}}" />
-                            <view class="forum-list-flat-item-info">
-                                <view class="forum-list-flat-item-info-title">{{panel.board_list[index+1].board_name}}</view>
-                                <view class="forum-list-flat-item-info-time">
+                        <view wx:if="{{forum-list-card-panel.board_list[index+1]}}" class="forum-list-card-item-panel" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-url="{{panel.board_list[index+1].url}}">
+                            <image wx:if="{{panel.board_list[index+1].board_img}}" class="forum-list-card-item-icon" src="{{panel.board_list[index+1].board_img}}" />
+                            <view class="forum-list-card-item-info">
+                                <view class="forum-list-card-item-info-title">{{panel.board_list[index+1].board_name}}</view>
+                                <view class="forum-list-card-item-info-time">
                                     {{panel.board_list[index+1].last_posts_date}}
                                 </view>
                             </view>
-                            <view wx:if="{{panel.board_list[index+1].td_posts_num != 0}}" class="forum-list-flat-item-num">({{panel.board_list[index+1].td_posts_num}})</view>
+                            <view wx:if="{{panel.board_list[index+1].td_posts_num != 0}}" class="forum-list-card-item-num">({{panel.board_list[index+1].td_posts_num}})</view>
                         </view>
 
                     </view>
