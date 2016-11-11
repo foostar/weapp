@@ -294,6 +294,7 @@
 .cell-flat-content-subject {
     font-size: 26rpx;
     color: #a4a4a4;
+    margin-bottom: 10rpx;
 }
 
 .cell-flat-content-subject.subject-oneline {

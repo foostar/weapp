@@ -57,12 +57,12 @@
     </view>
 </template>
 
-<scroll-view scroll-y="true" class="page-post" bindscrolltolower="post_nextPage" data-event-key="{{key}}">
-    <view>
+<view class="page-post">
+    <scroll-view class="post-container" scroll-y="true" bindscrolltolower="post_nextPage" data-event-key="{{key}}">
         <view class="post-title">
             {{topic.title}}
         </view>
-        <view class="post-meta-wrapper">
+        <view class="post-meta-wrapper post-card">
             <view class="post-meta">
                 <image class="post-user-avatar" src="{{topic.icon}}" />
                 <view class="post-meta-content">
@@ -75,7 +75,8 @@
             </view>
             <view wx:if="{{!creater}}" class="focus font-normal text-color" bindtap="post_foucsUser" data-event-key="{{key}}" data-focus="{{topic.isFollow}}" data-id="{{topic.user_id}}">{{topic.isFollow ? '已关注TA' : '关注TA'}}</view>
         </view>
-        <view class="post-content font-wide {{list.length > 0 ? '' : 'post-content-large'}}">
+
+        <view class="post-content post-card font-wide {{list.length > 0 ? '' : 'post-content-large'}}">
             <block wx:for="{{topic.content}}" wx:key="{{index}}">
                 <view wx:if="{{item.type === 1}}" class="post-content-image">
                     <image wx:if="{{item.unloaded}}" class="post-content-preload" style="width: 100%" mode="aspectFit" src="{{item.loadSrc}}" />
@@ -95,17 +96,20 @@
                 <template is="{{'post-' + item.tagName}}" data="{{...item}}" />
             </block> -->
             <!-- <view class="hits-number">浏览{{topic.hits}}人</view> -->
-            <view wx:if="{{topic.zanList.length > 0}}" class="zanList-wrapper font-mini">
-                <view class="reply-recommendAdd">{{topic.zanList.length}}</view>
-                <block wx:for="{{topic.zanList}}" wx:key="{{index}}">
-                    <view class="zanList color-member">{{item.username}}{{index < topic.zanList.length-1 ? ',' : ''}}</view>
-                </block>
-            </view>
             <view class="topic-comment-info">
                 <view class="post-hits hits-number">浏览{{topic.hits}}人</view>
                 <view class="post-manage" data-id="{{topic.topic_id}}" data-role="topic" bindtap="post_actionSheetTap" data-event-key="{{key}}"></view>
             </view>
         </view>
+
+        <view wx:if="{{topic.zanList.length > 0}}" class="zanlist-wrapper post-card font-mini">
+            <text class="zanlist-btn">{{topic.zanList.length}} 人</text>
+            <block wx:for="{{topic.zanList}}" wx:key="{{index}}">
+                <text class="zanlist">{{item.username}}</text>
+                <text wx:if="{{index < topic.zanList.length-1}}">，</text>
+            </block>
+        </view>
+
         <view class="post-comments" wx:if="{{list.length > 0}}">
             <view class="post-card-title">评论</view>
             <view wx:for="{{list}}" wx:key="{{index}}" class="clearfix post-comment-item">
@@ -153,7 +157,7 @@
             <!-- 没有了 -->
             <view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>
         </view>
-    </view>
+    </scroll-view>
     <action-sheet hidden="{{actionSheetHidden}}" bindchange="post_actionSheetChange" data-event-key="{{key}}">
         <block wx:for="{{managePanel}}" wx:key="{{index}}">
             <action-sheet-item class="item" data-name="{{item.title}}">{{item.title}}</action-sheet-item>
@@ -178,5 +182,4 @@
             <button type="default" class="font-mini" formType="submit">发送</button>
         </form>
     </view>
-
-</scroll-view>
+</view>
