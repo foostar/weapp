@@ -14,7 +14,6 @@
     -ms-flex-wrap: none;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    text-align: center;
 }
 .buttons-tab:after {
     content: '';

@@ -23,7 +23,6 @@
     font-size: 12px;
     line-height: 80rpx;
     color: #ccc;
-    width: 100%;
 }
 .post-content-image{
     position:relative;
