@@ -1,50 +1,6 @@
 const Component = require('../../lib/component')
-const CONFIG = require('../../config.js')
 
 const app = getApp()
-
-// 顺序处理任务
-function sequenceTasks(tasks) {
-    // 处理图片上船
-    return Promise.all(tasks).then(list => {
-        let returnImages = []
-        for (let i = 0; i < list.length; i += 1) {
-            try {
-                const data = JSON.parse(list[i].data)
-                returnImages.push(data.body.attachment[0])
-            } catch (e) {
-                console.log(e)
-            }
-        }
-        return Promise.resolve(returnImages)
-    })
-}
-
-// 图片上传
-function uploadImage(tmpurl, selectType) {
-    return new Promise((resolve, reject) => {
-        const accessToken = app.globalData.userInfo.token
-        const accessSecret = app.globalData.userInfo.secret
-        wx.uploadFile({
-            url: `${CONFIG.URL}/mobcent/app/web/index.php?r=forum/sendattachmentex`,
-            filePath: tmpurl,
-            name: 'uploadFile[]',
-            formData: {
-                type: 'image',
-                module: 'forum',
-                fid: selectType,
-                accessToken,
-                accessSecret
-            },
-            success: response => {
-                return resolve(response)
-            },
-            fail: err => {
-                reject(err)
-            }
-        })
-    })
-}
 
 
 function Createforum(key, module) {
@@ -113,6 +69,7 @@ Createforum.prototype.onLoad = function () {
     } else {
         Object.assign(data, { selectType: data.fid })
         this.setData(data)
+        this.getTopicList()
     }
 }
 
@@ -210,56 +167,44 @@ Createforum.prototype.deleteImage = function (event) {
     // 发表评论
 Createforum.prototype.submit = function () {
     const { title, content, actType, selectType, imagelist, selectTopicId } = this.data
-    let topicContentTopic = []
-    let aid = ''
-    let aids = []
+    let topicContent = []
 
-    wx.showToast({
+    // 文本处理
+    if (content !== '') {
+        topicContent.push({ type: '0', infor: content })
+    }
+    imagelist.length && wx.showToast({
         title: '上传中...',
         icon: 'loading',
         duration: 10000
     })
-    // 文本处理
-    if (content !== '') {
-        topicContentTopic.push({ type: '0', infor: content })
-    }
-
-    // 图片处理
-    if (imagelist.length > 0) {
-        // 上传图片
-        let tasks = []
-        for (let i = 0, l = imagelist.length; i < l; i += 1) {
-            let promise = uploadImage(imagelist[i], selectType)
-            tasks.push(promise)
+    Promise.all(imagelist.map(v => {
+        return app.api.sendattachmentex({
+            filePath: v,
+            formData: {
+                type: 'image',
+                module: 'forum',
+                fid: selectType
+            }
+        }).then(data => data.body.attachment[0])
+    }))
+    .then(list => {
+        list.length && wx.hideToast()
+        topicContent = topicContent.concat(list.map(x => ({ type: '1', infor: x.urlName })))
+        return {
+            aid: list.map(x => x.id).join(','),
+            content: encodeURIComponent(JSON.stringify(topicContent))
         }
-        // 执行上传
-        return sequenceTasks(tasks)
-        .then(list => {
-            // 上传图片结果
-            for (let i = 0, l = list.length; i < l; i += 1) {
-                // 上传图片
-                topicContentTopic.push({ type: '1', infor: list[i].urlName })
-                aids.push(list[i].id)
-            }
-            // 附件 '3, 4, 5'
-            aid = aids.join(',')
-            let contentToEncode = encodeURIComponent(JSON.stringify(topicContentTopic))
-            let postData = {
-                aid,
-                isShowPostion: 0, // 是否显示地理位置
-                content: contentToEncode,
-                act: actType,
-                fid: selectType,
-                typeId: selectTopicId,
-                title: encodeURIComponent(title)
-            }
-
-            return app.api.createTopic(postData)
-        })
-        .then(res => {
-            console.log('发布成功', res)
-            wx.hideToast()
-            return wx.showToast({
+    })
+    .then(data => {
+        return app.api.createTopic(Object.assign({
+            isShowPostion: 0, // 是否显示地理位置
+            act: actType,
+            fid: selectType,
+            typeId: selectTopicId,
+            title: encodeURIComponent(title)
+        }, data)).then(() => {
+            wx.showToast({
                 title: '发布成功',
                 icon: 'success',
                 duration: 1500,
@@ -268,31 +213,9 @@ Createforum.prototype.submit = function () {
                 }
             })
         })
-        .catch(err => {
-            // 上传失败
-            console.log('发表失败', err)
-        })
-    }
-
-    let contentToEncode = encodeURIComponent(JSON.stringify(topicContentTopic))
-    let postData = {
-        aid,
-        isShowPostion: 0, // 是否显示地理位置
-        content: contentToEncode,
-        fid: selectType,
-        typeId: selectTopicId,
-        title: encodeURIComponent(title)
-    }
-    return app.api.createTopic(postData).then((res) => {
-        console.log(res)
-        wx.showToast({
-            title: '发布成功',
-            icon: 'success',
-            duration: 1500,
-            success: () => {
-                wx.navigateBack()
-            }
-        })
+    })
+    .catch(err => {
+        console.error('发表失败', err)
     })
 }
 
