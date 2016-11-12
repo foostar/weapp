@@ -32,3 +32,63 @@
     margin-top: -16rpx;
     right: 30rpx;
 }
+
+.myinfo-comment-box {
+    padding:20rpx;
+    background:#fff;
+    border-bottom: 1rpx solid #f5f5f5;
+    position: relative;
+}
+.myinfo-comment-useravator {
+    width: 88rpx;
+    height: 88rpx;
+    border-radius: 10rpx;
+}
+.myinfo-comment-username {
+    font-size: 16px;
+    position: absolute;
+    margin-left: 108rpx;
+    top: 10px;
+}
+.myinfo-commont-data {
+    font-size: 12px;
+    position: absolute;
+    margin-left: 108rpx;
+    top: 35px;
+    color: #9d9d9d;
+}
+.myinfo-commont-replay-content {
+    font-size: 16px;
+}
+.myinfo-commont-topic-content {
+    font-size: 16px;
+    color: #ccc;
+    padding: 10rpx;
+    background: #f5f5f5;
+    position: relative;
+    margin: 10rpx 0;
+}
+
+.myinfo-commont-replay-btn-box {
+    width: 100%;
+    height: 20px;
+}
+.myinfo-commont-replay-btn {
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    width: 80rpx; 
+    line-height: 20px;
+    float: right;
+    margin-bottom: 30px;
+}
+
+.top-triangle {
+    position: absolute;
+    top: -10rpx;
+    width: 0;
+    height: 0;
+    border-left: 8rpx solid transparent;
+    border-right: 8rpx solid transparent;
+    border-bottom: 10rpx solid #f5f5f5;
+}

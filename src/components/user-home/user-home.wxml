@@ -1,35 +1,4 @@
-<import src="/components/buttons-tab/buttons-tab.wxml"/>
 
-<template name="user-publish-item">
-    <block wx:for="{{ list }}">
-        <view class="user-publish-item">
-            <view class="user-publish-info">
-                <image src="{{ item.userAvatar }}" class="user-publish-info-icon" />
-                <view class="user-publish-info-title">
-                    <view class="user-publish-info-name">{{ item.user_nick_name }}</view>
-                    <view class="user-publish-info-date">{{ item.last_reply_date }}</view>
-                </view>
-                <view class="user-publish-info-from">来自 {{ item.board_name }}</view>
-            </view>
-            <view class="user-publish-topic">
-                <view class="user-publish-topic-title">
-                    <view wx:if="{{item.essence == 1}}" class="icon-tag-jing"></view>
-                    <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
-                    <view wx:if="{{item.hot == 1}}" class="icon-tag-re"></view>
-                    {{ item.title }}
-                </view>
-                <view class="user-publish-topic-desc">{{ item.subject }}</view>
-                <view wx:if="{{ !!item.pic_path }}" style="background-image: url({{ item.pic_path }})" class="user-publish-topic-image" ></view>
-            </view>
-            <view class="user-publish-bar">
-                <text class="icon-eye user-publish-bar-icon"></text>
-                <text class="user-publish-bar-text">{{ item.hits }}</text>
-                <text class="icon-message user-publish-bar-icon"></text>
-                <text class="user-publish-bar-text">{{ item.replies }}</text>
-            </view>
-        </view>
-    </block>
-</template>
 <template name="user-info-item">
     <view class="user-info-item">
         <view class="user-info-title">{{ title }}</view>
@@ -62,11 +31,45 @@
         </view>
     </view>
     <!-- userTopicList -->
+
     <view>
-        <template is="buttons-tab" data="{{ currentIndex, tabs, color }}"/>
-        <view class="topic-list" wx:if="{{ currentIndex == 0 }}">
-            <template is="user-publish-item" data="{{ list: topics.list }}"></template>
+        <view class="buttons-tab">
+            <block wx:for="{{ tabs }}">
+                <view bindtap="userhome_changeTabs" data-event-key="{{key}}" style="color: {{ index == currentIndex ? (color || '#000') : '#999' }}" class="tab-link {{ index == currentIndex ? 'tab-link-active' : '' }}" data-index="{{ index }}">{{ item }}</view>
+            </block>
         </view>
+
+        <view class="topic-list" wx:if="{{ currentIndex == 0 }}">
+            <block wx:for="{{ topics.list  }}">
+                <view class="user-publish-item" bindtap="userhome_showPost" data-event-key="{{key}}" data-postid="{{item.topic_id}}">
+                    <view class="user-publish-info">
+                        <image src="{{ item.userAvatar }}" class="user-publish-info-icon" />
+                        <view class="user-publish-info-title">
+                            <view class="user-publish-info-name">{{ item.user_nick_name }}</view>
+                            <view class="user-publish-info-date">{{ item.last_reply_date }}</view>
+                        </view>
+                        <view class="user-publish-info-from">来自 {{ item.board_name }}</view>
+                    </view>
+                    <view class="user-publish-topic">
+                        <view class="user-publish-topic-title">
+                            <view wx:if="{{item.essence == 1}}" class="icon-tag-jing"></view>
+                            <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
+                            <view wx:if="{{item.hot == 1}}" class="icon-tag-re"></view>
+                            {{ item.title }}
+                        </view>
+                        <view class="user-publish-topic-desc">{{ item.subject }}</view>
+                        <view wx:if="{{ !!item.pic_path }}" style="background-image: url({{ item.pic_path }})" class="user-publish-topic-image" ></view>
+                    </view>
+                    <view class="user-publish-bar">
+                        <text class="icon-eye user-publish-bar-icon"></text>
+                        <text class="user-publish-bar-text">{{ item.hits }}</text>
+                        <text class="icon-message user-publish-bar-icon"></text>
+                        <text class="user-publish-bar-text">{{ item.replies }}</text>
+                    </view>
+                </view>
+            </block>
+        </view>
+
         <view class="info-list" wx:if="{{ currentIndex == 1 }}">
             <view class="user-info-list">
                 <block wx:for="{{ info.body.profileList }}">
@@ -80,6 +83,7 @@
             </view>
         </view>
     </view>
+
     <!-- loading -->
     <loading hidden="{{ !isLoading }}">
         加载中...

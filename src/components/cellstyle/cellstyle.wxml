@@ -294,3 +294,22 @@
         </view>
     </view>
 </template>
+
+<!-- 评论 @我的  -->
+<template name="myinfoComment">
+    <view class="myinfo-comment-box">
+        <image src="{{icon}}" class="myinfo-comment-useravator" data-uid="{{user_id}}"></image>
+        <view class="myinfo-comment-username">{{user_name}}</view> 
+        <view class="myinfo-commont-data">{{replied_date}}</view>
+        <view class="myinfo-commont-replay-content" data-topic-id="{{topic_id}}">
+            <text>{{reply_content}}</text>
+        </view>
+        <view class="myinfo-commont-topic-content">
+            <text>{{topic_content}}</text>
+            <view class="top-triangle"></view>
+        </view>
+        <view class="myinfo-commont-replay-btn-box">
+            <view class="myinfo-commont-replay-btn bg-color">回复</view>
+        </view>
+    </view>
+</template>

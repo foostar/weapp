@@ -134,5 +134,15 @@ Mylistcompos.prototype.nextPage = function () {
     .catch(err => console.log(err))
 }
 
+Mylistcompos.prototype.showPost = function (e) {
+    const postid = e.currentTarget.dataset.postid
+    app.showPost(postid)
+}
+
+Mylistcompos.prototype.showUser = function (e) {
+    const uid = e.currentTarget.dataset.uid
+    app.showUserHome(uid)
+}
+
 
 module.exports = Mylistcompos

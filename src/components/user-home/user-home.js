@@ -10,7 +10,7 @@ function UserHome(key, module) {
     this.data = {
         isLogin: false,
         uid: '',
-        color: '#000',
+        color: `#${app.config.COLOR}`,
         currentIndex: 0,
         tabs: [ '发表', '资料' ],
         info: {},
@@ -46,12 +46,6 @@ UserHome.prototype.changeTabs = function (e) {
     // 切换选项卡
     this.setData({
         currentIndex: e.currentTarget.dataset.index
-    })
-}
-UserHome.prototype.onReady = function () {
-    // 修改导航条
-    wx.setNavigationBarTitle({
-        title: ''
     })
 }
 
@@ -93,5 +87,9 @@ UserHome.prototype.toNavigationPage = function (e) {
     }
 }
 
+UserHome.prototype.showPost = function (e) {
+    console.log(e)
+    app.showPost(e.currentTarget.dataset.postid)
+}
 
 module.exports = UserHome

@@ -16,8 +16,7 @@ function Topic(key, module) {
         partinNum: 0,
         newList: [],
         hotList: [],
-        currentIndex: 1,
-        tabs: [ '最新', '最热' ]
+        currentIndex: 1
     }
 }
 Topic.prototype = Object.create(ListComponent.prototype)
