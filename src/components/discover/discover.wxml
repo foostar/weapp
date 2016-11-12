@@ -39,11 +39,11 @@
 
     <view class="personal-manage-card">
         <view class="personal-manage-items">
-            <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">
+            <!-- <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">
                 <image class="icon icon-info" src="{{iconSrc}}shoucang.png"></image>
                 <text class="personal-manage-item-title">我的收藏</text>
                 <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
-            </view>
+            </view> -->
             <!-- <navigator url="/pages/regular-pages/create-forum/create-forum">
                 <view class="personal-manage-item" wx:if="{{true}}">
                     <image class="icon icon-info" src="{{iconSrc}}dz_personal_draft.png"></image>
@@ -57,11 +57,11 @@
                 <text wx:if="{{userInfo.mobile ? true : false}}" style="float:right; padding-right:52rpx;">{{userInfo.mobile}}</text>
                 <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view> -->
-            <view class="personal-manage-item" wx:if="{{}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myInfo">
+           <!--  <view class="personal-manage-item" wx:if="{{}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myInfo">
                 <image class="icon icon-info" src="{{iconSrc}}dz_personal_message.png"></image>
                 <text class="personal-manage-item-title">我的消息</text>
                 <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
-            </view>
+            </view> -->
             <!-- <view class="personal-manage-item" wx:if="{{setting.user.verify}}">
                 <image class="icon icon-verify"></image>
                 <text class="personal-manage-item-title">用户认证</text>
