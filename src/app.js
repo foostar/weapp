@@ -193,6 +193,11 @@ App({
             url: '/pages/blank/blank?type=post'
         })
     },
+    showUserHome(id) {
+        wx.navigateTo({
+            url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: id })}`
+        })
+    },
     getUserInfo(cb) {
         const that = this
         if (this.globalData.userInfo) {

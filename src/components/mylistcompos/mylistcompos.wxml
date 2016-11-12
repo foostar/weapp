@@ -3,7 +3,7 @@
 <view wx:if="{{ !isUserList }}">
     <view wx:if="{{list.length == 0 }}" class="mylistcompos-no-content">暂无相关内容</view>
     <block wx:for="{{list}}" >
-        <view class="mylistcompos-topics-item-box" >
+        <view class="mylistcompos-topics-item-box" bindtap="mylistcompos_showPost" data-postid="{{item.topic_id}}" data-event-key="{{key}}">
             <view class="mylistcompos-topics-item-context" style="{{ item.pic_path == '' ? 'width: 100%;' : 'width:auto;'}}">
                 <view class="mylistcompos-topics-item-title">
                     <view wx:if="{{item.essence == 1}}" class="mylistcompos-icon-tag-jing"></view>
@@ -26,7 +26,7 @@
 <view wx:if="{{ isUserList }}">
     <view wx:if="{{list.length == 0 }}" class="mylistcompos-no-content">暂无相关内容</view>
     <block wx:for="{{list}}">
-        <view class="mylistcompos-user-list-item">
+        <view class="mylistcompos-user-list-item"  bindtap="mylistcompos_showUser" data-uid="{{item.uid}}" data-event-key="{{key}}">
             <view class="mylistcompos-user-item-data">
                 <view class="mylistcompos-user-item-image" style="background-image:url({{item.icon}})"></view>
                 <view class="mylistcompos-user-item-data-info">
