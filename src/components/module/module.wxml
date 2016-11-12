@@ -179,6 +179,10 @@
     <include src="../myinfo/myinfo.wxml" />
 </template>
 
+<template name="myinfoatme">
+    <include src="../myinfoatme/myinfoatme.wxml" />
+</template>
+
 <template name="userhome">
     <include src="../user-home/user-home.wxml" />
 </template>
@@ -190,6 +194,7 @@
 <template name="topic">
     <include src="../topic/topic.wxml" />
 </template>
+
 
 
 <template name="module">

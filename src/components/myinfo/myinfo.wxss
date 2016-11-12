@@ -32,3 +32,16 @@
     margin-top: -16rpx;
     right: 30rpx;
 }
+
+
+.myinfo-comment-box {
+    padding:20rpx;
+    background:#fff;
+    border-bottom: 1rpx solid #9d9d9d;
+}
+.myinfo-comment-useravator {
+    width: 88rpx;
+    height: 88rpx;
+    border-radius: 10rpx;
+}
+
