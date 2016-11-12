@@ -24,7 +24,7 @@
 <template name="buttons-tab">
     <view class="buttons-tab">
         <block wx:for="{{ tabs }}">
-            <view bindtap="changeTabs" style="color: {{ index == currentIndex ? (color || '#000') : '#999' }}" class="tab-link {{ index == currentIndex ? 'tab-link-active' : '' }}" data-index="{{ index }}">{{ item }}</view>
+            <view bindtap="userhome_changeTabs" data-event-key="{{key}}" style="color: {{ index == currentIndex ? (color || '#000') : '#999' }}" class="tab-link {{ index == currentIndex ? 'tab-link-active' : '' }}" data-index="{{ index }}">{{ item }}</view>
         </block>
     </view>
 </template>
