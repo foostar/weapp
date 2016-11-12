@@ -7,6 +7,9 @@ const { checkHasScroll } = require('../../utils/util.js')
  */
 const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
 const SubnavFlat = require('../subnavflat/subnavflat')
+const SubnavCard = require('../subnavcard/subnavcard')
+
+
 const SubnavCustom = require('../subnavcustom/subnavcustom')
 const Fullcard = require('../fullcard/fullcard')
 const Discover = require('../discover/discover')   // 我的
@@ -55,6 +58,7 @@ const Register = require('../register/register')
 const Myinfo = require('../myinfo/myinfo')
 const UserHome = require('../user-home/user-home')
 const UserList = require('../userlist/userlist')
+const Topic = require('../topic/topic')
 
 /*
  *   @定义组件类型
@@ -151,9 +155,14 @@ components.type['forumlist-flat'] = ForumlistFlat
 components.type['forumlist-card'] = ForumlistCard // 卡片样式
 components.type['forumlist-boardSplit'] = ForumlistSplit
 components.type['talk-flat'] = Talk
-components.type['subnav-flat'] = CustomTagNav
+
+components.type['subnav-flat'] = CustomTagNav   // 标签导航 目前只有 扁平样式
+components.type['subnav-card'] = SubnavCard
+
+
 components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
+components.type['webapp-flat'] = NotSupport
 
 components.type['post-flat'] = Post
 components.type['login-flat'] = Login   // 登录页面
@@ -168,6 +177,8 @@ components.type['myinfo-flat'] = Myinfo       // 我的消息
 components.type['userhome-flat'] = UserHome   // 用户主页
 
 components.type['userlist-flat'] = UserList   // 用户列表
+components.type['topic-flat'] = Topic         // 话题主页
+
 
 // topiclistSimple-flat
 

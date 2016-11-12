@@ -39,6 +39,7 @@
 @import "../register/register.wxss";
 @import "../myinfo/myinfo.wxss";
 @import "../user-home/user-home.wxss";
+@import "../topic/topic.wxss";
 
 
 
