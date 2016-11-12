@@ -28,10 +28,9 @@ MyinfoAtme.prototype.fetchData = function (param, number) {
     this.setData({
         isLoading: true
     })
-    return app.api.getNewNotifyList('post', {
+    return app.api.getNewNotifyList('at', {
         page: param.page
     }).then(data => {
-        console.log(data)
         data.body.data = data.body.data.map((v) => {
             v.replied_date = util.dateFormat(v.replied_date, 'yyyy-MM-dd')
             return v

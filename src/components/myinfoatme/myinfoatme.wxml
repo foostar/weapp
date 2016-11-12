@@ -1,16 +1,10 @@
+<import src="../cellstyle/cellstyle.wxml" />
 <view>
-    <block wx:for="{{list}}" wx:key="">
-        <view class="myinfo-comment-box">
-            <image src="{{item.icon}}" class="myinfo-comment-useravator" data-uid="{{user_id}}"></image>
-            <view class="myinfo-comment-username">{{item.user_name}}</view> 
-            <view>{{item.replied_date}}</view>
-            <view data-topic-id="{{topic_id}}">{{item.reply_content}}</view>
-            <view>{{item.topic_content}}</view>
-            <view>回复</view>
-        </view>
+    <block wx:for="{{list}}" wx:key="reply_remind_id">
+        <template is="myinfoComment" data="{{...item}}" ></template>
     </block>
     <!-- 加载中 -->
     <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
     <!-- 没有了 -->
-    <view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>
+    <view wx:if="{{over}}" class="liststyle-foot-title">已加载完成</view>
 </view>

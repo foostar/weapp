@@ -62,13 +62,38 @@ App({
                     }
                 }
                 const request = () => (new Promise((resolve, reject) => {
+                    let formData
+                    let body
+                    try {
+                        body = JSON.parse(data.body)
+                        formData = body.formData
+                    } catch (err) {
+                        formData = null
+                    }
+                    if (formData) {
+                        return wx.uploadFile({
+                            url,
+                            filePath: body.filePath,
+                            name: 'uploadFile[]',
+                            formData: body.formData,
+                            success: (response) => {
+                                try {
+                                    response.data = JSON.parse(response.data)
+                                } catch (err) {
+                                    return reject(err)
+                                }
+                                resolve(response)
+                            },
+                            fail: reject
+                        })
+                    }
                     wx.request({
                         url,
                         data: data.body,
                         header: data.headers,
                         method: data.method,
                         success: resolve,
-                        error: reject
+                        fail: reject
                     })
                 })).then((result) => {
                     requestNum -= 1
