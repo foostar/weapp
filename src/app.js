@@ -5,8 +5,7 @@ if (typeof Object.assign != 'function') {
         if (target == null) {
             throw new TypeError('Cannot convert undefined or null to object');
         }
-
-        target = Object(target);
+        target = Object(target)
         for (var index = 1; index < arguments.length; index++) {
             var source = arguments[index];
             if (source != null) {
@@ -46,58 +45,73 @@ App({
 
         let queue = []
         let requestNum = 0
+
+        const fetch = (url, data, isCenter) => {
+            if (!isCenter) {
+                url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`
+            } else {
+                data = data || {}
+                data.body = {}
+                data.headers = {}
+                data.method = 'GET'
+            }
+            const next = () => {
+                if (queue.length) {
+                    const d = queue.shift()
+                    d.request().then(d.resolve, d.reject)
+                } else {
+                    // wx.hideToast()
+                }
+            }
+            const request = () => (new Promise((resolve, reject) => {
+                wx.request({
+                    url,
+                    data: data.body,
+                    header: data.headers,
+                    method: data.method,
+                    success: resolve,
+                    error: reject
+                })
+            })).then((result) => {
+                requestNum -= 1
+                next()
+                return result
+            }, (err) => {
+                requestNum -= 1
+                next()
+                return Promise.reject(err)
+            })
+            requestNum += 1
+            if (requestNum >= 6) {
+                return new Promise((resolve, reject) => {
+                    queue.push({
+                        request,
+                        resolve,
+                        reject
+                    })
+                })
+            }
+            // wx.showToast({
+            //     title: '加载中',
+            //     icon: 'loading',
+            //     duration: 10000
+            // })
+            const promise = request()
+            return promise
+        }
+
         const api = this.api = new mobcent.API(CONFIG.URL, {
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
             },
-            fetch: (url, data) => {
-                url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`
-                const next = () => {
-                    if (queue.length) {
-                        const d = queue.shift()
-                        d.request().then(d.resolve, d.reject)
-                    } else {
-                        // wx.hideToast()
-                    }
-                }
-                const request = () => (new Promise((resolve, reject) => {
-                    wx.request({
-                        url,
-                        data: data.body,
-                        header: data.headers,
-                        method: data.method,
-                        success: resolve,
-                        error: reject
-                    })
-                })).then((result) => {
-                    requestNum -= 1
-                    next()
-                    return result
-                }, (err) => {
-                    requestNum -= 1
-                    next()
-                    return Promise.reject(err)
-                })
-                requestNum += 1
-                if (requestNum >= 6) {
-                    return new Promise((resolve, reject) => {
-                        queue.push({
-                            request,
-                            resolve,
-                            reject
-                        })
-                    })
-                }
-                // wx.showToast({
-                //     title: '加载中',
-                //     icon: 'loading',
-                //     duration: 10000
-                // })
-                const promise = request()
-                return promise
-            }
+            fetchCenter(url, data) {
+                return fetch(url, data, true).then(result => result.data)
+            },
+            fetch
         })
+
+        api.appId = '229171'
 
         // 处理自定义页面的ID问题
         const custom = api.custom
@@ -117,8 +131,7 @@ App({
             return forum.apply(api, arguments).then((data) => {
             /* eslint-enable */
                 data.list.forEach((v) => {
-                    v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
-                    v.last_reply_date = util.formatTime(v.last_reply_date)
+                    v.repliedAt = util.formatTime(v.repliedAt)
                     v.subject = util.formateText(v.subject)
                     let faceResult = util.infoToFace(v.subject)
                     v.hasFace = faceResult.hasFace

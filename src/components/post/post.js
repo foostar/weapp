@@ -82,6 +82,10 @@ Post.prototype.fetchData = function (tid, option) {
             data.isCommenting = true
             data.actionSheetHidden = true
             this.setData(data)
+        }, () => {
+            wx.navigateBack({
+                delta: 1
+            })
         })
 }
 /*

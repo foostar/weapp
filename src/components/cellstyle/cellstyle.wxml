@@ -3,10 +3,10 @@
     <view class="cell-tieba">
         <view class="cell-tieba-header">
             <view>
-                <image data-role="avatar" class="cell-tieba-header-avatar" src="{{userAvatar}}" />
+                <image data-role="avatar" class="cell-tieba-header-avatar" src="{{user.avatar}}" />
                 <view class="cell-tieba-header-meta">
-                    <text>{{user_nick_name}}</text>
-                    <text class="cell-tieba-header-time">{{last_reply_date}}</text>
+                    <text>{{user.nickname}}</text>
+                    <text class="cell-tieba-header-time">{{repliedAt}}</text>
                 </view>
             </view>
             <view class="cell-tieba-title">{{title}}</view>
@@ -18,8 +18,8 @@
             </block>
         </view>
         <view wx:else class="cell-tieba-content">{{subject}}</view>
-        <view class="cell-tieba-thumb" wx:if="{{imageList.length > 0}}">
-            <block wx:for="{{imageList}}" wx:key="{{index}}">
+        <view class="cell-tieba-thumb" wx:if="{{images.length > 0}}">
+            <block wx:for="{{images}}" wx:key="{{index}}">
                 <view wx:if="{{index < 3}}" class="cell-tieba-thumb-container">
                     <image src="{{item}}" mode="aspectFill"></image>
                 </view>
@@ -35,7 +35,7 @@
 <!-- cell-netease -->
 <template name="neteaseNews">
     <view class="cell-wrapper cell-netease-wrapper cell-container cell-flex-container">
-        <view class="cell-netease-content {{imageList.length > 0 ? 'cell-netease-info' : ''}}">
+        <view class="cell-netease-content {{images.length > 0 ? 'cell-netease-info' : ''}}">
             <view class="cell-netease-title font-wide">{{title}}</view>
             <view class="cell-netease-subject font-normal color-gray">
                 <text>{{subject}}</text>
@@ -43,17 +43,17 @@
             </view>
             
         </view>
-        <view class="cell-netease-image" wx:if="{{imageList.length > 0}}">
-            <image src="{{imageList[0]}}" mode="aspectFill"/>
+        <view class="cell-netease-image" wx:if="{{images.length > 0}}">
+            <image src="{{images[0]}}" mode="aspectFill"/>
         </view>
     </view>
 </template>
 <!-- cell-flat -->
 <template name="flat-info">
-    <view class="cell-flat-info {{imageList.length < 3 ? 'cell-flat-mini' : ''}}">
-        <text class="cell-flat-info-time">{{last_reply_date}}</text>
-        <text class="cell-flat-info-author">{{user_nick_name}}</text>
-        <text class="hits">{{hits}}阅读</text>
+    <view class="cell-flat-info {{images.length < 3 ? 'cell-flat-mini' : ''}}">
+        <text class="cell-flat-info-time">{{repliedAt}}</text>
+        <text class="cell-flat-info-author">{{nickname}}</text>
+        <text class="hits">{{views}}阅读</text>
     </view>
 </template>
 <template name="flat-title">
@@ -65,7 +65,7 @@
     </view>
 </template>
 <template name="flat">
-    <view wx:if="{{imageList.length > 0 && imageList.length < 3}}" class="cell-flat cell-flat-mini">
+    <view wx:if="{{images.length > 0 && images.length < 3}}" class="cell-flat cell-flat-mini">
         <view class="cell-flat-content">
             <template is="flat-title" data="{{essence, top, hot, title}}"></template>
             <view wx:if="{{hasFace}}" class="cell-flat-content-subject">
@@ -77,29 +77,29 @@
             <view wx:else class="cell-flat-content-subject">{{subject}}</view>
         </view>
         <view class="cell-flat-thumb-container">
-            <image src="{{imageList[ 0 ]}}" mode="aspectFill"></image>
+            <image src="{{images[ 0 ]}}" mode="aspectFill"></image>
         </view>
-        <template is="flat-info" data="{{last_reply_date, user_nick_name, hits}}"></template>
+        <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
     </view>
     <view wx:else class="cell-flat">
         <template is="flat-title" data="{{essence, top, hot, title}}"></template>
         <view class="cell-flat-content">
-            <view wx:if="{{hasFace}}" class="cell-flat-content-subject {{imageList.length ? 'subject-oneline' : ''}}">
+            <view wx:if="{{hasFace}}" class="cell-flat-content-subject {{images.length ? 'subject-oneline' : ''}}">
                 <block wx:for="{{subject}}" wx:key="{{index}}">
                     <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                     <image wx:else src="{{item.content}}" class="face" />
                 </block>
             </view>
-            <view wx:else class="cell-flat-content-subject {{imageList.length ? 'subject-oneline' : ''}}">{{subject}}</view>
+            <view wx:else class="cell-flat-content-subject {{images.length ? 'subject-oneline' : ''}}">{{subject}}</view>
         </view>
         <view class="cell-flat-thumb">
-            <block wx:for="{{imageList}}" wx:key="{{index}}">
+            <block wx:for="{{images}}" wx:key="{{index}}">
                 <view wx:if="{{index < 3}}" class="cell-flat-thumb-container">
                     <image src="{{item}}" mode="aspectFill"></image>
                 </view>
             </block>
         </view>
-        <template is="flat-info" data="{{last_reply_date, user_nick_name, hits}}"></template>
+        <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
     </view>
 </template>
 <!-- card -->
@@ -107,10 +107,10 @@
     <view class="cell-card">
         <view class="cell-card-header">
             <view class="cell-card-user">
-                <image class="cell-card-header-avatar" data-role="avatar" src="{{userAvatar}}" />
+                <image class="cell-card-header-avatar" data-role="avatar" src="{{user.avatar}}" />
                 <view class="cell-card-header-meta font-wide">
-                    <view class="cell-card-header-name">{{user_nick_name}}</view>
-                    <view class="cell-card-header-time font-mini">{{last_reply_date}}</view>
+                    <view class="cell-card-header-name">{{user.nickname}}</view>
+                    <view class="cell-card-header-time font-mini">{{repliedAt}}</view>
                 </view>
                 <view class="cell-flag">
                     <block wx:for="{{verify}}" wx:key="{{index}}">
@@ -126,8 +126,8 @@
         <view class="cell-card-content">
             <view class="cell-card-title">{{title}}</view>
             <view class="cell-card-subject font-normal">{{subject}}</view>
-            <view class="cell-tieba-thumb cell-content-image-wrapper" wx:if="{{imageList.length > 0}}">
-                <block wx:for="{{imageList}}" wx:key="{{index}}">
+            <view class="cell-tieba-thumb cell-content-image-wrapper" wx:if="{{images.length > 0}}">
+                <block wx:for="{{images}}" wx:key="{{index}}">
                     <view wx:if="{{index < 3}}" class="cell-tieba-thumb-container">
                         <image src="{{item}}" mode="aspectFill"></image>
                     </view>
@@ -149,11 +149,11 @@
 <template name="imageSudoku">
     <view class="cell-imageSudoku-wrapper">
         <view class="cell-imageSudoku">
-            <image class="cell-imageSudoku-avatar" data-role="avatar" src="{{userAvatar}}" />
+            <image class="cell-imageSudoku-avatar" data-role="avatar" src="{{user.avatar}}" />
             <view class="cell-imageSudoku-content font-normal">
                 <view class="cell-imageSudoku-author">
                     <view class="cell-imageSudoku-author-box">
-                        <view class="cell-imageSudoku-username">{{user_nick_name}}</view>
+                        <view class="cell-imageSudoku-username">{{user.nickname}}</view>
                         <view class="cell-flag">
                             <block wx:for="{{verify}}" wx:key="{{index}}">
                                 <image wx:if="{{index < 3}}" class="cell-verify" src="{{item.icon}}" mode="aspectFill"></image>
@@ -168,14 +168,14 @@
                 <view class="cell-imageSudoku-content">
                     <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
                     <view class="cell-imageSudoku-subject">{{subject}}</view>
-                    <view wx:if="{{imageList.length > 0}}" class="cell-circle-image-wrapper">
-                        <block wx:for="{{imageList}}" wx:key="{{index}}">
+                    <view wx:if="{{images.length > 0}}" class="cell-circle-image-wrapper">
+                        <block wx:for="{{images}}" wx:key="{{index}}">
                             <image  wx:if="{{index < 9}}" class="cell-circle-image-normal" src="{{item}}" mode="aspectFill"></image>
                         </block>
                     </view>
                 </view>
                 <view class="cell-imageSudoku-mes font-mini">
-                    <view class="cell-imageSudoku-date color-gray">{{last_reply_date}}</view>
+                    <view class="cell-imageSudoku-date color-gray">{{repliedAt}}</view>
                     <view class="cell-imageSudoku-meta">
                         <view class="cell-imageSudoku-like color-gray" style="background:url({{iconSrc}}dz_list_bigphoto_praise.png) no-repeat 0 3rpx;background-size:28rpx;">
                             {{recommendAdd}}
@@ -192,12 +192,12 @@
 <template name="circle">
     <view class="cell-wrapper">
         <view class="cell-container cell-flex-container">
-            <image class="cell-avatar"  data-role="avatar" src="{{userAvatar}}" />
+            <image class="cell-avatar"  data-role="avatar" src="{{user.avatar}}" />
             <view class="cell-circle-content font-normal">
                 <view class="cell-circle-author">
                     <view class="cell-circle-username">
-                        <view class="cell-circle-name">{{user_nick_name}}</view>
-                        <view class="cell-circle-date font-mini color-gray">{{last_reply_date}}</view>
+                        <view class="cell-circle-name">{{user.nickname}}</view>
+                        <view class="cell-circle-date font-mini color-gray">{{repliedAt}}</view>
                     </view>
                     <view class="cell-flag">
                         <block wx:for="{{verify}}" wx:key="{{index}}">
@@ -246,10 +246,10 @@
             <view class="cell-image-big-cover"></view>
             <view class="cell-image-big-title-bar">
                 <view class="cell-image-big-title">{{title}}</view>   
-                <view class="cell-image-big-username">{{user_nick_name}}</view> 
+                <view class="cell-image-big-username">{{user.nickname}}</view> 
             </view>
             <view class="cell-image-big-bar">
-                <view class="cell-image-big-time">{{last_reply_date}}</view>
+                <view class="cell-image-big-time">{{repliedAt}}</view>
                 <view class="cell-image-big-info">
                     <view class="cell-image-big-hits">{{hits}}</view>
                     <view class="cell-image-big-replies">{{replies}}</view>
@@ -266,10 +266,10 @@
         <image src="{{pic_path}}" style="width:{{scale_width}}px; height:{{scale_height}}px;" />
         <view class="list-image-item-count">{{hits}}</view>
         <view class="list-image-title">{{title}}</view>
-        <view class="list-image-avatar" data-role="avatar" style="background-image:url({{userAvatar}});" ></view>
+        <view class="list-image-avatar" data-role="avatar" style="background-image:url({{user.avatar}});" ></view>
         <view class="list-image-meta">
-            <view class="list-image-username">{{user_nick_name}}</view>
-            <view class="list-image-date">{{last_reply_date}}</view>
+            <view class="list-image-username">{{user.nickname}}</view>
+            <view class="list-image-date">{{repliedAt}}</view>
         </view>
     </view>
 </template>
@@ -278,13 +278,13 @@
 <template name="image2">
     <view class="cell-image-two" style="width:{{image2Size}}px;">
         <view class="cell-image-two-header">
-            <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{userAvatar}});"></view>
+            <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{user.avatar}});"></view>
             <view class="cell-image-two-user">
                 <view class="cell-image-two-username">
-                    {{user_nick_name}}
+                    {{user.nickname}}
                 </view>
                 <view class="cell-image-two-time">
-                    {{last_reply_date}}
+                    {{repliedAt}}
                 </view>
             </view>
         </view>

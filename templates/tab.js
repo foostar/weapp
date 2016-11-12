@@ -7,11 +7,10 @@ Page(createPage({
         this.render()
     },
     onShow() {
-        // app.ready().then(() => {
-        //     if (app.isIphone()) return
-        //     this.render()
-        // })
-        this.setData({ test: '1' })
+        app.ready().then(() => {
+            if (app.isIphone()) return
+            this.setData({ test: '1' })
+        })
     },
     render() {
         app.ready().then(() => {

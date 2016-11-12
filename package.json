@@ -7,7 +7,7 @@
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "ejs": "^2.5.2",
-    "mobcent": "^0.4.0",
+    "mobcent": "^0.4.7",
     "node-fetch": "^1.6.3",
     "request": "^2.78.0",
     "select-shell": "git+https://github.com/luizstacio/select-shell.git",

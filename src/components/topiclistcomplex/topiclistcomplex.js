@@ -6,14 +6,15 @@ const app = getApp()
 function TopiclistComplex(key, module) {
     ListComponent.call(this, key)
     // 添加分页
+    this.module = module
     this.data = {
         page: 0,
         pageNumber: 20,
-        module,
         resources: {},
         tabsIndex: 0,
         isLoading: false,
         showList: true,
+        style: module.style,
         iconSrc: app.globalData.iconSrc,
         orderby: module.extParams.orderby,
         appIcon: app.globalData.info.appIcon,
@@ -26,7 +27,7 @@ TopiclistComplex.prototype.name = 'topiclistcomplex'
 TopiclistComplex.prototype.constructor = TopiclistComplex
 // 请求数据
 TopiclistComplex.prototype.fetchData = function (param, number) {
-    const module = this.data.module
+    const module = this.module
     let list = param.list || this.data.resources.list || []
     if (this.data.over) return Promise.reject()
     this.setData({
@@ -36,7 +37,7 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
         app.api.forumList({ fid: module.extParams.forumId }),
         app.api.forum(module.extParams.forumId, {
             page: param.page,
-            sortby: param.orderby || 'all'
+            sort: param.orderby || 'all'
         })
     ]).then(([ boardChild, data ]) => {
         let hasChildrens = false
@@ -51,7 +52,7 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
             hasChildrens = false
         }
         data.list = list.concat(data.list)
-        if (data.page == 1) {
+        if (data.meta.page == 1) {
             this.setData({
                 topTopicList: data.topTopicList
             })
@@ -60,7 +61,7 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
         if (hasChildrens) {
             navWidth = '25%'
         }
-        let appIcon = (data.forumInfo && data.forumInfo.icon) || app.globalData.loadSrc
+        let appIcon = (data.forum && data.forum.icon) || app.globalData.loadSrc
         this.setData({
             resources: data,
             isLoading: false,
@@ -110,9 +111,9 @@ TopiclistComplex.prototype.changeTabs = function (e) {
 }
 // 发表帖子
 TopiclistComplex.prototype.handleEditClick = function () {
-    const forumId = this.data.module.extParams.forumId
+    const forumId = this.module.extParams.forumId
     app.createForum({
-        forumId,
+        fid: forumId,
         actType: 'new'
     })
 }
@@ -124,7 +125,7 @@ TopiclistComplex.prototype.focusForum = function (e) {
     if (e.target.dataset.focus == 1) {
         return app.api.userfavorite(boardId, { action: 'delfavorite', idType: 'fid' }).then(() => {
             var resources = this.data.resources
-            resources.forumInfo.is_focus = 0
+            resources.forum.isFocus = 0
             this.setData({
                 resources
             })
@@ -132,7 +133,7 @@ TopiclistComplex.prototype.focusForum = function (e) {
     }
     app.api.userfavorite(boardId, { action: 'favorite', idType: 'fid' }).then(() => {
         var resources = this.data.resources
-        resources.forumInfo.is_focus = 1
+        resources.forum.isFocus = 1
         this.setData({
             resources
         })
