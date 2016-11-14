@@ -1,12 +1,16 @@
 .tab-nav-bar {
-    width: 100%;
-    height: 70rpx;
-    background: #fff;
+    width:100%;
+    height:70rpx;
+    white-space:nowrap;
+    background:#fff;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
     position: relative;
 }
+
 .tab-nav-bar-item {
     width: 50%;
-    float: left;
+    display:inline-block;
     text-align: center;
     border-bottom: 1px solid #E0E0E0;
 }

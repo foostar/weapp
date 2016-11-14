@@ -1,5 +1,6 @@
 <template name="forumInfo">
     <view wx:if="{{forum && complex}}" class="forum-info-container">
+        asd
         <view class="foruminfo-icon">
             <image src="{{appIcon ? appIcon : '/images/dz_icon_article_default.png'}}"/>
         </view>

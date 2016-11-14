@@ -1,5 +1,5 @@
 <view class="layoutcoltext layout-row">
-    <view class="layout-col-text-item {{style}}" bindtap="layoutcoltext_touch" data-index="{{ index }}" data-event-key="{{key}}" wx:for="{{componentList}}" wx:key="{{item.id}}">
+    <view class="layout-col-text-item {{style}}" wx:for="{{componentList}}" bindtap="layoutcoltext_touch" data-index="{{ index }}" data-event-key="{{key}}" wx:key="{{item.id}}">
         <text>{{item.desc || item.title}}</text>
     </view>
 </view>

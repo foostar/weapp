@@ -398,6 +398,11 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.cell-card-from{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 .cell-card-from navigator{
     display:inline-block;
 }

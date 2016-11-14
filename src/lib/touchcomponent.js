@@ -1,9 +1,11 @@
 const Component = require('./component')
 
+const app = getApp()
 const fns = {
     touch(e) {
         const currentIndex = e.currentTarget.dataset.index || 0
         const info = this.module.componentList[currentIndex]
+        app.globalData.moduleData = info
         /*
             'empty' // 无
             'moduleRef' // 选择页面
@@ -34,7 +36,7 @@ const fns = {
          */
         if (info.type !== 'empty') {
             wx.navigateTo({
-                url: `/pages/blank/blank?data=${JSON.stringify(info)}`
+                url: '/pages/blank/blank'
             })
         }
     }

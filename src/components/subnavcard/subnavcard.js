@@ -12,7 +12,7 @@ function SubnavCard(key, module) {
     })
     this.data = {
         index: 0,
-        width: `${100 / tabs.length}%`,
+        width: tabs.length > 4 ? '25%' : `${100 / tabs.length}%`,
         selected: module.componentList[0].id,
         tabs
     }

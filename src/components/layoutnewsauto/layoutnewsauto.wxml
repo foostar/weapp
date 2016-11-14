@@ -1,6 +1,8 @@
 <import src="../cellstyle/cellstyle"/>
 <view class="layoutnewsauto">
-    <block wx:for="{{componentList}}">
-        <template is="{{item.style}}" data="{{...item, id: item.extParams.articleId}}" />
+    <block wx:for="{{componentList}}" wx:key="{{index}}">
+        <view bindtap="layoutnewsauto_clickItem" data-index="{{ index }}" data-event-key="{{key}}" id="{{item.extParams.articleId}}" data-user="{{item.user.id}}">
+            <template is="{{item.style}}" data="{{...item}}" />
+        </view>
     </block>
 </view>

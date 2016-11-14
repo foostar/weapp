@@ -5,6 +5,9 @@ const app = getApp()
 function ForumlistSplit(key, module) {
     Component.call(this, key)
     this.module = module
+    this.data = {
+        iconSrc: app.globalData.iconSrc,
+    }
 }
 
 ForumlistSplit.prototype = Object.create(Component.prototype)

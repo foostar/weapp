@@ -1,12 +1,12 @@
 <import src="../module/module.wxml" />
 
-<view class="tab-nav-bar" wx:if="{{tabs.length > 1}}">
-    <block wx:if="{{tabs.length > 1}}" wx:for="{{tabs}}" >
-        <view class="tab-nav-bar-item" bindtap="subnavcard_switchTab" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}" style="width: {{width}}">
+<scroll-view scroll-x="true" class="customtag-box" wx:if="{{tabs.length > 1}}">
+    <block wx:for="{{tabs}}" wx:key="{{index}}">
+        <view class="tab-nav-bar-item" style="width: {{width}}" data-role="tag" bindtap="subnavcard_switchTab" data-event-key="{{key}}" data-index="{{index}}" data-id="{{item.id}}">
             <text class="{{selected == item.id ? 'text-color border-color' : ''}}">{{item.title}}</text>
         </view>
     </block>
-</view>
+</scroll-view>
 
 <view class="subnav-content-container">
     <view wx:for="{{tabs}}" class="subnav-content">

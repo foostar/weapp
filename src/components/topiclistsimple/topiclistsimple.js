@@ -56,7 +56,6 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
             })
         }
         let appIcon = (data.forumInfo && data.forumInfo.icon) || app.globalData.loadSrc
-        data.forum = data.forum || data.forumInfo
         this.setData({
             resources: data,
             isLoading: false,
