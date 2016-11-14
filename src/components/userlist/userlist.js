@@ -16,7 +16,7 @@ UserList.prototype.constructor = UserList
 // 检测登陆
 UserList.prototype.onLoad = function () {
     // 判断用户是否登陆
-    if (app.globalData.userInfo.uid) {
+    if (app.globalData.userInfo && app.globalData.userInfo.uid) {
         this.uid = app.globalData.userInfo.uid
         this.nextPage()
     } else {
