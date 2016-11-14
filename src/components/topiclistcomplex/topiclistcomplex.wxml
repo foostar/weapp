@@ -2,7 +2,7 @@
 <import src="../cellstyle/cellstyle"/>
 <import src="../forum/forum"/>
 <view bindtap="topiclistcomplex_focusForum"  data-event-key="{{key}}">
-    <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, complex:true, forumInfo:true}}" />
+    <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, complex:true, forumInfo:true, key, name: 'topiclistcomplex'}}" />
 </view>
 <view class="forum-tabs">
     <view class="forum-tabs-title-warp-placeholder">
@@ -14,9 +14,9 @@
             <view class="forum-tabs-indicator bg-color" style="width:{{hasChildrens ? '25%' : '33.33333%'}};transform: translateX({{tabsIndex * 100 + '%'}})" />
         </view>
     </view>
-    <block wx:for="{{resources.list}}" wx:key="{{index}}">
-        <view wx:if="{{showList}}" bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}" data-user="{{item.user_id}}">
-            <template is="{{module.style}}" data="{{...item, iconSrc }}" />
+    <block wx:for="{{resources.list}}" wx:key="{{item.id}}">
+        <view wx:if="{{showList}}" bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user.id}}">
+            <template is="{{style}}" data="{{...item, iconSrc }}" />
         </view>
     </block>
     <block wx:for="{{boardChild}}" wx:key="{{index}}">
@@ -29,7 +29,7 @@
        </view>
     </block>
 </view>
-<view class="forum-edit-btn bg-color" style="background:url({{iconSrc}}dz_list_go_top.png) no-repeat center center #fa460a;background-size:56rpx;" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>
+<view class="forum-edit-btn bg-color" style="background:url(http://icons.apps.xiaoyun.com/top/create_post/fff) no-repeat center center #fa460a;background-size: 50%;" bindtap="topiclistcomplex_handleEditClick" data-event-key="{{key}}"/>
 <!-- 加载中 -->
 <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
 <!-- 没有了 -->

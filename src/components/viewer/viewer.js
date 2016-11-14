@@ -169,6 +169,7 @@ components.type['subnav-card'] = SubnavCard
 components.type['custom-flat'] = Custom
 components.type['not-support'] = NotSupport
 components.type['webapp-flat'] = NotSupport
+components.type['newlivelist-flat'] = NotSupport
 
 components.type['post-flat'] = Post
 components.type['login-flat'] = Login   // 登录页面

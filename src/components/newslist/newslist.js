@@ -62,8 +62,7 @@ NewsList.prototype.fetchData = function (param, number) {
     }).then((data) => {
         data.list = data.list.map((v) => {
             v.subject = v.summary
-            v.imageList = v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))
-            v.last_reply_date = util.dateFormat(v.last_reply_date, 'yyyy-MM-dd')
+            v.repliedAt = util.dateFormat(v.repliedAt, 'yyyy-MM-dd')
             let faceResult = util.infoToFace(v.subject)
             v.hasFace = faceResult.hasFace
             v.subject = util.formateText(v.subject)
