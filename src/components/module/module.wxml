@@ -203,7 +203,9 @@
     <include src="../topic/topic.wxml" />
 </template>
 
-
+<template name="module_2">
+    <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
+</template>
 
 <template name="module">
     <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />

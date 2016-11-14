@@ -23,6 +23,7 @@ Page(createPage({
         } catch (err) {
             data.data = null
         }
+
         if (data.type) {
             module = {
                 componentList: [],
@@ -36,6 +37,7 @@ Page(createPage({
         } else {
             module = data.data
         }
+
         // 检测是否支持当前版块
         pagetype.forEach((v) => {
             if (v.type == module.type && !v.isAchieve) {

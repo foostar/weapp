@@ -18,6 +18,13 @@ function scrollChildren(children, event) {
     })
 }
 
+const findParentByTemplate = (component, template) => {
+    if (!component.parent) return
+    if (component.parent.name === template) {
+        return component.parent
+    }
+    return findParentByTemplate(component.parent, template)
+}
 
 const fns = {
     scrollToLower(event) {
@@ -65,6 +72,14 @@ Component.prototype.add = function (child) {
     if (this.loaded) {
         child.load()
     }
+    setTimeout(() => {
+        if (child.name === 'module' && findParentByTemplate(child, 'module')) {
+            child.name = 'module_2'
+            /* eslint-disable */
+            child._data.template = child.name
+            /* eslint-enable */
+        }
+    }, 10)
 }
 
 Component.prototype.remove = function (child) {
