@@ -40,7 +40,6 @@ NewsList.prototype.name = 'newslist'
 NewsList.prototype.constructor = NewsList
 
 NewsList.prototype.clickItem = function (e) {
-    console.log('========', e)
     if (e.target.dataset.role == 'avatar') {
         return wx.navigateTo({
             url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.user })}`
@@ -61,9 +60,7 @@ NewsList.prototype.fetchData = function (param, number) {
         page: param.page,
         sortby: param.orderby || 'all'
     }).then((data) => {
-        console.log(data)
         data.list = data.list.map((v) => {
-            v.subject = v.summary
             v.repliedAt = util.dateFormat(v.repliedAt, 'yyyy-MM-dd')
             let faceResult = util.infoToFace(v.subject)
             v.hasFace = faceResult.hasFace
@@ -82,7 +79,7 @@ NewsList.prototype.fetchData = function (param, number) {
         this.setData({
             module,
             resources: data,
-            isLoading: true,
+            isLoading: false,
             over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
         return Promise.reject({ errCode: 10001, errInfo: '不执行计算高度' })
@@ -92,9 +89,9 @@ NewsList.prototype.fetchData = function (param, number) {
         arrList.list = arrList.list.map(item => {
             return new Promise((resolve, reject) => {
                 return wx.getImageInfo({
-                    src: item.pic_path.replace('xgsize_', 'mobcentSmallPreview_'),
+                    src: item.images[0],
                     success: ({ width, height }) => {
-                        item.pic_path = item.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
+                        item.pic_path = item.images[0]
                         item.width = width
                         item.height = height
                         item.scale_width = IMGWIDTH

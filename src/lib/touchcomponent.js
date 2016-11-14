@@ -2,10 +2,8 @@ const Component = require('./component')
 
 const fns = {
     touch(e) {
-        console.log(e)
         const currentIndex = e.currentTarget.dataset.index || 0
         const info = this.module.componentList[currentIndex]
-        console.log('-----', info)
         /*
             'empty' // 无
             'moduleRef' // 选择页面

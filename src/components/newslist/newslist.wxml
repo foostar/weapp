@@ -4,7 +4,7 @@
 <swiper wx:if="{{resources.piclist.length}}" class="news-swiper" indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
    <block wx:for="{{resources.piclist}}">
-        <swiper-item data-fid="{{item.fid}}" class="news-slide-item" data-sourceId="{{item.source_id}}">
+        <swiper-item data-fid="{{item.fid}}" class="news-slide-item" data-sourceId="{{item.id}}">
             <image src="{{item.pic_path}}" class="news-slide-image" mode="aspectFill"/>
             <view class="news-slide-title font-normal">{{item.title}}</view>
         </swiper-item>
@@ -15,25 +15,23 @@
 <view class="liststyle-image-box" wx:if="{{isImage}}">
     <view class="left-layout">
         <block wx:for="{{leftLayout.data}}">
-            <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.source_id}}">
-                <template is="{{module.style}}" data="{{...item, iconSrc, id:item.source_id}}" />
+            <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.id}}">
+                <template is="{{module.style}}" data="{{...item, iconSrc, id:item.id}}" />
             </view>
         </block>
     </view>
     <view class="right-layout">
         <block wx:for="{{rightLayout.data}}">
-            <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.source_id}}">
-                <template is="{{module.style}}" data="{{...item, iconSrc, id:item.source_id}}" />
+            <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.id}}">
+                <template is="{{module.style}}" data="{{...item, iconSrc, id:item.id}}" />
             </view>
         </block>
     </view>
 </view>
 <view class="liststyle-container liststyle-index" wx:else>
-    <block wx:for="{{resources.list}}" wx:key="{{item.source_id}}">
-        <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.source_id}}">
-            {{module.style}}
-            <template is="{{module.style}}" data="{{...item, iconSrc, image2Size, id:item.source_id}}" />
-            }
+    <block wx:for="{{resources.list}}" wx:key="{{item.id}}">
+        <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.id}}">
+            <template is="{{module.style}}" data="{{...item, iconSrc, image2Size, id:item.id}}" />
         </view>
     </block>
 </view>

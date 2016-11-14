@@ -4,7 +4,6 @@ const { dateFormat, infoToFace } = require('../../utils/util.js')
 const app = getApp()
 
 function Post(key, module) {
-    console.log('=======', module)
     this.module = module
     Component.call(this, key)
     // 添加分页
