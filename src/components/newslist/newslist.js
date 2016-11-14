@@ -124,6 +124,9 @@ NewsList.prototype.fetchData = function (param, number) {
         })
     })
     .catch((err) => {
+        if (err.errCode === 10001) {
+            return
+        }
         console.log(err)
     })
 }

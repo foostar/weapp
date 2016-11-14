@@ -188,6 +188,7 @@ components.type['myinfosystem-flat'] = MyinfoSystem  // 系统消息
 components.type['userhome-flat'] = UserHome   // 用户主页
 
 components.type['userlist-flat'] = UserList   // 用户列表
+components.type['talkPostList-flat'] = Topic
 components.type['topic-flat'] = Topic         // 话题主页
 
 
