@@ -79,7 +79,7 @@ NewsList.prototype.fetchData = function (param, number) {
         this.setData({
             module,
             resources: data,
-            isLoading: true,
+            isLoading: false,
             over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
         return Promise.reject({ errCode: 10001, errInfo: '不执行计算高度' })
@@ -123,6 +123,9 @@ NewsList.prototype.fetchData = function (param, number) {
         })
     })
     .catch((err) => {
+        if (err.errCode === 10001) {
+            return
+        }
         console.log(err)
     })
 }

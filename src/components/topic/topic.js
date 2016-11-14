@@ -8,6 +8,7 @@ function Topic(key, module) {
     if (module.data) {
         this.papeData = module.data
     }
+    this.module = module
     ListComponent.call(this, key)
     this.data = {
         id: '',
@@ -27,7 +28,8 @@ Topic.prototype.fetchData = function (param, number) {
     const currentIndex = parseInt(this.data.currentIndex, 10)
     // NEW HOT
     /* eslint-disable */
-    const ti_id = this.papeData.id
+    const ti_id = (this.papeData ? this.papeData.id : null) || this.module.extParams.talkId
+    console.log(ti_id)
     /* eslint-enable */
     let list = param.list || currentIndex === 1 ? this.data.newList : this.data.hotList || []
     if (this.data.over) return Promise.reject()

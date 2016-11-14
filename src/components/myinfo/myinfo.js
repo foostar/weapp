@@ -31,9 +31,7 @@ Myinfo.prototype.onReady = function () {
 }
 // 跳转网页
 Myinfo.prototype.toNavigationPage = function (e) {
-    console.log(e)
     var typePage = e.currentTarget.dataset.page
-    console.log(typePage)
     wx.navigateTo({
         url: `/pages/blank/blank?type=${typePage}`
     })

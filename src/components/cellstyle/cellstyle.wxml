@@ -27,7 +27,7 @@
         </view>
         
         <view class="cell-tieba-status">
-            <text class="hits" style="background:url({{iconSrc}}dz_list_circle_pv.png) no-repeat 0 center;background-size:28rpx;">{{hits}}</text>
+            <text class="hits" style="background:url({{iconSrc}}dz_list_circle_pv.png) no-repeat 0 center;background-size:28rpx;">{{views}}</text>
             <text class="replies" style="background:url({{iconSrc}}dz_list_bigphoto_replies.png) no-repeat 0 center;background-size:28rpx;">{{replies}}</text>
         </view>
     </view>
@@ -136,7 +136,7 @@
         </view>
         <view class="cell-card-meta font-mini">
             <view class="hits">
-                <image src="{{iconSrc}}dz_list_bigphoto_replies.png" class="card-icon-image"/>{{hits}}
+                <image src="{{iconSrc}}dz_list_bigphoto_replies.png" class="card-icon-image"/>{{views}}
             </view>
             <view class="replies">
                 <image src="{{iconSrc}}dz_list_circle_pv.png" class="card-icon-image"/>
@@ -241,8 +241,8 @@
 </template>
 <!-- imageBig -->
 <template name="imageBig">
-    <view class="cell-image-box "> 
-        <view class="cell-image-big" style="background-image:url({{pic_path}})">
+    <view class="cell-image-box"> 
+        <view class="cell-image-big" style="background-image:url({{images[0]}})">
             <view class="cell-image-big-cover"></view>
             <view class="cell-image-big-title-bar">
                 <view class="cell-image-big-title">{{title}}</view>   
@@ -251,8 +251,10 @@
             <view class="cell-image-big-bar">
                 <view class="cell-image-big-time">{{repliedAt}}</view>
                 <view class="cell-image-big-info">
-                    <view class="cell-image-big-hits">{{hits}}</view>
-                    <view class="cell-image-big-replies">{{replies}}</view>
+                    <!-- <view class="cell-image-big-hits">{{hits}}</view>
+                    <view class="cell-image-big-replies">{{replies}}</view> -->
+                    <text class="cell-image-big-hits" style="background:url({{iconSrc}}dz_list_circle_pv.png) no-repeat 0 center;background-size:28rpx;">{{views}}</text>
+                    <text class="cell-image-big-replies" style="background:url({{iconSrc}}dz_list_bigphoto_replies.png) no-repeat 0 center;background-size:28rpx;">{{replies}}</text>
                 </view>
             </view>
         </view>
@@ -264,7 +266,7 @@
 <template name="image">
     <view class="list-image-item">
         <image src="{{pic_path}}" style="width:{{scale_width}}px; height:{{scale_height}}px;" />
-        <view class="list-image-item-count">{{hits}}</view>
+        <view class="list-image-item-count">{{views}}</view>
         <view class="list-image-title">{{title}}</view>
         <view class="list-image-avatar" data-role="avatar" style="background-image:url({{user.avatar}});" ></view>
         <view class="list-image-meta">
@@ -309,7 +311,34 @@
             <view class="top-triangle"></view>
         </view>
         <view class="myinfo-commont-replay-btn-box">
-            <view class="myinfo-commont-replay-btn bg-color">回复</view>
+            <view class="myinfo-commont-replay-btn bg-color" bindtap="replyPost" data-boardid="{{board_id}}">回复</view>
         </view>
     </view>
+</template>
+
+<template name="myinfosystem">
+    <block wx:if="{{item.mod === 'admin'}}">
+        <view class="myinfo-system-box">
+            <image src="{{item.icon}}" class="myinfo-system-useravator" data-uid="{{user_id}}"></image>
+            <view class="myinfo-system-info">
+                <view class="myinfo-system-username">{{item.user_name}}</view> 
+                <view class="myinfo-system-note">
+                    <text>{{item.note}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{item.mod === 'firend'}}">
+        <view class="myinfo-system-box">
+            <image src="{{item.icon}}" class="myinfo-system-useravator" data-uid="{{user_id}}"></image>
+            <view class="myinfo-system-info">
+                <view class="myinfo-system-username">{{item.user_name}}</view> 
+                <view class="myinfo-commont-replay-content" data-topic-id="{{topic_id}}">
+                    <text>{{item.note}}</text>
+                </view>
+                <view class="myinfo-system-adduser">{{item.actions[0].title}}</view>
+            </view>
+        </view>
+    </block>
+
 </template>
