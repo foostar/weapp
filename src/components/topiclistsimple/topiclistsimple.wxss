@@ -716,10 +716,14 @@
 }
 
 .cell-image-big-hits {
+    padding-left: 28rpx;
     display: inline-block;
     color: #fff;
+    padding-right: 20rpx;
 }
 .cell-image-big-replies {
+    padding-left: 30rpx;
+    padding-right: 20rpx;
     display: inline-block;
     color: #fff;
 }

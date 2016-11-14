@@ -40,8 +40,6 @@ Createforum.prototype.onLoad = function () {
         isTopic: false,
         tiId: ''
     }, opts)
-
-
     if (app.globalData.userInfo) {
         // 判断用户是否登录
         Object.assign(data, {

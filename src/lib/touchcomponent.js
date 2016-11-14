@@ -34,6 +34,7 @@ const fns = {
             'talk' // 话题列表
             'talkPostList' // 话题帖子列表
          */
+
         if (info.type !== 'empty') {
             wx.navigateTo({
                 url: '/pages/blank/blank'

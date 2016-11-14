@@ -17,5 +17,14 @@ MessagelistFlat.prototype.onLoad = function () {
         title: '消息中心'
     })
 }
+// 跳转网页
+MessagelistFlat.prototype.toNavigationPage = function (e) {
+    var typePage = e.currentTarget.dataset.page
+    if (app.isLogin()) {
+        wx.navigateTo({
+            url: `/pages/blank/blank?type=${typePage}`
+        })
+    }
+}
 
 module.exports = MessagelistFlat

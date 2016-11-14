@@ -1,5 +1,6 @@
 <import src="../module/module.wxml" />
 <import src="../cellstyle/cellstyle"/>
+
 <swiper wx:if="{{resources.piclist.length}}" class="news-swiper" indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
    <block wx:for="{{resources.piclist}}">
