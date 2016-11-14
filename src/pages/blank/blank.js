@@ -18,12 +18,6 @@ Page(createPage({
     },
     onLoad(data) {
         let module
-        try {
-            data.data = JSON.parse(data.data)
-        } catch (err) {
-            data.data = null
-        }
-
         if (data.type) {
             module = {
                 componentList: [],
@@ -32,10 +26,10 @@ Page(createPage({
                 id: data.type,
                 style: 'flat',
                 type: data.type,
-                data: data.data
+                data: data.data ? JSON.parse(data.data) : ''
             }
         } else {
-            module = data.data
+            module = app.globalData.moduleData
         }
 
         // 检测是否支持当前版块

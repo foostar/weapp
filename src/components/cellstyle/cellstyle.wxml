@@ -53,7 +53,7 @@
     <view class="cell-flat-info {{images.length < 3 ? 'cell-flat-mini' : ''}}">
         <text class="cell-flat-info-time">{{repliedAt}}</text>
         <text class="cell-flat-info-author">{{nickname}}</text>
-        <text class="hits">{{views}}阅读</text>
+        <text class="hits">{{views}} 阅读</text>
     </view>
 </template>
 <template name="flat-title">

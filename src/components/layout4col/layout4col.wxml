@@ -1,5 +1,5 @@
 <view class="layout4col layout-row">
-    <view class="layout-4-col-item {{style}} {{item.iconStyle}}" bindtap="layout4col_touch" data-index="{{ index }}" data-event-key="{{key}}" wx:for="{{componentList}}" wx:key="{{item.id}}">
+    <view class="layout-4-col-item {{style}} {{item.iconStyle}}" wx:for="{{componentList}}" bindtap="layout4col_touch" data-index="{{ index }}" data-event-key="{{key}}" wx:key="{{item.id}}">
         <image mode="aspectFill" src="{{item.icon}}"></image>
         <text>{{ item.desc }}</text>
     </view>

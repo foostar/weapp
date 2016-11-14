@@ -88,7 +88,7 @@ UserHome.prototype.toNavigationPage = function (e) {
 }
 
 UserHome.prototype.showPost = function (e) {
-    console.log(e)
+    // console.log(e)
     app.showPost(e.currentTarget.dataset.postid)
 }
 

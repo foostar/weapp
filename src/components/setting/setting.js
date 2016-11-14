@@ -29,7 +29,7 @@ Setting.prototype.onReady = function () {
 // 跳转网页
 Setting.prototype.toNavigationPage = function (e) {
     var typePage = e.currentTarget.dataset.page
-    console.log(typePage)
+    // console.log(typePage)
     wx.navigateTo({
         url: `/pages/blank/blank?type=${typePage}`
     })

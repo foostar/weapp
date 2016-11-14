@@ -19,7 +19,7 @@
             <view class="foruminfo-meta font-mini">主题：{{resources.forum.totalPosts}}  <text>今日：{{resources.forum.todayPosts}}</text></view>
             <view class="foruminfo-des font-mini">{{resources.forum.description}}</view>
         </view>
-        <view class="foruminfo-handler font-mini {{resources.forum.isFocus == 1 ? '' : 'bg-color'}}"  bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}" data-id="{{resources.forum.id}}" data-focus="{{resources.forum.isFocus}}">{{resources.forum.isFocus == 1 ? '已关注' : '关注'  }}</view>
+        <view class="foruminfo-handler font-mini {{resources.forum.isFocus == 1 ? '' : 'bg-color'}}" data-role="focus"  bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}" data-id="{{resources.forum.id}}" data-focus="{{resources.forum.isFocus}}">{{resources.forum.isFocus == 1 ? '已关注' : '关注'  }}</view>
     </view>
 
 

@@ -110,8 +110,8 @@ Register.prototype.closeMessagePrompt = function () {
 Register.prototype.checkMobileCode = function (e) {
     const { mobile, verify } = e.detail.value
     app.api.checkMobileCode(mobile, verify)
-        .then(res => {
-            console.log('检测手机和验证码', res)
+        .then(() => {
+            // console.log('检测手机和验证码', res)
             this.setData({
                 isVerify: true
             })
@@ -149,7 +149,7 @@ Register.prototype.signup = function (e) {
     const { username, password, email } = e.detail.value
     app.api.signup(username, password, email)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             app.globalData.userInfo = res
             app.api.token = res.token
             app.api.secret = res.secret

@@ -1,5 +1,7 @@
 const Events = require('./events.js')
 
+const childrenTree = {}
+
 const bindHandlers = (page, children) => {
     const types = {}
     Object.keys(children).forEach((key) => {
@@ -9,8 +11,9 @@ const bindHandlers = (page, children) => {
     Object.keys(types).forEach((key) => {
         Object.getOwnPropertyNames(types[key].prototype)
             .forEach((name) => {
+                childrenTree[key] = Object.assign({}, childrenTree[key], children)
                 page[`${key}_${name}`] = function (event) {
-                    const component = children[event.currentTarget.dataset.eventKey]
+                    const component = childrenTree[key][event.currentTarget.dataset.eventKey]
                     /* eslint-disable */
                     component[name].apply(component, arguments)
                     /* eslint-enable */

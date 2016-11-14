@@ -4,11 +4,11 @@
 <!--  -->
 <block wx:if="{{forumInfo}}">
     <view bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}">
-        <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, key, name: 'topiclistsimple' }}" />
+        <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, key, name: 'topiclistsimple', complex:false }}" />
     </view>
 </block>
-<view class="liststyle-container {{(resources.forumInfo && forumInfo) ? '' : 'liststyle-index'}}">
-    <block wx:for="{{resources.list}}" wx:key="{{item.id}}">
+<view class="liststyle-container {{(resources.forum && forumInfo) ? '' : 'liststyle-index'}}">
+    <block wx:for="{{resources.list}}" wx:key="{{index}}">
         <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user.id}}">
             <template is="{{style}}" data="{{...item, iconSrc}}" />
         </view>

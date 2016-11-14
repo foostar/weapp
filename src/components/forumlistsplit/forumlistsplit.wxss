@@ -24,6 +24,9 @@
     line-height:110rpx;
     background:#f1f1f1;
     box-sizing:border-box;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow:hidden
 }
 .boardSplit-title .active{
     color:#2db7f5;
@@ -44,6 +47,10 @@
 }
 .boardContent-image,.boardFocus_btn,.boardContent-info{
     float:left;
+}
+.boardContent-icon{
+    width:32rpx;
+    height:32rpx;
 }
 .boardFocus_btn{
     line-height:60rpx;
