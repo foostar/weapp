@@ -30,13 +30,13 @@
         </view>
 
         <block wx:if="{{currentIndex == 1}}" wx:for="{{newList}}" wx:key="{{index}}">
-            <view bindtap="topic_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
-                <template is="flat" data="{{id: item.topic_id, ...item}}"></template>
+            <view bindtap="topic_clickItem" data-event-key="{{key}}" id="{{item.id}}">
+                <template is="flat" data="{{id: item.id, ...item}}"></template>
             </view>
         </block>
         <block wx:if="{{currentIndex == 0}}" wx:for="{{hotList}}" wx:key="{{index}}">
-            <view bindtap="topic_clickItem" data-event-key="{{key}}" id="{{item.topic_id}}">
-                <template is="flat" data="{{id: item.topic_id, ...item}}"></template>
+            <view bindtap="topic_clickItem" data-event-key="{{key}}" id="{{item.id}}">
+                <template is="flat" data="{{id: item.id, ...item}}"></template>
             </view>
         </block>
     </view>
