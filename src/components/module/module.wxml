@@ -183,6 +183,14 @@
     <include src="../myinfoatme/myinfoatme.wxml" />
 </template>
 
+<template name="myinfopost">
+    <include src="../myinfopost/myinfopost.wxml" />
+</template>
+
+<template name="myinfosystem">
+    <include src="../myinfosystem/myinfosystem.wxml" />
+</template>
+
 <template name="userhome">
     <include src="../user-home/user-home.wxml" />
 </template>

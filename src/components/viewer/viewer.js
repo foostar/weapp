@@ -57,6 +57,10 @@ const Changepassword = require('../changepassword/changepassword')
 const Register = require('../register/register')
 const Myinfo = require('../myinfo/myinfo')
 const MyinfoAtme = require('../myinfoatme/myinfoatme')
+const MyinfoPost = require('../myinfopost/myinfopost')
+const MyinfoSystem = require('../myinfosystem/myinfosystem')
+
+
 const UserHome = require('../user-home/user-home')
 const UserList = require('../userlist/userlist')
 const Topic = require('../topic/topic')
@@ -177,7 +181,8 @@ components.type['changepassword-flat'] = Changepassword  // 修改密码
 components.type['register-flat'] = Register   // 注册页面
 components.type['myinfo-flat'] = Myinfo       // 我的消息
 components.type['myinfoatme-flat'] = MyinfoAtme  // 我的消息 @我的信息
-
+components.type['myinfopost-flat'] = MyinfoPost  // 我的消息 【评论】
+components.type['myinfosystem-flat'] = MyinfoSystem  // 系统消息
 
 components.type['userhome-flat'] = UserHome   // 用户主页
 

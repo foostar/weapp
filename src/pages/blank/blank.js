@@ -61,5 +61,9 @@ Page(createPage({
     },
     clickItem(e) {
         app.showPost(e.currentTarget.id)
+    },
+    replyPost(e) {
+        console.log(e)
+        app.replyPost({ fid: e.currentTarget.dataset.boardid })
     }
 }))

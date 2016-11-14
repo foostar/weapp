@@ -309,7 +309,34 @@
             <view class="top-triangle"></view>
         </view>
         <view class="myinfo-commont-replay-btn-box">
-            <view class="myinfo-commont-replay-btn bg-color">回复</view>
+            <view class="myinfo-commont-replay-btn bg-color" bindtap="replyPost" data-boardid="{{board_id}}">回复</view>
         </view>
     </view>
+</template>
+
+<template name="myinfosystem">
+    <block wx:if="{{item.mod === 'admin'}}">
+        <view class="myinfo-system-box">
+            <image src="{{item.icon}}" class="myinfo-system-useravator" data-uid="{{user_id}}"></image>
+            <view class="myinfo-system-info">
+                <view class="myinfo-system-username">{{item.user_name}}</view> 
+                <view class="myinfo-system-note">
+                    <text>{{item.note}}</text>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:if="{{item.mod === 'firend'}}">
+        <view class="myinfo-system-box">
+            <image src="{{item.icon}}" class="myinfo-system-useravator" data-uid="{{user_id}}"></image>
+            <view class="myinfo-system-info">
+                <view class="myinfo-system-username">{{item.user_name}}</view> 
+                <view class="myinfo-commont-replay-content" data-topic-id="{{topic_id}}">
+                    <text>{{item.note}}</text>
+                </view>
+                <view class="myinfo-system-adduser">{{item.actions[0].title}}</view>
+            </view>
+        </view>
+    </block>
+
 </template>
