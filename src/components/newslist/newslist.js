@@ -61,7 +61,6 @@ NewsList.prototype.fetchData = function (param, number) {
         sortby: param.orderby || 'all'
     }).then((data) => {
         data.list = data.list.map((v) => {
-            v.subject = v.summary
             v.repliedAt = util.dateFormat(v.repliedAt, 'yyyy-MM-dd')
             let faceResult = util.infoToFace(v.subject)
             v.hasFace = faceResult.hasFace
@@ -90,9 +89,9 @@ NewsList.prototype.fetchData = function (param, number) {
         arrList.list = arrList.list.map(item => {
             return new Promise((resolve, reject) => {
                 return wx.getImageInfo({
-                    src: item.pic_path.replace('xgsize_', 'mobcentSmallPreview_'),
+                    src: item.images[0],
                     success: ({ width, height }) => {
-                        item.pic_path = item.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
+                        item.pic_path = item.images[0]
                         item.width = width
                         item.height = height
                         item.scale_width = IMGWIDTH
