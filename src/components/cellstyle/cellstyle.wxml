@@ -241,7 +241,7 @@
 </template>
 <!-- imageBig -->
 <template name="imageBig">
-    <view class="cell-image-box " data-topicId="{{source_id}}"> 
+    <view class="cell-image-box"> 
         <view class="cell-image-big" style="background-image:url({{images[0]}})">
             <view class="cell-image-big-cover"></view>
             <view class="cell-image-big-title-bar">

@@ -33,7 +33,6 @@ Discover.prototype.name = 'discover'
 Discover.prototype.constructor = Discover
 
 Discover.prototype.onLoad = function () {
-    console.log(this.module)
     // 判断用户是否登录
     if (app.globalData.userInfo) {
         this.setData({
