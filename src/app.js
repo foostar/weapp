@@ -26,8 +26,6 @@ const Events = require('./lib/events.js')
 const util = require('./utils/util')
 const CONFIG = require('./config.js')
 
-CONFIG.COLOR = CONFIG.THEME_COLOR.slice(1).toLowerCase()
-
 const randStr = () => {
     return `a${Math.random().toString(32).split('.')[1]}`
 }
@@ -48,7 +46,7 @@ App({
 
         const fetch = (url, data, isCenter) => {
             if (!isCenter) {
-                url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}`
+                url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}?appId=${CONFIG.ID}`
             } else {
                 data = data || {}
                 data.body = {}
@@ -136,7 +134,7 @@ App({
             fetch
         })
 
-        api.appId = '229171'
+        api.appId = CONFIG.ID
 
         // 处理自定义页面的ID问题
         const custom = api.custom
