@@ -186,7 +186,6 @@ components.type['postlist-flat'] = Post         // 帖子详情
 const app = getApp()
 
 function Viewer(key, module) {
-    console.log(module)
     Component.call(this, key)
     this.module = module
     this.add(components.create(module))
