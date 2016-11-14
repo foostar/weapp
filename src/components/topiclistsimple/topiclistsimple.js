@@ -50,7 +50,7 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
         sortby: param.orderby || 'all'
     }).then((data) => {
         data.list = list.concat(data.list)
-        if (data.page == 1) {
+        if (data.meta.page == 1) {
             this.setData({
                 topTopicList: data.topTopicList
             })
@@ -60,7 +60,7 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
             resources: data,
             isLoading: false,
             appIcon,
-            over: param.page >= parseInt((data.total_num / number) + 1, 10)
+            over: param.page >= parseInt((data.meta.total / number) + 1, 10)
         })
     }, (err) => {
         return Promise.reject(err)

@@ -72,7 +72,7 @@ NewsList.prototype.fetchData = function (param, number) {
         if (module.style === 'image') {
             this.setData({
                 module,
-                over: param.page >= parseInt((data.total_num / number) + 1, 10)
+                over: param.page >= parseInt((data.meta.total / number) + 1, 10)
             })
             return Promise.resolve(data)
         }
@@ -80,7 +80,7 @@ NewsList.prototype.fetchData = function (param, number) {
             module,
             resources: data,
             isLoading: false,
-            over: param.page >= parseInt((data.total_num / number) + 1, 10)
+            over: param.page >= parseInt((data.meta.total / number) + 1, 10)
         })
         return Promise.reject({ errCode: 10001, errInfo: '不执行计算高度' })
     }, (err) => {

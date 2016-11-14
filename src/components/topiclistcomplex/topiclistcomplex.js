@@ -61,7 +61,6 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
         if (hasChildrens) {
             navWidth = '25%'
         }
-        console.log(data)
         let appIcon = (data.forum && data.forum.icon) || app.globalData.loadSrc
         this.setData({
             resources: data,
@@ -70,7 +69,7 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
             hasChildrens,
             boardChild,
             navWidth,
-            over: param.page >= parseInt((data.total_num / number) + 1, 10)
+            over: param.page >= parseInt((data.meta.total / number) + 1, 10)
         })
     }, () => {
         this.setData({ resources: {}, over: true, isLoading: false })
