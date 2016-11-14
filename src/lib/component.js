@@ -92,6 +92,9 @@ Component.prototype.load = function () {
     if (this.loaded) return
     this.loaded = true
     const children = this.children
+    load.call(this, {
+        [this.key]: this
+    })
     load.call(this, children)
     if (this.page.shown) {
         this.show()
