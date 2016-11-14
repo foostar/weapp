@@ -27,7 +27,7 @@
         </view>
         
         <view class="cell-tieba-status">
-            <text class="hits" style="background:url({{iconSrc}}dz_list_circle_pv.png) no-repeat 0 center;background-size:28rpx;">{{hits}}</text>
+            <text class="hits" style="background:url({{iconSrc}}dz_list_circle_pv.png) no-repeat 0 center;background-size:28rpx;">{{views}}</text>
             <text class="replies" style="background:url({{iconSrc}}dz_list_bigphoto_replies.png) no-repeat 0 center;background-size:28rpx;">{{replies}}</text>
         </view>
     </view>
@@ -120,7 +120,7 @@
             </view>
             <view class="cell-card-from font-normal">
                 来自:
-                <navigator class="color-forum">{{board_name}}</navigator>
+                <navigator class="color-forum">{{forumName}}</navigator>
             </view>
         </view>
         <view class="cell-card-content">
@@ -136,7 +136,7 @@
         </view>
         <view class="cell-card-meta font-mini">
             <view class="hits">
-                <image src="{{iconSrc}}dz_list_bigphoto_replies.png" class="card-icon-image"/>{{hits}}
+                <image src="{{iconSrc}}dz_list_bigphoto_replies.png" class="card-icon-image"/>{{views}}
             </view>
             <view class="replies">
                 <image src="{{iconSrc}}dz_list_circle_pv.png" class="card-icon-image"/>
@@ -162,7 +162,7 @@
                     </view>
                     <view class="cell-imageSudoku-from font-mini">
                         来自:
-                        <navigator class="color-forum">{{board_name}}</navigator>
+                        <navigator class="color-forum">{{forumName}}</navigator>
                     </view>
                 </view>
                 <view class="cell-imageSudoku-content">
@@ -206,7 +206,7 @@
                     </view>
                     <view class="cell-from font-mini">
                         来自:
-                        <navigator class="color-forum">{{board_name}}</navigator>
+                        <navigator class="color-forum">{{forumName}}</navigator>
                     </view>
                 </view>
                 <view class="cell-circle-subject-wrapper">
@@ -251,7 +251,7 @@
             <view class="cell-image-big-bar">
                 <view class="cell-image-big-time">{{repliedAt}}</view>
                 <view class="cell-image-big-info">
-                    <view class="cell-image-big-hits">{{hits}}</view>
+                    <view class="cell-image-big-hits">{{views}}</view>
                     <view class="cell-image-big-replies">{{replies}}</view>
                 </view>
             </view>
@@ -264,7 +264,7 @@
 <template name="image">
     <view class="list-image-item">
         <image src="{{pic_path}}" style="width:{{scale_width}}px; height:{{scale_height}}px;" />
-        <view class="list-image-item-count">{{hits}}</view>
+        <view class="list-image-item-count">{{views}}</view>
         <view class="list-image-title">{{title}}</view>
         <view class="list-image-avatar" data-role="avatar" style="background-image:url({{user.avatar}});" ></view>
         <view class="list-image-meta">
