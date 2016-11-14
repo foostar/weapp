@@ -191,6 +191,7 @@ components.type['userlist-flat'] = UserList   // 用户列表
 components.type['talkPostList-flat'] = Topic
 components.type['topic-flat'] = Topic         // 话题主页
 
+components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发帖
 
 // topiclistSimple-flat
 
