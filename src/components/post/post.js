@@ -272,13 +272,12 @@ Post.prototype.formSubmit = function (e) {
         self.formReset()
         self.fetchData(app.globalData.postId || this.module.extParams.topicId)
     })
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
 }
 /*
  *  @表单重置
  */
 Post.prototype.formReset = function () {
-    console.log('form发生了reset事件')
+    // console.log('form发生了reset事件'
 }
 module.exports = Post
 

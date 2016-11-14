@@ -1,5 +1,3 @@
 <view class="error-section">
-    <image class="error-header icon-sorry"></image>
-    <view class="error-font">很抱歉，暂不支持该功能</view>
-    <view class="error-font">请等待后续版本更新呦~~</view>
+    <image style="width:100%;height:{{imageHeight}}" class="error-header" src="http://ogeqm3xfh.bkt.clouddn.com/images/app/error.png"></image>
 </view>

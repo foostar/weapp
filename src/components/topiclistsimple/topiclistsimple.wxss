@@ -125,7 +125,7 @@
     display: inline-block;
     height: 56rpx;
     line-height: 56rpx;
-    width: 160rpx;
+    width: 130rpx;
     text-align: center;
     border-radius: 6rpx;
     font-size: 28rpx;
@@ -394,6 +394,11 @@
 .cell-card-header-time{
     color:#a4a4a4;
     line-height:37rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.cell-card-from{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

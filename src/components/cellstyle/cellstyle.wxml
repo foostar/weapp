@@ -53,7 +53,7 @@
     <view class="cell-flat-info {{images.length < 3 ? 'cell-flat-mini' : ''}}">
         <text class="cell-flat-info-time">{{repliedAt}}</text>
         <text class="cell-flat-info-author">{{nickname}}</text>
-        <text class="hits">{{views}}阅读</text>
+        <text class="hits">{{views}} 阅读</text>
     </view>
 </template>
 <template name="flat-title">
@@ -120,7 +120,7 @@
             </view>
             <view class="cell-card-from font-normal">
                 来自:
-                <navigator class="color-forum">{{board_name}}</navigator>
+                <navigator class="color-forum">{{forumName}}</navigator>
             </view>
         </view>
         <view class="cell-card-content">
@@ -162,7 +162,7 @@
                     </view>
                     <view class="cell-imageSudoku-from font-mini">
                         来自:
-                        <navigator class="color-forum">{{board_name}}</navigator>
+                        <navigator class="color-forum">{{forumName}}</navigator>
                     </view>
                 </view>
                 <view class="cell-imageSudoku-content">
@@ -206,7 +206,7 @@
                     </view>
                     <view class="cell-from font-mini">
                         来自:
-                        <navigator class="color-forum">{{board_name}}</navigator>
+                        <navigator class="color-forum">{{forumName}}</navigator>
                     </view>
                 </view>
                 <view class="cell-circle-subject-wrapper">
@@ -251,8 +251,6 @@
             <view class="cell-image-big-bar">
                 <view class="cell-image-big-time">{{repliedAt}}</view>
                 <view class="cell-image-big-info">
-                    <!-- <view class="cell-image-big-hits">{{hits}}</view>
-                    <view class="cell-image-big-replies">{{replies}}</view> -->
                     <text class="cell-image-big-hits" style="background:url({{iconSrc}}dz_list_circle_pv.png) no-repeat 0 center;background-size:28rpx;">{{views}}</text>
                     <text class="cell-image-big-replies" style="background:url({{iconSrc}}dz_list_bigphoto_replies.png) no-repeat 0 center;background-size:28rpx;">{{replies}}</text>
                 </view>

@@ -1,4 +1,5 @@
 const Component = require('../../lib/component')
+const utils = require('../../utils/util.js')
 
 function SubnavCard(key, module) {
     Component.call(this, key)
@@ -12,8 +13,9 @@ function SubnavCard(key, module) {
     })
     this.data = {
         index: 0,
-        width: `${100 / tabs.length}%`,
+        width: tabs.length > 4 ? '25%' : `${100 / tabs.length}%`,
         selected: module.componentList[0].id,
+        hasScroll: utils.checkHasScroll(module),
         tabs
     }
 }

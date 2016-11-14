@@ -6,7 +6,7 @@ const { checkHasScroll } = require('../../utils/util.js')
  *   @模块引入
  */
 const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
-const SubnavFlat = require('../subnavflat/subnavflat')
+// const SubnavFlat = require('../subnavflat/subnavflat')
 const SubnavCard = require('../subnavcard/subnavcard')
 
 
@@ -77,7 +77,7 @@ components.type['moduleRef-neteaseNews'] = Module
 components.type['moduleRef-imageSudoku'] = Module
 components.type['moduleRef-circle'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
-components.type['layout-layoutSubnavFlat'] = SubnavFlat
+components.type['layout-layoutSubnavFlat'] = SubnavCard
 components.type['customSubnav-flat'] = SubnavCustom
 components.type['full-card'] = Fullcard
 components.type['full-flat'] = Fullcard
@@ -126,36 +126,21 @@ components.type['layout-layoutTransparent'] = LayoutTransparent
 components.type['layout-layoutSeparator'] = LayoutSeparator // 分割线
 
 components.type['layout-layoutNewsAuto'] = LayoutNewsAuto // 列表自动样式
+
+const cellStyles = [ 'tieba', 'flat', 'card', 'neteaseNews', 'imageSudoku', 'circle' ]
 /*
- *  @帖子列表
+ *  @帖子列表 \ 复杂帖子列表
  */
-components.type['topiclistSimple-tieba'] = TopiclistSimple
-components.type['topiclistSimple-flat'] = TopiclistSimple
-components.type['topiclistSimple-card'] = TopiclistSimple
-components.type['topiclistSimple-neteaseNews'] = TopiclistSimple
-components.type['topiclistSimple-imageSudoku'] = TopiclistSimple
-components.type['topiclistSimple-circle'] = TopiclistSimple
-/*
- *  @复杂帖子列表、门户主页
- */
-components.type['topiclistComplex-flat'] = TopiclistComplex
-components.type['topiclistComplex-tieba'] = TopiclistComplex
-components.type['topiclistComplex-card'] = TopiclistComplex
-components.type['topiclistComplex-neteaseNews'] = TopiclistComplex
-components.type['topiclistComplex-imageSudoku'] = TopiclistComplex
-components.type['topiclistComplex-circle'] = TopiclistComplex
+cellStyles.forEach(x => {
+    components.type[`topiclistSimple-${x}`] = TopiclistSimple
+    components.type[`topiclistComplex-${x}`] = TopiclistComplex
+})
 /*
  *  @门户列表
  */
-components.type['newslist-tieba'] = NewsList
-components.type['newslist-flat'] = NewsList
-components.type['newslist-card'] = NewsList
-components.type['newslist-neteaseNews'] = NewsList
-components.type['newslist-imageSudoku'] = NewsList
-components.type['newslist-circle'] = NewsList
-components.type['newslist-imageBig'] = NewsList
-components.type['newslist-image'] = NewsList // 图片1
-components.type['newslist-image2'] = NewsList // 图片2
+cellStyles.concat([ 'imageBig', 'image', 'image2' ]).forEach(x => {
+    components.type[`newslist-${x}`] = NewsList
+})
 
 components.type['forumlist-flat'] = ForumlistFlat
 components.type['forumlist-card'] = ForumlistCard // 卡片样式

@@ -18,6 +18,9 @@
     flex: 1;
     text-align: center;
 }
+.subnavtopbar-bar-row{
+    width:100%;
+}
 
 .subnav-topbar-content-container {
     width: 100%;

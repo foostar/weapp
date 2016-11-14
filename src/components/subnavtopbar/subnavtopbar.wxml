@@ -5,7 +5,7 @@
         <view wx:if="{{module.leftTopbars.length > 0}}" class="topbar-icon">
             <image wx:for="{{module.leftTopbars}}" wx:key="{{index}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
         </view>
-        <view class="subnavtopbar-bar-nav">
+        <view class="subnavtopbar-bar-nav {{tabs.length > 3 ? 'subnavtopbar-bar-row' : ''}}">
             <view wx:for="{{tabs}}" wx:key="{{item.id}}" bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}" class="{{item.id == selected ? 'active' : ''}} font-wide text-color"> {{item.title}} </view>
             <view class="top-bar-indicator" style="transform: translateX({{index * 100 + '%'}}); width: {{width}};">
                 <view class="top-bar-indicator-inner bg-color"></view>
