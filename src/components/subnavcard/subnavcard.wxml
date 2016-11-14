@@ -8,12 +8,17 @@
     </block>
 </scroll-view>
 
-<view class="subnav-content-container">
+<scroll-view wx:if="{{hasScroll}}" scroll-y="true" bindscrolltolower="subnavcard_scrollToLower" data-event-key="{{key}}" class="subnav-content-container scroll-subnav-container">
     <block wx:for="{{tabs}}" wx:key="{{index}}">
         <view hidden="{{(selected === item.id || animating) ? false : true}}" class="subnav-content">
-            <scroll-view>
-                <template wx:if="{{children[item.id]}}" is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
-            </scroll-view>
+            <template wx:if="{{children[item.id]}}" is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
+        </view>
+    </block>
+</scroll-view>
+<view wx:else class="subnav-content-container">
+    <block wx:for="{{tabs}}" wx:key="{{index}}">
+        <view hidden="{{(selected === item.id || animating) ? false : true}}" class="subnav-content">
+            <template wx:if="{{children[item.id]}}" is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
         </view>
     </block>
 </view>
