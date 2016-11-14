@@ -41,9 +41,9 @@ Discover.prototype.onLoad = function () {
             userInfo: app.globalData.userInfo
         })
     }
-    // 设置tabs
+    // 设置tabs 如果 tabs存在则则隐藏 我的消息
     this.setData({
-        tabs: app.globalData.tabs
+        tabs: app.globalData.tabs.filter((v) => v.title == '消息')
     })
     // 获取用户的主配置信息
     app.api.getSetting().then(res => {
