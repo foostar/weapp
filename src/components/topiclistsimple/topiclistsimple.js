@@ -50,12 +50,13 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
         sortby: param.orderby || 'all'
     }).then((data) => {
         data.list = list.concat(data.list)
-        if (data.meta.page == 1) {
+        if (data.page == 1) {
             this.setData({
                 topTopicList: data.topTopicList
             })
         }
         let appIcon = (data.forumInfo && data.forumInfo.icon) || app.globalData.loadSrc
+        data.forum = data.forum || data.forumInfo
         this.setData({
             resources: data,
             isLoading: false,

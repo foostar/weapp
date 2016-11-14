@@ -53,7 +53,7 @@
     <view class="cell-flat-info {{images.length < 3 ? 'cell-flat-mini' : ''}}">
         <text class="cell-flat-info-time">{{repliedAt}}</text>
         <text class="cell-flat-info-author">{{nickname}}</text>
-        <text class="hits">{{views}}阅读</text>
+        <text class="hits">{{views}} 阅读</text>
     </view>
 </template>
 <template name="flat-title">
@@ -79,7 +79,7 @@
         <view class="cell-flat-thumb-container">
             <image src="{{images[ 0 ]}}" mode="aspectFill"></image>
         </view>
-        <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
+        <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views:hits}}"></template>
     </view>
     <view wx:else class="cell-flat">
         <template is="flat-title" data="{{essence, top, hot, title}}"></template>
@@ -99,7 +99,7 @@
                 </view>
             </block>
         </view>
-        <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
+        <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views:hits}}"></template>
     </view>
 </template>
 <!-- card -->

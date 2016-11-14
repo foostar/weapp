@@ -262,7 +262,8 @@ App({
     },
     isIphone() {
         var reg = /iphone/ig
-        return reg.test(this.globalData.systemInfo.model)
+        var model = this.globalData.systemInfo.model
+        return reg.test(model)
     },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {

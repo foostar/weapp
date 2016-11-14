@@ -19,14 +19,14 @@
 
 .tabs-indicator {
     position: absolute;
-    height: 1rpx;
-    bottom: -1rpx;
+    height: 1px;
+    bottom: -1px;
+    left:0px;
     transition: .3s;
 }
 
 .tabs-indicator-inner {
     height: 100%;
-    margin: 0 5%;
 }
 
 .subnav-content-container {
