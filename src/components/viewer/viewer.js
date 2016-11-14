@@ -6,7 +6,7 @@ const { checkHasScroll } = require('../../utils/util.js')
  *   @模块引入
  */
 const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
-const SubnavFlat = require('../subnavflat/subnavflat')
+// const SubnavFlat = require('../subnavflat/subnavflat')
 const SubnavCard = require('../subnavcard/subnavcard')
 
 
@@ -73,7 +73,7 @@ components.type['moduleRef-neteaseNews'] = Module
 components.type['moduleRef-imageSudoku'] = Module
 components.type['moduleRef-circle'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
-components.type['layout-layoutSubnavFlat'] = SubnavFlat
+components.type['layout-layoutSubnavFlat'] = SubnavCard
 components.type['customSubnav-flat'] = SubnavCustom
 components.type['full-card'] = Fullcard
 components.type['full-flat'] = Fullcard
