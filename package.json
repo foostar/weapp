@@ -4,14 +4,17 @@
   "description": "weapp",
   "main": ".eslintrc.js",
   "dependencies": {
+    "archiver": "^1.2.0",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "fs-extra": "^1.0.0",
     "mobcent": "^0.4.8",
     "node-fetch": "^1.6.3",
     "request": "^2.78.0",
     "select-shell": "git+https://github.com/luizstacio/select-shell.git",
-    "xiaoyun-cmsapi": "^0.1.4"
+    "xiaoyun-cmsapi": "0.1.5"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
@@ -31,6 +34,7 @@
     "pre-commit": "^1.1.3"
   },
   "scripts": {
+    "start": "node lib/server",
     "install": "npm run install:mobcent && chmod +x cli/weapp.js",
     "install:mobcent": "mobpath=src/lib/mobcent.js && cp node_modules/mobcent/lib/mobcent.js $mobpath && echo \"/* eslint-disable */\" | cat - $mobpath > $TMPDIR/mobcent.js && mv $TMPDIR/mobcent.js $mobpath",
     "test": "npm run test:lint",
