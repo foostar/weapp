@@ -3,6 +3,7 @@ const Component = require('../../lib/component')
 const app = getApp()
 
 function Discover(key, module) {
+    this.module = module
     Component.call(this, key)
     var childrenModule = {}
     module.componentList.forEach((m) => {
@@ -32,6 +33,7 @@ Discover.prototype.name = 'discover'
 Discover.prototype.constructor = Discover
 
 Discover.prototype.onLoad = function () {
+    console.log(this.module)
     // 判断用户是否登录
     if (app.globalData.userInfo) {
         this.setData({
@@ -115,7 +117,7 @@ Discover.prototype.toNavigationPage = function (e) {
     if (this.data.isLogin) {
         if (typePage == 'myInfo') {
             return wx.navigateTo({
-                url: '/pages/blank/blank?type=myinfo'
+                url: '/pages/blank/blank?type=messagelist'
             })
         }
         wx.navigateTo({
