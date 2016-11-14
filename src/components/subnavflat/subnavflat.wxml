@@ -10,10 +10,12 @@
         <view class="tabs-indicator-inner bg-color"></view>
     </view>
 </view>
+
+
 <view class="subnav-content-container">
-    <view wx:for="{{tabs}}" wx:key="{{item.id}}" class="subnav-content">
-        <view hidden="{{(selected === item.id || animating) ? false : true}}">
+    <block wx:for="{{tabs}}" wx:key="{{item.id}}">
+        <view hidden="{{(selected === item.id || animating) ? false : true}}" class="subnav-content">
             <template wx:if="{{children[item.id]}}" is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
         </view>
-    </view>
+    </block>
 </view>

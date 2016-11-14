@@ -16,9 +16,9 @@
                         <view class="boardContent-info font-normal">
                             <view class="info-title font-wide">{{item.board_name}}</view>
                             <view class="info-meta font-mini">
-                                
+                                <image class="boardContent-icon" src="{{iconSrc}}dz_board_icon_follow.png"/>
                                 {{item.favNum}}
-                                
+                                <image class="boardContent-icon" src="{{iconSrc}}dz_board_icon_reply.png"/>
                                 {{item.td_posts_num}}
                             </view>
                         </view>
@@ -33,9 +33,9 @@
                     <view class="boardContent-info font-normal">
                         <view class="info-title font-wide">{{item.board_name}}</view>
                         <view class="info-meta font-mini">
-                            
+                            <image class="boardContent-icon" src="{{iconSrc}}dz_board_icon_follow.png"/>
                             {{item.favNum}}
-                            
+                            <image class="boardContent-icon" src="{{iconSrc}}dz_board_icon_reply.png"/>
                             {{item.td_posts_num}}
                         </view>
                     </view>
@@ -50,9 +50,9 @@
                     <view class="boardContent-info font-normal">
                         <view class="info-title font-wide">{{item.board_name}}</view>
                         <view class="info-meta font-mini">
-                            
+                            <image class="boardContent-icon" src="{{iconSrc}}dz_board_icon_follow.png"/>
                             {{item.favNum}}
-                            
+                            <image class="boardContent-icon" src="{{iconSrc}}dz_board_icon_reply.png"/>
                             {{item.td_posts_num}}
                         </view>
                     </view>

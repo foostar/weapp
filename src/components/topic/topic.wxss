@@ -27,6 +27,7 @@ page {
     overflow: hidden;
     word-wrap: break-word;
     font-size: 36rpx;
+    color: #fff;
 }
 .tpcinfo-header-content {
     padding: 20rpx 60rpx;
@@ -35,6 +36,7 @@ page {
     overflow: hidden;
     word-wrap: break-word;
     font-size: 28rpx;
+    color: #fff;
 }
 .tpcinfo-users {
     margin-bottom: 20rpx;

@@ -2,7 +2,7 @@
     width: 400rpx;
     height: 300rpx;
     display: block;
-    margin: 80rpx auto;
+    margin: 30rpx auto;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;

@@ -1,8 +1,9 @@
-const TouchComponent = require('../../lib/touchcomponent')
+const Component = require('../../lib/component')
 const util = require('../../utils/util.js')
 
+var app = getApp()
 function LayoutNewsAuto(key, module) {
-    TouchComponent.call(this, key, module)
+    Component.call(this, key)
     const componentList = util.formatListData(module.componentList)
     componentList.map((v) => {
         v.last_reply_date = util.dateFormat(v.last_reply_date, 'yyyy-MM-dd')
@@ -17,8 +18,17 @@ function LayoutNewsAuto(key, module) {
     }
 }
 
-LayoutNewsAuto.prototype = Object.create(TouchComponent.prototype)
+LayoutNewsAuto.prototype = Object.create(Component.prototype)
 LayoutNewsAuto.prototype.name = 'layoutnewsauto'
 LayoutNewsAuto.prototype.constructor = LayoutNewsAuto
 
+LayoutNewsAuto.prototype.clickItem = function (e) {
+    if (e.target.dataset.role == 'avatar') {
+        if (app.isLogin()) return
+        return wx.navigateTo({
+            url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.user })}`
+        })
+    }
+    app.showPost(e.currentTarget.id)
+}
 module.exports = LayoutNewsAuto

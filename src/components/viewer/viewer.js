@@ -6,7 +6,7 @@ const { checkHasScroll } = require('../../utils/util.js')
  *   @模块引入
  */
 const SubnavTopbar = require('../subnavtopbar/subnavtopbar')
-const SubnavFlat = require('../subnavflat/subnavflat')
+// const SubnavFlat = require('../subnavflat/subnavflat')
 const SubnavCard = require('../subnavcard/subnavcard')
 
 
@@ -57,6 +57,10 @@ const Changepassword = require('../changepassword/changepassword')
 const Register = require('../register/register')
 const Myinfo = require('../myinfo/myinfo')
 const MyinfoAtme = require('../myinfoatme/myinfoatme')
+const MyinfoPost = require('../myinfopost/myinfopost')
+const MyinfoSystem = require('../myinfosystem/myinfosystem')
+
+
 const UserHome = require('../user-home/user-home')
 const UserList = require('../userlist/userlist')
 const Topic = require('../topic/topic')
@@ -73,7 +77,7 @@ components.type['moduleRef-neteaseNews'] = Module
 components.type['moduleRef-imageSudoku'] = Module
 components.type['moduleRef-circle'] = Module
 components.type['subnav-subnavTopbar'] = SubnavTopbar
-components.type['layout-layoutSubnavFlat'] = SubnavFlat
+components.type['layout-layoutSubnavFlat'] = SubnavCard
 components.type['customSubnav-flat'] = SubnavCustom
 components.type['full-card'] = Fullcard
 components.type['full-flat'] = Fullcard
@@ -163,12 +167,18 @@ components.type['changepassword-flat'] = Changepassword  // 修改密码
 components.type['register-flat'] = Register   // 注册页面
 components.type['myinfo-flat'] = Myinfo       // 我的消息
 components.type['myinfoatme-flat'] = MyinfoAtme  // 我的消息 @我的信息
-
+components.type['myinfopost-flat'] = MyinfoPost  // 我的消息 【评论】
+components.type['myinfosystem-flat'] = MyinfoSystem  // 系统消息
 
 components.type['userhome-flat'] = UserHome   // 用户主页
 
 components.type['userlist-flat'] = UserList   // 用户列表
+components.type['talkPostList-flat'] = Topic
 components.type['topic-flat'] = Topic         // 话题主页
+
+components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发帖
+components.type['postlist-card'] = Post         // 帖子详情
+components.type['postlist-flat'] = Post         // 帖子详情
 
 
 // topiclistSimple-flat

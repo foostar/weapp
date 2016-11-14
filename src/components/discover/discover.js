@@ -3,6 +3,7 @@ const Component = require('../../lib/component')
 const app = getApp()
 
 function Discover(key, module) {
+    this.module = module
     Component.call(this, key)
     var childrenModule = {}
     module.componentList.forEach((m) => {
@@ -39,10 +40,10 @@ Discover.prototype.onLoad = function () {
             userInfo: app.globalData.userInfo
         })
     }
-    // 设置tabs
-    this.setData({
-        tabs: app.globalData.tabs
-    })
+    // 设置tabs 如果 tabs存在则则隐藏 我的消息
+    // this.setData({
+    //     tabs: app.globalData.tabs.filter((v) => v.title == '消息')
+    // })
     // 获取用户的主配置信息
     app.api.getSetting().then(res => {
         this.setData({
@@ -79,7 +80,6 @@ Discover.prototype.changeModuleId = function (e) {
 }
 // 改变题提示状态
 Discover.prototype.bindChange = function () {
-    console.log('帐号管理', this.data)
     if (this.data.isLogin) {
         this.logout()
         wx.showModal({
@@ -115,7 +115,7 @@ Discover.prototype.toNavigationPage = function (e) {
     if (this.data.isLogin) {
         if (typePage == 'myInfo') {
             return wx.navigateTo({
-                url: '/pages/blank/blank?type=myinfo'
+                url: '/pages/blank/blank?type=messagelist'
             })
         }
         wx.navigateTo({

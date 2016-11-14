@@ -1,15 +1,15 @@
 <view class="section">
-    <view class="manage-item" bindtap="toNavigationPage" data-page="at">
+    <view class="manage-item" bindtap="messagelistflat_toNavigationPage" data-event-key="{{key}}" data-page="myinfoatme">
         <image class="info-icon icon-take-me" src="{{iconSrc}}dz_msg_icon_at.png"></image>
         <text class="info-personal-manage-item-title">提到我的</text>
         <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
     </view>
-    <view class="manage-item" bindtap="toNavigationPage" data-page="post">
+    <view class="manage-item" bindtap="messagelistflat_toNavigationPage" data-event-key="{{key}}" data-page="myinfopost">
         <image class="info-icon icon-my-reply" src="{{iconSrc}}dz_msg_icon_reply.png"></image>
         <text class="info-personal-manage-item-title">评论</text>
         <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
     </view>
-    <view class="manage-item" bindtap="toNavigationPage" data-page="friend">
+    <view class="manage-item" bindtap="messagelistflat_toNavigationPage" data-event-key="{{key}}" data-page="myinfosystem">
         <image class="info-icon icon-system-info" src="{{iconSrc}}dz_msg_icon_friend.png"></image>
         <text class="info-personal-manage-item-title">系统消息</text>
         <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>

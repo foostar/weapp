@@ -3,7 +3,8 @@ const { dateFormat, infoToFace } = require('../../utils/util.js')
 
 const app = getApp()
 
-function Post(key) {
+function Post(key, module) {
+    this.module = module
     Component.call(this, key)
     // 添加分页
     this.data = {
@@ -21,9 +22,10 @@ Post.prototype = Object.create(Component.prototype)
 Post.prototype.name = 'post'
 Post.prototype.constructor = Post
 Post.prototype.onLoad = function () {
-    this.fetchData(app.globalData.postId)
+    const tid = app.globalData.postId || this.module.extParams.topicId
+    this.fetchData(tid)
     app.event.on('login', () => {
-        this.fetchData(app.globalData.postId)
+        this.fetchData(tid)
     })
 }
 Post.prototype.fetchData = function (tid, option) {
@@ -268,15 +270,14 @@ Post.prototype.formSubmit = function (e) {
     })
     .then(() => {
         self.formReset()
-        self.fetchData(app.globalData.postId)
+        self.fetchData(app.globalData.postId || this.module.extParams.topicId)
     })
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
 }
 /*
  *  @表单重置
  */
 Post.prototype.formReset = function () {
-    console.log('form发生了reset事件')
+    // console.log('form发生了reset事件'
 }
 module.exports = Post
 

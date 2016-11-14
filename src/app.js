@@ -228,10 +228,19 @@ App({
         }
     },
     createForum(param) {
-        const data = JSON.stringify(param)
-        wx.navigateTo({
-            url: `/pages/blank/blank?type=createforum&data=${data}`
-        })
+        if (this.isLogin()) {
+            const data = JSON.stringify(param)
+            wx.navigateTo({
+                url: `/pages/blank/blank?type=createforum&data=${data}`
+            })
+        }
+    },
+    replyPost(param) {
+        if (this.isLogin()) {
+            wx.navigateTo({
+                url: `/pages/blank/blank?type=createforum&data=${JSON.stringify({ fid: param.fid, actType: 'reply' })}`
+            })
+        }
     },
     showTopic(param) {
         const { eventKey, id, title } = param
@@ -260,7 +269,8 @@ App({
     },
     isIphone() {
         var reg = /iphone/ig
-        return reg.test(this.globalData.systemInfo.model)
+        var model = this.globalData.systemInfo.model
+        return reg.test(model)
     },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
