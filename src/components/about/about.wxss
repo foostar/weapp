@@ -5,6 +5,16 @@
     align-items: center;
     font-size: 16px;
     min-height: 90rpx;
+    
+    position: relative;
+    -webkit-background-size: 100% 1px;
+
+  /*  position: relative;
+    -webkit-box-align: center;
+    margin: .5em;
+    line-height: 2em;
+    background-repeat: repeat-x;
+    -webkit-background-size: 100% 1px;*/
 }
 
 .about-box-title {

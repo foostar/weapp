@@ -189,13 +189,14 @@ view, text {
 
 .weapp-border-top {
     background-position: left top;
-    background-image:-webkit-gradient(linear,left bottom, left top,color-stop(0.5,transparent),color-stop(0.5 #e0e0e0),to(#e0e0e0));
+    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
 }
 
 .weapp-border-bottom {
     background-position: left bottom;
-    background-image:-webkit-gradient(linear,left top, left bottom,color-stop(0.5,transparent),color-stop(0.5 #e0e0e0),to(#e0e0e0));
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
 }
+
 .weapp-border-topandbottom {
     background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0)),
         -webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));

@@ -254,6 +254,7 @@ App({
             id: eventKey,
             type: 'topiclistComplex'
         }
+        console.log(module)
         wx.navigateTo({
             url: `/pages/blank/blank?data=${JSON.stringify(module)}`
         })
