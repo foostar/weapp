@@ -1,6 +1,6 @@
 const Component = require('../../lib/component')
-const utils = require('../../utils/util.js')
 
+var app = getApp()
 function SubnavCard(key, module) {
     Component.call(this, key)
     this.module = module
@@ -15,7 +15,7 @@ function SubnavCard(key, module) {
         index: 0,
         width: tabs.length > 4 ? '25%' : `${100 / tabs.length}%`,
         selected: module.componentList[0].id,
-        hasScroll: utils.checkHasScroll(module),
+        hasScroll: true,
         tabs
     }
 }
@@ -24,6 +24,15 @@ SubnavCard.prototype = Object.create(Component.prototype)
 SubnavCard.prototype.name = 'subnavcard'
 SubnavCard.prototype.constructor = SubnavCard
 
+SubnavCard.prototype.onLoad = function () {
+    /* eslint-disable */
+    if (this.parent.parent && this.parent.parent._data && this.parent.parent._data.template == 'subnavcustom') {
+        this.setData({
+            hasScroll: false
+        })
+    }
+    /* eslint-enable */
+}
 SubnavCard.prototype.switchTab = function (event) {
     const { id, index } = event.currentTarget.dataset
     this.setData({
@@ -35,6 +44,9 @@ SubnavCard.prototype.switchTab = function (event) {
             this.addByModule(this.module.componentList[index])
         }
     }, 300)
+}
+SubnavCard.prototype.nextPage = function () {
+    app.event.trigger('nextPage')
 }
 
 module.exports = SubnavCard

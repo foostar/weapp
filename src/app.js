@@ -244,7 +244,7 @@ App({
     },
     showTopic(param) {
         const { eventKey, id, title } = param
-        let module = {
+        this.globalData.moduleData = {
             componentList: [],
             extParams: {
                 forumId: id
@@ -256,7 +256,7 @@ App({
         }
         console.log(module)
         wx.navigateTo({
-            url: `/pages/blank/blank?data=${JSON.stringify(module)}`
+            url: '/pages/blank/blank'
         })
     },
     getSystemInfo() {

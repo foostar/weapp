@@ -69,7 +69,7 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
             hasChildrens,
             boardChild,
             navWidth,
-            over: param.page >= parseInt((data.total_num / number) + 1, 10)
+            over: param.page >= parseInt((data.meta.total / number) + 1, 10)
         })
     }, () => {
         this.setData({ resources: {}, over: true, isLoading: false })

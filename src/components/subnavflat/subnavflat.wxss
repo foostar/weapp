@@ -32,9 +32,14 @@
 .tabs-indicator-inner {
     height: 100%;
 }
-
+.scroll-subnav-container{
+    position:absolute;
+    top:29px;
+    bottom:0;
+}
 .subnav-content-container {
     width:100%;
+    
 }
 .subnav-content {
     width:100%;
