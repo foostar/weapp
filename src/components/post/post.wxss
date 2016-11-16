@@ -60,8 +60,6 @@
 .post-manage{
     width:35rpx;
     height:35rpx;
-    
-    background-size:cover;
 }
 
 
@@ -216,6 +214,7 @@
 .post-content {
     background: #FFF;
     overflow: hidden;
+    word-break: break-all;
 }
 
 .post-content-large{
@@ -319,12 +318,13 @@
     border: 1rpx solid #D0D0D0;
     border-radius: 50%;
     background-color: #fff;
-    margin: 4rpx 0 4rpx 20rpx;
+    margin: 7rpx 0 4rpx 20rpx;
     box-sizing: border-box;
     background-position: center;
 }
 .post-mark-meta-like{
-    background-size: 60%;
+    background-size: 100%;
+    border:none;
     background-repeat: no-repeat;
 }
 .liked{

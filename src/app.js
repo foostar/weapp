@@ -198,10 +198,9 @@ App({
             api.secret = userInfo.secret
         }
     },
-    showPost(id) {
-        this.globalData.postId = id
+    showPost(opt) {
         wx.navigateTo({
-            url: '/pages/blank/blank?type=post'
+            url: `/pages/blank/blank?type=post&data=${JSON.stringify(opt)}`
         })
     },
     showUserHome(id) {

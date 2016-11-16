@@ -45,7 +45,7 @@ NewsList.prototype.clickItem = function (e) {
             url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.user })}`
         })
     }
-    app.showPost(e.currentTarget.id)
+    app.showPost({ type: e.currentTarget.dataset.type, id: e.currentTarget.id })
 }
 
 // 请求数据

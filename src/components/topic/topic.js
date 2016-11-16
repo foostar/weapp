@@ -108,7 +108,7 @@ Topic.prototype.toUserHome = function (e) {
     })
 }
 Topic.prototype.clickItem = function (e) {
-    app.showPost(e.currentTarget.id)
+    app.showPost({ type: 'post', id: e.currentTarget.id })
 }
 
 module.exports = Topic

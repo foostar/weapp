@@ -3,6 +3,7 @@
     padding-top: 16rpx;
     min-height: 100%;
     width: 100%;
+    box-sizing:border-box;
 }
 .topic-list-simple-box {
     margin-bottom: 16rpx;
