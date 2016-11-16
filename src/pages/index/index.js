@@ -43,7 +43,7 @@ Page(createPage({
     },
     clickItem(e) {
         if (!e.currentTarget.role) {
-            return app.showPost(e.currentTarget.id)
+            return app.showPost({ type: 'post', id: e.currentTarget.id })
         }
     }
 }))

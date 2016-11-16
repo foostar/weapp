@@ -39,7 +39,7 @@
             <view class="cell-netease-title font-wide">{{title}}</view>
             <view class="cell-netease-subject font-normal color-gray">
                 <text>{{subject}}</text>
-                <view class="cell-netease-meta font-mini color-gray">{{reply.length > 0 ? reply.length : 0}}评</view>
+                <view class="cell-netease-meta font-mini color-gray">{{replies > 0 ? replies : 0}}评</view>
             </view>
             
         </view>

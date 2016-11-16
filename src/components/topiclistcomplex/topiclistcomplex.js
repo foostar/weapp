@@ -87,7 +87,7 @@ TopiclistComplex.prototype.clickItem = function (e) {
             url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.user })}`
         })
     }
-    app.showPost(e.currentTarget.id)
+    app.showPost({ type: 'post', id: e.currentTarget.id })
 }
 // 切换orderby
 TopiclistComplex.prototype.changeTabs = function (e) {
