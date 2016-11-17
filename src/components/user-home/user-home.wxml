@@ -61,9 +61,9 @@
                         <view wx:if="{{ !!item.pic_path }}" style="background-image: url({{ item.pic_path }})" class="user-publish-topic-image" ></view>
                     </view>
                     <view class="user-publish-bar">
-                        <text class="icon-eye user-publish-bar-icon"></text>
+                        <text class="user-publish-bar-icon" style="background-image:url({{iconSrc}}dz_list_circle_pv.png);"></text>
                         <text class="user-publish-bar-text">{{ item.hits }}</text>
-                        <text class="icon-message user-publish-bar-icon"></text>
+                        <text class="user-publish-bar-icon" style="background-image:url({{iconSrc}}dz_list_bigphoto_replies.png);"></text>
                         <text class="user-publish-bar-text">{{ item.replies }}</text>
                     </view>
                 </view>

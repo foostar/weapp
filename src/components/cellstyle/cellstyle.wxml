@@ -288,7 +288,7 @@
                 </view>
             </view>
         </view>
-        <image src="{{pic_path}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
+        <image src="{{images[0]}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
         <view class="cell-image-two-footer">
             <view class="cell-image-two-zan-btn">赞</view>
         </view>

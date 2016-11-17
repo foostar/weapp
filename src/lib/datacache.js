@@ -48,8 +48,7 @@ Cache.prototype.constructor = Cache
 
 
 function DataCache () {
-    var store = arguments.length === 1 &&  arguments[0].store !== undefined ? arguments[0].store: new MemoryStore()
-    console.log(store)
+    var store = arguments.length === 1 &&  arguments[0].store !== undefined ? arguments[0]: new MemoryStore()
     this.store = store
     this.caches = {}
 }

@@ -129,9 +129,7 @@ App({
         }
 
         const api = this.api = new mobcent.API(CONFIG.URL, {
-            dataCache: new DataCache({
-                store: westore
-            }),
+            dataCache: new DataCache(westore),
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
@@ -200,12 +198,12 @@ App({
         //     console.log(res)
         // })
 
-        // const userInfo = wx.getStorageSync('userInfo')
-        // if (userInfo) {
-        //     this.globalData.userInfo = userInfo
-        //     api.token = userInfo.token
-        //     api.secret = userInfo.secret
-        // }
+        const userInfo = wx.getStorageSync('userInfo')
+        if (userInfo) {
+            this.globalData.userInfo = userInfo
+            api.token = userInfo.token
+            api.secret = userInfo.secret
+        }
     },
     showPost(id) {
         this.globalData.postId = id
