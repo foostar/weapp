@@ -25,6 +25,11 @@ const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
 const util = require('./utils/util')
 const CONFIG = require('./config.js')
+const DataCache = require('./lib/datacache.js')
+const WeappStore = require('./lib/weappstorage.js')
+
+const westore = new WeappStore()
+
 
 const randStr = () => {
     return `a${Math.random().toString(32).split('.')[1]}`
@@ -124,16 +129,19 @@ App({
         }
 
         const api = this.api = new mobcent.API(CONFIG.URL, {
+            dataCache: new DataCache({
+                store: westore
+            }),
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
             },
             fetchCenter(url, data) {
+                // 读取缓存数据
                 return fetch(url, data, true).then(result => result.data)
             },
             fetch
         })
-
         api.appId = CONFIG.ID
 
         // 处理自定义页面的ID问题
@@ -191,12 +199,13 @@ App({
         // this.getUserInfo((res) => {
         //     console.log(res)
         // })
-        const userInfo = wx.getStorageSync('userInfo')
-        if (userInfo) {
-            this.globalData.userInfo = userInfo
-            api.token = userInfo.token
-            api.secret = userInfo.secret
-        }
+
+        // const userInfo = wx.getStorageSync('userInfo')
+        // if (userInfo) {
+        //     this.globalData.userInfo = userInfo
+        //     api.token = userInfo.token
+        //     api.secret = userInfo.secret
+        // }
     },
     showPost(id) {
         this.globalData.postId = id
@@ -254,7 +263,6 @@ App({
             id: eventKey,
             type: 'topiclistComplex'
         }
-        console.log(module)
         wx.navigateTo({
             url: '/pages/blank/blank'
         })
