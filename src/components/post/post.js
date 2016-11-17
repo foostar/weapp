@@ -106,9 +106,11 @@ Post.prototype.fetchData = function (tid, option, control) {
             this.setData(data)
         }
     }, () => {
-        wx.navigateBack({
-            delta: 1
-        })
+        if (this.data.page == 1) {
+            return wx.navigateBack({
+                delta: 1
+            })
+        }
     })
 }
 /*
@@ -167,7 +169,10 @@ Post.prototype.reportUser = function (e) {
         isType = 'post'
     }
     app.api.report({ id, isType })
-        .then(() => {
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
             this.cancelAction()
         })
 }
@@ -184,7 +189,10 @@ Post.prototype.foucsUser = function (e) {
         result = 0
     }
     app.api.useradmin({ uid: e.currentTarget.dataset.id, type })
-        .then(() => {
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
             self.data.isFollow = result
             self.setData(self.data)
         })
@@ -215,7 +223,10 @@ Post.prototype.colletHandler = function (e) {
         id = this.data.postData.id
     }
     app.api.userfavorite(id, { action, idType })
-        .then(() => {
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
             self.setData({ colleted: isFavor })
         })
 }
@@ -228,7 +239,10 @@ Post.prototype.likeHandler = function (e) {
     const id = e.currentTarget.dataset.id
     var self = this
     app.api.support(id, { type: 'topic' })
-        .then(() => {
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
             this.data.like = 1
             this.data.zanList.push({
                 'count(distinct recommenduid)': 1,
@@ -280,7 +294,10 @@ Post.prototype.formSubmit = function (e) {
             platType: 1,
             act: 'reply'
         })
-        .then(() => {
+        .then((result) => {
+            wx.showToast({
+                title: result.errcode
+            })
             self.formReset()
             self.fetchData(this.data.id, { page: this.data.page }, {
                 loaded: true,

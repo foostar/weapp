@@ -271,6 +271,13 @@ App({
         var model = this.globalData.systemInfo.model
         return reg.test(model)
     },
+    showErrorMes(opt) {
+        opt = opt || {}
+        wx.showToast({
+            title: opt.title || '操作失败',
+            duration: opt.duration || 1500
+        })
+    },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
             return wx.navigateTo({
