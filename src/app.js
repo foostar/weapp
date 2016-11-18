@@ -135,7 +135,6 @@ App({
                 return { json: response.data, response }
             },
             fetchCenter(url, data) {
-                // 读取缓存数据
                 return fetch(url, data, true).then(result => result.data)
             },
             fetch
