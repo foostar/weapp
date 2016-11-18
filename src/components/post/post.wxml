@@ -166,15 +166,15 @@
         <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
     </action-sheet>
     <view class="post-mask" wx:if="{{!isCommenting}}" bindtap="post_cancelAction" data-event-key="{{key}}"></view>
-    <view class="post-footer-wrapper">
+    <view class="post-footer-wrapper weapp-border-top">
         <view class="post-footer" wx:if="{{isCommenting}}">
             <view class="post-mark font-mini" catchtap="post_comment" data-event-key="{{key}}">
                 <view class="post-mark-title color-gray">回个话鼓励下楼主</view>
                 <view class="post-mark-comments color-gray">{{list.length}}条评论</view>
             </view>
             <view class="post-mark-meta">
-                <view style="background-image: url({{iconsrc}}dz_posts_goodjob.png);" data-like="{{topic.isLike}}" data-id="{{topic.topic_id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-like {{topic.isLike ? 'liked' : ''}}"></view>
-                <view style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_n.png)" data-collet="{{topic.is_favor}}" data-id="{{topic.topic_id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-collet {{topic.is_favor ? 'colleted' : ''}}"></view>
+                <view style="background-image: url({{iconsrc}}dz_posts_goodjob.png);" data-like="{{topic.isLike}}" data-id="{{topic.topic_id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-like {{topic.isLike ? 'liked' : ''}}"></view>
+                <view style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_n.png)" data-collet="{{topic.is_favor}}" data-id="{{topic.topic_id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-collet {{topic.is_favor ? 'colleted' : ''}}"></view>
             </view>
         </view>
         <form wx:else bindsubmit="post_formSubmit" data-event-key="{{key}}" bindreset="post_formReset" class="post-footer post-form">

@@ -65,7 +65,7 @@
     </view>
 </template>
 <template name="flat">
-    <view wx:if="{{images.length > 0 && images.length < 3}}" class="cell-flat cell-flat-mini">
+    <view wx:if="{{images.length > 0 && images.length < 3}}" class="cell-flat cell-flat-mini weapp-border-bottom">
         <view class="cell-flat-content">
             <template is="flat-title" data="{{essence, top, hot, title}}"></template>
             <view wx:if="{{hasFace}}" class="cell-flat-content-subject">
@@ -81,7 +81,7 @@
         </view>
         <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
     </view>
-    <view wx:else class="cell-flat">
+    <view wx:else class="cell-flat weapp-border-bottom">
         <template is="flat-title" data="{{essence, top, hot, title}}"></template>
         <view class="cell-flat-content">
             <view wx:if="{{hasFace}}" class="cell-flat-content-subject {{images.length ? 'subject-oneline' : ''}}">
