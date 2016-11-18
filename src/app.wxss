@@ -17,7 +17,9 @@ view, text {
 .color-member{
     color:#259;
 }
-
+.noborder{
+    border:none !important;
+}
 .clearfix:after, .clearfix:before {
   content: '';
   display: table;

@@ -205,10 +205,9 @@ App({
             api.secret = userInfo.secret
         }
     },
-    showPost(id) {
-        this.globalData.postId = id
+    showPost(opt) {
         wx.navigateTo({
-            url: '/pages/blank/blank?type=post'
+            url: `/pages/blank/blank?type=post&data=${JSON.stringify(opt)}`
         })
     },
     showUserHome(id) {
@@ -278,6 +277,13 @@ App({
         var reg = /iphone/ig
         var model = this.globalData.systemInfo.model
         return reg.test(model)
+    },
+    showErrorMes(opt) {
+        opt = opt || {}
+        wx.showToast({
+            title: opt.title || '操作失败',
+            duration: opt.duration || 1500
+        })
     },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {

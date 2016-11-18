@@ -144,7 +144,7 @@ Mylistcompos.prototype.nextPage = function () {
 
 Mylistcompos.prototype.showPost = function (e) {
     const postid = e.currentTarget.dataset.postid
-    app.showPost(postid)
+    app.showPost({ type: 'post', id: postid })
 }
 
 Mylistcompos.prototype.showUser = function (e) {

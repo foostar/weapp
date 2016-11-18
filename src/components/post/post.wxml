@@ -50,7 +50,7 @@
 <template name="post-info">
     <view class="post-info">
         <view class="post-user-name">{{username}}</view>
-        <view class="post-level-tag border-color">
+        <view class="post-level-tag border-color" wx:if="{{level}}">
             <text class="post-level-num bg-color">V.{{level}}</text>
             <text class="post-level-text">{{title}}</text>
         </view>
@@ -60,27 +60,27 @@
 <view class="page-post">
     <scroll-view class="post-container" scroll-y="true" bindscrolltolower="post_nextPage" data-event-key="{{key}}">
         <view class="post-title">
-            {{topic.title}}
+            {{title}}
         </view>
         <view class="post-meta-wrapper post-card">
             <view class="post-meta">
-                <image class="post-user-avatar" src="{{topic.icon}}" />
+                <image class="post-user-avatar" src="{{authorAvatar}}" />
                 <view class="post-meta-content">
-                    <template is="post-info" data="{{username: topic.user_nick_name, level: topic.level, title: topic.userTitle}}"></template>
+                    <template is="post-info" data="{{username: author, level: level, title: userTitle}}"></template>
                     <view class="post-info-ext">
                         <text>楼主</text>
-                        <text>{{topic.create_date}}</text>
+                        <text>{{createAt}}</text>
                     </view>
                 </view>
             </view>
-            <view wx:if="{{!creater}}" class="focus font-normal text-color" bindtap="post_foucsUser" data-event-key="{{key}}" data-focus="{{topic.isFollow}}" data-id="{{topic.user_id}}">{{topic.isFollow ? '已关注TA' : '关注TA'}}</view>
+            <view wx:if="{{!creater && type != 'article'}}" class="focus font-normal text-color" bindtap="post_foucsUser" data-event-key="{{key}}" data-focus="{{isFollow}}" data-id="{{userId}}">{{isFollow ? '已关注TA' : '关注TA'}}</view>
         </view>
 
         <view class="post-content post-card font-wide {{list.length > 0 ? '' : 'post-content-large'}}">
-            <block wx:for="{{topic.content}}" wx:key="{{index}}">
+            <block wx:for="{{content}}" wx:key="{{index}}">
                 <view wx:if="{{item.type === 1}}" class="post-content-image">
                     <image wx:if="{{item.unloaded}}" class="post-content-preload" style="width: 100%" mode="aspectFit" src="{{item.loadSrc}}" />
-                    <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.originalInfo}}" />
+                    <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.content}}" />
                 </view>
                 <block wx:elif="{{item.type === 0}}">
                     <view wx:if="{{item.hasFace}}" >
@@ -89,24 +89,25 @@
                             <image wx:else class="face" src="{{item.content}}" />
                         </block>
                     </view>
-                    <text wx:else>{{item.infor}}</text>
+                    <text wx:else>{{item.content}}</text>
                 </block>
+                <view wx:else>{{item.content}}</view>
             </block>
             <!-- <block wx:for="{{topic.contentTree.childNodes}}">
                 <template is="{{'post-' + item.tagName}}" data="{{...item}}" />
             </block> -->
             <!-- <view class="hits-number">浏览{{topic.hits}}人</view> -->
             <view class="topic-comment-info">
-                <view class="post-hits hits-number" style="background-image: url({{iconsrc}}dz_list_circle_pv.png)">浏览{{topic.hits}}人</view>
-                <view class="post-manage" data-id="{{topic.topic_id}}" data-role="topic" bindtap="post_actionSheetTap" data-event-key="{{key}}"></view>
+                <view class="post-hits hits-number" style="background-image: url({{iconsrc}}dz_list_circle_pv.png)">浏览{{views}}人</view>
+                <view class="post-manage" style="background: url({{iconsrc}}dz_posts_arrow.png) no-repeat center center;background-size:28rpx auto;" data-id="{{userId}}" bindtap="post_actionSheetTap" data-event-key="{{key}}"></view>
             </view>
         </view>
 
-        <view wx:if="{{topic.zanList.length > 0}}" class="zanlist-wrapper post-card font-mini">
-            <text class="zanlist-btn" style="background-image: url({{iconsrc}}dz_posts_goodjob.png)">{{topic.zanList.length}} 人</text>
-            <block wx:for="{{topic.zanList}}" wx:key="{{index}}">
+        <view wx:if="{{zanList.length > 0}}" class="zanlist-wrapper post-card font-mini">
+            <text class="zanlist-btn" style="background-image: url({{iconsrc}}dz_posts_goodjob.png)">{{zanList.length}} 人</text>
+            <block wx:for="{{zanList}}" wx:key="{{index}}">
                 <text class="zanlist">{{item.username}}</text>
-                <text wx:if="{{index < topic.zanList.length-1}}">，</text>
+                <text wx:if="{{index < zanList.length-1}}">，</text>
             </block>
         </view>
 
@@ -147,7 +148,7 @@
                         <view class="post-comment-info">
                             <text class="color-gray font-mini">{{item.position}}楼</text>
                             <text>{{item.posts_date}}</text>
-                            <view class="post-replies" data-quote="{{item.reply_posts_id}}" data-role="quote" data-event-key="{{key}}" catchtap="post_comment" data-id="{{item.reply_posts_id}}"></view>
+                            <view class="post-replies" data-quote="{{item.reply_posts_id}}" data-role="quote" data-event-key="{{key}}" catchtap="post_comment" data-id="{{item.reply_posts_id}}" style="background: url({{iconsrc}}dz_posts_manage_btn.png) no-repeat center center;background-size:28rpx;"></view>
                         </view>
                     </view>
                 </view>
@@ -165,16 +166,17 @@
         <action-sheet-item class="item" data-id="{{reportUser}}" data-event-key="{{key}}" catchtap="post_reportUser">举报</action-sheet-item>
         <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
     </action-sheet>
-    <view class="post-mask" wx:if="{{!isCommenting}}" bindtap="post_cancelAction" data-event-key="{{key}}"></view>
-    <view class="post-footer-wrapper weapp-border-top">
+    <view class="post-mask" wx:if="{{!isCommenting}}" bindtap="post_cancelAction" data-event-key="{{key}}">
         <view class="post-footer" wx:if="{{isCommenting}}">
             <view class="post-mark font-mini" catchtap="post_comment" data-event-key="{{key}}">
                 <view class="post-mark-title color-gray">回个话鼓励下楼主</view>
-                <view class="post-mark-comments color-gray">{{list.length}}条评论</view>
+                <view class="post-mark-comments color-gray">{{totalNum || 0}}条评论</view>
             </view>
             <view class="post-mark-meta">
-                <view style="background-image: url({{iconsrc}}dz_posts_goodjob.png);" data-like="{{topic.isLike}}" data-id="{{topic.topic_id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-like {{topic.isLike ? 'liked' : ''}}"></view>
-                <view style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_n.png)" data-collet="{{topic.is_favor}}" data-id="{{topic.topic_id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-collet {{topic.is_favor ? 'colleted' : ''}}"></view>
+                <view wx:if="{{like == 1}}" style="background-image: url({{iconsrc}}dz_toolbar_reply_outer_praise_h.png);" data-like="{{like}}" data-id="{{id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-like"></view>
+                <view wx:elif="{{like == 0}}" style="background-image: url({{iconsrc}}dz_toolbar_reply_outer_praise_n.png);" data-like="{{like}}" data-id="{{id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-like"></view>
+                <view wx:if="{{colleted == 0}}" style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_n.png);background-position:0 center" data-collet="{{colleted}}" data-id="{{id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-collet"></view>
+                <view wx:elif="{{colleted == 1}}" style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_h.png);background-position:0 center" data-collet="{{colleted}}" data-id="{{id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-collet"></view>
             </view>
         </view>
         <form wx:else bindsubmit="post_formSubmit" data-event-key="{{key}}" bindreset="post_formReset" class="post-footer post-form">

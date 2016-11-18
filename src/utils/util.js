@@ -132,7 +132,24 @@ const formatListData = (dataList) => {
     let componentList = []
     dataList.forEach((v) => {
         componentList.push(Object.assign({}, v, v.extParams, {
-            subject: v.extParams.summary
+            subject: v.extParams.summary,
+            views: v.extParams.hits,
+            images: v.extParams.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_')),
+            user: {
+                id: v.extParams.user_id,
+                nickname: v.extParams.user_nick_name,
+                avatar: v.extParams.userAvatar,
+                title: v.extParams.userTitle || '',
+                verify: v.extParams.verify || []
+            },
+            repliedAt: dateFormat(+v.extParams.last_reply_date) || '',
+            zans: v.extParams.zanList || new Array(v.extParams.recommendAdd),
+            recommendAdd: v.extParams.recommendAdd,
+            zones: v.extParams.distance || '',
+            distance: v.extParams.location || '',
+            redirect: v.extParams.redirectUrl || '',
+            forumId: v.extParams.board_id || '',
+            forumName: v.extParams.board_name || ''
         }))
     })
     return componentList

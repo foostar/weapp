@@ -31,7 +31,6 @@ Page(createPage({
         } else {
             module = app.globalData.moduleData
         }
-
         // 检测是否支持当前版块
         pagetype.forEach((v) => {
             if (v.type == module.type && !v.isAchieve) {
@@ -56,7 +55,7 @@ Page(createPage({
         })
     },
     clickItem(e) {
-        app.showPost(e.currentTarget.id)
+        app.showPost({ type: 'post', id: e.currentTarget.id })
     },
     replyPost(e) {
         console.log(e)

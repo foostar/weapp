@@ -8,87 +8,110 @@ function Post(key, module) {
     Component.call(this, key)
     // 添加分页
     this.data = {
-        topic: null,
-        endPage: 0,
-        isLoading: false,
+        page: 1,
         over: false,
         isFetching: false,
         iconsrc: app.globalData.iconSrc,
-        isCommenting: true,
-        actionSheetHidden: true
+        isCommenting: false,
+        actionSheetHidden: false,
+        postData: module.data
     }
 }
 Post.prototype = Object.create(Component.prototype)
 Post.prototype.name = 'post'
 Post.prototype.constructor = Post
 Post.prototype.onLoad = function () {
-    const tid = app.globalData.postId || this.module.extParams.topicId
+    const tid = this.data.postData.id || this.module.extParams.topicId
     this.fetchData(tid)
     app.event.on('login', () => {
         this.fetchData(tid)
     })
 }
-Post.prototype.fetchData = function (tid, option) {
-    var self = this
-    this.data.isLoading = false
-    this.setData(self.data)
+Post.prototype.fetchData = function (tid, option, control) {
+    let list = this.data.list || []
     var options = option || {}
-    var isLike = 0
+    var controls = control || {}
+    if (controls.clearList) {
+        list = options.page > 1 ? this.data.list.slice(0, (options.page - 1) * 20) : []
+    }
     var systemInfo = app.globalData.systemInfo
     this.data.windowWidth = systemInfo.windowWidth
     this.data.windowHeight = systemInfo.windowHeight
-    app.api.post(tid, options)
-        .then((data) => {
-            data.topic.create_date = dateFormat(data.topic.create_date)
-            if (app.globalData.userInfo && app.globalData.userInfo.uid == data.topic.user_id) {
+    let request
+    if (this.data.postData.type == 'post') {
+        request = app.api.post(tid, options)
+    } else {
+        request = app.api.article(tid)
+    }
+    request.then((data) => {
+        if (data.page == 1) {
+            if (app.globalData.userInfo && app.globalData.userInfo.uid == data.userId) {
                 data.creater = true
             }
-            data.topic.zanList.forEach((v) => {
-                if (app.globalData.userInfo && v.recommenduid == app.globalData.userInfo.uid) {
-                    isLike = 1
-                }
-            })
-            data.topic.isLike = isLike
-            data.list.forEach((x) => {
-                x.posts_date = dateFormat(x.posts_date)
-                x.reply_content.forEach((v) => {
-                    if (v.type == 0) {
-                        let faceResult
-                        faceResult = infoToFace(v.infor)
-                        v.hasFace = faceResult.hasFace
-                        v.subject = faceResult.data
+            data.content.forEach((v) => {
+                if (v.type == 1) {
+                    v.loadSrc = app.globalData.loadSrc
+                    v.unloaded = true
+                    if (controls.loaded) {
+                        v.unloaded = false
                     }
-                })
-                if (x.is_quote == 1) {
-                    var quote = []
-                    quote.push(x.quote_content.substring(0, x.quote_content.indexOf(':') + 3))
-                    quote.push(x.quote_content.substring(x.quote_content.indexOf(':') + 4, x.quote_content.length))
-                    x.quote_subject = quote
+                }
+                if (v.type == 0) {
+                    let faceResult
+                    faceResult = infoToFace(v.content)
+                    v.hasFace = faceResult.hasFace
+                    v.subject = faceResult.data
                 }
             })
-            data.topic.content.forEach((v) => {
+            data.zanList.forEach((v) => {
+                if (app.globalData.userInfo && v.recommenduid == app.globalData.userInfo.uid) {
+                    data.like = 1
+                }
+            })
+            if (data.type == 'post') {
+                data.createAt = dateFormat(data.createAt)
+            }
+            data.isCommenting = true
+            data.actionSheetHidden = true
+        }
+        data.list && data.list.forEach((x) => {
+            x.posts_date = dateFormat(x.posts_date)
+            x.reply_content.forEach((v) => {
                 if (v.type == 0) {
                     let faceResult
                     faceResult = infoToFace(v.infor)
                     v.hasFace = faceResult.hasFace
                     v.subject = faceResult.data
                 }
-                if (v.type == 1) {
-                    v.loadSrc = app.globalData.loadSrc
-                    v.unloaded = true
-                }
             })
-            data.endPage = parseInt((data.total_num / 20) + 1, 10)
-            data.isLoading = true
-            data.over = false
-            data.isCommenting = true
-            data.actionSheetHidden = true
+            if (x.is_quote == 1) {
+                var quote = []
+                quote.push(x.quote_content.substring(0, x.quote_content.indexOf(':') + 3))
+                quote.push(x.quote_content.substring(x.quote_content.indexOf(':') + 4, x.quote_content.length))
+                x.quote_subject = quote
+            }
+        })
+        data.list = list.concat(data.list)
+        data.over = data.page >= parseInt((data.totalNum / 20) + 1, 10)
+        if (data.page > 1) {
+            this.setData({
+                list: data.list,
+                page: data.page,
+                over: data.over,
+                totalNum: data.totalNum,
+                isCommenting: true,
+                actionSheetHidden: true
+            })
+        } else {
             this.setData(data)
-        }, () => {
-            wx.navigateBack({
+        }
+    }, () => {
+        if (this.data.page == 1) {
+            return wx.navigateBack({
                 delta: 1
             })
-        })
+        }
+    })
 }
 /*
  * @图像重载
@@ -98,8 +121,8 @@ Post.prototype.imageLoaded = function (e) {
     const imageWidth = e.detail.width
     const imageHeight = e.detail.height
     const index = e.currentTarget.dataset.index
-    this.data.topic.content[index].unloaded = false
-    this.data.topic.content[index].imageHeight = `${((windowWidth * imageHeight) / imageWidth).toFixed(2)}px`
+    this.data.content[index].unloaded = false
+    this.data.content[index].imageHeight = `${((windowWidth * imageHeight) / imageWidth).toFixed(2)}px`
 
     this.setData(this.data)
 }
@@ -108,16 +131,6 @@ Post.prototype.imageLoaded = function (e) {
  */
 Post.prototype.actionSheetTap = function (e) {
     const id = e.currentTarget.dataset.id
-    /* if (!e.currentTarget.dataset.role) {
-         this.data.list.forEach((v) => {
-            if (v.reply_posts_id == id) {
-                self.data.managePanel = v.managePanel
-            }
-        })
-        self.data.managePanel = []
-    } else {
-        self.data.managePanel = self.data.topic.managePanel
-    }*/
     this.setData({
         actionSheetHidden: !this.data.actionSheetHidden,
         reportUser: id,
@@ -135,15 +148,11 @@ Post.prototype.actionSheetChange = function () {
  */
 Post.prototype.nextPage = function () {
     var self = this
-    let { page, endPage } = self.data
-    if (page < endPage) {
-        this.setData({ isFetching: true })
-        this.fetchData(self.data.module, { page: page + 1 })
-    } else {
-        this.setData({
-            isFetching: false,
-            over: true
-        })
+    let { page, over } = self.data
+    if (!over) {
+        this.setData({ isFetching: false })
+        const tid = this.data.postData.id || this.module.extParams.topicId
+        this.fetchData(tid, { page: page + 1 })
     }
 }
 /*
@@ -152,8 +161,7 @@ Post.prototype.nextPage = function () {
 Post.prototype.reportUser = function (e) {
     if (!app.isLogin()) return
     this.setData({
-        actionSheetHidden: true,
-        isLoading: false
+        actionSheetHidden: true
     })
     var isType = 'thread'
     const id = e.currentTarget.dataset.id
@@ -161,9 +169,10 @@ Post.prototype.reportUser = function (e) {
         isType = 'post'
     }
     app.api.report({ id, isType })
-        .then(() => {
-            this.data.isLoading = true
-            console.log('举报成功')
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
             this.cancelAction()
         })
 }
@@ -180,8 +189,11 @@ Post.prototype.foucsUser = function (e) {
         result = 0
     }
     app.api.useradmin({ uid: e.currentTarget.dataset.id, type })
-        .then(() => {
-            self.data.topic.isFollow = result
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
+            self.data.isFollow = result
             self.setData(self.data)
         })
 }
@@ -199,29 +211,40 @@ Post.prototype.colletHandler = function (e) {
     if (!app.isLogin()) return
     var action = 'favorite'
     var isFavor = 1
+    var idType = 'tid'
+    var id = e.currentTarget.dataset.id
     var self = this
     if (e.currentTarget.dataset.collet == 1) {
         action = 'delfavorite'
         isFavor = 0
     }
-    app.api.userfavorite(e.currentTarget.dataset.id, { action, idType: 'tid' })
-        .then(() => {
-            self.setData({ 'topic.is_favor': isFavor })
+    if (this.data.type == 'article') {
+        idType = 'article'
+        id = this.data.postData.id
+    }
+    app.api.userfavorite(id, { action, idType })
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
+            self.setData({ colleted: isFavor })
         })
 }
 /*
  *  @点赞操作
  */
 Post.prototype.likeHandler = function (e) {
-    if (!app.isLogin) return
+    if (!app.isLogin()) return
     if (e.currentTarget.dataset.like == 1) return
     const id = e.currentTarget.dataset.id
     var self = this
     app.api.support(id, { type: 'topic' })
-        .then(() => {
-            this.data.topic.isLike = 1
-            this.data.isLoading = true
-            this.data.topic.zanList.push({
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
+            this.data.like = 1
+            this.data.zanList.push({
                 'count(distinct recommenduid)': 1,
                 dateline: Date.now(),
                 recommenduid: app.globalData.userInfo.uid,
@@ -236,14 +259,16 @@ Post.prototype.likeHandler = function (e) {
  */
 Post.prototype.comment = function (e) {
     var self = this
-    this.cancelAction()
-    if (e.currentTarget.dataset.role && e.currentTarget.dataset.role == 'quote') {
-        this.data.isQuote = e.currentTarget.dataset.quote
-    } else {
-        this.data.isQuote = 0
+    if (this.data.type == 'post') {
+        this.cancelAction()
+        if (e.currentTarget.dataset.role && e.currentTarget.dataset.role == 'quote') {
+            this.data.isQuote = e.currentTarget.dataset.quote
+        } else {
+            this.data.isQuote = 0
+        }
+        this.data.isCommenting = false
+        this.setData(self.data)
     }
-    this.data.isCommenting = false
-    this.setData(self.data)
 }
 /*
  *  @评论提交
@@ -251,26 +276,43 @@ Post.prototype.comment = function (e) {
 Post.prototype.formSubmit = function (e) {
     if (!app.isLogin()) return
     var self = this
-    let data = {
-        fid: self.data.boardId,
-        isShowPostion: 0,
-        aid: '',
-        title: '',
-        content: encodeURIComponent(JSON.stringify([ { type: 0, infor: e.detail.value.comment } ]))
+    if (this.data.type == 'post') {
+        let data = {
+            fid: self.data.boardId,
+            isShowPostion: 0,
+            aid: '',
+            title: '',
+            content: encodeURIComponent(JSON.stringify([ { type: 0, infor: e.detail.value.comment } ]))
+        }
+        data.isQuote = 0
+        if (self.data.isQuote) {
+            data.isQuote = 1
+            data.replyId = self.data.isQuote
+        }
+        data.tid = self.data.id
+        return app.api.createTopic(data, {
+            platType: 1,
+            act: 'reply'
+        })
+        .then((result) => {
+            wx.showToast({
+                title: result.errcode
+            })
+            self.formReset()
+            self.fetchData(this.data.id, { page: this.data.page }, {
+                loaded: true,
+                clearList: true
+            })
+        })
     }
-    data.isQuote = 0
-    if (self.data.isQuote) {
-        data.isQuote = 1
-        data.replyId = self.data.isQuote
-    }
-    data.tid = self.data.topic.topic_id
-    app.api.createTopic(data, {
-        platType: 1,
-        act: 'reply'
+    // article
+    app.api.replyArticle({
+        id: this.data.postData.id,
+        idType: 'aid',
+        content: e.detail.value.comment
     })
-    .then(() => {
-        self.formReset()
-        self.fetchData(app.globalData.postId || this.module.extParams.topicId)
+    .then((data) => {
+        console.log(data)
     })
 }
 /*

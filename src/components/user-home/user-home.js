@@ -90,7 +90,7 @@ UserHome.prototype.toNavigationPage = function (e) {
 
 UserHome.prototype.showPost = function (e) {
     // console.log(e)
-    app.showPost(e.currentTarget.dataset.postid)
+    app.showPost({ type: 'post', id: e.currentTarget.dataset.postid })
 }
 
 module.exports = UserHome
