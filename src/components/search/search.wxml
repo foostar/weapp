@@ -1,0 +1,13 @@
+<view>
+    <view class="subnav_top">
+        <scroll-view  scroll-x="true" style="width:100%;white-space: nowrap;">
+            <view class="search-item">帖子</view>
+            <view class="search-item">文章</view>
+            <view class="search-item">用户</view>
+        </scroll-view>
+    </view>    
+
+</view>
+
+
+<view>搜索</view>
