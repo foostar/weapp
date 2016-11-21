@@ -1,4 +1,4 @@
-const ListComponent = require('../../lib/listcomponent')
+const ListComponent = require('../../lib/listcomponent.js')
 
 const app = getApp()
 function TopiclistSimple(key, module) {

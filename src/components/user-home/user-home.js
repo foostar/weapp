@@ -1,4 +1,4 @@
-const Component = require('../../lib/component')
+const Component = require('../../lib/component.js')
 const { formatTime, formateText } = require('../../utils/util.js')
 
 const app = getApp()

@@ -1,6 +1,6 @@
 const createPage = require('../../lib/createpage.js')
-const Viewer = require('../../components/viewer/viewer')
-const Tabbar = require('../../components/tabbar/tabbar')
+const Viewer = require('../../components/viewer/viewer.js')
+const Tabbar = require('../../components/tabbar/tabbar.js')
 
 var app = getApp()
 

@@ -1,4 +1,4 @@
-const Component = require('../../lib/component')
+const Component = require('../../lib/component.js')
 
 var app = getApp()
 function SubnavCard(key, module) {
