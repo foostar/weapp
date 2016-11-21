@@ -155,12 +155,17 @@ App({
         // 处理forum数据
         const forum = api.forum
         api.forum = function () {
+            const { globalData } = this
             /* eslint-disable */
             return forum.apply(api, arguments).then((data) => {
             /* eslint-enable */
                 data.list.forEach((v) => {
                     v.repliedAt = util.formatTime(v.repliedAt)
-                    v.subject = util.formateText(v.subject)
+                    if (globalData.liststyle && globalData.liststyle == 'neteaseNews') {
+                        v.subject = util.formateText(v.subject, 32)
+                    } else {
+                        v.subject = util.formateText(v.subject)
+                    }
                     let faceResult = util.infoToFace(v.subject)
                     v.hasFace = faceResult.hasFace
                     v.subject = faceResult.data

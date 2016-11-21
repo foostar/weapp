@@ -63,7 +63,11 @@ NewsList.prototype.fetchData = function (param, number) {
             v.repliedAt = util.dateFormat(v.repliedAt, 'yyyy-MM-dd')
             let faceResult = util.infoToFace(v.subject)
             v.hasFace = faceResult.hasFace
-            v.subject = util.formateText(v.subject)
+            if (module.style == 'neteaseNews') {
+                v.subject = util.formateText(v.subject, 32)
+            } else {
+                v.subject = util.formateText(v.subject)
+            }
             return v
         })
         data.list = list.concat(data.list)
