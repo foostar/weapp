@@ -1,6 +1,6 @@
+/* eslint-disable */
 const createPage = require('../../lib/createpage.js')
-const Viewer = require('../../components/viewer/viewer')
-
+const Viewer = require('../../components/viewer/viewer.js')
 var app = getApp()
 Page(createPage({
     onLoad() {

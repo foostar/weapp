@@ -23,7 +23,7 @@ if (typeof Object.assign != 'function') {
 
 const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
-const util = require('./utils/util')
+const util = require('./utils/util.js')
 const CONFIG = require('./config.js')
 const DataCache = require('./lib/datacache.js')
 const WeappStore = require('./lib/weappstorage.js')

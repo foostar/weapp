@@ -1,4 +1,4 @@
-const Component = require('./component')
+const Component = require('./component.js')
 
 var app = getApp()
 function ListComponent(key) {
