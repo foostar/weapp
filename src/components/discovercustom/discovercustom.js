@@ -1,4 +1,4 @@
-const TouchComponent = require('../../lib/touchcomponent')
+const TouchComponent = require('../../lib/touchcomponent.js')
 
 const app = getApp()
 

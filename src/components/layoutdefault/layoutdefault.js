@@ -1,4 +1,4 @@
-const Component = require('../../lib/component')
+const Component = require('../../lib/component.js')
 
 function LayoutDefault(key, module) {
     Component.call(this, key)

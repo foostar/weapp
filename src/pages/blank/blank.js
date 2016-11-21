@@ -1,5 +1,5 @@
 const createPage = require('../../lib/createpage.js')
-const Viewer = require('../../components/viewer/viewer')
+const Viewer = require('../../components/viewer/viewer.js')
 const untils = require('../../utils/util.js')
 
 const pagetype = untils.pagetype

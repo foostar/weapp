@@ -1,5 +1,5 @@
-const Component = require('../../lib/component')
-const CONFIG = require('../../config')
+const Component = require('../../lib/component.js')
+const CONFIG = require('../../config.js')
 
 function Tabbar(key) {
     Component.call(this, key)

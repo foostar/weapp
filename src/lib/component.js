@@ -1,9 +1,9 @@
-const { load } = require('./createpage')
-const components = require('./components')
+const { load } = require('./createpage.js')
+const components = require('./components.js')
 
 function scrollChildren(children, event) {
     /* eslint-disable */
-    const ListComponent = require('./listcomponent')
+    const ListComponent = require('./listcomponent.js')
     /* eslint-enable */
     Object.keys(children).forEach((key) => {
         const child = children[key]

@@ -1,4 +1,4 @@
-const Component = require('../../lib/component')
+const Component = require('../../lib/component.js')
 
 function LayoutImage(key, module) {
     Component.call(this, key)

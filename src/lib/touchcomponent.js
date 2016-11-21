@@ -1,4 +1,4 @@
-const Component = require('./component')
+const Component = require('./component.js')
 
 const app = getApp()
 const fns = {

@@ -1,4 +1,4 @@
-const TouchComponent = require('../../lib/touchcomponent')
+const TouchComponent = require('../../lib/touchcomponent.js')
 
 function LayoutColText(key, module) {
     TouchComponent.call(this, key, module)

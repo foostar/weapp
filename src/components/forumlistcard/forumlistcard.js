@@ -1,5 +1,5 @@
-const Component = require('../../lib/component')
-const { dateFormat } = require('../../utils/util')
+const Component = require('../../lib/component.js')
+const { dateFormat } = require('../../utils/util.js')
 
 const app = getApp()
 

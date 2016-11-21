@@ -1,4 +1,4 @@
-const Component = require('../../lib/component')
+const Component = require('../../lib/component.js')
 const { dateFormat, infoToFace } = require('../../utils/util.js')
 
 const app = getApp()
