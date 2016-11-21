@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const { isNil } = require('./mobcent').fns
+const { isNil } = require('./mobcent.js').fns
 let requests = {}
 
 function MemoryStore(){
