@@ -176,7 +176,6 @@ components.type['talkPostList-circle'] = Topic
 components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发帖
 components.type['postlist-card'] = Post         // 帖子详情
 components.type['postlist-flat'] = Post         // 帖子详情
-console.log(444)
 // topiclistSimple-flat
 
 const app = getApp()
