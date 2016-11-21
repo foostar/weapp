@@ -1,7 +1,7 @@
 .layout-title {
     height: 66rpx;
     line-height: 66rpx;
-    border-bottom: 1rpx solid #D0D0D0;
+    /*border-bottom: 1rpx solid #D0D0D0;*/
     padding: 0 36rpx;
     position: relative;
     font-size: 32rpx;
@@ -70,7 +70,7 @@
     background-color: #fff;
     margin-bottom: 20rpx;
     overflow: hidden;
-    border-bottom: 1rpx solid #D0D0D0;
+    /*border-bottom: 1rpx solid #D0D0D0;*/
 }
 .layoutdefault .layout-row {
     margin: 16rpx 0;

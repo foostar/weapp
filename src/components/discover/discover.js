@@ -81,15 +81,20 @@ Discover.prototype.changeModuleId = function (e) {
 // 改变题提示状态
 Discover.prototype.bindChange = function () {
     if (this.data.isLogin) {
-        this.logout()
+        // this.logout()
         wx.showModal({
             title: '帐号管理',
             content: '是否要退出用户',
             success: res => {
-                if (res.confirm) {
+                console.log('success', res.confirm, res.confirm == 'true', !!res.confirm)
+                if (res.confirm == 'true' || !!res.confirm) {
                     this.logout()
                 }
+            },
+            fail: err => {
+                console.log(err)
             }
+
         })
     } else {
         wx.navigateTo({

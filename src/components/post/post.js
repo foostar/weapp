@@ -12,8 +12,8 @@ function Post(key, module) {
         over: false,
         isFetching: false,
         iconsrc: app.globalData.iconSrc,
-        isCommenting: false,
-        actionSheetHidden: false,
+        isCommenting: true,
+        actionSheetHidden: true,
         postData: module.data
     }
 }

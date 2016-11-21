@@ -1,5 +1,5 @@
 <template name="touch-cell">
-    <view class="personal-manage-item">
+    <view class="personal-manage-item weapp-border-bottom">
         <image class="icon" src="{{icon}}"></image>
         <text class="personal-manage-item-title">{{title}}</text>
         <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>

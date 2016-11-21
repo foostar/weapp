@@ -4,7 +4,7 @@
             <swiper-item>
                 <view class="slider-image-container" bindtap="layoutslider_touch" data-event-key="{{key}}">
                     <image mode="aspectFill" src="{{item.icon}}" class="slide-image" />
-                    <view class="slider-desc">{{ item.desc }}</view>
+                    <view class="slider-desc" wx:if="{{item.desc}}">{{ item.desc }}</view>
                 </view>
             </swiper-item>
         </block>

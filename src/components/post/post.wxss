@@ -251,10 +251,6 @@
 }
 
 
-
-
-
-
 .post-footer-wrapper {
     width: 100%;
     box-sizing: border-box;
@@ -265,7 +261,7 @@
     z-index: 20;
     height: 100rpx;
     padding: 15rpx 20rpx;
-    border-top: 1rpx solid #D0D0D0;
+    /*border-top: 1rpx solid #D0D0D0;*/
 }
 .post-footer {
     display: flex;

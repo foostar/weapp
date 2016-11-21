@@ -10,6 +10,7 @@ function UserHome(key, module) {
     this.data = {
         isLogin: false,
         uid: '',
+        iconSrc: app.globalData.iconSrc,
         color: `#${app.config.COLOR}`,
         currentIndex: 0,
         tabs: [ '发表', '资料' ],
