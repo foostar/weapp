@@ -1,7 +1,13 @@
+.subnav_top {
+    background: #fff;
+}
 .search-item {
-    width: 100px;
     display: inline-block;
     text-align: center;
+    padding: 10rpx 0;
+}
+.active {
+    border-bottom:3px solid currentColor;
 }
 
 .search-box {
