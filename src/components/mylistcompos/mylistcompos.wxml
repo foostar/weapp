@@ -1,7 +1,21 @@
 <import src="../cellstyle.wxml"/>
+
+<template name="default-page">
+    <view class="default-page-icon" style="background-image: url({{iconSrc}}{{defaulticon}});" ></view>
+    <block wx:for="{{defaultdesc}}">
+        <text class="default-page-text">{{item}}</text>
+    </block>
+</template>
+
+
+
+
 <!-- 帖子列表 -->
 <view wx:if="{{ !isUserList }}">
-    <view wx:if="{{list.length == 0 }}" class="mylistcompos-no-content">暂无相关内容</view>
+    <view wx:if="{{list.length == 0 }}" class="mylistcompos-no-content">
+        <template is="default-page" data="{{ iconSrc, defaulticon, defaultdesc }}" ></template>
+    </view>
+
     <block wx:for="{{list}}" >
         <view class="mylistcompos-topics-item-box" bindtap="mylistcompos_showPost" data-postid="{{item.topic_id}}" data-event-key="{{key}}">
             <view class="mylistcompos-topics-item-context" style="{{ item.pic_path == '' ? 'width: 100%;' : 'width:auto;'}}">
@@ -24,7 +38,9 @@
 
 <!-- 好友列表 -->
 <view wx:if="{{ isUserList }}">
-    <view wx:if="{{list.length == 0 }}" class="mylistcompos-no-content">暂无相关内容</view>
+    <view wx:if="{{list.length == 0 }}" class="mylistcompos-no-content">
+        <template is="default-page" data="{{ iconSrc, defaulticon, defaultdesc }}" ></template>
+    </view>
     <block wx:for="{{list}}">
         <view class="mylistcompos-user-list-item"  bindtap="mylistcompos_showUser" data-uid="{{item.uid}}" data-event-key="{{key}}">
             <view class="mylistcompos-user-item-data">

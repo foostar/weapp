@@ -175,6 +175,7 @@ components.type['userhome-flat'] = UserHome   // 用户主页
 components.type['userlist-flat'] = UserList   // 用户列表
 components.type['talkPostList-flat'] = Topic
 components.type['topic-flat'] = Topic         // 话题主页
+components.type['talkPostList-circle'] = Topic
 
 components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发帖
 components.type['postlist-card'] = Post         // 帖子详情
@@ -195,6 +196,7 @@ function Viewer(key, module) {
         hasScroll: checkHasScroll(module),
     }
 }
+
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer

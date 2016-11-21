@@ -166,18 +166,17 @@
         <action-sheet-item class="item" data-id="{{reportUser}}" data-event-key="{{key}}" catchtap="post_reportUser">举报</action-sheet-item>
         <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
     </action-sheet>
-    <view class="post-mask" wx:if="{{!isCommenting}}" bindtap="post_cancelAction" data-event-key="{{key}}"></view>
-    <view class="post-footer-wrapper" wx:if="{{allowComment == 1}}">
+    <view class="post-mask" wx:if="{{!isCommenting}}" bindtap="post_cancelAction" data-event-key="{{key}}">
         <view class="post-footer" wx:if="{{isCommenting}}">
             <view class="post-mark font-mini" catchtap="post_comment" data-event-key="{{key}}">
                 <view class="post-mark-title color-gray">回个话鼓励下楼主</view>
                 <view class="post-mark-comments color-gray">{{totalNum || 0}}条评论</view>
             </view>
             <view class="post-mark-meta">
-                <view wx:if="{{like == 1}}" style="background-image: url({{iconsrc}}dz_toolbar_reply_outer_praise_h.png);" data-like="{{like}}" data-id="{{id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-like"></view>
-                <view wx:elif="{{like == 0}}" style="background-image: url({{iconsrc}}dz_toolbar_reply_outer_praise_n.png);" data-like="{{like}}" data-id="{{id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-like"></view>
-                <view wx:if="{{colleted == 0}}" style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_n.png);background-position:0 center" data-collet="{{colleted}}" data-id="{{id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-collet"></view>
-                <view wx:elif="{{colleted == 1}}" style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_h.png);background-position:0 center" data-collet="{{colleted}}" data-id="{{id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item post-mark-meta-collet"></view>
+                <view wx:if="{{like == 1}}" style="background-image: url({{iconsrc}}dz_toolbar_reply_outer_praise_h.png);" data-like="{{like}}" data-id="{{id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-like"></view>
+                <view wx:elif="{{like == 0}}" style="background-image: url({{iconsrc}}dz_toolbar_reply_outer_praise_n.png);" data-like="{{like}}" data-id="{{id}}" bindtap="post_likeHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-like"></view>
+                <view wx:if="{{colleted == 0}}" style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_n.png);background-position:0 center" data-collet="{{colleted}}" data-id="{{id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-collet"></view>
+                <view wx:elif="{{colleted == 1}}" style="background-image: url({{iconsrc}}dz_toolbar_posts_collection_h.png);background-position:0 center" data-collet="{{colleted}}" data-id="{{id}}" bindtap="post_colletHandler" data-event-key="{{key}}" class="post-mark-meta-item weapp-border post-mark-meta-collet"></view>
             </view>
         </view>
         <form wx:else bindsubmit="post_formSubmit" data-event-key="{{key}}" bindreset="post_formReset" class="post-footer post-form">

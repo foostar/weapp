@@ -10,7 +10,7 @@
     "ejs": "^2.5.2",
     "express": "^4.14.0",
     "fs-extra": "^1.0.0",
-    "mobcent": "^0.4.11",
+    "mobcent": "^0.4.13",
     "node-fetch": "^1.6.3",
     "request": "^2.78.0",
     "select-shell": "git+https://github.com/luizstacio/select-shell.git",

@@ -144,7 +144,7 @@ const formatListData = (dataList) => {
             },
             repliedAt: dateFormat(+v.extParams.last_reply_date) || '',
             zans: v.extParams.zanList || new Array(v.extParams.recommendAdd),
-            recommendAdd: x.extParams.recommendAdd,
+            recommendAdd: v.extParams.recommendAdd,
             zones: v.extParams.distance || '',
             distance: v.extParams.location || '',
             redirect: v.extParams.redirectUrl || '',

@@ -139,7 +139,7 @@
     height: 79rpx;
     display: flex;
     padding: 22rpx 20rpx;
-    border-top: 1rpx solid #D0D0D0;
+    /*border-top: 1rpx solid #D0D0D0;*/
     box-sizing: border-box;
 }
 .stick{
@@ -276,7 +276,9 @@
     background-color: #FFF;
     padding: 20rpx;
     padding-bottom: 10rpx;
-    border-bottom: 1rpx solid #D0D0D0;
+    /*border-bottom: 1rpx solid #D0D0D0;*/
+    position: relative;
+    -webkit-background-size: 100% 1px;
     overflow: hidden;
 }
 .cell-flat-thumb {
