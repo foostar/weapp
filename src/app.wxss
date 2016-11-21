@@ -2,7 +2,7 @@
 @import './theme.wxss';
 /**app.wxss**/
 page {
-    background: #EFEFF4;
+    background: #EFEFF4; 
     height:100%;
 }
 view, text {
@@ -17,7 +17,9 @@ view, text {
 .color-member{
     color:#259;
 }
-
+.noborder{
+    border:none !important;
+}
 .clearfix:after, .clearfix:before {
   content: '';
   display: table;
@@ -179,3 +181,85 @@ view, text {
     margin-top: -45rpx;
     background-size: cover;
 }
+
+
+/* 处理 安卓 上 不显示 1rpx的 边线 */
+.weapp-border-top, .weapp-border-bottom, .weapp-border-topandbottom {
+    background-repeat: repeat-x;
+    background-size: 100% 1px;
+}
+
+.weapp-border-top {
+    background-position: left top;
+    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
+}
+
+.weapp-border-bottom {
+    background-position: left bottom;
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
+}
+
+.weapp-border-topandbottom {
+    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0)),
+        -webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
+    background-position: top, bottom;
+}
+
+.weapp-border {
+    border:0;
+}
+
+.weapp-border:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: 
+        -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0)),
+        -webkit-gradient(linear,left top,right top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0)),
+        -webkit-gradient(linear,left top,left bottom,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0)),
+        -webkit-gradient(linear,right top,left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
+    -webkit-background-size: 100% 1px,1px 100%,100% 1px,1px 100%;
+    background-size: 100% 1px,1px 100%,100% 1px,1px 100%;
+    background-repeat: no-repeat;
+    background-position: top,right,bottom,left;
+    padding: 1px;
+    -webkit-box-sizing: border-box;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.weapp-border-left, .weapp-border-right {
+    background-repeat: repeat-y;
+    -webkit-background-size: 1px 100%;
+}
+
+.weapp-border-left {
+    background-image: -webkit-gradient(linear,right top, left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
+    background-position:  left top; 
+}
+.weapp-border-right {
+    background-image: 
+        -webkit-gradient(linear,right top, left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
+    background-position:  right top;
+}
+.weapp-border-radius:before {
+    content: "";
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #e0e0e0;
+    -webkit-transform: scale(0.5);
+    -webkit-transform-origin: 0 0;
+    padding: 1px;
+    -webkit-box-sizing: border-box;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+
+

@@ -1,4 +1,4 @@
-const ListComponent = require('../../lib/listcomponent')
+const ListComponent = require('../../lib/listcomponent.js')
 const util = require('../../utils/util.js')
 
 const app = getApp()
@@ -29,7 +29,6 @@ Topic.prototype.fetchData = function (param, number) {
     // NEW HOT
     /* eslint-disable */
     const ti_id = (this.papeData ? this.papeData.id : null) || this.module.extParams.talkId
-    console.log(ti_id)
     /* eslint-enable */
     let list = param.list || currentIndex === 1 ? this.data.newList : this.data.hotList || []
     if (this.data.over) return Promise.reject()
@@ -108,7 +107,7 @@ Topic.prototype.toUserHome = function (e) {
     })
 }
 Topic.prototype.clickItem = function (e) {
-    app.showPost(e.currentTarget.id)
+    app.showPost({ type: 'post', id: e.currentTarget.id })
 }
 
 module.exports = Topic

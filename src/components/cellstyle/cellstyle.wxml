@@ -39,7 +39,7 @@
             <view class="cell-netease-title font-wide">{{title}}</view>
             <view class="cell-netease-subject font-normal color-gray">
                 <text>{{subject}}</text>
-                <view class="cell-netease-meta font-mini color-gray">{{reply.length > 0 ? reply.length : 0}}评</view>
+                <view class="cell-netease-meta font-mini color-gray">{{replies > 0 ? replies : 0}}评</view>
             </view>
             
         </view>
@@ -65,7 +65,7 @@
     </view>
 </template>
 <template name="flat">
-    <view wx:if="{{images.length > 0 && images.length < 3}}" class="cell-flat cell-flat-mini">
+    <view wx:if="{{images.length > 0 && images.length < 3}}" class="cell-flat cell-flat-mini weapp-border-bottom">
         <view class="cell-flat-content">
             <template is="flat-title" data="{{essence, top, hot, title}}"></template>
             <view wx:if="{{hasFace}}" class="cell-flat-content-subject">
@@ -81,7 +81,7 @@
         </view>
         <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
     </view>
-    <view wx:else class="cell-flat">
+    <view wx:else class="cell-flat weapp-border-bottom">
         <template is="flat-title" data="{{essence, top, hot, title}}"></template>
         <view class="cell-flat-content">
             <view wx:if="{{hasFace}}" class="cell-flat-content-subject {{images.length ? 'subject-oneline' : ''}}">
@@ -213,19 +213,24 @@
                     <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
                     <view class="cell-circle-title">{{title}}</view>
                     <view class="cell-circle-subject font-mini color-gray">{{subject}}</view>
+                    <view wx:if="{{images.length > 0}}" class="cell-circle-image-wrapper">
+                        <block wx:for="{{images}}" wx:key="{{index}}">
+                            <image  wx:if="{{index < 9}}" class="cell-circle-image-normal" src="{{item}}" mode="aspectFill"></image>
+                        </block>
+                    </view>
                 </view>
                 <view class="cell-circle-mes font-mini">
                     <view class="cell-imageSudoku-like color-gray" style="background:url({{iconSrc}}dz_list_bigphoto_praise.png) no-repeat center center;background-size:28rpx;"></view>
                     <view class="cell-imageSudoku-replies color-gray" style="background:url({{iconSrc}}dz_list_bigphoto_replies.png) no-repeat center center;background-size:28rpx;"></view>
                 </view>
                 <view wx:if="{{recommendAdd || reply.length > 0}}" class="cell-circle-reply font-mini">
-                    <view wx:if="{{recommendAdd}}" class="cell-circle-reply-like font-mini">
+                    <view wx:if="{{recommendAdd}}" class="cell-circle-reply-like font-mini {{reply.length > 0 ? '' : 'noborder'}}">
                         <view class="cell-circle-reply-recommendAdd" style="background:url({{iconSrc}}dz_list_circle_praise_icon.png) no-repeat 0 5rpx;background-size:28rpx;">{{recommendAdd}}</view>
                         <block wx:for="{{zanList}}" wx:key="{{index}}">
                             <view class="cell-circle-likemember color-member">{{item.username}}{{index < zanList.length-1 ? ',' : ''}}</view>
                         </block>
                     </view>
-                    <view class="cell-circle-reply-main font-mini color-member" wx:if="{{!!reply}}">
+                    <view class="cell-circle-reply-main font-mini color-member" wx:if="{{reply.length > 0}}">
                         <block wx:for="{{reply}}" wx:key="{{index}}">
                             <view class="cell-circle-reply-box" wx:if="{{index < 6}}">
                                 <view class="cell-circle-reply-author color-member">{{item.username}}:</view>
@@ -288,7 +293,7 @@
                 </view>
             </view>
         </view>
-        <image src="{{pic_path}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
+        <image src="{{images[0]}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
         <view class="cell-image-two-footer">
             <view class="cell-image-two-zan-btn">赞</view>
         </view>

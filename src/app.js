@@ -23,8 +23,13 @@ if (typeof Object.assign != 'function') {
 
 const mobcent = require('./lib/mobcent.js')
 const Events = require('./lib/events.js')
-const util = require('./utils/util')
+const util = require('./utils/util.js')
 const CONFIG = require('./config.js')
+const DataCache = require('./lib/datacache.js')
+const WeappStore = require('./lib/weappstorage.js')
+
+const westore = new WeappStore()
+
 
 const randStr = () => {
     return `a${Math.random().toString(32).split('.')[1]}`
@@ -124,6 +129,7 @@ App({
         }
 
         const api = this.api = new mobcent.API(CONFIG.URL, {
+            dataCache: new DataCache(westore),
             parse: (response) => {
                 response.ok = true
                 return { json: response.data, response }
@@ -133,7 +139,6 @@ App({
             },
             fetch
         })
-
         api.appId = CONFIG.ID
 
         // 处理自定义页面的ID问题
@@ -191,6 +196,7 @@ App({
         // this.getUserInfo((res) => {
         //     console.log(res)
         // })
+
         const userInfo = wx.getStorageSync('userInfo')
         if (userInfo) {
             this.globalData.userInfo = userInfo
@@ -198,10 +204,9 @@ App({
             api.secret = userInfo.secret
         }
     },
-    showPost(id) {
-        this.globalData.postId = id
+    showPost(opt) {
         wx.navigateTo({
-            url: '/pages/blank/blank?type=post'
+            url: `/pages/blank/blank?type=post&data=${JSON.stringify(opt)}`
         })
     },
     showUserHome(id) {
@@ -271,6 +276,13 @@ App({
         var reg = /iphone/ig
         var model = this.globalData.systemInfo.model
         return reg.test(model)
+    },
+    showErrorMes(opt) {
+        opt = opt || {}
+        wx.showToast({
+            title: opt.title || '操作失败',
+            duration: opt.duration || 1500
+        })
     },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {

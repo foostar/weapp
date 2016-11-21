@@ -1,6 +1,6 @@
 const createPage = require('../../lib/createpage.js')
-const Viewer = require('../../components/viewer/viewer')
-const Tabbar = require('../../components/tabbar/tabbar')
+const Viewer = require('../../components/viewer/viewer.js')
+const Tabbar = require('../../components/tabbar/tabbar.js')
 
 var app = getApp()
 
@@ -43,7 +43,7 @@ Page(createPage({
     },
     clickItem(e) {
         if (!e.currentTarget.role) {
-            return app.showPost(e.currentTarget.id)
+            return app.showPost({ type: 'post', id: e.currentTarget.id })
         }
     }
 }))

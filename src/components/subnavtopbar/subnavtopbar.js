@@ -1,4 +1,4 @@
-const Component = require('../../lib/component')
+const Component = require('../../lib/component.js')
 const { checkHasScroll } = require('../../utils/util.js')
 
 function SubnavTopbar(key, module) {

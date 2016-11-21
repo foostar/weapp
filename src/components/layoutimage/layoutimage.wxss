@@ -1,7 +1,6 @@
 .layoutimage {
     margin-bottom: 20rpx;
     overflow: hidden;
-    border-bottom: 1rpx solid #D0D0D0;
     background-color: #fff;
 }
 .layoutimage .layout-row {

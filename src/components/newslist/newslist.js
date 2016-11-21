@@ -1,5 +1,5 @@
-const ListComponent = require('../../lib/listcomponent')
-const util = require('../../utils/util')
+const ListComponent = require('../../lib/listcomponent.js')
+const util = require('../../utils/util.js')
 
 const app = getApp()
 let IMGWIDTH
@@ -10,7 +10,6 @@ function NewsList(key, module) {
     ListComponent.call(this, key)
     this.module = module
     // 添加分页
-    this.module = module
     this.data = {
         page: 1,
         image2Size: IMGWIDTH,
@@ -45,7 +44,7 @@ NewsList.prototype.clickItem = function (e) {
             url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.user })}`
         })
     }
-    app.showPost(e.currentTarget.id)
+    app.showPost({ type: e.currentTarget.dataset.type, id: e.currentTarget.id })
 }
 
 // 请求数据
@@ -88,20 +87,24 @@ NewsList.prototype.fetchData = function (param, number) {
     }).then(arrList => {
         arrList.list = arrList.list.map(item => {
             return new Promise((resolve, reject) => {
-                return wx.getImageInfo({
-                    src: item.images[0],
-                    success: ({ width, height }) => {
-                        item.pic_path = item.images[0]
-                        item.width = width
-                        item.height = height
-                        item.scale_width = IMGWIDTH
-                        item.scale_height = Math.floor((height / width) * IMGWIDTH)
-                        return resolve(item)
-                    },
-                    fail: (err) => {
-                        return reject(err)
-                    }
-                })
+                if (item.images[0]) {
+                    return wx.getImageInfo({
+                        src: item.images[0],
+                        success: ({ width, height }) => {
+                            item.pic_path = item.images[0]
+                            item.width = width
+                            item.height = height
+                            item.scale_width = IMGWIDTH
+                            item.scale_height = Math.floor((height / width) * IMGWIDTH)
+                            return resolve(item)
+                        },
+                        fail: (err) => {
+                            return reject(err)
+                        }
+                    })
+                }
+                item.scale_height = 0
+                return resolve(item)
             })
         })
         return Promise.all(arrList.list)
@@ -119,7 +122,7 @@ NewsList.prototype.fetchData = function (param, number) {
         this.setData({
             leftLayout,
             rightLayout,
-            isLoading: true
+            isLoading: false
         })
     })
     .catch((err) => {

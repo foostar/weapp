@@ -1,7 +1,7 @@
 
 
 <view class="createforum-publish-content">
-    <input class="createforum-publish-title" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
+    <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
     <!-- <input class="publish-text-input" type="text" bindinput="changeConent" placeholder="说点什么吧..."/> -->
     <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea>
 

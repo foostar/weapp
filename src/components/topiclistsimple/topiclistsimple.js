@@ -1,4 +1,4 @@
-const ListComponent = require('../../lib/listcomponent')
+const ListComponent = require('../../lib/listcomponent.js')
 
 const app = getApp()
 function TopiclistSimple(key, module) {
@@ -34,7 +34,7 @@ TopiclistSimple.prototype.clickItem = function (e) {
             url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.user })}`
         })
     }
-    app.showPost(e.currentTarget.id)
+    app.showPost({ type: 'post', id: e.currentTarget.id })
 }
 
 // 请求数据

@@ -7,7 +7,7 @@
     background-color: #fff;
     color: #484848;
     position: relative;
-    border-bottom: 1px solid #ccc;
+    /*border-bottom: 1px solid #ccc;*/
 }
 
 .info-icon {

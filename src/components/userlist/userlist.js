@@ -1,4 +1,4 @@
-const ListComponent = require('../../lib/listcomponent')
+const ListComponent = require('../../lib/listcomponent.js')
 const { formatTime } = require('../../utils/util.js')
 
 const app = getApp()

@@ -28,12 +28,12 @@
     
     <view wx:if="{{topTopicList && topTopicList.length}}" class="stick-container">
         <block wx:for="{{topTopicList}}" wx:key="{{index}}" wx:if="{{index < 3}}">
-            <view data-id="{{item.id}}" bindtap="{{name}}_clickItem" data-event-key="{{key}}" id="{{item.id}}" class="stick-item">
+            <view data-id="{{item.id}}" bindtap="{{name}}_clickItem" data-event-key="{{key}}" id="{{item.id}}" class="stick-item weapp-border-top">
                 <view class="stick-tag bg-color">置顶</view>
                 <view class="stick">{{item.title}}</view>
             </view>
         </block>
-        <view class="stick-item stick-more" wx:if="{{topTopicList.length > 3}}">
+        <view class="stick-item stick-more weapp-border-top" wx:if="{{topTopicList.length > 3}}">
             更多<image class="stick-more-icon" src="{{iconSrc}}dz_board_top_more.png" />
         </view>
     </view>

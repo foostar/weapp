@@ -16,7 +16,6 @@ page {
     padding: 28rpx;
     position: relative;
     height: 132rpx;
-    border-bottom: 1px solid #ccc;
     color: #565656;
     font-size: 36rpx;
     line-height: 132rpx;
@@ -87,7 +86,9 @@ page {
     display: flex;
     flex-direction: row;
     height: 96rpx;
-    border-bottom: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    /*border-bottom: 1px solid #e9e9e9;*/
 }
 .personal-quick-btn{
     color: #484848;
@@ -101,7 +102,7 @@ page {
 }
 .personal-quick-btn-after {
     display: block;
-    background: #CCC;
+    background: #e9e9e9;
     width: 1px;
     height: 52rpx;
     margin: 22rpx 0;
@@ -122,7 +123,7 @@ page {
     line-height: 48rpx;
     font-size: 32rpx;
     position: relative;
-    border-bottom: 1px solid #ccc;
+    -webkit-background-size: 100% 1px;
 }
 .personal-manage-item-title {
     margin-left: 80rpx;

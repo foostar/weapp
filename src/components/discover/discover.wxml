@@ -2,9 +2,9 @@
 <import src="../discovercustom/discovercustom.wxml" />
 
 <!-- 我的页面 -->
-<scroll-view scroll-y class="personal-wrapper">
-    <view class="personal-user-card">
-        <view class="personal-user-info" wx:if="{{!isLogin}}" bindtap="discover_toLogin" data-event-key="{{key}}">
+<scroll-view scroll-y class="personal-wrapper ">
+    <view class="personal-user-card weapp-border-bottom">
+        <view class="personal-user-info weapp-border-bottom" wx:if="{{!isLogin}}" bindtap="discover_toLogin" data-event-key="{{key}}">
             <view class="user-avator user-unLogin">
                 <image src="{{iconSrc}}nouser.png"></image>
             </view>
@@ -12,7 +12,7 @@
             <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
         </view>
 
-        <view class="personal-user-info" wx:if="{{isLogin}}" bindtap="discover_toUserHome" data-event-key="{{key}}" data-uid="{{ userInfo.uid }}">
+        <view class="personal-user-info weapp-border-bottom" wx:if="{{isLogin}}" bindtap="discover_toUserHome" data-event-key="{{key}}" data-uid="{{ userInfo.uid }}">
             <view class="user-login" style="background-image:url({{userInfo.avatar}});"></view>
             <view class="personal-user-info-name">{{userInfo.userName}}</view>
             <view class="personal-user-info-desc">
@@ -57,7 +57,7 @@
                 <text wx:if="{{userInfo.mobile ? true : false}}" style="float:right; padding-right:52rpx;">{{userInfo.mobile}}</text>
                 <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view> -->
-            <view class="personal-manage-item" wx:if="{{}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myInfo">
+            <view class="personal-manage-item weapp-border-bottom" wx:if="{{}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myInfo">
                 <image class="icon icon-info" src="{{iconSrc}}dz_personal_message.png"></image>
                 <text class="personal-manage-item-title">我的消息</text>
                 <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>

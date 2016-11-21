@@ -15,22 +15,23 @@
 <view class="liststyle-image-box" wx:if="{{isImage}}">
     <view class="left-layout">
         <block wx:for="{{leftLayout.data}}">
-            <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.id}}">
+            <view bindtap="newslist_clickItem" data-type="{{item.type}}" data-event-key="{{key}}" id="{{item.id}}">
                 <template is="{{module.style}}" data="{{...item, iconSrc, id:item.id}}" />
             </view>
         </block>
     </view>
     <view class="right-layout">
         <block wx:for="{{rightLayout.data}}">
-            <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.id}}">
+            <view bindtap="newslist_clickItem" data-type="{{item.type}}" data-event-key="{{key}}" id="{{item.id}}">
                 <template is="{{module.style}}" data="{{...item, iconSrc, id:item.id}}" />
             </view>
         </block>
     </view>
 </view>
+
 <view class="liststyle-container liststyle-index" wx:else>
     <block wx:for="{{resources.list}}" wx:key="{{item.id}}">
-        <view bindtap="newslist_clickItem" data-event-key="{{key}}" id="{{item.id}}">
+        <view bindtap="newslist_clickItem" data-type="{{item.type}}" data-event-key="{{key}}" id="{{item.id}}">
             <template is="{{module.style}}" data="{{...item, iconSrc, image2Size, id:item.id}}" />
         </view>
     </block>
