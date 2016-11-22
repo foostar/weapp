@@ -12,6 +12,7 @@
     "fs-extra": "^1.0.0",
     "mobcent": "^0.4.13",
     "node-fetch": "^1.6.3",
+    "promise": "^7.1.1",
     "request": "^2.78.0",
     "select-shell": "git+https://github.com/luizstacio/select-shell.git",
     "xiaoyun-cmsapi": "0.1.5"

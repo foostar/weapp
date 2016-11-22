@@ -20,14 +20,14 @@
 <view class="liststyle-container" wx:if="{{ searchType == 'post' }}">
     <block wx:for="{{postList}}" wx:key="{{index}}">
         <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user_id}}">
-            <template is="flat" data="{{...item, iconSrc, views:item.hits}}" />
+            <template is="flat" data="{{...item, iconSrc}}" />
         </view>
     </block>
 </view>
 
 <!-- 文章列表 -->
 <view class="liststyle-container" wx:if="{{ searchType == 'article' }}">
-    <block wx:for="{{postList}}" wx:key="{{index}}">
+    <block wx:for="{{articleList}}" wx:key="{{index}}">
         <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user_id}}">
             <template is="flat" data="{{...item, iconSrc, views:item.hits}}" />
         </view>
@@ -37,7 +37,7 @@
 <!-- 用户列表 -->
 <view class="liststyle-container" wx:if="{{ searchType == 'user' }}">
     <block wx:for="{{userList}}" wx:key="{{item.uid}}">
-        <view class="mylistcompos-user-list-item" bindtap="userlist_toUserhome" data-event-key="{{key}}" data-uid="{{item.uid}}">
+        <!-- <view class="mylistcompos-user-list-item" bindtap="userlist_toUserhome" data-event-key="{{key}}" data-uid="{{item.uid}}">
             <view class="mylistcompos-user-item-data">
                 <view class="mylistcompos-user-item-image" style="background-image:url({{item.icon}})"></view>
                 <view class="mylistcompos-user-item-data-info">
@@ -49,7 +49,8 @@
                 </view>
                 <view class="mylistcompos-user-item-data-desc">{{item.signature ? item.signature : '这个人很懒，不用理他~'}}</view>
             </view>
-        </view>
+        </view> -->
+        <template is="userlist-item" data="{{item}}"></template>
     </block>
 </view>
 

@@ -1,4 +1,4 @@
-<import src="../cellstyle.wxml"/>
+<import src="../cellstyle/cellstyle.wxml"/>
 
 <template name="default-page">
     <view class="default-page-icon" style="background-image: url({{iconSrc}}{{defaulticon}});" ></view>
@@ -6,8 +6,6 @@
         <text class="default-page-text">{{item}}</text>
     </block>
 </template>
-
-
 
 
 <!-- 帖子列表 -->
@@ -42,18 +40,6 @@
         <template is="default-page" data="{{ iconSrc, defaulticon, defaultdesc }}" ></template>
     </view>
     <block wx:for="{{list}}">
-        <view class="mylistcompos-user-list-item"  bindtap="mylistcompos_showUser" data-uid="{{item.uid}}" data-event-key="{{key}}">
-            <view class="mylistcompos-user-item-data">
-                <view class="mylistcompos-user-item-image" style="background-image:url({{item.icon}})"></view>
-                <view class="mylistcompos-user-item-data-info">
-                    <text class="mylistcompos-user-item-data-info-name">{{item.name}}</text>
-                    <text class="mylistcompos-user-item-data-info-dateline">{{item.lastLogin}}</text>
-                </view>
-                <view class="mylistcompos-user-item-data-badge">
-                    {{item.userTitle}}
-                </view>
-                <view class="mylistcompos-user-item-data-desc">{{item.signature ? item.signature : '这个人很懒，不用理他~'}}</view>
-            </view>
-        </view>
+        <template is="userlist-item" data="{{item}}"></template>
     </block>
 </view>

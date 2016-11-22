@@ -133,9 +133,11 @@ Mylistcompos.prototype.nextPage = function () {
         if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed') {
             res.list.map((item, index) => {
                 res.list[index].lastLogin = formatTime(item.lastLogin)
+                res.list[index].dateline = dateFormat(item.dateline, 'yyyy-MM-dd', false)
                 return res
             })
         }
+        console.log(res)
         obj.list = list.concat(res.list)
         this.setData(obj)
     })
@@ -147,10 +149,10 @@ Mylistcompos.prototype.showPost = function (e) {
     app.showPost({ type: 'post', id: postid })
 }
 
-Mylistcompos.prototype.showUser = function (e) {
-    const uid = e.currentTarget.dataset.uid
-    app.showUserHome(uid)
-}
+// Mylistcompos.prototype.showUser = function (e) {
+//     const uid = e.currentTarget.dataset.uid
+//     app.showUserHome(uid)
+// }
 
 
 module.exports = Mylistcompos

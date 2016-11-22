@@ -19,6 +19,9 @@ if (typeof Object.assign != 'function') {
         return target;
     };
 }
+
+Promise = require('./lib/promise.js')
+
 /* eslint-enable */
 
 const mobcent = require('./lib/mobcent.js')
@@ -172,11 +175,13 @@ App({
         const getSystemInfo = this.getSystemInfo()
 
         api.forumKey = CONFIG.KEY
+
         const promise = Promise.all([
             api.app(),
             api.ui(),
             getSystemInfo
         ]).then(([ appResult, uiResult, systemInfo ]) => {
+            console.log(appResult, uiResult, systemInfo)
             this.globalData.systemInfo = systemInfo
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
