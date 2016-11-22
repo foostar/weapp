@@ -19,6 +19,9 @@ if (typeof Object.assign != 'function') {
         return target;
     };
 }
+
+Promise = require('./lib/promise.js')
+
 /* eslint-enable */
 
 const mobcent = require('./lib/mobcent.js')
@@ -98,9 +101,10 @@ App({
                     header: data.headers,
                     method: data.method,
                     success: resolve,
-                    error: reject
+                    fail: reject
                 })
-            })).then((result) => {
+            }))
+            .then((result) => {
                 requestNum -= 1
                 next()
                 return result
@@ -139,6 +143,7 @@ App({
             },
             fetch
         })
+
         api.appId = CONFIG.ID
 
         // 处理自定义页面的ID问题
@@ -154,8 +159,8 @@ App({
 
         // 处理forum数据
         const forum = api.forum
+        const { globalData } = this
         api.forum = function () {
-            const { globalData } = this
             /* eslint-disable */
             return forum.apply(api, arguments).then((data) => {
             /* eslint-enable */
@@ -177,6 +182,7 @@ App({
         const getSystemInfo = this.getSystemInfo()
 
         api.forumKey = CONFIG.KEY
+
         const promise = Promise.all([
             api.app(),
             api.ui(),

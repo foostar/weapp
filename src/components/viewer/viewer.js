@@ -57,10 +57,12 @@ const Myinfo = require('../myinfo/myinfo.js')
 const MyinfoAtme = require('../myinfoatme/myinfoatme.js')
 const MyinfoPost = require('../myinfopost/myinfopost.js')
 const MyinfoSystem = require('../myinfosystem/myinfosystem.js')
+const Search = require('../search/search.js')
 
 const UserHome = require('../user-home/user-home.js')
 const UserList = require('../userlist/userlist.js')
 const Topic = require('../topic/topic.js')
+
 
 /*
  *   @定义组件类型
@@ -165,6 +167,7 @@ components.type['myinfo-flat'] = Myinfo       // 我的消息
 components.type['myinfoatme-flat'] = MyinfoAtme  // 我的消息 @我的信息
 components.type['myinfopost-flat'] = MyinfoPost  // 我的消息 【评论】
 components.type['myinfosystem-flat'] = MyinfoSystem  // 系统消息
+components.type['search-flat'] = Search    // 搜索帖子/文章/用户
 
 components.type['userhome-flat'] = UserHome   // 用户主页
 

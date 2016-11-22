@@ -58,7 +58,9 @@ Page(createPage({
         app.showPost({ type: 'post', id: e.currentTarget.id })
     },
     replyPost(e) {
-        console.log(e)
         app.replyPost({ fid: e.currentTarget.dataset.boardid })
+    },
+    toUserhome(e) {
+        app.showUserHome(e.currentTarget.dataset.uid)
     }
 }))

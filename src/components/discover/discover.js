@@ -86,8 +86,13 @@ Discover.prototype.bindChange = function () {
             title: '帐号管理',
             content: '是否要退出用户',
             success: res => {
-                console.log('success', res.confirm, res.confirm == 'true', !!res.confirm)
-                if (res.confirm == 'true' || !!res.confirm) {
+                let confirm
+                if (typeof res.confirm === 'string') {
+                    confirm = res.confirm === 'true'
+                } else {
+                    confirm = Boolean(res.confirm)
+                }
+                if (confirm) {
                     this.logout()
                 }
             },

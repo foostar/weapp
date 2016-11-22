@@ -62,6 +62,13 @@
                 <text class="personal-manage-item-title">我的消息</text>
                 <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view>
+           <!--  <navigator url="/pages/blank/blank?type=search">
+                <view class="personal-manage-item weapp-border-bottom" >
+                    <image class="icon icon-info" src="{{iconSrc}}dz_weather_page_search_button1.png"></image>
+                    <text class="personal-manage-item-title">搜索</text>
+                    <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
+                </view>
+            </navigator> -->
             <!-- <view class="personal-manage-item" wx:if="{{setting.user.verify}}">
                 <image class="icon icon-verify"></image>
                 <text class="personal-manage-item-title">用户认证</text>
