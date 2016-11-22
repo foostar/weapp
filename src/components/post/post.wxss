@@ -5,7 +5,7 @@
 .post-container {
     position: absolute;
     top: 0;
-    bottom: 100rpx;
+    bottom: 0;
 }
 .post-card {
     padding: 20rpx 30rpx;
