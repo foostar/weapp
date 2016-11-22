@@ -101,9 +101,10 @@ App({
                     header: data.headers,
                     method: data.method,
                     success: resolve,
-                    error: reject
+                    fail: reject
                 })
-            })).then((result) => {
+            }))
+            .then((result) => {
                 requestNum -= 1
                 next()
                 return result
@@ -142,6 +143,7 @@ App({
             },
             fetch
         })
+
         api.appId = CONFIG.ID
 
         // 处理自定义页面的ID问题
@@ -157,8 +159,8 @@ App({
 
         // 处理forum数据
         const forum = api.forum
+        const { globalData } = this
         api.forum = function () {
-            const { globalData } = this
             /* eslint-disable */
             return forum.apply(api, arguments).then((data) => {
             /* eslint-enable */
@@ -186,7 +188,6 @@ App({
             api.ui(),
             getSystemInfo
         ]).then(([ appResult, uiResult, systemInfo ]) => {
-            console.log(appResult, uiResult, systemInfo)
             this.globalData.systemInfo = systemInfo
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
