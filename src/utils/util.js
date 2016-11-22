@@ -168,6 +168,9 @@ const checkHasScroll = (module) => {
             return true
         }
     }
+    if (module.type === 'post') {
+        return true
+    }
     
     return module.componentList.map((item) => {
         if(item.type !== 'layout' || !item.style || item.style.toLowerCase().indexOf('layout') == -1 || item.style.toLowerCase().indexOf('col') == -1 ){

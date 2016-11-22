@@ -6,6 +6,7 @@ const app = getApp()
 function Post(key, module) {
     this.module = module
     Component.call(this, key)
+    app.globalData.liststyle = module.style
     // 添加分页
     this.data = {
         page: 1,
@@ -48,7 +49,7 @@ Post.prototype.fetchData = function (tid, option, control) {
             if (app.globalData.userInfo && app.globalData.userInfo.uid == data.userId) {
                 data.creater = true
             }
-            data.content.forEach((v) => {
+            data.content && data.content.forEach((v) => {
                 if (v.type == 1) {
                     v.loadSrc = app.globalData.loadSrc
                     v.unloaded = true
