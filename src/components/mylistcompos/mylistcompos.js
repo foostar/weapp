@@ -137,7 +137,6 @@ Mylistcompos.prototype.nextPage = function () {
                 return res
             })
         }
-        console.log(res)
         obj.list = list.concat(res.list)
         this.setData(obj)
     })
