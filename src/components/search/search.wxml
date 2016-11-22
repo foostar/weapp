@@ -1,0 +1,62 @@
+<import src="../module/module.wxml" />
+<import src="../cellstyle/cellstyle"/>
+<import src="../forum/forum"/>
+
+<view>
+    <view class="subnav_top">
+        <scroll-view  scroll-x="true" style="width:100%;white-space: nowrap;">
+            <view class="search-item text-color {{searchType == 'post' ? 'active':'' }}" style="width:{{btnWidth}};" bindtap="search_click" data-event-key="{{key}}" data-index="post" >帖子</view>
+            <view class="search-item text-color {{searchType == 'article' ? 'active':'' }}" style="width:{{btnWidth}};" bindtap="search_click" data-event-key="{{key}}" data-index="article">文章</view>
+            <view class="search-item text-color {{searchType == 'user' ? 'active':'' }}" style="width:{{btnWidth}};" bindtap="search_click" data-event-key="{{key}}" data-index="user">用户</view>
+        </scroll-view>
+    </view>    
+    <view class="search-box weapp-border-radius">
+        <input placeholder="请输入搜索关键字" type="text" bindinput="search_changeInput" data-event-key="{{key}}" class="search-input"></input>
+        <view class="search-btn" bindtap="search_searchData" data-event-key="{{key}}" style="background-image:url({{iconSrc}}dz_weather_page_search_button1.png);"></view>
+    </view>
+</view>
+
+<!-- 帖子列表 -->
+<view class="liststyle-container" wx:if="{{ searchType == 'post' }}">
+    <block wx:for="{{postList}}" wx:key="{{index}}">
+        <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user_id}}">
+            <template is="flat" data="{{...item, iconSrc, views:item.hits}}" />
+        </view>
+    </block>
+</view>
+
+<!-- 文章列表 -->
+<view class="liststyle-container" wx:if="{{ searchType == 'article' }}">
+    <block wx:for="{{postList}}" wx:key="{{index}}">
+        <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user_id}}">
+            <template is="flat" data="{{...item, iconSrc, views:item.hits}}" />
+        </view>
+    </block>
+</view>
+
+<!-- 用户列表 -->
+<view class="liststyle-container" wx:if="{{ searchType == 'user' }}">
+    <block wx:for="{{userList}}" wx:key="{{item.uid}}">
+        <view class="mylistcompos-user-list-item" bindtap="userlist_toUserhome" data-event-key="{{key}}" data-uid="{{item.uid}}">
+            <view class="mylistcompos-user-item-data">
+                <view class="mylistcompos-user-item-image" style="background-image:url({{item.icon}})"></view>
+                <view class="mylistcompos-user-item-data-info">
+                    <text class="mylistcompos-user-item-data-info-name">{{item.name}}</text>
+                    <text class="mylistcompos-user-item-data-info-dateline">{{item.lastLogin}}</text>
+                </view>
+                <view class="mylistcompos-user-item-data-badge">
+                    {{item.userTitle}}
+                </view>
+                <view class="mylistcompos-user-item-data-desc">{{item.signature ? item.signature : '这个人很懒，不用理他~'}}</view>
+            </view>
+        </view>
+    </block>
+</view>
+
+
+
+
+<!-- 加载中 -->
+<view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
+<!-- 没有了 -->
+<view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>

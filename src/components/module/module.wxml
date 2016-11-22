@@ -203,6 +203,10 @@
     <include src="../topic/topic.wxml" />
 </template>
 
+<template name="search">
+    <include src="../search/search.wxml" />
+</template>
+
 <template name="module_2">
     <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
 </template>

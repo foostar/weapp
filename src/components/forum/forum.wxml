@@ -22,10 +22,6 @@
         <view class="foruminfo-handler font-mini {{resources.forum.isFocus == 1 ? '' : 'bg-color'}}" data-role="focus"  bindtap="{{name}}_focusForum"  data-event-key="{{key}}" data-id="{{resources.forum.id}}" data-focus="{{resources.forum.isFocus}}">{{resources.forum.isFocus == 1 ? '已关注' : '关注'  }}</view>
     </view>
 
-
-
-
-    
     <view wx:if="{{topTopicList && topTopicList.length}}" class="stick-container">
         <block wx:for="{{topTopicList}}" wx:key="{{index}}" wx:if="{{index < 3}}">
             <view data-id="{{item.id}}" bindtap="{{name}}_clickItem" data-event-key="{{key}}" id="{{item.id}}" class="stick-item weapp-border-top">

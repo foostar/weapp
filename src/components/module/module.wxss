@@ -40,7 +40,7 @@
 @import "../myinfo/myinfo.wxss";
 @import "../user-home/user-home.wxss";
 @import "../topic/topic.wxss";
-
+@import "../search/search.wxss";
 
 
 
