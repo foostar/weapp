@@ -1,5 +1,5 @@
 const ListComponent = require('../../lib/listcomponent.js')
-const { dateFormat } = require('../../utils/util.js')
+const { dateFormat, formateText } = require('../../utils/util.js')
 
 const app = getApp()
 
@@ -29,7 +29,6 @@ Search.prototype.changeInput = function (e) {
     })
 }
 Search.prototype.click = function (e) {
-    console.log(e)
     const { index: type } = e.currentTarget.dataset
     this.setData({
         searchType: type
@@ -55,31 +54,42 @@ Search.prototype.fetchData = function (param, number) {
         isLoading: true
     })
 
-    app.api.search(searchValue, searchType, {
+    return app.api.search(searchValue, searchType, {
         page: param.page
     }).then(data => {
-        console.log(data)
-        data.list.map((item, index) => {
-            data.list[index].images = []
-            data.list[index].last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
-            data.list[index].images.push(item.pic_path.replace('xgsize_', 'mobcentSmallPreview_'))
+        if (searchType == 'post' || searchType === 'article') {
+            data.list.map((item, index) => {
+                data.list[index].repliedAt = dateFormat(item.repliedAt, 'yyyy-MM-dd', false)
+                data.list[index].subject = formateText(data.list[index].subject)
+                if (item.images[0]) {
+                    data.list[index].images[0] = (item.images[0].replace('xgsize_', 'mobcentSmallPreview_'))
+                } else {
+                    data.list[index].images = []
+                }
+                return data
+            })
+            list = list.concat(data.list)
+        } else {
+            data.body.list.map((item, index) => {
+                data.body.list[index].dateline = dateFormat(item.dateline, 'yyyy-MM-dd', false)
+                return data
+            })
+            list = list.concat(data.body.list)
+        }
+        console.log(list)
 
-            return data
-        })
-        console.log(data)
-        list = list.concat(data.list)
         if (searchType === 'post') {
             this.setData({
                 postList: list,
                 isLoading: false,
-                over: param.page >= parseInt((data.total_num / number) + 1, 10)
+                over: param.page >= parseInt((data.meta.total / number) + 1, 10)
             })
         }
         if (searchType === 'article') {
             this.setData({
                 articleList: list,
                 isLoading: false,
-                over: param.page >= parseInt((data.total_num / number) + 1, 10)
+                over: param.page >= parseInt((data.meta.total / number) + 1, 10)
             })
         }
         if (searchType === 'user') {

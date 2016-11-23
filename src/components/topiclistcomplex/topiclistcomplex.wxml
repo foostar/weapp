@@ -5,8 +5,8 @@
     <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, complex:true, forumInfo:true, key, name: 'topiclistcomplex'}}" />
 </view>
 <view class="forum-tabs">
-    <view class="forum-tabs-title-warp-placeholder">
-        <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
+    <view class="forum-tabs-title-warp-placeholder weapp-border-bottom">
+        <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}} ">
             <text bindtap="topiclistcomplex_changeTabs" data-sort="all" data-event-key="{{key}}" data-index="{{0}}" class="forum-tabs-title text-color">全部</text>
             <text bindtap="topiclistcomplex_changeTabs" data-sort="new" data-event-key="{{key}}" data-index="{{1}}" class="forum-tabs-title text-color">最新</text>
             <text bindtap="topiclistcomplex_changeTabs" data-sort="marrow" data-event-key="{{key}}" data-index="{{2}}" class="forum-tabs-title text-color">精华</text>
