@@ -58,7 +58,7 @@
 </template>
 
 <view class="page-post">
-    <scroll-view class="post-container" scroll-y="true" bindscrolltolower="post_nextPage" data-event-key="{{key}}">
+    <scroll-view class="post-container {{type == 'post' ? '' : 'container-buttom'}}" scroll-y="true" bindscrolltolower="post_nextPage" data-event-key="{{key}}">
         <view class="post-title">
             {{title}}
         </view>
@@ -167,6 +167,8 @@
         <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
     </action-sheet>
     <view class="post-mask" wx:if="{{!isCommenting}}" bindtap="post_cancelAction" data-event-key="{{key}}">
+    </view>
+    <view class="post-footer-wrapper" wx:if="{{type == 'post'}}">
         <view class="post-footer" wx:if="{{isCommenting}}">
             <view class="post-mark font-mini" catchtap="post_comment" data-event-key="{{key}}">
                 <view class="post-mark-title color-gray">回个话鼓励下楼主</view>

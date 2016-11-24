@@ -5,7 +5,7 @@
 .post-container {
     position: absolute;
     top: 0;
-    bottom: 0;
+    bottom: 100rpx;
 }
 .post-card {
     padding: 20rpx 30rpx;
@@ -377,4 +377,7 @@
     color: #A09F9F;
     font-size: 24rpx;
     margin-right: 10rpx;
+}
+.container-buttom{
+    bottom:0;
 }
