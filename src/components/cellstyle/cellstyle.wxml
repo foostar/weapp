@@ -360,7 +360,7 @@
             </view>
             <view class="mylistcompos-user-item-data-desc">{{item.signature ? item.signature : '这个人很懒，不用理他~'}}</view>
             <view class="mylistcompos-user-item-dataline">{{item.dateline}}</view>
-            <view class="mylistcompos-user-item-isFollow {{item.isFollow ? 'bg-grey': 'bg-color' }}">{{item.isFollow ? '取消': '关注'}}</view>
+            <view class="mylistcompos-user-item-isFollow {{item.isFollow ? 'bg-grey': 'bg-color' }}" catchtap="foucsUser" data-uid="{{item.uid}}" data-focus="{{item.isFollow}}">{{item.isFollow ? '取消': '关注'}}</view>
 
         </view>
     </view>
