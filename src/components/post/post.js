@@ -7,6 +7,7 @@ function Post(key, module) {
     this.module = module
     Component.call(this, key)
     app.globalData.liststyle = module.style
+
     // 添加分页
     this.data = {
         page: 1,
@@ -44,7 +45,8 @@ Post.prototype.fetchData = function (tid, option, control) {
     } else {
         request = app.api.article(tid)
     }
-    request.then((data) => {
+    return request.then((data) => {
+        /* 处理页面详情参数 */
         if (data.page == 1) {
             if (app.globalData.userInfo && app.globalData.userInfo.uid == data.userId) {
                 data.creater = true
@@ -75,6 +77,7 @@ Post.prototype.fetchData = function (tid, option, control) {
             data.isCommenting = true
             data.actionSheetHidden = true
         }
+        /* 处理页面评论参数 */
         data.list && data.list.forEach((x) => {
             x.posts_date = dateFormat(x.posts_date)
             x.reply_content.forEach((v) => {
@@ -94,6 +97,14 @@ Post.prototype.fetchData = function (tid, option, control) {
         })
         data.list = list.concat(data.list)
         data.over = data.page >= parseInt((data.totalNum / 20) + 1, 10)
+        /* 处理投票贴 */
+        data.isPoll = false
+        if (data.poll && data.poll.poll_item_list) {
+            data.isPoll = true
+            data.poll.poll_item_list.forEach((v) => {
+                v.per = parseInt(v.percent.substring(0, v.percent.indexOf('.')), 10)
+            })
+        }
         if (data.page > 1) {
             this.setData({
                 list: data.list,
