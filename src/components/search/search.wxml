@@ -63,3 +63,5 @@
 <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
 <!-- 没有了 -->
 <view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>
+<!-- 没有找到了 -->
+<view wx:if="{{errCode}}" class="liststyle-foot-title">{{errMessage}}</view>
