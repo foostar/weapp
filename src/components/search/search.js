@@ -126,6 +126,15 @@ Search.prototype.foucsUser = function (e) {
             self.setData(self.data)
         })
 }
+Search.prototype.showPost = function (e) {
+    const { id } = e.currentTarget
+    app.showPost({ id, type: 'post' })
+}
+
+Search.prototype.showArticle = function (e) {
+    const { id } = e.currentTarget
+    app.showPost({ id, type: 'article' })
+}
 
 
 module.exports = Search

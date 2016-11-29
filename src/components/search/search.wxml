@@ -19,7 +19,7 @@
 <!-- 帖子列表 -->
 <view class="liststyle-container" wx:if="{{ searchType == 'post' }}">
     <block wx:for="{{postList}}" wx:key="{{index}}">
-        <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user_id}}">
+        <view bindtap="search_showPost"  data-event-key="{{key}}" id="{{item.id}}">
             <template is="flat" data="{{...item, iconSrc}}" />
         </view>
     </block>
@@ -28,8 +28,8 @@
 <!-- 文章列表 -->
 <view class="liststyle-container" wx:if="{{ searchType == 'article' }}">
     <block wx:for="{{articleList}}" wx:key="{{index}}">
-        <view bindtap="topiclistsimple_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user_id}}">
-            <template is="flat" data="{{...item, iconSrc, views:item.hits}}" />
+        <view bindtap="search_showArticle" data-event-key="{{key}}" id="{{item.id}}">
+            <template is="flat" data="{{...item, iconSrc}}" />
         </view>
     </block>
 </view>
@@ -53,7 +53,6 @@
 
             </view>
         </view>
-        <!-- <template is="userlist-item" data="{{item}}"></template> -->
     </block>
 </view>
 
