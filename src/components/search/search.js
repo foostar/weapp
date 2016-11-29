@@ -37,10 +37,17 @@ Search.prototype.click = function (e) {
 
 Search.prototype.searchData = function () {
     this.fetchData({ page: 0 }, 20)
+    this.setData({
+        postList: [],
+        articleList: [],
+        userList: []
+    })
 }
 
 Search.prototype.fetchData = function (param, number) {
     const { searchType, searchValue, postList, articleList, userList } = this.data
+    if (searchValue === null) return Promise.reject()
+    let encodeSearchValue = encodeURI(searchValue)
     let list = []
     const type = {
         post: list.concat(postList),
@@ -48,13 +55,11 @@ Search.prototype.fetchData = function (param, number) {
         user: list.concat(userList)
     }
     list = type[searchType]
-    if (searchValue === null) return Promise.reject()
-
     this.setData({
         isLoading: true
     })
 
-    return app.api.search(searchValue, searchType, {
+    return app.api.search(encodeSearchValue, searchType, {
         page: param.page
     }).then(data => {
         if (searchType == 'post' || searchType === 'article') {
@@ -76,7 +81,6 @@ Search.prototype.fetchData = function (param, number) {
             })
             list = list.concat(data.body.list)
         }
-        console.log(list)
 
         if (searchType === 'post') {
             this.setData({
