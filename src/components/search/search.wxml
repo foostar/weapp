@@ -37,20 +37,23 @@
 <!-- 用户列表 -->
 <view class="liststyle-container" wx:if="{{ searchType == 'user' }}">
     <block wx:for="{{userList}}" wx:key="{{item.uid}}">
-        <!-- <view class="mylistcompos-user-list-item" bindtap="userlist_toUserhome" data-event-key="{{key}}" data-uid="{{item.uid}}">
+        <view class="mylistcompos-user-list-item" bindtap="search_toUserhome" data-uid="{{item.uid}}" data-event-key="{{key}}">
             <view class="mylistcompos-user-item-data">
                 <view class="mylistcompos-user-item-image" style="background-image:url({{item.icon}})"></view>
                 <view class="mylistcompos-user-item-data-info">
                     <text class="mylistcompos-user-item-data-info-name">{{item.name}}</text>
-                    <text class="mylistcompos-user-item-data-info-dateline">{{item.lastLogin}}</text>
+                    <!-- <text class="mylistcompos-user-item-data-info-dateline">{{item.lastLogin}}</text> -->
                 </view>
                 <view class="mylistcompos-user-item-data-badge">
                     {{item.userTitle}}
                 </view>
                 <view class="mylistcompos-user-item-data-desc">{{item.signature ? item.signature : '这个人很懒，不用理他~'}}</view>
+                <view class="mylistcompos-user-item-dataline">{{item.dateline}}</view>
+                <view class="mylistcompos-user-item-isFollow {{item.isFollow ? 'bg-grey': 'bg-color' }}" catchtap="search_foucsUser" data-uid="{{item.uid}}" data-focus="{{item.isFollow}}" data-index="{{index}}" data-event-key="{{key}}">{{item.isFollow ? '取消': '关注'}}</view>
+
             </view>
-        </view> -->
-        <template is="userlist-item" data="{{item}}"></template>
+        </view>
+        <!-- <template is="userlist-item" data="{{item}}"></template> -->
     </block>
 </view>
 

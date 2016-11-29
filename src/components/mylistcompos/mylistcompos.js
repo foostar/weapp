@@ -148,10 +148,29 @@ Mylistcompos.prototype.showPost = function (e) {
     app.showPost({ type: 'post', id: postid })
 }
 
-// Mylistcompos.prototype.showUser = function (e) {
-//     const uid = e.currentTarget.dataset.uid
-//     app.showUserHome(uid)
-// }
+Mylistcompos.prototype.toUserhome = function (e) {
+    const uid = e.currentTarget.dataset.uid
+    app.showUserHome(uid)
+}
 
+Mylistcompos.prototype.foucsUser = function (e) {
+    let index = e.currentTarget.dataset.index
+    if (!app.isLogin()) return
+    let type = 'follow'
+    let result = 1
+    let self = this
+    if (e.currentTarget.dataset.focus != 0) {
+        type = 'unfollow'
+        result = 0
+    }
+    app.api.useradmin({ uid: e.currentTarget.dataset.uid, type })
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
+            self.data.list[index].isFollow = result
+            self.setData(self.data)
+        })
+}
 
 module.exports = Mylistcompos

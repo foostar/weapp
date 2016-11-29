@@ -54,6 +54,7 @@ App({
 
         const fetch = (url, data, isCenter) => {
             if (!isCenter) {
+                // url = `https://weapp-test.v2.yoo.yunpro.cn/client/${encodeURIComponent(url)}?appId=${CONFIG.ID}`
                 url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}?appId=${CONFIG.ID}`
             } else {
                 data = data || {}

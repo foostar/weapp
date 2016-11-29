@@ -63,4 +63,5 @@ Page(createPage({
     toUserhome(e) {
         app.showUserHome(e.currentTarget.dataset.uid)
     }
+
 }))
