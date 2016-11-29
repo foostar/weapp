@@ -93,6 +93,17 @@
                 </block>
                 <view wx:else>{{item.content}}</view>
             </block>
+            <!--投票贴-->
+            <!-- <block wx:if="{{isPoll && poll.poll_status != 3}}">
+                <view class="poll_title">投票(最多可选{{poll.type}}项)</view>
+                <view wx:if="{{poll.poll_status == 2}}"></view>
+                <view class="poll_result" wx:else>
+                    <block wx:for="{{poll.poll_item_list}}" wx:key="{{index}}">
+                        <view>{{index+1}}、{{item.name}}</view>
+                        <progress percent="{{item.per}}" show-info />
+                    </block>
+                </view>
+            </block> -->
             <!-- <block wx:for="{{topic.contentTree.childNodes}}">
                 <template is="{{'post-' + item.tagName}}" data="{{...item}}" />
             </block> -->

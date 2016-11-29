@@ -38,7 +38,13 @@
         <view class="cell-netease-content {{images.length > 0 ? 'cell-netease-info' : ''}}">
             <view class="cell-netease-title font-wide">{{title}}</view>
             <view class="cell-netease-subject font-normal color-gray">
-                <text>{{subject}}</text>
+                <view wx:if="{{hasFace}}">
+                    <block wx:for="{{subject}}" wx:key="{{index}}">
+                        <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                        <image wx:else src="{{item.content}}" class="face" />
+                    </block>
+                </view>
+                <text wx:else>{{subject}}</text>
                 <view class="cell-netease-meta font-mini color-gray">{{replies > 0 ? replies : 0}}评</view>
             </view>
             
@@ -125,7 +131,13 @@
         </view>
         <view class="cell-card-content">
             <view class="cell-card-title">{{title}}</view>
-            <view class="cell-card-subject font-normal">{{subject}}</view>
+            <view wx:if="{{hasFace}}" class="cell-card-subject font-normal">
+                <block wx:for="{{subject}}" wx:key="{{index}}">
+                    <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                    <image wx:else src="{{item.content}}" class="face" />
+                </block>
+            </view>
+            <view wx:else  class="cell-card-subject font-normal">{{subject}}</view>
             <view class="cell-tieba-thumb cell-content-image-wrapper" wx:if="{{images.length > 0}}">
                 <block wx:for="{{images}}" wx:key="{{index}}">
                     <view wx:if="{{index < 3}}" class="cell-tieba-thumb-container">
@@ -167,7 +179,13 @@
                 </view>
                 <view class="cell-imageSudoku-content">
                     <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
-                    <view class="cell-imageSudoku-subject">{{subject}}</view>
+                    <view wx:if="{{hasFace}}" class="cell-imageSudoku-subject">
+                        <block wx:for="{{subject}}" wx:key="{{index}}">
+                            <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                            <image wx:else src="{{item.content}}" class="face" />
+                        </block>
+                    </view>
+                    <view wx:else class="cell-imageSudoku-subject">{{subject}}</view>
                     <view wx:if="{{images.length > 0}}" class="cell-circle-image-wrapper">
                         <block wx:for="{{images}}" wx:key="{{index}}">
                             <image  wx:if="{{index < 9}}" class="cell-circle-image-normal" src="{{item}}" mode="aspectFill"></image>
@@ -212,7 +230,13 @@
                 <view class="cell-circle-subject-wrapper">
                     <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
                     <view class="cell-circle-title">{{title}}</view>
-                    <view class="cell-circle-subject font-mini color-gray">{{subject}}</view>
+                    <view wx:if="{{hasFace}}" class="cell-circle-subject font-mini color-gray">
+                        <block wx:for="{{subject}}" wx:key="{{index}}">
+                            <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                            <image wx:else src="{{item.content}}" class="face" />
+                        </block>
+                    </view>
+                    <view wx:else class="cell-circle-subject font-mini color-gray">{{subject}}</view>
                     <view wx:if="{{images.length > 0}}" class="cell-circle-image-wrapper">
                         <block wx:for="{{images}}" wx:key="{{index}}">
                             <image  wx:if="{{index < 9}}" class="cell-circle-image-normal" src="{{item}}" mode="aspectFill"></image>

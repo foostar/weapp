@@ -381,3 +381,11 @@
 .container-buttom{
     bottom:0;
 }
+.poll_title{
+    margin-top:30rpx;
+    font-size:32rpx;
+    margin-bottom:15rpx;
+}
+.poll_result{
+    margin-bottom:25rpx;
+}
