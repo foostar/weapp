@@ -14,7 +14,11 @@ function Search(key) {
         postList: [],
         articleList: [],
         userList: [],
-        over: false
+        errCode: false,
+        errMessage: null,
+        over: false,
+        userOverPage: -1
+
     }
 }
 
@@ -31,16 +35,26 @@ Search.prototype.changeInput = function (e) {
 Search.prototype.click = function (e) {
     const { index: type } = e.currentTarget.dataset
     this.setData({
+        isLoading: false,
+        over: false,
         searchType: type
     })
 }
 
 Search.prototype.searchData = function () {
-    this.fetchData({ page: 0 }, 20)
+    this.fetchData({ page: 1 }, 20)
+    this.setData({
+        errCode: false,
+        postList: [],
+        articleList: [],
+        userList: []
+    })
 }
 
 Search.prototype.fetchData = function (param, number) {
-    const { searchType, searchValue, postList, articleList, userList } = this.data
+    const { searchType, searchValue, postList, articleList, userList, userOverPage } = this.data
+    if (searchValue === null) return Promise.reject()
+    let encodeSearchValue = encodeURIComponent(searchValue)
     let list = []
     const type = {
         post: list.concat(postList),
@@ -48,13 +62,18 @@ Search.prototype.fetchData = function (param, number) {
         user: list.concat(userList)
     }
     list = type[searchType]
-    if (searchValue === null) return Promise.reject()
-
     this.setData({
         isLoading: true
     })
+    if (userOverPage > 0 && param.page >= userOverPage) {
+        this.setData({
+            isLoading: false,
+            over: param.page >= userOverPage
+        })
+        return Promise.reject()
+    }
 
-    return app.api.search(searchValue, searchType, {
+    return app.api.search(encodeSearchValue, searchType, {
         page: param.page
     }).then(data => {
         if (searchType == 'post' || searchType === 'article') {
@@ -76,8 +95,6 @@ Search.prototype.fetchData = function (param, number) {
             })
             list = list.concat(data.body.list)
         }
-        console.log(list)
-
         if (searchType === 'post') {
             this.setData({
                 postList: list,
@@ -96,9 +113,17 @@ Search.prototype.fetchData = function (param, number) {
             this.setData({
                 userList: list,
                 isLoading: false,
+                userOverPage: parseInt((data.total_num / number) + 1, 10),
                 over: param.page >= parseInt((data.total_num / number) + 1, 10)
             })
         }
+    }, err => {
+        this.setData({
+            errCode: true,
+            errMessage: err.data.errcode,
+            isLoading: false,
+            over: false
+        })
     })
 }
 
