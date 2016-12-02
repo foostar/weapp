@@ -146,6 +146,10 @@
 <template name="login">
     <include src="../login/login.wxml" />
 </template>
+<!-- 登陆之前页面 -->
+<template name="prelogin">
+    <include src="../prelogin/prelogin.wxml" />
+</template>
 
 <template name="mylistcompos">
     <include src="../mylistcompos/mylistcompos.wxml" />

@@ -47,6 +47,7 @@ const NewsList = require('../newslist/newslist.js')
 const Post = require('../post/post.js')
 // 固定页面
 const Login = require('../login/login.js')
+const PreLogin = require('../prelogin/prelogin.js')
 const Mylistcompos = require('../mylistcompos/mylistcompos.js')
 const Createforum = require('../createforum/createforum.js')
 const About = require('../about/about.js')
@@ -155,7 +156,11 @@ components.type['webapp-flat'] = NotSupport
 components.type['newlivelist-flat'] = NotSupport
 
 components.type['post-flat'] = Post
-components.type['login-flat'] = Login   // 登录页面
+// 之前的登陆页面
+components.type['oldlogin-flat'] = Login   // 登录页面
+// 在登陆之前判断 以何种方式登陆
+components.type['login-flat'] = PreLogin   // 登录页面
+
 components.type['mylistcompos-flat'] = Mylistcompos // 我的好友、发表、收藏列表
 components.type['createforum-flat'] = Createforum    // 发帖组件
 components.type['about-flat'] = About    // 关于app

@@ -211,10 +211,15 @@ App({
             console.log('error', err)
         })
         this.ready = () => promise
+
         // 微信登录
         // this.getUserInfo((res) => {
         //     console.log(res)
         // })
+
+        this.getUserInfo((res) => {
+            console.log(res)
+        })
 
         const userInfo = wx.getStorageSync('userInfo')
         if (userInfo) {
@@ -243,8 +248,19 @@ App({
                 success() {
                     wx.getUserInfo({
                         success(res) {
-                            that.globalData.userInfo = res.userInfo
-                            typeof cb === 'function' && cb(that.globalData.userInfo)
+                            that.globalData.wechat_userInfo = res.userInfo
+                            if (res.code) {
+                                // 发起网络请求
+                                // wx.request({
+                                //     url: 'https://test.com/onLogin',
+                                //     data: {
+                                //         code: res.code
+                                //     }
+                                // })
+                            } else {
+                                // console.log( '获取用户登录态失败！' + res.errMsg)
+                            }
+                            typeof cb === 'function' && cb(res)
                         }
                     })
                 }

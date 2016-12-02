@@ -1,0 +1,13 @@
+
+<view class="prelogin" style="background: {{appColor}} linear-gradient(transparent,hsla(0,20%,50%,.9));"></view>
+<view class="prelogin-view">
+    <image src="{{appIcon}}" class="app-icon"></image>
+    <view>{{username}}</view>
+</view>
+<view class="prelogin-container">
+    <view class="prelogin-btn" bindtap="" >快速登录</view> 
+    <view class="prelogin-btn" bindtap="prelogin_bindolduser" data-event-key="{{key}}" >绑定已有帐号</view> 
+    <view class="prelogin-btn" bindtap="prelogin_oldlogin" data-event-key="{{key}}" >帐号密码登录</view> 
+    <view class="prelogin-btn no-bg" bindtap="prelogin_register" data-event-key="{{key}}" >注 册</view> 
+</view>
+
