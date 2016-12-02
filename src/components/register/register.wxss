@@ -1,5 +1,5 @@
 .register-thema-register-header {
-    height: 434rpx;
+    height: 100%;
 }
 .register-app-icon {
     border-radius: 200rpx;
@@ -10,12 +10,27 @@
     margin: 0px auto 7px auto;
     display: block;
 }
+.register-box {
+    margin-top: 80rpx;
+    display: block;
+
+}
+.register-box input {
+    background: rgba(0,0,0,0);
+    padding-top: 10px;
+}
+
 
 .register-login-btn {
     border: 0;
-    margin: 10rpx 40rpx;
-    color: #fff;
+    margin: 10rpx 50rpx;
+    margin-top: 30px;
+    font-weight: 100;
+    color: rgba(255,255,255,1);
     text-align: center;
+    border-radius: 45rpx;
+    border: 1px solid rgba(255,255,255,.35);
+    background: rgba(255,255,255,.3);
 }
 
 .register-from-view {
@@ -48,19 +63,22 @@
     margin: 10rpx 40rpx;
 }
 .register-mobile-btn {
-    flex:1;
-    justify-content: center;
-    align-items: center;
-    width: 164rpx;
-    height: 80rpx;
-    font-size: 24rpx;
-    align-items: right;
+    /*flex:1;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/ 
     display: block;
+    text-align: right;
+    height: 80rpx;
+    padding-right: 50rpx;
+    font-size: 24rpx;
     line-height: 56rpx;
-    background-color: #fff;
-    text-align: center;
-    border-radius: 10rpx;
-    line-height: 80rpx;
+    /*background-color: #fff;*/
+    /*text-align: center;*/
+    /*border-radius: 10rpx;*/
+    /*line-height: 80rpx;*/
 }
 
+.register-box button::after {
+    border: 0;
+}
 

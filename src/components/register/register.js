@@ -35,6 +35,8 @@ Register.prototype.onLoad = function () {
     app.api.getSetting().then(res => {
         this.setData({
             isMobileRegisterValidation: res.body.plugin.isMobileRegisterValidation,
+            // isMobileRegisterValidation: 0,
+
             isCloseEmail: res.body.plugin.isCloseEmail,
             isFastRegister: res.body.plugin.isFastRegister,
             isInviteActivity: res.body.plugin.isInviteActivity

@@ -17,7 +17,6 @@ PreLogin.prototype.name = 'prelogin'
 PreLogin.prototype.constructor = PreLogin
 
 PreLogin.prototype.onLoad = function () {
-    console.log(app.globalData)
     const { avatarUrl, nickName } = app.globalData.wechat_userInfo
     // 获取app 图标 主题颜色
     this.setData({
