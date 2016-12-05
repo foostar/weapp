@@ -12,10 +12,10 @@
             </view>
             <view class="followlist-recommend-users">
                 <block wx:for="{{recommendList}}" wx:key="uid">
-                    <view class="followlist-recommend-user {{index > 4 ? 'followlist-mt' : ''}}">
+                    <view class="followlist-recommend-user {{index > 4 ? 'followlist-mt' : ''}}" >
                         <image src="{{item.icon}}"></image>
                         <text>{{item.name}}</text>
-                        <view class="followlist-recommend-user-btn" style="background-image: url({{iconSrc}}follow@3x.png);">
+                        <view class="followlist-recommend-user-btn" style="background-image: url({{iconSrc}}follow@3x.png);" bindtap="followlist_followed" data-event-key="{{key}}" data-uid="{{item.uid}}">
                         </view>    
                     </view>
                 </block>

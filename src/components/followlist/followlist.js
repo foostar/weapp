@@ -65,6 +65,22 @@ FollowList.prototype.getRecommendList = function () {
             return Promise.resolve(result.list)
         }, err => console.log('err', err))
 }
+// 关注用户
+FollowList.prototype.followed = function (e) {
+    let uid = e.currentTarget.dataset.uid
+    if (!app.isLogin()) return
+    let type = 'follow'
+    let result = 1
+    let self = this
+    app.api.useradmin({ uid, type })
+        .then((data) => {
+            wx.showToast({
+                title: data.errcode
+            })
+            self.data.list[uid].isFollow = result
+            self.setData(self.data)
+        })
+}
 
 
 module.exports = FollowList

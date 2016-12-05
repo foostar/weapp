@@ -193,26 +193,6 @@ App({
 
         api.forumKey = CONFIG.KEY
 
-        // const checkWXToken = () => {
-        //     const userInfo = wx.getStorageSync('userInfo')
-        //     if (this.globalData.wxtoken) {
-        //         return this.api.checkLogin({ token: this.globalData.wxtoken })
-        //             .then((success) => {
-        //                 if (userInfo) {
-        //                     this.globalData.userInfo = userInfo
-        //                     api.token = userInfo.token
-        //                     api.secret = userInfo.secret
-        //                 }
-        //                 return Promise.resolve()
-        //             })
-        //             .catch(() => {
-        //                 this.globalData.userInfo = null
-        //                 return this.checkBindwechat()
-        //             })
-        //     }
-        //     return this.checkBindwechat()
-        // }
-
         const promise = this.checkWXToken().then(() => Promise.all([
             api.app(),
             api.ui(),
