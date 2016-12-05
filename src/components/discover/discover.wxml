@@ -41,16 +41,16 @@
         <view class="personal-manage-items">
             <!-- <view class="personal-manage-item" wx:if="{{!isWallet}}" bindtap='discover_toNavigationPage' data-event-key="{{key}}" data-page="myCollection">
                 <image class="icon icon-info" src="{{iconSrc}}shoucang.png"></image>
-                <text class="personal-manage-item-title">我的收藏</text>
+                <text class="personal-manage-item-title"></text>
                 <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
             </view> -->
-            <!-- <navigator url="/pages/regular-pages/create-forum/create-forum">
+            <navigator url="/pages/blank/blank?type=followlist">
                 <view class="personal-manage-item" wx:if="{{true}}">
                     <image class="icon icon-info" src="{{iconSrc}}dz_personal_draft.png"></image>
                     <text class="personal-manage-item-title">我的草稿</text>
                     <image class="icon-arrow" src="{{iconSrc}}dz_list_about.png"></image>
                 </view>
-            </navigator> -->
+            </navigator>
             <!-- <view class="personal-manage-item" wx:if="{{setting.plugin.isMobileRegisterValidation && setting.plugin.changeMobile}}">
                 <image class="icon icon-my-phone"></image>
                 <text class="personal-manage-item-title">我的手机</text>

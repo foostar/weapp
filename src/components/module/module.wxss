@@ -42,6 +42,8 @@
 @import "../topic/topic.wxss";
 @import "../search/search.wxss";
 @import "../prelogin/prelogin.wxss";
+@import "../followlist/followlist.wxss";
+
 
 
 

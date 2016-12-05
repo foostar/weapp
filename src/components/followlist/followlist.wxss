@@ -1,0 +1,91 @@
+.followlist-default-page {
+    height: 390rpx;
+    background: #fff;
+    padding-top: 94rpx;
+}
+.followlist-default-page text {
+    font-size: 12px;
+}
+.followlist-default-page-icon {
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 180rpx;
+    height: 180rpx;
+    margin: auto;
+}
+.followlist-recommend-list {
+    background: #fff;
+    margin-top: 16rpx;
+    height: auto;
+}
+.followlist-recommend-title {
+    height: 136rpx;
+    display: flex;
+    flex-direction: row;
+}
+.followlist-recommend-title-text {
+    padding-left: 40rpx;
+    font-size: 32rpx;
+    line-height: 136rpx;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position: 0% 50% ;
+}
+.followlist-recommend-title-line {
+    flex: 1;
+    margin: 0 20rpx;
+    background-repeat: repeat-x;
+    background-size: 2px;
+    background-position: left 50%;
+    background-image: -webkit-gradient(linear,left bottom,left top,color-stop(0.5,transparent),color-stop(0.5,#e0e0e0),to(#e0e0e0));
+}
+.followlist-recommend-users {
+    padding: 0px 20rpx;
+}
+.followlist-recommend-user {
+    width: 25%;
+    display: inline-block;
+    overflow: hidden;
+}
+.followlist-recommend-user image{
+    width: 126rpx;
+    height: 126rpx;
+    border-radius: 50%;
+    margin: auto;
+    display: block;
+
+}
+.followlist-recommend-user text {
+    color: #9d9d9d;
+    font-size: 32rpx;
+    text-align: center;
+    white-space: nowrap;
+    display: block;
+    margin-top:20rpx;
+    margin-bottom: 30rpx;
+}
+.followlist-recommend-user-btn {
+    width: 80rpx;
+    height: 48rpx;
+    border: 1px solid #9d9d9d;
+    border-radius: 5rpx;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+    margin: auto;
+}
+.followlist-mt {
+    margin-top: 50rpx;
+}
+.followlist-recommend-more-icon {
+    width: 126rpx;
+    height: 126rpx;
+    border-radius: 50%;
+    border: 1px solid #9d9d9d;
+    margin: auto;
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
+}
