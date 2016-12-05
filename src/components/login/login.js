@@ -3,7 +3,8 @@ const Component = require('../../lib/component.js')
 
 const app = getApp()
 
-function Login(key) {
+function Login(key, module) {
+    this.module = module
     Component.call(this, key)
     this.data = {
         appIcon: '',
@@ -32,7 +33,28 @@ Login.prototype.onReady = function () {
 
 Login.prototype.toLogin = function (e) {
     const { username, password } = e.detail.value
-    app.api.signin(username, password)
+    const { loginType: type } = this.module.data
+    if (type === 'bindolduser') {
+        return app.checkWXToken().then(() => {
+            return app.api.bindPlatform({ token: app.globalData.wxtoken, username, password })
+                .then(res => {
+                    console.log('success', res)
+                    app.globalData.userInfo = res
+                    app.api.token = res.token
+                    app.api.secret = res.secret
+                    app.event.trigger('login', res)
+                    try {
+                        wx.setStorageSync('userInfo', res)
+                        wx.navigateBack()
+                    } catch (err) {
+                        console.log(err)
+                    }
+                }, err => {
+                    console.log('err', err)
+                })
+        })
+    }
+    return app.api.signin(username, password)
     .then(res => {
         app.globalData.userInfo = res
         app.api.token = res.token

@@ -47,7 +47,20 @@ PreLogin.prototype.oldlogin = function () {
 // 原有用户登录
 PreLogin.prototype.bindolduser = function () {
     wx.redirectTo({
-        url: '/pages/blank/blank?type=oldlogin'
+        url: `/pages/blank/blank?type=oldlogin&data=${JSON.stringify({ loginType: 'bindolduser' })}`
+    })
+}
+// 微信快速登录
+PreLogin.prototype.platLogin = function () {
+    console.log(11111)
+    return app.checkWXToken().then(() => {
+        console.log(33333, app.globalData.wxtoken)
+        return app.api.platLogin({ token: app.globalData.wxtoken })
+            .then(result => {
+                console.log('success', result)
+            }, err => {
+                console.log('err', err)
+            })
     })
 }
 
