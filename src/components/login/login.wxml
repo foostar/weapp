@@ -1,5 +1,5 @@
 <import src="../common/common.wxml"/>
-<view class="login-view" style="background: {{appColor}} linear-gradient(transparent,hsla(0,20%,50%,.9));">
+<view class="login-view" style="background: {{appColor}} linear-gradient(transparent,hsla(0,0%,50%,.9));">
     <!-- 登录头部 -->
     <view class="from-view login-icon">
         <image src="{{appIcon}}" class="app-icon"></image>

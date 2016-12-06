@@ -44,7 +44,7 @@ Login.prototype.toLogin = function (e) {
                     app.api.secret = res.secret
                     app.event.trigger('login', res)
                     try {
-                        wx.setStorageSync('userInfo', res)
+                        wx.setStorageSync('userInfo', Object.assgin(res, { wxtoken: app.globalData.wxtoken }))
                         wx.navigateBack()
                     } catch (err) {
                         console.log(err)

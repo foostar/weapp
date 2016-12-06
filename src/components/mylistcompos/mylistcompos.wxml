@@ -57,8 +57,4 @@
             </view>
         </view>
     </block>
-    <!-- 好友推荐 -->
-    <block  wx:if="{{recommendList.length !== 0}}">
-        hahahh
-    </block>
 </view>

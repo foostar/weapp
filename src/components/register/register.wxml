@@ -1,6 +1,6 @@
 <import src="/components/common/common.wxml"/>
 <!-- 注册头部 -->
-<view class="register-thema-register-header" style="background: {{appColor}} linear-gradient(transparent,hsla(0,20%,50%,.9));">
+<view class="register-thema-register-header" style="background: {{appColor}} linear-gradient(transparent,hsla(0,0%,50%,.9));">
     <view style="padding-top: 130rpx;">
         <image src="{{appIcon}}" class="register-app-icon"></image>
     </view>
@@ -26,7 +26,7 @@
         <view class="register-form-box icon-verify">
             <input class="register-input" name="verify" placeholder="请输入验证码" type="number"></input>
         </view> -->
-        <button class="register-login-btn" formType="submit">验 证</button>
+        <view class="prelogin-btn" formType="submit">验 证</view>
     </form>
 
     <!-- 注册用户表单 -->
@@ -40,7 +40,7 @@
         <view class="register-form-box icon-password">
             <input class="register-input" name="password" placeholder="请输入密码" password="ture"></input>
         </view>
-        <button class="register-login-btn" formType="submit">注 册</button>
+        <view class="prelogin-btn" formType="submit">注 册</view>
     </form>
 </view>
 

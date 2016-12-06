@@ -57,6 +57,14 @@ function switchType(type, isMy) {
                 '为内容，圈粉丝'
             ]
             break
+        case 'recommend':
+            result.apiType = 'recommend'
+            result.title = '推荐用户'
+            result.defaulticon = 'no_follow.png'
+            result.defaultdesc = [
+                '世界怎么大，等你去看看！',
+            ]
+            break
         default:
             result.apiType = 'favorite'
     }
@@ -113,7 +121,7 @@ Mylistcompos.prototype.nextPage = function () {
         page
     }
 
-    if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed') {
+    if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed' || apiType === 'recommend') {
         obj.isUserList = true // 是否是用户列表
         // 好友列表
         promise = app.api.getUserList(obj.userId, apiType, options)
@@ -131,7 +139,7 @@ Mylistcompos.prototype.nextPage = function () {
                 return res
             })
         }
-        if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed') {
+        if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed' || apiType === 'recommend') {
             res.list.map((item, index) => {
                 res.list[index].lastLogin = formatTime(item.lastLogin)
                 res.list[index].dateline = dateFormat(item.dateline, 'yyyy-MM-dd', false)
@@ -141,14 +149,6 @@ Mylistcompos.prototype.nextPage = function () {
 
         obj.list = list.concat(res.list)
         this.setData(obj)
-        // 如果没有关注好友显示推荐信息
-        // if (apiType === 'follow' && res.list.length === 0) {
-        //     return this.recommendUserList(obj.userId, { page: 0 })
-        // }
-        // return Promise.resolve(obj)
-    })
-    .then(result => {
-        this.setData(Object.assign(obj, { recommendList: result }))
     })
     .catch(err => console.log(err))
 }
@@ -182,31 +182,5 @@ Mylistcompos.prototype.foucsUser = function (e) {
             self.setData(self.data)
         })
 }
-//  好友关注推荐
-Mylistcompos.prototype.recommendUserList = function (userId, options) {
-    var opts = { pageSize: 7 }
-    let { recommendPage } = this.data
-    if (options && options.page == 0) {
-        this.setData({
-            recommendPage: options.page + 1
-        })
-    } else {
-        opts.page = recommendPage
-        this.setData({
-            recommendPage: recommendPage + 1
-        })
-    }
-    Object.assign(opts, options)
-    return app.api.getUserList(userId, 'recommend', opts)
-        .then(result => {
-            result.list.map((item, index) => {
-                result.list[index].last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
-                result.list[index].pic_path = item.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
-                return result
-            })
-            return Promise.resolve(result.list)
-        })
-}
-
 
 module.exports = Mylistcompos

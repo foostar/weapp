@@ -53,7 +53,6 @@ App({
         let queue = []
         let requestNum = 0
 
-
         const fetch = (url, data, isCenter) => {
             if (!isCenter) {
                 url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}?appId=${CONFIG.ID}`
@@ -214,6 +213,14 @@ App({
         }))
 
         this.ready = () => promise
+
+        const userInfo = wx.getStorageSync('userInfo')
+        if (userInfo) {
+            this.globalData.wxtoken = userInfo.wxtoken
+            this.globalData.userInfo = userInfo
+            api.token = userInfo.token
+            api.secret = userInfo.secret
+        }
     },
     showPost(opt) {
         wx.navigateTo({

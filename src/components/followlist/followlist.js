@@ -9,39 +9,34 @@ function FollowList(key, module) {
         iconSrc: app.globalData.iconSrc,
         list: [],
         recommendList: [],
-        page: 1
+        page: 1,
+        isLoading: false,
+        over: false,
+        number: 20
     }
 }
 FollowList.prototype = Object.create(ListComponent.prototype)
 FollowList.prototype.name = 'followlist'
 FollowList.prototype.constructor = FollowList
-// 检测登陆
-FollowList.prototype.onLoad = function () {
-    // 判断用户是否登陆
-    if (app.globalData.userInfo && app.globalData.userInfo.uid) {
-        this.uid = app.globalData.userInfo.uid
-        this.nextPage()
-    } else {
-        wx.navigateTo({
-            url: '/pages/blank/blank?type=login'
-        })
-    }
-}
 // 请求数据
 FollowList.prototype.nextPage = function () {
     const { orderby } = this.module.extParams
-    let { list, page } = this.data
+    let { list, page, number } = this.data
+    if (this.data.over) return Promise.reject()
+    this.setData({
+        isLoading: true
+    })
     app.api.followList({
         page,
-        orderBy: orderby
+        orderBy: orderby,
+        pageSize: number
     }).then(data => {
-        console.log(data)
         data.list.map((item, index) => {
             data.list[index].lastLogin = formatTime(item.lastLogin)
             return data
         })
+
         list = list.concat(data.list)
-        list = []
         if (list.length === 0) {
             return this.getRecommendList().then(res => {
                 this.setData({
@@ -49,7 +44,12 @@ FollowList.prototype.nextPage = function () {
                 })
             })
         }
-        this.setData({ list, page: page += 1 })
+        this.setData({
+            list,
+            isLoading: false,
+            page: page + 1,
+            over: page >= parseInt((data.meta.total / number) + 1, 10)
+        })
     })
 }
 // 获取推荐好友
@@ -61,25 +61,33 @@ FollowList.prototype.getRecommendList = function () {
                 result.list[index].lastLogin = dateFormat(item.lastLogin, 'yyyy-MM-dd', false)
                 return result
             })
-            console.log(result.list)
             return Promise.resolve(result.list)
         }, err => console.log('err', err))
 }
 // 关注用户
 FollowList.prototype.followed = function (e) {
-    let uid = e.currentTarget.dataset.uid
+    let { uid, index } = e.currentTarget.dataset
     if (!app.isLogin()) return
     let type = 'follow'
     let result = 1
     let self = this
+    if (e.currentTarget.dataset.follow != 0) {
+        type = 'unfollow'
+        result = 0
+    }
     app.api.useradmin({ uid, type })
         .then((data) => {
             wx.showToast({
                 title: data.errcode
             })
-            self.data.list[uid].isFollow = result
+            self.data.recommendList[index].isFollow = result
             self.setData(self.data)
         })
+}
+FollowList.prototype.moreuser = function () {
+    wx.navigateTo({
+        url: `/pages/blank/blank?type=mylistcompos&data=${JSON.stringify({ type: 'recommend' })}`
+    })
 }
 
 
