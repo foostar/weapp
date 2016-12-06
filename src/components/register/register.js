@@ -111,9 +111,9 @@ Register.prototype.closeMessagePrompt = function () {
 // 检测手机和验证码
 Register.prototype.checkMobileCode = function (e) {
     const { mobile, verify } = e.detail.value
+    var that = this
     app.api.checkMobileCode(mobile, verify)
         .then(() => {
-            // console.log('检测手机和验证码', res)
             this.setData({
                 isVerify: true
             })
@@ -124,7 +124,9 @@ Register.prototype.checkMobileCode = function (e) {
                     isShow: true,
                     errMessage: err.message
                 })
-                setTimeout(this.closeMessagePrompt, 1500)
+                setTimeout(() => {
+                    that.closeMessagePrompt()
+                }, 1500)
             }
         })
 }
@@ -169,7 +171,9 @@ Register.prototype.signup = function (e) {
                     isShow: true,
                     errMessage: err.message
                 })
-                setTimeout(this.closeMessagePrompt, 1500)
+                setTimeout(() => {
+                    this.closeMessagePrompt()
+                }, 1500)
             }
         })
 }

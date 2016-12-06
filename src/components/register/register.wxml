@@ -6,13 +6,13 @@
     </view>
     <!-- 注册手机验证表单 -->
     <form bindsubmit="register_checkMobileCode" data-event-key="{{key}}" wx:if="{{ isMobileRegisterValidation == 1 && !isVerify }}" class="register-box">
-        <view class="input">
+        <view class="login-input">
             <input name="mobile" placeholder="请输入手机号" type="text" bindinput="register_setMobile" placeholder-class="input-shadow" data-event-key="{{key}}"></input>
         </view>
 
         <view class="register-mobile-btn" style="color: #fff;" bindtap="register_getCode" data-event-key="{{key}}">{{verifyBtn}}</view>
 
-        <view class="input">
+        <view class="login-input">
             <input name="verify" placeholder="请输入验证码" type="number" placeholder-class="input-shadow"></input>
         </view>
 
@@ -26,21 +26,25 @@
         <view class="register-form-box icon-verify">
             <input class="register-input" name="verify" placeholder="请输入验证码" type="number"></input>
         </view> -->
-        <view class="prelogin-btn" formType="submit">验 证</view>
+        <button class="prelogin-btn" formType="submit">验 证</button>
     </form>
 
     <!-- 注册用户表单 -->
     <form bindsubmit="register_signup" wx:if="{{ isVerify }}" data-event-key="{{key}}" class="register-box">
-        <view class="register-form-box icon-username">
-            <input class="register-input" name="username" placeholder="请输入用户名（不要使用手机号）" type="text"></input>
+
+        <view class="login-input">
+            <input name="username" placeholder="请输入用户名（不要使用手机号）" placeholder-class="input-shadow" type="text"></input>
         </view>
-        <view class="register-form-box icon-email">
-            <input class="register-input" name="email" placeholder="请输入你的邮箱" type="email" value=""></input>
+
+        <view class="login-input">
+            <input name="email" placeholder="请输入你的邮箱" placeholder-class="input-shadow" type="email" value=""></input>
         </view>
-        <view class="register-form-box icon-password">
-            <input class="register-input" name="password" placeholder="请输入密码" password="ture"></input>
+
+        <view class="login-input">
+            <input name="password" placeholder="请输入密码" password="ture" placeholder-class="input-shadow"></input>
         </view>
-        <view class="prelogin-btn" formType="submit">注 册</view>
+
+        <button class="prelogin-btn" formType="submit">注 册</button>
     </form>
 </view>
 

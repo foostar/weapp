@@ -17,17 +17,20 @@
     border-radius: 10rpx;
 }
 
-.login-box input {
+.login-input input {
     background: rgba(0,0,0,0);
-    padding-top: 10px;
+    padding-top: 20rpx;
+    padding-left: 40rpx;
+    font-size: 32rpx;
 }
-.input {
+.login-input {
     display: block;
     background: rgba(0,0,0,.3);
     border-radius: 46rpx;
-    margin: 20rpx 26rpx;
-    height: 94rpx;
+    margin: 0 40rpx;
+    height: 90rpx;
     color: rgba(255,255,255,.5);
+    margin-bottom: 30rpx;
 }
 .input-shadow {
     color: rgba(255,255,255,.5);
@@ -41,19 +44,21 @@
     padding: 40rpx 0;
 }
 
-.login-btn {
+.login-form-btn {
     background: rgba(0,0,0,0);
     border: 0;
-    color: rgba(255,255,255,.5);
+    color: #fff;
     font-size: 16px;
     font-weight: 100;
     text-align: center;
+    margin-top: 100rpx;
 }
 .login-box button::after {
     border: 0;
 }
 
 .login-register-btn {
+    font-weight: 100;
     position: absolute;
     bottom: 30rpx;
     right: 10rpx;

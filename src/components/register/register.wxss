@@ -15,10 +15,6 @@
     display: block;
 
 }
-.register-box input {
-    background: rgba(0,0,0,0);
-    padding-top: 10px;
-}
 
 
 .register-login-btn {
@@ -63,19 +59,12 @@
     margin: 10rpx 40rpx;
 }
 .register-mobile-btn {
-    /*flex:1;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/ 
     display: block;
     text-align: right;
     height: 80rpx;
     padding-right: 50rpx;
     font-size: 24rpx;
     line-height: 56rpx;
-    /*background-color: #fff;*/
-    /*text-align: center;*/
-    /*border-radius: 10rpx;*/
-    /*line-height: 80rpx;*/
 }
 
 .register-box button::after {
