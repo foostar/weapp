@@ -15,18 +15,7 @@
         <view class="login-input">
             <input name="verify" placeholder="请输入验证码" type="number" placeholder-class="input-shadow"></input>
         </view>
-
-
-      <!--   <view class="register-mobile-box">
-            <view class="register-form-box-mobile icon-phone" style="flex:2;">
-                <input class="register-input" name="mobile" placeholder="请输入手机号" type="text" bindinput="register_setMobile" data-event-key="{{key}}"></input>
-            </view>
-            <view class="register-mobile-btn" style="color: {{appColor}}; border: 1px solid {{appColor}}; background-color: {{isFetch ? '#fff': '#ccc'}};" bindtap="register_getCode" data-event-key="{{key}}">{{verifyBtn}}</view>
-        </view>
-        <view class="register-form-box icon-verify">
-            <input class="register-input" name="verify" placeholder="请输入验证码" type="number"></input>
-        </view> -->
-        <button class="prelogin-btn" formType="submit">验 证</button>
+        <button class="prelogin-btn" formType="submit" style="margin-top: 150rpx;">验 证</button>
     </form>
 
     <!-- 注册用户表单 -->
@@ -44,7 +33,7 @@
             <input name="password" placeholder="请输入密码" password="ture" placeholder-class="input-shadow"></input>
         </view>
 
-        <button class="prelogin-btn" formType="submit">注 册</button>
+        <button class="prelogin-btn" formType="submit" style="margin-top: 150rpx;">注 册</button>
     </form>
 </view>
 

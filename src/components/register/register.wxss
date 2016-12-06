@@ -11,7 +11,7 @@
     display: block;
 }
 .register-box {
-    margin-top: 80rpx;
+    margin-top: 150rpx;
     display: block;
 
 }
