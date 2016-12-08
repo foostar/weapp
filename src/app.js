@@ -100,7 +100,15 @@ App({
                     data: data.body,
                     header: data.headers,
                     method: data.method,
-                    success: resolve,
+                    success: (result) => {
+                        /* eslint-disable */
+                        if (((result.statusCode / 100) | 0) !== 2) {
+                            return reject(result)
+                        }
+                        /* eslint-enable */
+
+                        resolve(result)
+                    },
                     fail: reject
                 })
             }))
