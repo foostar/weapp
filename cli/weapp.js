@@ -60,7 +60,7 @@ program
             .option('智慧登封', 124307)
             .option('小云社群', 229171)
             .option('测试', 100000000187)
-            
+            .option('life', 100000000245)
             .list()
 
         list.on('select', options => {
