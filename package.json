@@ -14,7 +14,7 @@
     "node-fetch": "^1.6.3",
     "request": "^2.78.0",
     "select-shell": "git+https://github.com/luizstacio/select-shell.git",
-    "xiaoyun-cmsapi": "0.1.5"
+    "xiaoyun-cmsapi": "^0.1.7"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",

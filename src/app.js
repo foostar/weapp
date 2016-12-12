@@ -55,7 +55,7 @@ App({
 
         const fetch = (url, data, isCenter) => {
             if (!isCenter) {
-                url = `https://weapp.apps.xiaoyun.com/client/${encodeURIComponent(url)}?appId=${CONFIG.ID}`
+                url = `${CONFIG.HOST}/client/${encodeURIComponent(url)}?appId=${CONFIG.ID}`
             } else {
                 data = data || {}
                 data.body = {}
