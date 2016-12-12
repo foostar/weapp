@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 const program = require('commander')
 const selectShell = require('select-shell')
-const { generateConfigByAppId } = require('../lib/app')
+const { generateConfigByAppId, writeFile } = require('../lib/app')
+const path = require('path')
 require('colors')
 
 const genConfig = (appId) => {
@@ -19,6 +20,8 @@ const genConfig = (appId) => {
 
 program
     .version(require('../package.json').version)
+    .option('-e, --env', 'dev')
+    .parse(process.argv)
     .command('init [appId]')
     .description('初始化小程序配置')
     .action((appId) => {
@@ -64,8 +67,21 @@ program
             .list()
 
         list.on('select', options => {
+            let config = {
+                cmsUrl: 'http://cmsapi.app.xiaoyun.com/GpCmsApi',
+                HOST: 'https://weapp.apps.xiaoyun.com'
+            }
+            if (program.env) {
+                config = {
+                    cmsUrl: 'http://test-cmsapi.app.xiaoyun.com/GpCmsApi',
+                    HOST: 'https://weapp-test.v2.yoo.yunpro.cn'
+                }
+            }
             if (options[0].value) {
-                genConfig(options[0].value)
+                writeFile(path.join(__dirname, '../lib/env.js'), `/* eslint-disable */\nmodule.exports=${JSON.stringify(config)}`)
+                .then(() => {
+                    genConfig(options[0].value)
+                })
             } else {
                 process.exit(0)
             }
