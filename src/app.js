@@ -49,7 +49,6 @@ App({
         // 添加监听事件
         const event = this.event = new Events()
         event.trigger('launch')
-
         let queue = []
         let requestNum = 0
 
@@ -57,6 +56,7 @@ App({
             if (!isCenter) {
                 url = `${CONFIG.HOST}/client/${encodeURIComponent(url)}?appId=${CONFIG.ID}`
             } else {
+                url = url.replace('https://weapp.apps.xiaoyun.com', CONFIG.HOST)
                 data = data || {}
                 data.body = {}
                 data.headers = {}
