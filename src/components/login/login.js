@@ -35,7 +35,7 @@ Login.prototype.toLogin = function (e) {
     const { username, password } = e.detail.value
     const { loginType: type } = this.module.data
     if (type === 'bindolduser') {
-        return app.checkWXToken().then(() => {
+        return app.fetchAuthUser().then(() => {
             return app.api.bindPlatform({ token: app.globalData.wxtoken, username, password })
                 .then(res => {
                     console.log('success', res)
@@ -54,6 +54,7 @@ Login.prototype.toLogin = function (e) {
                 })
         })
     }
+    console.log(username, password)
     return app.api.signin(username, password)
     .then(res => {
         app.globalData.userInfo = res

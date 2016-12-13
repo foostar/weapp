@@ -107,7 +107,6 @@ App({
                             return reject(result)
                         }
                         /* eslint-enable */
-
                         resolve(result)
                     },
                     fail: reject
@@ -192,10 +191,11 @@ App({
 
         api.forumKey = CONFIG.KEY
 
-        const promise = this.checkWXToken().then(() => Promise.all([
+        const promise = this.wxLogin().then(() => Promise.all([
             api.app(),
             api.ui(),
-            getSystemInfo
+            getSystemInfo,
+            this.fetchAuthUser()
         ]).then(([ appResult, uiResult, systemInfo ]) => {
             this.globalData.systemInfo = systemInfo
             this.globalData.info = appResult.body.data
@@ -232,47 +232,72 @@ App({
             url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: id })}`
         })
     },
-
+    // 校验token是否有效
     checkWXToken() {
         if (this.globalData.wxtoken) {
-            return this.api.checkLogin({ token: this.globalData.wxtoken })
-                .then((success) => {
-                    console.log(44444, success)
-                    return Promise.resolve()
+            return this.fetchAuthUser()
+                .then(result => {
+                    console.log(111, result)
+                    return this.api.checkLogin({ token: this.globalData.wxtoken })
+                }, error => {
+                    console.log(222, error)
+                    return error
                 })
+            // return this.api.checkLogin({ token: this.globalData.wxtoken })
+            //     .then((success) => {
+            //         console.log(44444, success)
+            //         return this.fetchAuthUser().then(result => {
+            //             console.log(result)
+            //             return result
+            //         }, error => {
+            //             console.log(error)
+            //             return error
+            //         })
+            //         // return Promise.resolve()
+            //     })
+            //     .then()
                 .catch(() => {
                     console.log(5555)
                     this.globalData.userInfo = null
                     this.globalData.wxtoken = null
-                    return this.checkBindwechat()
+                    this.globalData.wechat_userInfo = null
+                    return this.checkBindwechat().then(() => this.checkWXToken())
                 })
         }
         return this.checkBindwechat()
     },
 
     // 绑定
-    checkBindwechat() {
-        const that = this
-        return new Promise((resolve) => {
+    wxLogin() {
+        const self = this
+        return new Promise((resolve, reject) => {
             // 调用微信登录接口
             return wx.login({
                 success(res) {
-                    that.api.initLogin(res.code)
+                    return self.api.initLogin(res.code)
                         .then(({ token }) => {
-                            that.globalData.wxtoken = token
-                            return wx.getUserInfo({
-                                success({ encryptedData, iv, rawData, signature }) {
-                                    console.log(rawData)
-                                    that.globalData.wechat_userInfo = JSON.parse(rawData)
-                                    return that.api.authUser(Object.assign({}, { token, encryptedData, iv, rawData, signature }))
-                                        .then(resolve, resolve)
-                                }
-                            })
-                        })
+                            self.globalData.wxtoken = token
+                            return resolve()
+                        }, () => reject())
                 }
             })
         })
     },
+
+    // 验证微信用户信息
+    fetchAuthUser() {
+        const self = this
+        return new Promise((resolve) => {
+            return wx.getUserInfo({
+                success({ encryptedData, iv, rawData, signature }) {
+                    self.globalData.wechat_userInfo = JSON.parse(rawData)
+                    self.globalData.wxchat_bind_info = { encryptedData, iv, rawData, signature }
+                    return resolve({ encryptedData, iv, rawData, signature })
+                }
+            })
+        })
+    },
+
     createForum(param) {
         if (this.isLogin()) {
             const data = JSON.stringify(param)

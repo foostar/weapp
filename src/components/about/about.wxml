@@ -1,19 +1,19 @@
 <view class="section">
     <view class="about-box weapp-border-bottom">
         <view class="about-box-title">应用介绍</view>
-        <view class="about-box-content">{{info.appInfo}}</view>
+        <view class="about-box-content">{{info.appInfo ? info.appInfo : '' }}</view>
     </view>
     <view class="about-box weapp-border-bottom">
         <view class="about-box-title">反馈邮箱</view>
-        <view class="about-box-content">{{info.appManemail}}</view>
+        <view class="about-box-content">{{info.appManemail ? info.appManemail: '' }}</view>
     </view>
     <view class="about-box weapp-border-bottom">
         <view class="about-box-title">官方网站</view>
-        <view class="about-box-content">{{info.appWeb}}</view>
+        <view class="about-box-content">{{info.appWeb ? info.appWeb: ''}}</view>
     </view>
     <view class="about-box weapp-border-bottom">
         <view class="about-box-title">客服QQ</view>
-        <view class="about-box-content">{{info.appManqq}}</view>
+        <view class="about-box-content">{{info.appManqq ? info.appManqq: ''}}</view>
     </view>
     <image src="{{info.appQRCode.android ? info.appQRCode.android : info.appQRCode.apple }}" class="downLoad-QRCode" model="scaleToFill"></image>
     <view class="downLoad-desc">扫描二维码下载app</view>

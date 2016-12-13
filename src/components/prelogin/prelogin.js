@@ -25,6 +25,9 @@ PreLogin.prototype.onLoad = function () {
         username: nickName,
         appColor: `#${app.config.COLOR}`
     })
+    app.api.platformInfo().then(res => {
+        console.log(res)
+    })
 }
 
 PreLogin.prototype.onReady = function () {
@@ -53,7 +56,7 @@ PreLogin.prototype.bindolduser = function () {
 // 微信快速登录
 PreLogin.prototype.platLogin = function () {
     console.log(11111)
-    return app.checkWXToken().then(() => {
+    return app.fetchAuthUser().then(() => {
         console.log(33333, app.globalData.wxtoken)
         return app.api.platLogin({ token: app.globalData.wxtoken })
             .then(result => {

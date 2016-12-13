@@ -5,7 +5,6 @@
     align-items: center;
     font-size: 16px;
     min-height: 90rpx;
-    
     position: relative;
     -webkit-background-size: 100% 1px;
 
@@ -18,13 +17,15 @@
 }
 
 .about-box-title {
-    width: 200rpx;
-    text-align: center;
+    width: 150rpx;
+    text-align: left;
     padding:10rpx;
 }
 .about-box-content {
     flex:1;
-    padding:10rpx;
+    padding: 0 10rpx;
+    height: auto;
+    max-width: 70%;
 }
 .downLoad-QRCode {
     width: 240rpx;
