@@ -23,9 +23,10 @@
 }
 .about-box-content {
     flex:1;
-    padding: 0 10rpx;
+    padding: 10rpx 20rpx;
     height: auto;
     max-width: 70%;
+    word-break: break-all;
 }
 .downLoad-QRCode {
     width: 240rpx;
