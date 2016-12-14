@@ -4,7 +4,7 @@ const app = getApp()
 
 function Custom(key, module) {
     Component.call(this, key)
-    app.api.custom(module.id).then(data => {
+    app.api.custom(module.id).then((data) => {
         Object.assign(module, data.body.module)
         this.addByModule(module.componentList)
     })
@@ -13,5 +13,6 @@ function Custom(key, module) {
 Custom.prototype = Object.create(Component.prototype)
 Custom.prototype.name = 'custom'
 Custom.prototype.constructor = Custom
+
 
 module.exports = Custom

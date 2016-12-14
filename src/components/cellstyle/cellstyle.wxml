@@ -126,7 +126,7 @@
             </view>
             <view class="cell-card-from font-normal">
                 来自:
-                <navigator class="color-forum">{{forumName}}</navigator>
+                <navigator data-role="forumName" class="color-forum">{{forumName}}</navigator>
             </view>
         </view>
         <view class="cell-card-content">

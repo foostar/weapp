@@ -62,6 +62,7 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
             appIcon,
             over: param.page >= parseInt((data.meta.total / number) + 1, 10)
         })
+        console.log('data', data)
     }, (err) => {
         return Promise.reject(err)
     })
