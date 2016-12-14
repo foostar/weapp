@@ -5,6 +5,8 @@ module.exports = {
         name: 'life', id: 100000000245,
     }, {
         name: 'Lorna广告测试站', id: 100000000492,
+    }, {
+        name: 'test', id: 100000000536,
     } ],
     config: {
         cmsUrl: 'http://test-cmsapi.app.xiaoyun.com/GpCmsApi',

@@ -41,6 +41,9 @@
 @import "../user-home/user-home.wxss";
 @import "../topic/topic.wxss";
 @import "../search/search.wxss";
+@import "../prelogin/prelogin.wxss";
+@import "../followlist/followlist.wxss";
+
 
 
 

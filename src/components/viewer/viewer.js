@@ -47,6 +47,7 @@ const NewsList = require('../newslist/newslist.js')
 const Post = require('../post/post.js')
 // 固定页面
 const Login = require('../login/login.js')
+const PreLogin = require('../prelogin/prelogin.js')
 const Mylistcompos = require('../mylistcompos/mylistcompos.js')
 const Createforum = require('../createforum/createforum.js')
 const About = require('../about/about.js')
@@ -62,6 +63,9 @@ const Search = require('../search/search.js')
 const UserHome = require('../user-home/user-home.js')
 const UserList = require('../userlist/userlist.js')
 const Topic = require('../topic/topic.js')
+
+const FollowList = require('../followlist/followlist.js')
+const VerifyMobile = require('../verifymobile/verifymobile.js')
 
 
 /*
@@ -155,7 +159,11 @@ components.type['webapp-flat'] = NotSupport
 components.type['newlivelist-flat'] = NotSupport
 
 components.type['post-flat'] = Post
-components.type['login-flat'] = Login   // 登录页面
+// 之前的登陆页面
+components.type['oldlogin-flat'] = Login   // 登录页面
+// 在登陆之前判断 以何种方式登陆
+components.type['login-flat'] = PreLogin   // 登录页面
+
 components.type['mylistcompos-flat'] = Mylistcompos // 我的好友、发表、收藏列表
 components.type['createforum-flat'] = Createforum    // 发帖组件
 components.type['about-flat'] = About    // 关于app
@@ -168,6 +176,8 @@ components.type['myinfoatme-flat'] = MyinfoAtme  // 我的消息 @我的信息
 components.type['myinfopost-flat'] = MyinfoPost  // 我的消息 【评论】
 components.type['myinfosystem-flat'] = MyinfoSystem  // 系统消息
 components.type['search-flat'] = Search    // 搜索帖子/文章/用户
+components.type['verifymobile-flat'] = VerifyMobile // 登录校验用户
+
 
 components.type['userhome-flat'] = UserHome   // 用户主页
 
@@ -179,6 +189,9 @@ components.type['talkPostList-circle'] = Topic
 components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发帖
 components.type['postlist-card'] = Post         // 帖子详情
 components.type['postlist-flat'] = Post         // 帖子详情
+
+
+components.type['followlist-flat'] = FollowList  // 关注相关列表
 // topiclistSimple-flat
 
 const app = getApp()

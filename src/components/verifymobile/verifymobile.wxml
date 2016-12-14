@@ -1,0 +1,23 @@
+<import src="/components/common/common.wxml"/>
+
+<view class="register-thema-register-header" style="background: {{appColor}} linear-gradient(transparent,hsla(0,0%,50%,.9));">
+    <view style="padding-top: 130rpx;">
+        <image src="{{appIcon}}" class="register-app-icon"></image>
+    </view>
+    <!-- 登录手机验证 -->
+    <form bindsubmit="verifymobile_checkMobileCode" data-event-key="{{key}}" class="register-box">
+        <view class="login-input">
+            <input name="mobile" placeholder="请输入手机号" type="text" bindinput="verifymobile_setMobile" placeholder-class="input-shadow" data-event-key="{{key}}"></input>
+        </view>
+
+        <view class="register-mobile-btn" style="color: #fff;" bindtap="verifymobile_getCode" data-event-key="{{key}}">{{verifyBtn}}</view>
+
+        <view class="login-input">
+            <input name="verify" placeholder="请输入验证码" type="number" bindinput="verifymobile_setCode" data-event-key="{{key}}" placeholder-class="input-shadow"></input>
+        </view>
+        <button class="prelogin-btn" formType="submit" style="margin-top: 150rpx;">登 录</button>
+    </form>
+</view>
+
+<!-- 消息提示 -->
+<template is="message-prompts" data="{{errMessage, isShow}}"></template>

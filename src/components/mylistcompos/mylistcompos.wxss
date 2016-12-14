@@ -125,10 +125,10 @@
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    width: 100px;
-    height: 100px;
+    width: 180rpx;
+    height: 180rpx;
     margin: 200rpx auto;
-    margin-bottom: 20px;
+    margin-bottom: 20rpx;
 }
 
 .default-page-text {
