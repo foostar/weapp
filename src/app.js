@@ -196,7 +196,8 @@ App({
             api.ui(),
             getSystemInfo,
             this.fetchAuthUser()
-        ]).then(([ appResult, uiResult, systemInfo ]) => {
+        ]).then(([ appResult, uiResult, systemInfo, wxuserInfo ]) => {
+            this.globalData.wechat_userInfo = JSON.parse(wxuserInfo)
             this.globalData.systemInfo = systemInfo
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
@@ -232,41 +233,6 @@ App({
             url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: id })}`
         })
     },
-    // 校验token是否有效
-    checkWXToken() {
-        if (this.globalData.wxtoken) {
-            return this.fetchAuthUser()
-                .then(result => {
-                    console.log(111, result)
-                    return this.api.checkLogin({ token: this.globalData.wxtoken })
-                }, error => {
-                    console.log(222, error)
-                    return error
-                })
-            // return this.api.checkLogin({ token: this.globalData.wxtoken })
-            //     .then((success) => {
-            //         console.log(44444, success)
-            //         return this.fetchAuthUser().then(result => {
-            //             console.log(result)
-            //             return result
-            //         }, error => {
-            //             console.log(error)
-            //             return error
-            //         })
-            //         // return Promise.resolve()
-            //     })
-            //     .then()
-                .catch(() => {
-                    console.log(5555)
-                    this.globalData.userInfo = null
-                    this.globalData.wxtoken = null
-                    this.globalData.wechat_userInfo = null
-                    return this.checkBindwechat().then(() => this.checkWXToken())
-                })
-        }
-        return this.checkBindwechat()
-    },
-
     // 绑定
     wxLogin() {
         const self = this
@@ -292,7 +258,7 @@ App({
                 success({ encryptedData, iv, rawData, signature }) {
                     self.globalData.wechat_userInfo = JSON.parse(rawData)
                     self.globalData.wxchat_bind_info = { encryptedData, iv, rawData, signature }
-                    return resolve({ encryptedData, iv, rawData, signature })
+                    return resolve(rawData)
                 }
             })
         })

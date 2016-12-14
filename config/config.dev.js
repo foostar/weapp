@@ -5,9 +5,11 @@ module.exports = {
         name: 'life', id: 100000000245,
     }, {
         name: '111', id: 100000000492,
+    }, {
+        name: 'test', id: 100000000536,
     } ],
     config: {
         cmsUrl: 'http://test-cmsapi.app.xiaoyun.com/GpCmsApi',
-        HOST: 'https://weapp-test.v2.yoo.yunpro.cn'
+        HOST: 'https://weapp-test.apps.xiaoyun.com'
     }
 }

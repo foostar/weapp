@@ -150,6 +150,10 @@
 <template name="prelogin">
     <include src="../prelogin/prelogin.wxml" />
 </template>
+<!-- 登录验证手机 -->
+<template name="verifymobile">
+    <include src="../verifymobile/verifymobile.wxml" />
+</template>
 
 <template name="mylistcompos">
     <include src="../mylistcompos/mylistcompos.wxml" />
@@ -214,6 +218,9 @@
 <template name="followlist">
     <include src='../followlist/followlist.wxml'></include>
 </template>
+
+
+
 
 <template name="module_2">
     <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
