@@ -746,7 +746,7 @@
 }
 .list-image-item {
     display: block;
-    margin: 10rpx;
+    margin: 5px;
     border-radius: 10rpx;
     overflow: hidden;
     margin-bottom: 20rpx;
