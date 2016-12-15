@@ -124,9 +124,9 @@
                     </block>
                 </view>
             </view>
-            <view class="cell-card-from font-normal">
+            <view wx:if="{{type == 'post'}}" class="cell-card-from font-normal">
                 来自:
-                <navigator data-role="forumName" class="color-forum">{{forumName}}</navigator>
+                <text data-role="forumName" data-id="{{forumId}}" data-title="{{forumName}}" class="color-forum">{{forumName}}</text>
             </view>
         </view>
         <view class="cell-card-content">
@@ -172,9 +172,9 @@
                             </block>
                         </view>
                     </view>
-                    <view class="cell-imageSudoku-from font-mini">
+                    <view wx:if="{{type == 'post'}}" class="cell-imageSudoku-from font-mini">
                         来自:
-                        <navigator class="color-forum">{{forumName}}</navigator>
+                        <text data-role="forumName" data-id="{{forumId}}" data-title="{{forumName}}" class="color-forum">{{forumName}}</text>
                     </view>
                 </view>
                 <view class="cell-imageSudoku-content">
@@ -222,9 +222,9 @@
                             <image wx:if="{{index < 3}}" class="cell-verify" src="{{item.icon}}"></image>
                         </block>
                     </view>
-                    <view class="cell-from font-mini">
+                    <view wx:if="{{type == 'post'}}" class="cell-from font-mini">
                         来自:
-                        <navigator class="color-forum">{{forumName}}</navigator>
+                        <text data-role="forumName" data-id="{{forumId}}" data-title="{{forumName}}" class="color-forum">{{forumName}}</text>
                     </view>
                 </view>
                 <view class="cell-circle-subject-wrapper">
@@ -258,7 +258,13 @@
                         <block wx:for="{{reply}}" wx:key="{{index}}">
                             <view class="cell-circle-reply-box" wx:if="{{index < 6}}">
                                 <view class="cell-circle-reply-author color-member">{{item.username}}:</view>
-                                <view class="cell-circle-reply-content">{{item.text}}</view>
+                                <view wx:if="{{item.hasFace}}" class="cell-circle-reply-content">
+                                    <block wx:for="{{item.text}}" wx:key="{{index}}">
+                                        <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
+                                        <image wx:else src="{{item.content}}" class="face" />
+                                    </block>
+                                </view>
+                                <view wx:else class="cell-circle-reply-content">{{item.text}}</view>
                             </view>
                         </block>
                     </view>

@@ -82,7 +82,7 @@ TopiclistComplex.prototype.checkchild = function (e) {
 // 查看详情
 TopiclistComplex.prototype.clickItem = function (e) {
     if (e.target.dataset.role == 'avatar') {
-        if (app.isLogin()) return
+        if (!app.isLogin()) return
         return wx.navigateTo({
             url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.user })}`
         })
