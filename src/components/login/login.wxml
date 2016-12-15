@@ -14,7 +14,7 @@
         </view>
         <button class="login-form-btn" formType="submit">登  录</button>
 
-        <navigator url="/pages/blank/blank?type=register">
+        <navigator url="/pages/blank/blank?type=register" redirect="true">
             <view class="login-btn login-register-btn" >注  册</view>
         </navigator>
     </form>
