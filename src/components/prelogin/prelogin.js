@@ -2,15 +2,18 @@ const Component = require('../../lib/component.js')
 // const { dateFormat, infoToFace } = require('../../utils/util.js')
 
 const app = getApp()
-
+let connectNum = 5
 function PreLogin(key) {
+    const { avatarUrl, nickName } = app.globalData.wechat_userInfo
     Component.call(this, key)
     this.data = {
-        appIcon: '',
-        appColor: '',
+        appColor: `#${app.config.COLOR}`,
         errMessage: '',
+        appIcon: avatarUrl,
+        username: nickName,
         isShow: false,
-        isBind: 0
+        isBind: 0,
+        isFastLogin: false
     }
 }
 PreLogin.prototype = Object.create(Component.prototype)
@@ -18,28 +21,32 @@ PreLogin.prototype.name = 'prelogin'
 PreLogin.prototype.constructor = PreLogin
 
 PreLogin.prototype.onLoad = function () {
+    console.log(app.globalData.wechat_userInfo, connectNum)
     const self = this
     if (app.globalData.wechat_userInfo) {
-        const { avatarUrl, nickName } = app.globalData.wechat_userInfo
+        console.log(11111)
         app.api.platformInfo(Object.assign({}, { token: app.globalData.wxtoken }, app.globalData.wxchat_bind_info))
             .then(res => {
                 this.setData({
-                    appIcon: avatarUrl,
-                    username: nickName,
-                    // 获取app 图标 主题颜色
-                    appColor: `#${app.config.COLOR}`,
-                    isBind: res.body.register
+                    isBind: res.body.register,
+                    isFastLogin: true
                 })
             }, err => {
-                if (err.data.errcode === 102 || err.data.errcode === 103) {
+                console.log(err)
+                console.log(333, connectNum)
+                if ((err.data.errcode === 102 || err.data.errcode === 103) && connectNum > 1) {
+                    connectNum -= 1
                     app.wxLogin().then(() => {
                         return app.fetchAuthUser()
                     })
                     .then(() => self.onLoad())
+                } else {
+                    this.setData({
+                        isFastLogin: false
+                    })
                 }
             })
     } else {
-        console.log(22222)
         app.wxLogin().then(() => {
             return app.fetchAuthUser()
         })

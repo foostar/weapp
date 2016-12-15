@@ -24,15 +24,15 @@ FollowList.prototype.nextPage = function () {
     let { list, page, number } = this.data
     if (this.data.over) return Promise.reject()
     this.setData({
-        isLoading: true
+        isLoading: true,
     })
-    app.api.followList({
+    return app.api.followList({
         page,
         orderBy: orderby,
         pageSize: number
     }).then(data => {
         data.list.map((item, index) => {
-            data.list[index].lastLogin = formatTime(item.lastLogin)
+            data.list[index].repliedAt = formatTime(item.repliedAt)
             return data
         })
 
@@ -51,8 +51,10 @@ FollowList.prototype.nextPage = function () {
             over: page >= parseInt((data.meta.total / number) + 1, 10)
         })
     })
+    .catch(e => console.log(e))
 }
 // 获取推荐好友
+
 FollowList.prototype.getRecommendList = function () {
     var opts = { page: 1, pageSize: 7 }
     return app.api.getUserList(this.uid, 'recommend', opts)

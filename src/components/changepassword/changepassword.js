@@ -7,19 +7,14 @@ function Changepassword(key) {
     Component.call(this, key)
     this.data = {
         errMessage: '',
-        isShow: false
+        isShow: false,
+        appColor: `#${app.config.COLOR}`
     }
 }
 Changepassword.prototype = Object.create(Component.prototype)
 Changepassword.prototype.name = 'changepassword'
 Changepassword.prototype.constructor = Changepassword
 
-
-Changepassword.prototype.onLoad = function () {
-    this.setData({
-        appColor: `#${app.config.COLOR}`
-    })
-}
 
 Changepassword.prototype.onReady = function () {
     wx.setNavigationBarTitle({

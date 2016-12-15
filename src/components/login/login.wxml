@@ -10,11 +10,11 @@
             <input name="username" placeholder="请输入用户名/手机号" placeholder-class="input-shadow" type="text"></input>
         </view>
         <view class="login-input">
-            <input name="password" placeholder="请输入密码" type="text" placeholder-class="input-shadow" password="true"></input>   
+            <input name="password" placeholder="请输入密码" placeholder-class="input-shadow" password="true"></input>   
         </view>
         <button class="login-form-btn" formType="submit">登  录</button>
 
-        <navigator url="/pages/blank/blank?type=register">
+        <navigator url="/pages/blank/blank?type=register" redirect="true">
             <view class="login-btn login-register-btn" >注  册</view>
         </navigator>
     </form>

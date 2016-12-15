@@ -5,7 +5,7 @@
     <view>{{username}}</view>
 </view>
 <view class="prelogin-container">
-    <view class="prelogin-btn" bindtap="prelogin_platLogin" data-event-key="{{key}}">快速登录</view> 
+    <view class="prelogin-btn" wx:if="{{isFastLogin}}" bindtap="prelogin_platLogin" data-event-key="{{key}}">快速登录</view> 
     <view class="prelogin-btn" wx:if="{{isBind}}" bindtap="prelogin_bindolduser" data-event-key="{{key}}" >绑定已有帐号</view> 
     <view class="prelogin-btn" bindtap="prelogin_oldlogin" data-event-key="{{key}}" >帐号密码登录</view> 
     <view class="prelogin-btn no-bg" bindtap="prelogin_register" data-event-key="{{key}}" >注 册</view> 

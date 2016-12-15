@@ -29,7 +29,8 @@ Search.prototype.constructor = Search
 Search.prototype.changeInput = function (e) {
     const { value: searchValue } = e.detail
     this.setData({
-        searchValue
+        searchValue,
+        userOverPage: -1
     })
 }
 Search.prototype.click = function (e) {
@@ -37,7 +38,8 @@ Search.prototype.click = function (e) {
     this.setData({
         isLoading: false,
         over: false,
-        searchType: type
+        searchType: type,
+        userOverPage: -1
     })
 }
 
