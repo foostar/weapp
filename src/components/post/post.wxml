@@ -64,7 +64,7 @@
         </view>
         <view class="post-meta-wrapper post-card">
             <view class="post-meta">
-                <image class="post-user-avatar" src="{{authorAvatar}}" />
+                <image bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{userId}}" class="post-user-avatar" src="{{authorAvatar}}" />
                 <view class="post-meta-content">
                     <template is="post-info" data="{{username: author, level: level, title: userTitle}}"></template>
                     <view class="post-info-ext">
@@ -83,14 +83,16 @@
                     <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.content}}" />
                 </view>
                 <block wx:elif="{{item.type === 0}}">
-                    <view wx:if="{{item.hasFace}}" >
+                    <view wx:if="{{item.hasFace}}" class="{{item.isTopic ? 'topic-post' : ''}}" >
                         <block wx:for="{{item.subject}}" wx:key="{{index}}">
                             <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                             <image wx:else class="face" src="{{item.content}}" />
                         </block>
                     </view>
-                    <text wx:else>{{item.content}}</text>
+                    <text class="{{item.isTopic ? 'topic-post' : ''}}" wx:else>{{item.content}}</text>
                 </block>
+                <view wx:elif="{{item.type == 3}}" bindtap="post_checkBoard" data-event-key="{{key}}" class="topic-post-title" data-id="{{boardId}}" data-title="{{forumName}}">{{item.content}}</view>
+                <view wx:elif="{{item.type == 4}}" class="topic-post-title" bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{item.id}}">{{item.content}}</view>
                 <view wx:else>{{item.content}}</view>
             </block>
             <!--投票贴-->
@@ -117,7 +119,7 @@
         <view wx:if="{{zanList.length > 0}}" class="zanlist-wrapper post-card font-mini">
             <text class="zanlist-btn" style="background-image: url({{iconsrc}}dz_posts_goodjob.png)">{{zanList.length}} 人</text>
             <block wx:for="{{zanList}}" wx:key="{{index}}">
-                <text class="zanlist">{{item.username}}</text>
+                <text bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{item.recommenduid}}" class="zanlist">{{item.username}}</text>
                 <text wx:if="{{index < zanList.length-1}}">，</text>
             </block>
         </view>
@@ -147,7 +149,7 @@
                         <block wx:for="{{item.reply_content}}" wx:key="{{index}}">
                             <image wx:if="{{item.type === 1}}" style="width: 100%" mode="aspectFit" src="{{item.originalInfo}}" />
                             <block wx:elif="{{item.type === 0}}">
-                                <view wx:if="{{item.hasFace}}">
+                                <view wx:if="{{item.hasFace}}" class="reply_content">
                                     <block wx:for="{{item.subject}}" wx:key="{{index}}">
                                         <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                                         <image wx:else class="face" src="{{item.content}}" />
@@ -155,6 +157,7 @@
                                 </view>
                                 <text wx:else>{{item.infor}}</text>
                             </block>
+                            <text wx:else>{{item.infor}}</text>
                         </block>  
                         <view class="post-comment-info">
                             <text class="color-gray font-mini">{{item.position}}楼</text>
