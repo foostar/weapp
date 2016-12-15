@@ -1,4 +1,5 @@
 const Component = require('./component.js')
+const { needLogin } = require('../utils/util.js')
 
 const app = getApp()
 const fns = {
@@ -6,6 +7,21 @@ const fns = {
         const currentIndex = e.currentTarget.dataset.index || 0
         const info = this.module.componentList[currentIndex]
         app.globalData.moduleData = info
+        console.log(info)
+        if (!app.globalData.userInfo &&
+            (needLogin(info.type) ||
+            (info.type == 'moduleRef' &&
+            needLogin(app.globalData.modules[info.extParams.moduleId].type)))) {
+            return wx.navigateTo({
+                url: '/pages/blank/blank?type=login'
+            })
+        }
+        if (info.title == '帖子详情') {
+            return app.showPost({ type: 'post', id: info.extParams.topicId })
+        }
+        if (info.title == '文章详情') {
+            return app.showPost({ type: 'article', id: info.extParams.articleId })
+        }
         /*
             'empty' // 无
             'moduleRef' // 选择页面

@@ -182,6 +182,13 @@ App({
                     let faceResult = util.infoToFace(v.subject)
                     v.hasFace = faceResult.hasFace
                     v.subject = faceResult.data
+                    if (v.reply.length > 0) {
+                        v.reply.forEach((i) => {
+                            let rfaceResult = util.infoToFace(i.text)
+                            i.hasFace = rfaceResult.hasFace
+                            i.text = rfaceResult.data
+                        })
+                    }
                 })
                 return data
             })

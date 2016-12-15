@@ -180,7 +180,16 @@ const checkHasScroll = (module) => {
         return x
     })
 }
-
+/*
+ * @需要登录才能进入的页面
+ */
+const loginPages = [
+    { type: 'userlist', desc: '用户列表' },
+    { type: 'userhome', desc: '用户中心' }
+]
+const needLogin = (type) => {
+    return loginPages.some(x => x.type == type)
+}
 module.exports = {
     dateFormat,
     formatTime(date) {
@@ -190,6 +199,7 @@ module.exports = {
     formatListData,
     infoToFace,
     checkHasScroll,
-    pagetype
+    pagetype,
+    needLogin
 }
 
