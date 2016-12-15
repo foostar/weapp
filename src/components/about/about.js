@@ -14,6 +14,7 @@ About.prototype.constructor = About
 
 
 About.prototype.onLoad = function () {
+    console.log(app.globalData.info)
     this.setData({
         info: app.globalData.info
     })

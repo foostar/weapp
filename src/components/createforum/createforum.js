@@ -164,6 +164,9 @@ Createforum.prototype.deleteImage = function (event) {
 }
     // 发表评论
 Createforum.prototype.submit = function () {
+    if (!app.isLogin()) {
+        return
+    }
     const { title, content, actType, selectType, imagelist, selectTopicId } = this.data
     let topicContent = []
 
