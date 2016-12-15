@@ -12,8 +12,5 @@ LayoutSlider.prototype = Object.create(TouchComponent.prototype)
 LayoutSlider.prototype.name = 'layoutslider'
 LayoutSlider.prototype.constructor = LayoutSlider
 
-LayoutSlider.prototype.onLoad = function () {
-    console.log(111, this.data)
-}
 
 module.exports = LayoutSlider
