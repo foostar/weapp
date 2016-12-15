@@ -58,9 +58,9 @@ App({
             } else {
                 url = url.replace('https://weapp.apps.xiaoyun.com', CONFIG.HOST)
                 data = data || {}
-                data.body = {}
-                data.headers = {}
-                data.method = 'GET'
+                data.body = data.body || {}
+                data.headers = data.headers || {}
+                data.method = data.method || 'GET'
             }
             const next = () => {
                 if (queue.length) {
@@ -236,9 +236,11 @@ App({
         })
     },
     showUserHome(id) {
-        wx.navigateTo({
-            url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: id })}`
-        })
+        if (this.isLogin()) {
+            wx.navigateTo({
+                url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: id })}`
+            })
+        }
     },
     // 绑定
     wxLogin() {

@@ -11,7 +11,15 @@
     padding: 20rpx 30rpx;
     margin-bottom: 20rpx;
 }
-
+.topic-post{
+    margin-top:-20rpx;
+}
+.topic-post-title{
+    color:#3c83ba
+}
+.reply_content{
+    display:inline-block   
+}
 .face,.post-comment-content .face{
     display:inline-block;
     width:40rpx;
