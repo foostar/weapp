@@ -45,7 +45,6 @@ Topic.prototype.fetchData = function (param, number) {
         page: param.page,
         orderby: currentIndex === 1 ? 'NEW' : 'HOT'
     }).then((data) => {
-        console.log(111, data)
         data.list = data.list.map(x => ({
             id: x.topic_id,
             forumId: x.board_id,
@@ -121,8 +120,6 @@ Topic.prototype.clickItem = function (e) {
 // 发表话题帖子
 Topic.prototype.handleEditClick = function (e) {
     const tiId = e.currentTarget.dataset.tiid
-    const fid = this.data.fid
-    console.log(444, fid)
     app.createForum({
         tiId,
         fid: this.data.fid,
