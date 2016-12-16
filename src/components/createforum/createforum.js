@@ -19,7 +19,7 @@ function Createforum(key, module) {
         deleteUrl: '',
         actType: '',
         isTopic: false,
-        tiId: '',
+        tiId: null,
         fid: null,
         appColor: `#${app.config.COLOR}`,
         topicList: [],
@@ -38,7 +38,7 @@ Createforum.prototype.onLoad = function () {
         fid: null,
         actType: 'new',
         isTopic: false,
-        tiId: ''
+        tiId: null
     }, opts)
     if (app.globalData.userInfo) {
         // 判断用户是否登录
@@ -50,7 +50,7 @@ Createforum.prototype.onLoad = function () {
         console.info('no auth')
     }
     // 当没有版块ID时 需要获取板块列表
-    if (!data.fid) {
+    if (!data.fid && !data.isTopic) {
         app.api.forumList().then((res) => {
             const { list } = res
             const selectType = list[0].board_list[0].board_id
@@ -64,6 +64,8 @@ Createforum.prototype.onLoad = function () {
             this.setData(data)
             this.getTopicList()
         })
+    } else if (data.isTopic) {
+        this.setData(Object.assign(data, { selectType: data.fid }))
     } else {
         Object.assign(data, { selectType: data.fid })
         this.setData(data)
@@ -167,7 +169,7 @@ Createforum.prototype.submit = function () {
     if (!app.isLogin()) {
         return
     }
-    const { title, content, actType, selectType, imagelist, selectTopicId } = this.data
+    const { title, content, actType, tiId, selectType, isTopic, imagelist, selectTopicId } = this.data
     let topicContent = []
 
     // 文本处理
@@ -184,8 +186,9 @@ Createforum.prototype.submit = function () {
             filePath: v,
             formData: {
                 type: 'image',
-                module: 'forum',
-                fid: selectType
+                module: isTopic ? 'topic' : 'forum',
+                fid: selectType,
+                ti_id: tiId
             }
         }).then(data => data.body.attachment[0])
     }))
@@ -203,6 +206,7 @@ Createforum.prototype.submit = function () {
             act: actType,
             fid: selectType,
             typeId: selectTopicId,
+            ti_id: tiId,
             title: encodeURIComponent(title)
         }, data)).then(() => {
             wx.showToast({

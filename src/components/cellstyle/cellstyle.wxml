@@ -77,7 +77,7 @@
             <view wx:if="{{hasFace}}" class="cell-flat-content-subject">
                 <block wx:for="{{subject}}" wx:key="{{index}}">
                     <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
-                    <image wx:else src="{{item.content}}" class="face" />
+                    <image wx:else src="{{item.content}}" mode="aspectFit" class="face" />
                 </block>
             </view>
             <view wx:else class="cell-flat-content-subject">{{subject}}</view>

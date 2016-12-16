@@ -21,7 +21,7 @@
     </view>
     <!-- list -->
     <view class="forum-tabs">
-        <view class="forum-tabs-title-warp-placeholder">
+        <view class="forum-tabs-title-warp-placeholder weapp-border-bottom">
             <view class="forum-tabs-title-warp {{fixedTabsTitle ? 'fixed' : ''}}">
                 <text bindtap="topic_changeTabs" data-sort="new" data-event-key="{{key}}" data-index="{{1}}" class="forum-tabs-title text-color">最新</text>
                 <text bindtap="topic_changeTabs" data-sort="marrow" data-event-key="{{key}}" data-index="{{0}}" class="forum-tabs-title text-color">最热</text>
@@ -41,6 +41,8 @@
         </block>
     </view>
 
+    <!-- 发表话题帖子 -->
+    <view class="forum-edit-btn bg-color" style="background:url(http://icons.apps.xiaoyun.com/top/create_post/fff) no-repeat center center #fa460a;background-size: 50%;" bindtap="topic_handleEditClick" data-event-key="{{key}}" data-tiid="{{ti_id}}" />
 
     <!-- 加载中 -->
     <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
