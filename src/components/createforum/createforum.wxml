@@ -17,7 +17,7 @@
 </view>
 
 
-<view class="publish-select-warp" wx:if="{{fid == null}}">
+<view class="publish-select-warp" wx:if="{{fid == null && !isTopic}}">
     <text class="publish-select-label">板块信息</text>
     <picker class="publish-select" bindchange="createforum_selectChange" data-event-key="{{key}}" value="{{selectIndex}}" range="{{selectNameArray}}">
         <view class="picker">{{selectNameArray[selectIndex]}}</view>

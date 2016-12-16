@@ -8,6 +8,7 @@
 
 .forum-tabs-title-warp-placeholder {
     height: 72rpx;
+    margin-bottom: 1px;
 }
 
 .forum-tabs-title-warp {
@@ -15,7 +16,6 @@
     height: 72rpx;
     line-height: 72rpx;
     position: relative;
-    border-bottom: 1px solid #ccc;
 }
 
 .forum-tabs-title-warp.fixed{

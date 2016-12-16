@@ -99,6 +99,7 @@
 }
 
 .publish-submit-btn {
+    margin-top: 50rpx;
     height: 74rpx;
     line-height: 74rpx;
     width: 90%;
