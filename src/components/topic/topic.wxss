@@ -93,3 +93,6 @@ page {
 .tic-navbar-right {
     right: 0;
 }
+.tpcinfo-tabs-box {
+    margin-top: 10px;
+}
