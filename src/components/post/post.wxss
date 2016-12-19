@@ -17,6 +17,15 @@
 .topic-post-title{
     color:#3c83ba
 }
+.not-support{
+    margin-top:30rpx;
+    color:#999;
+    margin-bottom:10rpx;
+    font-size:32rpx;
+}
+.not-support-content{
+    margin-top:0rpx;
+}
 .reply_content{
     display:inline-block   
 }
@@ -349,6 +358,7 @@
 .post-comment-content {
     margin-top: -20rpx;
     margin-left: 90rpx;
+    word-break:break-all;
 }
 .post-comment-content text {
     font-size: 30rpx;
