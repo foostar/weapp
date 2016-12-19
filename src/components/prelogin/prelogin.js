@@ -4,13 +4,10 @@ const Component = require('../../lib/component.js')
 const app = getApp()
 let connectNum = 5
 function PreLogin(key) {
-    const { avatarUrl, nickName } = app.globalData.wechat_userInfo
     Component.call(this, key)
     this.data = {
         appColor: `#${app.config.COLOR}`,
         errMessage: '',
-        appIcon: avatarUrl,
-        username: nickName,
         isShow: false,
         isBind: 0,
         isFastLogin: false
@@ -24,16 +21,16 @@ PreLogin.prototype.onLoad = function () {
     console.log(app.globalData.wechat_userInfo, connectNum)
     const self = this
     if (app.globalData.wechat_userInfo) {
-        console.log(11111)
+        const { avatarUrl, nickName } = app.globalData.wechat_userInfo
         app.api.platformInfo(Object.assign({}, { token: app.globalData.wxtoken }, app.globalData.wxchat_bind_info))
             .then(res => {
                 this.setData({
+                    appIcon: avatarUrl,
+                    username: nickName,
                     isBind: res.body.register,
                     isFastLogin: true
                 })
             }, err => {
-                console.log(err)
-                console.log(333, connectNum)
                 if ((err.data.errcode === 102 || err.data.errcode === 103) && connectNum > 1) {
                     connectNum -= 1
                     app.wxLogin().then(() => {
@@ -42,6 +39,8 @@ PreLogin.prototype.onLoad = function () {
                     .then(() => self.onLoad())
                 } else {
                     this.setData({
+                        appIcon: avatarUrl,
+                        username: nickName,
                         isFastLogin: false
                     })
                 }
