@@ -162,10 +162,11 @@ function createPage(config) {
         }
         this.trigger('hide')
     }
-
     return config
 }
 
 createPage.load = load
+
+console.log('createPage', createPage)
 
 module.exports = createPage

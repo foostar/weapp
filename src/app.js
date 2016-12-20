@@ -215,6 +215,7 @@ App({
                 x.componentList.forEach(completeId)
             })
             this.config = CONFIG
+            console.log(222)
             return this.globalData
         }, (err) => {
             console.log('error', err)

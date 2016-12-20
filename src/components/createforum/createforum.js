@@ -8,23 +8,26 @@ function Createforum(key, module) {
     Component.call(this, key)
     this.data = {
         isLogin: false,
-        userInfo: {},
-        tempFilePaths: '',
-        selectList: [],
-        selectIndex: 0,
+        isForumlist: true,     // 是否展示版块列表
+        forumList: [],       // 版块列表
+        iconSrc: app.globalData.iconSrc,
+        isTopicPanel: false,  // 是否展示分类信息
+        topicPanelList: [],
+        // userInfo: {},
+        // tempFilePaths: '',
         selectType: null,
-        title: '',
-        content: '',
-        imagelist: [],
-        deleteUrl: '',
-        actType: '',
-        isTopic: false,
-        tiId: null,
+        // title: '',
+        // content: '',
+        // imagelist: [],
+        // deleteUrl: '',
+        // actType: '',
+        // isTopic: false,
+        // tiId: null,
         fid: null,
         appColor: `#${app.config.COLOR}`,
         topicList: [],
-        selectTopicId: '',
-        isfocus: false   // textarea 焦点
+        // selectTopicId: '',
+        // isfocus: false   // textarea 焦点
     }
 }
 
@@ -40,42 +43,104 @@ Createforum.prototype.onLoad = function () {
         isTopic: false,
         tiId: null
     }, opts)
-    if (app.globalData.userInfo) {
-        // 判断用户是否登录
-        Object.assign(data, {
-            isLogin: true,
-            userInfo: app.globalData.userInfo
-        })
-    } else {
-        console.info('no auth')
+    // 判断是否有版块 fid 有值
+    if (data.fid) {
+        data.isForumlist = false
+        this.setData(Object.assign(data))
     }
-    // 当没有版块ID时 需要获取板块列表
-    if (!data.fid && !data.isTopic) {
-        app.api.forumList().then((res) => {
-            const { list } = res
-            const selectType = list[0].board_list[0].board_id
-            const selectNameArray = [] // [...Array(10).keys()]
-            const selectValueArray = []
-            list.forEach(categoryList => categoryList.board_list.forEach((board) => {
-                selectNameArray.push(`${categoryList.board_category_name}/${board.board_name}`)
-                selectValueArray.push(board.board_id)
-            }))
-            Object.assign(data, { selectNameArray, selectValueArray, selectType, selectTopicId: '' })
-            this.setData(data)
-            this.getTopicList()
+    let promise = new Promise((resolve) => {
+        if (data.fid) {
+            return resolve(data.fid)
+        }
+        // 查找
+        return app.api.forumList().then(res => {
+            this.setData({
+                forumList: res.list
+            })
+            return resolve()
         })
-    } else if (data.isTopic) {
-        this.setData(Object.assign(data, { selectType: data.fid }))
-    } else {
-        Object.assign(data, { selectType: data.fid })
-        this.setData(data)
+    })
+    promise.then(fid => {
+        if (fid) {
+            return this.getTopicPanelList()
+        }
+        return null
+    }).then(topicPanelList => {
+        if (topicPanelList && topicPanelList.length > 0) {
+            return this.setData({
+                isTopicPanel: true
+            })
+        }
+        return null
+    }).then(() => {
         this.getTopicList()
+    })
+
+
+    // if (app.globalData.userInfo) {
+    //     // 判断用户是否登录
+    //     Object.assign(data, {
+    //         isLogin: true,
+    //         userInfo: app.globalData.userInfo
+    //     })
+    // } else {
+    //     console.info('no auth')
+    // }
+
+    // 当没有版块ID时 需要获取板块列表
+    // if (!data.fid && !data.isTopic) {
+    //     app.api.forumList().then((res) => {
+    //         const { list } = res
+    //         const selectType = list[0].board_list[0].board_id
+    //         const selectNameArray = [] // [...Array(10).keys()]
+    //         const selectValueArray = []
+    //         list.forEach(categoryList => categoryList.board_list.forEach((board) => {
+    //             selectNameArray.push(`${categoryList.board_category_name}/${board.board_name}`)
+    //             selectValueArray.push(board.board_id)
+    //         }))
+    //         Object.assign(data, { selectNameArray, selectValueArray, selectType, selectTopicId: '' })
+    //         this.setData(data)
+    //         this.getTopicList()
+    //     })
+    // } else if (data.isTopic) {
+    //     this.setData(Object.assign(data, { selectType: data.fid }))
+    // } else {
+    //     Object.assign(data, { selectType: data.fid })
+    //     this.setData(data)
+    //     this.getTopicList()
+    // }
+}
+
+Createforum.prototype.onReady = function () {
+    this.changePageTitle()
+}
+// 选择板块
+Createforum.prototype.selectedChange = function (e) {
+    const { fid, boardname } = e.currentTarget.dataset
+    app.createForum({ fid, boardname })
+}
+
+// 改变页面的头部信息
+Createforum.prototype.changePageTitle = function () {
+    const { isForumlist, isTopicPanel } = this.data
+    if (isForumlist) {
+        wx.setNavigationBarTitle({
+            title: '选择发布板块'
+        })
+    } else if (isTopicPanel) {
+        wx.setNavigationBarTitle({
+            title: '分类信息'
+        })
+    } else {
+        wx.setNavigationBarTitle({
+            title: '发帖'
+        })
     }
 }
 
 // 主题列表
 Createforum.prototype.getTopicList = function () {
-    const { selectType: topicId } = this.data
+    const { fid: topicId } = this.data
     app.api.forum(topicId).then(res => {
         this.setData({
             topicList: res.classificationType_list
@@ -83,12 +148,29 @@ Createforum.prototype.getTopicList = function () {
     })
 }
 
-// 选择板块
-Createforum.prototype.selectChange = function (e) {
-    const { value: selectIndex } = e.detail
-    const selectType = this.data.selectValueArray[selectIndex]
-    this.setData({ selectIndex, selectType })
-    this.getTopicList()
+
+// 得到分类信息
+Createforum.prototype.getTopicPanelList = function () {
+    const { fid } = this.data
+    console.log('getTopicPanelList', fid)
+    return app.api.topiclist({ boardId: fid }).then(res => {
+        console.log(444444, res)
+        this.setData({
+            isTopicPanel: true,
+            topicPanelList: res.newTopicPanel
+        })
+        return res.newTopicPanel
+    })
+}
+// 选择分类信息
+Createforum.prototype.selectClassInfo = function (e) {
+    const { classinfoid, classinfoname, classinfotype } = e.currentTarget.dataset
+    this.setData({
+        classinfoid,
+        classinfoname,
+        classinfotype,
+        isTopicPanel: false,
+    })
 }
 // 改变主题id
 Createforum.prototype.selectTopicId = function (e) {
@@ -97,6 +179,7 @@ Createforum.prototype.selectTopicId = function (e) {
         selectTopicId
     })
 }
+
 
 // 当textarea失去焦点存储数据
 Createforum.prototype.blurAndChangeContent = function (e) {

@@ -1,37 +1,68 @@
-
-
-<view class="createforum-publish-content">
-    <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
-    <!-- <input class="publish-text-input" type="text" bindinput="changeConent" placeholder="说点什么吧..."/> -->
-    <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." maxlength="0" bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea>
-
-</view>
-<view class="createforum-publish-images">
-    <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
-        <image wx:if="{{idx < 9}}" src="{{item}}" style="{{idx === 4  ? 'margin-right: 0': ''}}" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
-        <view class="delete-upload-box">
-            <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="createforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
+<!-- 版块列表 -->
+<view wx:if="{{isForumlist}}">
+    <!-- 版块列表 -->
+    <view wx:for="{{forumList}}" wx:for-item="forum" class="createforum-forumlist-card">
+        <view class="createforum-forumlist-card-title">{{forum.board_category_name}}</view>
+        <view class="createforum-forum-item-container">
+            <block wx:for="{{forum.board_list}}">
+                <view class="createforum-forum-item" bindtap="createforum_selectedChange"  data-fid="{{item.board_id}}" data-boardname="{{item.board_name}}" data-event-key="{{key}}">
+                    <view class="createforum-forum-item-image">
+                        <image src="{{item.board_img || iconSrc + 'default_plate.png'}}"></image>
+                    </view>
+                    <view class="createforum-forum-item-text">
+                        {{item.board_name}}
+                    </view>
+                </view>
+            </block>
         </view>
-    </block>
-    <view wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="createforum_chooseImg" data-event-key="{{key}}" />
-</view>
 
-
-<view class="publish-select-warp" wx:if="{{fid == null && !isTopic}}">
-    <text class="publish-select-label">板块信息</text>
-    <picker class="publish-select" bindchange="createforum_selectChange" data-event-key="{{key}}" value="{{selectIndex}}" range="{{selectNameArray}}">
-        <view class="picker">{{selectNameArray[selectIndex]}}</view>
-    </picker>
-</view>
-
-<view wx:if="{{topicList.length}}" class="createforum-publish-topicList">
-    <view class="createforum-topic-label">主题</view>
-    <view class="createforum-topic-list">
-        <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="classificationType_id">
-            <view class="createforum-topic-item {{selectTopicId == topic.classificationType_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.classificationType_id}}">{{topic.classificationType_name}}</view>
-        </block>
     </view>
 </view>
 
+<!-- 分类信息 -->
+<view wx:if="{{isTopicPanel}}">
+    <block wx:for="{{topicPanelList}}">
+        <view class="createforum-topic-panel" bindtap="createforum_selectClassInfo" data-event-key="{{key}}" data-classinfoid="{{item.actionId}}" data-classinfoname="{{item.title}}" data-classinfotype="{{item.type}}">
+            <view class="createforum-topic-icon">
+                <image src="{{item.board_img || iconSrc + 'default_plate.png'}}"></image>
+            </view>
+            <view class="createforum-topic-text">{{item.title}}</view>
+        </view>
+    </block>
+</view>    
 
-<button bindtap="createforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>
+<!-- 发帖 -->
+<block wx:if="{{!isForumlist && !isTopicPanel}}">
+    <view class="createforum-publish-content">
+        <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
+        <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." maxlength="0" bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea>
+
+    </view>
+    <view class="createforum-publish-images">
+        <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
+            <image wx:if="{{idx < 9}}" src="{{item}}" style="{{idx === 4  ? 'margin-right: 0': ''}}" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
+            <view class="delete-upload-box">
+                <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="createforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
+            </view>
+        </block>
+        <view wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="createforum_chooseImg" data-event-key="{{key}}" />
+    </view>
+
+
+    <view class="publish-select-warp" wx:if="{{fid == null && !isTopic}}">
+        <text class="publish-select-label">板块信息</text>
+        <view class="picker">{{selectedForum}}</view>
+    </view>
+
+    <view wx:if="{{topicList.length}}" class="createforum-publish-topicList">
+        <view class="createforum-topic-label">主题</view>
+        <view class="createforum-topic-list">
+            <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="classificationType_id">
+                <view class="createforum-topic-item {{selectTopicId == topic.classificationType_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.classificationType_id}}">{{topic.classificationType_name}}</view>
+            </block>
+        </view>
+    </view>
+
+
+    <button bindtap="createforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>
+</block>
