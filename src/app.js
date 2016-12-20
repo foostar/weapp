@@ -80,20 +80,29 @@ App({
                     formData = null
                 }
                 if (formData) {
+                    console.log(111, url, body.filePath, body.formData)
                     return wx.uploadFile({
                         url,
+                        // url: 'http://10.10.8.23:3333',
                         filePath: body.filePath,
                         name: 'uploadFile[]',
+                        // name: 'file',
                         formData: body.formData,
                         success: (response) => {
                             try {
                                 response.data = JSON.parse(response.data)
+                                console.log(5555, response.data)
                             } catch (err) {
                                 return reject(err)
                             }
                             resolve(response)
                         },
-                        fail: reject
+                        fail: (err) => {
+                            console.log(err)
+                        },
+                        complete: (info) => {
+                            console.log('complete', info)
+                        }
                     })
                 }
                 wx.request({

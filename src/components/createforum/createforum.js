@@ -2,6 +2,7 @@ const Component = require('../../lib/component.js')
 
 const app = getApp()
 
+const { fns: { omitBy, isNil } } = require('../../lib/mobcent.js')
 
 function Createforum(key, module) {
     this.pageData = module.data ? module.data : ''
@@ -126,7 +127,7 @@ Createforum.prototype.chooseImg = function () {
             if (imagelist.length > 10) {
                 imagelist = imagelist.splice(0, 9)
             }
-
+            console.log(6666, imagelist)
             this.setData({
                 imagelist
             })
@@ -169,6 +170,7 @@ Createforum.prototype.submit = function () {
     if (!app.isLogin()) {
         return
     }
+
     const { title, content, actType, tiId, selectType, isTopic, imagelist, selectTopicId } = this.data
     let topicContent = []
 
@@ -181,18 +183,19 @@ Createforum.prototype.submit = function () {
         icon: 'loading',
         duration: 10000
     })
-    Promise.all(imagelist.map(v => {
+    return Promise.all(imagelist.map(v => {
         return app.api.sendattachmentex({
             filePath: v,
-            formData: {
+            formData: omitBy({
                 type: 'image',
                 module: isTopic ? 'topic' : 'forum',
                 fid: selectType,
                 ti_id: tiId
-            }
+            }, isNil)
         }).then(data => data.body.attachment[0])
     }))
     .then(list => {
+        console.log(111, list)
         list.length && wx.hideToast()
         topicContent = topicContent.concat(list.map(x => ({ type: '1', infor: x.urlName })))
         return {
