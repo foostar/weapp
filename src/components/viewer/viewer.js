@@ -190,7 +190,6 @@ components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发�
 components.type['postlist-card'] = Post         // 帖子详情
 components.type['postlist-flat'] = Post         // 帖子详情
 
-
 components.type['followlist-flat'] = FollowList  // 关注相关列表
 // topiclistSimple-flat
 

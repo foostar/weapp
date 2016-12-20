@@ -350,7 +350,9 @@ Post.prototype.formReset = function () {
  *  @访问用户主页
  */
 Post.prototype.checkUser = function (e) {
-    app.showUserHome(e.currentTarget.dataset.id)
+    if (e.currentTarget.dataset.id) {
+        app.showUserHome(e.currentTarget.dataset.id)
+    }
 }
 /*
  *  @访问话题列表
