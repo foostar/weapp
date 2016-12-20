@@ -83,10 +83,8 @@ App({
                     console.log(111, url, body.filePath, body.formData)
                     return wx.uploadFile({
                         url,
-                        // url: 'http://10.10.8.23:3333',
                         filePath: body.filePath,
                         name: 'uploadFile[]',
-                        // name: 'file',
                         formData: body.formData,
                         success: (response) => {
                             try {
