@@ -93,9 +93,7 @@ App({
                             }
                             resolve(response)
                         },
-                        fail: (err) => {
-                            console.log(err)
-                        }
+                        fail: reject
                     })
                 }
                 wx.request({

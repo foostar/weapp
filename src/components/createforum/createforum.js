@@ -127,7 +127,6 @@ Createforum.prototype.chooseImg = function () {
             if (imagelist.length > 10) {
                 imagelist = imagelist.splice(0, 9)
             }
-            console.log(6666, imagelist)
             this.setData({
                 imagelist
             })
@@ -183,7 +182,7 @@ Createforum.prototype.submit = function () {
         icon: 'loading',
         duration: 10000
     })
-    return Promise.all(imagelist.map(v => {
+    Promise.all(imagelist.map(v => {
         return app.api.sendattachmentex({
             filePath: v,
             formData: omitBy({
@@ -195,7 +194,6 @@ Createforum.prototype.submit = function () {
         }).then(data => data.body.attachment[0])
     }))
     .then(list => {
-        console.log(111, list)
         list.length && wx.hideToast()
         topicContent = topicContent.concat(list.map(x => ({ type: '1', infor: x.urlName })))
         return {

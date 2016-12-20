@@ -4,11 +4,9 @@ const { needLogin } = require('../utils/util.js')
 const app = getApp()
 const fns = {
     touch(e) {
-        console.log(11111, e)
         const currentIndex = e.currentTarget.dataset.index || 0
         const info = this.module.componentList[currentIndex]
         app.globalData.moduleData = info
-        console.log(info)
         if (!app.globalData.userInfo &&
             (needLogin(info.type) ||
             (info.type == 'moduleRef' &&
