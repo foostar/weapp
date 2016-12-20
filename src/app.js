@@ -80,7 +80,6 @@ App({
                     formData = null
                 }
                 if (formData) {
-                    console.log(111, url, body.filePath, body.formData)
                     return wx.uploadFile({
                         url,
                         filePath: body.filePath,
@@ -89,7 +88,6 @@ App({
                         success: (response) => {
                             try {
                                 response.data = JSON.parse(response.data)
-                                console.log(5555, response.data)
                             } catch (err) {
                                 return reject(err)
                             }
@@ -97,9 +95,6 @@ App({
                         },
                         fail: (err) => {
                             console.log(err)
-                        },
-                        complete: (info) => {
-                            console.log('complete', info)
                         }
                     })
                 }
