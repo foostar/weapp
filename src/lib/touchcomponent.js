@@ -7,7 +7,12 @@ const fns = {
         const currentIndex = e.currentTarget.dataset.index || 0
         const info = this.module.componentList[currentIndex]
         app.globalData.moduleData = info
-        console.log(info)
+        if (info.type == 'newsview') {
+            return app.showPost({ type: 'article', id: info.extParams.articleId })
+        }
+        if (info.type == 'postlist') {
+            return app.showPost({ type: 'post', id: info.extParams.topicId })
+        }
         if (!app.globalData.userInfo &&
             (needLogin(info.type) ||
             (info.type == 'moduleRef' &&
@@ -15,12 +20,6 @@ const fns = {
             return wx.navigateTo({
                 url: '/pages/blank/blank?type=login'
             })
-        }
-        if (info.title == '帖子详情') {
-            return app.showPost({ type: 'post', id: info.extParams.topicId })
-        }
-        if (info.title == '文章详情') {
-            return app.showPost({ type: 'article', id: info.extParams.articleId })
         }
         /*
             'empty' // 无

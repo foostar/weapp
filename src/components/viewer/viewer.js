@@ -129,6 +129,7 @@ components.type['layout-layoutSeparator'] = LayoutSeparator // 分割线
 
 components.type['layout-layoutNewsAuto'] = LayoutNewsAuto // 列表自动样式
 
+
 const cellStyles = [ 'tieba', 'flat', 'card', 'neteaseNews', 'imageSudoku', 'circle' ]
 /*
  *  @帖子列表 \ 复杂帖子列表
@@ -180,6 +181,8 @@ components.type['verifymobile-flat'] = VerifyMobile // 登录校验用户
 
 
 components.type['userhome-flat'] = UserHome   // 用户主页
+components.type['userinfo-flat'] = Discover  // 用户中心
+
 
 components.type['userlist-flat'] = UserList   // 用户列表
 components.type['talkPostList-flat'] = Topic
@@ -187,9 +190,13 @@ components.type['topic-flat'] = Topic         // 话题主页
 components.type['talkPostList-circle'] = Topic
 
 components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发帖
+components.type['fasttext-flat'] = Createforum // 快速发表
+components.type['fastimage-flat'] = Createforum // 图片发表
+components.type['fastimage-flat'] = Createforum // 图片发表
+
+
 components.type['postlist-card'] = Post         // 帖子详情
 components.type['postlist-flat'] = Post         // 帖子详情
-
 
 components.type['followlist-flat'] = FollowList  // 关注相关列表
 // topiclistSimple-flat

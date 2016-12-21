@@ -6,6 +6,8 @@ require('colors')
 
 const genConfig = (appId, config) => {
     console.log(`正在获取 app: <${appId}> 数据...`)
+    console.log(`cms地址： ${config.cmsUrl}`)
+    console.log(`HOST地址： ${config.HOST}`)
     generateConfigByAppId(appId, {}, config).then(() => {
         console.log(`生成 <${appId}> 配置完成`.green)
         process.exit(0)
