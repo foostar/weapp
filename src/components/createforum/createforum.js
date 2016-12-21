@@ -62,6 +62,7 @@ Createforum.prototype.onLoad = function () {
         })
     })
     promise.then(fid => {
+        // return this.getTopicPanelList().then()
         if (fid) {
             return this.getTopicPanelList()
         }
@@ -156,10 +157,14 @@ Createforum.prototype.getTopicPanelList = function () {
     console.log('getTopicPanelList', fid)
     return app.api.topiclist({ boardId: fid }).then(res => {
         console.log(444444, res)
-        this.setData({
+        let data = {
             isTopicPanel: true,
             topicPanelList: res.newTopicPanel
-        })
+        }
+        if (res.newTopicPanel.length === 1 && res.newTopicPanel[0].type === 'normal') {
+            data.isTopicPanel = false
+        }
+        this.setData(data)
         return res.newTopicPanel
     })
 }
