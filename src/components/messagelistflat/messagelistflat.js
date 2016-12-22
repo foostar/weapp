@@ -1,7 +1,8 @@
 const Component = require('../../lib/component.js')
 
 var app = getApp()
-function MessagelistFlat(key) {
+function MessagelistFlat(key, module) {
+    console.log(module)
     Component.call(this, key)
     this.data = {
         iconSrc: app.globalData.iconSrc
@@ -11,6 +12,9 @@ function MessagelistFlat(key) {
 MessagelistFlat.prototype = Object.create(Component.prototype)
 MessagelistFlat.prototype.name = 'messagelistflat'
 MessagelistFlat.prototype.constructor = MessagelistFlat
+MessagelistFlat.prototype.onReady = function () {
+    this.setData({})
+}
 
 MessagelistFlat.prototype.onLoad = function () {
     wx.setNavigationBarTitle({

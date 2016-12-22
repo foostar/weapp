@@ -1,7 +1,7 @@
 <import src="../cellstyle/cellstyle.wxml" />
 <view>
     <block wx:for="{{list}}" wx:key="reply_remind_id">
-        <template is="myinfoComment" data="{{...item}}" ></template>
+        <template is="myinfoComment" data="{{tmptitle:'myinfopost', ...item}}" ></template>
     </block>
     <!-- 加载中 -->
     <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
