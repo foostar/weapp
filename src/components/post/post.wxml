@@ -1,7 +1,7 @@
 <template name="post-div">
     <view class="{{'align-' + (attribs.align || 'left')}}">
         <block wx:for="{{childNodes}}" wx:key="{{index}}">
-            <template is="{{'post-' + item.tagName}}" data="{{...item}}" />
+            <template is="{{'post-' + item.tagName}}" data="{{tmptitle:'post', ...item}}" />
         </block>
     </view>
 </template>
@@ -13,7 +13,7 @@
                 <template is="post-font-2" data="{{...item}}" />
             </block>
             <text wx:elif="{{item.value}}">{{item.value}}</text>
-            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{tmptitle:'post', ...item}}" />...item}}" />
         </block>
     </view>
 </template>
@@ -22,7 +22,7 @@
     <view>
         <block wx:for="{{childNodes}}" wx:key="{{index}}">
             <text wx:if="{{item.value}}">{{item.value}}</text>
-            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{tmptitle:'post', ...item}}" />...item}}" />
         </block>
     </view>
 </template>
@@ -34,7 +34,7 @@
                 <template is="post-font-1" data="{{...item}}" />
             </block>
             <text wx:elif="{{item.value}}">{{item.value}}</text>
-            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{tmptitle:'post', ...item}}" />...item}}" />
         </block>
     </view>
 </template>
@@ -64,7 +64,7 @@
         </view>
         <view class="post-meta-wrapper post-card">
             <view class="post-meta">
-                <image class="post-user-avatar" src="{{authorAvatar}}" />
+                <image bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{userId}}" class="post-user-avatar" src="{{authorAvatar}}" />
                 <view class="post-meta-content">
                     <template is="post-info" data="{{username: author, level: level, title: userTitle}}"></template>
                     <view class="post-info-ext">
@@ -77,22 +77,26 @@
         </view>
 
         <view class="post-content post-card font-wide {{list.length > 0 ? '' : 'post-content-large'}}">
-            <block wx:for="{{content}}" wx:key="{{index}}">
-                <view wx:if="{{item.type === 1}}" class="post-content-image">
-                    <image wx:if="{{item.unloaded}}" class="post-content-preload" style="width: 100%" mode="aspectFit" src="{{item.loadSrc}}" />
-                    <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.content}}" />
-                </view>
-                <block wx:elif="{{item.type === 0}}">
-                    <view wx:if="{{item.hasFace}}" >
+            <block wx:for="{{content}}" wx:key="{{index}}"> 
+                <block wx:if="{{item.type === 0}}">
+                    <view wx:if="{{item.hasFace}}" class="{{item.isTopic ? 'topic-post' : ''}}" >
                         <block wx:for="{{item.subject}}" wx:key="{{index}}">
                             <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                             <image wx:else class="face" src="{{item.content}}" />
                         </block>
                     </view>
-                    <text wx:else>{{item.content}}</text>
+                    <text class="{{item.isTopic ? 'topic-post' : ''}}" wx:else>{{item.content}}</text>
                 </block>
+                <view wx:elif="{{item.type === 1}}" class="post-content-image">
+                    <image wx:if="{{item.unloaded}}" class="post-content-preload" style="width: 100%" mode="aspectFit" src="{{item.loadSrc}}" />
+                    <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.content}}" />
+                </view>
+                <view wx:elif="{{item.type == 2}}" class="not-support not-support-content">暂不支持此类型的帖子，敬请期待...</view>
+                <view wx:elif="{{item.type == 3}}" bindtap="post_checkBoard" data-event-key="{{key}}" class="topic-post-title" data-id="{{boardId}}" data-title="{{forumName}}">{{item.content}}</view>
+                <view wx:elif="{{item.type == 4}}" class="topic-post-title" bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{item.id}}">{{item.content}}</view>
                 <view wx:else>{{item.content}}</view>
             </block>
+            <view wx:if="{{isPoll}}" class="not-support">暂不支持此类型的帖子，敬请期待...</view>
             <!--投票贴-->
             <!-- <block wx:if="{{isPoll && poll.poll_status != 3}}">
                 <view class="poll_title">投票(最多可选{{poll.type}}项)</view>
@@ -109,7 +113,7 @@
             </block> -->
             <!-- <view class="hits-number">浏览{{topic.hits}}人</view> -->
             <view class="topic-comment-info">
-                <view class="post-hits hits-number" style="background-image: url({{iconsrc}}dz_list_circle_pv.png)">浏览{{views}}人</view>
+                <view class="post-hits hits-number" style="background: url({{iconsrc}}dz_list_circle_pv.png) no-repeat 0 2rpx;background-size:32rpx auto;;">浏览{{views}}人</view>
                 <view class="post-manage" style="background: url({{iconsrc}}dz_posts_arrow.png) no-repeat center center;background-size:28rpx auto;" data-id="{{userId}}" bindtap="post_actionSheetTap" data-event-key="{{key}}"></view>
             </view>
         </view>
@@ -117,7 +121,7 @@
         <view wx:if="{{zanList.length > 0}}" class="zanlist-wrapper post-card font-mini">
             <text class="zanlist-btn" style="background-image: url({{iconsrc}}dz_posts_goodjob.png)">{{zanList.length}} 人</text>
             <block wx:for="{{zanList}}" wx:key="{{index}}">
-                <text class="zanlist">{{item.username}}</text>
+                <text bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{item.recommenduid}}" class="zanlist">{{item.username}}</text>
                 <text wx:if="{{index < zanList.length-1}}">，</text>
             </block>
         </view>
@@ -147,7 +151,7 @@
                         <block wx:for="{{item.reply_content}}" wx:key="{{index}}">
                             <image wx:if="{{item.type === 1}}" style="width: 100%" mode="aspectFit" src="{{item.originalInfo}}" />
                             <block wx:elif="{{item.type === 0}}">
-                                <view wx:if="{{item.hasFace}}">
+                                <view wx:if="{{item.hasFace}}" class="reply_content">
                                     <block wx:for="{{item.subject}}" wx:key="{{index}}">
                                         <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                                         <image wx:else class="face" src="{{item.content}}" />
@@ -155,6 +159,7 @@
                                 </view>
                                 <text wx:else>{{item.infor}}</text>
                             </block>
+                            <text wx:else>{{item.infor}}</text>
                         </block>  
                         <view class="post-comment-info">
                             <text class="color-gray font-mini">{{item.position}}楼</text>

@@ -1,7 +1,12 @@
+.login-view {
+    height: 100%;
+
+}
 .from-view {
     height: 236rpx;
     padding-top: 100rpx;
     padding-bottom: 20rpx;
+    margin-bottom: 50px;
 }
 
 .app-icon {
@@ -11,21 +16,24 @@
     display: block;
     border-radius: 10rpx;
 }
-.form-box {
-    background-repeat: no-repeat;
-    background-position: left;
-    margin: 10rpx 40rpx;
-    border-bottom: 1px solid #ccc;
-}
 
-.icon-username {
-}
-
-.icon-password {
-}
-.input {
+.login-input input {
+    background: rgba(0,0,0,0);
+    padding-top: 20rpx;
     padding-left: 40rpx;
-    height: 100rpx;
+    font-size: 32rpx;
+}
+.login-input {
+    display: block;
+    background: rgba(0,0,0,.3);
+    border-radius: 46rpx;
+    margin: 0 40rpx;
+    height: 90rpx;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 30rpx;
+}
+.input-shadow {
+    color: rgba(255,255,255,.5);
 }
 
 .register-text{
@@ -36,10 +44,23 @@
     padding: 40rpx 0;
 }
 
-
-.login-btn {
+.login-form-btn {
+    background: rgba(0,0,0,0);
     border: 0;
-    margin: 10rpx 40rpx;
     color: #fff;
+    font-size: 16px;
+    font-weight: 100;
     text-align: center;
+    margin-top: 100rpx;
+}
+.login-box button::after {
+    border: 0;
+}
+
+.login-register-btn {
+    font-weight: 100;
+    position: absolute;
+    bottom: 30rpx;
+    right: 10rpx;
+    color: #fff;
 }

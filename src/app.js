@@ -45,10 +45,10 @@ const completeId = (module) => {
 
 App({
     onLaunch() {
+        console.log('onLaunch')
         // 添加监听事件
         const event = this.event = new Events()
         event.trigger('launch')
-
         let queue = []
         let requestNum = 0
 
@@ -56,10 +56,11 @@ App({
             if (!isCenter) {
                 url = `${CONFIG.HOST}/client/${encodeURIComponent(url)}?appId=${CONFIG.ID}`
             } else {
+                url = url.replace('https://weapp.apps.xiaoyun.com', CONFIG.HOST)
                 data = data || {}
-                data.body = {}
-                data.headers = {}
-                data.method = 'GET'
+                data.body = data.body || {}
+                data.headers = data.headers || {}
+                data.method = data.method || 'GET'
             }
             const next = () => {
                 if (queue.length) {
@@ -106,7 +107,6 @@ App({
                             return reject(result)
                         }
                         /* eslint-enable */
-
                         resolve(result)
                     },
                     fail: reject
@@ -182,6 +182,13 @@ App({
                     let faceResult = util.infoToFace(v.subject)
                     v.hasFace = faceResult.hasFace
                     v.subject = faceResult.data
+                    if (v.reply.length > 0) {
+                        v.reply.forEach((i) => {
+                            let rfaceResult = util.infoToFace(i.text)
+                            i.hasFace = rfaceResult.hasFace
+                            i.text = rfaceResult.data
+                        })
+                    }
                 })
                 return data
             })
@@ -191,11 +198,13 @@ App({
 
         api.forumKey = CONFIG.KEY
 
-        const promise = Promise.all([
+        const promise = this.wxLogin().then(() => Promise.all([
             api.app(),
             api.ui(),
-            getSystemInfo
-        ]).then(([ appResult, uiResult, systemInfo ]) => {
+            getSystemInfo,
+            this.fetchAuthUser()
+        ]).then(([ appResult, uiResult, systemInfo, wxuserInfo ]) => {
+            this.globalData.wechat_userInfo = JSON.parse(wxuserInfo)
             this.globalData.systemInfo = systemInfo
             this.globalData.info = appResult.body.data
             const modules = this.globalData.modules = {}
@@ -209,15 +218,13 @@ App({
             return this.globalData
         }, (err) => {
             console.log('error', err)
-        })
+        }))
+
         this.ready = () => promise
-        // 微信登录
-        // this.getUserInfo((res) => {
-        //     console.log(res)
-        // })
 
         const userInfo = wx.getStorageSync('userInfo')
         if (userInfo) {
+            this.globalData.wxtoken = userInfo.wxtoken
             this.globalData.userInfo = userInfo
             api.token = userInfo.token
             api.secret = userInfo.secret
@@ -229,28 +236,43 @@ App({
         })
     },
     showUserHome(id) {
-        wx.navigateTo({
-            url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: id })}`
-        })
-    },
-    getUserInfo(cb) {
-        const that = this
-        if (this.globalData.userInfo) {
-            typeof cb === 'function' && cb(this.globalData.userInfo)
-        } else {
-            // 调用登录接口
-            wx.login({
-                success() {
-                    wx.getUserInfo({
-                        success(res) {
-                            that.globalData.userInfo = res.userInfo
-                            typeof cb === 'function' && cb(that.globalData.userInfo)
-                        }
-                    })
-                }
+        if (this.isLogin()) {
+            wx.navigateTo({
+                url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: id })}`
             })
         }
     },
+    // 绑定
+    wxLogin() {
+        const self = this
+        return new Promise((resolve, reject) => {
+            // 调用微信登录接口
+            return wx.login({
+                success(res) {
+                    return self.api.initLogin(res.code)
+                        .then(({ token }) => {
+                            self.globalData.wxtoken = token
+                            return resolve()
+                        }, () => reject())
+                }
+            })
+        })
+    },
+
+    // 验证微信用户信息
+    fetchAuthUser() {
+        const self = this
+        return new Promise((resolve) => {
+            return wx.getUserInfo({
+                success({ encryptedData, iv, rawData, signature }) {
+                    self.globalData.wechat_userInfo = JSON.parse(rawData)
+                    self.globalData.wxchat_bind_info = { encryptedData, iv, rawData, signature }
+                    return resolve(rawData)
+                }
+            })
+        })
+    },
+
     createForum(param) {
         if (this.isLogin()) {
             const data = JSON.stringify(param)

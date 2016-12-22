@@ -35,12 +35,15 @@
 @import "../topiclistcomplex/topiclistcomplex.wxss";
 @import "../about/about.wxss";
 @import "../setting/setting.wxss";
-@import "../changepassword/changepassword.wxss";
+/*@import "../changepassword/changepassword.wxss";*/
 @import "../register/register.wxss";
 @import "../myinfo/myinfo.wxss";
 @import "../user-home/user-home.wxss";
 @import "../topic/topic.wxss";
 @import "../search/search.wxss";
+@import "../prelogin/prelogin.wxss";
+@import "../followlist/followlist.wxss";
+
 
 
 

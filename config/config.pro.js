@@ -39,7 +39,7 @@ module.exports = {
         name: '小云社群', id: 229171,
     } ],
     config: {
-        cmsUrl: 'http://test-cmsapi.app.xiaoyun.com/GpCmsApi',
-        HOST: 'https://weapp-test.v2.yoo.yunpro.cn'
+        cmsUrl: 'http://cmsapi.app.xiaoyun.com/GpCmsApi',
+        HOST: 'https://weapp.apps.xiaoyun.com'
     }
 }

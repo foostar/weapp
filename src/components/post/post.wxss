@@ -11,7 +11,24 @@
     padding: 20rpx 30rpx;
     margin-bottom: 20rpx;
 }
-
+.topic-post{
+    margin-top:-20rpx;
+}
+.topic-post-title{
+    color:#3c83ba
+}
+.not-support{
+    margin-top:30rpx;
+    color:#999;
+    margin-bottom:10rpx;
+    font-size:32rpx;
+}
+.not-support-content{
+    margin-top:0rpx;
+}
+.reply_content{
+    display:inline-block   
+}
 .face,.post-comment-content .face{
     display:inline-block;
     width:40rpx;
@@ -232,8 +249,6 @@
 }
 
 .hits-number {
-    background-repeat: no-repeat;
-    background-size: auto 90%;
     font-size: 28rpx;
     color: #6E6E6E;
 }
@@ -341,6 +356,7 @@
 .post-comment-content {
     margin-top: -20rpx;
     margin-left: 90rpx;
+    word-break:break-all;
 }
 .post-comment-content text {
     font-size: 30rpx;

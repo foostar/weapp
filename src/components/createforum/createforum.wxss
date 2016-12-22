@@ -56,10 +56,12 @@
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
+    background-color: #e9e9e9;
     margin-bottom: 10rpx;
     margin-right:16rpx;
     overflow: hidden;
 }
+
 
 /* 删除上传图片 */
 .delete-upload-box {
@@ -72,18 +74,18 @@
 
 /* 删除上传图片按钮 */
 .delete-upload-btn {
-    width: 30rpx;
-    height: 30rpx;
+    width: 50rpx;
+    height: 50rpx;
     overflow:hidden;
     border-radius: 50%;
     background: rgba(255,0,0,.6);
-    line-height: 30rpx;
+    line-height: 50rpx;
     position: absolute;
     text-align: center;
     font-size: 26rpx;
     color:#fff;
-    top: -15rpx;
-    left: -15rpx;
+    top: -25rpx;
+    left: -25rpx;
 }
 
 .image-upload-btn {
@@ -97,6 +99,7 @@
 }
 
 .publish-submit-btn {
+    margin-top: 50rpx;
     height: 74rpx;
     line-height: 74rpx;
     width: 90%;

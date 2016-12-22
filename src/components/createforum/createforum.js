@@ -2,6 +2,7 @@ const Component = require('../../lib/component.js')
 
 const app = getApp()
 
+const { fns: { omitBy, isNil } } = require('../../lib/mobcent.js')
 
 function Createforum(key, module) {
     this.pageData = module.data ? module.data : ''
@@ -19,7 +20,7 @@ function Createforum(key, module) {
         deleteUrl: '',
         actType: '',
         isTopic: false,
-        tiId: '',
+        tiId: null,
         fid: null,
         appColor: `#${app.config.COLOR}`,
         topicList: [],
@@ -38,7 +39,7 @@ Createforum.prototype.onLoad = function () {
         fid: null,
         actType: 'new',
         isTopic: false,
-        tiId: ''
+        tiId: null
     }, opts)
     if (app.globalData.userInfo) {
         // 判断用户是否登录
@@ -50,7 +51,7 @@ Createforum.prototype.onLoad = function () {
         console.info('no auth')
     }
     // 当没有版块ID时 需要获取板块列表
-    if (!data.fid) {
+    if (!data.fid && !data.isTopic) {
         app.api.forumList().then((res) => {
             const { list } = res
             const selectType = list[0].board_list[0].board_id
@@ -64,6 +65,8 @@ Createforum.prototype.onLoad = function () {
             this.setData(data)
             this.getTopicList()
         })
+    } else if (data.isTopic) {
+        this.setData(Object.assign(data, { selectType: data.fid }))
     } else {
         Object.assign(data, { selectType: data.fid })
         this.setData(data)
@@ -124,7 +127,6 @@ Createforum.prototype.chooseImg = function () {
             if (imagelist.length > 10) {
                 imagelist = imagelist.splice(0, 9)
             }
-
             this.setData({
                 imagelist
             })
@@ -164,7 +166,11 @@ Createforum.prototype.deleteImage = function (event) {
 }
     // 发表评论
 Createforum.prototype.submit = function () {
-    const { title, content, actType, selectType, imagelist, selectTopicId } = this.data
+    if (!app.isLogin()) {
+        return
+    }
+
+    const { title, content, actType, tiId, selectType, isTopic, imagelist, selectTopicId } = this.data
     let topicContent = []
 
     // 文本处理
@@ -179,11 +185,12 @@ Createforum.prototype.submit = function () {
     Promise.all(imagelist.map(v => {
         return app.api.sendattachmentex({
             filePath: v,
-            formData: {
+            formData: omitBy({
                 type: 'image',
-                module: 'forum',
-                fid: selectType
-            }
+                module: isTopic ? 'topic' : 'forum',
+                fid: selectType,
+                ti_id: tiId
+            }, isNil)
         }).then(data => data.body.attachment[0])
     }))
     .then(list => {
@@ -200,6 +207,7 @@ Createforum.prototype.submit = function () {
             act: actType,
             fid: selectType,
             typeId: selectTopicId,
+            ti_id: tiId,
             title: encodeURIComponent(title)
         }, data)).then(() => {
             wx.showToast({

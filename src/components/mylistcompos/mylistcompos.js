@@ -57,6 +57,14 @@ function switchType(type, isMy) {
                 '为内容，圈粉丝'
             ]
             break
+        case 'recommend':
+            result.apiType = 'recommend'
+            result.title = '推荐用户'
+            result.defaulticon = 'no_follow.png'
+            result.defaultdesc = [
+                '世界怎么大，等你去看看！',
+            ]
+            break
         default:
             result.apiType = 'favorite'
     }
@@ -76,6 +84,7 @@ function Mylistcompos(key, module) {
         title: '',
         apiType: '',
         page: 0,
+        recommendPage: 0,
         isUserList: false,
         isNotify: false
     }
@@ -112,7 +121,7 @@ Mylistcompos.prototype.nextPage = function () {
         page
     }
 
-    if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed') {
+    if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed' || apiType === 'recommend') {
         obj.isUserList = true // 是否是用户列表
         // 好友列表
         promise = app.api.getUserList(obj.userId, apiType, options)
@@ -130,13 +139,14 @@ Mylistcompos.prototype.nextPage = function () {
                 return res
             })
         }
-        if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed') {
+        if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed' || apiType === 'recommend') {
             res.list.map((item, index) => {
                 res.list[index].lastLogin = formatTime(item.lastLogin)
                 res.list[index].dateline = dateFormat(item.dateline, 'yyyy-MM-dd', false)
                 return res
             })
         }
+
         obj.list = list.concat(res.list)
         this.setData(obj)
     })

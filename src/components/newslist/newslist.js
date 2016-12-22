@@ -90,7 +90,7 @@ NewsList.prototype.fetchData = function (param, number) {
         return Promise.reject(err)
     }).then(arrList => {
         arrList.list = arrList.list.map(item => {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 if (item.images[0]) {
                     return wx.getImageInfo({
                         src: item.images[0],
@@ -103,11 +103,13 @@ NewsList.prototype.fetchData = function (param, number) {
                             return resolve(item)
                         },
                         fail: (err) => {
-                            return reject(err)
+                            console.log('err', err)
+                            item.scale_height = 20
+                            return resolve(item)
                         }
                     })
                 }
-                item.scale_height = 0
+                item.scale_height = 20
                 return resolve(item)
             })
         })

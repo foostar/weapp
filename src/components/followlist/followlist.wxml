@@ -1,0 +1,42 @@
+<import src="../module/module.wxml" />
+<import src="../cellstyle/cellstyle"/>
+
+<view class="followlist-container">
+    <block wx:if= "{{list.length === 0}}">
+        <view class="followlist-default-page weapp-border-bottom">
+            <view class="followlist-default-page-icon" style="background-image: url({{iconSrc}}empty_pic@3x.png);" ></view>
+            <text class="default-page-text">太低调，你的魅力谁发现～</text>
+        </view>
+        <view class="followlist-recommend-list weapp-border-top">
+            <view class="followlist-recommend-title">
+                <view class="followlist-recommend-title-line"></view>
+                <view class="followlist-recommend-title-text" style="background-image: url({{iconSrc}}love@3x.png);">猜你喜欢</view>
+                <view class="followlist-recommend-title-line"></view>
+            </view>
+            <view class="followlist-recommend-users">
+                <block wx:for="{{recommendList}}" wx:key="uid">
+                    <view class="followlist-recommend-user {{index > 4 ? 'followlist-mt' : ''}}" >
+                        <image src="{{item.icon}}"></image>
+                        <text>{{item.name}}</text>
+                        <view class="followlist-recommend-user-btn" style="background-image: url({{iconSrc}}follow@3x.png); background-color: {{item.isFollow ? '#ccc': '#fff' }};" bindtap="followlist_followed" data-event-key="{{key}}" data-uid="{{item.uid}}" data-index="{{index}}" data-follow="{{item.isFollow}}">
+                        </view>    
+                    </view>
+                </block>
+                <view class="followlist-recommend-user followlist-mt" style="padding-bottom: 48rpx;" bindtap="followlist_moreuser" data-event-key="{{key}}">
+                    <view class="followlist-recommend-more-icon" style="background-image: url({{iconSrc}}more@3x.png);"></view>
+                    <text>更多推荐</text> 
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+
+        <block  wx:for="{{list}}" >
+            <template is="card" data="{{...item, iconSrc}}"></template>
+        </block>
+        <!-- 加载中 -->
+        <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
+        <!-- 没有了 -->
+        <view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>
+    </block>
+</view>

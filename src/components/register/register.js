@@ -6,12 +6,12 @@ const app = getApp()
 function Register(key) {
     Component.call(this, key)
     this.data = {
-        isMobileRegisterValidation: 0,
+        isMobileRegisterValidation: 1,
         isCloseEmail: 1,
         isFastRegister: 0,
         isInviteActivity: 0,
-        appColor: '',
-        appIcon: '',
+        appIcon: app.globalData.info.appIcon,
+        appColor: `#${app.config.COLOR}`,
         mobile: '',
         code: '',
         verifyBtn: '获取验证码',
@@ -26,13 +26,9 @@ Register.prototype.name = 'register'
 Register.prototype.constructor = Register
 
 Register.prototype.onLoad = function () {
-     // 获取app 图标 主题颜色
-    this.setData({
-        appIcon: app.globalData.info.appIcon,
-        appColor: `#${app.config.COLOR}`
-    })
     // 获取用户的主配置信息
     app.api.getSetting().then(res => {
+        console.log('1111', res.body.plugin.isMobileRegisterValidation)
         this.setData({
             isMobileRegisterValidation: res.body.plugin.isMobileRegisterValidation,
             isCloseEmail: res.body.plugin.isCloseEmail,
@@ -43,6 +39,7 @@ Register.prototype.onLoad = function () {
 }
 
 Register.prototype.onReady = function () {
+    console.log(this.data)
     if (app.globalData.userInfo) {
         wx.redirectTo({
             url: '/pages/blank/blank?type=mylistcompos'
@@ -109,9 +106,9 @@ Register.prototype.closeMessagePrompt = function () {
 // 检测手机和验证码
 Register.prototype.checkMobileCode = function (e) {
     const { mobile, verify } = e.detail.value
+    var that = this
     app.api.checkMobileCode(mobile, verify)
         .then(() => {
-            // console.log('检测手机和验证码', res)
             this.setData({
                 isVerify: true
             })
@@ -122,7 +119,9 @@ Register.prototype.checkMobileCode = function (e) {
                     isShow: true,
                     errMessage: err.message
                 })
-                setTimeout(this.closeMessagePrompt, 1500)
+                setTimeout(() => {
+                    that.closeMessagePrompt()
+                }, 1500)
             }
         })
 }
@@ -167,7 +166,9 @@ Register.prototype.signup = function (e) {
                     isShow: true,
                     errMessage: err.message
                 })
-                setTimeout(this.closeMessagePrompt, 1500)
+                setTimeout(() => {
+                    this.closeMessagePrompt()
+                }, 1500)
             }
         })
 }

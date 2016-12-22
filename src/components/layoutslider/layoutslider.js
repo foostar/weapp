@@ -12,4 +12,5 @@ LayoutSlider.prototype = Object.create(TouchComponent.prototype)
 LayoutSlider.prototype.name = 'layoutslider'
 LayoutSlider.prototype.constructor = LayoutSlider
 
+
 module.exports = LayoutSlider

@@ -22,10 +22,10 @@
 .layoutimage .layout-col-text-item:last-child {
     margin-right: 10rpx;
 }
-.layoutline .layout-col-text-item {
+/*.layoutline .layout-col-text-item {
     margin-left: 0;
     display: none;
-}
+}*/
 
 
 .layout-col-text-item text {

@@ -116,6 +116,9 @@ Discover.prototype.logout = function () {
     app.api.secret = ''
     app.api.token = ''
     app.globalData.userInfo = null
+    // app.globalData.wxtoken = null
+    app.globalData.wechat_userInfo = null
+    app.globalData.wxchat_bind_info = null
     wx.setStorageSync('userInfo', null)
     app.event.trigger('logout')
 }

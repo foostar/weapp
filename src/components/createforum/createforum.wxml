@@ -3,7 +3,7 @@
 <view class="createforum-publish-content">
     <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
     <!-- <input class="publish-text-input" type="text" bindinput="changeConent" placeholder="说点什么吧..."/> -->
-    <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea>
+    <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." maxlength="0" bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea>
 
 </view>
 <view class="createforum-publish-images">
@@ -17,7 +17,7 @@
 </view>
 
 
-<view class="publish-select-warp" wx:if="{{fid == null}}">
+<view class="publish-select-warp" wx:if="{{fid == null && !isTopic}}">
     <text class="publish-select-label">板块信息</text>
     <picker class="publish-select" bindchange="createforum_selectChange" data-event-key="{{key}}" value="{{selectIndex}}" range="{{selectNameArray}}">
         <view class="picker">{{selectNameArray[selectIndex]}}</view>

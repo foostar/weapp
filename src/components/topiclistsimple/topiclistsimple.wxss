@@ -315,6 +315,7 @@
     font-size: 26rpx;
     color: #a4a4a4;
     margin-bottom: 10rpx;
+    word-break:break-all;
 }
 
 .cell-flat-content-subject.subject-oneline {
@@ -412,6 +413,7 @@
     color:#a4a4a4;
     margin-top:10rpx;
     line-height:35rpx;
+    word-break:break-all;
 }
 .cell-card-content{
     padding:18rpx 20rpx;
@@ -537,6 +539,8 @@
 }
 .cell-circle-subject-wrapper{
     padding:20rpx 0;
+    word-break:break-all;
+    
 }
 .cell-circle-title{
     margin-bottom:10rpx;
@@ -623,6 +627,7 @@
 }
 .cell-netease-subject{
     margin-bottom:10rpx;
+    word-break:break-all;
 }
 
 .cell-netease-subject{
@@ -746,7 +751,7 @@
 }
 .list-image-item {
     display: block;
-    margin: 10rpx;
+    margin: 5px;
     border-radius: 10rpx;
     overflow: hidden;
     margin-bottom: 20rpx;

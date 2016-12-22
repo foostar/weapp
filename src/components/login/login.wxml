@@ -1,24 +1,25 @@
 <import src="../common/common.wxml"/>
+<view class="login-view" style="background: {{appColor}} linear-gradient(transparent,hsla(0,0%,50%,.9));">
+    <!-- 登录头部 -->
+    <view class="from-view login-icon">
+        <image src="{{appIcon}}" class="app-icon"></image>
+    </view>
+    <!-- 登录form表单 -->
+    <form class="login-box" bindsubmit="login_toLogin" data-event-key="{{key}}">
+        <view class="login-input">
+            <input name="username" placeholder="请输入用户名/手机号" placeholder-class="input-shadow" type="text"></input>
+        </view>
+        <view class="login-input">
+            <input name="password" placeholder="请输入密码" placeholder-class="input-shadow" password="true"></input>   
+        </view>
+        <button class="login-form-btn" formType="submit">登  录</button>
 
-<!-- 登录头部 -->
-<view class="from-view login-icon">
-    <image src="{{appIcon}}" class="app-icon"></image>
+        <navigator url="/pages/blank/blank?type=register" redirect="true">
+            <view class="login-btn login-register-btn" >注  册</view>
+        </navigator>
+    </form>
 </view>
-<!-- 登录form表单 -->
-<form bindsubmit="login_toLogin" data-event-key="{{key}}">
-    <view class="form-box icon-username">
-        <input class="input" name="username" placeholder="请输入用户名/手机号" type="text"></input>
-    </view>
-    <view class="form-box icon-password">
-        <input class="input" name="password" placeholder="请输入密码" type="text" password="true"></input>
-    </view>
-    <!-- 找回密码暂时无法实现 -->
-    <!--  <navigator url="/pages/callbackpassword/callbackpassword" class="register-text"><text style="color:{{appColor}}" >找回密码</text></navigator> -->
-    <button class="login-btn" style="background-color: {{appColor}}; margin-top: 60rpx;" formType="submit">登  录</button>
-    <navigator url="/pages/blank/blank?type=register">
-        <button class="login-btn" style="color: {{appColor}}; border: 1px solid {{appColor}};margin-top: 30rpx;" >注  册</button>
-    </navigator>
-</form>
+
 
 <!-- 消息提示 -->
 <template is="message-prompts" data="{{errMessage, isShow}}"></template>

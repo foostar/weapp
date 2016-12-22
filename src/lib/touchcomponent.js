@@ -1,4 +1,5 @@
 const Component = require('./component.js')
+const { needLogin } = require('../utils/util.js')
 
 const app = getApp()
 const fns = {
@@ -6,6 +7,20 @@ const fns = {
         const currentIndex = e.currentTarget.dataset.index || 0
         const info = this.module.componentList[currentIndex]
         app.globalData.moduleData = info
+        if (info.type == 'newsview') {
+            return app.showPost({ type: 'article', id: info.extParams.articleId })
+        }
+        if (info.type == 'postlist') {
+            return app.showPost({ type: 'post', id: info.extParams.topicId })
+        }
+        if (!app.globalData.userInfo &&
+            (needLogin(info.type) ||
+            (info.type == 'moduleRef' &&
+            needLogin(app.globalData.modules[info.extParams.moduleId].type)))) {
+            return wx.navigateTo({
+                url: '/pages/blank/blank?type=login'
+            })
+        }
         /*
             'empty' // 无
             'moduleRef' // 选择页面
@@ -53,5 +68,6 @@ function TouchComponent(key, module) {
 
 TouchComponent.prototype = Object.create(Component.prototype)
 TouchComponent.prototype.constructor = TouchComponent
+
 
 module.exports = TouchComponent

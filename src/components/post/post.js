@@ -51,6 +51,16 @@ Post.prototype.fetchData = function (tid, option, control) {
             if (app.globalData.userInfo && app.globalData.userInfo.uid == data.userId) {
                 data.creater = true
             }
+            if (data.content[0].content.charAt(0) == '#' && data.content[0].content.lastIndexOf('#') != 0) {
+                const title = data.content[0].content.substr(0, data.content[0].content.indexOf('#', 1) + 1)
+                data.content[0].content = data.content[0].content.replace(title, '')
+                data.content[0].isTopic = true
+                data.content.unshift({
+                    infor: title,
+                    content: title,
+                    type: 3
+                })
+            }
             data.content && data.content.forEach((v) => {
                 if (v.type == 1) {
                     v.loadSrc = app.globalData.loadSrc
@@ -64,6 +74,9 @@ Post.prototype.fetchData = function (tid, option, control) {
                     faceResult = infoToFace(v.content)
                     v.hasFace = faceResult.hasFace
                     v.subject = faceResult.data
+                }
+                if (v.type == 4) {
+                    v.id = v.url.substr(-1)
                 }
             })
             data.zanList.forEach((v) => {
@@ -332,6 +345,20 @@ Post.prototype.formSubmit = function (e) {
  */
 Post.prototype.formReset = function () {
     // console.log('form发生了reset事件'
+}
+/*
+ *  @访问用户主页
+ */
+Post.prototype.checkUser = function (e) {
+    if (e.currentTarget.dataset.id) {
+        app.showUserHome(e.currentTarget.dataset.id)
+    }
+}
+/*
+ *  @访问话题列表
+ */
+Post.prototype.checkBoard = function (e) {
+    app.showTopic(e.currentTarget.dataset)
 }
 module.exports = Post
 
