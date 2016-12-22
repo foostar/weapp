@@ -79,7 +79,7 @@
 
     <view class="personal-manage-card" >
         <view class="personal-manage-items">
-            <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id], module, resources}}"  />
+            <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{module, resources, ...children[module.id]}}"  />
         </view>
     </view>
 

@@ -3,6 +3,6 @@
 <view class="layoutline">
     <view wx:if="{{showTitle}}" class="layout-title weapp-border-bottom">{{title}}</view>
     <block wx:for="{{keys}}" wx:key="{{item}}">
-        <template is="{{children[item].template}}" data="{{...children[item]}}" />
+        <template is="{{children[item].template}}" data="{{tmptitle:'layoutline', ...children[item]}}" />
     </block>
 </view>

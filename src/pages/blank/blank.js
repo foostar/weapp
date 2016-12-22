@@ -46,6 +46,19 @@ Page(createPage({
         // 加载module
         this.add(new Viewer('viewer', module))
     },
+    imageLoaded(e) {
+        console.log(111)
+        console.log(this.data)
+        console.log(e)
+        // const windowWidth = this.data.windowWidth
+        // const imageWidth = e.detail.width
+        // const imageHeight = e.detail.height
+        // const index = e.currentTarget.dataset.index
+        // this.data.content[index].unloaded = false
+        // this.data.content[index].imageHeight = `${((windowWidth * imageHeight) / imageWidth).toFixed(2)}px`
+
+        // this.setData(this.data)
+    },
     onReady() {
     },
     goToTop() {

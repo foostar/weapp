@@ -3,5 +3,5 @@
     加载中...
 </loading>
 <view class="index-page">
-    <template is="viewer" data="{{...children.viewer}}"></template>
+    <template is="viewer" data="{{tmptitle:'blank', ...children.viewer}}"></template>
 </view>
