@@ -2,9 +2,9 @@
 <template name="viewer">
     <view class="copyright">本小程序由 {{name}} 提供</view>
     <view wx:if="{{hasScroll && children[moduleId].template}}" class="viewer">
-        <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
+        <template is="{{children[moduleId].template}}" data="{{aa: '111', ...children[moduleId]}}" />
     </view>
     <scroll-view wx:elif="{{children[moduleId].template}}" class="viewer" scroll-y bindscrolltolower="viewer_scrollToLower" data-event-key="{{key}}" data-template="{{moduleId}}">
-        <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
+        <template is="{{children[moduleId].template}}" data="{{aa: '111', ...children[moduleId]}}" />
     </scroll-view>
 </template>

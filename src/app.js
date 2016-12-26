@@ -33,7 +33,6 @@ const WeappStore = require('./lib/weappstorage.js')
 
 const westore = new WeappStore()
 
-
 const randStr = () => {
     return `a${Math.random().toString(32).split('.')[1]}`
 }
@@ -215,7 +214,6 @@ App({
                 x.componentList.forEach(completeId)
             })
             this.config = CONFIG
-            console.log(222)
             return this.globalData
         }, (err) => {
             console.log('error', err)

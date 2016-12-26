@@ -79,35 +79,107 @@
     width: 108rpx;
     height: 108rpx;
 }
-/*.createforum-topic-text {
-    flex:1;
-    color: #4d4d4d;
+
+.createforum-publish-item {
+    height: 104rpx;
+    line-height: 104rpx;
+    font-size: 32rpx;
+    padding: 0 20rpx;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    background: #fff;
+}
+.createforum-publish-item image {
+    transition: .5s ease;
+}
+
+.createforum-publish-item-title {
+    width: 160rpx;
     word-wrap: break-word;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    line-height: 108rpx;
-    padding-right: 20rpx;
 }
-*/
-/*.createforum-topic-icon image {
-    width: 74rpx;
-    height: 74rpx;
-    border-radius: 50%;
-    display: block;
-    margin: auto;
-    margin-top: calc(50% - 37rpx);
-}*/
+.createforum-publish-item-input {
+    flex:1;
+    padding-left: 20rpx;
+}
+.createforum-publish-item-input input {
+    height: 104rpx;
+    width: 100%;
+}
+.createforum-publish-item-input textarea {
+    height: 104rpx;
+    width: 100%;
+}
+
+
+.createforum-publish-item-choose {
+    background: #e9e9e9;
+    width: 100%;
+    height: auto;
+    padding: .5rem .7rem;
+}
+
+.createforum-publish-choose-items {
+    font-size: .6rem;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0 .4rem;
+    border-radius: .2rem;
+    margin: .2rem .2rem;
+    font-weight: 400;
+    background-color: #f2f2f2;
+    min-height: 1.5rem;
+    line-height: 1.5rem;
+    word-break: break-word;
+}
+
+.createforum-publish-item-picture{
+    padding-left: 20rpx;
+}
+
+.createforum-publish-picture-img {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 10rpx 20rpx;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+}
+
+.createforum-publish-tools {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    background: #fff;
+}
+.createforum-publish-tools input {
+    width: 100%;
+    height: 104rpx;
+}
+
+.createforum-publish-tools-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: flex-start;
+    height: 104rpx;
+    background: #fff;
+}
+.createforum-publish-tools-nav .createforum-list {
+    width: 104rpx;
+    height: 104rpx;
+    line-height: 104rpx;
+}
+
 /* ------------------------- */
 
-.publish-select-warp {
-    margin: 20rpx 0;
-    display: flex;
-    height: 90rpx;
-    line-height: 90rpx;
-    background-color: #fff;
-    padding: 0 20rpx;
-}
 .publish-select-label {
     font-size: 28rpx;
     font-weight: 900;

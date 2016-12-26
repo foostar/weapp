@@ -1,3 +1,6 @@
+<import src="../module/module.wxml" />
+<import src="../classifications/classifications.wxml" />
+
 <!-- 版块列表 -->
 <view wx:if="{{isForumlist}}">
     <!-- 版块列表 -->
@@ -32,26 +35,61 @@
 </view>    
 
 <!-- 发帖 -->
-<block wx:if="{{!isForumlist && !isTopicPanel}}">
+<block wx:if="{{!isForumlist && !isTopicPanel && isPublish}}">
     <view class="createforum-publish-content">
         <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
-        <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." maxlength="0" bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea>
 
-    </view>
-    <view class="createforum-publish-images">
-        <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
-            <image wx:if="{{idx < 9}}" src="{{item}}" style="{{idx === 4  ? 'margin-right: 0': ''}}" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
-            <view class="delete-upload-box">
-                <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="createforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
-            </view>
+        <block wx:for="{{publishInfo}}" wx:for-index="idx" >
+            <template is="classifications" data="{{...children['classificaid'+idx], ...item }}"></template>
         </block>
-        <view wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="createforum_chooseImg" data-event-key="{{key}}" />
+        <view>hahah : {{selectItemId}}</view>
+        <!-- <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." maxlength="0" bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea> -->
+        <!-- <view bindtap="createforum_showTools" data-event-key="{{key}}" >hahahah</view> -->
+        <scroll-view scroll-y="true" style="height: 200px;" catchtap="createforum_showTools" data-event-key="{{key}}">
+            <block wx:for="{{contentText}}" wx:key="contentTextId">
+                <view wx:if="{{item.type === 0}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
+                    {{item.value}}
+                </view>
+                <image wx:if="{{item.type === 1}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};" src="{{item.value}}" mode="widthFix" />
+            </block>
+        </scroll-view>
     </view>
 
 
-    <view class="publish-select-warp" wx:if="{{fid == null && !isTopic}}">
-        <text class="publish-select-label">板块信息</text>
-        <view class="picker">{{selectedForum}}</view>
+    <view class="createforum-publish-tools weapp-border-top" hidden="{{!showInputTools}}">
+        <view class="createforum-publish-tools-nav weapp-border-bottom" catchtap="createforum_changeInputType" data-event-key="{{key}}" >
+            <view class="createforum-list" data-type="textInput">A</view>
+            <view class="createforum-list" data-type="pictureSelected">图片</view>
+            <view class="createforum-list">@</view>
+            <view class="createforum-list">语音</view>
+            <view class="createforum-list">视频</view>
+            <view class="createforum-list">投票</view>
+            <view class="createforum-list" data-type="hidden">隐藏</view>
+        </view>
+        <!-- 文本编辑 -->
+        <view  wx:if="{{textInput}}">
+            <input type="text" value="{{textInputInfo}}" placeholder="说点什么吧。。。。" bindinput="createforum_bindInput" data-event-key="{{key}}"/>
+            <button bindtap="createforum_bindconfirm" data-event-key="{{key}}" >完成</button>
+        </view>
+
+        <view wx:if="{{pictureSelected}}">
+            <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
+                <image wx:if="{{idx < 9}}" src="{{item}}" style="{{idx === 4  ? 'margin-right: 0': ''}}" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
+                <view class="delete-upload-box">
+                    <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="createforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
+                </view>
+            </block>
+            <view wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="createforum_chooseImg" data-event-key="{{key}}" />
+            <text bindtap="createforum_chooseImageOver" data-event-key="{{key}}" >完成</text>
+        </view>
+
+       
+    </view>
+
+
+    <view class="createforum-publish-item" >
+        <view class="createforum-publish-item-title">板块信息</view>
+        <view >{{ boardname +'  '+ classinfoname}}</view>
     </view>
 
     <view wx:if="{{topicList.length}}" class="createforum-publish-topicList">
@@ -62,7 +100,6 @@
             </block>
         </view>
     </view>
-
 
     <button bindtap="createforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>
 </block>

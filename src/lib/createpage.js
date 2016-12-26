@@ -167,6 +167,5 @@ function createPage(config) {
 
 createPage.load = load
 
-console.log('createPage', createPage)
 
 module.exports = createPage

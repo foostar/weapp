@@ -1,4 +1,5 @@
 const Component = require('../../lib/component.js')
+const Classifications = require('../classifications/classifications.js')
 
 const app = getApp()
 
@@ -14,16 +15,22 @@ function Createforum(key, module) {
         iconSrc: app.globalData.iconSrc,
         isTopicPanel: false,  // 是否展示分类信息
         topicPanelList: [],
-        // userInfo: {},
-        // tempFilePaths: '',
+        isPublish: false,      // 是否发帖
+        showInputTools: false,  // 是否显示发帖工具栏
+        userInfo: {},
+        tempFilePaths: '',
         selectType: null,
-        // title: '',
-        // content: '',
-        // imagelist: [],
-        // deleteUrl: '',
-        // actType: '',
-        // isTopic: false,
-        // tiId: null,
+        publishInfo: {},  // 分类信息内容
+        contentText: [],  // 发帖内容上下问
+        contentTextId: 0,  // 发帖内容上下文id
+        selectItemId: null, // 选中二次编辑 id
+        textInputInfo: null, // 输入文本的内容
+        title: '',
+        imagelist: [],
+        deleteUrl: '',
+        actType: '',
+        isTopic: false,
+        tiId: null,
         fid: null,
         appColor: `#${app.config.COLOR}`,
         topicList: [],
@@ -61,20 +68,17 @@ Createforum.prototype.onLoad = function () {
             return resolve()
         })
     })
-    promise.then(fid => {
-        // return this.getTopicPanelList().then()
-        if (fid) {
-            return this.getTopicPanelList()
-        }
-        return null
+    return promise.then(fid => {
+        return this.getTopicPanelList(fid)
     }).then(topicPanelList => {
         if (topicPanelList && topicPanelList.length > 0) {
-            return this.setData({
+            this.setData({
                 isTopicPanel: true
             })
         }
-        return null
+        return
     }).then(() => {
+        this.changePageTitle()
         this.getTopicList()
     })
 
@@ -114,6 +118,7 @@ Createforum.prototype.onLoad = function () {
 }
 
 Createforum.prototype.onReady = function () {
+    console.log('onReady', this.data)
     this.changePageTitle()
 }
 // 选择板块
@@ -150,13 +155,9 @@ Createforum.prototype.getTopicList = function () {
     })
 }
 
-
 // 得到分类信息
-Createforum.prototype.getTopicPanelList = function () {
-    const { fid } = this.data
-    console.log('getTopicPanelList', fid)
+Createforum.prototype.getTopicPanelList = function (fid) {
     return app.api.topiclist({ boardId: fid }).then(res => {
-        console.log(444444, res)
         let data = {
             isTopicPanel: true,
             topicPanelList: res.newTopicPanel
@@ -168,16 +169,48 @@ Createforum.prototype.getTopicPanelList = function () {
         return res.newTopicPanel
     })
 }
+
 // 选择分类信息
 Createforum.prototype.selectClassInfo = function (e) {
     const { classinfoid, classinfoname, classinfotype } = e.currentTarget.dataset
-    this.setData({
+    let self = this
+
+    if (classinfoid) {
+        // 发帖样式
+        return app.api.classify(classinfoid).then(res => {
+            this.setData({
+                classinfoid,
+                classinfoname,
+                classinfotype,
+                isTopicPanel: false,
+                isPublish: true,
+                publishInfo: res.body.classified,
+            })
+            // 创建添加自组建
+            res.body.classified.map((item, index) => {
+                return self.add(new Classifications(`classificaid${index}`, item))
+            })
+        })
+    }
+    return this.setData({
         classinfoid,
         classinfoname,
         classinfotype,
         isTopicPanel: false,
+        isPublish: true
     })
 }
+
+
+// 单选选择器
+Createforum.prototype.bindPickerChange = function (event) {
+    let { value } = event.detail
+    console.log('value', value, event.detail)
+    this.setData({
+        radioIndex: value
+    })
+}
+
 // 改变主题id
 Createforum.prototype.selectTopicId = function (e) {
     const { topicId: selectTopicId } = e.currentTarget.dataset
@@ -186,6 +219,131 @@ Createforum.prototype.selectTopicId = function (e) {
     })
 }
 
+// 改变输入方式
+Createforum.prototype.changeInputType = function (e) {
+    console.log('改变输入方式', e)
+    let obj = {
+        textInput: false,
+        pictureSelected: false,
+        hidden: true
+    }
+    const { type } = e.target.dataset
+    obj[type] = true
+    if (type === 'hidden') {
+        return this.showInputTools(true)
+    }
+    this.setData(obj)
+}
+
+// 展示编辑
+Createforum.prototype.showTools = function (e) {
+    const { viewId } = e.target.dataset
+    const { contentText } = this.data
+    let updateInfo = {}
+    if (viewId) {
+        contentText.forEach(item => {
+            if (item.contentTextId == viewId) {
+                updateInfo = item
+            }
+        })
+        if (updateInfo.type === 0) {
+            this.setData({
+                selectItemId: viewId,
+                textInputInfo: updateInfo.value
+            })
+        }
+        if (updateInfo.type === 1) {
+            this.setData({
+                selectItemId: viewId,
+                imageInputInfo: updateInfo.value
+            })
+        }
+    }
+    this.showInputTools()
+}
+
+// 展示输入控件
+Createforum.prototype.showInputTools = function (opt) {
+    let showInputTools = true
+    if (opt) {
+        showInputTools = false
+    }
+    this.setData({
+        showInputTools
+    })
+}
+
+// 发帖展示信息
+Createforum.prototype.showContentText = function (type, value) {
+    /* eslint-disable */
+    let update = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null
+    /* eslint-enable */
+    let { contentTextId, contentText } = this.data
+
+    if (value) {
+        // 0=文本 1=图片附件 3=音频 4=视频
+        var typeObj = {
+            text: 0,
+            pictrue: 1,
+            audio: 3,
+            video: 4
+        }
+        if (update) {
+            contentText.map(item => {
+                if (item.contentTextId == update.selectItemId) {
+                    return item.value = value
+                }
+                return item
+            })
+            this.setData({
+                contentText,
+                selectItemId: null,
+                textInputInfo: null
+            })
+        } else {
+            contentTextId += 1
+            console.log('contentTextId', contentTextId)
+            contentText.push({ value, type: typeObj[type], contentTextId })
+            this.setData({
+                contentText,
+                contentTextId,
+                textInputInfo: null
+            })
+        }
+    }
+}
+
+// 选择图展示
+Createforum.prototype.chooseImageOver = function (e) {
+    console.log('选择图展示', e)
+    let imagelist = this.data.imagelist || []
+    imagelist.map(url => {
+        return this.showContentText('pictrue', url)
+    })
+
+    this.setData({
+        imagelist: [],
+    })
+}
+
+
+// 输入内容
+Createforum.prototype.bindInput = function (e) {
+    const { value: content } = e.detail
+    console.log(111, content)
+    this.setData({
+        textInputInfo: content
+    })
+}
+
+// 输入结束
+Createforum.prototype.bindconfirm = function () {
+    const { selectItemId, textInputInfo } = this.data
+    if (selectItemId) {
+        return this.showContentText('text', textInputInfo, { selectItemId })
+    }
+    return this.showContentText('text', textInputInfo)
+}
 
 // 当textarea失去焦点存储数据
 Createforum.prototype.blurAndChangeContent = function (e) {

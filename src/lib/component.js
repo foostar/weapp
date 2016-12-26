@@ -32,12 +32,16 @@ const fns = {
     }
 }
 
+const randStr = () => {
+    return `a${Math.random().toString(32).split('.')[1]}`
+}
+
 function Component(key) {
     if (!this.name) {
         throw new Error('请覆盖 name 属性')
     }
     this.children = {}
-    this.key = key
+    this.key = key || randStr()
     this.loaded = false
     this.shown = false
     this._data = {

@@ -1,4 +1,4 @@
 <import src="../module/module.wxml" />
 <view class="fullcard">
-    <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{...children[module.id]}}" />
+    <template is="{{children[module.id].template}}" wx:if="{{!!module}}" data="{{ aa: '111', ...children[module.id]}}" />
 </view>

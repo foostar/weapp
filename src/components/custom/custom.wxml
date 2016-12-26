@@ -2,6 +2,8 @@
 
 <view class="custom">
     <block wx:for="{{keys}}" wx:key="{{item}}">
-        <template is="{{children[item].template}}" data="{{...children[item]}}" />
+        <template is="{{children[item].template}}" data="{{aa: '111' , ...children[item]}}" >
+        </template>
+
     </block>
 </view>

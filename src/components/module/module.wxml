@@ -216,9 +216,13 @@
 </template>
 
 <template name="followlist">
-    <include src='../followlist/followlist.wxml'></include>
+    <include src='../followlist/followlist.wxml' />
 </template>
 
+<!-- 发帖分类信息组建 -->
+<template name="classifications">
+    <include src='../classifications/classifications.wxml' />
+</template>
 
 
 
