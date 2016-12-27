@@ -26,6 +26,7 @@ function Createforum(key, module) {
         selectItemId: null, // 选中二次编辑 id
         textInputInfo: null, // 输入文本的内容
         imageInputInfo: null, // 图片进行编辑
+        recordTempFilePath: null, // 录音的
         title: '',
         imagelist: [],
         deleteUrl: '',
@@ -119,8 +120,13 @@ Createforum.prototype.onLoad = function () {
 }
 
 Createforum.prototype.onReady = function () {
-    console.log('onReady', this.data)
     this.changePageTitle()
+    const { contentText } = this.data
+    contentText.forEach(item => {
+        if (item.type === 3) {
+            this[`audioCtx${item.contentTextId}`] = wx.createAudioContext(`myAudio${item.contentTextId}`)
+        }
+    })
 }
 // 选择板块
 Createforum.prototype.selectedChange = function (e) {
@@ -226,14 +232,30 @@ Createforum.prototype.changeInputType = function (e) {
     let obj = {
         textInput: false,
         pictureSelected: false,
+        recordSelected: false,
+        videoSelected: false,
         hidden: true
+
     }
     const { type } = e.target.dataset
     obj[type] = true
     if (type === 'hidden') {
-        return this.showInputTools(true)
+        this.showInputTools(true)
     }
+    if (type === 'videoSelected') {
+        this.chooseVideo()
+    }
+
     this.setData(obj)
+}
+
+// 视频编辑
+Createforum.prototype.chooseVideo = function () {
+    wx.chooseVideo({
+        success: res => {
+            this.showContentText('video', res.tempFilePath)
+        }
+    })
 }
 
 // 展示编辑
@@ -262,6 +284,7 @@ Createforum.prototype.showTools = function (e) {
                 imagelist
             })
         }
+
         if (updateInfo.type === 9) {
             this.setData({
                 selectItemId: viewId
@@ -288,7 +311,7 @@ Createforum.prototype.showContentText = function (type, value) {
     let update = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null
     /* eslint-enable */
     let { contentTextId, contentText } = this.data
-    // 0=文本 1=图片附件 3=音频 4=视频 9=空白插入点
+    // 0=文本 1=图片附件  3=音频 4=视频 9=空白插入点
     const typeObj = {
         text: 0,
         pictrue: 1,
@@ -430,6 +453,54 @@ Createforum.prototype.chooseImg = function () {
         }
     })
 }
+// 开始录音
+Createforum.prototype.startRecord = function () {
+    wx.startRecord({
+        success: res => {
+            let tempFilePath = res.tempFilePath
+            console.log('tempFilePath', tempFilePath)
+            this.showContentText('audio', tempFilePath)
+            // this.setData({
+            //     recordTempFilePath: tempFilePath
+            // })
+        },
+        fail: err => {
+            console.log(err)
+        }
+    })
+    setTimeout(() => {
+        // 结束录音
+        wx.stopRecord()
+    }, 10000)
+}
+//  停止录音
+Createforum.prototype.stopRecord = function () {
+    console.log(2222)
+    wx.stopRecord()
+}
+// 播放
+Createforum.prototype.playAudio = function (e) {
+    console.log(e)
+    const { audioTemp } = e.currentTarget.dataset
+    wx.playVoice({
+        filePath: audioTemp,
+        success: () => {
+            console.log('success')
+        },
+        fail: (err) => {
+            console.log('err', err)
+        },
+        complete: () => {
+            wx.stopVoice()
+        }
+    })
+}
+// 暂停
+Createforum.prototype.pauseAudio = function () {
+    wx.pauseVoice()
+}
+
+
 // 预览图片
 Createforum.prototype.previewImage = function (event) {
     const { currentUrl } = event.currentTarget.dataset
@@ -515,6 +586,4 @@ Createforum.prototype.submit = function () {
         console.error('发表失败', err)
     })
 }
-
-
 module.exports = Createforum

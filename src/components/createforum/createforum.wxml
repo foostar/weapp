@@ -41,6 +41,7 @@
         <block wx:for="{{publishInfo}}" wx:for-index="idx" >
             <template is="classifications" data="{{...children['classificaid'+idx], ...item }}"></template>
         </block>
+
         <!--  展示图文混合 -->
         <scroll-view scroll-y="true" style="height: 200px;" catchtap="createforum_showTools" data-event-key="{{key}}">
             <block wx:for="{{contentText}}" wx:key="contentTextId">
@@ -50,8 +51,17 @@
                 <view class="createforum-publish-view-null" wx:if="{{item.type === 9}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
                 </view>
                 <image class="createforum-publish-view-image" wx:if="{{item.type === 1}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};" src="{{item.value}}" mode="widthFix" />
+
+                <view class="createforum-publish-view-image" wx:if="{{item.type === 3}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
+                    <audio src="{{item.value}}" poster="{{iconSrc}}default_plate.png" data-audio-temp="{{item.value}}" controls data-view-id="{{item.contentTextId}}" bindplay="createforum_playAudio"  bindpause="createforum_pauseAudio" data-event-key="{{key}}"></audio>
+                </view>
+
+                <view wx:if="{{item.type === 4}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
+                    <video src="{{item.value}}"></video>
+                </view>
             </block>
         </scroll-view>
+
     </view>
 
 
@@ -67,10 +77,10 @@
                 <image src="{{iconSrc}}new_publish_@.png" mode="aspectFill"/>
             </view>
             <view class="createforum-list">
-                <image src="{{iconSrc}}new_publish_record.png" mode="aspectFill"/>
+                <image data-type="recordSelected" src="{{iconSrc}}new_publish_record.png" mode="aspectFill"/>
             </view>
             <view class="createforum-list">
-                <image src="{{iconSrc}}new_publish_video.png" mode="aspectFill"/>
+                <image data-type="videoSelected" src="{{iconSrc}}new_publish_video.png" mode="aspectFill"/>
             </view>
             <view class="createforum-list">
                 <image src="{{iconSrc}}new_publish_vote.png" mode="aspectFill"/>
@@ -84,19 +94,16 @@
             <input type="text" value="{{textInputInfo}}" placeholder="说点什么吧。。。。" bindinput="createforum_bindInput" data-event-key="{{key}}"/>
             <button bindtap="createforum_bindconfirm" data-event-key="{{key}}" >完成</button>
         </view>
-
+        <!-- 图片编辑 -->
         <view wx:if="{{pictureSelected}}">
             <scroll-view class="createforum-upload-images-container" scroll-x="true" style="width: 100%">
 
                 <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
                     <view class="createforum-upload-images">
                         <image src="{{item}}" mode="aspectFill" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
-
                         <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="createforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
                     </view>
-
                 </block>
-                
             </scroll-view>
 
             <view>
@@ -104,10 +111,13 @@
                 <button bindtap="createforum_chooseImageOver"  size="mini" data-event-key="{{key}}" >完成</button>
             </view>
         </view>
-
-       
+        <!-- 音乐编辑 -->
+        <view wx:if="{{recordSelected}}">
+            <view>
+                <button bindtouchstart="createforum_startRecord" bindtouchend="createforum_stopRecord" size="mini" data-event-key="{{key}}" >录音</button>
+            </view>
+        </view>
     </view>
-
 
     <view class="createforum-publish-item" >
         <view class="createforum-publish-item-title">板块信息</view>
