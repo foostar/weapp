@@ -10,6 +10,11 @@
     position: relative;
     padding-left: 40rpx;
 }
+.createforum-forum-item-container {
+    height: auto;
+    position: relative;
+    display: block;
+}
 .createforum-forumlist-card-title::after {
     content: '';
     position: absolute;
@@ -103,6 +108,25 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+/* 发帖预览样式 */
+.createforum-publish-view-text {
+    line-height: 48rpx;
+    text-align: left; 
+    padding: 10rpx 20rpx;
+}
+
+.createforum-publish-view-null {
+    width: 100%;
+    height: 48rpx;
+}
+.createforum-publish-view-image {
+    margin: 0 auto;
+    padding: 20rpx;
+}
+
+
+
 .createforum-publish-item-input {
     flex:1;
     padding-left: 20rpx;
@@ -176,6 +200,44 @@
     width: 104rpx;
     height: 104rpx;
     line-height: 104rpx;
+    text-align:center;
+    font-size:60rpx;
+    font-weight:200;
+
+
+}
+
+.createforum-publish-tools-nav .createforum-list image {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 22rpx auto;
+}
+.createforum-upload-images-container {
+    white-space: nowrap;
+    width:100%;
+}
+.createforum-upload-images {
+    width: 125rpx;
+    height: 140rpx;
+    margin: 10rpx;
+    position: relative;
+    display: inline-block;
+}
+
+/* 删除上传图片按钮 */
+.delete-upload-btn {
+    width: 50rpx;
+    height: 50rpx;
+    overflow:hidden;
+    border-radius: 50%;
+    background: rgba(255,0,0,.6);
+    line-height: 50rpx;
+    position: absolute;
+    text-align: center;
+    font-size: 26rpx;
+    color:#fff;
+    top: -5rpx;
+    right: -15rpx;
 }
 
 /* ------------------------- */
@@ -224,19 +286,6 @@
     width:auto;
 }
 
-.createforum-upload-images {
-    width: 128rpx;
-    height: 128rpx;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #e9e9e9;
-    margin-bottom: 10rpx;
-    margin-right:16rpx;
-    overflow: hidden;
-}
-
-
 /* 删除上传图片 */
 .delete-upload-box {
     width: 0;
@@ -244,22 +293,6 @@
     top:-130rpx;
     left:-20rpx;
     position: relative;
-}
-
-/* 删除上传图片按钮 */
-.delete-upload-btn {
-    width: 50rpx;
-    height: 50rpx;
-    overflow:hidden;
-    border-radius: 50%;
-    background: rgba(255,0,0,.6);
-    line-height: 50rpx;
-    position: absolute;
-    text-align: center;
-    font-size: 26rpx;
-    color:#fff;
-    top: -25rpx;
-    left: -25rpx;
 }
 
 .image-upload-btn {

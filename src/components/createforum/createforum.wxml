@@ -18,12 +18,11 @@
                 </view>
             </block>
         </view>
-
     </view>
 </view>
 
 <!-- 分类信息 -->
-<view wx:if="{{isTopicPanel}}">
+<view wx:if="{{!isForumlist && isTopicPanel}}">
     <block wx:for="{{topicPanelList}}">
         <view class="createforum-topic-panel" bindtap="createforum_selectClassInfo" data-event-key="{{key}}" data-classinfoid="{{item.actionId}}" data-classinfoname="{{item.title}}" data-classinfotype="{{item.type}}">
             <view class="createforum-topic-icon">
@@ -42,15 +41,15 @@
         <block wx:for="{{publishInfo}}" wx:for-index="idx" >
             <template is="classifications" data="{{...children['classificaid'+idx], ...item }}"></template>
         </block>
-        <view>hahah : {{selectItemId}}</view>
-        <!-- <textarea class="createforum-publish-textarea" placeholder="说点什么吧..." maxlength="0" bindfocus="textareaFocus" bindblur="createforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea> -->
-        <!-- <view bindtap="createforum_showTools" data-event-key="{{key}}" >hahahah</view> -->
+        <!--  展示图文混合 -->
         <scroll-view scroll-y="true" style="height: 200px;" catchtap="createforum_showTools" data-event-key="{{key}}">
             <block wx:for="{{contentText}}" wx:key="contentTextId">
-                <view wx:if="{{item.type === 0}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
+                <view class="createforum-publish-view-text" wx:if="{{item.type === 0}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
                     {{item.value}}
                 </view>
-                <image wx:if="{{item.type === 1}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};" src="{{item.value}}" mode="widthFix" />
+                <view class="createforum-publish-view-null" wx:if="{{item.type === 9}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
+                </view>
+                <image class="createforum-publish-view-image" wx:if="{{item.type === 1}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};" src="{{item.value}}" mode="widthFix" />
             </block>
         </scroll-view>
     </view>
@@ -58,13 +57,27 @@
 
     <view class="createforum-publish-tools weapp-border-top" hidden="{{!showInputTools}}">
         <view class="createforum-publish-tools-nav weapp-border-bottom" catchtap="createforum_changeInputType" data-event-key="{{key}}" >
-            <view class="createforum-list" data-type="textInput">A</view>
-            <view class="createforum-list" data-type="pictureSelected">图片</view>
-            <view class="createforum-list">@</view>
-            <view class="createforum-list">语音</view>
-            <view class="createforum-list">视频</view>
-            <view class="createforum-list">投票</view>
-            <view class="createforum-list" data-type="hidden">隐藏</view>
+            <view class="createforum-list" data-type="textInput">
+                A
+            </view>
+            <view class="createforum-list">
+                <image src="{{iconSrc}}new_publish_pic.png" data-type="pictureSelected" mode="aspectFill"/>
+            </view>
+            <view class="createforum-list">
+                <image src="{{iconSrc}}new_publish_@.png" mode="aspectFill"/>
+            </view>
+            <view class="createforum-list">
+                <image src="{{iconSrc}}new_publish_record.png" mode="aspectFill"/>
+            </view>
+            <view class="createforum-list">
+                <image src="{{iconSrc}}new_publish_video.png" mode="aspectFill"/>
+            </view>
+            <view class="createforum-list">
+                <image src="{{iconSrc}}new_publish_vote.png" mode="aspectFill"/>
+            </view>
+            <view class="createforum-list" >
+                <image src="{{iconSrc}}new_publish_close.png" data-type="hidden" mode="aspectFill"/>
+            </view>
         </view>
         <!-- 文本编辑 -->
         <view  wx:if="{{textInput}}">
@@ -73,14 +86,23 @@
         </view>
 
         <view wx:if="{{pictureSelected}}">
-            <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
-                <image wx:if="{{idx < 9}}" src="{{item}}" style="{{idx === 4  ? 'margin-right: 0': ''}}" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
-                <view class="delete-upload-box">
-                    <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="createforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
-                </view>
-            </block>
-            <view wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="createforum_chooseImg" data-event-key="{{key}}" />
-            <text bindtap="createforum_chooseImageOver" data-event-key="{{key}}" >完成</text>
+            <scroll-view class="createforum-upload-images-container" scroll-x="true" style="width: 100%">
+
+                <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
+                    <view class="createforum-upload-images">
+                        <image src="{{item}}" mode="aspectFill" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
+
+                        <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="createforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
+                    </view>
+
+                </block>
+                
+            </scroll-view>
+
+            <view>
+                <button bindtap="createforum_chooseImg" size="mini" data-event-key="{{key}}">添加图片</button>
+                <button bindtap="createforum_chooseImageOver"  size="mini" data-event-key="{{key}}" >完成</button>
+            </view>
         </view>
 
        

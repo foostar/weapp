@@ -25,6 +25,7 @@ function Createforum(key, module) {
         contentTextId: 0,  // 发帖内容上下文id
         selectItemId: null, // 选中二次编辑 id
         textInputInfo: null, // 输入文本的内容
+        imageInputInfo: null, // 图片进行编辑
         title: '',
         imagelist: [],
         deleteUrl: '',
@@ -253,9 +254,17 @@ Createforum.prototype.showTools = function (e) {
             })
         }
         if (updateInfo.type === 1) {
+            let imagelist = []
+            imagelist.push(updateInfo.value)
             this.setData({
                 selectItemId: viewId,
-                imageInputInfo: updateInfo.value
+                // imageInputInfo: updateInfo.value
+                imagelist
+            })
+        }
+        if (updateInfo.type === 9) {
+            this.setData({
+                selectItemId: viewId
             })
         }
     }
@@ -279,45 +288,80 @@ Createforum.prototype.showContentText = function (type, value) {
     let update = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null
     /* eslint-enable */
     let { contentTextId, contentText } = this.data
+    // 0=文本 1=图片附件 3=音频 4=视频 9=空白插入点
+    const typeObj = {
+        text: 0,
+        pictrue: 1,
+        audio: 3,
+        video: 4,
+        insert: 9
+    }
+    let contentItem = { type: 10 }
+    let contentIndex = 0
 
-    if (value) {
-        // 0=文本 1=图片附件 3=音频 4=视频
-        var typeObj = {
-            text: 0,
-            pictrue: 1,
-            audio: 3,
-            video: 4
-        }
-        if (update) {
-            contentText.map(item => {
-                if (item.contentTextId == update.selectItemId) {
-                    return item.value = value
-                }
-                return item
-            })
-            this.setData({
-                contentText,
-                selectItemId: null,
-                textInputInfo: null
-            })
-        } else {
-            contentTextId += 1
-            console.log('contentTextId', contentTextId)
-            contentText.push({ value, type: typeObj[type], contentTextId })
-            this.setData({
-                contentText,
-                contentTextId,
-                textInputInfo: null
-            })
-        }
+    if (update) {
+        contentText.forEach((item, index) => {
+            if (item.contentTextId == update.selectItemId) {
+                contentItem = item
+                contentIndex = index
+            }
+        })
+    }
+    // 制定几点插入
+    if (contentItem.type === 9 && update && value) {
+        contentIndex += 1
+        contentTextId += 1
+        contentText.splice(contentIndex, 0, { value, type: typeObj[type], contentTextId })
+        contentIndex += 1
+        contentTextId += 1
+        contentText.splice(contentIndex, 0, { value: null, type: 9, contentTextId })
+        this.setData({
+            contentText,
+            contentTextId,
+            selectItemId: null,
+            textInputInfo: null
+        })
+    } else if (update && value) {
+        // 修改编辑
+        contentText[contentIndex].value = value
+        this.setData({
+            contentText,
+            selectItemId: null,
+            textInputInfo: null
+        })
+    } else if (update && !value) {
+        // 删除元素
+        contentText.splice(contentIndex, 1)
+        contentText.splice(contentIndex, 1)
+        this.setData({
+            contentText,
+            selectItemId: null,
+            textInputInfo: null
+        })
+    } else {
+        contentTextId += 1
+        contentText.push({ value, type: typeObj[type], contentTextId })
+        contentTextId += 1
+        contentText.push({ value: null, type: 9, contentTextId })
+        this.setData({
+            contentText,
+            contentTextId,
+            textInputInfo: null
+        })
     }
 }
 
 // 选择图展示
-Createforum.prototype.chooseImageOver = function (e) {
-    console.log('选择图展示', e)
-    let imagelist = this.data.imagelist || []
+Createforum.prototype.chooseImageOver = function () {
+    const { selectItemId, imagelist = [] } = this.data
+    console.log(111, selectItemId, imagelist)
+    if (imagelist.length === 0 && selectItemId) {
+        return this.showContentText('pictrue', null, { selectItemId })
+    }
     imagelist.map(url => {
+        if (selectItemId) {
+            return this.showContentText('pictrue', url, { selectItemId })
+        }
         return this.showContentText('pictrue', url)
     })
 
@@ -340,6 +384,7 @@ Createforum.prototype.bindInput = function (e) {
 Createforum.prototype.bindconfirm = function () {
     const { selectItemId, textInputInfo } = this.data
     if (selectItemId) {
+        console.log('updata1111', selectItemId)
         return this.showContentText('text', textInputInfo, { selectItemId })
     }
     return this.showContentText('text', textInputInfo)
