@@ -20,7 +20,7 @@
 <view class="liststyle-container" wx:if="{{ searchType == 'post' }}">
     <block wx:for="{{postList}}" wx:key="{{index}}">
         <view bindtap="search_showPost"  data-event-key="{{key}}" id="{{item.id}}">
-            <template is="flat" data="{{...item, iconSrc}}" />
+            <template is="flat" data="{{ iconSrc, ...item }}" />
         </view>
     </block>
 </view>
@@ -29,7 +29,7 @@
 <view class="liststyle-container" wx:if="{{ searchType == 'article' }}">
     <block wx:for="{{articleList}}" wx:key="{{index}}">
         <view bindtap="search_showArticle" data-event-key="{{key}}" id="{{item.id}}">
-            <template is="flat" data="{{...item, iconSrc}}" />
+            <template is="flat" data="{{iconSrc, ...item}}" />
         </view>
     </block>
 </view>

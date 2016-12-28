@@ -15,7 +15,7 @@
 <view class="subnav-content-container">
     <block wx:for="{{tabs}}" wx:key="{{item.id}}">
         <view hidden="{{(selected === item.id || animating) ? false : true}}" class="subnav-content">
-            <template wx:if="{{children[item.id]}}" is="{{children[item.id].template}}" data="{{...children[item.id]}}" />
+            <template wx:if="{{children[item.id]}}" is="{{children[item.id].template}}" data="{{tmptitle:'subnavflat', ...children[item.id]}}" />
         </view>
     </block>
 </view>

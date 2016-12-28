@@ -45,7 +45,6 @@ const completeId = (module) => {
 
 App({
     onLaunch() {
-        console.log('onLaunch')
         // 添加监听事件
         const event = this.event = new Events()
         event.trigger('launch')

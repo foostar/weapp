@@ -22,6 +22,7 @@ const genConfig = (appId, config) => {
 program
     .version(require('../package.json').version)
     .option('-e, --env', 'dev')
+    .option('-m, --manage', 'wxadmin')
     .parse(process.argv)
     .command('init [appId]')
     .description('初始化小程序配置')
@@ -33,6 +34,9 @@ program
         }
         /* eslint-enable */
         const { config, appList } = env
+        if (program.manage) {
+            config.HOST = 'https://weapp-admin.apps.xiaoyun.com'
+        }
         if (appId) {
             genConfig(appId, config)
         }

@@ -32,7 +32,7 @@
     <block wx:else>
 
         <block  wx:for="{{list}}" >
-            <template is="card" data="{{...item, iconSrc}}"></template>
+            <template is="card" data="{{iconSrc, ...item }}"></template>
         </block>
         <!-- 加载中 -->
         <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>

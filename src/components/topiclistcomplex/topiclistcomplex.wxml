@@ -16,7 +16,7 @@
     </view>
     <block wx:for="{{resources.list}}" wx:key="{{item.id}}">
         <view wx:if="{{showList}}" bindtap="topiclistcomplex_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user.id}}">
-            <template is="{{style}}" data="{{...item, iconSrc }}" />
+            <template is="{{style}}" data="{{iconSrc, ...item  }}" />
         </view>
     </block>
     <block wx:for="{{boardChild}}" wx:key="{{index}}">
