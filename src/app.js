@@ -213,6 +213,7 @@ App({
                 modules[x.id] = x
                 x.componentList.forEach(completeId)
             })
+            this.wechartUserLogin()
             this.config = CONFIG
             return this.globalData
         }, (err) => {
@@ -245,17 +246,42 @@ App({
     wxLogin() {
         const self = this
         return new Promise((resolve, reject) => {
-            // 调用微信登录接口
-            return wx.login({
-                success(res) {
-                    return self.api.initLogin(res.code)
-                        .then(({ token }) => {
-                            self.globalData.wxtoken = token
-                            return resolve()
-                        }, () => reject())
-                }
-            })
+            console.log(22222, self.globalData.wxtoken)
+            return this.api.checkLogin(self.globalData.wxtoken)
+                .then(() => resolve(), () => {
+                    console.log(111111)
+                    // 调用微信登录接口
+                    return wx.login({
+                        success(res) {
+                            return self.api.initLogin(res.code)
+                                .then(({ token }) => {
+                                    self.globalData.wxtoken = token
+                                    return resolve()
+                                }, () => reject())
+                        }
+                    })
+                })
         })
+    },
+
+    // 微信直接登陆
+    wechartUserLogin() {
+        this.api.wxLogin(Object.assign({}, { token: this.globalData.wxtoken }, this.globalData.wxchat_bind_info))
+            .then(res => {
+                console.log('success', res)
+                if (!res.errcode) {
+                    this.globalData.userInfo = res
+                    this.api.token = res.token
+                    this.api.secret = res.secret
+                    this.event.trigger('login', res)
+                    try {
+                        wx.setStorageSync('userInfo', res)
+                        // wx.navigateBack()
+                    } catch (err) {
+                        console.log(err)
+                    }
+                }
+            }, err => console.log('err', err))
     },
 
     // 验证微信用户信息
@@ -275,6 +301,7 @@ App({
     createForum(param) {
         if (this.isLogin()) {
             const data = JSON.stringify(param)
+            console.log(555, data)
             wx.navigateTo({
                 url: `/pages/blank/blank?type=createforum&data=${data}`
             })
@@ -289,18 +316,14 @@ App({
     },
     showTopic(param) {
         const { eventKey, id, title } = param
-        this.globalData.moduleData = {
-            componentList: [],
-            extParams: {
-                forumId: id
-            },
-            title,
-            style: 'flat',
-            id: eventKey,
-            type: 'topiclistComplex'
-        }
         wx.navigateTo({
-            url: '/pages/blank/blank'
+            url: `/pages/blank/blank?type=topiclistComplex&data=${JSON.stringify({
+                extParams: {
+                    forumId: id
+                },
+                title,
+                id: eventKey
+            })}`
         })
     },
     getSystemInfo() {

@@ -26,6 +26,7 @@ Topic.prototype = Object.create(ListComponent.prototype)
 Topic.prototype.name = 'topic'
 Topic.prototype.constructor = Topic
 
+
 Topic.prototype.fetchData = function (param, number) {
     const currentIndex = parseInt(this.data.currentIndex, 10)
     // NEW HOT
@@ -126,6 +127,17 @@ Topic.prototype.handleEditClick = function (e) {
         isTopic: true,
         actType: 'new'
     })
+}
+
+Topic.prototype.onShareAppMessage = function () {
+    const { tpcinfo: { ti_title: title, ti_content: desc } } = this.data
+    let path = `/pages/blank/blank?type=topic&data=${JSON.stringify({ id: this.papeData.id })}`
+    console.log(title, path, desc)
+    return {
+        title,
+        desc,
+        path
+    }
 }
 
 module.exports = Topic
