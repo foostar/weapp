@@ -17,19 +17,20 @@ Page(createPage({
         golbalFetch: true
     },
     onLoad(data) {
+        if (data.data) {
+            data.data = decodeURIComponent(data.data)
+        }
         let module
         if (data.type) {
             module = {
                 componentList: [],
-                extParams: {},
-                title: '',
-                id: data.type,
-                style: 'flat',
+                extParams: data.extParams || {},
+                title: data.title || '',
+                id: data.eventKey || data.type,
+                style: data.style || 'flat',
                 type: data.type,
                 data: data.data ? JSON.parse(data.data) : ''
             }
-        } else {
-            module = app.globalData.moduleData
         }
         // 检测是否支持当前版块
         pagetype.forEach((v) => {
@@ -44,7 +45,9 @@ Page(createPage({
             }
         })
         // 加载module
-        this.add(new Viewer('viewer', module))
+        app.ready().then(() => {
+            this.add(new Viewer('viewer', module))
+        })
     },
     imageLoaded(e) {
         console.log(111)
