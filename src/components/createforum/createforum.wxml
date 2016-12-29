@@ -35,6 +35,10 @@
 
 <!-- 发帖 -->
 <block wx:if="{{!isForumlist && !isTopicPanel && isPublish}}">
+    <view class="createforum-publish-item weapp-border-bottom" >
+        <view class="createforum-publish-item-title">板块信息</view>
+        <view >{{ boardname +'  '+ classinfoname}}</view>
+    </view>
     <view class="createforum-publish-content">
         <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
 
@@ -71,10 +75,13 @@
             <view class="createform-list-item-1">
                 <scroll-view scroll-x="true">
                     <view class="createforum-list" >
-                        <view data-type="pictureSelected">A</view>
+                        <view data-type="textInput">A</view>
                     </view>
                     <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_pic.png" data-type="pictureSelected" mode="aspectFill"/>
+                    </view>
+                    <view class="createforum-list" wx:if="{{topicList.length > 0 }}">
+                        <view data-type="topicListSelected">主</view>
                     </view>
                     <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_@.png" mode="aspectFill"/>
@@ -129,21 +136,27 @@
                 <button bindtouchstart="createforum_startRecord" bindtouchend="createforum_stopRecord" size="mini" data-event-key="{{key}}" >录音</button>
             </view>
         </view>
+        <!-- 主题 -->
+        <view wx:if="{{topicListSelected}}">
+            <view class="createforum-topic-list">
+                <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="id">
+                    <view class="createforum-topic-item {{selectTopicId == topic.id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.id}}">{{topic.name}}</view>
+                </block>
+            </view>
+        </view>
+
     </view>
 
-    <view class="createforum-publish-item" >
-        <view class="createforum-publish-item-title">板块信息</view>
-        <view >{{ boardname +'  '+ classinfoname}}</view>
-    </view>
+    
 
-    <view wx:if="{{topicList.length}}" class="createforum-publish-topicList">
+    <!-- <view wx:if="{{topicList.length}}" class="createforum-publish-topicList">
         <view class="createforum-topic-label">主题</view>
         <view class="createforum-topic-list">
             <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="id">
                 <view class="createforum-topic-item {{selectTopicId == topic.id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.id}}">{{topic.name}}</view>
             </block>
         </view>
-    </view>
+    </view> -->
 
     <button bindtap="createforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>
 </block>

@@ -245,7 +245,6 @@ App({
     wxLogin() {
         const self = this
         return new Promise((resolve, reject) => {
-            console.log(22222, self.globalData.wxtoken)
             return this.api.checkLogin(self.globalData.wxtoken)
                 .then(() => resolve(), () => {
                     console.log(111111)

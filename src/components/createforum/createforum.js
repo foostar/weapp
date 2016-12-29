@@ -6,7 +6,6 @@ const app = getApp()
 const { fns: { omitBy, isNil } } = require('../../lib/mobcent.js')
 
 function Createforum(key, module) {
-    console.log(1111)
     this.pageData = module.data ? module.data : ''
     Component.call(this, key)
     this.data = {
@@ -75,6 +74,7 @@ Createforum.prototype.onLoad = function () {
     return promise.then(fid => {
         return this.getTopicPanelList(fid)
     }).then(topicPanelList => {
+        console.log('topicPanelList', topicPanelList)
         if (topicPanelList && topicPanelList.length > 0) {
             this.setData({
                 isTopicPanel: true
@@ -84,7 +84,9 @@ Createforum.prototype.onLoad = function () {
     }).then(() => {
         this.changePageTitle()
         this.getTopicList()
+        this.getAtUserlist()
     })
+    .catch(e => console.log('init createforum', e))
 
 
     // if (app.globalData.userInfo) {
@@ -158,25 +160,32 @@ Createforum.prototype.changePageTitle = function () {
 Createforum.prototype.getTopicList = function () {
     const { fid: topicId } = this.data
     app.api.forum(topicId).then(res => {
-        console.log(res)
         this.setData({
-            topicList: res.typeInfo
+            topicList: res.typeInfo,
+            boardname: res.forum.name
         })
+    })
+}
+
+// @好友列表
+Createforum.prototype.getAtUserlist = function () {
+    app.api.atuserlist().then(res => {
+        console.log('userlist', res)
     })
 }
 
 // 得到分类信息
 Createforum.prototype.getTopicPanelList = function (fid) {
-    return app.api.topiclist({ boardId: fid }).then(res => {
+    return app.api.forum(fid).then(res => {
         let data = {
             isTopicPanel: true,
-            topicPanelList: res.newTopicPanel
+            topicPanelList: res.panel
         }
-        if (res.newTopicPanel.length === 1 && res.newTopicPanel[0].type === 'normal') {
+        if (res.panel.length === 1 && res.panel[0].type === 'normal') {
             data.isTopicPanel = false
         }
         this.setData(data)
-        return res.newTopicPanel
+        return res.panel
     })
 }
 
@@ -184,7 +193,6 @@ Createforum.prototype.getTopicPanelList = function (fid) {
 Createforum.prototype.selectClassInfo = function (e) {
     const { classinfoid, classinfoname, classinfotype } = e.currentTarget.dataset
     let self = this
-
     if (classinfoid) {
         // 发帖样式
         return app.api.classify(classinfoid).then(res => {
@@ -237,8 +245,8 @@ Createforum.prototype.changeInputType = function (e) {
         pictureSelected: false,
         recordSelected: false,
         videoSelected: false,
+        topicListSelected: false,
         hidden: true
-
     }
     const { type } = e.target.dataset
     obj[type] = true
