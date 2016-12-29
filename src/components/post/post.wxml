@@ -1,7 +1,7 @@
 <template name="post-div">
     <view class="{{'align-' + (attribs.align || 'left')}}">
         <block wx:for="{{childNodes}}" wx:key="{{index}}">
-            <template is="{{'post-' + item.tagName}}" data="{{...item}}" />
+            <template is="{{'post-' + item.tagName}}" data="{{tmptitle:'post', ...item}}" />
         </block>
     </view>
 </template>
@@ -13,7 +13,7 @@
                 <template is="post-font-2" data="{{...item}}" />
             </block>
             <text wx:elif="{{item.value}}">{{item.value}}</text>
-            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{tmptitle:'post', ...item}}" />...item}}" />
         </block>
     </view>
 </template>
@@ -22,7 +22,7 @@
     <view>
         <block wx:for="{{childNodes}}" wx:key="{{index}}">
             <text wx:if="{{item.value}}">{{item.value}}</text>
-            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{tmptitle:'post', ...item}}" />...item}}" />
         </block>
     </view>
 </template>
@@ -34,7 +34,7 @@
                 <template is="post-font-1" data="{{...item}}" />
             </block>
             <text wx:elif="{{item.value}}">{{item.value}}</text>
-            <template wx:else is="{{'post-' + item.tagName}}" data="{{...item}}" />
+            <template wx:else is="{{'post-' + item.tagName}}" data="{{tmptitle:'post', ...item}}" />...item}}" />
         </block>
     </view>
 </template>
@@ -113,7 +113,7 @@
             </block> -->
             <!-- <view class="hits-number">浏览{{topic.hits}}人</view> -->
             <view class="topic-comment-info">
-                <view class="post-hits hits-number" style="background-image: url({{iconsrc}}dz_list_circle_pv.png)">浏览{{views}}人</view>
+                <view class="post-hits hits-number" style="background: url({{iconsrc}}dz_list_circle_pv.png) no-repeat 0 2rpx;background-size:32rpx auto;;">浏览{{views}}人</view>
                 <view class="post-manage" style="background: url({{iconsrc}}dz_posts_arrow.png) no-repeat center center;background-size:28rpx auto;" data-id="{{userId}}" bindtap="post_actionSheetTap" data-event-key="{{key}}"></view>
             </view>
         </view>

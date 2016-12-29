@@ -227,9 +227,9 @@
 
 
 <template name="module_2">
-    <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
+    <template is="{{children[moduleId].template}}" data="{{tmptitle:'module_2', ...children[moduleId]}}" />
 </template>
 
 <template name="module">
-    <template is="{{children[moduleId].template}}" data="{{...children[moduleId]}}" />
+    <template is="{{children[moduleId].template}}" data="{{tmptitle:'module', ...children[moduleId]}}" />
 </template>

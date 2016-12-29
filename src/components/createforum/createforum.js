@@ -6,6 +6,7 @@ const app = getApp()
 const { fns: { omitBy, isNil } } = require('../../lib/mobcent.js')
 
 function Createforum(key, module) {
+    console.log(1111)
     this.pageData = module.data ? module.data : ''
     Component.call(this, key)
     this.data = {
@@ -53,6 +54,7 @@ Createforum.prototype.onLoad = function () {
         isTopic: false,
         tiId: null
     }, opts)
+
     // 判断是否有版块 fid 有值
     if (data.fid) {
         data.isForumlist = false
@@ -156,8 +158,9 @@ Createforum.prototype.changePageTitle = function () {
 Createforum.prototype.getTopicList = function () {
     const { fid: topicId } = this.data
     app.api.forum(topicId).then(res => {
+        console.log(res)
         this.setData({
-            topicList: res.classificationType_list
+            topicList: res.typeInfo
         })
     })
 }
@@ -564,14 +567,16 @@ Createforum.prototype.submit = function () {
         }
     })
     .then(data => {
-        return app.api.createTopic(Object.assign({
+        data = Object.assign({
             isShowPostion: 0, // 是否显示地理位置
             act: actType,
             fid: selectType,
             typeId: selectTopicId,
             ti_id: tiId,
             title: encodeURIComponent(title)
-        }, data)).then(() => {
+        }, data)
+        console.log(11111, data)
+        return app.api.createTopic(data).then(() => {
             wx.showToast({
                 title: '发布成功',
                 icon: 'success',

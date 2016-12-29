@@ -2,6 +2,6 @@
 
 <view class="layouttransparent">
     <block wx:for="{{keys}}" wx:key="{{item}}">
-        <template is="{{children[item].template}}" data="{{...children[item]}}" />
+        <template is="{{children[item].template}}" data="{{tmptitle:'layouttransparent', ...children[item]}}" />
     </block>
 </view>

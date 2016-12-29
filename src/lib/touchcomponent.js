@@ -69,4 +69,5 @@ function TouchComponent(key, module) {
 TouchComponent.prototype = Object.create(Component.prototype)
 TouchComponent.prototype.constructor = TouchComponent
 
+
 module.exports = TouchComponent

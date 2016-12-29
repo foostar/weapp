@@ -40,6 +40,7 @@
 
         <block wx:for="{{publishInfo}}" wx:for-index="idx" >
             <template is="classifications" data="{{...children['classificaid'+idx], ...item }}"></template>
+
         </block>
 
         <!--  展示图文混合 -->
@@ -138,8 +139,8 @@
     <view wx:if="{{topicList.length}}" class="createforum-publish-topicList">
         <view class="createforum-topic-label">主题</view>
         <view class="createforum-topic-list">
-            <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="classificationType_id">
-                <view class="createforum-topic-item {{selectTopicId == topic.classificationType_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.classificationType_id}}">{{topic.classificationType_name}}</view>
+            <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="id">
+                <view class="createforum-topic-item {{selectTopicId == topic.id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.id}}">{{topic.name}}</view>
             </block>
         </view>
     </view>

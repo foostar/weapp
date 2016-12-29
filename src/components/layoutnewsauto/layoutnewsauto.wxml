@@ -2,7 +2,7 @@
 <view class="layoutnewsauto">
     <block wx:for="{{componentList}}" wx:key="{{index}}">
         <view data-index="{{ index }}" bindtap="layoutnewsauto_clickItem" data-event-key="{{key}}" id="{{item.topicId}}" data-user="{{item.user.id}}">
-            <template is="{{item.style}}" data="{{...item}}" />
+            <template is="{{item.style}}" data="{{tmptitle:'layoutnewsauto', ...item}}" />
         </view>
     </block>
 </view>

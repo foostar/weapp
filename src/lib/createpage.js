@@ -60,6 +60,7 @@ function createPage(config) {
     const onReady = config.onReady
     const onShow = config.onShow
     const onHide = config.onHide
+    const onShareAppMessage = config.onShareAppMessage
     // const onReachBottom = config.onReachBottom
 
     // const getter = Component.prototype.__lookupGetter__('children')
@@ -161,6 +162,18 @@ function createPage(config) {
             /* eslint-enable */
         }
         this.trigger('hide')
+    }
+
+    config.onShareAppMessage = function () {
+        const children = this.children
+        Object.keys(children).forEach((key) => {
+            children[key].unload()
+        })
+        if (onShareAppMessage) {
+            /* eslint-disable */
+            onShareAppMessage.apply(this, arguments)
+            /* eslint-enable */
+        }
     }
     return config
 }
