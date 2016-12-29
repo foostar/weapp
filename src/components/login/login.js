@@ -36,13 +36,14 @@ Login.prototype.toLogin = function (e) {
     username = encodeURIComponent(username)
     const { loginType: type } = this.module.data
     if (type === 'bindolduser') {
+        const wxtoken = app.globalData.wxtoken
         return app.api.bindPlatform(Object.assign({ token: app.globalData.wxtoken, username, password }, app.globalData.wxchat_bind_info))
             .then(res => {
-                console.log('success', res)
                 app.globalData.userInfo = res.body
                 app.api.token = res.body.token
                 app.api.secret = res.body.secret
                 app.event.trigger('login', res.body)
+                Object.assign(res.body, { wxtoken })
                 try {
                     wx.setStorageSync('userInfo', res.body)
                     wx.navigateBack()
@@ -50,7 +51,6 @@ Login.prototype.toLogin = function (e) {
                     console.log(err)
                 }
             }, err => {
-                console.log('err', err)
                 if (err.data.msg.isValidation == 1) {
                     return wx.redirectTo({
                         url: `/pages/blank/blank?type=verifymobile&data=${JSON.stringify({ username, password, type: 'bindPlatform' })}`
@@ -60,7 +60,6 @@ Login.prototype.toLogin = function (e) {
     }
     return app.api.signin({ username, password, isValidation: 1 })
     .then(res => {
-        console.log('success', res)
         if (res.isValidation == 0) {
             app.globalData.userInfo = res
             app.api.token = res.token

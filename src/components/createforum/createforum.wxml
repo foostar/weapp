@@ -158,5 +158,5 @@
         </view>
     </view> -->
 
-    <button bindtap="createforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>
+    <!-- <button bindtap="createforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button> -->
 </block>
