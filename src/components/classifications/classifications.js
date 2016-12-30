@@ -10,12 +10,11 @@ function Classifications(key, itemData) {
         chooseShow: true,
         trasformStyle: 'transform: rotate(90deg);',
         selectedStyle: `color: #fff; background: #${app.config.COLOR};`,
-        testareaClass: 'margin-top:calc(50% - 32rpx);',
         appColor: `#${app.config.COLOR}`,
         iconSrc: app.globalData.iconSrc,
         selectedChoices: [],
-        tempFilePaths: null
-
+        tempFilePaths: null,
+        inputValue: ''
     }
 }
 
@@ -25,7 +24,18 @@ Classifications.prototype.constructor = Classifications
 
 
 Classifications.prototype.onLoad = function () {
-    const { classifiedType } = this.itemData
+    const { classifiedType, classifiedName } = this.itemData
+    this.setData({
+        classifiedType,
+        classifiedName
+    })
+
+    if (classifiedType === 2 || classifiedType === 4) {
+        this.setData({
+            inputValue: 0
+        })
+    }
+
     if (classifiedType === 3) {
         let { classifiedRules: { choices } } = this.itemData
         choices.map((item) => {
@@ -41,7 +51,8 @@ Classifications.prototype.onLoad = function () {
 Classifications.prototype.bindPickerChange = function (event) {
     let { value } = event.detail
     this.setData({
-        radioIndex: value
+        radioIndex: value,
+        inputValue: value
     })
 }
 // 多选
@@ -68,10 +79,24 @@ Classifications.prototype.uploadpicture = function () {
         success: (res) => {
             var tempFilePaths = res.tempFilePaths
             this.setData({
-                tempFilePaths
+                tempFilePaths,
+                inputValue: tempFilePaths
             })
         }
-
+    })
+}
+// 文本输入内容
+Classifications.prototype.bindInputChange = function (event) {
+    let { value } = event.detail
+    this.setData({
+        inputValue: value
+    })
+}
+// 文本框输入
+Classifications.prototype.bindTextareaChange = function (event) {
+    let { value } = event.detail
+    this.setData({
+        inputValue: value
     })
 }
 

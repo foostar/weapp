@@ -4,9 +4,9 @@
     <view class="createforum-publish-item weapp-border-bottom">
         <view class="createforum-publish-item-title">{{classifiedTitle}}:</view>
         <view class="createforum-publish-item-input">
-            <input wx:if="{{classifiedRules.isnumber}}" bindinput="{{classifications_bindInputChange}}" data-event-key="{{key}}" type="number" placeholder="请输入数字" />
-            <input wx:if="{{classifiedRules.isdate}}" bindinput="{{classifications_bindInputChange}}" data-event-key="{{key}}" type="text" type="date" placeholder="{{classifiedRules.defaultvalue}}" />
-            <input wx:if="{{!classifiedRules.isdate && !classifiedRules.isnumber}}" bindinput="{{classifications_bindInputChange}}" data-event-key="{{key}}" type="text" type="date" placeholder="{{required ? '必填': '选填'}}" />
+            <input wx:if="{{classifiedRules.isnumber}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="number" placeholder="请输入数字" />
+            <input wx:if="{{classifiedRules.isdate}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="text" type="date" placeholder="{{classifiedRules.defaultvalue}}" />
+            <input wx:if="{{!classifiedRules.isdate && !classifiedRules.isnumber}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="text" type="date" placeholder="{{required ? '必填': '选填'}}" />
         </view>
     </view>
 </view>
@@ -48,7 +48,7 @@
     <view class="createforum-publish-item weapp-border-bottom">
         <view class="createforum-publish-item-title">{{classifiedTitle}}:</view>
         <view class="createforum-publish-item-input">
-            <textarea placeholder="请填写内容" placeholder-style="{{testareaClass}}">
+            <textarea placeholder="请填写内容"  bindinput="classifications_bindTextareaChange" data-event-key="{{key}}" bindconfirm="">
             </textarea>
         </view>
     </view>
@@ -60,7 +60,7 @@
         <view class="createforum-publish-item-title">{{classifiedTitle}}:</view>
         <view class="createforum-publish-item-picture" bindtap="classifications_uploadpicture" data-event-key="{{key}}">
             <image wx:if="{{tempFilePaths}}" class="createforum-publish-picture-img" src="{{tempFilePaths}}"></image>
-            <view wx:else class="createforum-publish-picture-img" style="background-image:url({{ iconSrc}}dz_camera_icon.png)"></view>
+            <image wx:else class="createforum-publish-picture-img" src="{{ iconSrc}}dz_camera_icon.png"></image>
         </view>
     </view>
     

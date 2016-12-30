@@ -127,7 +127,7 @@ function createPage(config) {
             onReady.apply(this, arguments)
             /* eslint-enable */
         }
-
+        this.setData({})
         const children = this.children
         Object.keys(children).forEach((key) => {
             children[key].ready()

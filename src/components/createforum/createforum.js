@@ -19,7 +19,6 @@ function Createforum(key, module) {
         showInputTools: false,  // 是否显示发帖工具栏
         userInfo: {},
         tempFilePaths: '',
-        selectType: null,
         publishInfo: {},  // 分类信息内容
         contentText: [],  // 发帖内容上下问
         contentTextId: 0,  // 发帖内容上下文id
@@ -35,8 +34,10 @@ function Createforum(key, module) {
         tiId: null,
         fid: null,
         appColor: `#${app.config.COLOR}`,
-        topicList: [],
-        // selectTopicId: '',
+        topicList: [],     // 主题列表
+        titopicList: [],     // 话题列表
+        selectTopicId: '',  // 选择主题id
+        selectTiTopicId: '',  // 选择话题id
         // isfocus: false   // textarea 焦点
     }
 }
@@ -74,14 +75,18 @@ Createforum.prototype.onLoad = function () {
     return promise.then(fid => {
         return this.getTopicPanelList(fid)
     }).then(topicPanelList => {
-        console.log('topicPanelList', topicPanelList)
         if (topicPanelList && topicPanelList.length > 0) {
             this.setData({
                 isTopicPanel: true
             })
         }
-        return
-    }).then(() => {
+        return app.api.search('', 'topic', { searchid: data.fid })
+    }).then((res) => {
+        // 话题列表
+        this.setData({
+            titopicList: res.list
+        })
+
         this.changePageTitle()
         this.getTopicList()
         this.getAtUserlist()
@@ -97,29 +102,6 @@ Createforum.prototype.onLoad = function () {
     //     })
     // } else {
     //     console.info('no auth')
-    // }
-
-    // 当没有版块ID时 需要获取板块列表
-    // if (!data.fid && !data.isTopic) {
-    //     app.api.forumList().then((res) => {
-    //         const { list } = res
-    //         const selectType = list[0].board_list[0].board_id
-    //         const selectNameArray = [] // [...Array(10).keys()]
-    //         const selectValueArray = []
-    //         list.forEach(categoryList => categoryList.board_list.forEach((board) => {
-    //             selectNameArray.push(`${categoryList.board_category_name}/${board.board_name}`)
-    //             selectValueArray.push(board.board_id)
-    //         }))
-    //         Object.assign(data, { selectNameArray, selectValueArray, selectType, selectTopicId: '' })
-    //         this.setData(data)
-    //         this.getTopicList()
-    //     })
-    // } else if (data.isTopic) {
-    //     this.setData(Object.assign(data, { selectType: data.fid }))
-    // } else {
-    //     Object.assign(data, { selectType: data.fid })
-    //     this.setData(data)
-    //     this.getTopicList()
     // }
 }
 
@@ -177,6 +159,7 @@ Createforum.prototype.getAtUserlist = function () {
 // 得到分类信息
 Createforum.prototype.getTopicPanelList = function (fid) {
     return app.api.forum(fid).then(res => {
+        console.log(555, res)
         let data = {
             isTopicPanel: true,
             topicPanelList: res.panel
@@ -196,6 +179,7 @@ Createforum.prototype.selectClassInfo = function (e) {
     if (classinfoid) {
         // 发帖样式
         return app.api.classify(classinfoid).then(res => {
+            console.log(22222, res, classinfoid)
             this.setData({
                 classinfoid,
                 classinfoname,
@@ -223,7 +207,6 @@ Createforum.prototype.selectClassInfo = function (e) {
 // 单选选择器
 Createforum.prototype.bindPickerChange = function (event) {
     let { value } = event.detail
-    console.log('value', value, event.detail)
     this.setData({
         radioIndex: value
     })
@@ -237,6 +220,15 @@ Createforum.prototype.selectTopicId = function (e) {
     })
 }
 
+// 改变话题id
+Createforum.prototype.selectTiTopicId = function (e) {
+    const { topicId: selectTiTopicId } = e.currentTarget.dataset
+    this.setData({
+        selectTiTopicId,
+        tiId: selectTiTopicId
+    })
+}
+
 // 改变输入方式
 Createforum.prototype.changeInputType = function (e) {
     console.log('改变输入方式', e)
@@ -246,7 +238,8 @@ Createforum.prototype.changeInputType = function (e) {
         recordSelected: false,
         videoSelected: false,
         topicListSelected: false,
-        hidden: true
+        titopicListSelected: false,
+        hidden: true,
     }
     const { type } = e.target.dataset
     obj[type] = true
@@ -255,6 +248,12 @@ Createforum.prototype.changeInputType = function (e) {
     }
     if (type === 'videoSelected') {
         this.chooseVideo()
+    }
+    if (type === 'pictureSelected') {
+        this.chooseImg()
+    }
+    if (type == 'classificationInfo') {
+        this.onSubmit()
     }
 
     this.setData(obj)
@@ -291,7 +290,6 @@ Createforum.prototype.showTools = function (e) {
             imagelist.push(updateInfo.value)
             this.setData({
                 selectItemId: viewId,
-                // imageInputInfo: updateInfo.value
                 imagelist
             })
         }
@@ -388,7 +386,6 @@ Createforum.prototype.showContentText = function (type, value) {
 // 选择图展示
 Createforum.prototype.chooseImageOver = function () {
     const { selectItemId, imagelist = [] } = this.data
-    console.log(111, selectItemId, imagelist)
     if (imagelist.length === 0 && selectItemId) {
         return this.showContentText('pictrue', null, { selectItemId })
     }
@@ -408,7 +405,6 @@ Createforum.prototype.chooseImageOver = function () {
 // 输入内容
 Createforum.prototype.bindInput = function (e) {
     const { value: content } = e.detail
-    console.log(111, content)
     this.setData({
         textInputInfo: content
     })
@@ -418,7 +414,6 @@ Createforum.prototype.bindInput = function (e) {
 Createforum.prototype.bindconfirm = function () {
     const { selectItemId, textInputInfo } = this.data
     if (selectItemId) {
-        console.log('updata1111', selectItemId)
         return this.showContentText('text', textInputInfo, { selectItemId })
     }
     return this.showContentText('text', textInputInfo)
@@ -469,7 +464,6 @@ Createforum.prototype.startRecord = function () {
     wx.startRecord({
         success: res => {
             let tempFilePath = res.tempFilePath
-            console.log('tempFilePath', tempFilePath)
             this.showContentText('audio', tempFilePath)
             // this.setData({
             //     recordTempFilePath: tempFilePath
@@ -486,12 +480,10 @@ Createforum.prototype.startRecord = function () {
 }
 //  停止录音
 Createforum.prototype.stopRecord = function () {
-    console.log(2222)
     wx.stopRecord()
 }
 // 播放
 Createforum.prototype.playAudio = function (e) {
-    console.log(e)
     const { audioTemp } = e.currentTarget.dataset
     wx.playVoice({
         filePath: audioTemp,
@@ -537,53 +529,144 @@ Createforum.prototype.deleteImage = function (event) {
         deleteUrl: null
     })
 }
-    // 发表评论
-Createforum.prototype.submit = function () {
+
+// 获取分类信息
+Createforum.prototype.getClassificationInfo = function () {
+    let typeOption = {}
+    if (this.children) {
+        const children = this.children
+        Object.keys(children).map(key => {
+            const data = children[key].data
+            if (data.template === 'classifications') {
+                if (data.classifiedType == 3) {
+                    const value = data.selectedChoices.map(item => {
+                        if (item.selected) {
+                            return item.value
+                        }
+                        return null
+                    })
+
+                    return typeOption[data.classifiedName] = value.filter(item => item).join(',')
+                }
+                return typeOption[data.classifiedName] = data.inputValue
+            }
+            return null
+        })
+    }
+    console.log('getClassificationInfo', typeOption)
+    this.setData({
+        typeOption
+    })
+}
+
+// 新版发帖
+Createforum.prototype.onSubmit = function () {
     if (!app.isLogin()) {
         return
     }
-
-    const { title, content, actType, tiId, selectType, isTopic, imagelist, selectTopicId } = this.data
-    let topicContent = []
-
-    // 文本处理
-    if (content !== '') {
-        topicContent.push({ type: '0', infor: content })
+    this.getClassificationInfo()
+    let { title, contentText, actType, tiId, fid, isTopic, selectTopicId, typeOption } = this.data
+    console.log(title, contentText, actType, tiId, fid, isTopic, selectTopicId, typeOption)
+    let typeOptionUploadFile
+    let aid = []   // 附件
+    // 过滤contentText 所有的空的插入点
+    contentText = contentText.filter(item => {
+        return item.type !== 9
+    })
+    console.log(contentText)
+    // 得到contentText需要上传的文件
+    let contentUploadFile = contentText.filter(item => {
+        return item.type !== 0
+    })
+    // 得到分类信息上传附件
+    if (typeOption) {
+        typeOptionUploadFile = Object.keys(typeOption).filter(key => {
+            return typeOption[key] instanceof Array
+        })
     }
-    imagelist.length && wx.showToast({
+
+
+    (contentUploadFile.length || typeOptionUploadFile.length) && wx.showToast({
         title: '上传中...',
         icon: 'loading',
         duration: 10000
     })
-    Promise.all(imagelist.map(v => {
-        return app.api.sendattachmentex({
-            filePath: v,
-            formData: omitBy({
-                type: 'image',
-                module: isTopic ? 'topic' : 'forum',
-                fid: selectType,
-                ti_id: tiId
-            }, isNil)
-        }).then(data => data.body.attachment[0])
-    }))
-    .then(list => {
-        list.length && wx.hideToast()
-        topicContent = topicContent.concat(list.map(x => ({ type: '1', infor: x.urlName })))
+
+    let promise = new Promise(resolve => {
+        // 上传图片附件信息
+        return Promise.all(contentUploadFile.map(v => {
+            return app.api.sendattachmentex({
+                filePath: v.value,
+                formData: omitBy({
+                    type: 'image',
+                    module: 'forum',
+                    fid,
+                    ti_id: tiId
+                }, isNil)
+            }).then(data => data.body.attachment[0])
+        })).then(uploadFileList => {
+            // 修改
+            uploadFileList.forEach((tempFile, index) => {
+                aid.push(tempFile.id)
+                var contentId = contentUploadFile[index].contentTextId
+                contentText = contentText.map(item => {
+                    if (item.contentTextId === contentId) {
+                        item.value = tempFile.urlName
+                        return item
+                    }
+                    return item
+                })
+            })
+            aid = aid.join(',')
+            return resolve(contentText)
+        })
+    })
+    promise.then(() => {
+        // 上传分类附件
+        return Promise.all(typeOptionUploadFile.map(key => {
+            return app.api.sendattachmentex({
+                filePath: typeOption[key][0],
+                formData: omitBy({
+                    type: 'image',
+                    module: 'forum',
+                    fid,
+                    ti_id: tiId
+                }, isNil)
+            }).then(data => data.body.attachment[0])
+        }))
+    })
+    .then(uploadFileList => {
+        uploadFileList.forEach((tempFile, index) => {
+            typeOption.typeOptionUploadFile[index] = tempFile.id
+        })
+        return
+    })
+    .then(() => {
+        // 上传帖子内容
+        contentText.map(item => {
+            item.infor = item.value
+            delete item.value
+            delete item.contentTextId
+            return item
+        })
         return {
-            aid: list.map(x => x.id).join(','),
-            content: encodeURIComponent(JSON.stringify(topicContent))
+            aid,
+            content: encodeURIComponent(JSON.stringify(contentText))
         }
     })
     .then(data => {
+        // console.log(3333333, data, title, actType, tiId, fid, isTopic, selectTopicId, typeOption)
         data = Object.assign({
             isShowPostion: 0, // 是否显示地理位置
             act: actType,
-            fid: selectType,
+            fid,
+            typeOption,
             typeId: selectTopicId,
             ti_id: tiId,
             title: encodeURIComponent(title)
         }, data)
-        console.log(11111, data)
+
+        console.log(data)
         return app.api.createTopic(data).then(() => {
             wx.showToast({
                 title: '发布成功',
@@ -599,4 +682,6 @@ Createforum.prototype.submit = function () {
         console.error('发表失败', err)
     })
 }
+
+
 module.exports = Createforum

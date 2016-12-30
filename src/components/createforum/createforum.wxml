@@ -48,7 +48,7 @@
         </block>
 
         <!--  展示图文混合 -->
-        <view style="min-height: 400rpx;" catchtap="createforum_showTools" data-event-key="{{key}}">
+        <view class="createforum-publish-content-mix" catchtap="createforum_showTools" data-event-key="{{key}}">
             <block wx:for="{{contentText}}" wx:key="contentTextId">
                 <view class="createforum-publish-view-text" wx:if="{{item.type === 0}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
                     {{item.value}}
@@ -75,7 +75,7 @@
             <view class="createform-list-item-1">
                 <scroll-view scroll-x="true">
                     <view class="createforum-list" >
-                        <view data-type="textInput">A</view>
+                        <image src="{{iconSrc}}new_publish_keyboard.png" data-type="textInput" mode="aspectFill"/>
                     </view>
                     <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_pic.png" data-type="pictureSelected" mode="aspectFill"/>
@@ -83,10 +83,13 @@
                     <view class="createforum-list" wx:if="{{topicList.length > 0 }}">
                         <view data-type="topicListSelected">主</view>
                     </view>
-                    <view class="createforum-list">
-                        <image src="{{iconSrc}}new_publish_@.png" mode="aspectFill"/>
+                    <view class="createforum-list" wx:if="{{ !isTopic &&titopicList.length > 0 }}">
+                        <image src="{{iconSrc}}new_publish_topic_defult.png" data-type="titopicListSelected" mode="aspectFill"/>
                     </view>
-                    <view class="createforum-list">
+                    <!-- <view class="createforum-list">
+                        <image src="{{iconSrc}}new_publish_@.png" mode="aspectFill"/>
+                    </view> -->
+                   <!--  <view class="createforum-list">
                         <image data-type="recordSelected" src="{{iconSrc}}new_publish_record.png" mode="aspectFill"/>
                     </view>
                     <view class="createforum-list">
@@ -94,18 +97,13 @@
                     </view>
                     <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_vote.png" mode="aspectFill"/>
-                    </view>
-                    <view class="createforum-list">
-                        <image data-type="videoSelected" src="{{iconSrc}}new_publish_video.png" mode="aspectFill"/>
-                    </view>
-                    <view class="createforum-list">
-                        <image src="{{iconSrc}}new_publish_vote.png" mode="aspectFill"/>
-                    </view>
+                    </view> -->
+
                 </scroll-view>
             </view>
             
             <view class="createform-list-item-2" >
-                <view>发表</view>
+                <view data-type="classificationInfo">发表</view>
             </view>
         </view>
         <!-- 文本编辑 -->
@@ -140,11 +138,18 @@
         <view wx:if="{{topicListSelected}}">
             <view class="createforum-topic-list">
                 <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="id">
-                    <view class="createforum-topic-item {{selectTopicId == topic.id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.id}}">{{topic.name}}</view>
+                    <view class="createforum-topic-item {{selectTopicId == topic.id ? 'createforum-action' : ''}}" bindtap="createforum_selectTopicId" wx:key="id" data-event-key="{{key}}" data-topic-id="{{topic.id}}">{{topic.name}}</view>
                 </block>
             </view>
         </view>
-
+        <!-- 话题 -->
+        <view wx:if="{{titopicListSelected}}">
+            <view class="createforum-topic-list">
+                <block wx:for="{{titopicList}}" wx:for-item="topic" wx:key="id">
+                    <view class="createforum-topic-item {{selectTiTopicId == topic.ti_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTiTopicId" wx:key="ti_id" data-event-key="{{key}}" data-topic-id="{{topic.ti_id}}">#{{topic.ti_title}}#</view>
+                </block>
+            </view>
+        </view>
     </view>
 
     

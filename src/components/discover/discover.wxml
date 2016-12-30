@@ -13,7 +13,7 @@
         </view>
 
         <view class="personal-user-info weapp-border-bottom" wx:if="{{isLogin}}" bindtap="discover_toUserHome" data-event-key="{{key}}" data-uid="{{ userInfo.uid }}">
-            <view class="user-login" style="background-image:url({{userInfo.avatar}});"></view>
+            <image class="user-login" src="{{userInfo.avatar}}"></image>
             <view class="personal-user-info-name">{{userInfo.userName}}</view>
             <view class="personal-user-info-desc">
                 <text style="margin-right: 10rpx;" wx:if="{{userInfo.creditShowList[0]}}">{{userInfo.creditShowList[0].title +':'+ userInfo.creditShowList[0].data }}</text>
