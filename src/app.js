@@ -33,7 +33,6 @@ const WeappStore = require('./lib/weappstorage.js')
 
 const westore = new WeappStore()
 
-
 const randStr = () => {
     return `a${Math.random().toString(32).split('.')[1]}`
 }
@@ -197,7 +196,7 @@ App({
 
         api.forumKey = CONFIG.KEY
 
-        const promise = this.wxLogin().then(() => Promise.all([
+        const promise = this.getWXCachefile().then(() => this.wxLogin()).then(() => Promise.all([
             api.app(),
             api.ui(),
             getSystemInfo,
@@ -219,16 +218,7 @@ App({
         }, (err) => {
             console.log('error', err)
         }))
-
         this.ready = () => promise
-
-        const userInfo = wx.getStorageSync('userInfo')
-        if (userInfo) {
-            this.globalData.wxtoken = userInfo.wxtoken
-            this.globalData.userInfo = userInfo
-            api.token = userInfo.token
-            api.secret = userInfo.secret
-        }
     },
     showPost(opt) {
         wx.navigateTo({
@@ -242,14 +232,26 @@ App({
             })
         }
     },
+
+    getWXCachefile() {
+        return new Promise(resolve => {
+            const userInfo = wx.getStorageSync('userInfo')
+            if (userInfo) {
+                this.globalData.wxtoken = userInfo.wxtoken
+                this.globalData.userInfo = userInfo
+                this.api.token = userInfo.token
+                this.secret = userInfo.secret
+            }
+            return resolve()
+        })
+    },
+
     // 绑定
     wxLogin() {
         const self = this
         return new Promise((resolve, reject) => {
-            console.log(22222, self.globalData.wxtoken)
-            return this.api.checkLogin(self.globalData.wxtoken)
+            return this.api.checkLogin(this.globalData.wxtoken)
                 .then(() => resolve(), () => {
-                    console.log(111111)
                     // 调用微信登录接口
                     return wx.login({
                         success(res) {
@@ -266,17 +268,17 @@ App({
 
     // 微信直接登陆
     wechartUserLogin() {
-        this.api.wxLogin(Object.assign({}, { token: this.globalData.wxtoken }, this.globalData.wxchat_bind_info))
+        const wxtoken = this.globalData.wxtoken
+        this.api.wxLogin(Object.assign({}, { token: wxtoken }, this.globalData.wxchat_bind_info))
             .then(res => {
-                console.log('success', res)
                 if (!res.errcode) {
                     this.globalData.userInfo = res
                     this.api.token = res.token
                     this.api.secret = res.secret
                     this.event.trigger('login', res)
+                    Object.assign(res, { wxtoken })
                     try {
                         wx.setStorageSync('userInfo', res)
-                        // wx.navigateBack()
                     } catch (err) {
                         console.log(err)
                     }

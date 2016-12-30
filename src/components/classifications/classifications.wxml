@@ -1,0 +1,70 @@
+<!-- 分类信息模版 -->
+
+<view wx:if="{{classifiedType === 1}}">
+    <view class="createforum-publish-item weapp-border-bottom">
+        <view class="createforum-publish-item-title">{{classifiedTitle}}:</view>
+        <view class="createforum-publish-item-input">
+            <input wx:if="{{classifiedRules.isnumber}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="number" placeholder="请输入数字" />
+            <input wx:if="{{classifiedRules.isdate}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="text" type="date" placeholder="{{classifiedRules.defaultvalue}}" />
+            <input wx:if="{{!classifiedRules.isdate && !classifiedRules.isnumber}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="text" type="date" placeholder="{{required ? '必填': '选填'}}" />
+        </view>
+    </view>
+</view>
+<view wx:if="{{classifiedType === 2}}">
+    <!-- 单选   -->
+    <picker bindchange="classifications_bindPickerChange" data-event-key="{{key}}" value="{{radioIndex}}" range="{{classifiedRules.choices}}" range-key="name">
+        <view class="createforum-publish-item weapp-border-bottom">
+            <view class="createforum-publish-item-title">{{classifiedTitle}}:</view> 
+            <view>{{classifiedRules.choices[radioIndex].name || '请选择内容' }}</view>
+        </view>
+    </picker>
+</view>
+
+<view wx:if="{{classifiedType === 3}}">
+    <!-- 多选 -->
+    <view class="createforum-publish-item weapp-border-bottom" bindtap="classifications_bindChosseShow" data-event-key="{{key}}">
+        <view class="createforum-publish-item-title">{{classifiedTitle}}:</view>
+        <image class="icon-arrow " style="{{chooseShow ? '' : trasformStyle}}" src="{{iconSrc}}dz_list_about.png"></image>
+    </view>
+
+    <view class="createforum-publish-item-choose weapp-border-bottom" hidden="{{chooseShow}}">
+        <block wx:for="{{selectedChoices}}" wx:for-item="chooseitem">
+            <view class="createforum-publish-choose-items" bindtap="classifications_bindChooseChange" data-event-key="{{key}}" style="{{chooseitem.selected ? selectedStyle: ''}}" data-choosed="{{index}}"> {{chooseitem.name}}</view>
+        </block>
+    </view>
+
+</view>
+<view wx:if="{{classifiedType === 4}}">
+    <!-- 多级  -->
+    <picker bindchange="classifications_bindPickerChange" data-event-key="{{key}}" value="{{radioIndex}}" range="{{classifiedRules.choices}}" range-key="name">
+        <view class="createforum-publish-item weapp-border-bottom">
+            <view class="createforum-publish-item-title">{{classifiedTitle}}:</view> 
+            <view>{{classifiedRules.choices[radioIndex].name || '请选择内容' }}</view>
+        </view>
+    </picker>
+</view>
+<view wx:if="{{classifiedType === 5}}">
+    <!-- 纹本框 -->
+    <view class="createforum-publish-item weapp-border-bottom">
+        <view class="createforum-publish-item-title">{{classifiedTitle}}:</view>
+        <view class="createforum-publish-item-input">
+            <textarea placeholder="请填写内容"  bindinput="classifications_bindTextareaChange" data-event-key="{{key}}" bindconfirm="">
+            </textarea>
+        </view>
+    </view>
+    
+</view>
+<view wx:if="{{classifiedType === 6}}">
+    <!-- 图片 -->
+    <view class="createforum-publish-item weapp-border-bottom">
+        <view class="createforum-publish-item-title">{{classifiedTitle}}:</view>
+        <view class="createforum-publish-item-picture" bindtap="classifications_uploadpicture" data-event-key="{{key}}">
+            <image wx:if="{{tempFilePaths}}" class="createforum-publish-picture-img" src="{{tempFilePaths}}"></image>
+            <image wx:else class="createforum-publish-picture-img" src="{{ iconSrc}}dz_camera_icon.png"></image>
+        </view>
+    </view>
+    
+</view>
+<view wx:if="{{classifiedType === 0}}">
+    其他
+</view>

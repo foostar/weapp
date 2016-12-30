@@ -127,7 +127,7 @@ function createPage(config) {
             onReady.apply(this, arguments)
             /* eslint-enable */
         }
-
+        this.setData({})
         const children = this.children
         Object.keys(children).forEach((key) => {
             children[key].ready()
@@ -164,7 +164,6 @@ function createPage(config) {
         this.trigger('hide')
     }
 
-
     config.onShareAppMessage = function () {
         const children = this.children
         Object.keys(children).forEach((key) => {
@@ -176,10 +175,10 @@ function createPage(config) {
             /* eslint-enable */
         }
     }
-
     return config
 }
 
 createPage.load = load
+
 
 module.exports = createPage

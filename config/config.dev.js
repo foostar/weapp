@@ -6,6 +6,8 @@ module.exports = {
     }, {
         name: 'Lorna广告测试站', id: 100000000492,
     }, {
+        name: '测试发帖app', id: 100000000016,
+    }, {
         name: 'test', id: 100000000536,
     } ],
     config: {

@@ -1,11 +1,292 @@
-.publish-select-warp {
-    margin: 20rpx 0;
-    display: flex;
-    height: 90rpx;
-    line-height: 90rpx;
-    background-color: #fff;
-    padding: 0 20rpx;
+.createforum-forumlist-card {
+    margin: 30rpx 20rpx;
 }
+.createforum-forumlist-card-title {
+    clear:both;
+    color: #999;
+    font-size: 16px;
+    line-height: 72rpx;
+    display: block;
+    position: relative;
+    padding-left: 40rpx;
+}
+.createforum-forum-item-container {
+    height: auto;
+    position: relative;
+    display: block;
+}
+.createforum-forumlist-card-title::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 16rpx;
+    height: 16rpx;
+    border-radius: 50%;
+    background-color: #ff004e;
+    top: 50%;
+    left: 15rpx;
+    margin-top: -0.25rem;
+}
+.createforum-forumlist-card-container {
+    display: block;
+}
+.createforum-forum-item {
+    float: left;
+    width: calc(50% - 20rpx);
+    height: 108rpx;
+    box-shadow: 0px 0px 1px #999 inset;
+    border-radius: 10rpx;
+    margin: 10rpx;
+    background: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+.createforum-forum-item-image {
+    width: 108rpx;
+    height: 108rpx;
+}
+
+.createforum-forum-item-image image, .createforum-topic-icon image  {
+    width: 74rpx;
+    height: 74rpx;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+    margin-top: calc(50% - 37rpx);
+}
+
+.createforum-forum-item-text, .createforum-topic-text {
+    flex:1;
+    color: #4d4d4d;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 108rpx;
+    padding-right: 20rpx;
+}
+
+.createforum-topic-panel {
+    height: 108rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 0px 0px 1px #999 inset;
+    border-radius: 10rpx;
+    margin: 20rpx 50rpx;
+    background: #fff;
+
+}
+.createforum-topic-icon {
+    width: 108rpx;
+    height: 108rpx;
+}
+
+.createforum-publish-item {
+    height: 104rpx;
+    line-height: 104rpx;
+    font-size: 32rpx;
+    padding: 0 20rpx;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    background: #fff;
+}
+.createforum-publish-item image {
+    transition: .5s ease;
+}
+
+.createforum-publish-item-title {
+    width: 160rpx;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* 发帖预览样式 */
+.createforum-publish-view-text {
+    line-height: 48rpx;
+    text-align: left; 
+    padding: 10rpx 20rpx;
+}
+
+.createforum-publish-view-null {
+    width: 100%;
+    height: 48rpx;
+}
+.createforum-publish-view-image {
+    margin: 0 auto;
+    padding: 20rpx;
+}
+
+
+
+.createforum-publish-item-input {
+    flex:1;
+    padding-left: 20rpx;
+}
+.createforum-publish-item-input input {
+    height: 104rpx;
+    width: 100%;
+}
+.createforum-publish-item-input textarea {
+    height: 104rpx;
+    width: 100%;
+}
+
+
+
+.createforum-publish-item-choose {
+    background: #e9e9e9;
+    width: 100%;
+    height: auto;
+    padding: .5rem .7rem;
+}
+
+.createforum-publish-choose-items {
+    font-size: .6rem;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0 .4rem;
+    border-radius: .2rem;
+    margin: .2rem .2rem;
+    font-weight: 400;
+    background-color: #f2f2f2;
+    min-height: 1.5rem;
+    line-height: 1.5rem;
+    word-break: break-word;
+}
+
+.createforum-publish-item-picture{
+    padding-left: 20rpx;
+}
+
+.createforum-publish-picture-img {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 10rpx 20rpx;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+}
+
+.createforum-publish-tools {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    background: #fff;
+}
+.createforum-publish-tools input {
+    width: 100%;
+    height: 104rpx;
+}
+
+.createforum-publish-tools-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+    height: 104rpx;
+    background: #fff;
+}
+ 
+
+
+.createforum-publish-tools-nav .createforum-list view {
+    display: block;
+    line-height: 104rpx;
+    text-align:center;
+    font-size:60rpx;
+    font-weight:200;
+    width: 100%;
+    height: 100%;
+}
+
+.createforum-publish-tools-nav .createforum-list image {
+    width: 60rpx;
+    height: 60rpx;
+    margin: 22rpx auto;
+    display: block;
+}
+
+.createform-list-item-1 {
+    flex:1;
+    height: 104rpx;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+
+.createform-list-item-1 scroll-view {
+    white-space: nowrap;
+    width: 100%;
+}  
+.createform-list-item-1 scroll-view .createforum-list {
+    display: inline-block;
+    width: 104rpx;
+    height: 104rpx;
+    vertical-align: middle;
+    
+}
+
+.createform-list-item-2 {
+    width: 208rpx;
+    height: 104rpx;
+    vertical-align: middle;
+    padding-left: 10rpx;
+}
+
+.createform-list-item-2 view {
+    display: block;
+    line-height: 104rpx;
+    text-align:center;
+    font-size:60rpx;
+    font-weight:200;
+    width: 100%;
+    height: 100%;
+}
+
+
+.createforum-upload-images-container {
+    white-space: nowrap;
+    width:100%;
+}
+.createforum-upload-images {
+    width: 125rpx;
+    height: 140rpx;
+    margin: 10rpx;
+    position: relative;
+    display: inline-block;
+}
+
+/* 删除上传图片按钮 */
+.delete-upload-btn {
+    width: 50rpx;
+    height: 50rpx;
+    overflow:hidden;
+    border-radius: 50%;
+    background: rgba(255,0,0,.6);
+    line-height: 50rpx;
+    position: absolute;
+    text-align: center;
+    font-size: 26rpx;
+    color:#fff;
+    top: -5rpx;
+    right: -15rpx;
+}
+
+/* ------------------------- */
+
 .publish-select-label {
     font-size: 28rpx;
     font-weight: 900;
@@ -26,6 +307,12 @@
     padding-bottom: 20rpx;
     margin-bottom: 20rpx;
 }
+
+.createforum-publish-content-mix {
+    margin-bottom: 200rpx;
+    min-height: 400rpx;
+}
+
 .createforum-publish-images {
     background-color: #fff;
     padding: 20rpx;
@@ -50,19 +337,6 @@
     width:auto;
 }
 
-.createforum-upload-images {
-    width: 128rpx;
-    height: 128rpx;
-    background-size: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #e9e9e9;
-    margin-bottom: 10rpx;
-    margin-right:16rpx;
-    overflow: hidden;
-}
-
-
 /* 删除上传图片 */
 .delete-upload-box {
     width: 0;
@@ -70,22 +344,6 @@
     top:-130rpx;
     left:-20rpx;
     position: relative;
-}
-
-/* 删除上传图片按钮 */
-.delete-upload-btn {
-    width: 50rpx;
-    height: 50rpx;
-    overflow:hidden;
-    border-radius: 50%;
-    background: rgba(255,0,0,.6);
-    line-height: 50rpx;
-    position: absolute;
-    text-align: center;
-    font-size: 26rpx;
-    color:#fff;
-    top: -25rpx;
-    left: -25rpx;
 }
 
 .image-upload-btn {
@@ -123,7 +381,7 @@
 
 }
 .createforum-topic-list {
-    flex:1;
+    margin: 10rpx 20rpx;
 }
 .createforum-topic-item {
     display: inline-block;
