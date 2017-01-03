@@ -223,6 +223,10 @@
 <template name="classifications">
     <include src='../classifications/classifications.wxml' />
 </template>
+<template name="stickmore">
+    <include src='../stickmore/stickmore.wxml' />
+</template>
+
 
 
 

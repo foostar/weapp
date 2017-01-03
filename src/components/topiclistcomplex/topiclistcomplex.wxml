@@ -2,7 +2,7 @@
 <import src="../cellstyle/cellstyle"/>
 <import src="../forum/forum"/>
 <view bindtap="topiclistcomplex_focusForum"  data-event-key="{{key}}">
-    <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, complex:true, forumInfo:true, key, name: 'topiclistcomplex'}}" />
+    <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, complex:true, forumInfo:true, key, name: 'topiclistcomplex', forumShow: true}}" />
 </view>
 <view class="forum-tabs">
     <view class="forum-tabs-title-warp-placeholder weapp-border-bottom">

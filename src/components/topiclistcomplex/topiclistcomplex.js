@@ -140,7 +140,9 @@ TopiclistComplex.prototype.focusForum = function (e) {
         })
     })
 }
-TopiclistComplex.prototype.stickmore = function (e) {
-    console.log(e)
+TopiclistComplex.prototype.stickmore = function () {
+    wx.navigateTo({
+        url: `/pages/blank/blank?type=stickmore&data=${JSON.stringify({ toplist: this.data.topTopicList, title: '置顶' })}`
+    })
 }
 module.exports = TopiclistComplex

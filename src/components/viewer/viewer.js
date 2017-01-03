@@ -59,7 +59,7 @@ const MyinfoAtme = require('../myinfoatme/myinfoatme.js')
 const MyinfoPost = require('../myinfopost/myinfopost.js')
 const MyinfoSystem = require('../myinfosystem/myinfosystem.js')
 const Search = require('../search/search.js')
-
+const Stickmore = require('../stickmore/stickmore.js')
 const UserHome = require('../user-home/user-home.js')
 const UserList = require('../userlist/userlist.js')
 const Topic = require('../topic/topic.js')
@@ -199,6 +199,7 @@ components.type['postlist-card'] = Post         // 帖子详情
 components.type['postlist-flat'] = Post         // 帖子详情
 
 components.type['followlist-flat'] = FollowList  // 关注相关列表
+components.type['stickmore-flat'] = Stickmore   // 更多列表
 
 // topiclistSimple-flat
 
