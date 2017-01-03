@@ -78,8 +78,11 @@ App({
                     formData = null
                 }
                 if (formData) {
+                    console.log('uploadFile ==== ', url, body)
                     return wx.uploadFile({
                         url,
+                        // url: 'http://10.10.8.23:3333',
+                        // url: 'http://10.10.8.223/dzxg/mobcent/app/web/index.php?r=forum/sendattachmentex&accessToken=da5084f0a4e5c53538510306f9fbb&accessSecret=b0cdcc0447d67c83bef63b1474c65',
                         filePath: body.filePath,
                         name: 'uploadFile[]',
                         formData: body.formData,
@@ -93,7 +96,7 @@ App({
                             return resolve(response)
                         },
                         fail: err => {
-                            console.log('uploadFile success', err)
+                            console.log('uploadFile err', err)
                             return reject(err)
                         },
                         complete: msg => {
