@@ -243,10 +243,18 @@
     padding-left: 10rpx;
 }
 
-.createform-list-item-2 button {
-    line-height:64rpx;
+.createform-list-item-2 view {
+    /*line-height:64rpx;*/
     display:block;
-    margin:20rpx 27rpx;
+    /*margin:20rpx 27rpx;*/
+    margin: 20rpx 0;
+    border: 0;
+    border-radius: 0;
+    height: 64rpx;
+    line-height: 64rpx;
+    text-align: center;
+    border-left: 1px solid #ddd;
+    font-size: 14px;
 }
 
 

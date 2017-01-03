@@ -89,7 +89,7 @@ App({
                             } catch (err) {
                                 return reject(err)
                             }
-                            return resolve(response)
+                            resolve(response)
                         },
                         fail: reject
                     })
@@ -240,7 +240,7 @@ App({
                 this.globalData.wxtoken = userInfo.wxtoken
                 this.globalData.userInfo = userInfo
                 this.api.token = userInfo.token
-                this.secret = userInfo.secret
+                this.api.secret = userInfo.secret
             }
             return resolve()
         })

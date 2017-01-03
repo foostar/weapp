@@ -109,7 +109,7 @@
             </view>
             
             <view class="createform-list-item-2" >
-                <button data-type="classificationInfo" size="mini">发布</button>
+                <view data-type="classificationInfo" size="mini">发布</view>
             </view>
         </view>
         <!-- 文本编辑 -->
