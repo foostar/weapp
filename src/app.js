@@ -313,7 +313,6 @@ App({
     createForum(param) {
         if (this.isLogin()) {
             const data = JSON.stringify(param)
-            console.log(555, data)
             wx.navigateTo({
                 url: `/pages/blank/blank?type=createforum&data=${data}`
             })
@@ -325,6 +324,11 @@ App({
                 url: `/pages/blank/blank?type=createforum&data=${JSON.stringify({ fid: param.fid, actType: 'reply' })}`
             })
         }
+    },
+    topic(param) {
+        wx.navigateTo({
+            url: `/pages/blank/blank?type=topic&data=${JSON.stringify(param)}`
+        })
     },
     showTopic(param) {
         const { eventKey, id, title } = param
@@ -361,6 +365,14 @@ App({
     },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
+            return wx.navigateTo({
+                url: '/pages/blank/blank?type=login'
+            })
+        }
+        return true
+    },
+    login(data) {
+        if (data.errcode == 50000000) {
             return wx.navigateTo({
                 url: '/pages/blank/blank?type=login'
             })

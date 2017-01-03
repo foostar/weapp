@@ -43,6 +43,9 @@ MyinfoSystem.prototype.fetchData = function (param, number) {
             over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
     })
+    .catch(err => {
+        if (!app.login(err)) return
+    })
 }
 
 

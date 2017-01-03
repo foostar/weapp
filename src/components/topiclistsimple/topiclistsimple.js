@@ -51,7 +51,7 @@ TopiclistSimple.prototype.fetchData = function (param, number) {
     })
     return app.api.forum(module.extParams.forumId, {
         page: param.page,
-        sortby: param.orderby || 'all'
+        orderby: param.orderby || 'all'
     }).then((data) => {
         data.list = list.concat(data.list)
         if (data.meta.page == 1) {

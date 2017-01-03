@@ -358,7 +358,7 @@ Post.prototype.checkUser = function (e) {
  *  @访问话题列表
  */
 Post.prototype.checkBoard = function (e) {
-    app.showTopic(e.currentTarget.dataset)
+    app.topic({ id: e.currentTarget.dataset.id })
 }
 module.exports = Post
 

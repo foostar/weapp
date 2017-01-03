@@ -37,7 +37,7 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
         app.api.forumList({ fid: module.extParams.forumId }),
         app.api.forum(module.extParams.forumId, {
             page: param.page,
-            sort: param.orderby || 'all'
+            orderby: param.orderby || 'all'
         })
     ]).then(([ boardChild, data ]) => {
         let hasChildrens = false
@@ -121,6 +121,7 @@ TopiclistComplex.prototype.handleEditClick = function () {
 TopiclistComplex.prototype.focusForum = function (e) {
     if (!e.target.dataset.role) return
     if (!app.isLogin()) return
+
     const boardId = e.target.dataset.id
     if (e.target.dataset.focus == 1) {
         return app.api.userfavorite(boardId, { action: 'delfavorite', idType: 'fid' }).then(() => {

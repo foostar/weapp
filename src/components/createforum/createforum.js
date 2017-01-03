@@ -650,11 +650,14 @@ Createforum.prototype.onSubmit = function () {
         }))
     })
     .then(uploadFileList => {
-        console.log(4444, uploadFileList)
-
-        uploadFileList.forEach((tempFile, index) => {
-            typeOption.typeOptionUploadFile[index] = tempFile.id
+        console.log(4444, uploadFileList, typeOptionUploadFile)
+        typeOptionUploadFile.map((key, index) => {
+            return typeOption[key] = uploadFileList[index].id
         })
+
+        // uploadFileList.forEach((tempFile, index) => {
+        //     typeOption.typeOptionUploadFile[index] = tempFile.id
+        // })
         return
     })
     .then(() => {
