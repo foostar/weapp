@@ -83,7 +83,7 @@ App({
                         filePath: body.filePath,
                         name: 'uploadFile[]',
                         formData: body.formData,
-                        success: (response) => {
+                        success: response => {
                             try {
                                 response.data = JSON.parse(response.data)
                             } catch (err) {
@@ -240,7 +240,7 @@ App({
                 this.globalData.wxtoken = userInfo.wxtoken
                 this.globalData.userInfo = userInfo
                 this.api.token = userInfo.token
-                this.secret = userInfo.secret
+                this.api.secret = userInfo.secret
             }
             return resolve()
         })

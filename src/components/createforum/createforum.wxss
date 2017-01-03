@@ -140,22 +140,18 @@
     width: 100%;
 }
 
-
-
 .createforum-publish-item-choose {
     background: #e9e9e9;
-    width: 100%;
     height: auto;
     padding: .5rem .7rem;
 }
 
 .createforum-publish-choose-items {
-    font-size: .6rem;
-    vertical-align: middle;
+    font-size: 1rem;
     display: inline-block;
     padding: 0 .4rem;
     border-radius: .2rem;
-    margin: .2rem .2rem;
+    margin: .2rem;
     font-weight: 400;
     background-color: #f2f2f2;
     min-height: 1.5rem;
@@ -183,6 +179,7 @@
     right: 0;
     height: auto;
     background: #fff;
+    z-index: 100;
 }
 .createforum-publish-tools input {
     width: 100%;
@@ -247,13 +244,24 @@
 }
 
 .createform-list-item-2 view {
+    /*line-height:64rpx;*/
+    display:block;
+    /*margin:20rpx 27rpx;*/
+    margin: 20rpx 0;
+    border: 0;
+    border-radius: 0;
+    height: 64rpx;
+    line-height: 64rpx;
+    text-align: center;
+    border-left: 1px solid #ddd;
+    font-size: 14px;
+}
+
+
+.createforum-upload-images-button button {
+    margin: 10rpx auto;
     display: block;
-    line-height: 104rpx;
-    text-align:center;
-    font-size:60rpx;
-    font-weight:200;
-    width: 100%;
-    height: 100%;
+    width: 70%;
 }
 
 
@@ -304,12 +312,10 @@
 
 .createforum-publish-content {
     background-color: #fff;
-    padding-bottom: 20rpx;
     margin-bottom: 20rpx;
 }
 
 .createforum-publish-content-mix {
-    margin-bottom: 200rpx;
     min-height: 400rpx;
 }
 
