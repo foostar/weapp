@@ -84,6 +84,7 @@ Createforum.prototype.onLoad = function () {
         }
         return app.api.search('', 'topic', { searchid: data.fid })
     }).then((res) => {
+        console.log('话题列表', res)
         // 话题列表
         this.setData({
             titopicList: res.list

@@ -91,12 +91,12 @@
                         <image src="{{iconSrc}}new_publish_pic.png" data-type="pictureSelected" mode="aspectFill"/>
                     </view>
                     <view class="createforum-list" wx:if="{{ !isTopic && titopicList.length > 0 }}">
-                        <image src="{{iconSrc}}new_publish_topic.png" data-type="titopicListSelected" mode="aspectFill"/>
+                        <image src="{{iconSrc}}new_public_topic.png" data-type="titopicListSelected" mode="aspectFill"/>
                     </view>
-                    <!-- <view class="createforum-list">
+                    <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_@.png" mode="aspectFill"/>
-                    </view> -->
-                   <!--  <view class="createforum-list">
+                    </view>
+                   <view class="createforum-list">
                         <image data-type="recordSelected" src="{{iconSrc}}new_publish_record.png" mode="aspectFill"/>
                     </view>
                     <view class="createforum-list">
@@ -104,23 +104,21 @@
                     </view>
                     <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_vote.png" mode="aspectFill"/>
-                    </view> -->
+                    </view>
                 </scroll-view>
             </view>
             
             <view class="createform-list-item-2" >
-                <view data-type="classificationInfo">发布</view>
+                <button data-type="classificationInfo" size="mini">发布</button>
             </view>
         </view>
         <!-- 文本编辑 -->
         <view  wx:if="{{textInput}}">
             <input type="text" value="{{textInputInfo}}" placeholder="说点什么吧。。。。" bindinput="createforum_bindInput" bindconfirm="createforum_bindconfirm"  data-event-key="{{key}}"/>
-            <!-- <button bindtap="createforum_bindconfirm" data-event-key="{{key}}" >完成</button> -->
         </view>
         <!-- 图片编辑 -->
         <view wx:if="{{pictureSelected}}">
             <scroll-view class="createforum-upload-images-container" scroll-x="true" style="width: 100%">
-
                 <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
                     <view class="createforum-upload-images">
                         <image src="{{item}}" mode="aspectFill" class="createforum-upload-images" bindtap="createforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
@@ -129,14 +127,14 @@
                 </block>
             </scroll-view>
 
-            <view wx:hidden="{{imagelist.length === 0}}">
-                <button bindtap="createforum_chooseImageOver" data-event-key="{{key}}" >上传到编辑区</button>
+            <view wx:hidden="{{imagelist.length === 0}}" class="createforum-upload-images-button">
+                <button bindtap="createforum_chooseImageOver" data-event-key="{{key}}" size="mini">上传到编辑区</button>
             </view>
         </view>
         <!-- 音乐编辑 -->
         <view wx:if="{{recordSelected}}">
             <view>
-                <button bindtouchstart="createforum_startRecord" bindtouchend="createforum_stopRecord" size="mini" data-event-key="{{key}}" >录音</button>
+                <button bindtouchstart="createforum_startRecord" bindtouchend="createforum_stopRecord" size="mini" data-event-key="{{key}}">录音</button>
             </view>
         </view>
         <!-- 主题 -->

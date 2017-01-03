@@ -48,7 +48,7 @@
     <view class="createforum-publish-item weapp-border-bottom">
         <view class="createforum-publish-item-title">{{classifiedTitle}}</view>
         <view class="createforum-publish-item-input">
-            <textarea placeholder="请填写内容"  bindinput="classifications_bindTextareaChange" data-event-key="{{key}}" bindconfirm="">
+            <textarea bindinput="classifications_bindTextareaChange" data-event-key="{{key}}" >
             </textarea>
         </view>
     </view>
