@@ -3,7 +3,6 @@ const Component = require('../../lib/component.js')
 function Fullcard(key, module) {
     Component.call(this, key)
     this.module = module
-    console.log(this)
     this.addByModule(module.componentList[0])
     this.data = {
         module: module.componentList[0]

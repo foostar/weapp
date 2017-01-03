@@ -303,7 +303,6 @@ App({
     createForum(param) {
         if (this.isLogin()) {
             const data = JSON.stringify(param)
-            console.log(555, data)
             wx.navigateTo({
                 url: `/pages/blank/blank?type=createforum&data=${data}`
             })
@@ -356,6 +355,14 @@ App({
     },
     isLogin() {
         if (!this.globalData.userInfo || !this.globalData.userInfo.uid) {
+            return wx.navigateTo({
+                url: '/pages/blank/blank?type=login'
+            })
+        }
+        return true
+    },
+    login(data) {
+        if (data.errcode == 50000000) {
             return wx.navigateTo({
                 url: '/pages/blank/blank?type=login'
             })

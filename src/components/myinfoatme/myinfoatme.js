@@ -25,9 +25,6 @@ MyinfoAtme.prototype.constructor = MyinfoAtme
 MyinfoAtme.prototype.fetchData = function (param, number) {
     let list = param.list || this.data.list || []
     if (this.data.over) return Promise.reject()
-    this.setData({
-        isLoading: true
-    })
     return app.api.getNewNotifyList('at', {
         page: param.page
     }).then(data => {
@@ -41,6 +38,9 @@ MyinfoAtme.prototype.fetchData = function (param, number) {
             isLoading: false,
             over: param.page >= parseInt((data.total_num / number) + 1, 10)
         })
+    })
+    .catch(err => {
+        if (!app.login(err)) return
     })
 }
 

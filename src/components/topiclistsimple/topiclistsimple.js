@@ -2,7 +2,6 @@ const ListComponent = require('../../lib/listcomponent.js')
 
 const app = getApp()
 function TopiclistSimple(key, module) {
-    console.log('module', module)
     ListComponent.call(this, key)
     let forumInfo = true
     const topicList = [ '官方公告', '站长访谈' ]

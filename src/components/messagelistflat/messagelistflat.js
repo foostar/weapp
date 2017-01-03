@@ -1,8 +1,7 @@
 const Component = require('../../lib/component.js')
 
 var app = getApp()
-function MessagelistFlat(key, module) {
-    console.log(module)
+function MessagelistFlat(key) {
     Component.call(this, key)
     this.data = {
         iconSrc: app.globalData.iconSrc
