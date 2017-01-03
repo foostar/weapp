@@ -83,7 +83,7 @@ App({
                         filePath: body.filePath,
                         name: 'uploadFile[]',
                         formData: body.formData,
-                        success: (response) => {
+                        success: response => {
                             try {
                                 response.data = JSON.parse(response.data)
                             } catch (err) {
