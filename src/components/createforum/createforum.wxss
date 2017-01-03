@@ -304,12 +304,10 @@
 
 .createforum-publish-content {
     background-color: #fff;
-    padding-bottom: 20rpx;
     margin-bottom: 20rpx;
 }
 
 .createforum-publish-content-mix {
-    margin-bottom: 200rpx;
     min-height: 400rpx;
 }
 

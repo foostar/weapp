@@ -1,5 +1,6 @@
 const Component = require('../../lib/component.js')
 const Classifications = require('../classifications/classifications.js')
+// const Promise = require('../../lib/promise.js')
 
 const app = getApp()
 
@@ -38,7 +39,8 @@ function Createforum(key, module) {
         titopicList: [],     // 话题列表
         selectTopicId: '',  // 选择主题id
         selectTiTopicId: '',  // 选择话题id
-        // isfocus: false   // textarea 焦点
+        topicIndex: 0, // 主题数组索引
+
     }
 }
 
@@ -144,7 +146,8 @@ Createforum.prototype.getTopicList = function () {
     app.api.forum(topicId).then(res => {
         this.setData({
             topicList: res.typeInfo,
-            boardname: res.forum.name
+            boardname: res.forum.name,
+            selectTopicId: res.typeInfo[0].id
         })
     })
 }
@@ -214,10 +217,16 @@ Createforum.prototype.bindPickerChange = function (event) {
 
 // 改变主题id
 Createforum.prototype.selectTopicId = function (e) {
-    const { topicId: selectTopicId } = e.currentTarget.dataset
+    const { topicList } = this.data
+    const { value } = e.detail
     this.setData({
-        selectTopicId
+        topicIndex: value,
+        selectTopicId: topicList[value].id
     })
+    // const { topicId: selectTopicId } = e.currentTarget.dataset
+    // this.setData({
+    //     selectTopicId
+    // })
 }
 
 // 改变话题id
@@ -553,7 +562,6 @@ Createforum.prototype.getClassificationInfo = function () {
             return null
         })
     }
-    console.log('getClassificationInfo', typeOption)
     this.setData({
         typeOption
     })
@@ -565,15 +573,14 @@ Createforum.prototype.onSubmit = function () {
         return
     }
     this.getClassificationInfo()
-    let { title, contentText, actType, tiId, fid, isTopic, selectTopicId, typeOption } = this.data
-    console.log(title, contentText, actType, tiId, fid, isTopic, selectTopicId, typeOption)
+    let { title, contentText, actType, tiId, fid, selectTopicId, typeOption } = this.data
+    console.log(title, contentText, actType, tiId, fid, selectTopicId, typeOption)
     let typeOptionUploadFile
     let aid = []   // 附件
     // 过滤contentText 所有的空的插入点
     contentText = contentText.filter(item => {
         return item.type !== 9
     })
-    console.log(contentText)
     // 得到contentText需要上传的文件
     let contentUploadFile = contentText.filter(item => {
         return item.type !== 0
@@ -595,16 +602,20 @@ Createforum.prototype.onSubmit = function () {
     let promise = new Promise(resolve => {
         // 上传图片附件信息
         return Promise.all(contentUploadFile.map(v => {
+            const formdata = omitBy({
+                type: 'image',
+                module: 'forum',
+                fid,
+                ti_id: tiId
+            }, isNil)
+            console.log(11111, v, formdata)
             return app.api.sendattachmentex({
                 filePath: v.value,
-                formData: omitBy({
-                    type: 'image',
-                    module: 'forum',
-                    fid,
-                    ti_id: tiId
-                }, isNil)
+                formData: formdata
             }).then(data => data.body.attachment[0])
+            .catch(e => console.log(e))
         })).then(uploadFileList => {
+            console.log(2222, uploadFileList)
             // 修改
             uploadFileList.forEach((tempFile, index) => {
                 aid.push(tempFile.id)
@@ -622,6 +633,8 @@ Createforum.prototype.onSubmit = function () {
         })
     })
     promise.then(() => {
+        console.log(33333)
+
         // 上传分类附件
         return Promise.all(typeOptionUploadFile.map(key => {
             return app.api.sendattachmentex({
@@ -636,12 +649,15 @@ Createforum.prototype.onSubmit = function () {
         }))
     })
     .then(uploadFileList => {
+        console.log(4444, uploadFileList)
+
         uploadFileList.forEach((tempFile, index) => {
             typeOption.typeOptionUploadFile[index] = tempFile.id
         })
         return
     })
     .then(() => {
+        console.log(555)
         // 上传帖子内容
         contentText.map(item => {
             item.infor = item.value
@@ -655,7 +671,7 @@ Createforum.prototype.onSubmit = function () {
         }
     })
     .then(data => {
-        // console.log(3333333, data, title, actType, tiId, fid, isTopic, selectTopicId, typeOption)
+        console.log(666, data)
         data = Object.assign({
             isShowPostion: 0, // 是否显示地理位置
             act: actType,
@@ -666,7 +682,6 @@ Createforum.prototype.onSubmit = function () {
             title: encodeURIComponent(title)
         }, data)
 
-        console.log(data)
         return app.api.createTopic(data).then(() => {
             wx.showToast({
                 title: '发布成功',

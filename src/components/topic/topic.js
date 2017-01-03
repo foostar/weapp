@@ -46,27 +46,30 @@ Topic.prototype.fetchData = function (param, number) {
         page: param.page,
         orderby: currentIndex === 1 ? 'NEW' : 'HOT'
     }).then((data) => {
-        data.list = data.list.map(x => ({
-            id: x.topic_id,
-            forumId: x.board_id,
-            forumName: x.board_name,
-            title: util.formateText(x.title),
-            topTopicList: x.topTopicList,
-            user: {
-                id: x.user_id,
-                nickname: x.user_nick_name,
-                avatar: x.userAvatar,
-                title: x.userTitle
-            },
-            repliedAt: util.formatTime(x.last_reply_date),
-            views: x.hits,
-            replies: x.replies,
-            subject: util.formateText(x.subject),
-            gender: x.gender,
-            images: x.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_')),
-            zans: x.zanList
-        }))
-
+        try {
+            data.list = data.list.map(x => ({
+                id: x.topic_id,
+                forumId: x.board_id,
+                forumName: x.board_name,
+                title: util.formateText(x.title),
+                topTopicList: x.topTopicList,
+                user: {
+                    id: x.user_id,
+                    nickname: x.user_nick_name,
+                    avatar: x.userAvatar,
+                    title: x.userTitle
+                },
+                repliedAt: util.formatTime(x.last_reply_date),
+                views: x.hits,
+                replies: x.replies,
+                subject: util.formateText(x.subject),
+                gender: x.gender,
+                images: x.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_')),
+                zans: x.zanList
+            }))
+        } catch (e) {
+            console.log(e)
+        }
         data.list = list.concat(data.list)
         if (data.page == 1) {
             this.setData({

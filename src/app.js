@@ -83,15 +83,22 @@ App({
                         filePath: body.filePath,
                         name: 'uploadFile[]',
                         formData: body.formData,
-                        success: (response) => {
+                        success: response => {
+                            console.log('uploadFile success', response)
                             try {
                                 response.data = JSON.parse(response.data)
                             } catch (err) {
                                 return reject(err)
                             }
-                            resolve(response)
+                            return resolve(response)
                         },
-                        fail: reject
+                        fail: err => {
+                            console.log('uploadFile success', err)
+                            return reject(err)
+                        },
+                        complete: msg => {
+                            console.log(msg)
+                        }
                     })
                 }
                 wx.request({
