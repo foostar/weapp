@@ -61,6 +61,16 @@ Post.prototype.fetchData = function (tid, option, control) {
                     type: 3
                 })
             }
+            if (data.content[1].content.charAt(0) == '#' && data.content[1].content.lastIndexOf('#') != 0) {
+                const title = data.content[1].content.substr(0, data.content[1].content.indexOf('#', 1) + 1)
+                data.content[1].content = data.content[1].content.replace(title, '')
+                data.content[1].isTopic = true
+                data.content.unshift({
+                    infor: title,
+                    content: title,
+                    type: 3
+                })
+            }
             data.content && data.content.forEach((v) => {
                 if (v.type == 1) {
                     v.loadSrc = app.globalData.loadSrc

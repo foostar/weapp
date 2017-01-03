@@ -140,4 +140,7 @@ TopiclistComplex.prototype.focusForum = function (e) {
         })
     })
 }
+TopiclistComplex.prototype.stickmore = function (e) {
+    console.log(e)
+}
 module.exports = TopiclistComplex

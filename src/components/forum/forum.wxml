@@ -29,7 +29,7 @@
                 <view class="stick">{{item.title}}</view>
             </view>
         </block>
-        <view class="stick-item stick-more weapp-border-top" wx:if="{{topTopicList.length > 3}}">
+        <view class="stick-item stick-more weapp-border-top" wx:if="{{topTopicList.length > 3}}" bindtap="{{name}}_stickmore" data-event-key="{{key}}">
             更多<image class="stick-more-icon" src="{{iconSrc}}dz_board_top_more.png" />
         </view>
     </view>

@@ -11,6 +11,9 @@ function TopiclistSimple(key, module) {
         }
     })
     this.module = module
+    if (module.data) {
+        this.orderby = module.data.orderby
+    }
     // 添加分页
     this.data = {
         page: 1,
