@@ -110,22 +110,6 @@ const infoToFace = (str) => {
     }
 }
 /*
- * @页面的类别
- */
-const pagetype = [
-    { type: 'webapp', desc: '外部URL', isAchieve: false },
-    { type: 'plugin', desc: 'plugin', isAchieve: false },
-    { type: 'messagelist', desc: '消息列表', isAchieve: true },
-    { type: 'mall', desc: '微商城', isAchieve: false },
-    { type: 'search', desc: '搜索', isAchieve: true },
-    { type: 'fastcamera', desc: '发表拍照', isAchieve: false },
-    { type: 'fastaudio', desc: '发表语音', isAchieve: false },
-    { type: 'sign', desc: '签到', isAchieve: false },
-    { type: 'scan', desc: '二维码扫描', isAchieve: false },
-    { type: 'newlivelist', desc: '直播间', isAchieve: false },
-    { type: 'configSwitch', desc: '配置切换', isAchieve: false }
-]
-/*
  * @列表数据格式
  */
 const formatListData = (dataList) => {
@@ -199,7 +183,6 @@ module.exports = {
     formatListData,
     infoToFace,
     checkHasScroll,
-    pagetype,
     needLogin
 }
 

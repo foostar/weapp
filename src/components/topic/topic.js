@@ -1,5 +1,4 @@
 const ListComponent = require('../../lib/listcomponent.js')
-const util = require('../../utils/util.js')
 
 const app = getApp()
 // 话题页面
@@ -46,29 +45,8 @@ Topic.prototype.fetchData = function (param, number) {
         page: param.page,
         orderby: currentIndex === 1 ? 'NEW' : 'HOT'
     }).then((data) => {
-        data.list = data.list.map(x => ({
-            id: x.topic_id,
-            forumId: x.board_id,
-            forumName: x.board_name,
-            title: util.formateText(x.title),
-            topTopicList: x.topTopicList,
-            user: {
-                id: x.user_id,
-                nickname: x.user_nick_name,
-                avatar: x.userAvatar,
-                title: x.userTitle
-            },
-            repliedAt: util.formatTime(x.last_reply_date),
-            views: x.hits,
-            replies: x.replies,
-            subject: util.formateText(x.subject),
-            gender: x.gender,
-            images: x.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_')),
-            zans: x.zanList
-        }))
-
         data.list = list.concat(data.list)
-        if (data.page == 1) {
+        if (data.meta.page == 1) {
             this.setData({
                 tpcinfo: data.tpcinfo,
                 topUser: data.topUser,
@@ -81,14 +59,14 @@ Topic.prototype.fetchData = function (param, number) {
                 newList: data.list,
                 isLoading: false,
                 fid: data.tpcinfo.fid,
-                over: param.page >= parseInt((data.total_num / number) + 1, 10)
+                over: param.page >= parseInt((data.meta.total / number) + 1, 10)
             })
         } else {
             this.setData({
                 hotList: data.list,
                 isLoading: false,
                 fid: data.tpcinfo.fid,
-                over: param.page >= parseInt((data.total_num / number) + 1, 10)
+                over: param.page >= parseInt((data.meta.total / number) + 1, 10)
             })
         }
     }, () => {

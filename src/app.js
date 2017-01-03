@@ -316,6 +316,11 @@ App({
             })
         }
     },
+    topic(param) {
+        wx.navigateTo({
+            url: `/pages/blank/blank?type=topic&data=${JSON.stringify(param)}`
+        })
+    },
     showTopic(param) {
         const { eventKey, id, title } = param
         wx.navigateTo({

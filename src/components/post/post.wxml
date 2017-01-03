@@ -92,7 +92,7 @@
                     <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.content}}" />
                 </view>
                 <view wx:elif="{{item.type == 2}}" class="not-support not-support-content">暂不支持此类型的帖子，敬请期待...</view>
-                <view wx:elif="{{item.type == 3}}" bindtap="post_checkBoard" data-event-key="{{key}}" class="topic-post-title" data-id="{{boardId}}" data-title="{{forumName}}">{{item.content}}</view>
+                <view wx:elif="{{item.type == 3}}" bindtap="post_checkBoard" data-event-key="{{key}}" class="topic-post-title" data-id="{{id}}" data-title="{{forumName}}">{{item.content}}</view>
                 <view wx:elif="{{item.type == 4}}" class="topic-post-title" bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{item.id}}">{{item.content}}</view>
                 <view wx:else>{{item.content}}</view>
             </block>

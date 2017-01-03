@@ -1,8 +1,6 @@
 const createPage = require('../../lib/createpage.js')
 const Viewer = require('../../components/viewer/viewer.js')
-const untils = require('../../utils/util.js')
 
-const pagetype = untils.pagetype
 var app = getApp()
 Page(createPage({
     data: {
@@ -18,32 +16,31 @@ Page(createPage({
     },
     onLoad(data) {
         if (data.data) {
-            data.data = decodeURIComponent(data.data)
+            data.data = JSON.parse(decodeURIComponent(data.data))
+        } else {
+            data.data = {}
         }
-        let module
-        if (data.type) {
-            module = {
-                componentList: [],
-                extParams: data.extParams || {},
-                title: data.title || '',
-                id: data.eventKey || data.type,
-                style: data.style || 'flat',
-                type: data.type,
-                data: data.data ? JSON.parse(data.data) : ''
-            }
+        const module = {
+            componentList: data.data.componentList || [],
+            extParams: data.data.extParams || {},
+            title: data.data.title || '',
+            id: data.data.id || data.data.eventKey || data.type,
+            style: data.data.style || 'flat',
+            type: data.type,
+            data: data.data.componentList ? '' : data.data
         }
         // 检测是否支持当前版块
-        pagetype.forEach((v) => {
-            if (v.type == module.type && !v.isAchieve) {
-                module = {
-                    componentList: [],
-                    extParams: {},
-                    title: '出错了！',
-                    style: 'support',
-                    type: 'not'
-                }
-            }
-        })
+        // pagetype.forEach((v) => {
+        //     if (v.type == module.type && !v.isAchieve) {
+        //         module = {
+        //             componentList: [],
+        //             extParams: {},
+        //             title: '出错了！',
+        //             style: 'support',
+        //             type: 'not'
+        //         }
+        //     }
+        // })
         // 加载module
         app.ready().then(() => {
             this.add(new Viewer('viewer', module))

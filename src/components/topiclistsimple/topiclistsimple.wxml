@@ -2,10 +2,12 @@
 <import src="../cellstyle/cellstyle"/>
 <import src="../forum/forum"/>
 <!--  -->
-<block wx:if="{{forumInfo}}">
-    <view bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}">
-        <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, key, name: 'topiclistsimple', complex:false }}" />
-    </view>
+<block wx:if="{{forumShow}}">
+    <block wx:if="{{forumInfo}}">
+        <view bindtap="topiclistsimple_focusForum"  data-event-key="{{key}}">
+            <template is="forumInfo" data="{{resources, iconSrc, topTopicList, appIcon, key, name: 'topiclistsimple', complex:false }}" />
+        </view>
+    </block>
 </block>
 <view class="liststyle-container {{(resources.forum && forumInfo) ? '' : 'liststyle-index'}}">
     <block wx:for="{{resources.list}}" wx:key="{{index}}">

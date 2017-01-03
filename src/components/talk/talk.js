@@ -60,9 +60,7 @@ Talk.prototype.toLogin = function () {
 // 跳转到话题页
 Talk.prototype.toNavigator = function (e) {
     const { id } = e.currentTarget.dataset
-    wx.navigateTo({
-        url: `/pages/blank/blank?type=topic&data=${JSON.stringify({ id })}`
-    })
+    app.topic({ id })
 }
 
 module.exports = Talk

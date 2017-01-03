@@ -5,5 +5,5 @@
     </block>
 </scroll-view>
 <scroll-view bindscrolltolower="customtagnav_scrollToLower" data-event-key="{{key}}" scroll-y class="customtag-content">
-    <template is="{{children[selected].template}}" data="{{tmptitle:'customtagnav', ...children[selected]}}" />
+    <template is="{{children[selected].template}}" data="{{tmptitle:'customtagnav', forumShow: false, ...children[selected]}}" />
 </scroll-view>

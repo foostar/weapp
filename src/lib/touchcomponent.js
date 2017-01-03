@@ -52,7 +52,7 @@ const fns = {
 
         if (info.type !== 'empty') {
             wx.navigateTo({
-                url: '/pages/blank/blank'
+                url: `/pages/blank/blank?type=${info.type}&data=${JSON.stringify(info)}`
             })
         }
     }
