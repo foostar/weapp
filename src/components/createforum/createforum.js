@@ -57,6 +57,17 @@ Createforum.prototype.onLoad = function () {
         tiId: null
     }, opts)
 
+
+    if (app.globalData.userInfo) {
+        // 判断用户是否登录
+        Object.assign(data, {
+            isLogin: true,
+            userInfo: app.globalData.userInfo
+        })
+    } else {
+        console.info('no auth')
+    }
+
     // 判断是否有版块 fid 有值
     if (data.fid) {
         data.isForumlist = false
@@ -95,17 +106,6 @@ Createforum.prototype.onLoad = function () {
         this.getAtUserlist()
     })
     .catch(e => console.log('init createforum', e))
-
-
-    // if (app.globalData.userInfo) {
-    //     // 判断用户是否登录
-    //     Object.assign(data, {
-    //         isLogin: true,
-    //         userInfo: app.globalData.userInfo
-    //     })
-    // } else {
-    //     console.info('no auth')
-    // }
 }
 
 Createforum.prototype.onReady = function () {
@@ -163,7 +163,6 @@ Createforum.prototype.getAtUserlist = function () {
 // 得到分类信息
 Createforum.prototype.getTopicPanelList = function (fid) {
     return app.api.forum(fid).then(res => {
-        console.log(555, res)
         let data = {
             isTopicPanel: true,
             topicPanelList: res.panel
@@ -183,7 +182,6 @@ Createforum.prototype.selectClassInfo = function (e) {
     if (classinfoid) {
         // 发帖样式
         return app.api.classify(classinfoid).then(res => {
-            console.log(22222, res, classinfoid)
             this.setData({
                 classinfoid,
                 classinfoname,
@@ -224,10 +222,6 @@ Createforum.prototype.selectTopicId = function (e) {
         topicIndex: value,
         selectTopicId: topicList[value].id
     })
-    // const { topicId: selectTopicId } = e.currentTarget.dataset
-    // this.setData({
-    //     selectTopicId
-    // })
 }
 
 // 改变话题id
@@ -475,9 +469,6 @@ Createforum.prototype.startRecord = function () {
         success: res => {
             let tempFilePath = res.tempFilePath
             this.showContentText('audio', tempFilePath)
-            // this.setData({
-            //     recordTempFilePath: tempFilePath
-            // })
         },
         fail: err => {
             console.log(err)
@@ -575,7 +566,6 @@ Createforum.prototype.onSubmit = function () {
     }
     this.getClassificationInfo()
     let { title, contentText, actType, tiId, fid, selectTopicId, typeOption } = this.data
-    console.log(title, contentText, actType, tiId, fid, selectTopicId, typeOption)
     let typeOptionUploadFile
     let aid = []   // 附件
     // 过滤contentText 所有的空的插入点
@@ -635,7 +625,6 @@ Createforum.prototype.onSubmit = function () {
     })
     promise.then(() => {
         console.log(33333)
-
         // 上传分类附件
         return Promise.all(typeOptionUploadFile.map(key => {
             return app.api.sendattachmentex({
