@@ -1,3 +1,4 @@
+<import src="../common/common.wxml"/>
 <template name="post-div">
     <view class="{{'align-' + (attribs.align || 'left')}}">
         <block wx:for="{{childNodes}}" wx:key="{{index}}">
@@ -96,7 +97,7 @@
                 <view wx:elif="{{item.type == 4}}" class="topic-post-title" bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{item.id}}">{{item.content}}</view>
                 <view wx:else>{{item.content}}</view>
             </block>
-            <view wx:if="{{isPoll}}" class="not-support">暂不支持此类型的帖子，敬请期待...</view>
+            <view wx:if="{{isPoll}}" class="not-support"></view>
             <!--投票贴-->
             <!-- <block wx:if="{{isPoll && poll.poll_status != 3}}">
                 <view class="poll_title">投票(最多可选{{poll.type}}项)</view>
@@ -203,3 +204,5 @@
         </form>
     </view>
 </view>
+<!-- 消息提示 -->
+<template is="message-prompts" data="{{errMessage, isShow}}"></template>

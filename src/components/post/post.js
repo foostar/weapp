@@ -16,7 +16,8 @@ function Post(key, module) {
         iconsrc: app.globalData.iconSrc,
         isCommenting: true,
         actionSheetHidden: true,
-        postData: module.data
+        postData: module.data,
+        isShow: false
     }
 }
 Post.prototype = Object.create(Component.prototype)
@@ -61,7 +62,7 @@ Post.prototype.fetchData = function (tid, option, control) {
                     type: 3
                 })
             }
-            if (data.content[1].content.charAt(0) == '#' && data.content[1].content.lastIndexOf('#') != 0) {
+            if (data.content.length > 1 && data.content[1].content.charAt(0) == '#' && data.content[1].content.lastIndexOf('#') != 0) {
                 const title = data.content[1].content.substr(0, data.content[1].content.indexOf('#', 1) + 1)
                 data.content[1].content = data.content[1].content.replace(title, '')
                 data.content[1].isTopic = true
@@ -140,11 +141,20 @@ Post.prototype.fetchData = function (tid, option, control) {
         } else {
             this.setData(data)
         }
-    }, () => {
+    }, (err) => {
         if (this.data.page == 1) {
-            return wx.navigateBack({
-                delta: 1
+            this.setData({
+                isShow: true,
+                errMessage: err.data.msg
             })
+            setTimeout(() => {
+                this.setData({
+                    isShow: false
+                })
+                wx.navigateBack({
+                    delta: 1
+                })
+            }, 800)
         }
     })
 }

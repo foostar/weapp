@@ -1,6 +1,5 @@
 <import src="../module/module.wxml" />
 <template name="viewer">
-    <view class="copyright">本小程序由 {{name}} 提供</view>
     <view wx:if="{{hasScroll && children[moduleId].template}}" class="viewer">
         <template is="{{children[moduleId].template}}" data="{{tmptitle:'viewer', ...children[moduleId]}}" />
     </view>
