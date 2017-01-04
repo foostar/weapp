@@ -34,7 +34,7 @@
 }
 .scroll-subnav-container{
     position:absolute;
-    top:29px;
+    top:70rpx;
     bottom:0;
 }
 .subnav-content-container {
