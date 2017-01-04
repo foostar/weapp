@@ -28,6 +28,7 @@ function Createforum(key, module) {
         imageInputInfo: null, // 图片进行编辑
         recordTempFilePath: null, // 录音的
         classinfoid: null,
+        textInput: false,
         title: '',
         imagelist: [],
         deleteUrl: '',
@@ -93,7 +94,12 @@ Createforum.prototype.onLoad = function () {
             this.setData({
                 isTopicPanel: true
             })
+        } else {
+            this.setData({
+                isPublish: true
+            })
         }
+
         return app.api.search('', 'topic', { searchid: data.fid })
     }).then((res) => {
         console.log('话题列表', res)
@@ -150,7 +156,6 @@ Createforum.prototype.getTopicList = function () {
         const obj = postInfo.filter(item => {
             return item.fid === topicId
         })
-        console.log(2222, obj[0].topic.classificationType_list)
         this.setData({
             topicList: obj[0].topic.classificationType_list,
             selectTopicId: obj[0].topic.classificationType_id
@@ -173,15 +178,24 @@ Createforum.prototype.getAtUserlist = function () {
 // 得到分类信息
 Createforum.prototype.getTopicPanelList = function (fid) {
     return app.api.forum(fid).then(res => {
+        console.log(222, res)
+        let topicPanelList = []
+        res.panel.forEach(item => {
+            if (item.type !== 'normal' && item.type !== 'vote') {
+                topicPanelList.push(item)
+            }
+        })
         let data = {
             isTopicPanel: true,
-            topicPanelList: res.panel
+            topicPanelList
         }
-        if (res.panel.length === 1 && res.panel[0].type === 'normal') {
+
+        if (topicPanelList.length === 0) {
             data.isTopicPanel = false
         }
+
         this.setData(data)
-        return res.panel
+        return topicPanelList
     })
 }
 
@@ -288,11 +302,13 @@ Createforum.prototype.showTools = function (e) {
     const { contentText } = this.data
     let updateInfo = {}
     if (viewId) {
-        contentText.forEach(item => {
+        for (let i = 0; i < contentText.length; i += 1) {
+            const item = contentText[i]
             if (item.contentTextId == viewId) {
                 updateInfo = item
+                break
             }
-        })
+        }
         if (updateInfo.type === 0) {
             this.setData({
                 selectItemId: viewId,
@@ -310,11 +326,14 @@ Createforum.prototype.showTools = function (e) {
 
         if (updateInfo.type === 9) {
             this.setData({
-                selectItemId: viewId
+                selectItemId: viewId,
+                textInputInfo: null,
+                imagelist: []
             })
         }
     }
-    this.showInputTools()
+    this.changeInputType({ target: { dataset: { type: 'textInput' } } })
+    // this.showInputTools()
 }
 
 // 展示输入控件
@@ -369,6 +388,7 @@ Createforum.prototype.showContentText = function (type, value) {
         })
     } else if (update && value) {
         // 修改编辑
+        contentText[contentIndex].type = update.type
         contentText[contentIndex].value = value
         this.setData({
             contentText,
@@ -401,11 +421,11 @@ Createforum.prototype.showContentText = function (type, value) {
 Createforum.prototype.chooseImageOver = function () {
     const { selectItemId, imagelist = [] } = this.data
     if (imagelist.length === 0 && selectItemId) {
-        return this.showContentText('pictrue', null, { selectItemId })
+        return this.showContentText('pictrue', null, { selectItemId, type: 1 })
     }
     imagelist.map(url => {
         if (selectItemId) {
-            return this.showContentText('pictrue', url, { selectItemId })
+            return this.showContentText('pictrue', url, { selectItemId, type: 1 })
         }
         return this.showContentText('pictrue', url)
     })
@@ -419,16 +439,19 @@ Createforum.prototype.chooseImageOver = function () {
 // 输入内容
 Createforum.prototype.bindInput = function (e) {
     const { value: content } = e.detail
-    this.setData({
-        textInputInfo: content
-    })
+    clearTimeout(this._timer)
+    this._timer = setTimeout(() => {
+        this.setData({
+            textInputInfo: content
+        })
+    }, 200)
 }
 
 // 输入结束
 Createforum.prototype.bindconfirm = function () {
     const { selectItemId, textInputInfo } = this.data
     if (selectItemId) {
-        return this.showContentText('text', textInputInfo, { selectItemId })
+        return this.showContentText('text', textInputInfo, { selectItemId, type: 0 })
     }
     return this.showContentText('text', textInputInfo)
 }

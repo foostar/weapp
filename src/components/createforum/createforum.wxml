@@ -37,7 +37,7 @@
 <block wx:if="{{!isForumlist && !isTopicPanel && isPublish}}">
     <view class="createforum-publish-item weapp-border-bottom" >
         <view class="createforum-publish-item-title">板块信息</view>
-        <view style="color: #ccc;">{{ boardname +'  '+ classinfoname}}</view>
+        <view style="color: #ccc;">{{ boardname +'  '+ classinfoname ? classinfoname: '' }}</view>
     </view>
     <view class="createforum-publish-content">
         <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
@@ -66,8 +66,10 @@
                     {{item.value}}
                 </view>
                 <view class="createforum-publish-view-null" wx:if="{{item.type === 9}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
+                    点击在该位置插入新内容
                 </view>
-                <image class="createforum-publish-view-image" wx:if="{{item.type === 1}}" data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};" src="{{item.value}}" mode="widthFix" />
+                <image class="createforum-publish-view-image" wx:if="{{item.type === 1}}"  data-view-id="{{item.contentTextId}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};" src="{{item.value}}" mode="aspectFit" />
+
 
                 <view class="createforum-publish-view-image" wx:if="{{item.type === 3}}" style="background: {{selectItemId == item.contentTextId ? 'rgba(255,204,0,.5)': ''}};">
                     <audio src="{{item.value}}" poster="{{iconSrc}}default_plate.png" data-audio-temp="{{item.value}}" controls data-view-id="{{item.contentTextId}}" bindplay="createforum_playAudio"  bindpause="createforum_pauseAudio" data-event-key="{{key}}"></audio>
@@ -80,7 +82,7 @@
     </view>
 
 
-    <view class="createforum-publish-tools" hidden="{{!showInputTools}}">
+    <view class="createforum-publish-tools" >
         <view class="createforum-publish-tools-nav weapp-border-topandbottom" catchtap="createforum_changeInputType" data-event-key="{{key}}" >
             <view class="createform-list-item-1">
                 <scroll-view scroll-x="true">
@@ -114,7 +116,7 @@
         </view>
         <!-- 文本编辑 -->
         <view  wx:if="{{textInput}}">
-            <input type="text" value="{{textInputInfo}}" placeholder="说点什么吧。。。。" bindinput="createforum_bindInput" bindconfirm="createforum_bindconfirm"  data-event-key="{{key}}"/>
+            <input type="text" value="{{textInputInfo}}" placeholder="说点什么吧。。。。" bindinput="createforum_bindInput" bindconfirm="createforum_bindconfirm" focus="ture" data-event-key="{{key}}"/>
         </view>
         <!-- 图片编辑 -->
         <view wx:if="{{pictureSelected}}">
@@ -128,7 +130,7 @@
             </scroll-view>
 
             <view wx:hidden="{{imagelist.length === 0}}" class="createforum-upload-images-button">
-                <button bindtap="createforum_chooseImageOver" data-event-key="{{key}}" size="mini">上传到编辑区</button>
+                <button bindtap="createforum_chooseImageOver" data-event-key="{{key}}" size="mini">同步到编辑区</button>
             </view>
         </view>
         <!-- 音乐编辑 -->
