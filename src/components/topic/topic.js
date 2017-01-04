@@ -31,7 +31,6 @@ Topic.prototype.fetchData = function (param, number) {
     // NEW HOT
     /* eslint-disable */
     const ti_id = (this.papeData ? this.papeData.id : null) || this.module.extParams.talkId
-    console.log(111, ti_id)
     /* eslint-enable */
     let list = param.list || currentIndex === 1 ? this.data.newList : this.data.hotList || []
     if (this.data.over) return Promise.reject()

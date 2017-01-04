@@ -114,6 +114,7 @@
     line-height: 48rpx;
     text-align: left; 
     padding: 10rpx 20rpx;
+    word-wrap:break-word;
 }
 
 .createforum-publish-view-null {
@@ -124,8 +125,6 @@
     margin: 0 auto;
     padding: 20rpx;
 }
-
-
 
 .createforum-publish-item-input {
     flex:1;
