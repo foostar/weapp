@@ -42,10 +42,10 @@
     <view class="createforum-publish-content">
         <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
         <view wx:if="{{topicList.length}}">
-            <picker bindchange="createforum_selectTopicId" data-event-key="{{key}}" value="{{topicIndex}}" range="{{topicList}}" range-key="name">
+            <picker bindchange="createforum_selectTopicId" data-event-key="{{key}}" value="{{topicIndex}}" range="{{topicList}}" range-key="classificationType_name">
                 <view class="createforum-publish-item weapp-border-bottom">
                     <view class="createforum-publish-item-title">主题</view>
-                    <view>{{topicList[topicIndex].name}}</view>
+                    <view>{{topicList[topicIndex].classificationType_name}}</view>
                 </view>
             </picker>
         </view>
