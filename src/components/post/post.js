@@ -46,9 +46,17 @@ Post.prototype.fetchData = function (tid, option, control) {
     } else {
         request = app.api.article(tid)
     }
+    if (options.page == 1) {
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            duration: 10000
+        })
+    }
     return request.then((data) => {
         /* 处理页面详情参数 */
         if (data.page == 1) {
+            wx.hideToast()
             if (app.globalData.userInfo && app.globalData.userInfo.uid == data.userId) {
                 data.creater = true
             }
