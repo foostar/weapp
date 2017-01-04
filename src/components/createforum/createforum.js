@@ -27,6 +27,7 @@ function Createforum(key, module) {
         textInputInfo: null, // 输入文本的内容
         imageInputInfo: null, // 图片进行编辑
         recordTempFilePath: null, // 录音的
+        classinfoid: null,
         title: '',
         imagelist: [],
         deleteUrl: '',
@@ -144,13 +145,30 @@ Createforum.prototype.changePageTitle = function () {
 // 主题列表
 Createforum.prototype.getTopicList = function () {
     const { fid: topicId } = this.data
-    app.api.forum(topicId).then(res => {
+    app.api.getSetting().then(res => {
+        const { postInfo } = res.body
+        const obj = postInfo.filter(item => {
+            return item.fid === topicId
+        })
+        console.log(2222, obj[0].topic.classificationType_list)
         this.setData({
-            topicList: res.typeInfo,
+            topicList: obj[0].topic.classificationType_list,
+            selectTopicId: obj[0].topic.classificationType_id
+        })
+        return app.api.forum(topicId)
+    }).then(res => {
+        this.setData({
             boardname: res.forum.name,
-            selectTopicId: res.typeInfo[0].id
         })
     })
+
+    // app.api.forum(topicId).then(res => {
+    //     this.setData({
+    //         topicList: res.typeInfo,
+    //         boardname: res.forum.name,
+    //         selectTopicId: res.typeInfo[0].id
+    //     })
+    // })
 }
 
 // @好友列表
@@ -220,7 +238,7 @@ Createforum.prototype.selectTopicId = function (e) {
     const { value } = e.detail
     this.setData({
         topicIndex: value,
-        selectTopicId: topicList[value].id
+        selectTopicId: topicList[value].classificationType_id
     })
 }
 
@@ -565,7 +583,7 @@ Createforum.prototype.onSubmit = function () {
         return
     }
     this.getClassificationInfo()
-    let { title, contentText, actType, tiId, fid, selectTopicId, typeOption } = this.data
+    let { title, contentText, actType, tiId, classinfoid, fid, selectTopicId, typeOption } = this.data
     let typeOptionUploadFile
     let aid = []   // 附件
     // 过滤contentText 所有的空的插入点
@@ -671,6 +689,7 @@ Createforum.prototype.onSubmit = function () {
             fid,
             typeOption,
             typeId: selectTopicId,
+            sortId: classinfoid,
             ti_id: tiId,
             title: encodeURIComponent(title)
         }, data)
