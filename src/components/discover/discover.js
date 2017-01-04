@@ -24,6 +24,7 @@ function Discover(key, module) {
         setting: {},
         loadSrc: app.globalData.loadSrc,
         iconSrc: app.globalData.iconSrc,
+        appColor: `#${app.config.COLOR}`,
         modalHidden: true
     }
 }

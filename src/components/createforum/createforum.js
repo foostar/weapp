@@ -660,7 +660,6 @@ Createforum.prototype.onSubmit = function () {
         return
     })
     .then(() => {
-        console.log(555)
         // 上传帖子内容
         contentText.map(item => {
             item.infor = item.value
@@ -674,7 +673,6 @@ Createforum.prototype.onSubmit = function () {
         }
     })
     .then(data => {
-        console.log(666, data)
         data = Object.assign({
             isShowPostion: 0, // 是否显示地理位置
             act: actType,

@@ -137,3 +137,28 @@ page {
     position: absolute;
 
 }
+.kefu {
+    width: 90rpx;
+    height: 90rpx;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 130rpx;
+    right: 40rpx;
+    background: #602cff;
+
+}
+.kefu contact-button {
+    position: absolute;
+    margin-top: -9px;
+    margin-left: -9px;
+    top: 50%;
+    left: 50%;
+
+}
+.kefu view {
+    display: inline-block;
+    width: 100rpx;
+    height: 100rpx;
+    font-size: 32rpx;
+    color: #fff;
+}
