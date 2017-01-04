@@ -174,11 +174,8 @@
     margin-top: 5rpx;
     margin-left: 8rpx
 }
-.liststyle-container{
-    margin-top:30rpx
-}
-.liststyle-index{
-    margin-top:0
+.foruminfo{
+    margin-bottom:30rpx;
 }
 /* ========== cell-tieba ========== */
 .cell-tieba {
