@@ -5,6 +5,10 @@ function CustomTagNav(key, module) {
     Component.call(this, key)
     this.addByModule(module.componentList[0])
     this.module = module
+    let width = '25%'
+    if (module.componentList.length < 5) {
+        width = `${(100 / module.componentList.length).toFixed(2)}%`
+    }
     this.data = {
         index: 0,
         selected: module.componentList[0].id,
@@ -14,7 +18,8 @@ function CustomTagNav(key, module) {
                 id: x.id,
                 title: x.title
             }
-        })
+        }),
+        width
     }
 }
 

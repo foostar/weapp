@@ -93,10 +93,10 @@
                     <view class="createforum-list" wx:if="{{ !isTopic && titopicList.length > 0 }}">
                         <image src="{{iconSrc}}new_public_topic.png" data-type="titopicListSelected" mode="aspectFill"/>
                     </view>
-                    <view class="createforum-list">
+                    <!-- <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_@.png" mode="aspectFill"/>
                     </view>
-                   <view class="createforum-list">
+                    <view class="createforum-list">
                         <image data-type="recordSelected" src="{{iconSrc}}new_publish_record.png" mode="aspectFill"/>
                     </view>
                     <view class="createforum-list">
@@ -104,7 +104,7 @@
                     </view>
                     <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_vote.png" mode="aspectFill"/>
-                    </view>
+                    </view> -->
                 </scroll-view>
             </view>
             

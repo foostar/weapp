@@ -1,5 +1,6 @@
 @import './components/viewer/viewer.wxss';
 @import './theme.wxss';
+@import "./components/tabbar/tabbar.wxss";
 /**app.wxss**/
 page {
     background: #EFEFF4; 
@@ -55,6 +56,38 @@ view, text {
     .font-normal{font-size:16px;}
     .font-mini{font-size:14px;}
     body{font-size:16px;}
+}
+.index-page {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #F0F0F0;
+}
+
+.viewer-container {
+    position: absolute;
+    top: 0;
+    bottom: 88rpx;
+    width: 100%;
+}
+
+.load-more {
+    background-color: #fff;
+    width: 100%;
+    padding: 40rpx 0;
+}
+
+.load-more text {
+    display: block;
+    color: #888;
+    font-size: 28rpx;
+    width: 510rpx;
+    height: 72rpx;
+    margin: 0 auto;
+    line-height: 72rpx;
+    text-align: center;
+    background-color: #ddd;
+    border-radius: 6rpx;
 }
 
 /* 消息提示样式*/
