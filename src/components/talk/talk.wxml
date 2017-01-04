@@ -22,9 +22,17 @@
                         <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
                     </view>
                 </view>
-                <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
-                    <text class="text-white">关注</text>
-                </view>
+                <block wx:if="{{item.iscare == 0}}">
+                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="talk_toFollow" data-event-key="{{key}}" data-id="{{item.ti_id}}" data-type="CARE">
+                        <text class="text-white">关注</text>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="topic-list-item-caretpc-btn" style="color: #ccc;" catchtap="talk_toFollow" data-event-key="{{key}}" data-id="{{item.ti_id}}" data-type="QX">
+                        <text class="text-white">取消</text>
+                    </view>
+                </block>
+                
             </view>
 
         </block>
@@ -45,9 +53,21 @@
                         <text wx:if="{{ item.ti_topicimg != 0 }}">{{ item.ti_topicimg }}张图片</text>
                     </view>
                 </view>
-                <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
+
+                <block wx:if="{{item.iscare == 0}}">
+                    <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="talk_toFollow" data-event-key="{{key}}" data-id="{{item.ti_id}}" data-type="CARE">
+                        <text class="text-white">关注</text>
+                    </view>
+                </block>
+                <block wx:else>
+                    <view class="topic-list-item-caretpc-btn" style="color: #ccc;" catchtap="talk_toFollow" data-event-key="{{key}}" data-id="{{item.ti_id}}" data-type="QX">
+                        <text class="text-white">取消</text>
+                    </view>
+                </block>
+
+                <!-- <view class="topic-list-item-caretpc-btn" style="color: {{ color }}" catchtap="toFollow">
                     <text class="text-white">关注</text>
-                </view>
+                </view> -->
             </view>
         </block>
     </view>

@@ -44,6 +44,7 @@ Talk.prototype.fetchData = function () {
     Promise
         .all(querys)
         .then(result => {
+            console.log(result)
             this.setData({
                 topic: result[0],
                 mytopic: (result.length > 1 ? result[1] : {})
@@ -62,5 +63,39 @@ Talk.prototype.toNavigator = function (e) {
     const { id } = e.currentTarget.dataset
     app.topic({ id })
 }
+// 关注话题
+Talk.prototype.toFollow = function (e) {
+    const { id, type } = e.currentTarget.dataset
+    let { topic, mytopic } = this.data
+    let topiclist = []
+    let mytopicList = []
+    app.api.caretpcByTopic(id, type, { page: 1, pageSize: 20 })
+        .then(() => {
+            topic.list.forEach(item => {
+                if (item.ti_id === id) {
+                    item.iscare = 1
+                    mytopicList.push(item)
+                } else {
+                    topiclist.push(item)
+                }
+            })
+            mytopic.list.forEach(item => {
+                if (item.ti_id === id) {
+                    item.iscare = 0
+                    topiclist.push(item)
+                } else {
+                    mytopicList.push(item)
+                }
+            })
+
+            topic.list = topiclist
+            mytopic.list = mytopicList
+            this.setData({
+                topic,
+                mytopic
+            })
+        })
+}
+
 
 module.exports = Talk

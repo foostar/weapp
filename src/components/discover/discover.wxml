@@ -96,7 +96,7 @@
 </scroll-view>
 
 <view class="kefu" style="background:{{appColor}};">
-    <!-- <contact-button type="default-light" size="20" session-from="weapp"></contact-button> -->
+    <contact-button type="default-light" size="18" session-from="weapp"></contact-button>
 </view>
 
 <modal title="账户管理" hidden="{{modalHidden}}" bindconfirm="discover_logout" bindcancel="discover_bindChange" data-event-key="{{key}}"></modal>
