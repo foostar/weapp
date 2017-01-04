@@ -138,27 +138,22 @@ page {
 
 }
 .kefu {
-    width: 90rpx;
-    height: 90rpx;
+    width: 80rpx;
+    height: 80rpx;
     border-radius: 50%;
-    position: fixed;
-    bottom: 130rpx;
-    right: 40rpx;
-    background: #602cff;
-
+    margin: 60rpx auto 10rpx;
+    position: relative;
+    background: rgba(75,197,35,1);
 }
 .kefu contact-button {
     position: absolute;
-    margin-top: -9px;
-    margin-left: -9px;
+    margin-top: -10px;
+    margin-left: -10px;
     top: 50%;
     left: 50%;
-
 }
-.kefu view {
-    display: inline-block;
-    width: 100rpx;
-    height: 100rpx;
-    font-size: 32rpx;
-    color: #fff;
+.kefu-text {
+    font-size: 26rpx;
+    text-align: center;
+    color: #999;
 }
