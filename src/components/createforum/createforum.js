@@ -161,14 +161,6 @@ Createforum.prototype.getTopicList = function () {
             boardname: res.forum.name,
         })
     })
-
-    // app.api.forum(topicId).then(res => {
-    //     this.setData({
-    //         topicList: res.typeInfo,
-    //         boardname: res.forum.name,
-    //         selectTopicId: res.typeInfo[0].id
-    //     })
-    // })
 }
 
 // @好友列表
