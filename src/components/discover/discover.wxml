@@ -95,7 +95,7 @@
     </view>
 </scroll-view>
 
-<view class="kefu">
+<view class="kefu" style="background:{{appColor}};">
     <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
 </view>
 
