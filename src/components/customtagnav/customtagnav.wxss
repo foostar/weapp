@@ -15,7 +15,7 @@
 }
 .customtag-item{
     /*display:inline-block;*/
-    width:25%;
+    /*width:25%;*/
     height:90rpx;
     text-align: center;
     overflow:hidden;
