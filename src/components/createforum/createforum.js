@@ -42,7 +42,8 @@ function Createforum(key, module) {
         selectTopicId: '',  // 选择主题id
         selectTiTopicId: '',  // 选择话题id
         topicIndex: 0, // 主题数组索引
-
+        errMessage: '',
+        isShow: false,
     }
 }
 
@@ -58,7 +59,6 @@ Createforum.prototype.onLoad = function () {
         isTopic: false,
         tiId: null
     }, opts)
-
 
     if (app.globalData.userInfo) {
         // 判断用户是否登录
@@ -90,7 +90,7 @@ Createforum.prototype.onLoad = function () {
     return promise.then(fid => {
         return this.getTopicPanelList(fid)
     }).then(topicPanelList => {
-        if (topicPanelList && topicPanelList.length > 0) {
+        if (topicPanelList && topicPanelList.length > 1) {
             this.setData({
                 isTopicPanel: true
             })
@@ -99,10 +99,8 @@ Createforum.prototype.onLoad = function () {
                 isPublish: true
             })
         }
-
         return app.api.search('', 'topic', { searchid: data.fid })
     }).then((res) => {
-        console.log('话题列表', res)
         // 话题列表
         this.setData({
             titopicList: res.list
@@ -178,10 +176,9 @@ Createforum.prototype.getAtUserlist = function () {
 // 得到分类信息
 Createforum.prototype.getTopicPanelList = function (fid) {
     return app.api.forum(fid).then(res => {
-        console.log(222, res)
         let topicPanelList = []
         res.panel.forEach(item => {
-            if (item.type !== 'normal' && item.type !== 'vote') {
+            if (item.type !== 'vote') {
                 topicPanelList.push(item)
             }
         })
@@ -189,11 +186,9 @@ Createforum.prototype.getTopicPanelList = function (fid) {
             isTopicPanel: true,
             topicPanelList
         }
-
-        if (topicPanelList.length === 0) {
+        if (topicPanelList.length === 1) {
             data.isTopicPanel = false
         }
-
         this.setData(data)
         return topicPanelList
     })
@@ -327,11 +322,14 @@ Createforum.prototype.showTools = function (e) {
         if (updateInfo.type === 9) {
             this.setData({
                 selectItemId: viewId,
-                textInputInfo: null,
+                textInputInfo: '',
                 imagelist: []
             })
         }
     }
+    this.setData({
+        isFocus: true
+    })
     this.changeInputType({ target: { dataset: { type: 'textInput' } } })
     // this.showInputTools()
 }
@@ -384,7 +382,7 @@ Createforum.prototype.showContentText = function (type, value) {
             contentText,
             contentTextId,
             selectItemId: null,
-            textInputInfo: null
+            textInputInfo: ''
         })
     } else if (update && value) {
         // 修改编辑
@@ -393,7 +391,7 @@ Createforum.prototype.showContentText = function (type, value) {
         this.setData({
             contentText,
             selectItemId: null,
-            textInputInfo: null
+            textInputInfo: ''
         })
     } else if (update && !value) {
         // 删除元素
@@ -402,7 +400,7 @@ Createforum.prototype.showContentText = function (type, value) {
         this.setData({
             contentText,
             selectItemId: null,
-            textInputInfo: null
+            textInputInfo: ''
         })
     } else {
         contentTextId += 1
@@ -412,7 +410,7 @@ Createforum.prototype.showContentText = function (type, value) {
         this.setData({
             contentText,
             contentTextId,
-            textInputInfo: null
+            textInputInfo: ''
         })
     }
 }
@@ -720,8 +718,24 @@ Createforum.prototype.onSubmit = function () {
     })
     .catch(err => {
         console.error('发表失败', err)
+        this.setData({
+            isShow: true,
+            errMessage: err.data.err.errcode
+        })
+        this.closeMessagePrompt()
     })
 }
 
+
+// 关闭页面提示信息
+Createforum.prototype.closeMessagePrompt = function () {
+    clearTimeout(this._timer)
+    this._timer = setTimeout(() => {
+        this.setData({
+            isShow: false,
+            errMessage: ''
+        })
+    }, 1500)
+}
 
 module.exports = Createforum

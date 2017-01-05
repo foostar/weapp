@@ -64,3 +64,29 @@
     right: 10rpx;
     color: #fff;
 }
+
+.login-forgot-btn {
+    font-weight: 100;
+    position: absolute;
+    bottom: 30rpx;
+    left: 10rpx;
+    color: #fff;
+}
+
+.forgot-img-text {
+    text-align: center;
+    font-size: 48rpx;
+    color: #fff;
+    font-weight: 100;
+}
+
+.forgot-img-code {
+    width:250rpx;
+    height:110rpx;
+    border-radius:20rpx;
+    display:flex;
+    justify-content:center;
+    margin:20rpx auto 40rpx;
+
+
+}

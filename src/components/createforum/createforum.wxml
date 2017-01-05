@@ -1,5 +1,6 @@
 <import src="../module/module.wxml" />
 <import src="../classifications/classifications.wxml" />
+<import src="../common/common.wxml"/>
 
 <!-- 版块列表 -->
 <view wx:if="{{isForumlist}}">
@@ -116,7 +117,7 @@
         </view>
         <!-- 文本编辑 -->
         <view  wx:if="{{textInput}}">
-            <input type="text" value="{{textInputInfo}}" placeholder="说点什么吧。。。。" bindinput="createforum_bindInput" bindconfirm="createforum_bindconfirm" focus="ture" data-event-key="{{key}}"/>
+            <input type="text" value="{{textInputInfo}}" placeholder="说点什么吧。。。。" bindinput="createforum_bindInput" bindconfirm="createforum_bindconfirm" focus="{{isFocus}}" data-event-key="{{key}}"/>
         </view>
         <!-- 图片编辑 -->
         <view wx:if="{{pictureSelected}}">
@@ -157,3 +158,8 @@
         </view>
     </view>
 </block>
+
+
+
+<!-- 消息提示 -->
+<template is="message-prompts" data="{{errMessage, isShow}}"></template>

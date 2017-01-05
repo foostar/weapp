@@ -14,6 +14,11 @@
         </view>
         <button class="login-form-btn" formType="submit">登  录</button>
 
+
+        <navigator url="/pages/blank/blank?type=forgot" >
+            <view class="login-btn login-forgot-btn" >忘记密码</view>
+        </navigator>
+
         <navigator url="/pages/blank/blank?type=register" redirect="true">
             <view class="login-btn login-register-btn" >注  册</view>
         </navigator>
