@@ -39,11 +39,18 @@ Topic.prototype.fetchData = function (param, number) {
         isLoading: true,
         color: `#${app.config.COLOR}`
     })
-    return app.api.topicdtl({
+    const options = {
         ti_id,
         page: param.page,
         orderby: currentIndex === 1 ? 'NEW' : 'HOT'
-    }).then((data) => {
+    }
+    /* eslint-disable */
+    if (this.papeData && this.papeData.type == 'tid') {
+        delete options.ti_id
+        options.tid = ti_id
+    }
+    /* eslint-enable */
+    return app.api.topicdtl(options).then((data) => {
         data.list = list.concat(data.list)
         if (data.meta.page == 1) {
             this.setData({
