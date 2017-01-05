@@ -111,11 +111,11 @@
     color:#555;
 }
 .post-replies{
-    width:28rpx;
-    height:30rpx;
+    width:40rpx;
+    height:32rpx;
     float:right;
     position:relative;
-    margin-top:20rpx;
+    margin-top:16rpx;
     
     background-size: 28rpx auto;
     margin-left: 20rpx;

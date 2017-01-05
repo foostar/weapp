@@ -26,7 +26,7 @@ const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = true) =>
         date = new Date(+date)
     }
 
-    if (!(date instanceof Date)) {
+    if (Object.prototype.toString.call(date) != '[object Date]') {
         date = new Date(date)
     }
 

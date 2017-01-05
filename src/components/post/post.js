@@ -94,9 +94,12 @@ Post.prototype.fetchData = function (tid, option, control) {
                     v.hasFace = faceResult.hasFace
                     v.subject = faceResult.data
                 }
-                if (v.type == 4) {
-                    v.id = v.url.substr(-1)
+                /* eslint-disable */
+                if (v.type == 4 && /\@/g.test(v.content)) {
+                    v.type = 5
+                    v.id = v.url.substr(v.url.lastIndexOf("=")+1)
                 }
+                /* eslint-enable */
             })
             data.zanList.forEach((v) => {
                 if (app.globalData.userInfo && v.recommenduid == app.globalData.userInfo.uid) {
@@ -190,7 +193,6 @@ Post.prototype.actionSheetTap = function (e) {
         managePanel: []
     })
 }
-
 Post.prototype.actionSheetChange = function () {
     this.setData({
         actionSheetHidden: !this.data.actionSheetHidden
@@ -379,6 +381,7 @@ Post.prototype.formReset = function () {
  */
 Post.prototype.checkUser = function (e) {
     if (e.currentTarget.dataset.id) {
+        if (!app.isLogin()) return
         app.showUserHome(e.currentTarget.dataset.id)
     }
 }
