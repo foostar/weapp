@@ -176,7 +176,6 @@ Createforum.prototype.getAtUserlist = function () {
 // 得到分类信息
 Createforum.prototype.getTopicPanelList = function (fid) {
     return app.api.forum(fid).then(res => {
-        console.log(222, res)
         let topicPanelList = []
         res.panel.forEach(item => {
             if (item.type !== 'vote') {
@@ -187,11 +186,9 @@ Createforum.prototype.getTopicPanelList = function (fid) {
             isTopicPanel: true,
             topicPanelList
         }
-        console.log(333, topicPanelList.length === 1)
         if (topicPanelList.length === 1) {
             data.isTopicPanel = false
         }
-        console.log(444, data)
         this.setData(data)
         return topicPanelList
     })
