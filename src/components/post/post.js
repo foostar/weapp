@@ -153,7 +153,7 @@ Post.prototype.fetchData = function (tid, option, control) {
         if (this.data.page == 1) {
             this.setData({
                 isShow: true,
-                errMessage: err.data.msg
+                errMessage: err.data.err.errcode
             })
             setTimeout(() => {
                 this.setData({
@@ -386,7 +386,7 @@ Post.prototype.checkUser = function (e) {
  *  @访问话题列表
  */
 Post.prototype.checkBoard = function (e) {
-    app.topic({ id: e.currentTarget.dataset.id })
+    app.topic({ id: e.currentTarget.dataset.id, type: 'tid' })
 }
 module.exports = Post
 
