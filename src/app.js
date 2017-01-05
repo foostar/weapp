@@ -212,7 +212,7 @@ App({
                 modules[x.id] = x
                 x.componentList.forEach(completeId)
             })
-            this.wechartUserLogin()
+            // this.wechartUserLogin()
             this.config = CONFIG
             return this.globalData
         }, (err) => {

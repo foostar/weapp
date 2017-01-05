@@ -59,7 +59,7 @@ Createforum.prototype.onLoad = function () {
         tiId: null
     }, opts)
 
-
+    console.log(2222, data)
     if (app.globalData.userInfo) {
         // 判断用户是否登录
         Object.assign(data, {
@@ -88,6 +88,7 @@ Createforum.prototype.onLoad = function () {
         })
     })
     return promise.then(fid => {
+        console.log(3333, fid)
         return this.getTopicPanelList(fid)
     }).then(topicPanelList => {
         if (topicPanelList && topicPanelList.length > 0) {
@@ -99,7 +100,7 @@ Createforum.prototype.onLoad = function () {
                 isPublish: true
             })
         }
-
+        console.log(444, data.fid)
         return app.api.search('', 'topic', { searchid: data.fid })
     }).then((res) => {
         console.log('话题列表', res)
@@ -178,7 +179,7 @@ Createforum.prototype.getAtUserlist = function () {
 // 得到分类信息
 Createforum.prototype.getTopicPanelList = function (fid) {
     return app.api.forum(fid).then(res => {
-        console.log(222, res)
+        console.log(666, res)
         let topicPanelList = []
         res.panel.forEach(item => {
             if (item.type !== 'normal' && item.type !== 'vote') {

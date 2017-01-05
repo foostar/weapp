@@ -54,6 +54,7 @@ Post.prototype.fetchData = function (tid, option, control) {
         })
     }
     return request.then((data) => {
+        console.log(data)
         /* 处理页面详情参数 */
         if (data.page == 1) {
             wx.hideToast()

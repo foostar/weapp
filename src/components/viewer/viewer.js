@@ -66,6 +66,7 @@ const Topic = require('../topic/topic.js')
 
 const FollowList = require('../followlist/followlist.js')
 const VerifyMobile = require('../verifymobile/verifymobile.js')
+const Forgot = require('../forgotpassword/forgotpassword.js')
 
 
 /*
@@ -200,6 +201,8 @@ components.type['postlist-flat'] = Post         // 帖子详情
 
 components.type['followlist-flat'] = FollowList  // 关注相关列表
 components.type['stickmore-flat'] = Stickmore   // 更多列表
+
+components.type['forgot-flat'] = Forgot      // 忘记密码
 
 // topiclistSimple-flat
 

@@ -219,6 +219,10 @@
     <include src='../followlist/followlist.wxml' />
 </template>
 
+<template name="forgotpassword">
+    <include src="../forgotpassword/forgotpassword.wxml"></include>
+</template>
+
 <!-- 发帖分类信息组建 -->
 <template name="classifications">
     <include src='../classifications/classifications.wxml' />
@@ -226,6 +230,9 @@
 <template name="stickmore">
     <include src='../stickmore/stickmore.wxml' />
 </template>
+
+
+
 
 
 
