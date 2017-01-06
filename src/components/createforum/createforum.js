@@ -42,8 +42,6 @@ function Createforum(key, module) {
         selectTopicId: '',  // 选择主题id
         selectTiTopicId: '',  // 选择话题id
         topicIndex: 0, // 主题数组索引
-        errMessage: '',
-        isShow: false,
         isfocus: false
     }
 }
@@ -733,24 +731,8 @@ Createforum.prototype.onSubmit = function () {
     })
     .catch(err => {
         console.log('发表失败', err)
-        this.setData({
-            isShow: true,
-            errMessage: err.data.err.errcode
-        })
-        this.closeMessagePrompt()
     })
 }
 
-
-// 关闭页面提示信息
-Createforum.prototype.closeMessagePrompt = function () {
-    clearTimeout(this._timer)
-    this._timer = setTimeout(() => {
-        this.setData({
-            isShow: false,
-            errMessage: ''
-        })
-    }, 1500)
-}
 
 module.exports = Createforum
