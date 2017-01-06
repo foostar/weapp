@@ -93,9 +93,9 @@
                     <image data-index="{{index}}" bindload="post_imageLoaded" data-event-key="{{key}}" style="width: 100%;height: {{item.imageHeight}}" mode="aspectFit" src="{{item.content}}" />
                 </view>
                 <view wx:elif="{{item.type == 2}}" class="not-support not-support-content"></view>
-                <view wx:elif="{{item.type == 3}}" bindtap="post_checkBoard" data-event-key="{{key}}" class="topic-post-title" data-id="{{id}}" data-title="{{forumName}}">{{item.content}}</view>
                 <view wx:elif="{{item.type == 4}}">{{item.content}}</view>
                 <view wx:elif="{{item.type == 5}}" class="topic-post-title" bindtap="post_checkUser" data-event-key="{{key}}" data-id="{{item.id}}">{{item.content}}</view>
+                <view wx:elif="{{item.type == 6}}" bindtap="post_checkBoard" data-event-key="{{key}}" class="topic-post-title" data-id="{{id}}" data-title="{{forumName}}">{{item.content}}</view>
                 <view wx:else>{{item.content}}</view>
             </block>
             <view wx:if="{{isPoll}}" class="not-support"></view>
@@ -184,7 +184,7 @@
         <action-sheet-item class="item" data-id="{{reportUser}}" data-event-key="{{key}}" catchtap="post_reportUser">举报</action-sheet-item>
         <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
     </action-sheet>
-    <view class="post-mask" wx:if="{{!isCommenting}}" data-event-key="{{key}}">
+    <view class="post-mask" bindtap="post_cancelAction" wx:if="{{!isCommenting}}" data-event-key="{{key}}">
     </view>
     <view class="post-footer-wrapper" wx:if="{{type == 'post'}}">
         <view class="post-footer" wx:if="{{isCommenting}}">
@@ -200,7 +200,7 @@
             </view>
         </view>
         <form wx:else bindsubmit="post_formSubmit" data-event-key="{{key}}" bindreset="post_formReset" class="post-footer post-form">
-            <input class="font-mini" bindblur="post_cancelAction" data-event-key="{{key}}" type="text" name="comment" auto-focus/>
+            <input class="font-mini" type="text" name="comment" auto-focus/>
             <button type="default" class="font-mini" formType="submit">发送</button>
         </form>
     </view>

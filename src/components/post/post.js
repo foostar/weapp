@@ -54,7 +54,6 @@ Post.prototype.fetchData = function (tid, option, control) {
         })
     }
     return request.then((data) => {
-        console.log(data)
         /* 处理页面详情参数 */
         if (data.page == 1) {
             wx.hideToast()
@@ -68,7 +67,7 @@ Post.prototype.fetchData = function (tid, option, control) {
                 data.content.unshift({
                     infor: title,
                     content: title,
-                    type: 3
+                    type: 6
                 })
             }
             if (data.content.length > 1 && data.content[1].content.charAt(0) == '#' && data.content[1].content.lastIndexOf('#') != 0) {
@@ -78,7 +77,7 @@ Post.prototype.fetchData = function (tid, option, control) {
                 data.content.unshift({
                     infor: title,
                     content: title,
-                    type: 3
+                    type: 6
                 })
             }
             data.content && data.content.forEach((v) => {
@@ -153,16 +152,9 @@ Post.prototype.fetchData = function (tid, option, control) {
         } else {
             this.setData(data)
         }
-    }, (err) => {
+    }, () => {
         if (this.data.page == 1) {
-            this.setData({
-                isShow: true,
-                errMessage: err.data.err.errcode
-            })
             setTimeout(() => {
-                this.setData({
-                    isShow: false
-                })
                 wx.navigateBack({
                     delta: 1
                 })

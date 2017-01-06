@@ -1,6 +1,7 @@
 <import src="../module/module.wxml" />
 <import src="../cellstyle/cellstyle"/>
 <import src="../forum/forum"/>
+<import src="../common/common.wxml"/>
 <!--  -->
 <block wx:if="{{forumShow}}">
     <block wx:if="{{forumInfo}}">
@@ -20,3 +21,4 @@
 <view wx:if="{{isLoading}}" class="liststyle-foot-title">加载中...</view>
 <!-- 没有了 -->
 <view wx:if="{{over}}" class="liststyle-foot-title">没有更多的了</view>
+<template is="message-prompts" data="{{errMessage, isShow}}"></template>
