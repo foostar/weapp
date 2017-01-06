@@ -42,8 +42,7 @@ function Createforum(key, module) {
         selectTopicId: '',  // 选择主题id
         selectTiTopicId: '',  // 选择话题id
         topicIndex: 0, // 主题数组索引
-        errMessage: '',
-        isShow: false,
+        isfocus: false
     }
 }
 
@@ -245,10 +244,24 @@ Createforum.prototype.selectTopicId = function (e) {
 
 // 改变话题id
 Createforum.prototype.selectTiTopicId = function (e) {
-    const { topicId: selectTiTopicId } = e.currentTarget.dataset
+    let { selectTiTopicId, contentTextId, contentText } = this.data
+    let { topicId, title } = e.currentTarget.dataset
+    if (selectTiTopicId === topicId) {
+        topicId = null
+    } else {
+        contentTextId += 1
+        contentText.unshift({ value: null, type: 9, contentTextId })
+        contentTextId += 1
+        contentText.unshift({ value: `#${title}#`, type: 0, contentTextId })
+        this.setData({
+            contentText,
+            contentTextId,
+            textInputInfo: ''
+        })
+    }
     this.setData({
-        selectTiTopicId,
-        tiId: selectTiTopicId
+        selectTiTopicId: topicId,
+        tiId: topicId
     })
 }
 
@@ -402,7 +415,7 @@ Createforum.prototype.showContentText = function (type, value) {
             selectItemId: null,
             textInputInfo: ''
         })
-    } else {
+    } else if (value) {
         contentTextId += 1
         contentText.push({ value, type: typeObj[type], contentTextId })
         contentTextId += 1
@@ -698,13 +711,13 @@ Createforum.prototype.onSubmit = function () {
             isShowPostion: 0, // 是否显示地理位置
             act: actType,
             fid,
-            typeOption,
+            typeOption: encodeURIComponent(JSON.stringify(typeOption)),
             typeId: selectTopicId,
             sortId: classinfoid,
             ti_id: tiId,
             title: encodeURIComponent(title)
         }, data)
-
+        console.log(7777777, data)
         return app.api.createTopic(data).then(() => {
             wx.showToast({
                 title: '发布成功',
@@ -717,25 +730,9 @@ Createforum.prototype.onSubmit = function () {
         })
     })
     .catch(err => {
-        console.error('发表失败', err)
-        this.setData({
-            isShow: true,
-            errMessage: err.data.err.errcode
-        })
-        this.closeMessagePrompt()
+        console.log('发表失败', err)
     })
 }
 
-
-// 关闭页面提示信息
-Createforum.prototype.closeMessagePrompt = function () {
-    clearTimeout(this._timer)
-    this._timer = setTimeout(() => {
-        this.setData({
-            isShow: false,
-            errMessage: ''
-        })
-    }, 1500)
-}
 
 module.exports = Createforum

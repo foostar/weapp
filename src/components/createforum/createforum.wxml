@@ -1,6 +1,5 @@
 <import src="../module/module.wxml" />
 <import src="../classifications/classifications.wxml" />
-<import src="../common/common.wxml"/>
 
 <!-- 版块列表 -->
 <view wx:if="{{isForumlist}}">
@@ -152,14 +151,9 @@
         <view wx:if="{{titopicListSelected}}">
             <view class="createforum-topic-list">
                 <block wx:for="{{titopicList}}" wx:for-item="topic" wx:key="id">
-                    <view class="createforum-topic-item {{selectTiTopicId == topic.ti_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTiTopicId" wx:key="ti_id" data-event-key="{{key}}" data-topic-id="{{topic.ti_id}}">#{{topic.ti_title}}#</view>
+                    <view class="createforum-topic-item {{selectTiTopicId == topic.ti_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTiTopicId" wx:key="ti_id" data-event-key="{{key}}" data-topic-id="{{topic.ti_id}}" data-title="{{topic.ti_title}}">#{{topic.ti_title}}#</view>
                 </block>
             </view>
         </view>
     </view>
 </block>
-
-
-
-<!-- 消息提示 -->
-<template is="message-prompts" data="{{errMessage, isShow}}"></template>

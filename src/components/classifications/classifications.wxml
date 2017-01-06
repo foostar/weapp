@@ -5,14 +5,14 @@
         <view class="createforum-publish-item-title">{{classifiedTitle}}</view>
         <view class="createforum-publish-item-input">
             <input wx:if="{{classifiedRules.isnumber}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="number" placeholder="请输入数字" />
-            <input wx:if="{{classifiedRules.isdate}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="text" type="date" placeholder="{{classifiedRules.defaultvalue}}" />
-            <input wx:if="{{!classifiedRules.isdate && !classifiedRules.isnumber}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="text" type="date" placeholder="{{required ? '必填': '选填'}}" />
+            <input wx:if="{{classifiedRules.isdate}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="text" placeholder="{{classifiedRules.defaultvalue}}" />
+            <input wx:if="{{!classifiedRules.isdate && !classifiedRules.isnumber}}" bindinput="classifications_bindInputChange" data-event-key="{{key}}" type="text" placeholder="{{required ? '必填': '选填'}}" />
         </view>
     </view>
 </view>
 <view wx:if="{{classifiedType === 2}}">
     <!-- 单选   -->
-    <picker bindchange="classifications_bindPickerChange" data-event-key="{{key}}" value="{{radioIndex}}" range="{{classifiedRules.choices}}" range-key="name">
+    <picker bindchange="classifications_bindPickerChange" data-event-key="{{key}}" value="{{radioIndex}}" range="{{classifiedRules.choices}}" range-key="name" data-item-value="{{classifiedRules.choices[radioIndex].value}}">
         <view class="createforum-publish-item weapp-border-bottom">
             <view class="createforum-publish-item-title">{{classifiedTitle}}</view> 
             <view>{{classifiedRules.choices[radioIndex].name || '请选择内容' }}</view>
@@ -48,8 +48,7 @@
     <view class="createforum-publish-item weapp-border-bottom">
         <view class="createforum-publish-item-title">{{classifiedTitle}}</view>
         <view class="createforum-publish-item-input">
-            <textarea bindinput="classifications_bindTextareaChange" data-event-key="{{key}}" >
-            </textarea>
+            <textarea placeholder="文本输入" bindinput="classifications_bindTextareaChange" data-event-key="{{key}}" />
         </view>
     </view>
     
@@ -58,7 +57,7 @@
     <!-- 图片 -->
     <view class="createforum-publish-item weapp-border-bottom">
         <view class="createforum-publish-item-title">{{classifiedTitle}}</view>
-        <view class="createforum-publish-item-picture" bindtap="classifications_uploadpicture" data-event-key="{{key}}">
+        <view class="createforum-publish-item-picture" catchtap="classifications_uploadpicture" data-event-key="{{key}}">
             <image wx:if="{{tempFilePaths}}" class="createforum-publish-picture-img" src="{{tempFilePaths}}"></image>
             <image wx:else class="createforum-publish-picture-img" src="{{ iconSrc}}dz_camera_icon.png"></image>
         </view>

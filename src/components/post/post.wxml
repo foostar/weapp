@@ -1,4 +1,4 @@
-<import src="../common/common.wxml"/>
+<!-- <import src="../common/common.wxml"/> -->
 <template name="post-div">
     <view class="{{'align-' + (attribs.align || 'left')}}">
         <block wx:for="{{childNodes}}" wx:key="{{index}}">
@@ -206,4 +206,4 @@
     </view>
 </view>
 <!-- 消息提示 -->
-<template is="message-prompts" data="{{errMessage, isShow}}"></template>
+<!-- <template is="message-prompts" data="{{errMessage, isShow}}"></template> -->

@@ -1,4 +1,6 @@
 <import src="../module/module.wxml" />
+<import src="../common/common.wxml"/>
+
 <template name="viewer">
     <view wx:if="{{hasScroll && children[moduleId].template}}" class="viewer">
         <template is="{{children[moduleId].template}}" data="{{tmptitle:'viewer', ...children[moduleId]}}" />
@@ -6,4 +8,9 @@
     <scroll-view wx:elif="{{children[moduleId].template}}" class="viewer" scroll-y bindscrolltolower="viewer_scrollToLower" data-event-key="{{key}}" data-template="{{moduleId}}">
         <template is="{{children[moduleId].template}}" data="{{tmptitle:'viewer', ...children[moduleId]}}" />
     </scroll-view>
+    
+    <template is="message-prompts" data="{{errMessage, isShow}}"></template>
+
 </template>
+
+<!-- 消息提示 -->

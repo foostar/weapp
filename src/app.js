@@ -102,12 +102,23 @@ App({
                     success: (result) => {
                         /* eslint-disable */
                         if (((result.statusCode / 100) | 0) !== 2) {
+                            if(result.data.err && result.data.err.errcode) {
+                                event.trigger('errormessage', result.data.err.errcode)
+                            } else {
+                                console.log("error", result)
+                                if (result.data.errcode == 102 || result.data.errcode == 103) 
+                                    return reject(result)
+                                event.trigger('errormessage', result.data.msg)
+                            }
+
                             return reject(result)
                         }
                         /* eslint-enable */
                         resolve(result)
                     },
-                    fail: reject
+                    fail: (result) => {
+                        return reject(result)
+                    }
                 })
             }))
             .then((result) => {
