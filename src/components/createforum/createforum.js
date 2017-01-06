@@ -711,7 +711,7 @@ Createforum.prototype.onSubmit = function () {
             isShowPostion: 0, // 是否显示地理位置
             act: actType,
             fid,
-            typeOption,
+            typeOption: encodeURIComponent(JSON.stringify(typeOption)),
             typeId: selectTopicId,
             sortId: classinfoid,
             ti_id: tiId,

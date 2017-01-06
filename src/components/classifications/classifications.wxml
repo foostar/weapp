@@ -12,7 +12,7 @@
 </view>
 <view wx:if="{{classifiedType === 2}}">
     <!-- 单选   -->
-    <picker bindchange="classifications_bindPickerChange" data-event-key="{{key}}" value="{{radioIndex}}" range="{{classifiedRules.choices}}" range-key="name">
+    <picker bindchange="classifications_bindPickerChange" data-event-key="{{key}}" value="{{radioIndex}}" range="{{classifiedRules.choices}}" range-key="name" data-item-value="{{classifiedRules.choices[radioIndex].value}}">
         <view class="createforum-publish-item weapp-border-bottom">
             <view class="createforum-publish-item-title">{{classifiedTitle}}</view> 
             <view>{{classifiedRules.choices[radioIndex].name || '请选择内容' }}</view>
