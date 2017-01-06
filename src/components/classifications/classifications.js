@@ -31,7 +31,6 @@ Classifications.prototype.onLoad = function () {
     })
 
     if (classifiedType === 2 || classifiedType === 4) {
-        console.log('单选', this.itemData)
         let { classifiedRules: { choices } } = this.itemData
         this.setData({
             inputValue: choices[0].value
@@ -51,7 +50,6 @@ Classifications.prototype.onLoad = function () {
 
 // 修改单选 多级
 Classifications.prototype.bindPickerChange = function (event) {
-    console.log('bindPickerChange', event)
     let { classifiedRules: { choices } } = this.itemData
     let { value } = event.detail
     this.setData({
