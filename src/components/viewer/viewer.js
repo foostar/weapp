@@ -194,6 +194,10 @@ components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发�
 components.type['fasttext-flat'] = Createforum // 快速发表
 components.type['fastimage-flat'] = Createforum // 图片发表
 components.type['fastimage-flat'] = Createforum // 图片发表
+components.type['fastpost-card'] = Createforum  // 快速发表暂时直接发帖
+components.type['fasttext-card'] = Createforum // 快速发表
+components.type['fastimage-card'] = Createforum // 图片发表
+components.type['fastimage-card'] = Createforum // 图片发表
 
 
 components.type['postlist-card'] = Post         // 帖子详情

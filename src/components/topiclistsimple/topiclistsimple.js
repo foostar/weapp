@@ -5,6 +5,7 @@ function TopiclistSimple(key, module) {
     ListComponent.call(this, key)
     let forumInfo = true
     const topicList = [ '官方公告', '站长访谈' ]
+    this.orderby = module.extParams.orderby || 'all'
     topicList.forEach((v) => {
         if (v == module.title) {
             forumInfo = false
@@ -23,7 +24,8 @@ function TopiclistSimple(key, module) {
         iconSrc: app.globalData.iconSrc,
         isLoading: false,
         appIcon: app.globalData.info.appIcon,
-        over: false
+        over: false,
+        isShow: false
     }
 }
 
@@ -32,7 +34,21 @@ TopiclistSimple.prototype.name = 'topiclistsimple'
 TopiclistSimple.prototype.constructor = TopiclistSimple
 TopiclistSimple.prototype.clickItem = function (e) {
     if (e.target.dataset.role == 'avatar') {
-        app.showUserHome(e.currentTarget.dataset.user)
+        if (e.currentTarget.dataset.user) {
+            return app.showUserHome(e.currentTarget.dataset.user)
+        }
+        const showError = () => {
+            this.setData({
+                isShow: true,
+                errMessage: '此用户为匿名用户，不可查看！'
+            })
+            setTimeout(() => {
+                this.setData({
+                    isShow: false
+                })
+            }, 800)
+        }
+        return showError()
     }
     if (e.target.dataset.role == 'forumName') {
         return app.showTopic({
