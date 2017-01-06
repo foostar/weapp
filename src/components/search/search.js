@@ -44,13 +44,13 @@ Search.prototype.click = function (e) {
 }
 
 Search.prototype.searchData = function () {
-    this.fetchData({ page: 1 }, 20)
     this.setData({
         errCode: false,
         postList: [],
         articleList: [],
         userList: []
     })
+    this.fetchData({ page: 1 }, 20)
 }
 
 Search.prototype.fetchData = function (param, number) {
@@ -119,13 +119,6 @@ Search.prototype.fetchData = function (param, number) {
                 over: param.page >= parseInt((data.total_num / number) + 1, 10)
             })
         }
-    }, err => {
-        this.setData({
-            errCode: true,
-            errMessage: err.data.errcode,
-            isLoading: false,
-            over: false
-        })
     })
 }
 

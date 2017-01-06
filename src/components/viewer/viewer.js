@@ -216,14 +216,36 @@ function Viewer(key, module) {
         name: app.config.NAME,
         moduleId: module.id,
         hasScroll: checkHasScroll(module),
+        isShow: false,
+        errMessage: ''
     }
 }
 
 Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
+Viewer.prototype.onLoad = function () {
+    app.event.on('errormessage', (value) => {
+        this.setData({
+            isShow: true,
+            errMessage: value
+        })
+        this.closeMessagePrompt()
+    })
+}
 Viewer.prototype.nextPage = function () {
     app.event.trigger('nextPage')
 }
+// 关闭页面提示信息
+Viewer.prototype.closeMessagePrompt = function () {
+    clearTimeout(this._errMsg)
+    this._errMsg = setTimeout(() => {
+        this.setData({
+            isShow: false,
+            errMessage: ''
+        })
+    }, 1500)
+}
+
 
 module.exports = Viewer
