@@ -74,8 +74,8 @@ Classifications.prototype.bindChosseShow = function () {
 Classifications.prototype.uploadpicture = function () {
     wx.chooseImage({
         count: 1,
-        sizeType: 'compressed',
-        sourceType: 'camera',
+        sizeType: [ 'compressed', 'original' ],
+        sourceType: [ 'camera', 'album' ],
         success: (res) => {
             var tempFilePaths = res.tempFilePaths
             this.setData({

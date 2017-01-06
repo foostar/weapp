@@ -152,7 +152,7 @@
         <view wx:if="{{titopicListSelected}}">
             <view class="createforum-topic-list">
                 <block wx:for="{{titopicList}}" wx:for-item="topic" wx:key="id">
-                    <view class="createforum-topic-item {{selectTiTopicId == topic.ti_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTiTopicId" wx:key="ti_id" data-event-key="{{key}}" data-topic-id="{{topic.ti_id}}">#{{topic.ti_title}}#</view>
+                    <view class="createforum-topic-item {{selectTiTopicId == topic.ti_id ? 'createforum-action' : ''}}" bindtap="createforum_selectTiTopicId" wx:key="ti_id" data-event-key="{{key}}" data-topic-id="{{topic.ti_id}}" data-title="{{topic.ti_title}}">#{{topic.ti_title}}#</view>
                 </block>
             </view>
         </view>
