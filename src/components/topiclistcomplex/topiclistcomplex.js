@@ -1,5 +1,5 @@
 const ListComponent = require('../../lib/listcomponent.js')
-const util = require('../../utils/util.js')
+// const util = require('../../utils/util.js')
 
 const app = getApp()
 
@@ -41,16 +41,16 @@ TopiclistComplex.prototype.fetchData = function (param, number) {
         })
     ]).then(([ boardChild, data ]) => {
         let hasChildrens = false
-        try {
-            hasChildrens = !!boardChild.list[0].board_list.length
-            boardChild = boardChild.list[0].board_list
-            boardChild.forEach((v) => {
-                v.last_reply_date = util.formatTime(v.last_reply_date)
-                v.last_posts_date = util.formatTime(v.last_posts_date)
-            })
-        } catch (err) {
-            hasChildrens = false
-        }
+        // try {
+        //     hasChildrens = !!boardChild.list[0].board_list.length
+        //     boardChild = boardChild.list[0].board_list
+        //     boardChild.forEach((v) => {
+        //         v.last_reply_date = util.formatTime(v.last_reply_date)
+        //         v.last_posts_date = util.formatTime(v.last_posts_date)
+        //     })
+        // } catch (err) {
+        //     hasChildrens = false
+        // }
         data.list = list.concat(data.list)
         if (data.meta.page == 1) {
             this.setData({
