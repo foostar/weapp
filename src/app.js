@@ -214,7 +214,6 @@ App({
                     console.log('try app', number)
                     return api.app().catch(retry)
                 }),
-
                 promiseRetry((retry, number) => {
                     console.log('try ui', number)
                     return api.ui().catch(retry)
@@ -384,11 +383,12 @@ App({
         })
     },
     getSystemInfo() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             wx.getSystemInfo({
                 success(res) {
                     resolve(res)
-                }
+                },
+                fail: reject
             })
         })
     },
