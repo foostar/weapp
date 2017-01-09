@@ -67,8 +67,8 @@ Createforum.prototype.onLoad = function () {
         })
     } else {
         console.info('no auth')
+        app.event.trigger('errormessage', '还未登录不能发帖')
     }
-
     // 判断是否有版块 fid 有值
     if (data.fid) {
         data.isForumlist = false
@@ -104,12 +104,14 @@ Createforum.prototype.onLoad = function () {
         this.setData({
             titopicList: res.list
         })
-
         this.changePageTitle()
         this.getTopicList()
         this.getAtUserlist()
     })
-    .catch(e => console.log('init createforum', e))
+    .catch(e => {
+        console.log('init createforum', e)
+        // app.event.trigger('errormessage', e.errcode)
+    })
 }
 
 Createforum.prototype.onReady = function () {
@@ -151,12 +153,14 @@ Createforum.prototype.getTopicList = function () {
     app.api.getSetting().then(res => {
         const { postInfo } = res.body
         const obj = postInfo.filter(item => {
-            return item.fid === topicId
+            return item.fid == topicId
         })
-        this.setData({
-            topicList: obj[0].topic.classificationType_list,
-            selectTopicId: obj[0].topic.classificationType_id
-        })
+        if (obj.length > 0 && obj[0]) {
+            this.setData({
+                topicList: obj[0].topic.classificationType_list,
+                selectTopicId: obj[0].topic.classificationType_list[0].classificationType_id
+            })
+        }
         return app.api.forum(topicId)
     }).then(res => {
         this.setData({
@@ -610,6 +614,7 @@ Createforum.prototype.onSubmit = function () {
     }
     this.getClassificationInfo()
     let { title, contentText, actType, tiId, classinfoid, fid, selectTopicId, typeOption } = this.data
+    console.log(4444, selectTopicId)
     let typeOptionUploadFile
     let aid = []   // 附件
     // 过滤contentText 所有的空的插入点
@@ -731,6 +736,9 @@ Createforum.prototype.onSubmit = function () {
     })
     .catch(err => {
         console.log('发表失败', err)
+        if (err.data.err && err.data.err.errcode) {
+            app.event.trigger('errormessage', err.data.err.errcode)
+        }
     })
 }
 
