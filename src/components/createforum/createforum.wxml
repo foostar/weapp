@@ -35,10 +35,10 @@
 
 <!-- 发帖 -->
 <block wx:if="{{!isForumlist && !isTopicPanel && isPublish}}">
-    <view class="createforum-publish-item weapp-border-bottom" >
+    <!-- <view class="createforum-publish-item weapp-border-bottom" >
         <view class="createforum-publish-item-title">板块信息</view>
         <view style="color: #ccc;">{{ boardname +'  '+ classinfoname ? classinfoname: '' }}</view>
-    </view>
+    </view> -->
     <view class="createforum-publish-content">
         <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
         <view wx:if="{{topicList.length}}">
@@ -56,6 +56,7 @@
 
         <!--  展示图文混合 -->
         <view class="createforum-publish-content-mix weapp-border-bottom" catchtap="createforum_showTools" data-event-key="{{key}}">
+            <view class="createforum-publish-content-tag"> {{ boardname +' · '+ classinfoname ? classinfoname: '' }}</view>
             <block wx:if="{{contentText.length === 0}}">
                 <view class="createforum-publish-view-text" style="color: #ccc;">
                     说点什么吧...
@@ -95,7 +96,7 @@
                     <view class="createforum-list" wx:if="{{ !isTopic && titopicList.length > 0 }}">
                         <image src="{{iconSrc}}new_public_topic.png" data-type="titopicListSelected" mode="aspectFill"/>
                     </view>
-                    <!-- <view class="createforum-list">
+                    <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_@.png" mode="aspectFill"/>
                     </view>
                     <view class="createforum-list">
@@ -106,7 +107,7 @@
                     </view>
                     <view class="createforum-list">
                         <image src="{{iconSrc}}new_publish_vote.png" mode="aspectFill"/>
-                    </view> -->
+                    </view>
                 </scroll-view>
             </view>
             
@@ -136,6 +137,11 @@
         <!-- 音乐编辑 -->
         <view wx:if="{{recordSelected}}">
             <view>
+                <view class="createforum-record-bg">
+                    <view class="createforum-record-shadow"> </view>
+                    <view class="createforum-record-btn">录音</view>
+                </view>
+
                 <button bindtouchstart="createforum_startRecord" bindtouchend="createforum_stopRecord" size="mini" data-event-key="{{key}}">录音</button>
             </view>
         </view>

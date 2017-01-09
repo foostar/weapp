@@ -1,4 +1,3 @@
-
 <view class="prelogin" style="background: {{appColor}} linear-gradient(transparent,hsla(0,0%,50%,.9));"></view>
 <view class="prelogin-view">
     <image src="{{appIcon}}" class="app-icon"></image>
