@@ -31,6 +31,7 @@
     "gulp-clean-css": "^2.0.13",
     "gulp-contrib-copy": "^0.1.2",
     "gulp-cssmin": "^0.1.7",
+    "gulp-insert": "^0.5.0",
     "gulp-uglify": "^2.0.0",
     "pre-commit": "^1.1.3"
   },
