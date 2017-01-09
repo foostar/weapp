@@ -63,21 +63,13 @@ Register.prototype.getCode = function () {
             .then(res => console.log(res))
             .catch(err => {
                 if (parseInt(err.status / 100, 10) === 4) {
-                    this.setData({
-                        isShow: true,
-                        errMessage: err.message
-                    })
-                    setTimeout(this.closeMessagePrompt, 1500)
+                    app.event.trigger('errormessage', err.message)
                 }
             })
         this.changeMobileBtn()
     }
     if (!this.data.mobile) {
-        this.setData({
-            isShow: true,
-            errMessage: '手机号不能为空'
-        })
-        setTimeout(this.closeMessagePrompt, 1500)
+        app.event.trigger('errormessage', '手机号不能为空')
     }
 }
 
@@ -96,17 +88,9 @@ Register.prototype.setCode = function (e) {
     })
 }
 
-// 关闭页面提示信息
-Register.prototype.closeMessagePrompt = function () {
-    this.setData({
-        isShow: false,
-        errMessage: ''
-    })
-}
 // 检测手机和验证码
 Register.prototype.checkMobileCode = function (e) {
     const { mobile, verify } = e.detail.value
-    var that = this
     app.api.checkMobileCode(mobile, verify)
         .then(() => {
             this.setData({
@@ -115,13 +99,7 @@ Register.prototype.checkMobileCode = function (e) {
         })
         .catch(err => {
             if (parseInt(err.status / 100, 10) === 4) {
-                this.setData({
-                    isShow: true,
-                    errMessage: err.message
-                })
-                setTimeout(() => {
-                    that.closeMessagePrompt()
-                }, 1500)
+                app.event.trigger('errormessage', err.message)
             }
         })
 }
@@ -162,13 +140,7 @@ Register.prototype.signup = function (e) {
         })
         .catch(err => {
             if (parseInt(err.status / 100, 10) === 4) {
-                this.setData({
-                    isShow: true,
-                    errMessage: err.message
-                })
-                setTimeout(() => {
-                    this.closeMessagePrompt()
-                }, 1500)
+                app.event.trigger('errormessage', err.message)
             }
         })
 }

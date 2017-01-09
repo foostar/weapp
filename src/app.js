@@ -105,7 +105,7 @@ App({
                                 event.trigger('errormessage', result.data.err.errcode)
                             } else {
                                 console.log("error", result)
-                                if (result.data.errcode == 102 || result.data.errcode == 103) 
+                                if (result.data.errcode == 102 || result.data.errcode == 103 || result.data.errcode == 403) 
                                     return reject(result)
                                 event.trigger('errormessage', result.data.msg)
                             }
