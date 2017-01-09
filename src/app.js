@@ -30,6 +30,7 @@ const util = require('./utils/util.js')
 const CONFIG = require('./config.js')
 const DataCache = require('./lib/datacache.js')
 const WeappStore = require('./lib/weappstorage.js')
+const promiseRetry = require('./lib/promise_retry')
 
 const westore = new WeappStore()
 
@@ -64,8 +65,6 @@ App({
                 if (queue.length) {
                     const d = queue.shift()
                     d.request().then(d.resolve, d.reject)
-                } else {
-                    // wx.hideToast()
                 }
             }
             const request = () => (new Promise((resolve, reject) => {
@@ -140,11 +139,6 @@ App({
                     })
                 })
             }
-            // wx.showToast({
-            //     title: '加载中',
-            //     icon: 'loading',
-            //     duration: 10000
-            // })
             const promise = request()
             return promise
         }
@@ -207,29 +201,71 @@ App({
 
         api.forumKey = CONFIG.KEY
 
-        const promise = this.getWXCachefile().then(() => this.wxLogin()).then(() => Promise.all([
-            api.app(),
-            api.ui(),
-            getSystemInfo,
-            this.fetchAuthUser()
-        ]).then(([ appResult, uiResult, systemInfo, wxuserInfo ]) => {
-            this.globalData.wechat_userInfo = JSON.parse(wxuserInfo)
-            this.globalData.systemInfo = systemInfo
-            this.globalData.info = appResult.body.data
-            const modules = this.globalData.modules = {}
-            this.globalData.tabs = uiResult.body.navigation.navItemList
-            // 处理没有ID的module
-            uiResult.body.moduleList.forEach((x) => {
-                modules[x.id] = x
-                x.componentList.forEach(completeId)
-            })
-            this.wechartUserLogin()
-            this.config = CONFIG
-            return this.globalData
-        }, (err) => {
-            console.log('error', err)
-        }))
-        this.ready = () => promise
+        wx.showToast({
+            title: '加载中',
+            icon: 'loading',
+            duration: 10000
+        })
+        const promise = this
+            .getWXCachefile().catch(() => Promise.resolve())
+            .then(() => this.wxLogin().catch(() => Promise.resolve()))
+            .then(() => Promise.all([
+                promiseRetry((retry, number) => {
+                    console.log('try app', number)
+                    return api.app().catch(retry)
+                }),
+
+                promiseRetry((retry, number) => {
+                    console.log('try ui', number)
+                    return api.ui().catch(retry)
+                }).catch(() => Promise.resolve()),
+
+                getSystemInfo.catch(() => Promise.resolve()),
+                this.fetchAuthUser().catch(() => Promise.resolve())
+            ]).then(([ appResult, uiResult, systemInfo, wxuserInfo ]) => {
+                if (wxuserInfo) {
+                    this.globalData.wechat_userInfo = JSON.parse(wxuserInfo)
+                }
+
+                if (systemInfo) {
+                    this.globalData.systemInfo = systemInfo
+                }
+
+                if (appResult) {
+                    this.globalData.info = appResult.body.data
+                } else {
+                    // TODO: tishi
+                }
+
+                if (uiResult) {
+                    const modules = this.globalData.modules = {}
+                    this.globalData.tabs = uiResult.body.navigation.navItemList
+                    // 处理没有ID的module
+                    uiResult.body.moduleList.forEach((x) => {
+                        modules[x.id] = x
+                        x.componentList.forEach(completeId)
+                    })
+                }
+
+                if (this.globalData.wxtoken) {
+                    this.wechartUserLogin()
+                }
+
+                this.config = CONFIG
+                return this.globalData
+            }, (err) => {
+                wx.hideToast()
+                console.log(err)
+                // TODO: 用户提示
+                wx.showModal({
+                    title: '提示',
+                    content: err.errMsg
+                })
+            }))
+        this.ready = () => {
+            wx.hideToast()
+            return promise
+        }
     },
     showPost(opt) {
         wx.navigateTo({
@@ -261,19 +297,23 @@ App({
     wxLogin() {
         const self = this
         return new Promise((resolve, reject) => {
+            const rollback = () => wx.login({
+                success(res) {
+                    return self.api.initLogin(res.code)
+                        .then(({ token }) => {
+                            self.globalData.wxtoken = token
+                            return resolve()
+                        }, reject)
+                },
+                fail() {
+                    reject()
+                }
+            })
+            if (!this.globalData.wxtoken) {
+                return rollback()
+            }
             return this.api.checkLogin(this.globalData.wxtoken)
-                .then(() => resolve(), () => {
-                    // 调用微信登录接口
-                    return wx.login({
-                        success(res) {
-                            return self.api.initLogin(res.code)
-                                .then(({ token }) => {
-                                    self.globalData.wxtoken = token
-                                    return resolve()
-                                }, () => reject())
-                        }
-                    })
-                })
+                .then(() => resolve(), rollback)
         })
     },
 
@@ -352,11 +392,11 @@ App({
             })
         })
     },
-    isIphone() {
-        var reg = /iphone/ig
-        var model = this.globalData.systemInfo.model
-        return reg.test(model)
-    },
+    // isIphone() {
+    //     var reg = /iphone/ig
+    //     var model = this.globalData.systemInfo.model
+    //     return reg.test(model)
+    // },
     showErrorMes(opt) {
         opt = opt || {}
         wx.showToast({
