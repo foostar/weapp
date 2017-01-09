@@ -5,12 +5,13 @@ const app = getApp()
 function StickMore(key, module) {
     Component.call(this, key)
     this.data = {
+        style: 'flat',
         list: module.data.toplist,
-        iconSrc: app.globalData.iconSrc
+        iconSrc: app.globalData.iconSrc,
     }
 }
 StickMore.prototype = Object.create(Component.prototype)
-StickMore.prototype.name = 'setting'
+StickMore.prototype.name = 'stickmore'
 StickMore.prototype.constructor = StickMore
 StickMore.prototype.clickItem = function (e) {
     if (e.target.dataset.role == 'avatar') {
