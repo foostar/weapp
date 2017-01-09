@@ -4,14 +4,14 @@ const WeappStore = function () {
 WeappStore.prototype.constructor = WeappStore
 
 WeappStore.prototype.get = function (id) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
         wx.getStorage({
             key: id,
             success: (data) => {
                 resolve(data.data)
             },
-            fail: () => {
-                resolve(null)
+            fail: (err) => {
+                reject(err)
             }
         })
     })
