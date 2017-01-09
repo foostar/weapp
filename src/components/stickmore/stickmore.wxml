@@ -1,3 +1,4 @@
+<import src="../cellstyle/cellstyle"/>
 <block wx:for="{{list}}" wx:key="{{index}}">
     <view bindtap="stickmore_clickItem" data-event-key="{{key}}" id="{{item.id}}" data-user="{{item.user.id}}">
         <template is="{{style}}" data="{{iconSrc, ...item }}" />

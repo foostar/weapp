@@ -1,3 +1,4 @@
+@import "../fullcard/fullcard.wxss";
 @import "../subnavtopbar/subnavtopbar.wxss";
 @import "../subnavflat/subnavflat.wxss";
 @import "../forumlistflat/forumlistflat.wxss";

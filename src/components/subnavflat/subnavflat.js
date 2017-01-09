@@ -5,15 +5,20 @@ function SubnavFlat(key, module) {
     this.module = module
 
     this.addByModule(module.componentList[0])
+    console.log(module.componentList)
     const tabs = module.componentList.map((x) => {
         return {
             id: x.id,
             title: x.title
         }
     })
+    let width = '25%'
+    if (tabs.length < 4) {
+        width = `${(100 / tabs.length).toFixed(2)}%`
+    }
     this.data = {
         index: 0,
-        width: `${100 / tabs.length}%`,
+        width,
         selected: module.componentList[0].id,
         tabs
     }
