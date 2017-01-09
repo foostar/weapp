@@ -6,6 +6,7 @@ const app = getApp()
 function TopiclistComplex(key, module) {
     ListComponent.call(this, key)
     // 添加分页
+    app.globalData.liststyle = module.style
     this.module = module
     this.data = {
         page: 0,

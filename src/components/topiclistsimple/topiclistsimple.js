@@ -15,6 +15,7 @@ function TopiclistSimple(key, module) {
     if (module.data) {
         this.orderby = module.data.orderby
     }
+    app.globalData.liststyle = module.style
     // 添加分页
     this.data = {
         page: 1,

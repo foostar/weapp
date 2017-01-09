@@ -24,6 +24,7 @@ ListComponent.prototype.onLoad = function () {
 
 ListComponent.prototype.nextPage = function () {
     if (this.isFetching) return
+    if (this.over) return
     this.isFetching = true
     this.fetchData({
         page: this.pageIndex + 1,
