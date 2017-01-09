@@ -69,7 +69,7 @@ DataCache.prototype.get = function(id ,{ sync, force } = {}) {
     let self = this
     let store = this.store
     let cache = this.caches[ id ]
-    if (!cache) return null
+    if (!cache) return Promise.reject()
     sync = isNil(sync) ? cache.sync : sync
     force = isNil(force) ? cache.force : force
     let data = null
@@ -81,7 +81,7 @@ DataCache.prototype.get = function(id ,{ sync, force } = {}) {
                 .then(data => {
                     this.set(id, data)
                     return resolve(data)
-                })
+                }, reject)
             })
             break;
         case 0: // 取缓存 过期后返回 null
@@ -96,10 +96,10 @@ DataCache.prototype.get = function(id ,{ sync, force } = {}) {
                             return cache.fetch(id).then(data => {
                                 self.set(id, data)
                                 return resolve(data)
-                            })
+                            }, reject)
                         }
                         return resolve(data)
-                    })
+                    }, reject)
             })
             break;
         case 1: // 取缓存 每次更新
@@ -115,25 +115,21 @@ DataCache.prototype.get = function(id ,{ sync, force } = {}) {
                                 return cache.fetch(id).then(newData => {
                                     self.set(id, newData)
                                     resolve(newData)
-                                })
+                                }, reject)
                             } else {
                                 cache.fetch(id).then(newData => {
                                     self.set(id, newData)
-                                })
+                                }, reject)
                                 resolve(data)
                             }
                         } else {
                             cache.fetch(id).then(newData => {
                                 self.set(id, newData)
-                            })
+                            }, reject)
                             resolve(data)
-                            
                         }
-                    })
-                    
+                    }, reject)
             })
-
-
             break;
         case 2: // 取缓存 过期更新
             promise = new Promise(function(resolve, reject){
@@ -153,7 +149,7 @@ DataCache.prototype.get = function(id ,{ sync, force } = {}) {
                                 .then(newData => {
                                     self.set(id, newData)
                                     return resolve(newData)
-                                })
+                                }, reject)
                         } else {
                             cache.fetch(id)
                                 .then(newData =>{
@@ -165,16 +161,10 @@ DataCache.prototype.get = function(id ,{ sync, force } = {}) {
             })
             break;
         default:
-            promise = new Promise(function(resolve, reject){
-                resolve(null)
-            })
+            return Promise.reject()
             break;
     }
-    return promise.then(data => {
-        return data
-    }, () => {
-        return null
-    })
+    return promise
 }
 
 DataCache.prototype.set = function(id, data, { expires } = {}) {
