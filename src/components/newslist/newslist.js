@@ -50,7 +50,6 @@ NewsList.prototype.clickItem = function (e) {
 // 请求数据
 NewsList.prototype.fetchData = function (param, number) {
     const module = this.module
-    console.log(4444, module)
     let list = param.list || this.data.resources.list || []
     if (this.data.over) return Promise.reject()
     this.setData({
@@ -66,6 +65,7 @@ NewsList.prototype.fetchData = function (param, number) {
             v.repliedAt = util.dateFormat(v.repliedAt, 'yyyy-MM-dd')
             let faceResult = util.infoToFace(v.subject)
             v.hasFace = faceResult.hasFace
+            v.subject = faceResult.data
             if (module.style == 'neteaseNews') {
                 v.subject = util.formateText(v.subject, 32)
             } else {
@@ -74,14 +74,15 @@ NewsList.prototype.fetchData = function (param, number) {
             return v
         })
         data.list = list.concat(data.list)
+
         // 获取数据判断是否为图片1
-        if (module.style === 'image') {
-            this.setData({
-                module,
-                over: param.page >= parseInt((data.meta.total / number) + 1, 10)
-            })
-            return Promise.resolve(data)
-        }
+        // if (module.style === 'image') {
+        //     this.setData({
+        //         module,
+        //         over: param.page >= parseInt((data.meta.total / number) + 1, 10)
+        //     })
+        //     return Promise.resolve(data)
+        // }
         this.setData({
             module,
             resources: data,
