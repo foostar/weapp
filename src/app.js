@@ -103,7 +103,7 @@ App({
                                 event.trigger('errormessage', result.data.err.errcode)
                             } else {
                                 // console.log("error", result)
-                                if (result.data.errcode == 102 || result.data.errcode == 103 || result.data.errcode == 403) {
+                                if (result.data.errcode == 102 || result.data.errcode == 103 || result.data.errcode == 403 || result.data.errcode == 401) {
                                     reject(result)
                                 } else {
                                     event.trigger('errormessage', result.data.msg)
@@ -246,7 +246,7 @@ App({
                 }
 
                 if (this.globalData.wxtoken) {
-                    this.wechartUserLogin()
+                    // this.wechartUserLogin()
                 }
 
                 this.config = CONFIG
@@ -391,11 +391,6 @@ App({
             })
         })
     },
-    // isIphone() {
-    //     var reg = /iphone/ig
-    //     var model = this.globalData.systemInfo.model
-    //     return reg.test(model)
-    // },
     showErrorMes(opt) {
         opt = opt || {}
         wx.showToast({

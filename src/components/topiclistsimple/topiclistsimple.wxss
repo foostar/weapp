@@ -758,7 +758,6 @@
     vertical-align: top;
 }
 .list-image-item {
-    display: block;
     margin: 5px;
     border-radius: 10rpx;
     overflow: hidden;
@@ -766,6 +765,8 @@
     position: relative;
     transform: translateZ(0);
     box-shadow: 0 0 1px #999;
+    float: left;
+    display: block;
 }
 .list-image-item-count {
     position: absolute;
@@ -781,23 +782,27 @@
 .list-image-title {
     font-size: 12px;
     line-height: 40rpx;
-    padding: 10rpx 20rpx;
+    max-height: 80rpx;
     color: #343434;
     position: relative;
-    border-bottom: 1px solid #ccc;
-}
+    word-wrap: break-word;
+    text-align: center;
+    text-overflow:ellipsis;
+}   
 .list-image-avatar {
-    float: left;
     height: 40px;
     width: 40px;
     margin: 5px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
+    display: inline-block;
 }
 .list-image-meta {
     height: 40px;
-    margin: 5px 5px 5px 55px;
+    margin-left: 40px;
+    display:inline-block;
+
 }
 
 .list-image-username {
@@ -817,6 +822,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
 }
 .cell-image-two {
     padding: 5px;
@@ -827,6 +833,7 @@
     background-color: #fff;
     padding: 8px;
     position: relative;
+    vertical-align:top;
 }
 
 .cell-image-two-avatar {
@@ -835,8 +842,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
-    width: 2rem;
-    height: 2rem;
+    width: 80rpx;
+    height: 80rpx;
+    top: 26rpx;
     border-radius: 5px;
     vertical-align: middle;
 }

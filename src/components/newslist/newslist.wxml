@@ -29,7 +29,7 @@
     </view> -->
     <block wx:for="{{resources.list}}" wx:key="{{item.id}}">
         <view bindtap="newslist_clickItem" data-type="{{item.type}}" data-event-key="{{key}}" id="{{item.id}}">
-            <template is="{{module.style}}" data="{{ iconSrc, image2Size, id:item.id, ...item }}" />
+            <template is="{{module.style}}" data="{{ iconSrc, loadSrc, image2Size, id:item.id, ...item }}" />
         </view>
     </block>
 </view>
@@ -37,7 +37,7 @@
 <view class="liststyle-container liststyle-index" wx:else>
     <block wx:for="{{resources.list}}" wx:key="{{item.id}}">
         <view bindtap="newslist_clickItem" data-type="{{item.type}}" data-event-key="{{key}}" id="{{item.id}}">
-            <template is="{{module.style}}" data="{{ iconSrc, image2Size, id:item.id, ...item }}" />
+            <template is="{{module.style}}" data="{{ iconSrc, loadSrc, image2Size, id:item.id, ...item }}" />
         </view>
     </block>
 </view>
