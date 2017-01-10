@@ -302,7 +302,7 @@
 
 <!-- 图片样式1 newslist-image image -->
 <template name="image">
-    <view class="list-image-item">
+    <!-- <view class="list-image-item">
         <image src="{{pic_path}}" style="width:{{scale_width}}px; height:{{scale_height}}px;" />
         <view class="list-image-item-count">{{views}}</view>
         <view class="list-image-title">{{title}}</view>
@@ -310,6 +310,24 @@
         <view class="list-image-meta">
             <view class="list-image-username">{{user.nickname}}</view>
             <view class="list-image-date">{{repliedAt}}</view>
+        </view>
+    </view> -->
+    <view class="cell-image-two" style="width:{{image2Size}}px;">
+        <view class="cell-image-two-header">
+            <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{user.avatar}});"></view>
+            <view class="cell-image-two-user">
+                <view class="cell-image-two-username">
+                    {{user.nickname}}
+                </view>
+                <view class="cell-image-two-time">
+                    {{repliedAt}}
+                </view>
+            </view>
+        </view>
+        <image src="{{images[0]}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
+        <view class="cell-image-two-footer">
+            <image src="{{iconSrc}}dz_posts_goodjob.png"></image>  
+            <view class="cell-image-two-zan-btn">赞</view>
         </view>
     </view>
 </template>
@@ -330,6 +348,7 @@
         </view>
         <image src="{{images[0]}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
         <view class="cell-image-two-footer">
+            <image src="{{iconSrc}}dz_posts_goodjob.png"></image>  
             <view class="cell-image-two-zan-btn">赞</view>
         </view>
     </view>
