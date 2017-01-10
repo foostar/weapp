@@ -52,7 +52,7 @@
 
         <!--  展示图文混合 -->
         <view class="createforum-publish-content-mix weapp-border-bottom" catchtap="createforum_showTools" data-event-key="{{key}}">
-            <view class="createforum-publish-content-tag"> {{ boardname +' · '+ classinfoname ? classinfoname: '' }}</view>
+            <view class="createforum-publish-content-tag"> {{ classinfoname ? boardname +' · '+ classinfoname: '' }}</view>
             <block wx:if="{{contentText.length === 0}}">
                 <view class="createforum-publish-view-text" style="color: #ccc;">
                     说点什么吧...

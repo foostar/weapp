@@ -21,6 +21,7 @@ function NewsList(key, module) {
         isLoading: false,
         iconSrc: app.globalData.iconSrc,
         appIcon: app.globalData.info.appIcon,
+        loadSrc: app.globalData.loadSrc,
         over: false,
         isImage: module.style === 'image',
         leftLayout: {

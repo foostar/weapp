@@ -1,4 +1,5 @@
 const ListComponent = require('../../lib/listcomponent.js')
+const util = require('../../utils/util.js')
 
 const app = getApp()
 // 话题页面
@@ -51,7 +52,15 @@ Topic.prototype.fetchData = function (param, number) {
     }
     /* eslint-enable */
     return app.api.topicdtl(options).then((data) => {
+        data.list = data.list.map(item => {
+            item.subject = util.formateText(item.subject)
+            item.repliedAt = util.dateFormat(item.repliedAt, 'yyyy-MM-dd')
+            return item
+        })
+
+
         data.list = list.concat(data.list)
+
         if (data.meta.page == 1) {
             this.setData({
                 tpcinfo: data.tpcinfo,

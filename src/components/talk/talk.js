@@ -44,7 +44,6 @@ Talk.prototype.fetchData = function () {
     Promise
         .all(querys)
         .then(result => {
-            console.log(result)
             this.setData({
                 topic: result[0],
                 mytopic: (result.length > 1 ? result[1] : {})
