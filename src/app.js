@@ -246,14 +246,14 @@ App({
                 }
 
                 if (this.globalData.wxtoken) {
-                    // this.wechartUserLogin()
+                    this.wechartUserLogin()
                 }
 
                 this.config = CONFIG
                 return this.globalData
             }, (err) => {
                 wx.hideToast()
-                console.log(err)
+                // console.log(err)
                 // TODO: 用户提示
                 wx.showModal({
                     title: '提示',
