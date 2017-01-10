@@ -35,10 +35,6 @@
 
 <!-- 发帖 -->
 <block wx:if="{{!isForumlist && !isTopicPanel && isPublish}}">
-    <!-- <view class="createforum-publish-item weapp-border-bottom" >
-        <view class="createforum-publish-item-title">板块信息</view>
-        <view style="color: #ccc;">{{ boardname +'  '+ classinfoname ? classinfoname: '' }}</view>
-    </view> -->
     <view class="createforum-publish-content">
         <input class="createforum-publish-title  weapp-border-bottom" type="text" bindinput="createforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="createforum-publish-title-placeholder" />
         <view wx:if="{{topicList.length}}">
