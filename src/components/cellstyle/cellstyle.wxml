@@ -170,7 +170,7 @@
                 <view class="cell-imageSudoku-author">
                     <view class="cell-imageSudoku-author-box">
                         <view class="cell-imageSudoku-username">{{user.nickname}}</view>
-                        <view class="cell-flag">
+                        <view wx:if="{{verify.length > 0}}" class="cell-flag">
                             <block wx:for="{{verify}}" wx:key="{{index}}">
                                 <image wx:if="{{index < 3}}" class="cell-verify" src="{{item.icon}}" mode="aspectFill"></image>
                             </block>
