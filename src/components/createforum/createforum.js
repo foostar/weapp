@@ -714,6 +714,7 @@ Createforum.prototype.onSubmit = function () {
         data = Object.assign({
             isShowPostion: 0, // 是否显示地理位置
             act: actType,
+            platType: 7, // 来自小程序
             fid,
             typeOption: encodeURIComponent(JSON.stringify(typeOption)),
             typeId: selectTopicId,
