@@ -4,6 +4,7 @@ const app = getApp()
 
 function StickMore(key, module) {
     Component.call(this, key)
+    console.log(module.data.toplist)
     this.data = {
         style: 'flat',
         list: module.data.toplist,

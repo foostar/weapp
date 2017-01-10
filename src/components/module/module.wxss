@@ -23,6 +23,7 @@
 @import "../layouttransparent/layouttransparent.wxss";
 @import "../layoutseparator/layoutseparator.wxss";
 @import "../layoutnewsauto/layoutnewsauto.wxss";
+@import "../layoutline/layoutline.wxss";
 @import "../topiclistsimple/topiclistsimple.wxss";
 @import "../talk/talk.wxss";
 @import "../customtagnav/customtagnav.wxss";

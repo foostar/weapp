@@ -142,8 +142,13 @@ TopiclistComplex.prototype.focusForum = function (e) {
     })
 }
 TopiclistComplex.prototype.stickmore = function () {
+    const toplist = this.data.topTopicList.map((v) => {
+        v.top = 1
+        v.topList = true
+        return v
+    })
     wx.navigateTo({
-        url: `/pages/blank/blank?type=stickmore&data=${JSON.stringify({ toplist: this.data.topTopicList, title: '置顶' })}`
+        url: `/pages/blank/blank?type=stickmore&data=${JSON.stringify({ toplist, title: '置顶' })}`
     })
 }
 module.exports = TopiclistComplex

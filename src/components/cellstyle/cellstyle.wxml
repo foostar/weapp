@@ -85,7 +85,9 @@
         <view class="cell-flat-thumb-container">
             <image src="{{images[ 0 ]}}" mode="aspectFill"></image>
         </view>
-        <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
+        <block wx:if="{{!topList}}">
+            <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views, topList}}"></template>
+        </block>
     </view>
     <view wx:else class="cell-flat weapp-border-bottom">
         <template is="flat-title" data="{{essence, top, hot, title}}"></template>
@@ -105,7 +107,9 @@
                 </view>
             </block>
         </view>
-        <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
+        <block wx:if="{{!topList}}">
+            <template is="flat-info" data="{{repliedAt, nickname: user.nickname, views}}"></template>
+        </block>
     </view>
 </template>
 <!-- card -->
@@ -162,7 +166,7 @@
     <view class="cell-imageSudoku-wrapper">
         <view class="cell-imageSudoku">
             <image class="cell-imageSudoku-avatar" data-role="avatar" src="{{user.avatar}}" />
-            <view class="cell-imageSudoku-content font-normal">
+            <view class="cell-imageSudoku-warpper font-normal">
                 <view class="cell-imageSudoku-author">
                     <view class="cell-imageSudoku-author-box">
                         <view class="cell-imageSudoku-username">{{user.nickname}}</view>
@@ -179,13 +183,14 @@
                 </view>
                 <view class="cell-imageSudoku-content">
                     <view wx:if="{{item.top == 1}}" class="icon-tag-ding"></view>
-                    <view wx:if="{{hasFace}}" class="cell-imageSudoku-subject">
+                    <view>{{title}}</view>
+                    <view wx:if="{{hasFace}}" class="cell-imageSudoku-subject color-gray">
                         <block wx:for="{{subject}}" wx:key="{{index}}">
                             <text wx:if="{{item.type == 'text'}}">{{item.content}}</text>
                             <image wx:else src="{{item.content}}" class="face" />
                         </block>
                     </view>
-                    <view wx:else class="cell-imageSudoku-subject">{{subject}}</view>
+                    <view wx:else class="cell-imageSudoku-subject color-gray">{{subject}}</view>
                     <view wx:if="{{images.length > 0}}" class="cell-circle-image-wrapper">
                         <block wx:for="{{images}}" wx:key="{{index}}">
                             <image  wx:if="{{index < 9}}" class="cell-circle-image-normal" src="{{item}}" mode="aspectFill"></image>

@@ -73,7 +73,7 @@
     color: #ccc;
 }
 .cell-circle-image-wrapper{
-    padding:25rpx 0 0;
+    padding:20rpx 0 0;
 }
 .cell-circle-image-normal{
     width:180rpx;
@@ -479,8 +479,19 @@
     height:26rpx;
     margin-right:1rpx;
 }
+.cell-imageSudoku-warpper{
+    flex:1;
+    padding-bottom:18rpx;
+}
 .cell-imageSudoku-content{
-    padding:15rpx 0 20rpx;
+    padding:11rpx 0 15rpx;
+}
+.cell-imageSudoku-subject{
+    padding-top:7rpx;
+    font-size:26rpx;
+}
+.cell-imageSudoku-date{
+    font-size:25rpx;
 }
 .cell-imageSudoku-meta{
     display:flex;
