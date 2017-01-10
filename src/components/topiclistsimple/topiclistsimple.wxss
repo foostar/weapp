@@ -54,7 +54,7 @@
     margin:15rpx 0;
 }
 .cell-flag{
-    width:180rpx;
+    width:160rpx;
     flex:1;
     margin-left:15rpx;
 }
