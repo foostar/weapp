@@ -146,6 +146,9 @@ cellStyles.concat([ 'imageBig', 'image', 'image2' ]).forEach(x => {
     components.type[`newslist-${x}`] = NewsList
 })
 
+components.type['newslist-flat'] = NewsList // 门户列表
+
+
 components.type['forumlist-flat'] = ForumlistFlat
 components.type['forumlist-card'] = ForumlistCard // 卡片样式
 components.type['forumlist-boardSplit'] = ForumlistSplit

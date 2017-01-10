@@ -40,8 +40,6 @@
 }
 
 
-
-
 .layout-4-col-item.layoutFourCol {
     width: 157rpx;
     height: 155rpx;
@@ -54,7 +52,6 @@
     width: 188rpx;
     height: 187rpx;
 }
-
 
 .layout-4-col-item.layoutFourCol_Super_Low {
     width: 157rpx;

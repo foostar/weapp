@@ -50,12 +50,15 @@ NewsList.prototype.clickItem = function (e) {
 // 请求数据
 NewsList.prototype.fetchData = function (param, number) {
     const module = this.module
+    console.log(4444, module)
     let list = param.list || this.data.resources.list || []
     if (this.data.over) return Promise.reject()
     this.setData({
         isLoading: true
     })
-    return app.api.news(module.extParams.newsModuleId, {
+
+
+    return app.api.news(module.extParams.newsModuleId || module.id, {
         page: param.page,
         sortby: param.orderby || 'all'
     }).then((data) => {
