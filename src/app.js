@@ -102,12 +102,13 @@ App({
                             if(result.data.err && result.data.err.errcode) {
                                 event.trigger('errormessage', result.data.err.errcode)
                             } else {
-                                console.log("error", result)
-                                if (result.data.errcode == 102 || result.data.errcode == 103 || result.data.errcode == 403) 
-                                    return reject(result)
-                                event.trigger('errormessage', result.data.msg)
+                                // console.log("error", result)
+                                if (result.data.errcode == 102 || result.data.errcode == 103 || result.data.errcode == 403) {
+                                    reject(result)
+                                } else {
+                                    event.trigger('errormessage', result.data.msg)
+                                }
                             }
-
                             return reject(result)
                         }
                         /* eslint-enable */

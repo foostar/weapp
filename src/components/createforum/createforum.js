@@ -1,6 +1,5 @@
 const Component = require('../../lib/component.js')
 const Classifications = require('../classifications/classifications.js')
-// const Promise = require('../../lib/promise.js')
 
 const app = getApp()
 
@@ -155,7 +154,7 @@ Createforum.prototype.getTopicList = function () {
         const obj = postInfo.filter(item => {
             return item.fid == topicId
         })
-        if (obj.length > 0 && obj[0]) {
+        if (obj.length > 0 && obj[0] && obj[0].topic.classificationType_list.length > 0) {
             this.setData({
                 topicList: obj[0].topic.classificationType_list,
                 selectTopicId: obj[0].topic.classificationType_list[0].classificationType_id

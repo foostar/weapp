@@ -1,5 +1,4 @@
 const Component = require('../../lib/component.js')
-// const { dateFormat, infoToFace } = require('../../utils/util.js')
 
 const app = getApp()
 let connectNum = 5
@@ -7,8 +6,6 @@ function PreLogin(key) {
     Component.call(this, key)
     this.data = {
         appColor: `#${app.config.COLOR}`,
-        errMessage: '',
-        isShow: false,
         isBind: 0,
         isFastLogin: false
     }

@@ -333,6 +333,14 @@
     min-height: 400rpx;
     padding:20px 0;
     margin-bottom:200rpx;
+    position: relative;
+}
+
+.createforum-publish-content-tag {
+    position: absolute;
+    color: #ccc;
+    right: 20rpx;
+    bottom: 10rpx;
 }
 
 .createforum-publish-images {
@@ -418,4 +426,10 @@
 .createforum-action {
     color: #fff;
     background: #ff004e;
+}
+
+
+.createforum-record-bg {
+    margin: 10rpx  20rpx ;
+
 }
