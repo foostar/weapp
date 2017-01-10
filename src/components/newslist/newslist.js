@@ -74,14 +74,15 @@ NewsList.prototype.fetchData = function (param, number) {
             return v
         })
         data.list = list.concat(data.list)
+
         // 获取数据判断是否为图片1
-        if (module.style === 'image') {
-            this.setData({
-                module,
-                over: param.page >= parseInt((data.meta.total / number) + 1, 10)
-            })
-            return Promise.resolve(data)
-        }
+        // if (module.style === 'image') {
+        //     this.setData({
+        //         module,
+        //         over: param.page >= parseInt((data.meta.total / number) + 1, 10)
+        //     })
+        //     return Promise.resolve(data)
+        // }
         this.setData({
             module,
             resources: data,
