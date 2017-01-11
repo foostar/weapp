@@ -78,23 +78,13 @@ Login.prototype.toLogin = function (e) {
         }
     })
     .catch(err => {
+        if (parseInt(err.status / 100, 10) === 2 && err.head.errCode === '11100001') {
+            app.event.trigger('errormessage', err.errcode)
+        }
         if (parseInt(err.status / 100, 10) === 4) {
-            this.setData({
-                isShow: true,
-                errMessage: err.message
-            })
-            this.closeMessagePrompt()
+            app.event.trigger('errormessage', err.message)
         }
     })
-}
-
-Login.prototype.closeMessagePrompt = function () {
-    setTimeout(() => {
-        this.setData({
-            isShow: false,
-            errMessage: ''
-        })
-    }, 1500)
 }
 
 module.exports = Login

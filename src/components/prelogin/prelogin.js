@@ -1,7 +1,7 @@
 const Component = require('../../lib/component.js')
 
 const app = getApp()
-let connectNum = 5
+
 function PreLogin(key) {
     Component.call(this, key)
     this.data = {
@@ -15,11 +15,12 @@ PreLogin.prototype.name = 'prelogin'
 PreLogin.prototype.constructor = PreLogin
 
 PreLogin.prototype.onLoad = function () {
-    console.log(app.globalData.wechat_userInfo, connectNum)
-    const self = this
-    if (app.globalData.wechat_userInfo) {
-        const { avatarUrl, nickName } = app.globalData.wechat_userInfo
-        app.api.platformInfo(Object.assign({}, { token: app.globalData.wxtoken }, app.globalData.wxchat_bind_info))
+    Promise.all([
+        app.getTokenPromise(),
+        app.getUserInfoPromise()
+    ]).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
+        const { avatarUrl, nickName } = JSON.parse(rawData)
+        return app.api.platformInfo({ token, encryptedData, iv, rawData, signature })
             .then(res => {
                 this.setData({
                     appIcon: avatarUrl,
@@ -27,27 +28,42 @@ PreLogin.prototype.onLoad = function () {
                     isBind: res.body.register,
                     isFastLogin: true
                 })
-            }, err => {
-                if ((err.data.errcode === 102 || err.data.errcode === 103) && connectNum > 1) {
-                    connectNum -= 1
-                    app.wxLogin().then(() => {
-                        return app.fetchAuthUser()
-                    })
-                    .then(() => self.onLoad())
-                } else {
-                    this.setData({
-                        appIcon: avatarUrl,
-                        username: nickName,
-                        isFastLogin: false
-                    })
-                }
             })
-    } else {
-        app.wxLogin().then(() => {
-            return app.fetchAuthUser()
-        })
-        .then(() => self.onLoad())
-    }
+    }).catch(e => {
+        app.event.trigger('errormessage', e.msg)
+    })
+
+
+    // console.log(111111, app.globalData)
+    // if (app.globalData.wechat_userInfo) {
+    //     const { avatarUrl, nickName } = app.globalData.wechat_userInfo
+    //     app.getStoragePromise('token').then(token => {
+    //         app.api.platformInfo(Object.assign({ token }, app.globalData.wechat_bind_info))
+    //         .then(res => {
+    //             this.setData({
+    //                 appIcon: avatarUrl,
+    //                 username: nickName,
+    //                 isBind: res.body.register,
+    //                 isFastLogin: true
+    //             })
+    //         }, err => {
+    //             if ((err.data.errcode === 102 || err.data.errcode === 103) && connectNum > 1) {
+    //                 connectNum -= 1
+    //                 return app.fetchAuthUser().then(() => self.onLoad())
+    //             } else {
+    //                 this.setData({
+    //                     appIcon: avatarUrl,
+    //                     username: nickName,
+    //                     isFastLogin: false
+    //                 })
+    //             }
+    //         })
+    //     })
+    // } else {
+    //     console.log(22222)
+    //     return app.fetchAuthUser()
+    //     .then(() => self.onLoad())
+    // }
 }
 
 PreLogin.prototype.onReady = function () {
@@ -75,31 +91,22 @@ PreLogin.prototype.bindolduser = function () {
 }
 // 微信快速登录
 PreLogin.prototype.platLogin = function () {
-    const self = this
-    return app.api.platLogin(Object.assign({}, { token: app.globalData.wxtoken }, app.globalData.wxchat_bind_info))
-        .then(res => {
-            console.log('success', res)
-            if (!res.errcode) {
-                app.globalData.userInfo = res
-                app.api.token = res.token
-                app.api.secret = res.secret
-                app.event.trigger('login', res)
-                try {
-                    wx.setStorageSync('userInfo', res)
+    Promise.all([
+        app.getTokenPromise(),
+        app.getUserInfoPromise()
+    ]).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
+        return app.api.platLogin({ token, encryptedData, iv, rawData, signature })
+            .then(res => {
+                if (!res.errcode) {
+                    app.saveUserInfo(res)
                     wx.navigateBack()
-                } catch (err) {
-                    console.log(err)
+                } else {
+                    return Promise.reject(res)
                 }
-            }
-        }, err => {
-            console.log('err', err)
-            if (err.data.errcode === 102 || err.data.errcode === 103) {
-                app.wxLogin().then(() => {
-                    return app.fetchAuthUser()
-                })
-                .then(() => self.platLogin())
-            }
-        })
+            })
+    }).catch(e => {
+        app.event.trigger('errormessage', e.msg)
+    })
 }
 
 

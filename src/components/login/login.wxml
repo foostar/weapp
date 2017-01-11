@@ -1,4 +1,4 @@
-<!-- <import src="../common/common.wxml"/> -->
+
 <view class="login-view" style="background: {{appColor}} linear-gradient(transparent,hsla(0,0%,50%,.9));">
     <!-- 登录头部 -->
     <view class="from-view login-icon">
@@ -24,8 +24,4 @@
         </navigator>
     </form>
 </view>
-
-
-<!-- 消息提示 -->
-<!-- <template is="message-prompts" data="{{errMessage, isShow}}"></template> -->
 

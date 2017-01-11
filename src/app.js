@@ -43,6 +43,7 @@ const completeId = (module) => {
 
 App({
     onLaunch() {
+        this.config = CONFIG
         // 添加监听事件
         const event = this.event = new Events()
         event.trigger('launch')
@@ -102,7 +103,6 @@ App({
                             if(result.data.err && result.data.err.errcode) {
                                 event.trigger('errormessage', result.data.err.errcode)
                             } else {
-                                // console.log("error", result)
                                 if (result.data.errcode == 102 || result.data.errcode == 103 || result.data.errcode == 403 || result.data.errcode == 401) {
                                     reject(result)
                                 } else {
@@ -196,8 +196,6 @@ App({
             })
         }
 
-        const getSystemInfo = this.getSystemInfo()
-
         api.forumKey = CONFIG.KEY
 
         wx.showToast({
@@ -205,61 +203,50 @@ App({
             icon: 'loading',
             duration: 10000
         })
-        const promise = this
-            .getWXCachefile().catch(() => Promise.resolve())
-            .then(() => this.wxLogin().catch(() => Promise.resolve()))
-            .then(() => Promise.all([
-                promiseRetry((retry, number) => {
-                    console.log('try app', number)
-                    return api.app().catch(retry)
-                }),
-                promiseRetry((retry, number) => {
-                    console.log('try ui', number)
-                    return api.ui().catch(retry)
-                }).catch(() => Promise.resolve()),
 
-                getSystemInfo.catch(() => Promise.resolve()),
-                this.fetchAuthUser().catch(() => Promise.resolve())
-            ]).then(([ appResult, uiResult, systemInfo, wxuserInfo ]) => {
-                if (wxuserInfo) {
-                    this.globalData.wechat_userInfo = JSON.parse(wxuserInfo)
+        const getUserInfo = () => {
+            return this.getStoragePromise('userInfo').then((userInfo) => {
+                if (userInfo) {
+                    return Promise.resolve(userInfo)
                 }
-
-                if (systemInfo) {
-                    this.globalData.systemInfo = systemInfo
-                }
-
-                if (appResult) {
-                    this.globalData.info = appResult.body.data
-                } else {
-                    // TODO: tishi
-                }
-
-                if (uiResult) {
-                    const modules = this.globalData.modules = {}
-                    this.globalData.tabs = uiResult.body.navigation.navItemList
-                    // 处理没有ID的module
-                    uiResult.body.moduleList.forEach((x) => {
-                        modules[x.id] = x
-                        x.componentList.forEach(completeId)
-                    })
-                }
-
-                if (this.globalData.wxtoken) {
-                    this.wechartUserLogin()
-                }
-
-                this.config = CONFIG
-                return this.globalData
-            }, (err) => {
-                wx.hideToast()
-                // console.log(err)
-                // TODO: 用户提示
-                wx.showModal({
-                    title: '提示',
-                    content: err.errMsg
+                return Promise.all([
+                    this.getTokenPromise(),
+                    this.getUserInfoPromise()
+                ]).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
+                    this.setStoragePromise('token', token)
+                    this.globalData.wechat_userInfo = JSON.parse(rawData)
+                    this.globalData.wechat_bind_info = { encryptedData, iv, rawData, signature }
+                    return this.api.wxLogin({ token, encryptedData, iv, rawData, signature })
                 })
-            }))
+            })
+        }
+
+        const promise = Promise.all([
+            promiseRetry(retry => api.app().catch(retry)),
+            promiseRetry(retry => api.ui().catch(retry)),
+            this.getSystemInfo().catch(() => Promise.resolve()),
+            getUserInfo().catch(() => Promise.resolve())
+        ]).then(([ appResult, uiResult, systemInfo, userInfo ]) => {
+            if (userInfo) {
+                this.saveUserInfo(userInfo)
+            }
+
+            if (systemInfo) {
+                this.globalData.systemInfo = systemInfo
+            }
+
+            // 写入APP信息
+            this.globalData.info = appResult.body.data
+
+            // 写入UI配置信息
+            const modules = this.globalData.modules = {}
+            this.globalData.tabs = uiResult.body.navigation.navItemList
+            // 处理没有ID的module
+            uiResult.body.moduleList.forEach((x) => {
+                modules[x.id] = x
+                x.componentList.forEach(completeId)
+            })
+        })
         this.ready = () => {
             wx.hideToast()
             return promise
@@ -278,77 +265,74 @@ App({
         }
     },
 
-    getWXCachefile() {
-        return new Promise(resolve => {
-            const userInfo = wx.getStorageSync('userInfo')
-            if (userInfo) {
-                this.globalData.wxtoken = userInfo.wxtoken
-                this.globalData.userInfo = userInfo
-                this.api.token = userInfo.token
-                this.api.secret = userInfo.secret
-            }
-            return resolve()
-        })
+    getTokenPromise() {
+        const getTokenFromAPI = () => promiseRetry(retry => this.loginPromise()
+            .then(({ code }) => this.api.initLogin(code))
+            .then(result => result.token).catch(retry))
+        return this.getStoragePromise('token')
+            .then(token => {
+                this.api.checkLogin(token)
+                    .then(() => token, getTokenFromAPI)
+            })
+            .then((token) => {
+                if (token) return token
+                return getTokenFromAPI()
+            })
+    },
+    saveUserInfo(userInfo) {
+        const api = this.api
+        this.globalData.userInfo = userInfo
+        api.token = userInfo.token
+        api.secret = userInfo.secret
+        this.event.trigger('login', userInfo)
+        return this.setStoragePromise('userInfo', userInfo)
     },
 
-    // 绑定
-    wxLogin() {
-        const self = this
+    getStoragePromise(key) {
         return new Promise((resolve, reject) => {
-            const rollback = () => wx.login({
-                success(res) {
-                    return self.api.initLogin(res.code)
-                        .then(({ token }) => {
-                            self.globalData.wxtoken = token
-                            return resolve()
-                        }, reject)
+            wx.getStorage({
+                key,
+                success(result) {
+                    resolve(result.data)
                 },
-                fail() {
-                    reject()
-                }
-            })
-            if (!this.globalData.wxtoken) {
-                return rollback()
-            }
-            return this.api.checkLogin(this.globalData.wxtoken)
-                .then(() => resolve(), rollback)
-        })
-    },
-
-    // 微信直接登陆
-    wechartUserLogin() {
-        const wxtoken = this.globalData.wxtoken
-        this.api.wxLogin(Object.assign({}, { token: wxtoken }, this.globalData.wxchat_bind_info))
-            .then(res => {
-                if (!res.errcode) {
-                    this.globalData.userInfo = res
-                    this.api.token = res.token
-                    this.api.secret = res.secret
-                    this.event.trigger('login', res)
-                    Object.assign(res, { wxtoken })
-                    try {
-                        wx.setStorageSync('userInfo', res)
-                    } catch (err) {
-                        console.log(err)
+                fail(err) {
+                    if (err.errMsg === 'getStorage:fail') {
+                        return resolve()
                     }
-                }
-            }, err => console.log('err', err))
-    },
-
-    // 验证微信用户信息
-    fetchAuthUser() {
-        const self = this
-        return new Promise((resolve) => {
-            return wx.getUserInfo({
-                success({ encryptedData, iv, rawData, signature }) {
-                    self.globalData.wechat_userInfo = JSON.parse(rawData)
-                    self.globalData.wxchat_bind_info = { encryptedData, iv, rawData, signature }
-                    return resolve(rawData)
+                    reject(err)
                 }
             })
         })
     },
 
+    setStoragePromise(key, data) {
+        return new Promise((resolve, reject) => {
+            wx.setStorage({
+                key,
+                data,
+                success: resolve,
+                fail: reject
+            })
+        })
+    },
+
+    loginPromise() {
+        return new Promise((resolve, reject) => {
+            wx.login({
+                success: resolve,
+                fail: reject
+            })
+        })
+    },
+
+    getUserInfoPromise() {
+        return new Promise((resolve, reject) => {
+            return wx.getUserInfo({
+                success: resolve,
+                fail: reject
+            })
+        })
+    },
     createForum(param) {
         if (this.isLogin()) {
             const data = JSON.stringify(param)

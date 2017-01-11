@@ -49,7 +49,7 @@ const Post = require('../post/post.js')
 const Login = require('../login/login.js')
 const PreLogin = require('../prelogin/prelogin.js')
 const Mylistcompos = require('../mylistcompos/mylistcompos.js')
-const Createforum = require('../createforum/createforum.js')
+// const Createforum = require('../createforum/createforum.js')
 const About = require('../about/about.js')
 const Setting = require('../setting/setting.js')
 const Changepassword = require('../changepassword/changepassword.js')
@@ -67,7 +67,10 @@ const Topic = require('../topic/topic.js')
 const FollowList = require('../followlist/followlist.js')
 const VerifyMobile = require('../verifymobile/verifymobile.js')
 const Forgot = require('../forgotpassword/forgotpassword.js')
+const Sign = require('../sign/sign.js')
 
+
+const OldCreateForum = require('../oldcreateforum/oldcreateforum.js')
 
 /*
  *   @定义组件类型
@@ -170,7 +173,6 @@ components.type['oldlogin-flat'] = Login   // 登录页面
 components.type['login-flat'] = PreLogin   // 登录页面
 
 components.type['mylistcompos-flat'] = Mylistcompos // 我的好友、发表、收藏列表
-components.type['createforum-flat'] = Createforum    // 发帖组件
 components.type['about-flat'] = About    // 关于app
 components.type['setting-flat'] = Setting  // 设置
 components.type['notsupport-flat'] = NotSupport   // 固定页面不支持功能
@@ -193,14 +195,17 @@ components.type['talkPostList-flat'] = Topic
 components.type['topic-flat'] = Topic         // 话题主页
 components.type['talkPostList-circle'] = Topic
 
-components.type['fastpost-flat'] = Createforum  // 快速发表暂时直接发帖
-components.type['fasttext-flat'] = Createforum // 快速发表
-components.type['fastimage-flat'] = Createforum // 图片发表
-components.type['fastimage-flat'] = Createforum // 图片发表
-components.type['fastpost-card'] = Createforum  // 快速发表暂时直接发帖
-components.type['fasttext-card'] = Createforum // 快速发表
-components.type['fastimage-card'] = Createforum // 图片发表
-components.type['fastimage-card'] = Createforum // 图片发表
+
+/*  发帖内容  */
+components.type['fastpost-flat'] = OldCreateForum  // 快速发表暂时直接发帖
+components.type['fasttext-flat'] = OldCreateForum // 快速发表
+components.type['fastimage-flat'] = OldCreateForum // 图片发表
+components.type['fastimage-flat'] = OldCreateForum // 图片发表
+components.type['fastpost-card'] = OldCreateForum  // 快速发表暂时直接发帖
+components.type['fasttext-card'] = OldCreateForum // 快速发表
+components.type['fastimage-card'] = OldCreateForum // 图片发表
+components.type['fastimage-card'] = OldCreateForum // 图片发表
+components.type['createforum-flat'] = OldCreateForum    // 发帖组件
 
 
 components.type['postlist-card'] = Post         // 帖子详情
@@ -210,6 +215,7 @@ components.type['followlist-flat'] = FollowList  // 关注相关列表
 components.type['stickmore-flat'] = Stickmore   // 更多列表
 
 components.type['forgot-flat'] = Forgot      // 忘记密码
+components.type['sign-flat'] = Sign          // 用户签到
 
 // topiclistSimple-flat
 

@@ -163,6 +163,10 @@
     <include src="../createforum/createforum.wxml" />
 </template>
 
+<template name="oldcreateforum">
+    <include src="../oldcreateforum/oldcreateforum.wxml" />
+</template>
+
 <template name="topiclistcomplex">
     <include src="../topiclistcomplex/topiclistcomplex.wxml" />
 </template>

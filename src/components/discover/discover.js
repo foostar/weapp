@@ -35,6 +35,7 @@ Discover.prototype.constructor = Discover
 
 Discover.prototype.onLoad = function () {
     // 判断用户是否登录
+    console.log(123123, app.globalData.userInfo)
     if (app.globalData.userInfo) {
         this.setData({
             isLogin: true,

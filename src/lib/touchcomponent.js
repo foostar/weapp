@@ -7,6 +7,7 @@ const fns = {
         const currentIndex = e.currentTarget.dataset.index || 0
         const info = this.module.componentList[currentIndex]
         app.globalData.moduleData = info
+
         if (info.type == 'newsview') {
             return app.showPost({ type: 'article', id: info.extParams.articleId })
         }
@@ -49,6 +50,15 @@ const fns = {
             'talk' // 话题列表
             'talkPostList' // 话题帖子列表
          */
+
+        if (info.type == 'sign') {
+            app.api.sign().then(success => {
+                app.event.trigger('errormessage', success.errcode)
+            }, err => {
+                app.event.trigger('errormessage', err.errcode)
+            })
+            return
+        }
 
         if (info.type !== 'empty') {
             wx.navigateTo({
