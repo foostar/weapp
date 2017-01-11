@@ -1,7 +1,7 @@
 
 <view class="oldcreateforum-publish-content">
     <input class="oldcreateforum-publish-title  weapp-border-bottom" type="text" bindinput="oldcreateforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="oldcreateforum-publish-title-placeholder" />
-    <textarea class="oldcreateforum-publish-textarea" placeholder="说点什么吧..." bindfocus="textareaFocus" bindinput="oldcreateforum_blurAndChangeContent" data-event-key="{{key}}" ></textarea>
+    <textarea class="oldcreateforum-publish-textarea" placeholder="说点什么吧..." bindfocus="textareaFocus" bindinput="oldcreateforum_blurAndChangeContent" maxlength="-1" data-event-key="{{key}}" ></textarea>
 </view>
 <view class="oldcreateforum-publish-images">
     <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">

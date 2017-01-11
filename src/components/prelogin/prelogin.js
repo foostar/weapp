@@ -28,42 +28,13 @@ PreLogin.prototype.onLoad = function () {
                     isBind: res.body.register,
                     isFastLogin: true
                 })
-            })
+            }, (err) => Promise.reject(err))
     }).catch(e => {
+        if (e.data.msg) {
+            return app.event.trigger('errormessage', e.data.msg)
+        }
         app.event.trigger('errormessage', e.msg)
     })
-
-
-    // console.log(111111, app.globalData)
-    // if (app.globalData.wechat_userInfo) {
-    //     const { avatarUrl, nickName } = app.globalData.wechat_userInfo
-    //     app.getStoragePromise('token').then(token => {
-    //         app.api.platformInfo(Object.assign({ token }, app.globalData.wechat_bind_info))
-    //         .then(res => {
-    //             this.setData({
-    //                 appIcon: avatarUrl,
-    //                 username: nickName,
-    //                 isBind: res.body.register,
-    //                 isFastLogin: true
-    //             })
-    //         }, err => {
-    //             if ((err.data.errcode === 102 || err.data.errcode === 103) && connectNum > 1) {
-    //                 connectNum -= 1
-    //                 return app.fetchAuthUser().then(() => self.onLoad())
-    //             } else {
-    //                 this.setData({
-    //                     appIcon: avatarUrl,
-    //                     username: nickName,
-    //                     isFastLogin: false
-    //                 })
-    //             }
-    //         })
-    //     })
-    // } else {
-    //     console.log(22222)
-    //     return app.fetchAuthUser()
-    //     .then(() => self.onLoad())
-    // }
 }
 
 PreLogin.prototype.onReady = function () {

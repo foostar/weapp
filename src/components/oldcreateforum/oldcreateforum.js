@@ -210,7 +210,18 @@ OldCreateforum.prototype.submit = function () {
         })
     })
     .catch(err => {
-        console.error('发表失败', err)
+        console.log('发表失败', err)
+        if (err.errcode == 50000000) {
+            app.event.trigger('errormessage', err.message)
+        } else if (err.data.err.errcode == 50000000) {
+            return app.event.trigger('errormessage', '用户没有登陆')
+        } else if (err.data.err.errcode) {
+            app.event.trigger('errormessage', err.data.err.errcode)
+        } else if (err.errMsg) {
+            app.event.trigger('errormessage', err.errMsg)
+        } else {
+            app.event.trigger('errormessage', err)
+        }
     })
 }
 module.exports = OldCreateforum
