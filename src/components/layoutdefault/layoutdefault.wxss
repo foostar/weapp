@@ -19,7 +19,9 @@
     bottom: 17rpx;
     background: #52911C;
 }
-
+.layout-row {
+    background: #FFF;
+}
 .layout-row image {
     height: 100%;
     width: 100%;
