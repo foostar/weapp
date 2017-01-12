@@ -780,15 +780,19 @@
     background-color: rgba(0,0,0,.6);
 }
 .list-image-title {
-    font-size: 12px;
-    line-height: 40rpx;
-    max-height: 80rpx;
-    color: #343434;
-    position: relative;
-    word-wrap: break-word;
-    text-align: center;
-    text-overflow:ellipsis;
+    height: 80rpx;
 }   
+.list-image-title-text {
+    display: block;
+    line-height: 60rpx;
+    padding:10rpx;
+    font-size: 36rpx;
+    color: #343434;
+    overflow: hidden;
+    white-space: nowrap;
+
+    text-overflow:ellipsis;
+}
 .list-image-avatar {
     height: 40px;
     width: 40px;
@@ -799,9 +803,9 @@
     display: inline-block;
 }
 .list-image-meta {
-    height: 40px;
-    margin-left: 40px;
-    display:inline-block;
+    height: 108rpx;
+    margin-left: 120rpx;
+    width:calc(100% - 140rpx);
 
 }
 
@@ -831,20 +835,19 @@
 }
 .cell-image-two-header {
     background-color: #fff;
-    padding: 8px;
     position: relative;
     vertical-align:top;
+    height: 120rpx;
 }
 
 .cell-image-two-avatar {
     position: absolute;
-    background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
-    width: 80rpx;
-    height: 80rpx;
-    top: 26rpx;
+    width: 100rpx;
+    height: 100rpx;
+    margin: 4rpx;
     border-radius: 5px;
     vertical-align: middle;
 }

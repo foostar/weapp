@@ -305,12 +305,18 @@
     <view class="list-image-item">
         <image src="{{images[0]? images[0]: loadSrc}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
         <view class="list-image-item-count">{{views}}</view>
-        <view class="list-image-title" style="width:{{image2Size}}px;">{{title}}</view>
-        <view class="cell-image-two-header">
-            <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{user.avatar}});"></view>
-            <view class="list-image-meta">
-                <view class="cell-image-two-username ">{{user.nickname}}</view>
-                <view class="cell-image-two-time">{{repliedAt}}</view>
+
+        <view class="list-image-title" style="width:{{image2Size}}px;">
+            <view class="list-image-title-text">{{title}}</view>
+        </view>
+
+        <view class="cell-image-two-header" style="width:{{image2Size}}px;">
+            <view style="padding:10rpx;">
+                <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{user.avatar}});"></view>
+                <view class="list-image-meta">
+                    <view class="cell-image-two-username ">{{user.nickname}}</view>
+                    <view class="cell-image-two-time">{{repliedAt}}</view>
+                </view>
             </view>
         </view>
     </view>
@@ -318,32 +324,24 @@
 
 <!-- 图片样式2 -->
 <template name="image2">
-    <view class="list-image-item">
+   <view class="list-image-item">
         <image src="{{images[0]? images[0]: loadSrc}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
         <view class="list-image-item-count">{{views}}</view>
-        <view class="list-image-title" style="width:{{image2Size}}px;">{{title}}</view>
-        <view class="cell-image-two-header">
-            <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{user.avatar}});"></view>
-            <view class="list-image-meta">
-                <view class="cell-image-two-username ">{{user.nickname}}</view>
-                <view class="cell-image-two-time">{{repliedAt}}</view>
+
+        <view class="list-image-title" style="width:{{image2Size}}px;">
+            <view class="list-image-title-text">{{title}}</view>
+        </view>
+
+        <view class="cell-image-two-header" style="width:{{image2Size}}px;">
+            <view style="padding:10rpx;">
+                <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{user.avatar}});"></view>
+                <view class="list-image-meta">
+                    <view class="cell-image-two-username ">{{user.nickname}}</view>
+                    <view class="cell-image-two-time">{{repliedAt}}</view>
+                </view>
             </view>
         </view>
     </view>
-    <!-- <view class="cell-image-two" style="width:{{image2Size}}px;">
-        <view class="cell-image-two-header">
-            <view class="cell-image-two-avatar" data-role="avatar" style="background-image:url({{user.avatar}});"></view>
-            <view class="cell-image-two-user">
-                <view class="cell-image-two-username">
-                    {{user.nickname}}
-                </view>
-                <view class="cell-image-two-time">
-                    {{repliedAt}}
-                </view>
-            </view>
-        </view>
-        <image src="{{images[0]? images[0]: loadSrc}}" mode="aspectFill" style="width:{{image2Size}}px; height:{{image2Size}}px;"/>
-    </view> -->
 </template>
 
 <!-- 评论 @我的  -->

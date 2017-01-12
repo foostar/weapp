@@ -214,8 +214,6 @@ App({
                     this.getUserInfoPromise()
                 ]).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
                     this.setStoragePromise('token', token)
-                    this.globalData.wechat_userInfo = JSON.parse(rawData)
-                    this.globalData.wechat_bind_info = { encryptedData, iv, rawData, signature }
                     return this.api.wxLogin({ token, encryptedData, iv, rawData, signature })
                 })
             })
