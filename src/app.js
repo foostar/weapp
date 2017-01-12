@@ -207,7 +207,7 @@ App({
         const getUserInfo = () => {
             return this.getStoragePromise('userInfo').then((userInfo) => {
                 if (userInfo) {
-                    return Promise.resolve(userInfo)
+                    return userInfo
                 }
                 return Promise.all([
                     this.getTokenPromise(),
@@ -269,7 +269,8 @@ App({
             .then(result => result.token).catch(retry))
         return this.getStoragePromise('token')
             .then(token => {
-                this.api.checkLogin(token)
+                if (!token) return getTokenFromAPI()
+                return this.api.checkLogin(token)
                     .then(() => token, getTokenFromAPI)
             })
             .then((token) => {
@@ -287,17 +288,14 @@ App({
     },
 
     getStoragePromise(key) {
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             wx.getStorage({
                 key,
                 success(result) {
                     resolve(result.data)
                 },
-                fail(err) {
-                    if (err.errMsg === 'getStorage:fail') {
-                        return resolve()
-                    }
-                    reject(err)
+                fail() {
+                    return resolve()
                 }
             })
         })

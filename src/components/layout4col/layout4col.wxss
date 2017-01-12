@@ -7,7 +7,6 @@
     margin-left: 24rpx;
     display: flex;
     flex-direction: column;
-    background: #fff;
 }
 .layoutimage .layout-4-col-item {
     margin-left: 10rpx;
