@@ -75,7 +75,6 @@ NewsList.prototype.fetchData = function (param, number) {
             return v
         })
         data.list = list.concat(data.list)
-
         // 获取数据判断是否为图片1
         // if (module.style === 'image') {
         //     this.setData({

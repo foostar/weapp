@@ -12,11 +12,10 @@ function LayoutNewsAuto(key, module) {
         v.hasFace = faceResult.hasFace
         v.subject = faceResult.data
         v.type = 'post'
-        v.images = (v.imageList && v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))) || []
+        v.images = (v.imageList && v.imageList.length > 0 && v.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_'))) || new Array(v.pic_path) || []
         if (v.source_type == 'news') {
             v.type = 'article'
             v.topicId = v.articleId
-            v.images = new Array(v.pic_path) || []
         }
         return v
     })
