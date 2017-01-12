@@ -30,7 +30,7 @@ PreLogin.prototype.onLoad = function () {
                 })
             }, (err) => Promise.reject(err))
     }).catch(e => {
-        if (e.data.msg) {
+        if (e.data && e.data.msg) {
             return app.event.trigger('errormessage', e.data.msg)
         }
         app.event.trigger('errormessage', e.msg)
