@@ -55,7 +55,11 @@ const fns = {
             app.api.sign().then(success => {
                 app.event.trigger('errormessage', success.errcode)
             }, err => {
-                app.event.trigger('errormessage', err.errcode)
+                if (err.errcode == 50000000) {
+                    app.event.trigger('errormessage', '您需要先登录才能继续本操作')
+                } else {
+                    app.event.trigger('errormessage', err.errcode)
+                }
             })
             return
         }
