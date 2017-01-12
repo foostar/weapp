@@ -150,7 +150,9 @@ Mylistcompos.prototype.nextPage = function () {
         obj.list = list.concat(res.list)
         this.setData(obj)
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err)
+    })
 }
 
 Mylistcompos.prototype.showPost = function (e) {

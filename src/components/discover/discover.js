@@ -122,6 +122,7 @@ Discover.prototype.logout = function () {
     app.globalData.wechat_userInfo = null
     app.globalData.wxchat_bind_info = null
     wx.setStorageSync('userInfo', null)
+    wx.setStorageSync('token', null)
     app.event.trigger('logout')
 }
 // 跳转网页

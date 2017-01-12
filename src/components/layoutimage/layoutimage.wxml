@@ -3,7 +3,7 @@
 <view class="layoutimage weapp-border-bottom">
     <view wx:if="{{showTitle}}" class="layout-title weapp-border-bottom">
         <view>{{title}}</view>
-        <view wx:if="{{isShowMore == 1}}" bindtap="layoutline_touch" data-event-key="{{key}}" >{{moreComponent.title}}</view>
+        <view wx:if="{{isShowMore == 1}}" bindtap="layoutimage_touch" data-event-key="{{key}}" >{{moreComponent.title}}</view>
     </view>
     <block wx:for="{{keys}}" wx:key="{{index}}">
         <template is="{{children[item].template}}" data="{{tmptitle:'layoutimage',...children[item]}}" />

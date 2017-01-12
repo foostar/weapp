@@ -49,7 +49,7 @@ const Post = require('../post/post.js')
 const Login = require('../login/login.js')
 const PreLogin = require('../prelogin/prelogin.js')
 const Mylistcompos = require('../mylistcompos/mylistcompos.js')
-// const Createforum = require('../createforum/createforum.js')
+const Createforum = require('../createforum/createforum.js')
 const About = require('../about/about.js')
 const Setting = require('../setting/setting.js')
 const Changepassword = require('../changepassword/changepassword.js')
@@ -195,19 +195,6 @@ components.type['talkPostList-flat'] = Topic
 components.type['topic-flat'] = Topic         // 话题主页
 components.type['talkPostList-circle'] = Topic
 
-
-/*  发帖内容  */
-components.type['fastpost-flat'] = OldCreateForum  // 快速发表暂时直接发帖
-components.type['fasttext-flat'] = OldCreateForum // 快速发表
-components.type['fastimage-flat'] = OldCreateForum // 图片发表
-components.type['fastimage-flat'] = OldCreateForum // 图片发表
-components.type['fastpost-card'] = OldCreateForum  // 快速发表暂时直接发帖
-components.type['fasttext-card'] = OldCreateForum // 快速发表
-components.type['fastimage-card'] = OldCreateForum // 图片发表
-components.type['fastimage-card'] = OldCreateForum // 图片发表
-components.type['createforum-flat'] = OldCreateForum    // 发帖组件
-
-
 components.type['postlist-card'] = Post         // 帖子详情
 components.type['postlist-flat'] = Post         // 帖子详情
 
@@ -238,6 +225,20 @@ Viewer.prototype = Object.create(Component.prototype)
 Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
 Viewer.prototype.onLoad = function () {
+    app.api.weapp().then(res => {
+        let createforum = res.tuwenMixed ? Createforum : OldCreateForum
+        /*  发帖内容  */
+        components.type['fastpost-flat'] = createforum  // 快速发表暂时直接发帖
+        components.type['fasttext-flat'] = createforum // 快速发表
+        components.type['fastimage-flat'] = createforum // 图片发表
+        components.type['fastimage-flat'] = createforum // 图片发表
+        components.type['fastpost-card'] = createforum  // 快速发表暂时直接发帖
+        components.type['fasttext-card'] = createforum // 快速发表
+        components.type['fastimage-card'] = createforum // 图片发表
+        components.type['fastimage-card'] = createforum // 图片发表
+        components.type['createforum-flat'] = createforum    // 发帖组件
+    }, err => console.log(err))
+
     app.event.on('errormessage', (value) => {
         this.setData({
             isShow: true,

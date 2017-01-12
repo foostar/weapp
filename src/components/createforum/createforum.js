@@ -6,12 +6,14 @@ const app = getApp()
 const { fns: { omitBy, isNil } } = require('../../lib/mobcent.js')
 
 function Createforum(key, module) {
+    this.module = module
     this.pageData = module.data ? module.data : ''
     Component.call(this, key)
     this.data = {
         isLogin: false,
         isForumlist: true,     // 是否展示版块列表
         forumList: [],       // 版块列表
+        fastforumList: [],    // 快速发表版块列表
         iconSrc: app.globalData.iconSrc,
         isTopicPanel: false,  // 是否展示分类信息
         topicPanelList: [],
@@ -77,6 +79,29 @@ Createforum.prototype.onLoad = function () {
         if (data.fid) {
             return resolve(data.fid)
         }
+
+        if (this.module.componentList && this.module.componentList.length > 0) {
+            const list = this.module.componentList[0].extParams.fastpostForumIds
+            // if (list.length == 1) {
+            //     data.fid = list[0].fid
+            //     this.setData({
+            //         isForumlist: false
+            //     })
+            //     this.selectedChange({
+            //         currentTarget: {
+            //             dataset: {
+            //                 fid: list[0].fid,
+            //                 boardname: list[0].title
+            //             }
+            //         }
+            //     })
+            //     return resolve()
+            // }
+            this.setData({
+                fastforumList: list
+            })
+        }
+
         // 查找
         return app.api.forumList().then(res => {
             this.setData({
@@ -713,8 +738,6 @@ Createforum.prototype.onSubmit = function () {
     .then(data => {
         data = Object.assign({
             isShowPostion: 0, // 是否显示地理位置
-            act: actType,
-            platType: 7, // 来自小程序
             fid,
             typeOption: encodeURIComponent(JSON.stringify(typeOption)),
             typeId: selectTopicId,
@@ -723,7 +746,7 @@ Createforum.prototype.onSubmit = function () {
             title: encodeURIComponent(title)
         }, data)
         console.log(7777777, data)
-        return app.api.createTopic(data).then(() => {
+        return app.api.createTopic(data, { platType: 7, act: actType }).then(() => {
             wx.showToast({
                 title: '发布成功',
                 icon: 'success',

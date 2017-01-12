@@ -98,9 +98,12 @@ App({
                     header: data.headers,
                     method: data.method,
                     success: (result) => {
+                        if (result.statusCode == 200 && result.data && result.data.errcode == 50000000) return event.trigger('errormessage', '您需要先登录才能继续本操作')
+
                         /* eslint-disable */
                         if (((result.statusCode / 100) | 0) !== 2) {
-                            if(result.data.err && result.data.err.errcode) {
+                            if (result.data.err && result.data.err.errcode) {
+
                                 event.trigger('errormessage', result.data.err.errcode)
                             } else {
                                 if (result.data.errcode == 102 || result.data.errcode == 103 || result.data.errcode == 403 || result.data.errcode == 401) {
