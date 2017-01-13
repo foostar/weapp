@@ -4,21 +4,39 @@
 <!-- 版块列表 -->
 <view wx:if="{{isForumlist}}">
     <!-- 版块列表 -->
-    <view wx:for="{{forumList}}" wx:for-item="forum" class="createforum-forumlist-card">
-        <view class="createforum-forumlist-card-title">{{forum.board_category_name}}</view>
-        <view class="createforum-forum-item-container">
-            <block wx:for="{{forum.board_list}}">
-                <view class="createforum-forum-item" bindtap="createforum_selectedChange" data-fid="{{item.board_id}}" data-boardname="{{item.board_name}}" data-event-key="{{key}}">
-                    <view class="createforum-forum-item-image">
-                        <image src="{{item.board_img || iconSrc + 'default_plate.png'}}"></image>
+    <block wx:if="{{fastforumList.length > 0}}">
+        <view class="createforum-forumlist-card" >
+            <view class="createforum-forum-item-container">
+                <block wx:for="{{fastforumList}}" wx:for-item="forum">
+                    <view class="createforum-forum-item" bindtap="createforum_selectedChange" data-fid="{{forum.fid}}" data-boardname="{{forum.title}}" data-event-key="{{key}}">
+                        <view class="createforum-forum-item-image">
+                            <image src="{{iconSrc + 'default_plate.png'}}"></image>
+                        </view>
+                        <view class="createforum-forum-item-text">
+                            {{forum.title}}
+                        </view>
                     </view>
-                    <view class="createforum-forum-item-text">
-                        {{item.board_name}}
-                    </view>
-                </view>
-            </block>
+                </block>
+            </view>
         </view>
-    </view>
+    </block>
+    <block wx:else> 
+        <view wx:for="{{forumList}}" wx:for-item="forum" class="createforum-forumlist-card">
+            <view class="createforum-forumlist-card-title">{{forum.board_category_name}}</view>
+            <view class="createforum-forum-item-container">
+                <block wx:for="{{forum.board_list}}">
+                    <view class="createforum-forum-item" bindtap="createforum_selectedChange" data-fid="{{item.board_id}}" data-boardname="{{item.board_name}}" data-event-key="{{key}}">
+                        <view class="createforum-forum-item-image">
+                            <image src="{{item.board_img || iconSrc + 'default_plate.png'}}"></image>
+                        </view>
+                        <view class="createforum-forum-item-text">
+                            {{item.board_name}}
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </block>
 </view>
 
 <!-- 分类信息 -->

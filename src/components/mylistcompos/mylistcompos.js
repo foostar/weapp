@@ -132,6 +132,7 @@ Mylistcompos.prototype.nextPage = function () {
     }
 
     promise.then(res => {
+        console.log(11111, res)
         if (apiType === 'favorite' || apiType === 'topic' || apiType === 'reply') {
             res.list.map((item, index) => {
                 res.list[index].last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
@@ -150,7 +151,9 @@ Mylistcompos.prototype.nextPage = function () {
         obj.list = list.concat(res.list)
         this.setData(obj)
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err)
+    })
 }
 
 Mylistcompos.prototype.showPost = function (e) {

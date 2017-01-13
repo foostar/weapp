@@ -339,7 +339,7 @@ Post.prototype.formSubmit = function (e) {
         }
         data.tid = self.data.id
         return app.api.createTopic(data, {
-            platType: 1,
+            platType: 7,
             act: 'reply'
         })
         .then((result) => {

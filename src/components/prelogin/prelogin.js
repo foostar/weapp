@@ -15,10 +15,11 @@ PreLogin.prototype.name = 'prelogin'
 PreLogin.prototype.constructor = PreLogin
 
 PreLogin.prototype.onLoad = function () {
-    Promise.all([
-        app.getTokenPromise(),
-        app.getUserInfoPromise()
-    ]).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
+    return app.getTokenPromise().then(token => {
+        return app.getUserInfoPromise().then(({ encryptedData, iv, rawData, signature }) => {
+            return [ token, { encryptedData, iv, rawData, signature } ]
+        })
+    }).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
         const { avatarUrl, nickName } = JSON.parse(rawData)
         return app.api.platformInfo({ token, encryptedData, iv, rawData, signature })
             .then(res => {
@@ -62,10 +63,11 @@ PreLogin.prototype.bindolduser = function () {
 }
 // 微信快速登录
 PreLogin.prototype.platLogin = function () {
-    Promise.all([
-        app.getTokenPromise(),
-        app.getUserInfoPromise()
-    ]).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
+    return app.getTokenPromise().then(token => {
+        return app.getUserInfoPromise().then(({ encryptedData, iv, rawData, signature }) => {
+            return [ token, { encryptedData, iv, rawData, signature } ]
+        })
+    }).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
         return app.api.platLogin({ token, encryptedData, iv, rawData, signature })
             .then(res => {
                 if (!res.errcode) {

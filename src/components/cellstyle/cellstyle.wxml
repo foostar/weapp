@@ -71,6 +71,7 @@
     </view>
 </template>
 <template name="flat">
+    
     <view wx:if="{{images.length > 0 && images.length < 3}}" class="cell-flat cell-flat-mini weapp-border-bottom">
         <view class="cell-flat-content">
             <template is="flat-title" data="{{essence, top, hot, title}}"></template>
