@@ -35,7 +35,6 @@ Discover.prototype.constructor = Discover
 
 Discover.prototype.onLoad = function () {
     // 判断用户是否登录
-    console.log(123123, app.globalData.userInfo)
     if (app.globalData.userInfo) {
         this.setData({
             isLogin: true,
@@ -115,15 +114,7 @@ Discover.prototype.logout = function () {
         isLogin: false,
         userInfo: null,
     })
-    app.api.secret = ''
-    app.api.token = ''
-    app.globalData.userInfo = null
-    // app.globalData.wxtoken = null
-    app.globalData.wechat_userInfo = null
-    app.globalData.wxchat_bind_info = null
-    wx.setStorageSync('userInfo', null)
-    wx.setStorageSync('token', null)
-    app.event.trigger('logout')
+    app.clearUserInfo()
 }
 // 跳转网页
 Discover.prototype.toNavigationPage = function (e) {

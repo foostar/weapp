@@ -1,4 +1,43 @@
+<!-- 版块列表 -->
+<view wx:if="{{isForumlist}}">
+    <!-- 版块列表 -->
+    <block wx:if="{{fastforumList.length > 0}}">
+        <view class="createforum-forumlist-card" >
+            <view class="createforum-forum-item-container">
+                <block wx:for="{{fastforumList}}" wx:for-item="forum">
+                    <view class="createforum-forum-item" bindtap="oldcreateforum_selectedChange" data-fid="{{forum.fid}}" data-boardname="{{forum.title}}" data-event-key="{{key}}">
+                        <view class="createforum-forum-item-image">
+                            <image src="{{iconSrc + 'default_plate.png'}}"></image>
+                        </view>
+                        <view class="createforum-forum-item-text">
+                            {{forum.title}}
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </block>
+    <block wx:else> 
+        <view wx:for="{{forumList}}" wx:for-item="forum" class="createforum-forumlist-card">
+            <view class="createforum-forumlist-card-title">{{forum.board_category_name}}</view>
+            <view class="createforum-forum-item-container">
+                <block wx:for="{{forum.board_list}}">
+                    <view class="createforum-forum-item" bindtap="oldcreateforum_selectedChange" data-fid="{{item.board_id}}" data-boardname="{{item.board_name}}" data-event-key="{{key}}">
+                        <view class="createforum-forum-item-image">
+                            <image src="{{item.board_img || iconSrc + 'default_plate.png'}}"></image>
+                        </view>
+                        <view class="createforum-forum-item-text">
+                            {{item.board_name}}
+                        </view>
+                    </view>
+                </block>
+            </view>
+        </view>
+    </block>
+</view>
 
+
+<!-- 
 <view class="oldcreateforum-publish-content">
     <input class="oldcreateforum-publish-title  weapp-border-bottom" type="text" bindinput="oldcreateforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="oldcreateforum-publish-title-placeholder" />
     <textarea class="oldcreateforum-publish-textarea" placeholder="说点什么吧..." bindfocus="textareaFocus" bindinput="oldcreateforum_blurAndChangeContent" maxlength="-1" data-event-key="{{key}}" ></textarea>
@@ -10,15 +49,10 @@
             <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="oldcreateforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
         </view>
     </block>
-   <!--  <view wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="oldcreateforum_chooseImg" data-event-key="{{key}}" /> -->
    <image src="{{iconSrc}}new_publish_pic.png" wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="oldcreateforum_chooseImg" data-event-key="{{key}}" mode="aspectFill"/>
 </view>
-<view class="publish-select-warp" wx:if="{{fid == null}}">
-    <text class="publish-select-label">板块信息</text>
-    <picker class="publish-select" bindchange="oldcreateforum_selectChange" data-event-key="{{key}}" value="{{selectIndex}}" range="{{selectNameArray}}">
-        <view class="picker">{{selectNameArray[selectIndex]}}</view>
-    </picker>
-</view>
+
+
 <view wx:if="{{topicList.length}}" class="oldcreateforum-publish-topicList">
     <view class="oldcreateforum-topic-label">主题</view>
     <view class="oldcreateforum-topic-list">
@@ -27,4 +61,4 @@
         </block>
     </view>
 </view>
-<button bindtap="oldcreateforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>
+<button bindtap="oldcreateforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button> -->

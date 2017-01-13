@@ -20,6 +20,9 @@ if (typeof Object.assign != 'function') {
     };
 }
 
+
+Promise = require('./lib/promise.js')
+
 /* eslint-enable */
 
 const mobcent = require('./lib/mobcent.js')
@@ -212,12 +215,12 @@ App({
                 if (userInfo) {
                     return userInfo
                 }
-                return Promise.all([
-                    this.getTokenPromise(),
-                    this.getUserInfoPromise()
-                ]).then(([ token, { encryptedData, iv, rawData, signature } ]) => {
-                    this.setStoragePromise('token', token)
-                    return this.api.wxLogin({ token, encryptedData, iv, rawData, signature })
+                return this.getTokenPromise().then(token => {
+                    if (!token) return Promise.reject()
+                    return this.getUserInfoPromise().then(({ encryptedData, iv, rawData, signature }) => {
+                        this.setStoragePromise('token', token)
+                        return this.api.wxLogin({ token, encryptedData, iv, rawData, signature })
+                    })
                 })
             })
         }
@@ -248,6 +251,7 @@ App({
                 x.componentList.forEach(completeId)
             })
         })
+
         this.ready = () => {
             wx.hideToast()
             return promise
@@ -274,7 +278,11 @@ App({
             .then(token => {
                 if (!token) return getTokenFromAPI()
                 return this.api.checkLogin(token)
-                    .then(() => token, getTokenFromAPI)
+                    .then(() => {
+                        return token
+                    }, () => {
+                        return getTokenFromAPI()
+                    })
             })
             .then((token) => {
                 if (token) return token
@@ -289,6 +297,18 @@ App({
         this.event.trigger('login', userInfo)
         return this.setStoragePromise('userInfo', userInfo)
     },
+    clearUserInfo() {
+        const api = this.api
+        api.secret = ''
+        api.token = ''
+        this.globalData.userInfo = null
+        this.event.trigger('logout')
+        return Promise.all([
+            this.setStoragePromise('userInfo', null),
+            this.setStoragePromise('token', null)
+        ])
+    },
+
 
     getStoragePromise(key) {
         return new Promise(resolve => {
@@ -351,6 +371,11 @@ App({
         wx.navigateTo({
             url: `/pages/blank/blank?type=topic&data=${JSON.stringify(param)}`
         })
+    },
+    isIphone() {
+        var reg = /iphone/ig
+        var model = this.globalData.systemInfo.model
+        return reg.test(model)
     },
     showTopic(param) {
         const { eventKey, id, title } = param

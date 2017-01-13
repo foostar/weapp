@@ -3,13 +3,16 @@ const Component = require('../../lib/component.js')
 const app = getApp()
 
 function OldCreateforum(key, module) {
+    this.module = module
     this.pageData = module.data ? module.data : ''
     Component.call(this, key)
     this.data = {
         isLogin: false,
+        isForumlist: true,
         userInfo: {},
         tempFilePaths: '',
         selectList: [],
+        fastforumList: [],
         selectIndex: 0,
         selectType: null,
         title: '',
@@ -47,26 +50,48 @@ OldCreateforum.prototype.onLoad = function () {
     } else {
         console.info('no auth')
     }
-    // 当没有版块ID时 需要获取板块列表
-    if (!data.fid) {
-        app.api.forumList().then((res) => {
-            const { list } = res
-            const selectType = list[0].board_list[0].board_id
-            const selectNameArray = [] // [...Array(10).keys()]
-            const selectValueArray = []
-            list.forEach(categoryList => categoryList.board_list.forEach((board) => {
-                selectNameArray.push(`${categoryList.board_category_name}/${board.board_name}`)
-                selectValueArray.push(board.board_id)
-            }))
-            Object.assign(data, { selectNameArray, selectValueArray, selectType, selectTopicId: '' })
-            this.setData(data)
-            this.getTopicList()
+
+    let promise = new Promise((resolve) => {
+        if (data.fid) {
+            this.setData({
+                isForumlist: false
+            })
+            return resolve(data.fid)
+        }
+
+        if (this.module.componentList && this.module.componentList.length > 0) {
+            const list = this.module.componentList[0].extParams.fastpostForumIds
+            this.setData({
+                fastforumList: list
+            })
+        }
+
+        // 查找
+        return app.api.forumList().then(res => {
+            console.log(2222, res)
+            this.setData({
+                forumList: res.list
+            })
+            return resolve()
         })
-    } else {
-        Object.assign(data, { selectType: data.fid })
-        this.setData(data)
+    })
+
+    return promise.then(fid => {
+        if (!fid) Promise.reject()
+        return app.api.search('', 'topic', { searchid: fid })
+    }).then((res) => {
+        // 话题列表
+        this.setData({
+            titopicList: res.list
+        })
+        this.changePageTitle()
         this.getTopicList()
-    }
+        this.getAtUserlist()
+    })
+    .catch(e => {
+        console.log('init createforum', e)
+        // app.event.trigger('errormessage', e.errcode)
+    })
 }
 // 主题列表
 OldCreateforum.prototype.getTopicList = function () {
@@ -84,13 +109,14 @@ OldCreateforum.prototype.getTopicList = function () {
         return app.api.forum(topicId)
     })
 }
+
+
 // 选择板块
-OldCreateforum.prototype.selectChange = function (e) {
-    const { value: selectIndex } = e.detail
-    const selectType = this.data.selectValueArray[selectIndex]
-    this.setData({ selectIndex, selectType })
-    this.getTopicList()
+OldCreateforum.prototype.selectedChange = function (e) {
+    const { fid, boardname } = e.currentTarget.dataset
+    app.createForum({ fid, boardname })
 }
+
 // 改变主题id
 OldCreateforum.prototype.selectTopicId = function (e) {
     const { topicId: selectTopicId } = e.currentTarget.dataset
