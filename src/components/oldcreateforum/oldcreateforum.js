@@ -34,13 +34,15 @@ OldCreateforum.prototype = Object.create(Component.prototype)
 OldCreateforum.prototype.name = 'oldcreateforum'
 OldCreateforum.prototype.constructor = OldCreateforum
 OldCreateforum.prototype.onLoad = function () {
+    console.log(1111, this.pageData)
     let opts = this.pageData
     let data = Object.assign({
         fid: null,
         actType: 'new',
         isTopic: false,
-        tiId: ''
+        tiId: null
     }, opts)
+
     if (app.globalData.userInfo) {
         // 判断用户是否登录
         Object.assign(data, {
@@ -54,11 +56,11 @@ OldCreateforum.prototype.onLoad = function () {
     let promise = new Promise((resolve) => {
         if (data.fid) {
             this.setData({
+                selectType: data.fid,
                 isForumlist: false
             })
             return resolve(data.fid)
         }
-
         if (this.module.componentList && this.module.componentList.length > 0) {
             const list = this.module.componentList[0].extParams.fastpostForumIds
             this.setData({
@@ -68,7 +70,6 @@ OldCreateforum.prototype.onLoad = function () {
 
         // 查找
         return app.api.forumList().then(res => {
-            console.log(2222, res)
             this.setData({
                 forumList: res.list
             })
@@ -77,7 +78,6 @@ OldCreateforum.prototype.onLoad = function () {
     })
 
     return promise.then(fid => {
-        if (!fid) Promise.reject()
         return app.api.search('', 'topic', { searchid: fid })
     }).then((res) => {
         // 话题列表
@@ -86,7 +86,6 @@ OldCreateforum.prototype.onLoad = function () {
         })
         this.changePageTitle()
         this.getTopicList()
-        this.getAtUserlist()
     })
     .catch(e => {
         console.log('init createforum', e)
@@ -115,6 +114,20 @@ OldCreateforum.prototype.getTopicList = function () {
 OldCreateforum.prototype.selectedChange = function (e) {
     const { fid, boardname } = e.currentTarget.dataset
     app.createForum({ fid, boardname })
+}
+
+// 改变页面的头部信息
+OldCreateforum.prototype.changePageTitle = function () {
+    const { isForumlist } = this.data
+    if (isForumlist) {
+        wx.setNavigationBarTitle({
+            title: '选择发布板块'
+        })
+    } else {
+        wx.setNavigationBarTitle({
+            title: '发帖'
+        })
+    }
 }
 
 // 改变主题id

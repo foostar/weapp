@@ -37,28 +37,29 @@
 </view>
 
 
-<!-- 
-<view class="oldcreateforum-publish-content">
-    <input class="oldcreateforum-publish-title  weapp-border-bottom" type="text" bindinput="oldcreateforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="oldcreateforum-publish-title-placeholder" />
-    <textarea class="oldcreateforum-publish-textarea" placeholder="说点什么吧..." bindfocus="textareaFocus" bindinput="oldcreateforum_blurAndChangeContent" maxlength="-1" data-event-key="{{key}}" ></textarea>
-</view>
-<view class="oldcreateforum-publish-images">
-    <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
-        <image wx:if="{{idx < 9}}" src="{{item}}" style="{{idx === 4  ? 'margin-right: 0': ''}}" class="oldcreateforum-upload-images" bindtap="oldcreateforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
-        <view class="delete-upload-box">
-            <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="oldcreateforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
-        </view>
-    </block>
-   <image src="{{iconSrc}}new_publish_pic.png" wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="oldcreateforum_chooseImg" data-event-key="{{key}}" mode="aspectFill"/>
-</view>
-
-
-<view wx:if="{{topicList.length}}" class="oldcreateforum-publish-topicList">
-    <view class="oldcreateforum-topic-label">主题</view>
-    <view class="oldcreateforum-topic-list">
-        <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="classificationType_id">
-            <view class="oldcreateforum-topic-item {{selectTopicId == topic.classificationType_id ? 'oldcreateforum-action' : ''}}" bindtap="oldcreateforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.classificationType_id}}">{{topic.classificationType_name}}</view>
-        </block>
+<block wx:if="{{!isForumlist}}">
+    <view class="oldcreateforum-publish-content">
+        <input class="oldcreateforum-publish-title  weapp-border-bottom" type="text" bindinput="oldcreateforum_changeTitle" data-event-key="{{key}}" placeholder="#点击添加标题#" placeholder-class="oldcreateforum-publish-title-placeholder" />
+        <textarea class="oldcreateforum-publish-textarea" placeholder="说点什么吧..." bindfocus="textareaFocus" bindinput="oldcreateforum_blurAndChangeContent" maxlength="-1" data-event-key="{{key}}" ></textarea>
     </view>
-</view>
-<button bindtap="oldcreateforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button> -->
+    <view class="oldcreateforum-publish-images">
+        <block wx:for="{{ imagelist }}" wx:for-index="idx" wx:key="*this">
+            <image wx:if="{{idx < 9}}" src="{{item}}" style="{{idx === 4  ? 'margin-right: 0': ''}}" class="oldcreateforum-upload-images" bindtap="oldcreateforum_previewImage" data-event-key="{{key}}" data-current-url="{{item}}" />
+            <view class="delete-upload-box">
+                <view class="delete-upload-btn" wx:if="{{deleteUrl === item}}" bindtap="oldcreateforum_deleteImage" data-event-key="{{key}}" data-current-url="{{item}}">x</view>
+            </view>
+        </block>
+       <image src="{{iconSrc}}new_publish_pic.png" wx:if="{{imagelist.length < 9}}" class="image-upload-btn" bindtap="oldcreateforum_chooseImg" data-event-key="{{key}}" mode="aspectFill"/>
+    </view>
+
+
+    <view wx:if="{{topicList.length}}" class="oldcreateforum-publish-topicList">
+        <view class="oldcreateforum-topic-label">主题</view>
+        <view class="oldcreateforum-topic-list">
+            <block wx:for="{{topicList}}" wx:for-item="topic" wx:key="classificationType_id">
+                <view class="oldcreateforum-topic-item {{selectTopicId == topic.classificationType_id ? 'oldcreateforum-action' : ''}}" bindtap="oldcreateforum_selectTopicId" wx:key="classificationType_id" data-event-key="{{key}}" data-topic-id="{{topic.classificationType_id}}">{{topic.classificationType_name}}</view>
+            </block>
+        </view>
+    </view>
+    <button bindtap="oldcreateforum_submit" data-event-key="{{key}}" class="publish-submit-btn" style="background:{{appColor}}">发　 布</button>
+</block>
