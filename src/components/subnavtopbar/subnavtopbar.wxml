@@ -6,8 +6,18 @@
             <image wx:for="{{module.leftTopbars}}" wx:key="{{index}}" src="{{'http://icons.apps.xiaoyun.com/top/' + item.icon + '_n/' + appColor}}"/>
         </view>
         <view class="subnavtopbar-bar-nav {{tabs.length > 3 ? 'subnavtopbar-bar-row' : ''}}">
-            <view wx:for="{{tabs}}" wx:key="{{item.id}}" bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}" class="{{item.id == selected ? 'active' : ''}} font-wide text-color"> {{item.title}} </view>
-            <view class="top-bar-indicator" style="transform: translateX({{index * 100 + '%'}}); width: {{width}};">
+            <block wx:if="{{tabs.length < 5}}">
+                <view wx:for="{{tabs}}" wx:key="{{item.id}}" bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-id="{{item.id}}" data-index="{{index}}" class="{{item.id == selected ? 'active' : ''}} font-wide text-color"> {{item.title}} </view>
+                <view class="top-bar-indicator" style="transform: translateX({{index * 100 + '%'}}); width: {{width}};">
+                    <view class="top-bar-indicator-inner bg-color"></view>
+                </view>
+            </block>
+            <scroll-view wx:else scroll-x="true" class="customtag-box">
+                <block wx:for="{{tabs}}" wx:key="{{index}}">
+                    <view class="customtag-item font-wide text-color {{ item.id == selected ? 'active' : ''}}" style="width:25%" data-role="tag" bindtap="subnavtopbar_changeTap" data-event-key="{{key}}" data-index="{{index}}" data-id="{{item.id}}">{{item.title}}</view>
+                </block>
+            </scroll-view>
+            <view class="top-bar-indicator" style="transform: translateX({{index * 100 + '%'}}); width: 25%;">
                 <view class="top-bar-indicator-inner bg-color"></view>
             </view>
         </view>

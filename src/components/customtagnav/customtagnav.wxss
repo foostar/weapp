@@ -14,7 +14,7 @@
     border-bottom: 1px solid #ddd;
 }
 .customtag-item{
-    /*display:inline-block;*/
+    display:inline-block;
     /*width:25%;*/
     height:90rpx;
     text-align: center;
@@ -24,7 +24,7 @@
     text-overflow:ellipsis; 
     line-height:90rpx;
     box-sizing:border-box;
-    float:left;
+    /*float:left;*/
     /*left:0;
     top:0;
     position: relative;*/
