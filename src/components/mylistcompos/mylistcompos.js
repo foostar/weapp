@@ -86,7 +86,8 @@ function Mylistcompos(key, module) {
         page: 0,
         recommendPage: 0,
         isUserList: false,
-        isNotify: false
+        isNotify: false,
+        isControl: true
     }
 }
 Mylistcompos.prototype = Object.create(ListComponent.prototype)
@@ -112,6 +113,7 @@ Mylistcompos.prototype.nextPage = function () {
     let obj = Object.assign({
         userId: isMy ? userId : uid,
         isNotify: false,
+        isControl: uid == app.globalData.userInfo.uid,
         page: page += 1,
         isMy
     }, switchtype)
