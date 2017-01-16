@@ -16,7 +16,7 @@ Page(createPage({
     },
     onLoad(data) {
         if (data.data) {
-            data.data = JSON.parse(decodeURIComponent(data.data))
+            data.data = JSON.parse(data.data)
         } else {
             data.data = {}
         }
@@ -29,7 +29,6 @@ Page(createPage({
             type: data.type,
             data: data.data.componentList ? '' : data.data
         }
-
         // 检测是否支持当前版块
         // pagetype.forEach((v) => {
         //     if (v.type == module.type && !v.isAchieve) {
@@ -47,10 +46,7 @@ Page(createPage({
             this.add(new Viewer('viewer', module))
         })
     },
-    imageLoaded(e) {
-        console.log(111)
-        console.log(this.data)
-        console.log(e)
+    imageLoaded() {
         // const windowWidth = this.data.windowWidth
         // const imageWidth = e.detail.width
         // const imageHeight = e.detail.height

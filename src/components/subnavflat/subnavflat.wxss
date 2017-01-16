@@ -13,6 +13,11 @@
     display:inline-block;
     text-align: center;
     border-bottom: 1px solid #E0E0E0;
+    overflow:hidden;
+    word-break:break-all;  
+    white-space:nowrap;
+    text-overflow:ellipsis; 
+    box-sizing:border-box;
 }
 .tab-nav-bar-item text {
     line-height: 70rpx;

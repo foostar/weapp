@@ -5,7 +5,7 @@ const app = getApp()
 const fns = {
     touch(e) {
         const currentIndex = e.currentTarget.dataset.index || 0
-        const info = this.module.componentList[currentIndex]
+        let info = this.module.componentList[currentIndex]
         app.globalData.moduleData = info
 
         if (info.type == 'newsview') {
@@ -63,10 +63,9 @@ const fns = {
             })
             return
         }
-
         if (info.type !== 'empty') {
             wx.navigateTo({
-                url: `/pages/blank/blank?type=${info.type}&data=${JSON.stringify(info)}`
+                url: `/pages/blank/blank?type=${info.type}&data=${encodeURIComponent(JSON.stringify(info))}`
             })
         }
     }
