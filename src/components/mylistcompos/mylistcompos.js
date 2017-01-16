@@ -86,7 +86,8 @@ function Mylistcompos(key, module) {
         page: 0,
         recommendPage: 0,
         isUserList: false,
-        isNotify: false
+        isNotify: false,
+        isControl: true
     }
 }
 Mylistcompos.prototype = Object.create(ListComponent.prototype)
@@ -112,6 +113,7 @@ Mylistcompos.prototype.nextPage = function () {
     let obj = Object.assign({
         userId: isMy ? userId : uid,
         isNotify: false,
+        isControl: uid == app.globalData.userInfo.uid,
         page: page += 1,
         isMy
     }, switchtype)
@@ -132,7 +134,6 @@ Mylistcompos.prototype.nextPage = function () {
     }
 
     promise.then(res => {
-        console.log(11111, res)
         if (apiType === 'favorite' || apiType === 'topic' || apiType === 'reply') {
             res.list.map((item, index) => {
                 res.list[index].last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
@@ -168,6 +169,7 @@ Mylistcompos.prototype.toUserhome = function (e) {
 
 Mylistcompos.prototype.foucsUser = function (e) {
     let index = e.currentTarget.dataset.index
+    const { userId } = this.data
     if (!app.isLogin()) return
     let type = 'follow'
     let result = 1
@@ -176,7 +178,7 @@ Mylistcompos.prototype.foucsUser = function (e) {
         type = 'unfollow'
         result = 0
     }
-    app.api.useradmin({ uid: e.currentTarget.dataset.uid, type })
+    app.api.useradmin({ uid: e.currentTarget.dataset.uid, type, userId })
         .then((data) => {
             wx.showToast({
                 title: data.errcode

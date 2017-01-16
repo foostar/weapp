@@ -717,7 +717,7 @@
     display: inline-block;
     width: 50%;
     text-align: center;
-    color: #fff;
+    color: #ccc;
     font-size: 24rpx;
 
 }
@@ -731,16 +731,16 @@
 }
 
 .cell-image-big-hits {
-    padding-left: 28rpx;
+    padding-left: 40rpx;
     display: inline-block;
-    color: #fff;
+    color: #ccc;
     padding-right: 20rpx;
 }
 .cell-image-big-replies {
-    padding-left: 30rpx;
+    padding-left: 40rpx;
     padding-right: 20rpx;
     display: inline-block;
-    color: #fff;
+    color: #ccc;
 }
 /* 图片列表 */
 .liststyle-image-box {
