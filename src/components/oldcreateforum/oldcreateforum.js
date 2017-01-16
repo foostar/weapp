@@ -34,7 +34,6 @@ OldCreateforum.prototype = Object.create(Component.prototype)
 OldCreateforum.prototype.name = 'oldcreateforum'
 OldCreateforum.prototype.constructor = OldCreateforum
 OldCreateforum.prototype.onLoad = function () {
-    console.log(1111, this.pageData)
     let opts = this.pageData
     let data = Object.assign({
         fid: null,
@@ -54,6 +53,7 @@ OldCreateforum.prototype.onLoad = function () {
     }
 
     let promise = new Promise((resolve) => {
+        this.setData(data)
         if (data.fid) {
             this.setData({
                 selectType: data.fid,
@@ -207,7 +207,7 @@ OldCreateforum.prototype.deleteImage = function (event) {
 }
     // 发表评论
 OldCreateforum.prototype.submit = function () {
-    const { title, content, actType, selectType, imagelist, selectTopicId } = this.data
+    const { title, content, actType, selectType, imagelist, selectTopicId, tiId } = this.data
     let topicContent = []
     // 文本处理
     if (content !== '') {
@@ -241,6 +241,7 @@ OldCreateforum.prototype.submit = function () {
             isShowPostion: 0, // 是否显示地理位置
             act: actType,
             fid: selectType,
+            ti_id: tiId,
             typeId: selectTopicId,
             title: encodeURIComponent(title)
         }, data)).then(() => {
