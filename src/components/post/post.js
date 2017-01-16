@@ -24,6 +24,7 @@ Post.prototype = Object.create(Component.prototype)
 Post.prototype.name = 'post'
 Post.prototype.constructor = Post
 Post.prototype.onLoad = function () {
+    console.log(app)
     const tid = this.data.postData.id || this.module.extParams.topicId
     this.fetchData(tid)
     app.event.on('login', () => {
@@ -236,7 +237,7 @@ Post.prototype.foucsUser = function (e) {
         type = 'unfollow'
         result = 0
     }
-    app.api.useradmin({ uid: e.currentTarget.dataset.id, type })
+    app.api.useradmin({ uid: e.currentTarget.dataset.id, type, userId: app.globalData.userInfo.uid })
         .then((data) => {
             wx.showToast({
                 title: data.errcode
