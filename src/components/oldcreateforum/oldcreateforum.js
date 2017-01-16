@@ -78,7 +78,13 @@ OldCreateforum.prototype.onLoad = function () {
     })
 
     return promise.then(fid => {
-        return app.api.search('', 'topic', { searchid: fid })
+        return app.api.search('', 'topic', { searchid: fid }).catch(err => {
+            console.log(err)
+            let res = {
+                list: [ ]
+            }
+            return Promise.resolve(res)
+        })
     }).then((res) => {
         // 话题列表
         this.setData({
