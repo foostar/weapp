@@ -192,13 +192,17 @@ components.type['userinfo-flat'] = Discover  // 用户中心
 
 components.type['userlist-flat'] = UserList   // 用户列表
 components.type['talkPostList-flat'] = Topic
+
 components.type['topic-flat'] = Topic         // 话题主页
 components.type['talkPostList-circle'] = Topic
-
+components.type['talkPostList-neteaseNews'] = Topic
 components.type['postlist-card'] = Post         // 帖子详情
 components.type['postlist-flat'] = Post         // 帖子详情
 
 components.type['followlist-flat'] = FollowList  // 关注相关列表
+components.type['topiclistFollow-card'] = FollowList  // 关注相关列表
+
+
 components.type['stickmore-flat'] = Stickmore   // 更多列表
 
 components.type['forgot-flat'] = Forgot      // 忘记密码
