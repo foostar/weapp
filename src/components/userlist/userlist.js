@@ -60,7 +60,7 @@ UserList.prototype.foucsUser = function (e) {
         type = 'unfollow'
         result = 0
     }
-    app.api.useradmin({ uid: e.currentTarget.dataset.uid, type })
+    app.api.useradmin({ uid: e.currentTarget.dataset.uid, type, userId: app.globalData.userInfo.uid })
         .then((data) => {
             wx.showToast({
                 title: data.errcode
