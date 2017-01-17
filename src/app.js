@@ -21,7 +21,7 @@ if (typeof Object.assign != 'function') {
 }
 
 
-Promise = require('./lib/promise.js')
+// Promise = require('./lib/promise.js')
 
 /* eslint-enable */
 
@@ -232,7 +232,7 @@ App({
             getUserInfo().catch(() => Promise.resolve())
         ]).then(([ appResult, uiResult, systemInfo, userInfo ]) => {
             if (userInfo && userInfo.token) {
-                // this.saveUserInfo(userInfo)
+                this.saveUserInfo(userInfo)
             }
 
             if (systemInfo) {
