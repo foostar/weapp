@@ -63,9 +63,12 @@ const fns = {
             })
             return
         }
+        if (info.title.match('%')) {
+            info.title = info.title.replace('%', '')
+        }
         if (info.type !== 'empty') {
             wx.navigateTo({
-                url: `/pages/blank/blank?type=${info.type}&data=${encodeURIComponent(JSON.stringify(info))}`
+                url: `/pages/blank/blank?type=${info.type}&data=${JSON.stringify(info)}`
             })
         }
     }

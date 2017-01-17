@@ -36,6 +36,8 @@ module.exports = {
     }, {
         name: '智慧登封', id: 124307,
     }, {
+        name: '澳游客', id: 148419,
+    }, {
         name: '小云社群', id: 229171,
     } ],
     config: {
