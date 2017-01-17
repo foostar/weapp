@@ -16,6 +16,7 @@ function Register(key) {
         code: '',
         verifyBtn: '获取验证码',
         errMessage: '',
+        imgCode: '',
         isShow: false,
         isVerify: false,
         isFetch: true
@@ -26,10 +27,12 @@ Register.prototype.name = 'register'
 Register.prototype.constructor = Register
 
 Register.prototype.onLoad = function () {
+    this.getImgCode()
     // 获取用户的主配置信息
     app.api.getSetting().then(res => {
         console.log('1111', res.body.plugin.isMobileRegisterValidation)
         this.setData({
+            isAllowImage: res.body.plugin.allow_image,
             isMobileRegisterValidation: res.body.plugin.isMobileRegisterValidation,
             isCloseEmail: res.body.plugin.isCloseEmail,
             isFastRegister: res.body.plugin.isFastRegister,
@@ -56,10 +59,19 @@ Register.prototype.onReady = function () {
     }
 }
 
+Register.prototype.setImgCode = function (e) {
+    // console.log('获取页面输入手机号')
+    this.setData({
+        imgCode: e.detail.value ? e.detail.value : ''
+    })
+}
+
+
 // 手机验证
 Register.prototype.getCode = function () {
+    const { imgKey, imgCode } = this.data
     if (this.data.isFetch && this.data.mobile) {
-        app.api.getCode(this.data.mobile)
+        app.api.getCode(this.data.mobile, 'register', { key: imgKey, imgCode })
             .then(res => console.log(res))
             .catch(err => {
                 if (parseInt(err.status / 100, 10) === 4) {
@@ -87,6 +99,24 @@ Register.prototype.setCode = function (e) {
         code: e.detail.value ? e.detail.value : ''
     })
 }
+
+Register.prototype.changeCode = function () {
+    this.getImgCode()
+}
+
+// 获取验证码
+Register.prototype.getImgCode = function () {
+    return app.api.getImgCode({ change: 1 })
+        .then(res => {
+            const { key, url } = res.body
+            console.log(key, url)
+            this.setData({
+                imgCodeUrl: `${url}&change=1&t=${Date.now()}`,
+                imgKey: key
+            })
+        })
+}
+
 
 // 检测手机和验证码
 Register.prototype.checkMobileCode = function (e) {
