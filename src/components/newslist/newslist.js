@@ -57,7 +57,6 @@ NewsList.prototype.fetchData = function (param, number) {
         isLoading: true
     })
 
-
     return app.api.news(module.extParams.newsModuleId || module.id, {
         page: param.page,
         sortby: param.orderby || 'all'
