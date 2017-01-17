@@ -1,5 +1,5 @@
 const ListComponent = require('../../lib/listcomponent.js')
-const { dateFormat, formatTime } = require('../../utils/util.js')
+const { dateFormat, formatTime, formateText } = require('../../utils/util.js')
 
 const app = getApp()
 
@@ -136,10 +136,22 @@ Mylistcompos.prototype.nextPage = function () {
     promise.then(res => {
         if (apiType === 'favorite' || apiType === 'topic' || apiType === 'reply') {
             res.list.forEach(item => {
-                item.last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
+                item.repliedAt = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
                 item.pic_path = item.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
+                item.subject = formateText(item.subject)
+                /* eslint-disable */
+                item.images = item.imageList && item.imageList.map(src => src.replace('xgsize_', 'mobcentSmallPreview_')) || new Array(item.pic_path) || []
+                /* eslint-enable */
+                item.user = {
+                    id: item.user_id,
+                    nickname: item.user_nick_name,
+                    avatar: item.userAvatar,
+                    title: item.userTitle
+                }
+                item.views = item.hits
             })
         }
+
         if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed' || apiType === 'recommend') {
             res.list.forEach(item => {
                 item.lastLogin = formatTime(item.lastLogin)
