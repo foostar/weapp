@@ -1,5 +1,5 @@
 const ListComponent = require('../../lib/listcomponent.js')
-const { formatTime, dateFormat } = require('../../utils/util.js')
+const { formatTime, dateFormat, formateText } = require('../../utils/util.js')
 
 const app = getApp()
 function FollowList(key, module) {
@@ -33,6 +33,7 @@ FollowList.prototype.nextPage = function () {
     }).then(data => {
         data.list.forEach(item => {
             item.repliedAt = formatTime(item.repliedAt)
+            item.subject = formateText(item.subject)
         })
 
         list = list.concat(data.list)
@@ -53,7 +54,6 @@ FollowList.prototype.nextPage = function () {
     .catch(e => console.log(e))
 }
 // 获取推荐好友
-
 FollowList.prototype.getRecommendList = function () {
     var opts = { page: 1, pageSize: 7 }
     return app.api.getUserList(this.uid, 'recommend', opts)
@@ -89,6 +89,16 @@ FollowList.prototype.moreuser = function () {
     wx.navigateTo({
         url: `/pages/blank/blank?type=mylistcompos&data=${JSON.stringify({ type: 'recommend' })}`
     })
+}
+
+FollowList.prototype.clickItem = function (e) {
+    console.log(e)
+    if (e.target.dataset.role == 'avatar') {
+        return wx.navigateTo({
+            url: `/pages/blank/blank?type=userhome&data=${JSON.stringify({ uid: e.currentTarget.dataset.uid })}`
+        })
+    }
+    app.showPost({ type: e.currentTarget.dataset.type, id: e.currentTarget.id })
 }
 
 
