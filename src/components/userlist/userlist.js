@@ -5,6 +5,7 @@ const app = getApp()
 function UserList(key, module) {
     this.module = module
     ListComponent.call(this, key)
+    this.orderby = this.module.extParams.orderby
     this.data = {
         list: [],
         page: 0
@@ -26,21 +27,15 @@ UserList.prototype.onLoad = function () {
     }
 }
 // 请求数据
-UserList.prototype.nextPage = function () {
-    const { filter: type, orderby } = this.module.extParams
-    let { list, page } = this.data
-    app.api.getUserList(this.uid, type, {
-        page,
-        orderBy: orderby
-    }).then(data => {
-        console.log('userlist ', data)
-        data.list.map((item, index) => {
-            data.list[index].lastLogin = formatTime(item.lastLogin)
-            return data
+UserList.prototype.fetchData = function (info) {
+    const { filter: type } = this.module.extParams
+    return app.api.getUserList(this.uid, type, info)
+        .then(data => {
+            data.list.forEach(item => {
+                item.lastLogin = formatTime(item.lastLogin)
+            })
+            return data.list
         })
-        list = list.concat(data.list)
-        this.setData({ list, page: page += 1 })
-    })
 }
 // 跳转到用户主页
 UserList.prototype.toUserhome = function (e) {

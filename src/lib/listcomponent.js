@@ -30,7 +30,10 @@ ListComponent.prototype.nextPage = function () {
         page: this.pageIndex + 1,
         orderby: this.orderby
     }, this.pageNumber)
-        .then(() => {
+        .then(data => {
+            this.setData({
+                list: (this.data.list || []).concat(data)
+            })
             this.pageIndex += 1
             this.isFetching = false
         }, () => {

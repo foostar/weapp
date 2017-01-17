@@ -31,9 +31,8 @@ FollowList.prototype.nextPage = function () {
         orderBy: orderby,
         pageSize: number
     }).then(data => {
-        data.list.map((item, index) => {
-            data.list[index].repliedAt = formatTime(item.repliedAt)
-            return data
+        data.list.forEach(item => {
+            item.repliedAt = formatTime(item.repliedAt)
         })
 
         list = list.concat(data.list)

@@ -135,17 +135,15 @@ Mylistcompos.prototype.nextPage = function () {
 
     promise.then(res => {
         if (apiType === 'favorite' || apiType === 'topic' || apiType === 'reply') {
-            res.list.map((item, index) => {
-                res.list[index].last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
-                res.list[index].pic_path = item.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
-                return res
+            res.list.forEach(item => {
+                item.last_reply_date = dateFormat(item.last_reply_date, 'yyyy-MM-dd', false)
+                item.pic_path = item.pic_path.replace('xgsize_', 'mobcentSmallPreview_')
             })
         }
         if (apiType === 'friend' || apiType === 'follow' || apiType === 'followed' || apiType === 'recommend') {
-            res.list.map((item, index) => {
-                res.list[index].lastLogin = formatTime(item.lastLogin)
-                res.list[index].dateline = dateFormat(item.dateline, 'yyyy-MM-dd', false)
-                return res
+            res.list.forEach(item => {
+                item.lastLogin = formatTime(item.lastLogin)
+                item.dateline = dateFormat(item.dateline, 'yyyy-MM-dd', false)
             })
         }
 
