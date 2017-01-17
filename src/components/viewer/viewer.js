@@ -230,7 +230,7 @@ Viewer.prototype.name = 'viewer'
 Viewer.prototype.constructor = Viewer
 Viewer.prototype.onLoad = function () {
     app.api.weapp().then(res => {
-        let createforum = res.tuwenMixed ? Createforum : OldCreateForum
+        let createforum = res.data.tuwenMixed ? Createforum : OldCreateForum
         /*  发帖内容  */
         components.type['fastpost-flat'] = createforum  // 快速发表暂时直接发帖
         components.type['fasttext-flat'] = createforum // 快速发表

@@ -120,6 +120,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width:420rpx;
 }
 .default-page-icon {
     background-size: 100%;
