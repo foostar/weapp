@@ -16,7 +16,7 @@ Page(createPage({
     },
     onLoad(data) {
         if (data.data) {
-            data.data = JSON.parse(data.data)
+            data.data = JSON.parse(decodeURIComponent(data.data))
         } else {
             data.data = {}
         }

@@ -125,7 +125,6 @@ Topic.prototype.handleEditClick = function (e) {
 Topic.prototype.onShareAppMessage = function () {
     const { tpcinfo: { ti_title: title, ti_content: desc } } = this.data
     let path = `/pages/blank/blank?type=topic&data=${JSON.stringify({ id: this.papeData.id })}`
-    console.log(title, path, desc)
     return {
         title,
         desc,
