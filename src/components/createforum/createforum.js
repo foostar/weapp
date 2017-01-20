@@ -752,15 +752,25 @@ Createforum.prototype.onSubmit = function () {
                 icon: 'success',
                 duration: 1500,
                 success: () => {
-                    wx.navigateBack()
+                    setTimeout(() => {
+                        wx.navigateBack()
+                    }, 1500)
                 }
             })
         })
     })
     .catch(err => {
         console.log('发表失败', err)
-        if (err.data.err && err.data.err.errcode) {
+        if (err.errcode == 50000000) {
+            app.event.trigger('errormessage', err.message)
+        } else if (err.data.err.errcode == 50000000) {
+            return app.event.trigger('errormessage', '用户没有登陆')
+        } else if (err.data.err.errcode) {
             app.event.trigger('errormessage', err.data.err.errcode)
+        } else if (err.errMsg) {
+            app.event.trigger('errormessage', err.errMsg)
+        } else {
+            app.event.trigger('errormessage', err)
         }
     })
 }

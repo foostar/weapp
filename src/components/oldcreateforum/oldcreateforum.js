@@ -250,7 +250,9 @@ OldCreateforum.prototype.submit = function () {
                 icon: 'success',
                 duration: 1500,
                 success: () => {
-                    wx.navigateBack()
+                    setTimeout(() => {
+                        wx.navigateBack()
+                    }, 1500)
                 }
             })
         })
