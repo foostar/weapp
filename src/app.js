@@ -20,7 +20,6 @@ if (typeof Object.assign != 'function') {
     };
 }
 
-
 // Promise = require('./lib/promise.js')
 
 /* eslint-enable */
