@@ -30,7 +30,6 @@ Register.prototype.onLoad = function () {
     this.getImgCode()
     // 获取用户的主配置信息
     app.api.getSetting().then(res => {
-        console.log('1111', res.body.plugin.isMobileRegisterValidation)
         this.setData({
             isAllowImage: res.body.plugin.allow_image,
             isMobileRegisterValidation: res.body.plugin.isMobileRegisterValidation,
@@ -42,7 +41,7 @@ Register.prototype.onLoad = function () {
 }
 
 Register.prototype.onReady = function () {
-    console.log(this.data)
+    // console.log(this.data)
     if (app.globalData.userInfo) {
         wx.redirectTo({
             url: '/pages/blank/blank?type=mylistcompos'
@@ -153,7 +152,8 @@ Register.prototype.changeMobileBtn = function () {
     }, 1000)
 }
 Register.prototype.signup = function (e) {
-    const { username, password, email } = e.detail.value
+    let { username, password, email } = e.detail.value
+    email = email || ''
     app.api.signup(username, password, email)
         .then(res => {
             // console.log(res)

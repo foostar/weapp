@@ -29,7 +29,7 @@
             <input name="username" placeholder="请输入用户名（不要使用手机号）" placeholder-class="input-shadow" type="text"></input>
         </view>
 
-        <view class="login-input">
+        <view class="login-input" wx:if="{{ isCloseEmail === 0}}">
             <input name="email" placeholder="请输入你的邮箱" placeholder-class="input-shadow" type="text"></input>
         </view>
 
