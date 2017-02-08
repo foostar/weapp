@@ -157,6 +157,12 @@ ForgotPassword.prototype.checkCode = function () {
                     step: 2
                 })
             }
+        }).catch(e => {
+            this.setData({
+                isShow: true,
+                errMessage: e.errcode
+            })
+            this.closeMessagePrompt()
         })
     }
 }
