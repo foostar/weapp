@@ -17,7 +17,7 @@
 
         
         <view class="register-input">
-            <input name="verify" placeholder="请输入验证码" type="number" placeholder-class="input-shadow"></input>
+            <input name="verify" placeholder="请输入验证码" type="number" placeholder-class="input-shadow" bindinput="register_setCode" data-event-key="{{key}}"></input>
         </view>
         <button class="prelogin-btn" formType="submit" style="margin-top: 150rpx;">验 证</button>
     </form>
