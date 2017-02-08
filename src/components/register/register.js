@@ -153,8 +153,9 @@ Register.prototype.changeMobileBtn = function () {
 }
 Register.prototype.signup = function (e) {
     let { username, password, email } = e.detail.value
+    let { mobile, code, isMobileRegisterValidation } = this.data
     email = email || ''
-    app.api.signup(username, password, email)
+    app.api.signup(username, password, email, { mobile, code, isValidation: isMobileRegisterValidation })
         .then(res => {
             // console.log(res)
             app.globalData.userInfo = res
