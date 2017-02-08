@@ -23,7 +23,7 @@
     </form>
 
     <!-- 注册用户表单 -->
-    <form bindsubmit="register_signup" wx:if="{{ isMobileRegisterValidation === 0   || isVerify }}" data-event-key="{{key}}" class="register-box">
+    <form bindsubmit="register_signup" wx:if="{{ isMobileRegisterValidation === 0 || isVerify }}" data-event-key="{{key}}" class="register-box">
 
         <view class="login-input">
             <input name="username" placeholder="请输入用户名（不要使用手机号）" placeholder-class="input-shadow" type="text"></input>
