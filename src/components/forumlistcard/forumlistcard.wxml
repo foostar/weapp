@@ -9,7 +9,7 @@
                 <block wx:if="{{(index % 2 === 0)}}">
                     <view class="forum-list-card-item">
 
-                        <view class="forum-list-card-item-panel" bindtap="forumlistcard_navigator" data-id="{{item.board_id}}" data-title="{{item.board_name}}" data-event-key="{{key}}" data-url="{{panel.board_list[index].url}}">
+                        <view class="forum-list-card-item-panel" bindtap="forumlistcard_navigator" data-id="{{panel.board_list[index].board_id}}" data-title="{{panel.board_list[index].board_name}}" data-event-key="{{key}}" data-url="{{panel.board_list[index].url}}">
                             <image wx:if="{{panel.board_list[index].board_img}}" class="forum-list-card-item-icon" src="{{panel.board_list[index].board_img}}" />
                             <view class="forum-list-card-item-info">
                                 <view class="forum-list-card-item-info-title">{{panel.board_list[index].board_name}}</view>
@@ -22,7 +22,7 @@
 
                         <view class="forum-list-card-border-right"></view>
 
-                        <view wx:if="{{panel.board_list[index+1]}}" class="forum-list-card-item-panel" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-id="{{item.board_id}}" data-title="{{item.board_name}}" data-url="{{panel.board_list[index+1].url}}">
+                        <view wx:if="{{panel.board_list[index+1]}}" class="forum-list-card-item-panel" bindtap="forumlistcard_navigator" data-event-key="{{key}}" data-id="{{panel.board_list[index+1].board_id}}" data-title="{{panel.board_list[index+1].board_name}}" data-url="{{panel.board_list[index+1].url}}">
                             <image wx:if="{{panel.board_list[index+1].board_img}}" class="forum-list-card-item-icon" src="{{panel.board_list[index+1].board_img}}" />
                             <view class="forum-list-card-item-info">
                                 <view class="forum-list-card-item-info-title">{{panel.board_list[index+1].board_name}}</view>
