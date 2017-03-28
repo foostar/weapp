@@ -27,9 +27,9 @@ gulp.task('default', [ 'copy' ], () => {
             }
             return `const Promise = require('${pp}');` + contents
         }))
-        .pipe(babel({
-            presets: [ 'es2015' ],
-        }))
-        .pipe(uglify())
+        // .pipe(babel({
+        //     presets: [ 'es2015' ],
+        // }))
+        // .pipe(uglify())
         .pipe(gulp.dest('weapp'))
 })
